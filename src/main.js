@@ -11,3 +11,5 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+import 'bootstrap/dist/css/bootstrap.min.css'

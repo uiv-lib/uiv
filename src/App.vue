@@ -1,28 +1,34 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="page-header">
+          Vue Component Lib
+        </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <tab>
+          <p>test</p>
+          <p>test</p>
+        </tab>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  import Hello from './components/Hello'
+  import Tab from './components/Tab.vue'
 
   export default {
     name: 'app',
     components: {
-      Hello
+      Tab
     }
   }
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
+
 </style>
