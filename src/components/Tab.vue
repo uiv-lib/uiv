@@ -1,31 +1,41 @@
 <template>
-  <section>
-    <ul class="nav nav-tabs">
-      <li :class="{'active':activeIndex===0}" @click="activeIndex=0">
-        <a href="javascript:void(0);">Tab 1</a>
-      </li>
-      <li :class="{'active':activeIndex===1}" @click="activeIndex=1">
-        <a href="javascript:void(0);">Tab 2</a>
-      </li>
-    </ul>
-    <transition-group name="tab">
-      <div :key="index"
-           class="tab-pane active"
-           v-show="index===activeIndex"
-           v-for="(r,index) in tabs">
-        this is tab {{r}}
-      </div>
-    </transition-group>
-    <slot></slot>
-  </section>
+  <transition name="fade">
+    <div class="tab-pane active" v-show="active">
+      <slot></slot>
+    </div>
+  </transition>
 </template>
 
 <script>
   export default {
+    props: {
+      title: {
+        type: String,
+        default: 'Tab Title'
+      },
+      htmlTitle: {
+        type: Boolean,
+        default: false
+      },
+      disabled: {
+        type: Boolean,
+        default: false
+      },
+      afterActive: {
+        type: Function
+      }
+    },
     data () {
       return {
-        activeIndex: 0,
-        tabs: [1, 2]
+        active: false
+      }
+    },
+    created () {
+      let self = this
+      if (self.$parent && self.$parent.tabs && typeof self.$parent.tabs.push === 'function') {
+        self.$parent.tabs.push(self)
+      } else {
+        console.error(new Error('Tab parent must be Tabs.'))
       }
     }
   }
@@ -34,19 +44,18 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .tab-pane {
-    transition: opacity .3s ease-in-out;
     opacity: 1;
   }
 
-  .tab-enter {
+  .fade-enter, .fade-leave {
     opacity: 0;
   }
 
-  .tab-leave {
-    display: none;
+  .fade-enter-active {
+    transition: opacity .5s ease-in-out 0s;
   }
 
-  .tab-leave-active {
+  .fade-leave-active {
     transition: none;
   }
 </style>
