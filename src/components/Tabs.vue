@@ -1,9 +1,9 @@
 <template>
   <section>
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" :class="{'nav-justified':justified}">
       <li v-for="(tab,index) in tabs"
           :class="{'active':tab.active,'disabled':tab.disabled}"
-          @click="activeTab(tab)">
+          @click="select(index)">
         <a href="javascript:void(0);">
           <span v-if="tab.htmlTitle" v-html="tab.title"></span>
           <span v-else v-text="tab.title"></span>
@@ -19,9 +19,9 @@
 <script>
   export default {
     props: {
-      active: {
-        type: Number,
-        default: 0
+      justified: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
@@ -30,12 +30,14 @@
       }
     },
     mounted () {
-      this.activeTab(this.tabs[this.tabs.length > this.active ? this.active : 0])
+      if (this.tabs && this.tabs.length > 0) {
+        this.select(0)
+      }
     },
     watch: {
       active (i) {
         if (this.tabs.length > i && !this.tabs[i].active) {
-          this.activeTab(this.tabs[i])
+          this.select(i)
         }
       }
     },
@@ -45,12 +47,13 @@
           tab.active = false
         })
       },
-      activeTab (tab) {
-        if (!tab.disabled && !tab.active) {
-          this.hideAllTabs()
-          tab.active = true
-          if (typeof tab.afterActive === 'function') {
-            tab.afterActive()
+      select (index) {
+        if (index >= 0 && index < this.tabs.length) {
+          let tab = this.tabs[index]
+          if (!tab.disabled && !tab.active) {
+            this.hideAllTabs()
+            tab.active = true
+            this.$emit('after-active', index)
           }
         }
       }

@@ -20,9 +20,6 @@
       disabled: {
         type: Boolean,
         default: false
-      },
-      afterActive: {
-        type: Function
       }
     },
     data () {
