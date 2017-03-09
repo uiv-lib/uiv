@@ -20,6 +20,9 @@
       disabled: {
         type: Boolean,
         default: false
+      },
+      group: {
+        type: String
       }
     },
     data () {

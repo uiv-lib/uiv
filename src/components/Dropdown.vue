@@ -1,14 +1,26 @@
 <template>
-  <div class="dropdown">
+  <div v-if="tag==='div'" class="dropdown">
     <span data-role="trigger" @click="toggle" ref="toggle">
       <slot name="trigger"></slot>
     </span>
     <slot name="dropdown" v-if="show"></slot>
   </div>
+  <li v-else-if="tag==='li'" class="dropdown">
+    <span data-role="trigger" @click="toggle" ref="toggle">
+      <slot name="trigger"></slot>
+    </span>
+    <slot name="dropdown" v-if="show"></slot>
+  </li>
 </template>
 
 <script>
   export default {
+    props: {
+      tag: {
+        type: String,
+        default: 'div'
+      }
+    },
     data () {
       return {
         show: false

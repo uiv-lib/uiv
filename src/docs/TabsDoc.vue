@@ -35,6 +35,12 @@
           <tab title="Tab with callback">
             <p>This tab has a callback function after selected.</p>
           </tab>
+          <tab title="Tab in group 1" group="Tab Group">
+            <p>This is Tab in group 1.</p>
+          </tab>
+          <tab title="Tab in group 2" group="Tab Group">
+            <p>This is Tab in group 2.</p>
+          </tab>
         </tabs>
       </div>
     </div>
