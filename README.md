@@ -2,20 +2,31 @@
 
 > Bootstrap components implemented by Vue
 
+[Demo](https://wxsm.space/uiv)
+
+Dependencies:
+
+* **Vue** (tested on ^2.2.1)
+* **Bootstrap CSS** (tested on ^3.3.7)
+
+## Install
+
+Working on it...
+
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve docs with hot reload at localhost:8080
 npm run dev
 
 # build for production with minification
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
+# build docs
+npm run build-docs
 
 # run unit tests
 npm run unit
@@ -26,5 +37,3 @@ npm run e2e
 # run all tests
 npm test
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
