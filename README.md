@@ -1,4 +1,7 @@
-# uiv [![Build Status](https://travis-ci.org/wxsms/uiv.svg?branch=master)](https://travis-ci.org/wxsms/uiv)
+# uiv 
+
+[![Build Status](https://travis-ci.org/wxsms/uiv.svg?branch=master)](https://travis-ci.org/wxsms/uiv)
+[![Coverage Status](https://coveralls.io/repos/github/wxsms/uiv/badge.svg?branch=master)](https://coveralls.io/github/wxsms/uiv?branch=master)
 
 > Bootstrap components implemented by Vue
 
