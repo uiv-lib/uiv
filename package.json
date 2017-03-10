@@ -29,10 +29,10 @@
     "coveralls": "cat test/unit/coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7",
     "vue": "^2.2.1"
   },
   "devDependencies": {
+    "bootstrap": "^3.3.7",
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
