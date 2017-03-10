@@ -18,7 +18,9 @@ let webpackConfig = merge(baseWebpackConfig, {
   },
   output: {
     path: config.dist.assetsRoot,
-    filename: 'uiv.min.js'
+    filename: 'uiv.min.js',
+    library: 'uiv',
+    libraryTarget: 'umd'
   },
   module: {
     rules: utils.styleLoaders({
