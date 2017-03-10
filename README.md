@@ -1,4 +1,4 @@
-# uiv
+# uiv [![Build Status](https://travis-ci.org/wxsms/uiv.svg?branch=master)](https://travis-ci.org/wxsms/uiv)
 
 > Bootstrap components implemented by Vue
 
