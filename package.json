@@ -1,9 +1,9 @@
 {
   "name": "uiv",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Bootstrap components implemented by Vue",
   "author": "wxsm",
-  "main": "src/index.js",
+  "main": "src/components/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wxsms/uiv.git"
