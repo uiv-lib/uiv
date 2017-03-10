@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "description": "Bootstrap components implemented by Vue",
   "author": "wxsm",
-  "main": "src/components/index.js",
+  "main": "dist/uiv.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wxsms/uiv.git"
