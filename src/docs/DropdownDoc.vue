@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <dropdown>
+        <dropdown id="dropdown-1">
           <button data-role="trigger" class="btn btn-default dropdown-toggle" type="button">
             <span>Dropdown 1</span>
             <span class="caret"></span>
@@ -20,7 +20,7 @@
             <li><a href="#">Separated link</a></li>
           </ul>
         </dropdown>
-        <dropdown>
+        <dropdown id="dropdown-2">
           <button data-role="trigger" class="btn btn-primary dropdown-toggle" type="button">
             <span>Dropdown 2</span>
             <span class="caret"></span>
@@ -34,7 +34,7 @@
           </ul>
         </dropdown>
         <!-- Split button -->
-        <dropdown class="btn-group">
+        <dropdown id="dropdown-3" class="btn-group">
           <button type="button" class="btn btn-danger">Split Button</button>
           <button type="button" class="btn btn-danger dropdown-toggle" data-role="trigger">
             <span class="caret"></span>

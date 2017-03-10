@@ -10,7 +10,6 @@
   export default {
     props: {
       title: {
-        type: String,
         default: 'Tab Title'
       },
       htmlTitle: {
