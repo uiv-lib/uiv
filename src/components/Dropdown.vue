@@ -1,16 +1,16 @@
 <template>
-  <div v-if="tag==='div'" class="dropdown">
-    <span data-role="trigger" @click="toggle" ref="toggle">
-      <slot name="trigger"></slot>
-    </span>
+  <span v-if="tag==='span'" class="dropdown">
+    <slot></slot>
     <slot name="dropdown" v-if="show"></slot>
-  </div>
+  </span>
   <li v-else-if="tag==='li'" class="dropdown">
-    <span data-role="trigger" @click="toggle" ref="toggle">
-      <slot name="trigger"></slot>
-    </span>
+    <slot></slot>
     <slot name="dropdown" v-if="show"></slot>
   </li>
+  <div v-else class="dropdown">
+    <slot></slot>
+    <slot name="dropdown" v-if="show"></slot>
+  </div>
 </template>
 
 <script>
@@ -18,18 +18,26 @@
     props: {
       tag: {
         type: String,
-        default: 'div'
+        default: 'span'
       }
     },
     data () {
       return {
-        show: false
+        show: false,
+        triggerEl: undefined
       }
     },
     mounted () {
+      this.triggerEl = this.$el.querySelector('[data-role="trigger"]')
+      if (this.triggerEl) {
+        this.triggerEl.addEventListener('click', this.toggle)
+      }
       window.addEventListener('click', this.windowClicked)
     },
     destroyed () {
+      if (this.triggerEl) {
+        this.triggerEl.removeEventListener('click', this.toggle)
+      }
       window.removeEventListener('click', this.windowClicked)
     },
     methods: {
@@ -37,7 +45,7 @@
         this.show = !this.show
       },
       windowClicked (event) {
-        if (this.$refs.toggle.contains(event.target)) {
+        if (this.triggerEl && this.triggerEl.contains(event.target)) {
           // Silent
         } else {
           this.show = false
@@ -49,8 +57,8 @@
 
 <style lang="less" rel="stylesheet/less" scoped>
   .dropdown {
-    display: inline-block;
     position: relative;
+    display: inline-block;
 
     .dropdown-menu {
       display: block;
