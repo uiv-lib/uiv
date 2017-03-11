@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import DropdownDoc from '@/docs/DropdownDoc.vue'
 
-describe('Dropdown', () => {
-  it('should be able to open dropdown', () => {
+describe('DropdownDoc', () => {
+  it('should be able to open dropdown on trigger click', () => {
     const Constructor = Vue.extend(DropdownDoc)
     const vm = new Constructor().$mount()
     for (let i = 0; i < 3; i++) {
@@ -17,7 +17,7 @@ describe('Dropdown', () => {
     }
   })
 
-  it('should be able to close dropdown', () => {
+  it('should be able to close dropdown on trigger click', () => {
     const Constructor = Vue.extend(DropdownDoc)
     const vm = new Constructor().$mount()
     for (let i = 0; i < 3; i++) {
@@ -26,9 +26,12 @@ describe('Dropdown', () => {
       expect(dropdown.tagName.toLowerCase()).to.equal('span')
       expect(dropdown.querySelector('.dropdown-menu')).to.equal(null)
       trigger.click()
-      trigger.click()
       vm.$nextTick(() => {
-        expect(dropdown.querySelector('.dropdown-menu')).to.equal(null)
+        expect(dropdown.querySelector('.dropdown-menu')).not.equal(null)
+        trigger.click()
+        vm.$nextTick(() => {
+          expect(dropdown.querySelector('.dropdown-menu')).to.equal(null)
+        })
       })
     }
   })

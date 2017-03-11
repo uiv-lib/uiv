@@ -8,14 +8,14 @@
     <div class="row">
       <div class="col-xs-12">
         <p>
-          <button type="button" class="btn btn-default" @click="selectTab(0)">Active Tab 1</button>
-          <button type="button" class="btn btn-default" @click="selectTab(1)">Active Tab 2</button>
-          <button type="button" class="btn btn-default" @click="thirdTabDisabled=!thirdTabDisabled">
+          <button type="button" id="tabs-btn-1" class="btn btn-default" @click="selectTab(0)">Active Tab 1</button>
+          <button type="button" id="tabs-btn-2" class="btn btn-default" @click="selectTab(1)">Active Tab 2</button>
+          <button type="button" id="tabs-btn-3" class="btn btn-default" @click="thirdTabDisabled=!thirdTabDisabled">
             Enable / Disable Tab 3
           </button>
         </p>
         <p>
-          <button type="button" class="btn btn-default" @click="justified=!justified">
+          <button type="button" id="tabs-btn-4" class="btn btn-default" @click="justified=!justified">
             Enable / Disable Justified Style
           </button>
         </p>
