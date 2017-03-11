@@ -34,7 +34,7 @@
       }
       window.addEventListener('click', this.windowClicked)
     },
-    destroyed () {
+    beforeDestroy () {
       if (this.triggerEl) {
         this.triggerEl.removeEventListener('click', this.toggle)
       }
@@ -45,9 +45,7 @@
         this.show = !this.show
       },
       windowClicked (event) {
-        if (this.triggerEl && this.triggerEl.contains(event.target)) {
-          // Silent
-        } else {
+        if (!this.triggerEl || !this.triggerEl.contains(event.target)) {
           this.show = false
         }
       }

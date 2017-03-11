@@ -8,8 +8,8 @@
             <span class="caret"></span>
           </a>
           <ul slot="dropdown" class="dropdown-menu">
-            <li>
-              <a href="javascript:void(0)" v-for="subTab in tab.tabs" @click="select(subTab)">
+            <li v-for="subTab in tab.tabs">
+              <a href="javascript:void(0)" @click="select(subTab)">
                 {{subTab.title}}
               </a>
             </li>
@@ -51,13 +51,6 @@
     mounted () {
       if (this.tabs && this.tabs.length > 0) {
         this.select(0)
-      }
-    },
-    watch: {
-      active (i) {
-        if (this.tabs.length > i && !this.tabs[i].active) {
-          this.select(i)
-        }
       }
     },
     methods: {

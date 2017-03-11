@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <dropdown id="dropdown-1">
+        <dropdown id="dropdown-1" ref="dropdown1">
           <button data-role="trigger" class="btn btn-default dropdown-toggle" type="button">
             <span>Dropdown 1</span>
             <span class="caret"></span>

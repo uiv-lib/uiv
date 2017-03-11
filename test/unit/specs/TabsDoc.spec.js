@@ -2,7 +2,7 @@ import Vue from 'vue'
 import TabsDoc from '@/docs/TabsDoc.vue'
 
 describe('TabsDoc', () => {
-  it('should be able to render first tab on open', () => {
+  it('should be able to render first tab on open', (done) => {
     const Constructor = Vue.extend(TabsDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
@@ -12,13 +12,16 @@ describe('TabsDoc', () => {
       let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane:not([style="display: none;"])')
       expect(activeContent.length).to.equal(1)
       expect(activeContent[0].querySelector('p').textContent).to.equal('This is tab 1.')
+      done()
     })
   })
 
-  it('should be able to open correct tab content after click on tab nav', () => {
+  it('should be able to open correct tab content after click on tab nav', (done) => {
     const Constructor = Vue.extend(TabsDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
+      vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[1].querySelector('a').click()
+      // Double click should be fine
       vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[1].querySelector('a').click()
       vm.$nextTick(() => {
         let activeTab = vm.$el.querySelector('.nav-tabs').querySelectorAll('.active')
@@ -28,13 +31,14 @@ describe('TabsDoc', () => {
         setTimeout(() => {
           let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane:not([style="display: none;"])')
           expect(activeContent.length).to.equal(1)
-          expect(activeContent[0].querySelector('p').textContent).to.equal('This is tab 2.')
+          expect(activeContent[0].querySelector('p').textContent).to.equal('Tab 2 goes here.')
+          done()
         }, 1000)
       })
     })
   })
 
-  it('should be able to open tab 2 on method called', () => {
+  it('should be able to open tab 2 on method called', (done) => {
     const Constructor = Vue.extend(TabsDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
@@ -47,13 +51,14 @@ describe('TabsDoc', () => {
         setTimeout(() => {
           let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane:not([style="display: none;"])')
           expect(activeContent.length).to.equal(1)
-          expect(activeContent[0].querySelector('p').textContent).to.equal('This is tab 2.')
+          expect(activeContent[0].querySelector('p').textContent).to.equal('Tab 2 goes here.')
+          done()
         }, 1000)
       })
     })
   })
 
-  it('should be able to enable / disable tab 3', () => {
+  it('should be able to enable / disable tab 3', (done) => {
     const Constructor = Vue.extend(TabsDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
@@ -67,12 +72,13 @@ describe('TabsDoc', () => {
           let tab3 = vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[2]
           expect(tab3.className).to.equal('disabled')
           expect(tab3.querySelector('a').textContent).to.equal('Tab 3 (Disabled)')
+          done()
         })
       })
     })
   })
 
-  it('should be able to render HTML title on tab 4 work correct', () => {
+  it('should be able to render HTML title on tab 4 work correct', (done) => {
     const Constructor = Vue.extend(TabsDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
@@ -83,7 +89,44 @@ describe('TabsDoc', () => {
         let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane:not([style="display: none;"])')
         expect(activeContent.length).to.equal(1)
         expect(activeContent[0].querySelector('p').textContent).to.equal('This tab has a HTML title.')
+        done()
       }, 1000)
+    })
+  })
+
+  it('should be able to run callback after click on tab 5', (done) => {
+    const Constructor = Vue.extend(TabsDoc)
+    const vm = new Constructor().$mount()
+    vm.$nextTick(() => {
+      let _savedAlert = window.alert
+      try {
+        let spy = sinon.spy(window, 'alert')
+        vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[4].querySelector('a').click()
+        sinon.assert.called(spy)
+      } finally {
+        window.alert = _savedAlert
+        done()
+      }
+    })
+  })
+
+  it('should be able to open grouped tab 6', (done) => {
+    const Constructor = Vue.extend(TabsDoc)
+    const vm = new Constructor().$mount()
+    vm.$nextTick(() => {
+      let tab5 = vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[5]
+      tab5.querySelectorAll('[data-role=trigger]')[0].click()
+      vm.$nextTick(() => {
+        expect(tab5.querySelector('.dropdown-menu')).to.exist
+        tab5.querySelector('.dropdown-menu').querySelector('li').querySelector('a').click()
+        setTimeout(() => {
+          expect(tab5.className).to.equal('dropdown active')
+          let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane:not([style="display: none;"])')
+          expect(activeContent.length).to.equal(1)
+          expect(activeContent[0].querySelector('p').textContent).to.equal('This is Tab in group 1.')
+          done()
+        }, 1000)
+      })
     })
   })
 })
