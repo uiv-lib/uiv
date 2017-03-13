@@ -80,7 +80,7 @@
         this.$emit(`modal-${this.show ? 'show' : 'dismiss'}`, msg || 'dismiss')
       },
       backdropClicked (event) {
-        if (this.backdrop && !this.$refs.modal.contains(event.target)) {
+        if (this.backdrop && this.$refs.modal && !this.$refs.modal.contains(event.target)) {
           this.toggle(false)
         }
       }
