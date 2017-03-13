@@ -83,11 +83,11 @@ describe('TabsDoc', () => {
     const Constructor = Vue.extend(TabsDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let tab4 = vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[3]
+      let tab4 = vm.$el.querySelectorAll('.nav-tabs')[1].querySelectorAll('li')[0]
       expect(tab4.querySelector('i').className).to.equal('glyphicon glyphicon-heart')
       tab4.querySelector('a').click()
       setTimeout(() => {
-        let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane:not([style="display: none;"])')
+        let activeContent = vm.$el.querySelectorAll('.tab-content')[1].querySelectorAll('.tab-pane:not([style="display: none;"])')
         expect(activeContent.length).to.equal(1)
         expect(activeContent[0].querySelector('p').textContent).to.equal('This tab has a HTML title.')
         done()
@@ -102,7 +102,7 @@ describe('TabsDoc', () => {
       let _savedAlert = window.alert
       try {
         let spy = sinon.spy(window, 'alert')
-        vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[4].querySelector('a').click()
+        vm.$el.querySelectorAll('.nav-tabs')[1].querySelectorAll('li')[1].querySelector('a').click()
         sinon.assert.called(spy)
       } finally {
         window.alert = _savedAlert
@@ -115,14 +115,14 @@ describe('TabsDoc', () => {
     const Constructor = Vue.extend(TabsDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let tab5 = vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[5]
+      let tab5 = vm.$el.querySelectorAll('.nav-tabs')[1].querySelectorAll('li')[2]
       tab5.querySelectorAll('[data-role=trigger]')[0].click()
       vm.$nextTick(() => {
         expect(tab5.querySelector('.dropdown-menu')).to.exist
         tab5.querySelector('.dropdown-menu').querySelector('li').querySelector('a').click()
         setTimeout(() => {
           expect(tab5.className).to.equal('dropdown active')
-          let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane:not([style="display: none;"])')
+          let activeContent = vm.$el.querySelectorAll('.tab-content')[1].querySelectorAll('.tab-pane:not([style="display: none;"])')
           expect(activeContent.length).to.equal(1)
           expect(activeContent[0].querySelector('p').textContent).to.equal('This is Tab in group 1.')
           done()
