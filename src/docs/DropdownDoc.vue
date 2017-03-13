@@ -2,7 +2,9 @@
   <section>
     <div class="row">
       <div class="col-xs-12">
-        <h2 class="page-header">Dropdown</h2>
+        <h2 class="page-header">
+          <a name="dropdown">Dropdown</a>
+        </h2>
       </div>
     </div>
     <div class="row">

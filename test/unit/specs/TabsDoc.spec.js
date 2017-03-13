@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import TabsDoc from '@/docs/TabsDoc.vue'
+import config from './../config'
 
 describe('TabsDoc', () => {
   it('should be able to render first tab on open', (done) => {
@@ -33,7 +34,7 @@ describe('TabsDoc', () => {
           expect(activeContent.length).to.equal(1)
           expect(activeContent[0].querySelector('p').textContent).to.equal('Tab 2 goes here.')
           done()
-        }, 1000)
+        }, config.transitionDuration)
       })
     })
   })
@@ -53,7 +54,7 @@ describe('TabsDoc', () => {
           expect(activeContent.length).to.equal(1)
           expect(activeContent[0].querySelector('p').textContent).to.equal('Tab 2 goes here.')
           done()
-        }, 1000)
+        }, config.transitionDuration)
       })
     })
   })
@@ -90,7 +91,7 @@ describe('TabsDoc', () => {
         expect(activeContent.length).to.equal(1)
         expect(activeContent[0].querySelector('p').textContent).to.equal('This tab has a HTML title.')
         done()
-      }, 1000)
+      }, config.transitionDuration)
     })
   })
 
@@ -125,7 +126,7 @@ describe('TabsDoc', () => {
           expect(activeContent.length).to.equal(1)
           expect(activeContent[0].querySelector('p').textContent).to.equal('This is Tab in group 1.')
           done()
-        }, 1000)
+        }, config.transitionDuration)
       })
     })
   })
