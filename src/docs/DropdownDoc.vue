@@ -65,7 +65,7 @@
           <li>
             <p>
               <code>tag:String</code>
-              <span>The HTML tag that render the dropdown component. Default: 'span'. Support: 'div' / 'li' / 'span'</span>
+              <span>The HTML tag that render the dropdown component. Default: 'span'</span>
             </p>
           </li>
         </ul>

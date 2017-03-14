@@ -1,20 +1,20 @@
-<template>
-  <span v-if="tag==='span'" class="dropdown">
-    <slot></slot>
-    <slot name="dropdown" v-if="show"></slot>
-  </span>
-  <li v-else-if="tag==='li'" class="dropdown">
-    <slot></slot>
-    <slot name="dropdown" v-if="show"></slot>
-  </li>
-  <div v-else class="dropdown">
-    <slot></slot>
-    <slot name="dropdown" v-if="show"></slot>
-  </div>
-</template>
-
 <script>
   export default {
+    render: function (createElement) {
+      let content = [this.$slots.default]
+      if (this.show) {
+        content.push(this.$slots.dropdown)
+      }
+      return createElement(
+        this.tag,
+        {
+          'class': {
+            dropdown: true
+          }
+        },
+        content
+      )
+    },
     props: {
       tag: {
         type: String,
