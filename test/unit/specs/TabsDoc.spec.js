@@ -10,7 +10,7 @@ describe('TabsDoc', () => {
       let activeTab = vm.$el.querySelector('.nav-tabs').querySelectorAll('.active')
       expect(activeTab.length).to.equal(1)
       expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 1')
-      let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane:not([style="display: none;"])')
+      let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane.active')
       expect(activeContent.length).to.equal(1)
       expect(activeContent[0].querySelector('p').textContent).to.equal('This is tab 1.')
       done()
@@ -30,7 +30,7 @@ describe('TabsDoc', () => {
         expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 2')
         // After transition
         setTimeout(() => {
-          let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane:not([style="display: none;"])')
+          let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane.active')
           expect(activeContent.length).to.equal(1)
           expect(activeContent[0].querySelector('p').textContent).to.equal('Tab 2 goes here.')
           done()
@@ -50,7 +50,7 @@ describe('TabsDoc', () => {
         expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 2')
         // After transition
         setTimeout(() => {
-          let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane:not([style="display: none;"])')
+          let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane.active')
           expect(activeContent.length).to.equal(1)
           expect(activeContent[0].querySelector('p').textContent).to.equal('Tab 2 goes here.')
           done()
@@ -87,7 +87,7 @@ describe('TabsDoc', () => {
       expect(tab4.querySelector('i').className).to.equal('glyphicon glyphicon-heart')
       tab4.querySelector('a').click()
       setTimeout(() => {
-        let activeContent = vm.$el.querySelectorAll('.tab-content')[1].querySelectorAll('.tab-pane:not([style="display: none;"])')
+        let activeContent = vm.$el.querySelectorAll('.tab-content')[1].querySelectorAll('.tab-pane.active')
         expect(activeContent.length).to.equal(1)
         expect(activeContent[0].querySelector('p').textContent).to.equal('This tab has a HTML title.')
         done()
@@ -121,8 +121,10 @@ describe('TabsDoc', () => {
         expect(tab5.querySelector('.dropdown-menu')).to.exist
         tab5.querySelector('.dropdown-menu').querySelector('li').querySelector('a').click()
         setTimeout(() => {
-          expect(tab5.className).to.equal('dropdown active')
-          let activeContent = vm.$el.querySelectorAll('.tab-content')[1].querySelectorAll('.tab-pane:not([style="display: none;"])')
+          expect(tab5.className).to.contain('dropdown')
+          expect(tab5.className).to.contain('open')
+          expect(tab5.className).to.contain('active')
+          let activeContent = vm.$el.querySelectorAll('.tab-content')[1].querySelectorAll('.tab-pane.active')
           expect(activeContent.length).to.equal(1)
           expect(activeContent[0].querySelector('p').textContent).to.equal('This is Tab in group 1.')
           done()

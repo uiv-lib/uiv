@@ -84,7 +84,7 @@
         } else {
           index = this.tabs.indexOf(tab)
         }
-        if (!tab.disabled && !tab.active) {
+        if (!tab.disabled) {
           this.tabs.forEach(tab => {
             tab.active = false
           })

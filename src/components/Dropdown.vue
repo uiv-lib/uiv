@@ -1,24 +1,21 @@
 <script>
   export default {
-    render: function (createElement) {
-      let content = [this.$slots.default]
-      if (this.show) {
-        content.push(this.$slots.dropdown)
-      }
+    render (createElement) {
       return createElement(
         this.tag,
         {
           'class': {
-            dropdown: true
+            dropdown: true,
+            open: this.show
           }
         },
-        content
+        [this.$slots.default, this.$slots.dropdown]
       )
     },
     props: {
       tag: {
         type: String,
-        default: 'span'
+        default: 'div'
       }
     },
     data () {
@@ -54,12 +51,5 @@
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-  .dropdown {
-    position: relative;
-    display: inline-block;
 
-    .dropdown-menu {
-      display: block;
-    }
-  }
 </style>
