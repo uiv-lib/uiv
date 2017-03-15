@@ -42,19 +42,19 @@
       },
       backdrop: {
         type: Boolean,
-        default: true
+        'default': true
       },
       footer: {
         type: Boolean,
-        default: true
+        'default': true
       },
       cancelText: {
         type: String,
-        default: 'Cancel'
+        'default': 'Cancel'
       },
       okText: {
         type: String,
-        default: 'OK'
+        'default': 'OK'
       }
     },
     data () {

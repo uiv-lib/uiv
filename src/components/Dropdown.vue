@@ -1,7 +1,7 @@
 <script>
   export default {
-    render (createElement) {
-      return createElement(
+    render (h) {
+      return h(
         this.tag,
         {
           'class': {
@@ -15,7 +15,7 @@
     props: {
       tag: {
         type: String,
-        default: 'div'
+        'default': 'div'
       }
     },
     data () {

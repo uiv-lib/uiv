@@ -2,6 +2,7 @@
   <section>
     <page-header></page-header>
     <div class="container" ref="container">
+      <collapse-doc></collapse-doc>
       <dropdown-doc></dropdown-doc>
       <modal-doc></modal-doc>
       <tabs-doc></tabs-doc>
@@ -11,16 +12,17 @@
 </template>
 
 <script>
-  import PageHeader from './PageHeader.vue'
-  import PageFooter from './PageFooter.vue'
+  import PageHeader from './docs/architectures/PageHeader.vue'
+  import PageFooter from './docs/architectures/PageFooter.vue'
   import hljs from './utils/hljsUtils'
   import TabsDoc from './docs/TabsDoc.vue'
   import DropdownDoc from './docs/DropdownDoc.vue'
   import ModalDoc from './docs/ModalDoc.vue'
+  import CollapseDoc from './docs/CollapseDoc.vue'
   export default {
     name: 'app',
     components: {
-      PageHeader, PageFooter, TabsDoc, DropdownDoc, ModalDoc
+      PageHeader, PageFooter, TabsDoc, DropdownDoc, ModalDoc, CollapseDoc
     },
     mounted () {
       // highlight code blocks
@@ -35,25 +37,6 @@
 <style lang="less" rel="stylesheet/less">
   body {
     padding-top: 70px;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    a {
-      color: #333;
-      text-decoration: none;
-
-      &:active, &:visited, &:focus, &:hover {
-        color: #333;
-        text-decoration: none;
-      }
-    }
-  }
-
-  a.anchor {
-    display: block;
-    position: relative;
-    top: -40px;
-    visibility: hidden;
   }
 
   pre {

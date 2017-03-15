@@ -18,6 +18,7 @@
               Components <span class="caret"></span>
             </a>
             <ul slot="dropdown" class="dropdown-menu">
+              <li><a href="#collapse">Collapse</a></li>
               <li><a href="#dropdown">Dropdown</a></li>
               <li><a href="#modal">Modal</a></li>
               <li><a href="#tabs">Tabs</a></li>
@@ -30,7 +31,7 @@
 </template>
 
 <script>
-  import Dropdown from './components/Dropdown.vue'
+  import Dropdown from '../../components/Dropdown.vue'
 
   export default {
     components: {Dropdown}

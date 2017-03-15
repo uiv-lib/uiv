@@ -11,15 +11,15 @@
     props: {
       title: {
         type: String,
-        default: 'Tab Title'
+        'default': 'Tab Title'
       },
       htmlTitle: {
         type: Boolean,
-        default: false
+        'default': false
       },
       disabled: {
         type: Boolean,
-        default: false
+        'default': false
       },
       group: {
         type: String
@@ -43,11 +43,11 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .fade-enter {
-    opacity: 0;
-  }
-
   .fade-enter-active {
     transition: opacity .3s ease-in-out;
+  }
+
+  .fade-enter {
+    opacity: 0;
   }
 </style>

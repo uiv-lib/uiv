@@ -2,8 +2,7 @@
   <section>
     <div class="row">
       <div class="col-xs-12">
-        <a name="tabs" class="anchor"></a>
-        <h2 class="page-header">Tabs</h2>
+        <anchor-header text="Tabs"></anchor-header>
       </div>
     </div>
     <div class="row">
@@ -69,12 +68,13 @@
 </template>
 
 <script>
+  import AnchorHeader from './architectures/AnchorHeader.vue'
   import Tabs from './../components/Tabs.vue'
   import Tab from './../components/Tab.vue'
 
   export default {
     components: {
-      Tabs, Tab
+      AnchorHeader, Tabs, Tab
     },
     data () {
       return {

@@ -2,8 +2,7 @@
   <section>
     <div class="row">
       <div class="col-xs-12">
-        <a name="modal" class="anchor"></a>
-        <h2 class="page-header">Modal</h2>
+        <anchor-header text="Modal"></anchor-header>
       </div>
     </div>
     <div class="row">
@@ -100,9 +99,10 @@
 </template>
 
 <script>
+  import AnchorHeader from './architectures/AnchorHeader.vue'
   import Modal from './../components/Modal.vue'
   export default {
-    components: {Modal},
+    components: {AnchorHeader, Modal},
     data () {
       return {
         msg: ''

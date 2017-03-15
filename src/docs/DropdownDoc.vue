@@ -2,8 +2,7 @@
   <section>
     <div class="row">
       <div class="col-xs-12">
-        <a name="dropdown" class="anchor"></a>
-        <h2 class="page-header">Dropdown</h2>
+        <anchor-header text="Dropdown"></anchor-header>
       </div>
     </div>
     <div class="row">
@@ -66,7 +65,7 @@
           <li>
             <p>
               <code>tag:String</code>
-              <span>The HTML tag that render the dropdown component. Default: 'span'</span>
+              <span>The HTML tag that render the dropdown component. Default: 'div'</span>
             </p>
           </li>
         </ul>
@@ -75,7 +74,13 @@
           <li>
             <p>
               <code>dropdown</code>
-              <span>Replace as the dropdown body</span>
+              <span>Replace as the dropdown body.</span>
+            </p>
+          </li>
+          <li>
+            <p>
+              <code>default</code>
+              <span>Replace as the rest of the component (e.g. trigger stuffs).</span>
             </p>
           </li>
         </ul>
@@ -85,10 +90,11 @@
 </template>
 
 <script>
+  import AnchorHeader from './architectures/AnchorHeader.vue'
   import Dropdown from './../components/Dropdown.vue'
 
   export default {
-    components: {Dropdown}
+    components: {AnchorHeader, Dropdown}
   }
 </script>
 
