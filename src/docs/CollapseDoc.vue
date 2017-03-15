@@ -68,7 +68,7 @@
           </li>
           <li>
             <p>The Collapse component controls only show / hide, advance logic (e.g. accordion once at a time) should be
-              implement by you.</p>
+              implement by yourself.</p>
           </li>
         </ul>
         <h4>Props</h4>

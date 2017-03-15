@@ -1,0 +1,134 @@
+<template>
+  <div class="carousel slide" @mouseenter="stopInterval" @mouseleave="startInterval">
+    <ol class="carousel-indicators" v-if="indicators">
+      <li v-for="(slide,index) in slides" :class="{active:index===activeIndex}" @click="select(index)"></li>
+    </ol>
+    <div class="carousel-inner">
+      <slot></slot>
+    </div>
+    <a class="left carousel-control" href="javascript:void(0)" v-if="controls" @click="prev()">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="javascript:void(0)" v-if="controls" @click="next()">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</template>
+
+<script>
+  export default {
+    props: {
+      indicators: {
+        type: Boolean,
+        'default': true
+      },
+      controls: {
+        type: Boolean,
+        'default': true
+      },
+      interval: {
+        'default': 2000
+      }
+    },
+    data () {
+      return {
+        slides: [],
+        activeIndex: 0,
+        timeout1: 0,
+        timeout2: 0,
+        _interval: 0
+      }
+    },
+    watch: {
+      interval () {
+        this.startInterval()
+      }
+    },
+    mounted () {
+      this.$select(0)
+      this.startInterval()
+    },
+    methods: {
+      startInterval () {
+        this.stopInterval()
+        let interval = parseFloat(this.interval)
+        if (!isNaN(interval) && interval > 0) {
+          this._interval = setInterval(() => {
+            this.next()
+          }, interval)
+        }
+      },
+      stopInterval () {
+        clearInterval(this._interval)
+        this._interval = 0
+      },
+      resetAllSlideClass () {
+        this.slides.forEach(slide => {
+          slide.slideClass.active = false
+          slide.slideClass.left = false
+          slide.slideClass.right = false
+          slide.slideClass.next = false
+          slide.slideClass.prev = false
+        })
+      },
+      $select (index) {
+        this.resetAllSlideClass()
+        this.slides[index].slideClass.active = true
+      },
+      select (index) {
+        if (index < 0) {
+          index = 0
+        } else if (index >= this.slides.length) {
+          index = this.slides.length - 1
+        }
+        if (index === this.activeIndex) {
+          return
+        }
+        let currentActiveIndex = this.activeIndex
+        if (currentActiveIndex === -1) {
+          this.activeIndex = index
+          this.$select(index)
+        } else if (this.timeout1 === 0 && this.timeout2 === 0) {
+          this.activeIndex = index
+          let direction
+          if (index > currentActiveIndex) {
+            direction = ['next', 'left']
+          } else {
+            direction = ['prev', 'right']
+          }
+          this.slides[index].slideClass[direction[0]] = true
+          this.$nextTick(() => {
+            this.timeout1 = setTimeout(() => {
+              this.slides.forEach((slide, i) => {
+                if (i === currentActiveIndex) {
+                  slide.slideClass.active = true
+                  slide.slideClass[direction[1]] = true
+                } else if (i === index) {
+                  slide.slideClass[direction[1]] = true
+                }
+              })
+              this.timeout2 = setTimeout(() => {
+                this.$select(index)
+                this.timeout1 = 0
+                this.timeout2 = 0
+              }, 620) // the css transition time, 20ms to ensure work correctly
+            }, 20)  // if set to 0 will cause issue in firefox and safari
+          })
+        }
+      },
+      prev () {
+        this.select(this.activeIndex === 0 ? this.slides.length - 1 : this.activeIndex - 1)
+      },
+      next () {
+        this.select(this.activeIndex === this.slides.length - 1 ? 0 : this.activeIndex + 1)
+      }
+    }
+  }
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="less" rel="stylesheet/less" scoped>
+
+</style>

@@ -42,7 +42,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="less" rel="stylesheet/less" scoped>
   .fade-enter-active {
     transition: opacity .3s ease-in-out;
   }
