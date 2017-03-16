@@ -17,7 +17,52 @@ Dependencies:
 
 ## Install
 
-Working on it...
+### ES6
+
+```js
+$ npm install uiv
+
+import { Dropdown } from 'uiv'
+
+new Vue({
+  components: {
+    Dropdown
+  }``
+})
+```
+
+### CommonJS
+
+```js
+$ npm install uiv
+
+const Dropdown = require('uiv').Dropdown
+
+new Vue({
+  components: {
+    Dropdown
+  }``
+})
+```
+
+### Browser
+
+```html
+<tabs>
+  <tab>...</tab>
+  <tab>...</tab>
+</tabs>
+
+<script src="path/to/vue.min.js"></script>
+<script src="path/to/uiv.min.js"></script>
+<script>
+  new Vue({
+    components: {
+      Tabs: uiv.Tabs, Tab: uiv.Tab
+    }
+  })
+</script>
+```
 
 ## Build Setup
 
