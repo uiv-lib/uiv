@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <carousel :indicators="indicators" :controls="controls" :interval="interval">
+        <carousel :indicators="indicators" :controls="controls" :interval="interval" ref="carousel">
           <slide v-for="(slide,index) in slides" :key="index">
             <img :src="'https://placehold.it/1440x900?text='+slide.title">
             <div class="carousel-caption">
