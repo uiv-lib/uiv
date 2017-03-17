@@ -1,20 +1,20 @@
 import Vue from 'vue'
-import Tabs from '@/components/tabs/Tabs.vue'
-import Tab from '@/components/tabs/Tab.vue'
+import Carousel from '@/components/carousel/Carousel.vue'
+import Slide from '@/components/carousel/Slide.vue'
 
-describe('Tabs', () => {
-  it('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {
+describe('Carousel', () => {
+  it('should not be able to work if not using <carousel><slide>...</slide></carousel>', () => {
     let _error = window.console.error
     try {
       let spy = sinon.spy(window.console, 'error')
-      let res = Vue.compile('<tabs><tab><tab>{{ msg }}</tab></tab></tabs>')
+      let res = Vue.compile('<carousel><slide><slide>{{ msg }}</slide></slide></carousel>')
       let vm = new Vue({
         data () {
           return {
             msg: 'hello'
           }
         },
-        components: {Tab, Tabs},
+        components: {Carousel, Slide},
         render: res.render,
         staticRenderFns: res.staticRenderFns
       })
@@ -25,15 +25,15 @@ describe('Tabs', () => {
     }
   })
 
-  it('should be ok if not <tab> present in <tabs>', () => {
-    let res = Vue.compile('<tabs>{{msg}}</tabs>')
+  it('should be ok if not <slide> present in <carousel>', () => {
+    let res = Vue.compile('<carousel>{{msg}}</carousel>')
     let vm = new Vue({
       data () {
         return {
           msg: 'hello'
         }
       },
-      components: {Tab, Tabs},
+      components: {Carousel, Slide},
       render: res.render,
       staticRenderFns: res.staticRenderFns
     })

@@ -2,7 +2,7 @@
   <section>
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Collapse"></anchor-header>
+        <anchor-header text="Collapse" source-folder="collapse"></anchor-header>
       </div>
     </div>
     <div class="row">
@@ -97,15 +97,34 @@
         </ul>
       </div>
     </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="CollapseDoc.vue">
+        <pre><code>
+&lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; @click=&quot;showCollapse1=!showCollapse1&quot;&gt;Click me!&lt;/button&gt;
+
+&lt;collapse :show=&quot;showCollapse1&quot;&gt;
+  &lt;div class=&quot;well&quot;&gt;
+    Hi there.
+  &lt;/div&gt;
+&lt;/collapse&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
   </section>
 </template>
 
+
+
+
 <script>
   import AnchorHeader from './architectures/AnchorHeader.vue'
-  import Collapse from './../components/Collapse.vue'
+  import DemoCodeBlock from './architectures/DemoCodeBlock.vue'
+  import Collapse from '../components/collapse/Collapse.vue'
 
   export default {
-    components: {AnchorHeader, Collapse},
+    components: {AnchorHeader, DemoCodeBlock, Collapse},
     data () {
       return {
         showCollapse1: false,

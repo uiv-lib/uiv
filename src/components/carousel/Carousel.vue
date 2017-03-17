@@ -87,10 +87,7 @@
           return
         }
         let currentActiveIndex = this.activeIndex
-        if (currentActiveIndex === -1) {
-          this.activeIndex = index
-          this.$select(index)
-        } else if (this.timeout1 === 0 && this.timeout2 === 0) {
+        if (this.timeout1 === 0 && this.timeout2 === 0) {
           this.activeIndex = index
           let direction
           if (index > currentActiveIndex) {

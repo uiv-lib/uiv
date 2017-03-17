@@ -25,6 +25,9 @@
               <li><a href="#tabs">Tabs</a></li>
             </ul>
           </dropdown>
+          <li>
+            <a href="#getting-started">Getting Started</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -32,7 +35,7 @@
 </template>
 
 <script>
-  import Dropdown from '../../components/Dropdown.vue'
+  import Dropdown from '../../components/dropdown/Dropdown.vue'
 
   export default {
     components: {Dropdown}
