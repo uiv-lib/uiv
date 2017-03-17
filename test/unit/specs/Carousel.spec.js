@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import Carousel from '@/components/Carousel.vue'
-import Slide from '@/components/Slide.vue'
+import Carousel from '@/components/carousel/Carousel.vue'
+import Slide from '@/components/carousel/Slide.vue'
 
 describe('Carousel', () => {
   it('should not be able to work if not using <carousel><slide>...</slide></carousel>', () => {

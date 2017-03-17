@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import Dropdown from './Dropdown.vue'
+  import Dropdown from '../dropdown/Dropdown.vue'
 
   export default {
     components: {

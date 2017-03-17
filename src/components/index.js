@@ -1,8 +1,8 @@
 'use strict'
 
-import Dropdown from './Dropdown.vue'
-import Tab from './Tab.vue'
-import Tabs from './Tabs.vue'
+import Dropdown from './dropdown/Dropdown.vue'
+import Tab from './tabs/Tab.vue'
+import Tabs from './tabs/Tabs.vue'
 
 export {
   Dropdown,

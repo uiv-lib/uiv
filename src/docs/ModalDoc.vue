@@ -2,7 +2,7 @@
   <section>
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Modal"></anchor-header>
+        <anchor-header text="Modal" source-folder="modal"></anchor-header>
       </div>
     </div>
     <div class="row">
@@ -95,14 +95,26 @@
         </ul>
       </div>
     </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="ModalDoc.vue">
+        <pre><code>
+&lt;modal title=&quot;Modal 1&quot;&gt;
+  &lt;p&gt;This is a simple modal.&lt;/p&gt;
+&lt;/modal&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
   import AnchorHeader from './architectures/AnchorHeader.vue'
-  import Modal from './../components/Modal.vue'
+  import DemoCodeBlock from './architectures/DemoCodeBlock.vue'
+  import Modal from '../components/modal/Modal.vue'
   export default {
-    components: {AnchorHeader, Modal},
+    components: {AnchorHeader, DemoCodeBlock, Modal},
     data () {
       return {
         msg: ''

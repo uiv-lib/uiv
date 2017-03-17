@@ -2,7 +2,7 @@
   <section>
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Carousel"></anchor-header>
+        <anchor-header text="Carousel" source-folder="carousel"></anchor-header>
       </div>
     </div>
     <div class="row">
@@ -62,15 +62,28 @@
         </ul>
       </div>
     </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="CarouselDoc.vue">
+        <pre><code>
+&lt;carousel&gt;
+  &lt;slide&gt;...&lt;/slide&gt;
+  &lt;slide&gt;...&lt;/slide&gt;
+&lt;/carousel&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
   import AnchorHeader from './architectures/AnchorHeader.vue'
-  import Carousel from './../components/Carousel.vue'
-  import Slide from './../components/Slide.vue'
+  import DemoCodeBlock from './architectures/DemoCodeBlock.vue'
+  import Carousel from '../components/carousel/Carousel.vue'
+  import Slide from '../components/carousel/Slide.vue'
   export default {
-    components: {AnchorHeader, Carousel, Slide},
+    components: {AnchorHeader, Carousel, Slide, DemoCodeBlock},
     data () {
       return {
         interval: 2000,

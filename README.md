@@ -8,7 +8,7 @@
 
 > Bootstrap components implemented by Vue
 
-[Demo](https://wxsm.space/uiv)
+[Demo & Docs](https://wxsm.space/uiv)
 
 Dependencies:
 

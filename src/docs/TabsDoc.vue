@@ -2,7 +2,7 @@
   <section>
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Tabs"></anchor-header>
+        <anchor-header text="Tabs" source-folder="tabs"></anchor-header>
       </div>
     </div>
     <div class="row">
@@ -64,17 +64,30 @@
         </ul>
       </div>
     </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="TabsDoc.vue">
+        <pre><code>
+&lt;tabs&gt;
+  &lt;tab&gt;...&lt;/tab&gt;
+  &lt;tab&gt;...&lt;/tab&gt;
+&lt;/tabs&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
   import AnchorHeader from './architectures/AnchorHeader.vue'
-  import Tabs from './../components/Tabs.vue'
-  import Tab from './../components/Tab.vue'
+  import DemoCodeBlock from './architectures/DemoCodeBlock.vue'
+  import Tabs from '../components/tabs/Tabs.vue'
+  import Tab from '../components/tabs/Tab.vue'
 
   export default {
     components: {
-      AnchorHeader, Tabs, Tab
+      AnchorHeader, DemoCodeBlock, Tabs, Tab
     },
     data () {
       return {

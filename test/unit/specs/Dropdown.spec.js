@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Dropdown from '@/components/Dropdown.vue'
+import Dropdown from '@/components/dropdown/Dropdown.vue'
 
 describe('Dropdown', () => {
   it('should not be able to work if no trigger present', (done) => {

@@ -35,7 +35,7 @@
 </template>
 
 <script>
-  import Dropdown from '../../components/Dropdown.vue'
+  import Dropdown from '../../components/dropdown/Dropdown.vue'
 
   export default {
     components: {Dropdown}

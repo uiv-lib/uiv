@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import Tabs from '@/components/Tabs.vue'
-import Tab from '@/components/Tab.vue'
+import Tabs from '@/components/tabs/Tabs.vue'
+import Tab from '@/components/tabs/Tab.vue'
 
 describe('Tabs', () => {
   it('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {

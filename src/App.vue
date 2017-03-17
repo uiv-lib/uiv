@@ -62,8 +62,9 @@
   }
 
   pre {
-    background-color: #fff !important;
+    background-color: #2b2b2b !important;
     border-radius: 0 !important;
+    border: none !important;
   }
 
   .tab-docs {

@@ -1,13 +1,18 @@
 <template>
   <div>
     <a :name="anchorText" class="anchor"></a>
-    <h2 class="page-header">{{text}}</h2>
+    <h2 class="page-header">
+      <span>{{text}}</span>
+      <small v-if="sourceFolder">
+        <a :href="'https://github.com/wxsms/uiv/tree/master/src/components/'+sourceFolder" target="_blank">source</a>
+      </small>
+    </h2>
   </div>
 </template>
 
 <script>
   export default {
-    props: ['text'],
+    props: ['text', 'sourceFolder'],
     computed: {
       anchorText () {
         return this.text.toLowerCase().split(' ').join('-')
