@@ -10,26 +10,36 @@
         <div id="alertContainer">
           <alert class="alert"
                  role="alert"
-                 v-for="item in alertList"
+                 v-for="(item,index) in alertList"
                  :can-close="item.canClose"
                  :alert-type="item.type"
-                 :display-time="item.displayTime">
-            <div slot="contain"><strong>Well done!</strong> You successfully read this important alert message.</div>
+                 :display-time="item.displayTime"
+                 :key="index">
+            <div slot="contain">
+              <strong>Well done!</strong> You successfully read this important alert message.
+            </div>
           </alert>
           <alert class="alert alert-info" role="alert" :can-close=true>
-            <div slot="contain"><strong>Heads up!</strong> This alert needs your attention, but it's not super important.</div>
+            <div slot="contain">
+              <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+            </div>
           </alert>
           <alert class="alert alert-warning" role="alert" :can-close=true>
-            <div slot="contain"><strong>Warning!</strong> Better check yourself, you're not looking too good.</div>
+            <div slot="contain">
+              <strong>Warning!</strong> Better check yourself, you're not looking too good.
+            </div>
           </alert>
           <alert class="alert alert-danger" role="alert" :can-close=true>
-            <div slot="contain"><strong>Oh snap!</strong> Change a few things up and try submitting again.</div>
+            <div slot="contain">
+              <strong>Oh snap!</strong> Change a few things up and try submitting again.
+            </div>
           </alert>
         </div>
         <div class="form-inline">
           <div class="form-group">
             <label>display time</label>
-            <input class="form-control" step="1000" min="0"  v-model="displayTime" type="number" placeholder="input display time">
+            <input class="form-control" step="1000" min="0" v-model="displayTime" type="number"
+                   placeholder="input display time">
             <button class="btn btn-default" @click="addAlert('alert-success',false)">add a Alert(time)</button>
             <button class="btn btn-default" @click="addAlert('alert-success',true)">add a Alert</button>
           </div>

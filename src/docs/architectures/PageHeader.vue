@@ -18,8 +18,10 @@
               Components <span class="caret"></span>
             </a>
             <ul slot="dropdown" class="dropdown-menu">
+              <li><a href="#alert">Alert</a></li>
               <li><a href="#carousel">Carousel</a></li>
               <li><a href="#collapse">Collapse</a></li>
+              <li><a href="#datepicker">DatePicker</a></li>
               <li><a href="#dropdown">Dropdown</a></li>
               <li><a href="#modal">Modal</a></li>
               <li><a href="#tabs">Tabs</a></li>

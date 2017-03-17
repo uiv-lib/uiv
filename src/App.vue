@@ -4,12 +4,13 @@
     <jumbotron></jumbotron>
     <div class="container" ref="container">
       <getting-started></getting-started>
+      <alert-doc></alert-doc>
       <carousel-doc></carousel-doc>
       <collapse-doc></collapse-doc>
+      <date-picker-doc></date-picker-doc>
       <dropdown-doc></dropdown-doc>
       <modal-doc></modal-doc>
       <tabs-doc></tabs-doc>
-      <alert-doc></alert-doc>
     </div>
     <page-footer></page-footer>
 
@@ -33,6 +34,7 @@
   import ModalDoc from './docs/ModalDoc.vue'
   import CollapseDoc from './docs/CollapseDoc.vue'
   import CarouselDoc from './docs/CarouselDoc.vue'
+  import DatePickerDoc from './docs/DatePickerDoc.vue'
   import alertDoc from './docs/alertDoc.vue'
 
   export default {
@@ -47,6 +49,7 @@
       ModalDoc,
       CollapseDoc,
       CarouselDoc,
+      DatePickerDoc,
       alertDoc
     },
     mounted () {
