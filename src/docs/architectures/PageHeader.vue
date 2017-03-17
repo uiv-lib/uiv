@@ -25,6 +25,9 @@
               <li><a href="#tabs">Tabs</a></li>
             </ul>
           </dropdown>
+          <li>
+            <a href="#getting-started">Getting Started</a>
+          </li>
         </ul>
       </div>
     </div>

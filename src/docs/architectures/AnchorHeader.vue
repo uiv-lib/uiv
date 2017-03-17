@@ -1,13 +1,18 @@
 <template>
   <div>
-    <a :name="text.toLowerCase()" class="anchor"></a>
+    <a :name="anchorText" class="anchor"></a>
     <h2 class="page-header">{{text}}</h2>
   </div>
 </template>
 
 <script>
   export default {
-    props: ['text']
+    props: ['text'],
+    computed: {
+      anchorText () {
+        return this.text.toLowerCase().split(' ').join('-')
+      }
+    }
   }
 </script>
 
