@@ -35,7 +35,7 @@
   import CollapseDoc from './docs/CollapseDoc.vue'
   import CarouselDoc from './docs/CarouselDoc.vue'
   import DatePickerDoc from './docs/DatePickerDoc.vue'
-  import alertDoc from './docs/alertDoc.vue'
+  import AlertDoc from './docs/AlertDoc.vue'
 
   export default {
     name: 'app',
@@ -50,7 +50,7 @@
       CollapseDoc,
       CarouselDoc,
       DatePickerDoc,
-      alertDoc
+      AlertDoc
     },
     mounted () {
       // highlight code blocks
