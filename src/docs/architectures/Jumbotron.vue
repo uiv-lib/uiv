@@ -21,7 +21,7 @@
             </a>
           </p>
           <p><b>Bootstrap 3</b> Components Built with <b>Vue 2</b>.</p>
-          <p>Packaged size < 10KB before GZIP</p>
+          <p>Packaged size &lt; 15KB before GZIP</p>
           <br/>
           <div>
             <a href="https://github.com/wxsms/uiv" target="_blank" class="btn btn-default btn-lg">
