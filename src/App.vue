@@ -7,6 +7,7 @@
       <dropdown-doc></dropdown-doc>
       <modal-doc></modal-doc>
       <tabs-doc></tabs-doc>
+      <alert-doc></alert-doc>
     </div>
     <page-footer></page-footer>
   </section>
@@ -21,10 +22,11 @@
   import ModalDoc from './docs/ModalDoc.vue'
   import CollapseDoc from './docs/CollapseDoc.vue'
   import CarouselDoc from './docs/CarouselDoc.vue'
+  import AlertDoc from './docs/AlertDoc.vue'
   export default {
     name: 'app',
     components: {
-      PageHeader, PageFooter, TabsDoc, DropdownDoc, ModalDoc, CollapseDoc, CarouselDoc
+      PageHeader, PageFooter, TabsDoc, DropdownDoc, ModalDoc, CollapseDoc, CarouselDoc, AlertDoc
     },
     mounted () {
       // highlight code blocks
