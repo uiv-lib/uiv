@@ -11,9 +11,9 @@
           <alert class="alert"
                  role="alert"
                  v-for="item in alertList"
-                 v-bind:can-close="item.canClose"
-                 v-bind:alert-type="item.type"
-                 v-bind:display-time="item.displayTime">
+                 :can-close="item.canClose"
+                 :alert-type="item.type"
+                 :display-time="item.displayTime">
             <div slot="contain"><strong>Well done!</strong> You successfully read this important alert message.</div>
           </alert>
           <alert class="alert alert-info" role="alert" :can-close=true>
@@ -48,15 +48,27 @@
         </ul>
       </div>
     </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="AlertDoc.vue">
+        <pre><code>
+&lt;alert class="alert" role="alert"&gt;
+  &lt;div slot="contain" &gt;...&lt;/idv&gt;
+&lt;/alert&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
   import AnchorHeader from './architectures/AnchorHeader.vue'
   import Alert from './../components/Alert.vue'
+  import DemoCodeBlock from './architectures/DemoCodeBlock.vue'
 
   export default {
-    components: {AnchorHeader, Alert},
+    components: {AnchorHeader, Alert, DemoCodeBlock},
     data () {
       return {
         alertList: [
