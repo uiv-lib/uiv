@@ -1,39 +1,40 @@
 <template>
-  <div class="panel panel-default date-pick-panel"
-       v-show="inline || (!inline && show)"
-       :style="pickerStyle">
-    <div class="panel-body">
-      <date-view v-show="view==='d'"
-                 :month="currentMonth"
-                 :year="currentYear"
-                 :date="value"
-                 :today="now"
-                 :limit="limit"
-                 @month-change="onMonthChange"
-                 @year-change="onYearChange"
-                 @date-change="onDateChange"
-                 @view-change="onViewChange">
-      </date-view>
-      <month-view v-show="view==='m'"
-                  :month="currentMonth"
-                  :year="currentYear"
-                  @month-change="onMonthChange"
-                  @year-change="onYearChange"
-                  @view-change="onViewChange">
-      </month-view>
-      <year-view v-show="view==='y'"
-                 :year="currentYear"
-                 @year-change="onYearChange"
-                 @view-change="onViewChange">
-      </year-view>
-      <div v-if="todayBtn||clearBtn">
-        <br/>
-        <div class="text-center">
-          <button type="button" class="btn btn-info btn-sm" v-if="todayBtn" @click="selectToday">Today</button>
-          <button type="button" class="btn btn-default btn-sm" v-if="clearBtn" @click="clearSelect">Clear</button>
+  <div class="date-picker" v-show="inline || (!inline && show)" :style="pickerStyle">
+    <ul class="dropdown-menu">
+      <li>
+        <date-view v-show="view==='d'"
+                   :month="currentMonth"
+                   :year="currentYear"
+                   :date="value"
+                   :today="now"
+                   :limit="limit"
+                   @month-change="onMonthChange"
+                   @year-change="onYearChange"
+                   @date-change="onDateChange"
+                   @view-change="onViewChange">
+        </date-view>
+        <month-view v-show="view==='m'"
+                    :month="currentMonth"
+                    :year="currentYear"
+                    @month-change="onMonthChange"
+                    @year-change="onYearChange"
+                    @view-change="onViewChange">
+        </month-view>
+        <year-view v-show="view==='y'"
+                   :year="currentYear"
+                   @year-change="onYearChange"
+                   @view-change="onViewChange">
+        </year-view>
+        <div v-if="todayBtn||clearBtn">
+          <br/>
+          <div class="text-center">
+            <button type="button" class="btn btn-info btn-sm" v-if="todayBtn" @click="selectToday">Today</button>
+            <button type="button" class="btn btn-default btn-sm" v-if="clearBtn" @click="clearSelect">Clear</button>
+          </div>
         </div>
-      </div>
-    </div>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
   </div>
 </template>
 
@@ -84,7 +85,6 @@
         }
         if (!this.inline) {
           style.position = 'absolute'
-          style.zIndex = 2
         }
         return style
       },
@@ -183,8 +183,14 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less">
-  .date-pick-panel {
-    background: #fff;
+  .date-picker {
+    position: relative;
+
+    > .dropdown-menu {
+      display: block;
+      position: relative;
+      width: 100%;
+    }
 
     .btn-date {
       border-radius: 0;

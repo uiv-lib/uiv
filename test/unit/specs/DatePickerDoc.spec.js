@@ -6,7 +6,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
       let dateView = picker.querySelectorAll('table')[0]
       expect(dateView.style.display).to.equal('')
@@ -42,7 +42,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
       let dateView = picker.querySelectorAll('table')[0]
       goPrev(
@@ -75,7 +75,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
       let dateView = picker.querySelectorAll('table')[0]
       goNext(
@@ -91,7 +91,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
       let dateView = picker.querySelectorAll('table')[0]
       let yearMonthBtn = dateView.querySelectorAll('button')[1]
@@ -113,7 +113,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
       let dateView = picker.querySelectorAll('table')[0]
       let yearMonthBtn = dateView.querySelectorAll('button')[1]
@@ -138,7 +138,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
       let monthView = picker.querySelectorAll('table')[1]
       monthView.querySelector('button').click()
@@ -154,7 +154,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
       let monthView = picker.querySelectorAll('table')[1]
       monthView.querySelectorAll('button')[2].click()
@@ -170,7 +170,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
       let yearView = picker.querySelectorAll('table')[2]
       let monthView = picker.querySelectorAll('table')[1]
@@ -193,7 +193,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
       let yearView = picker.querySelectorAll('table')[2]
       let monthView = picker.querySelectorAll('table')[1]
@@ -214,7 +214,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
       let yearView = picker.querySelectorAll('table')[2]
       yearView.querySelector('button').click()
@@ -232,7 +232,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
       let yearView = picker.querySelectorAll('table')[2]
       yearView.querySelectorAll('button')[2].click()
@@ -250,7 +250,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       let dateView = picker.querySelectorAll('table')[0]
       let dateBtn = dateView.querySelector('tbody').querySelectorAll('button')[15]
       dateBtn.click()
@@ -265,7 +265,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       let dateView = picker.querySelectorAll('table')[0]
       picker.querySelector('.text-center').querySelectorAll('button')[0].click()
       vm.$nextTick(() => {
@@ -280,7 +280,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       let dateView = picker.querySelectorAll('table')[0]
       picker.querySelector('.text-center').querySelectorAll('button')[0].click()
       picker.querySelector('.text-center').querySelectorAll('button')[1].click()
@@ -296,7 +296,7 @@ describe('DatePickerDoc', () => {
     const vm = new Constructor().$mount()
     vm.todayBtn = false
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       expect(picker.querySelector('.text-center').querySelector('.btn-info')).not.exist
       done()
     })
@@ -307,7 +307,7 @@ describe('DatePickerDoc', () => {
     const vm = new Constructor().$mount()
     vm.clearBtn = false
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       expect(picker.querySelector('.text-center').querySelector('.btn-default')).not.exist
       done()
     })
@@ -321,7 +321,7 @@ describe('DatePickerDoc', () => {
     vm.limitFrom = new Date()
     vm.limitTo = tomorrow
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelector('.date-pick-panel')
+      let picker = vm.$el.querySelector('.date-picker')
       let dateInRange = picker.querySelector('tbody').querySelectorAll('button:not([disabled])')
       expect(dateInRange[0].textContent).to.equal(new Date().getDate().toString())
       if (dateInRange.length > 1) {
@@ -336,7 +336,7 @@ describe('DatePickerDoc', () => {
     const vm = new Constructor().$mount()
     vm.toggle()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelectorAll('.date-pick-panel')[1]
+      let picker = vm.$el.querySelectorAll('.date-picker')[1]
       expect(picker.style.display).to.equal('')
       vm.toggle()
       vm.$nextTick(() => {
@@ -351,7 +351,7 @@ describe('DatePickerDoc', () => {
     const vm = new Constructor().$mount()
     vm.toggle()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelectorAll('.date-pick-panel')[1]
+      let picker = vm.$el.querySelectorAll('.date-picker')[1]
       expect(picker.style.display).to.equal('')
       picker.querySelector('tbody').querySelectorAll('button')[0].click()
       vm.$nextTick(() => {
@@ -371,7 +371,7 @@ describe('DatePickerDoc', () => {
       event.initEvent('click', true, false)
       vm.$refs.datepicker.windowClicked(event)
       vm.$nextTick(() => {
-        let picker = vm.$el.querySelectorAll('.date-pick-panel')[1]
+        let picker = vm.$el.querySelectorAll('.date-picker')[1]
         expect(picker.style.display).to.equal('')
         let event = document.createEvent('Events')
         event.initEvent('click', true, false)
