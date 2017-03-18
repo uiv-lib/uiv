@@ -33,7 +33,7 @@
         if (this.type) {
           return `alert alert-${this.type}`
         } else {
-          return ''
+          return `alert`
         }
       }
     },
