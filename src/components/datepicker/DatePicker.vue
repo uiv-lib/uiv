@@ -1,7 +1,7 @@
 <template>
   <div class="panel panel-default date-pick-panel"
-       :class="{'date-pick-panel-inline':inline,'show':show}"
-       :style="{width:width+'px'}">
+       v-show="inline || (!inline && show)"
+       :style="pickerStyle">
     <div class="panel-body">
       <date-view v-show="view==='d'"
                  :month="currentMonth"
@@ -78,6 +78,16 @@
       }
     },
     computed: {
+      pickerStyle () {
+        let style = {
+          width: this.width + 'px'
+        }
+        if (!this.inline) {
+          style.position = 'absolute'
+          style.zIndex = 2
+        }
+        return style
+      },
       limit () {
         let limit = {}
         if (this.limitFrom) {
@@ -117,7 +127,7 @@
     },
     methods: {
       toggle (show) {
-        if (show) {
+        if (typeof show !== 'undefined') {
           this.show = !!show
         } else {
           this.show = !this.show
@@ -175,18 +185,6 @@
 <style lang="less" rel="stylesheet/less">
   .date-pick-panel {
     background: #fff;
-    z-index: 2;
-    display: none;
-    position: absolute;
-
-    &.show {
-      display: block;
-    }
-
-    &.date-pick-panel-inline {
-      display: block;
-      position: relative;
-    }
 
     .btn-date {
       border-radius: 0;

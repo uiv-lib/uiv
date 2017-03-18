@@ -9,7 +9,7 @@
       </td>
       <td colspan="3">
         <button type="button" class="btn btn-default btn-sm btn-block btn-date">
-          <b>{{year}}</b>
+          <b>{{yearStr}}</b>
         </button>
       </td>
       <td>
@@ -48,6 +48,10 @@
           }
         }
         return rows
+      },
+      yearStr () {
+        let start = this.year - this.year % 20
+        return `${start} ~ ${start + 19}`
       }
     },
     methods: {
