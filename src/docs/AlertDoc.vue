@@ -2,59 +2,62 @@
   <section>
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Alert"></anchor-header>
+        <anchor-header text="Alert" source-folder="alert"></anchor-header>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6">
         <div id="alertContainer">
-          <alert class="alert"
-                 role="alert"
-                 v-for="(item,index) in alertList"
-                 :can-close="item.canClose"
-                 :alert-type="item.type"
-                 :display-time="item.displayTime"
-                 :key="index">
-            <div slot="contain">
-              <strong>Well done!</strong> You successfully read this important alert message.
-            </div>
+          <alert v-for="(item,index) in alertList"
+                 :closable="item.closable"
+                 :type="item.type"
+                 :duration="item.duration"
+                 :key="item.key"
+                 @closed="alertList.splice(index, 1)">
+            <strong>Well done!</strong> You successfully read this important alert message.
           </alert>
-          <alert class="alert alert-info" role="alert" :can-close=true>
-            <div slot="contain">
-              <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-            </div>
+          <alert type="info" :closable="true" v-if="showAlert1" @closed="showAlert1=false">
+            <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
           </alert>
-          <alert class="alert alert-warning" role="alert" :can-close=true>
-            <div slot="contain">
-              <strong>Warning!</strong> Better check yourself, you're not looking too good.
-            </div>
+          <alert type="warning" :closable="true" v-if="showAlert2" @closed="showAlert2=false">
+            <strong>Warning!</strong> Better check yourself, you're not looking too good.
           </alert>
-          <alert class="alert alert-danger" role="alert" :can-close=true>
-            <div slot="contain">
-              <strong>Oh snap!</strong> Change a few things up and try submitting again.
-            </div>
+          <alert type="danger" :closable="true" v-if="showAlert3" @closed="showAlert3=false">
+            <strong>Oh snap!</strong> Change a few things up and try submitting again.
           </alert>
         </div>
         <div class="form-inline">
           <div class="form-group">
             <label>display time</label>
-            <input class="form-control" step="1000" min="0" v-model="displayTime" type="number"
+            <input class="form-control" step="1000" min="0" v-model="duration" type="number"
                    placeholder="input display time">
-            <button class="btn btn-default" @click="addAlert('alert-success',false)">add a Alert(time)</button>
-            <button class="btn btn-default" @click="addAlert('alert-success',true)">add a Alert</button>
+            <button class="btn btn-default" @click="addAlert('success',false,true)">Add Alert (time)</button>
+            <button class="btn btn-default" @click="addAlert('success',true)">Add Alert</button>
           </div>
         </div>
       </div>
       <div class="col-md-6">
-        <h4>Prop</h4>
+        <h4>Props</h4>
         <ul>
-          <li><p><code>canClose:Boolean</code></p></li>
-          <li><p><code>alertType:String</code></p></li>
-          <li><p><code>displayTime:Number</code></p></li>
+          <li><p><code>closable:Boolean</code> Show close button on alert. default: true.</p></li>
+          <li><p><code>type:String</code> Alert type (success, info, primary, warning, danger). default: success.</p>
+          </li>
+          <li><p><code>duration:Number</code> Close after millisecond. default: 0 (not going to close by itself)</p>
+          </li>
         </ul>
         <h4>Slots</h4>
         <ul>
-          <li><p><code>contain</code></p></li>
+          <li><p><code>default</code> The alert body.</p></li>
+        </ul>
+        <h4>Events</h4>
+        <ul>
+          <li>
+            <p>
+              <code>closed</code>
+              Fire after the alert closed.
+              Note: you have to hide / destroy the alert using <code>v-if</code> / <code>v-show</code> /
+              <code>v-for</code> manually due to child components can't change state of parent component.</p>
+          </li>
         </ul>
       </div>
     </div>
@@ -62,8 +65,8 @@
       <div class="col-xs-12">
         <demo-code-block demo-file="AlertDoc.vue">
         <pre><code>
-&lt;alert class="alert" role="alert"&gt;
-  &lt;div slot="contain" &gt;...&lt;/idv&gt;
+&lt;alert type=&quot;warning&quot; :closable=&quot;true&quot; v-if=&quot;show&quot; @closed=&quot;show=false&quot;&gt;
+  &lt;strong&gt;Warning!&lt;/strong&gt; Better check yourself, you're not looking too good.
 &lt;/alert&gt;
         </code></pre>
         </demo-code-block>
@@ -74,7 +77,7 @@
 
 <script>
   import AnchorHeader from './architectures/AnchorHeader.vue'
-  import Alert from './../components/Alert.vue'
+  import Alert from '../components/alert/Alert.vue'
   import DemoCodeBlock from './architectures/DemoCodeBlock.vue'
 
   export default {
@@ -82,14 +85,21 @@
     data () {
       return {
         alertList: [
-          {type: 'alert-success', canClose: false}
+          {type: 'success', closable: false, key: new Date().getTime()}
         ],
-        displayTime: 5000
+        showAlert1: true,
+        showAlert2: true,
+        showAlert3: true,
+        duration: 5000
       }
     },
     methods: {
-      addAlert (type, canClose) {
-        this.alertList.push({type: type, canClose: canClose, displayTime: this.displayTime})
+      addAlert (type, canClose, isDisplayTime) {
+        if (isDisplayTime) {
+          this.alertList.push({type: type, closable: canClose, duration: this.duration, key: new Date().getTime()})
+        } else {
+          this.alertList.push({type: type, closable: canClose, key: new Date().getTime()})
+        }
       }
     }
   }
