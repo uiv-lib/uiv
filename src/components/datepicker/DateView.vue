@@ -3,17 +3,17 @@
     <thead>
     <tr>
       <td>
-        <button type="button" class="btn btn-default btn-sm btn-block" @click="goPrevMonth">
+        <button type="button" class="btn btn-default btn-sm btn-block btn-date" @click="goPrevMonth">
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button>
       </td>
       <td colspan="5">
-        <button type="button" class="btn btn-default btn-sm btn-block" @click="changeView">
+        <button type="button" class="btn btn-default btn-sm btn-block btn-date" @click="changeView">
           <b>{{yearMonthStr}}</b>
         </button>
       </td>
       <td>
-        <button type="button" class="btn btn-default btn-sm btn-block" @click="goNextMonth">
+        <button type="button" class="btn btn-default btn-sm btn-block btn-date" @click="goNextMonth">
           <i class="glyphicon glyphicon-chevron-right"></i>
         </button>
       </td>
@@ -28,8 +28,9 @@
     <tr v-for="row in monthDayRows">
       <td v-for="date in row">
         <button type="button"
-                class="btn btn-sm btn-block"
+                class="btn btn-sm btn-block btn-date"
                 :class="getBtnClass(date)"
+                :disabled="date.disabled"
                 @click="select(date)">
           <span :class="{'text-muted':month!==date.month}">{{date.date}}</span>
         </button>
@@ -42,7 +43,7 @@
 <script>
   import util from './dateUtils'
   export default {
-    props: ['month', 'year', 'date', 'today'],
+    props: ['month', 'year', 'date', 'today', 'limit'],
     computed: {
       yearMonthStr () {
         return `${this.year} ${util.getMonthNames()[this.month]}`
@@ -53,25 +54,47 @@
       monthDayRows () {
         let rows = []
         let firstDay = new Date(this.year, this.month, 1)
-        let lastDayOfPrevMonth = new Date(this.year, this.month, 0)
-        let prevMonthLastDate = lastDayOfPrevMonth.getDate()
+        let prevMonthLastDate = new Date(this.year, this.month, 0).getDate()
         let startIndex = firstDay.getDay()
         let daysNum = util.daysInMonth(this.month, this.year)
+
         for (let i = 0; i < 6; i++) {
           rows.push([])
           for (let j = 0; j < 7; j++) {
             let currentIndex = i * 7 + j
-            let date = {year: this.year}
+            let date = {year: this.year, disabled: false}
+            // date in and not in current month
             if (currentIndex < startIndex) {
               date.date = prevMonthLastDate - startIndex + currentIndex + 1
-              date.month = this.month - 1
+              if (this.month > 0) {
+                date.month = this.month - 1
+              } else {
+                date.month = 11
+                date.year--
+              }
             } else if (currentIndex < startIndex + daysNum) {
               date.date = currentIndex - startIndex + 1
               date.month = this.month
             } else {
               date.date = currentIndex - startIndex - daysNum + 1
-              date.month = this.month + 1
+              if (this.month < 11) {
+                date.month = this.month + 1
+              } else {
+                date.month = 0
+                date.year++
+              }
             }
+            // process limit dates
+            let dateObj = new Date(date.year, date.month, date.date)
+            let afterFrom = true
+            let beforeTo = true
+            if (this.limit && this.limit.from) {
+              afterFrom = dateObj.getTime() >= this.limit.from.getTime()
+            }
+            if (this.limit && this.limit.to) {
+              beforeTo = dateObj.getTime() <= this.limit.to.getTime()
+            }
+            date.disabled = !afterFrom || !beforeTo
             rows[i].push(date)
           }
         }

@@ -3,8 +3,8 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <h1>
-            uiv
+          <h1>uiv</h1>
+          <p>
             <a href="https://travis-ci.org/wxsms/uiv" target="_blank">
               <img src="https://travis-ci.org/wxsms/uiv.svg?branch=master" alt="Build Status">
             </a>
@@ -14,14 +14,13 @@
             <a href='https://github.com/wxsms/uiv' target="_blank">
               <img src='https://img.shields.io/github/license/mashape/apistatus.svg' alt='License'/>
             </a>
-          </h1>
+          </p>
           <p>
             <a href="https://npmjs.org/package/uiv" target="_blank">
               <img src='https://nodei.co/npm/uiv.png' alt='NPM'/>
             </a>
           </p>
           <p><b>Bootstrap 3</b> Components Built with <b>Vue 2</b>.</p>
-          <p>Packaged size &lt; 15KB before GZIP</p>
           <br/>
           <div>
             <a href="https://github.com/wxsms/uiv" target="_blank" class="btn btn-default btn-lg">

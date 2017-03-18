@@ -3,17 +3,17 @@
     <thead>
     <tr>
       <td>
-        <button type="button" class="btn btn-default btn-sm btn-block" @click="goPrevYear">
+        <button type="button" class="btn btn-default btn-sm btn-block btn-date" @click="goPrevYear">
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button>
       </td>
       <td colspan="3">
-        <button type="button" class="btn btn-default btn-sm btn-block">
+        <button type="button" class="btn btn-default btn-sm btn-block btn-date">
           <b>{{year}}</b>
         </button>
       </td>
       <td>
-        <button type="button" class="btn btn-default btn-sm btn-block" @click="goNextYear">
+        <button type="button" class="btn btn-default btn-sm btn-block btn-date" @click="goNextYear">
           <i class="glyphicon glyphicon-chevron-right"></i>
         </button>
       </td>
@@ -23,7 +23,7 @@
     <tr v-for="row in rows">
       <td v-for="year in row" width="20%">
         <button type="button"
-                class="btn btn-default btn-sm btn-block"
+                class="btn btn-default btn-sm btn-block btn-date"
                 :class="getBtnClass(year)"
                 @click="changeView(year)">
           <span>{{year}}</span>

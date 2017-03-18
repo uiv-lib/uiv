@@ -8,6 +8,7 @@
                  :year="currentYear"
                  :date="value"
                  :today="now"
+                 :limit="limit"
                  @month-change="onMonthChange"
                  @year-change="onYearChange"
                  @date-change="onDateChange"
@@ -25,6 +26,13 @@
                  @year-change="onYearChange"
                  @view-change="onViewChange">
       </year-view>
+      <div v-if="todayBtn||clearBtn">
+        <br/>
+        <div class="text-center">
+          <button type="button" class="btn btn-info btn-sm" v-if="todayBtn" @click="selectToday">Today</button>
+          <button type="button" class="btn btn-default btn-sm" v-if="clearBtn" @click="clearSelect">Clear</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -36,6 +44,7 @@
   export default {
     components: {DateView, MonthView, YearView},
     props: {
+      value: {}, // This is the v-model value
       width: {
         'default': 270
       },
@@ -43,17 +52,49 @@
         type: Boolean,
         'default': false
       },
-      value: {}
+      todayBtn: {
+        type: Boolean,
+        'default': true
+      },
+      clearBtn: {
+        type: Boolean,
+        'default': true
+      },
+      closeOnSelected: {
+        type: Boolean,
+        'default': true
+      },
+      limitFrom: {},
+      limitTo: {}
     },
     data () {
       return {
         show: false,
         showByTrigger: false,
-        locale: 'en-us',
         now: new Date(),
         currentMonth: {},
         currentYear: 0,
         view: 'd'
+      }
+    },
+    computed: {
+      limit () {
+        let limit = {}
+        if (this.limitFrom) {
+          let from = new Date(this.limitFrom)
+          if (!isNaN(from.getTime())) {
+            from.setHours(0, 0, 0, 0)
+            limit.from = from
+          }
+        }
+        if (this.limitTo) {
+          let to = new Date(this.limitTo)
+          if (!isNaN(to.getTime())) {
+            to.setHours(0, 0, 0, 0)
+            limit.to = to
+          }
+        }
+        return limit
       }
     },
     mounted () {
@@ -63,6 +104,16 @@
     },
     beforeDestroy () {
       window.removeEventListener('click', this.windowClicked)
+    },
+    watch: {
+      value (value) {
+        try {
+          this.currentMonth = value.getMonth()
+          this.currentYear = value.getFullYear()
+        } catch (e) {
+          // Silent
+        }
+      }
     },
     methods: {
       toggle (show) {
@@ -80,15 +131,32 @@
         this.currentYear = year
       },
       onDateChange (date) {
-        this.currentMonth = date.month
-        this.currentYear = date.year
-        this.$emit('input', new Date(date.year, date.month, date.date))
-        if (this.inline) {
+        if (date &&
+          typeof date.date === 'number' &&
+          typeof date.month === 'number' &&
+          typeof date.year === 'number') {
+          this.$emit('input', new Date(date.year, date.month, date.date))
+        } else {
+          this.$emit('input', null)
+        }
+        if (!this.inline && this.closeOnSelected) {
           this.toggle(false)
         }
       },
       onViewChange (view) {
         this.view = view
+      },
+      selectToday () {
+        this.view = 'd'
+        this.onDateChange({
+          date: this.now.getDate(),
+          month: this.now.getMonth(),
+          year: this.now.getFullYear()
+        })
+      },
+      clearSelect () {
+        this.view = 'd'
+        this.onDateChange()
       },
       windowClicked (event) {
         if (this.show && this.showByTrigger) {
@@ -108,17 +176,19 @@
   .date-pick-panel {
     background: #fff;
     z-index: 2;
+    display: none;
+    position: absolute;
 
-    &.date-pick-panel-inline {
-      display: none;
-      position: absolute;
-
-      &.show {
-        display: block;
-      }
+    &.show {
+      display: block;
     }
 
-    .btn {
+    &.date-pick-panel-inline {
+      display: block;
+      position: relative;
+    }
+
+    .btn-date {
       border-radius: 0;
       border: none;
       user-select: none;
