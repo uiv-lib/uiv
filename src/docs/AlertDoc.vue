@@ -31,8 +31,8 @@
             <label>display time</label>
             <input class="form-control" step="1000" min="0" v-model="duration" type="number"
                    placeholder="input display time">
-            <button class="btn btn-default" @click="addAlert('success',false,true)">Add Alert (time)</button>
-            <button class="btn btn-default" @click="addAlert('success',true)">Add Alert</button>
+            <button class="btn btn-default" id="addAlertHadDuration" @click="addAlert('success',false,true)">Add Alert (time)</button>
+            <button class="btn btn-default" id="addAlert" @click="addAlert('success',true)">Add Alert</button>
           </div>
         </div>
       </div>

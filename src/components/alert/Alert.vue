@@ -30,11 +30,7 @@
     },
     computed: {
       alertClass () {
-        if (this.type) {
-          return `alert alert-${this.type}`
-        } else {
-          return `alert`
-        }
+        return `alert alert-${this.type}`
       }
     },
     methods: {
