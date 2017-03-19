@@ -29,10 +29,11 @@
       <td v-for="date in row">
         <button type="button"
                 class="btn btn-sm btn-block btn-date"
+                data-action="select"
                 :class="getBtnClass(date)"
                 :disabled="date.disabled"
                 @click="select(date)">
-          <span :class="{'text-muted':month!==date.month}">{{date.date}}</span>
+          <span data-action="select" :class="{'text-muted':month!==date.month}">{{date.date}}</span>
         </button>
       </td>
     </tr>

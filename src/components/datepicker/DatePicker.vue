@@ -1,40 +1,39 @@
 <template>
-  <div class="date-picker" v-show="inline || (!inline && show)" :style="pickerStyle">
-    <ul class="dropdown-menu">
-      <li>
-        <date-view v-show="view==='d'"
-                   :month="currentMonth"
-                   :year="currentYear"
-                   :date="value"
-                   :today="now"
-                   :limit="limit"
-                   @month-change="onMonthChange"
-                   @year-change="onYearChange"
-                   @date-change="onDateChange"
-                   @view-change="onViewChange">
-        </date-view>
-        <month-view v-show="view==='m'"
-                    :month="currentMonth"
-                    :year="currentYear"
-                    @month-change="onMonthChange"
-                    @year-change="onYearChange"
-                    @view-change="onViewChange">
-        </month-view>
-        <year-view v-show="view==='y'"
-                   :year="currentYear"
-                   @year-change="onYearChange"
-                   @view-change="onViewChange">
-        </year-view>
-        <div v-if="todayBtn||clearBtn">
-          <br/>
-          <div class="text-center">
-            <button type="button" class="btn btn-info btn-sm" v-if="todayBtn" @click="selectToday">Today</button>
-            <button type="button" class="btn btn-default btn-sm" v-if="clearBtn" @click="clearSelect">Clear</button>
-          </div>
-        </div>
-      </li>
-    </ul>
-    <div class="clearfix"></div>
+  <div class="date-picker" :style="pickerStyle" @click="onPickerClick">
+    <date-view v-show="view==='d'"
+               :month="currentMonth"
+               :year="currentYear"
+               :date="value"
+               :today="now"
+               :limit="limit"
+               @month-change="onMonthChange"
+               @year-change="onYearChange"
+               @date-change="onDateChange"
+               @view-change="onViewChange">
+    </date-view>
+    <month-view v-show="view==='m'"
+                :month="currentMonth"
+                :year="currentYear"
+                @month-change="onMonthChange"
+                @year-change="onYearChange"
+                @view-change="onViewChange">
+    </month-view>
+    <year-view v-show="view==='y'"
+               :year="currentYear"
+               @year-change="onYearChange"
+               @view-change="onViewChange">
+    </year-view>
+    <div v-if="todayBtn||clearBtn">
+      <br/>
+      <div class="text-center">
+        <button type="button" data-action="select" class="btn btn-info btn-sm" v-if="todayBtn" @click="selectToday">
+          Today
+        </button>
+        <button type="button" data-action="select" class="btn btn-default btn-sm" v-if="clearBtn" @click="clearSelect">
+          Clear
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -48,10 +47,6 @@
       value: {}, // This is the v-model value
       width: {
         'default': 270
-      },
-      inline: {
-        type: Boolean,
-        'default': false
       },
       todayBtn: {
         type: Boolean,
@@ -80,13 +75,9 @@
     },
     computed: {
       pickerStyle () {
-        let style = {
+        return {
           width: this.width + 'px'
         }
-        if (!this.inline) {
-          style.position = 'absolute'
-        }
-        return style
       },
       limit () {
         let limit = {}
@@ -110,10 +101,6 @@
     mounted () {
       this.currentMonth = this.now.getMonth()
       this.currentYear = this.now.getFullYear()
-      window.addEventListener('click', this.windowClicked)
-    },
-    beforeDestroy () {
-      window.removeEventListener('click', this.windowClicked)
     },
     watch: {
       value (value) {
@@ -126,14 +113,6 @@
       }
     },
     methods: {
-      toggle (show) {
-        if (typeof show !== 'undefined') {
-          this.show = !!show
-        } else {
-          this.show = !this.show
-        }
-        this.showByTrigger = this.show
-      },
       onMonthChange (month) {
         this.currentMonth = month
       },
@@ -148,9 +127,6 @@
           this.$emit('input', new Date(date.year, date.month, date.date))
         } else {
           this.$emit('input', null)
-        }
-        if (!this.inline && this.closeOnSelected) {
-          this.toggle(false)
         }
       },
       onViewChange (view) {
@@ -168,13 +144,9 @@
         this.view = 'd'
         this.onDateChange()
       },
-      windowClicked (event) {
-        if (this.show && this.showByTrigger) {
-          this.showByTrigger = false
-          return
-        }
-        if (this.show && !this.$el.contains(event.target)) {
-          this.show = false
+      onPickerClick (event) {
+        if (event.target.getAttribute('data-action') !== 'select' || !this.closeOnSelected) {
+          event.stopPropagation()
         }
       }
     }
@@ -184,14 +156,6 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less">
   .date-picker {
-    position: relative;
-
-    > .dropdown-menu {
-      display: block;
-      position: relative;
-      width: 100%;
-    }
-
     .btn-date {
       border-radius: 0;
       border: none;

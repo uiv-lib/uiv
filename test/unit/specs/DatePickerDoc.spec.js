@@ -334,52 +334,13 @@ describe('DatePickerDoc', () => {
   it('should be able to toggle popup picker', (done) => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
-    vm.toggle()
+    vm.$el.querySelector('.input-group-btn button').click()
     vm.$nextTick(() => {
-      let picker = vm.$el.querySelectorAll('.date-picker')[1]
-      expect(picker.style.display).to.equal('')
-      vm.toggle()
-      vm.$nextTick(() => {
-        expect(picker.style.display).to.equal('none')
-        done()
-      })
-    })
-  })
-
-  it('should be able to close popup picker on select', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
-    vm.toggle()
-    vm.$nextTick(() => {
-      let picker = vm.$el.querySelectorAll('.date-picker')[1]
-      expect(picker.style.display).to.equal('')
-      picker.querySelector('tbody').querySelectorAll('button')[0].click()
-      vm.$nextTick(() => {
-        expect(picker.style.display).to.equal('none')
-        done()
-      })
-    })
-  })
-
-  it('should be able to close popup on window clicked', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
-    vm.$nextTick(() => {
+      expect(vm.$el.querySelector('.dropdown').className).to.contain('open')
       vm.$el.querySelector('.input-group-btn button').click()
-      // Window click should be trigger in real browser
-      let event = document.createEvent('Events')
-      event.initEvent('click', true, false)
-      vm.$refs.datepicker.windowClicked(event)
       vm.$nextTick(() => {
-        let picker = vm.$el.querySelectorAll('.date-picker')[1]
-        expect(picker.style.display).to.equal('')
-        let event = document.createEvent('Events')
-        event.initEvent('click', true, false)
-        vm.$refs.datepicker.windowClicked(event)
-        vm.$nextTick(() => {
-          expect(picker.style.display).to.equal('none')
-          done()
-        })
+        expect(vm.$el.querySelector('.dropdown').className).not.contain('open')
+        done()
       })
     })
   })
