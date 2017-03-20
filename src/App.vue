@@ -11,6 +11,7 @@
       <dropdown-doc></dropdown-doc>
       <modal-doc></modal-doc>
       <tabs-doc></tabs-doc>
+      <pagination-doc></pagination-doc>
     </div>
     <page-footer></page-footer>
 
@@ -36,6 +37,7 @@
   import CarouselDoc from './docs/CarouselDoc.vue'
   import DatePickerDoc from './docs/DatePickerDoc.vue'
   import AlertDoc from './docs/AlertDoc.vue'
+  import PaginationDoc from './docs/PaginationDoc.vue'
 
   export default {
     name: 'app',
@@ -50,7 +52,8 @@
       CollapseDoc,
       CarouselDoc,
       DatePickerDoc,
-      AlertDoc
+      AlertDoc,
+      PaginationDoc
     },
     mounted () {
       // highlight code blocks
