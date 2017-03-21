@@ -14,7 +14,9 @@
         </div>
         <div class="form-inline">
           <div class="form-group">
-
+            <input class="form-control" step="1" min="0" v-model="currentPage" type="number"
+                   placeholder="current page">
+            <button class="btn btn-default" @click="currentPage += 1">页数 +1</button>
           </div>
         </div>
       </div>
