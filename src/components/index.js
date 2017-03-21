@@ -9,6 +9,7 @@ import Tab from './tabs/Tab.vue'
 import Tabs from './tabs/Tabs.vue'
 import DatePicker from './datepicker/DatePicker.vue'
 import Alert from './alert/Alert.vue'
+import Pagination from './pagination/Pagination.vue'
 import tooltip from './tooltip/tooltip'
 
 let directives = {
@@ -27,5 +28,6 @@ export {
   Tab,
   Tabs,
   DatePicker,
-  Alert
+  Alert,
+  Pagination
 }
