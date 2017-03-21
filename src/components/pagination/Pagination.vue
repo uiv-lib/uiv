@@ -1,30 +1,35 @@
 <template>
   <nav aria-label="Page navigation">
     <ul class="pagination" :class="pageSize">
-      <li :class="{'disabled':sliceStart==1||currentPage==1}" v-if="boundaryLinks" @click="sliceStart-=1">
-        <span>
+      <li :class="{'disabled':value<=1}" v-if="boundaryLinks" @click="onPageChange(1)">
+        <a role="button">
           <span aria-hidden="true">&laquo;</span>
-        </span>
+        </a>
       </li>
-      <li :class="{'disabled':currentPage==1}" v-if="directionLinks" @click="currentPage-=1">
-        <span>
+      <li :class="{'disabled':value<=1}" v-if="directionLinks" @click="onPageChange(value-1)">
+        <a role="button">
           <span aria-hidden="true">&lsaquo;</span>
-        </span>
+        </a>
       </li>
-      <li v-if="sliceStart>0"><span>...</span></li>
-      <li v-for="item in sliceArray" :key="item" @click="onPageChange(item+1)" class="pagination-page" :class="{'active': currentPage==item+1}">
-        <a href="javascript:;">{{item+1}}</a>
+      <li v-if="sliceStart>0" @click="toPage(1)">
+        <a role="button">...</a>
       </li>
-      <li v-if="sliceStart!=parseInt(totalPage/maxSize)"  @click="sliceStart+=1"><span>...</span></li>
-      <li :class="{'disabled':currentPage==totalPage-1}" v-if="directionLinks" @click="currentPage+=1">
-        <span>
+      <li v-for="item in sliceArray" :key="item" @click="onPageChange(item+1)" class="pagination-page"
+          :class="{'active': value==item+1}">
+        <a role="button">{{item+1}}</a>
+      </li>
+      <li v-if="sliceStart<totalPage-maxSize" @click="toPage(0)">
+        <a role="button">...</a>
+      </li>
+      <li :class="{'disabled':value>=totalPage}" v-if="directionLinks" @click="onPageChange(value+1)">
+        <a role="button">
           <span aria-hidden="true">&rsaquo;</span>
-        </span>
+        </a>
       </li>
-      <li :class="{'disabled':sliceStart==parseInt(totalPage/maxSize)||currentPage==totalPage-1}" v-if="boundaryLinks" @click="sliceStart += 1">
-        <span>
+      <li :class="{'disabled':value>=totalPage}" v-if="boundaryLinks" @click="onPageChange(totalPage)">
+        <a role="button">
           <span aria-hidden="true">&raquo;</span>
-        </span>
+        </a>
       </li>
     </ul>
   </nav>
@@ -33,6 +38,9 @@
 <script>
   export default {
     props: {
+      value: {
+        type: Number
+      },
       boundaryLinks: {
         type: Boolean,
         'default': false
@@ -55,24 +63,29 @@
     },
     data () {
       return {
-        value: {},
-        currentPage: 1,
         sliceStart: 0
       }
     },
     watch: {
       value (value) {
-        try {
-          console.log(value)
-          this.currentPage = value
-        } catch (e) {
-          // Silent
+        if (value > this.sliceStart + this.maxSize) {
+          if (value > this.totalPage - this.maxSize) {
+            this.sliceStart = this.totalPage - this.maxSize
+          } else {
+            this.sliceStart = value - 1
+          }
+        } else if (value < this.sliceStart + 1) {
+          if (value - this.maxSize > 0) {
+            this.sliceStart = value - this.maxSize
+          } else {
+            this.sliceStart = 0
+          }
         }
       }
     },
     computed: {
       pageSize () {
-        return `pagination-${this.size}`
+        return this.size ? `pagination-${this.size}` : ``
       },
       pageArray () {
         var newArray = []
@@ -81,19 +94,27 @@
         }
         return newArray
       },
-      sliceStart () {
-        return (this.currentPage % this.maxSize) * this.maxSize
-      },
       sliceArray () {
         let afterSlice = this.pageArray.slice()
-        return afterSlice.slice(this.sliceStart * this.maxSize, this.sliceStart * this.maxSize + this.maxSize)
+        return afterSlice.slice(this.sliceStart, this.sliceStart + this.maxSize)
       }
     },
     methods: {
       onPageChange (page) {
-        this.currentPage = page
-        console.log(page)
-        this.$emit('input', this.currentPage)
+        if (page > 0 && page <= this.totalPage) {
+          this.$emit('input', page)
+          this.$emit('page-changed', page)
+        }
+      },
+      toPage (pre) {
+        let start = pre ? this.sliceStart - this.maxSize : this.sliceStart + this.maxSize
+        if (start < 0) {
+          this.sliceStart = 0
+        } else if (start > this.totalPage - this.maxSize) {
+          this.sliceStart = this.totalPage - this.maxSize
+        } else {
+          this.sliceStart = start
+        }
       }
     }
   }
