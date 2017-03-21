@@ -46,14 +46,14 @@ const hide = (el) => {
       el.$$tooltip.className = `tooltip fade ${props.placement || 'top'}`
       el.$$tooltip.addEventListener(transitionEnd, () => {
         try {
-          el.$$tooltip.remove()
+          el.$$tooltip.parentNode.removeChild(el.$$tooltip)
           delete el.$$tooltip
         } catch (e) {
           // Silent
         }
       })
     } else {
-      el.$$tooltip.remove()
+      el.$$tooltip.parentNode.removeChild(el.$$tooltip)
       delete el.$$tooltip
     }
   }
