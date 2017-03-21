@@ -9,7 +9,16 @@ import Tab from './tabs/Tab.vue'
 import Tabs from './tabs/Tabs.vue'
 import DatePicker from './datepicker/DatePicker.vue'
 import Alert from './alert/Alert.vue'
+import tooltip from './tooltip/tooltip'
+
+let directives = {
+  install (Vue) {
+    tooltip(Vue)
+  }
+}
+
 export {
+  directives,
   Carousel,
   Slide,
   Collapse,

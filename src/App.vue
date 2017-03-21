@@ -10,8 +10,9 @@
       <date-picker-doc></date-picker-doc>
       <dropdown-doc></dropdown-doc>
       <modal-doc></modal-doc>
-      <tabs-doc></tabs-doc>
       <pagination-doc></pagination-doc>
+      <tabs-doc></tabs-doc>
+      <tooltip-doc></tooltip-doc>
     </div>
     <page-footer></page-footer>
   </section>
@@ -31,6 +32,11 @@
   import DatePickerDoc from './docs/DatePickerDoc.vue'
   import AlertDoc from './docs/AlertDoc.vue'
   import PaginationDoc from './docs/PaginationDoc.vue'
+  import TooltipDoc from './docs/TooltipDoc.vue'
+
+  import Vue from 'vue'
+  import {directives} from './components/index'
+  Vue.use(directives)
 
   export default {
     name: 'app',
@@ -46,7 +52,8 @@
       CarouselDoc,
       DatePickerDoc,
       AlertDoc,
-      PaginationDoc
+      PaginationDoc,
+      TooltipDoc
     },
     mounted () {
       // highlight code blocks

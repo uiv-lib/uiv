@@ -9,35 +9,33 @@
           <li><strong>Bootstrap 3 CSS</strong> (tested on ^3.3.7)</li>
         </ul>
         <h3 class="page-header">Install</h3>
-        <h4>ES6</h4>
+        <p>uiv is using <b>UMD</b> exporter, which means you can use it in both:</p>
+        <ul>
+          <li>CommonJS</li>
+          <li>AMD</li>
+          <li>Browser</li>
+        </ul>
+        <p>You can simply include uiv into you js files or HTML page and start working.</p>
+        <h4>ES6 Sample</h4>
         <div><pre><code>
 $ npm install uiv
 
+// Components
 import { Dropdown } from 'uiv'
 
 new Vue({
   components: {
     Dropdown
-  }``
+  }
 })
+
+// Directives, e.g. tooltip / popover
+import Vue from 'vue'
+import { directives } from 'uiv'
+Vue.use(directives)
         </code></pre>
         </div>
-        <br/>
-        <h4>CommonJS</h4>
-        <div><pre><code>
-$ npm install uiv
-
-const Dropdown = require('uiv').Dropdown
-
-new Vue({
-  components: {
-    Dropdown
-  }``
-})
-        </code></pre>
-        </div>
-        <br/>
-        <h4>Browser</h4>
+        <h4>Browser Sample</h4>
         <div><pre><code>
 &lt;tabs&gt;
   &lt;tab&gt;...&lt;/tab&gt;
@@ -47,6 +45,7 @@ new Vue({
 &lt;script src=&quot;path/to/vue.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;path/to/uiv.min.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
+  Vue.use(uiv.directives) // If you need
   new Vue({
     components: {
       Tabs: uiv.Tabs, Tab: uiv.Tab
