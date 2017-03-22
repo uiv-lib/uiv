@@ -10,42 +10,52 @@
 
 [Demo & Docs](https://wxsm.space/uiv)
 
-Dependencies:
+## Dependencies:
 
-* **Vue** (tested on ^2.2.1)
-* **Bootstrap CSS** (tested on ^3.3.7)
+* **Vue 2** (tested on ^2.2.1)
+* **Bootstrap 3 CSS** (tested on ^3.3.7)
+
+## Supported Browsers
+
+Components and directives are tested with the following browsers:
+
+* Chrome
+* Firefox
+* Safari
+* IE 9 / 10 / 11
 
 ## Install
 
-### ES6
+uiv is using Webpack UMD exporter, which means you can use it in both:
+
+* **ES6**
+* **CommonJS**
+* **AMD**
+* **Browser**
+
+You can simply include uiv into you js files or HTML page and start working.
+
+### ES6 Sample
 
 ```js
 $ npm install uiv
 
+// Directives, e.g. v-tooltip
+import Vue from 'vue'
+import { directives } from 'uiv'
+Vue.use(directives)
+
+// Components
 import { Dropdown } from 'uiv'
 
 new Vue({
   components: {
     Dropdown
-  }``
+  }
 })
 ```
 
-### CommonJS
-
-```js
-$ npm install uiv
-
-const Dropdown = require('uiv').Dropdown
-
-new Vue({
-  components: {
-    Dropdown
-  }``
-})
-```
-
-### Browser
+### Browser Sample
 
 ```html
 <tabs>
@@ -56,6 +66,7 @@ new Vue({
 <script src="path/to/vue.min.js"></script>
 <script src="path/to/uiv.min.js"></script>
 <script>
+  Vue.use(uiv.directives) // If you need
   new Vue({
     components: {
       Tabs: uiv.Tabs, Tab: uiv.Tab
@@ -88,3 +99,7 @@ npm run e2e
 # run all tests
 npm test
 ```
+
+## License
+
+MIT
