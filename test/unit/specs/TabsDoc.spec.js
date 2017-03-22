@@ -100,6 +100,9 @@ describe('TabsDoc', () => {
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
       let _savedAlert = window.alert
+      window.alert = () => {
+        // Silent to remove out logs in terminal
+      }
       try {
         let spy = sinon.spy(window, 'alert')
         vm.$el.querySelectorAll('.nav-tabs')[1].querySelectorAll('li')[1].querySelector('a').click()

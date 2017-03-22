@@ -46,7 +46,9 @@
       }
     },
     mounted () {
-      this.$select(0)
+      if (this.slides.length > 0) {
+        this.$select(0)
+      }
       this.startInterval()
     },
     methods: {
@@ -77,6 +79,9 @@
         this.slides[index].slideClass.active = true
       },
       select (index) {
+        if (this.slides.length === 0) {
+          return
+        }
         if (index < 0) {
           index = 0
         } else if (index >= this.slides.length) {

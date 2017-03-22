@@ -5,6 +5,9 @@ import Tab from '@/components/tabs/Tab.vue'
 describe('Tabs', () => {
   it('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {
     let _error = window.console.error
+    window.console.error = () => {
+      // Silent to remove out logs in terminal
+    }
     try {
       let spy = sinon.spy(window.console, 'error')
       let res = Vue.compile('<tabs><tab><tab>{{ msg }}</tab></tab></tabs>')

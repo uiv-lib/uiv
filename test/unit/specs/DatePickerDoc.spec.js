@@ -261,6 +261,26 @@ describe('DatePickerDoc', () => {
     })
   })
 
+  it('should not close the picker on picker body click', (done) => {
+    const Constructor = Vue.extend(DatePickerDoc)
+    const vm = new Constructor().$mount()
+    vm.$nextTick(() => {
+      let picker = vm.$el.querySelectorAll('.date-picker')[1]
+      let dropdown = vm.$el.querySelector('.dropdown')
+      let trigger = dropdown.querySelector('[data-role=trigger]')
+      expect(dropdown.className).not.contain('open')
+      trigger.click()
+      vm.$nextTick(() => {
+        expect(dropdown.className).to.contain('open')
+        picker.click()
+        vm.$nextTick(() => {
+          expect(dropdown.className).to.contain('open')
+          done()
+        })
+      })
+    })
+  })
+
   it('should be able to use today btn', (done) => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
@@ -327,6 +347,16 @@ describe('DatePickerDoc', () => {
       if (dateInRange.length > 1) {
         expect(dateInRange[1].textContent).to.equal(tomorrow.getDate().toString())
       }
+      done()
+    })
+  })
+
+  it('should be able handle invalid limit params', (done) => {
+    const Constructor = Vue.extend(DatePickerDoc)
+    const vm = new Constructor().$mount()
+    vm.limitFrom = 'foo'
+    vm.limitTo = 'bar'
+    vm.$nextTick(() => {
       done()
     })
   })

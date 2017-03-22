@@ -5,6 +5,9 @@ import Slide from '@/components/carousel/Slide.vue'
 describe('Carousel', () => {
   it('should not be able to work if not using <carousel><slide>...</slide></carousel>', () => {
     let _error = window.console.error
+    window.console.error = () => {
+      // Silent to remove out logs in terminal
+    }
     try {
       let spy = sinon.spy(window.console, 'error')
       let res = Vue.compile('<carousel><slide><slide>{{ msg }}</slide></slide></carousel>')
@@ -25,7 +28,7 @@ describe('Carousel', () => {
     }
   })
 
-  it('should be ok if not <slide> present in <carousel>', () => {
+  it('should be ok if no <slide> present in <carousel>', () => {
     let res = Vue.compile('<carousel>{{msg}}</carousel>')
     let vm = new Vue({
       data () {
