@@ -13,6 +13,7 @@
       <pagination-doc></pagination-doc>
       <tabs-doc></tabs-doc>
       <tooltip-doc></tooltip-doc>
+      <time-picker-doc></time-picker-doc>
     </div>
     <page-footer></page-footer>
   </section>
@@ -33,6 +34,7 @@
   import AlertDoc from './docs/AlertDoc.vue'
   import PaginationDoc from './docs/PaginationDoc.vue'
   import TooltipDoc from './docs/TooltipDoc.vue'
+  import TimePickerDoc from './docs/TimePickerDoc.vue'
 
   import Vue from 'vue'
   import {directives} from './components/index'
@@ -53,7 +55,8 @@
       DatePickerDoc,
       AlertDoc,
       PaginationDoc,
-      TooltipDoc
+      TooltipDoc,
+      TimePickerDoc
     },
     mounted () {
       // highlight code blocks
