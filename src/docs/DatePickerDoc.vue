@@ -69,11 +69,11 @@
         </ul>
         <h4>Props</h4>
         <ul>
-          <li><p><code>width:Number</code> The date-picker's width in px. Default: 270.</p></li>
-          <li><p><code>today-btn:Boolean</code> Show / hide the today button. Default: true.</p></li>
-          <li><p><code>clear-btn:Boolean</code> Show / hide the clear button. Default: true.</p></li>
+          <li><p><code>width: Number</code> The date-picker's width in px. Default: 270.</p></li>
+          <li><p><code>today-btn: Boolean</code> Show / hide the today button. Default: true.</p></li>
+          <li><p><code>clear-btn: Boolean</code> Show / hide the clear button. Default: true.</p></li>
           <li>
-            <p><code>close-on-selected:Boolean</code> Close the date-picker after date selected. Default: true.</p>
+            <p><code>close-on-selected: Boolean</code> Close the date-picker after date selected. Default: true.</p>
           </li>
           <li>
             <p>

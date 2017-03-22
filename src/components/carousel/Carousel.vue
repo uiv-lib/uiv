@@ -36,8 +36,7 @@
       return {
         slides: [],
         activeIndex: 0,
-        timeout1: 0,
-        timeout2: 0,
+        timeout: 0,
         _interval: 0
       }
     },
@@ -87,7 +86,7 @@
           return
         }
         let currentActiveIndex = this.activeIndex
-        if (this.timeout1 === 0 && this.timeout2 === 0) {
+        if (this.timeout === 0) {
           this.activeIndex = index
           let direction
           if (index > currentActiveIndex) {
@@ -97,21 +96,19 @@
           }
           this.slides[index].slideClass[direction[0]] = true
           this.$nextTick(() => {
-            this.timeout1 = setTimeout(() => {
-              this.slides.forEach((slide, i) => {
-                if (i === currentActiveIndex) {
-                  slide.slideClass.active = true
-                  slide.slideClass[direction[1]] = true
-                } else if (i === index) {
-                  slide.slideClass[direction[1]] = true
-                }
-              })
-              this.timeout2 = setTimeout(() => {
-                this.$select(index)
-                this.timeout1 = 0
-                this.timeout2 = 0
-              }, 620) // the css transition time, 20ms to ensure work correctly
-            }, 20)  // if set to 0 will cause issue in firefox and safari
+            this.slides[index].$el.offsetHeight
+            this.slides.forEach((slide, i) => {
+              if (i === currentActiveIndex) {
+                slide.slideClass.active = true
+                slide.slideClass[direction[1]] = true
+              } else if (i === index) {
+                slide.slideClass[direction[1]] = true
+              }
+            })
+            this.timeout = setTimeout(() => {
+              this.$select(index)
+              this.timeout = 0
+            }, 600)
           })
         }
       },

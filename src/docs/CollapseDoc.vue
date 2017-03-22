@@ -75,13 +75,13 @@
         <ul>
           <li>
             <p>
-              <code>tag:String</code>
+              <code>tag: String</code>
               <span>The HTML tag that render the collapse component. Default: 'div'</span>
             </p>
           </li>
           <li>
             <p>
-              <code>show:Boolean</code>
+              <code>show: Boolean</code>
               <span>Show / hide the component. Default: false</span>
             </p>
           </li>

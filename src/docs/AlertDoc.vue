@@ -39,10 +39,10 @@
       <div class="col-md-6">
         <h4>Props</h4>
         <ul>
-          <li><p><code>closable:Boolean</code> Show close button on alert. default: true.</p></li>
-          <li><p><code>type:String</code> Alert type (success, info, primary, warning, danger). default: success.</p>
+          <li><p><code>closable: Boolean</code> Show close button on alert. default: true.</p></li>
+          <li><p><code>type: String</code> Alert type (success, info, primary, warning, danger). default: success.</p>
           </li>
-          <li><p><code>duration:Number</code> Close after millisecond. default: 0 (not going to close by itself)</p>
+          <li><p><code>duration: Number</code> Close after millisecond. default: 0 (not going to close by itself)</p>
           </li>
         </ul>
         <h4>Slots</h4>

@@ -64,7 +64,7 @@
         <ul>
           <li>
             <p>
-              <code>tag:String</code>
+              <code>tag: String</code>
               <span>The HTML tag that render the dropdown component. Default: 'div'</span>
             </p>
           </li>

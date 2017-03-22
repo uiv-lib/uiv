@@ -9,7 +9,7 @@
       <div class="col-md-6">
         <carousel :indicators="indicators" :controls="controls" :interval="interval" ref="carousel">
           <slide v-for="(slide,index) in slides" :key="index">
-            <img :src="'https://placehold.it/1440x900?text='+slide.title">
+            <img :src="'https://unsplash.it/450/250/?random&'+index" width="100%">
             <div class="carousel-caption">
               <h3>This is {{slide.title}}</h3>
             </div>
@@ -34,19 +34,19 @@
         <ul>
           <li>
             <p>
-              <code>indicators:Boolean</code>
+              <code>indicators: Boolean</code>
               <span>Show / hide the indicators. Default: true</span>
             </p>
           </li>
           <li>
             <p>
-              <code>controls:Boolean</code>
+              <code>controls: Boolean</code>
               <span>Show / hide the controls. Default: true</span>
             </p>
           </li>
           <li>
             <p>
-              <code>interval:Number</code>
+              <code>interval: Number</code>
               <span>Slides running interval time. Default: 2000</span>
             </p>
           </li>
@@ -55,7 +55,7 @@
         <ul>
           <li>
             <p>
-              <code>select(index:Number)</code>
+              <code>select(index: Number)</code>
               <span>Show slide @index</span>
             </p>
           </li>

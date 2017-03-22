@@ -49,18 +49,18 @@
       <div class="col-md-6">
         <h4>Props (Tabs)</h4>
         <ul>
-          <li><p><code>justified:Boolean</code> Use justified style. Default: false.</p></li>
+          <li><p><code>justified: Boolean</code> Use justified style. Default: false.</p></li>
         </ul>
         <h4>Methods (Tabs)</h4>
         <ul>
-          <li><p><code>select (index:Number)</code> Select tab by index.</p></li>
+          <li><p><code>select (index: Number)</code> Select tab by index.</p></li>
         </ul>
         <h4>Props (Tab)</h4>
         <ul>
-          <li><p><code>title:String</code> The tab title</p></li>
-          <li><p><code>htmlTitle:Boolean</code> Use HTML title. Default: false.</p></li>
-          <li><p><code>disabled:Boolean</code> Disable the tab. Default: false.</p></li>
-          <li><p><code>group:String</code> Tabs nav with same group will in a dropdown list.</p></li>
+          <li><p><code>title: String</code> The tab title</p></li>
+          <li><p><code>htmlTitle: Boolean</code> Use HTML title. Default: false.</p></li>
+          <li><p><code>disabled: Boolean</code> Disable the tab. Default: false.</p></li>
+          <li><p><code>group: String</code> Tabs nav with same group will in a dropdown list.</p></li>
         </ul>
       </div>
     </div>

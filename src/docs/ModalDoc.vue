@@ -71,12 +71,12 @@
       <div class="col-md-6">
         <h4>Props</h4>
         <ul>
-          <li><p><code>title:String</code> The modal title (will be override if title slot exist).</p></li>
-          <li><p><code>size:String</code> The modal size. Support 'lg' / 'sm', default normal size.</p></li>
-          <li><p><code>backdrop:Boolean</code> The modal can close by backdrop click. Default true.</p></li>
-          <li><p><code>footer:Boolean</code> The modal shows footer. Default true.</p></li>
-          <li><p><code>cancelText:String</code> The text of cancel button.</p></li>
-          <li><p><code>okText:String</code> The text of ok button.</p></li>
+          <li><p><code>title: String</code> The modal title (will be override if title slot exist).</p></li>
+          <li><p><code>size: String</code> The modal size. Support 'lg' / 'sm', default normal size.</p></li>
+          <li><p><code>backdrop: Boolean</code> The modal can close by backdrop click. Default true.</p></li>
+          <li><p><code>footer: Boolean</code> The modal shows footer. Default true.</p></li>
+          <li><p><code>cancelText: String</code> The text of cancel button.</p></li>
+          <li><p><code>okText: String</code> The text of ok button.</p></li>
         </ul>
         <h4>Slots</h4>
         <ul>
@@ -86,7 +86,7 @@
         </ul>
         <h4>Methods</h4>
         <ul>
-          <li><p><code>toggle(show:Boolean)</code> Toggle or show / hide the modal.</p></li>
+          <li><p><code>toggle(show: Boolean)</code> Toggle or show / hide the modal.</p></li>
         </ul>
         <h4>Events</h4>
         <ul>
