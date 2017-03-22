@@ -17,7 +17,7 @@
           <li>IE 9 / 10 / 11</li>
         </ul>
         <h3 class="page-header">Install</h3>
-        <p>uiv is using Webpack <b>UMD</b> exporter, which means you can use it in both:</p>
+        <p>uiv is using Webpack UMD exporter, which means you can use it in both:</p>
         <ul>
           <li><b>ES6</b></li>
           <li><b>CommonJS</b></li>
