@@ -9,7 +9,7 @@
       <div class="col-md-6">
         <carousel :indicators="indicators" :controls="controls" :interval="interval" ref="carousel">
           <slide v-for="(slide,index) in slides" :key="index">
-            <img :src="'https://unsplash.it/450/250/?random&'+index" width="100%">
+            <img :src="'https://placehold.it/450x250?text='+slide.title" width="100%">
             <div class="carousel-caption">
               <h3>This is {{slide.title}}</h3>
             </div>

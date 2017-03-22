@@ -6,7 +6,8 @@ describe('PaginationDoc', () => {
     const Constructor = Vue.extend(PaginationDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-
+      // TODO
+      done()
     })
   })
 
@@ -14,7 +15,8 @@ describe('PaginationDoc', () => {
     const Constructor = Vue.extend(PaginationDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-
+      // TODO
+      done()
     })
   })
 })
