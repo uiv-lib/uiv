@@ -32,6 +32,9 @@
           <li>
             <a href="#getting-started">Getting Started</a>
           </li>
+          <li>
+            <a href="https://github.com/wxsms/uiv">Code on Github</a>
+          </li>
         </ul>
       </div>
     </div>

@@ -1,20 +1,6 @@
 'use strict'
 
 export default {
-  whichTransitionEvent (el) {
-    let transitions = {
-      'transition': 'transitionend',
-      'OTransition': 'oTransitionEnd',
-      'MozTransition': 'transitionend',
-      'WebkitTransition': 'webkitTransitionEnd'
-    }
-    for (let t in transitions) {
-      if (typeof el.style[t] !== 'undefined') {
-        return transitions[t]
-      }
-    }
-    return ''
-  },
   setTooltipPosition (tooltip, trigger, placement, appendToSelector) {
     let container
     let containerScrollTop

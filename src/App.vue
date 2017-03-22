@@ -36,10 +36,6 @@
   import TooltipDoc from './docs/TooltipDoc.vue'
   import TimePickerDoc from './docs/TimePickerDoc.vue'
 
-  import Vue from 'vue'
-  import {directives} from './components/index'
-  Vue.use(directives)
-
   export default {
     name: 'app',
     components: {
