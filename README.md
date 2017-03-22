@@ -40,12 +40,6 @@ You can simply include uiv into you js files or HTML page and start working.
 ```js
 $ npm install uiv
 
-// Directives, e.g. v-tooltip
-import Vue from 'vue'
-import { directives } from 'uiv'
-Vue.use(directives)
-
-// Components
 import { Dropdown } from 'uiv'
 
 new Vue({
@@ -66,7 +60,6 @@ new Vue({
 <script src="path/to/vue.min.js"></script>
 <script src="path/to/uiv.min.js"></script>
 <script>
-  Vue.use(uiv.directives) // If you need
   new Vue({
     components: {
       Tabs: uiv.Tabs, Tab: uiv.Tab

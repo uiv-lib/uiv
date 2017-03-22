@@ -34,10 +34,6 @@
   import PaginationDoc from './docs/PaginationDoc.vue'
   import TooltipDoc from './docs/TooltipDoc.vue'
 
-  import Vue from 'vue'
-  import {directives} from './components/index'
-  Vue.use(directives)
-
   export default {
     name: 'app',
     components: {

@@ -29,12 +29,6 @@
         <div><pre><code>
 $ npm install uiv
 
-// Directives, e.g. v-tooltip
-import Vue from 'vue'
-import { directives } from 'uiv'
-Vue.use(directives)
-
-// Components
 import { Dropdown } from 'uiv'
 
 new Vue({
@@ -54,7 +48,6 @@ new Vue({
 &lt;script src=&quot;path/to/vue.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;path/to/uiv.min.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
-  Vue.use(uiv.directives) // If you need
   new Vue({
     components: {
       Tabs: uiv.Tabs, Tab: uiv.Tab
