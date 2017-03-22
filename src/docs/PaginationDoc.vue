@@ -72,7 +72,7 @@
         </ul>
         <h4>Events</h4>
         <ul>
-          <li><p><code>page-changed</code> Fire after page changed.</p></li>
+          <li><p><code>page-changed (index:Number)</code> Fire after page changed.</p></li>
         </ul>
       </div>
     </div>

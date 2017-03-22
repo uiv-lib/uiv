@@ -16,18 +16,20 @@
           </slide>
         </carousel>
         <br/>
-        <form class="form-inline">
-          <button type="button" class="btn btn-default" @click="indicators=!indicators">Toggle Indicators</button>
-          <button type="button" class="btn btn-default" @click="controls=!controls">Toggle Controls</button>
-          <button type="button" class="btn btn-default" @click="pushSlide">Push Slide</button>
-        </form>
-        <br/>
-        <form class="form-inline">
-          <div class="form-group">
-            <label>Interval</label>
-            <input type="number" class="form-control" placeholder="e.g. 2000" step="1" min="0" v-model="interval">
-          </div>
-        </form>
+        <div class="well">
+          <form class="form-inline">
+            <button type="button" class="btn btn-default" @click="indicators=!indicators">Toggle Indicators</button>
+            <button type="button" class="btn btn-default" @click="controls=!controls">Toggle Controls</button>
+            <button type="button" class="btn btn-default" @click="pushSlide">Push Slide</button>
+          </form>
+          <br/>
+          <form class="form-inline">
+            <div class="form-group">
+              <label>Interval</label>
+              <input type="number" class="form-control" placeholder="e.g. 2000" step="1" min="0" v-model="interval">
+            </div>
+          </form>
+        </div>
       </div>
       <div class="col-md-6">
         <h4>Props (Carousel)</h4>

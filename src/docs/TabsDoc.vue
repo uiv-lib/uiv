@@ -7,18 +7,17 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <p>
+        <h3>Basic Example</h3>
+        <div class="well">
           <button type="button" id="tabs-btn-1" class="btn btn-default" @click="selectTab(0)">Active Tab 1</button>
           <button type="button" id="tabs-btn-2" class="btn btn-default" @click="selectTab(1)">Active Tab 2</button>
           <button type="button" id="tabs-btn-3" class="btn btn-default" @click="thirdTabDisabled=!thirdTabDisabled">
             Enable / Disable Tab 3
           </button>
-        </p>
-        <p>
           <button type="button" id="tabs-btn-4" class="btn btn-default" @click="justified=!justified">
-            Enable / Disable Justified Style
+            Justified Style
           </button>
-        </p>
+        </div>
         <tabs ref="tabComponent" :justified="justified">
           <tab title="Tab 1">
             <p>This is tab 1.</p>
@@ -30,7 +29,7 @@
             <p>This tab can be enable / disable.</p>
           </tab>
         </tabs>
-        <br/>
+        <h3>Advanced</h3>
         <tabs @after-active="afterTabActive">
           <tab title="<i class='glyphicon glyphicon-heart'></i> HTML Title" :html-title="true">
             <p>This tab has a HTML title.</p>
@@ -61,6 +60,10 @@
           <li><p><code>htmlTitle: Boolean</code> Use HTML title. Default: false.</p></li>
           <li><p><code>disabled: Boolean</code> Disable the tab. Default: false.</p></li>
           <li><p><code>group: String</code> Tabs nav with same group will in a dropdown list.</p></li>
+        </ul>
+        <h4>Events (Tabs)</h4>
+        <ul>
+          <li><p><code>after-active (index: Number)</code> Fire after tab active.</p></li>
         </ul>
       </div>
     </div>

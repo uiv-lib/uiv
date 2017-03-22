@@ -17,7 +17,7 @@
             Hi there.
           </div>
         </collapse>
-        <h3>Accordion Example</h3>
+        <h3>Accordion</h3>
         <div class="panel-group">
           <div class="panel panel-default">
             <div class="panel-heading">

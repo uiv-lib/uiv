@@ -26,14 +26,21 @@
             <strong>Oh snap!</strong> Change a few things up and try submitting again.
           </alert>
         </div>
-        <div class="form-inline">
-          <div class="form-group">
-            <label>display time</label>
-            <input class="form-control" step="1000" min="0" v-model="duration" type="number"
-                   placeholder="input display time">
-            <button class="btn btn-default" id="addAlertHadDuration" @click="addAlert('success',false,true)">Add Alert (time)</button>
-            <button class="btn btn-default" id="addAlert" @click="addAlert('success',true)">Add Alert</button>
-          </div>
+        <div class="well">
+          <form class="form-inline">
+            <div class="form-group">
+              <label>display time</label>
+              <input class="form-control" step="1000" min="0" v-model="duration" type="number"
+                     placeholder="input display time">
+              <button type="button" class="btn btn-default" id="addAlertHadDuration"
+                      @click="addAlert('success',false,true)">
+                Add Alert (time)
+              </button>
+              <button type="button" class="btn btn-default" id="addAlert" @click="addAlert('success',true)">
+                Add Alert
+              </button>
+            </div>
+          </form>
         </div>
       </div>
       <div class="col-md-6">
