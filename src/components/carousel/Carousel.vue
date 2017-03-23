@@ -1,16 +1,16 @@
 <template>
-  <div class="carousel slide" @mouseenter="stopInterval" @mouseleave="startInterval">
+  <div class="carousel slide" data-ride="carousel" @mouseenter="stopInterval" @mouseleave="startInterval">
     <ol class="carousel-indicators" v-if="indicators">
       <li v-for="(slide,index) in slides" :class="{active:index===activeIndex}" @click="select(index)"></li>
     </ol>
-    <div class="carousel-inner">
+    <div class="carousel-inner" role="listbox">
       <slot></slot>
     </div>
-    <a class="left carousel-control" href="javascript:void(0)" v-if="controls" @click="prev()">
+    <a class="left carousel-control" href="javascript:void(0)" role="button" v-if="controls" @click="prev()">
       <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="right carousel-control" href="javascript:void(0)" v-if="controls" @click="next()">
+    <a class="right carousel-control" href="javascript:void(0)" role="button" v-if="controls" @click="next()">
       <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>

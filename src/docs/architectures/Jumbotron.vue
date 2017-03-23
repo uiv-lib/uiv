@@ -6,18 +6,19 @@
           <h1>uiv</h1>
           <p>
             <a href="https://travis-ci.org/wxsms/uiv" target="_blank">
-              <img src="https://travis-ci.org/wxsms/uiv.svg?branch=master" alt="Build Status">
+              <img src="https://travis-ci.org/wxsms/uiv.svg?branch=master" alt="Build Status" height="20px">
             </a>
             <a href='https://coveralls.io/github/wxsms/uiv?branch=master' target="_blank">
-              <img src='https://coveralls.io/repos/github/wxsms/uiv/badge.svg?branch=master' alt='Coverage Status'/>
+              <img src='https://coveralls.io/repos/github/wxsms/uiv/badge.svg?branch=master' alt='Coverage Status'
+                   height="20px"/>
             </a>
             <a href='https://github.com/wxsms/uiv' target="_blank">
-              <img src='https://img.shields.io/github/license/mashape/apistatus.svg' alt='License'/>
+              <img src='https://img.shields.io/github/license/mashape/apistatus.svg' alt='License' height="20px"/>
             </a>
           </p>
           <p>
             <a href="https://npmjs.org/package/uiv" target="_blank">
-              <img src='https://nodei.co/npm/uiv.png' alt='NPM'/>
+              <img src='https://nodei.co/npm/uiv.png' alt='NPM' height="56px"/>
             </a>
           </p>
           <p><b>Bootstrap 3</b> Components Built with <b>Vue 2</b>.</p>

@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="carousel-doc">
     <div class="row">
       <div class="col-xs-12">
         <anchor-header text="Carousel" source-folder="carousel"></anchor-header>
@@ -9,7 +9,7 @@
       <div class="col-md-6">
         <carousel :indicators="indicators" :controls="controls" :interval="interval" ref="carousel">
           <slide v-for="(slide,index) in slides" :key="index">
-            <img :src="'https://placehold.it/450x250?text='+slide.title" width="100%">
+            <div style="width: 100%;height: 300px;" :style="{background:index%2===0?'#99a9bf':'#d3dce6'}"></div>
             <div class="carousel-caption">
               <h3>This is {{slide.title}}</h3>
             </div>
@@ -26,7 +26,8 @@
           <form class="form-inline">
             <div class="form-group">
               <label>Interval</label>
-              <input type="number" class="form-control" placeholder="e.g. 2000" step="1" min="0" v-model.number="interval">
+              <input type="number" class="form-control" placeholder="e.g. 2000" step="1" min="0"
+                     v-model.number="interval">
             </div>
           </form>
         </div>
@@ -94,7 +95,8 @@
         slides: [
           {title: 'Slide 1'},
           {title: 'Slide 2'},
-          {title: 'Slide 3'}
+          {title: 'Slide 3'},
+          {title: 'Slide 4'}
         ]
       }
     },
