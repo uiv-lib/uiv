@@ -14,7 +14,7 @@
       <popover-doc></popover-doc>
       <tabs-doc></tabs-doc>
       <tooltip-doc></tooltip-doc>
-      <!--<time-picker-doc></time-picker-doc>-->
+      <time-picker-doc></time-picker-doc>
     </div>
     <page-footer></page-footer>
   </section>
@@ -72,8 +72,8 @@
   }
 
   pre {
-    background-color: #2b2b2b !important;
-    border-radius: 0 !important;
-    border: none !important;
+    background-color: #fff !important;
+    // border-radius: 0 !important;
+    // border: none !important;
   }
 </style>

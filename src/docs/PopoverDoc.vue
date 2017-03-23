@@ -66,6 +66,12 @@
         </div>
       </div>
       <div class="col-md-6">
+        <h4>Note</h4>
+        <ul>
+          <li>
+            <p>The element attached with <code>data-role="trigger"</code> will be the popover trigger.</p>
+          </li>
+        </ul>
         <h4>Props</h4>
         <ul>
           <li>

@@ -44,7 +44,9 @@
   export default {
     components: {DateView, MonthView, YearView},
     props: {
-      value: {}, // This is the v-model value
+      value: {
+        type: Date
+      },
       width: {
         'default': 270
       },

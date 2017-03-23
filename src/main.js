@@ -13,4 +13,4 @@ new Vue({
 })
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'highlight.js/styles/darcula.css'
+import 'highlight.js/styles/github-gist.css'
