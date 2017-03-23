@@ -13,6 +13,7 @@
                       :total-page="totalSize"
                       :size="size"
                       v-model="currentPage"
+                      @page-changed="changePage"
                       :max-size="maxSize"></pagination>
         </div>
         <div class="well">
@@ -107,7 +108,7 @@
     },
     methods: {
       changePage () {
-        alert('Page is changed!')
+        console.log('Page is changed!')
       }
     }
   }

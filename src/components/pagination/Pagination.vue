@@ -1,32 +1,32 @@
 <template>
   <nav aria-label="Page navigation">
     <ul class="pagination" :class="pageSize">
-      <li :class="{'disabled':value<=1}" v-if="boundaryLinks" @click="onPageChange(1)">
+      <li :class="{'disabled':value<=1}" v-if="boundaryLinks" @click="onPageChange(1)" data-action="first">
         <a role="button">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
-      <li :class="{'disabled':value<=1}" v-if="directionLinks" @click="onPageChange(value-1)">
+      <li :class="{'disabled':value<=1}" v-if="directionLinks" @click="onPageChange(value-1)" data-action="prev-page">
         <a role="button">
           <span aria-hidden="true">&lsaquo;</span>
         </a>
       </li>
-      <li v-if="sliceStart>0" @click="toPage(1)">
+      <li v-if="sliceStart>0" @click="toPage(1)" data-action="prev-group">
         <a role="button">...</a>
       </li>
       <li v-for="item in sliceArray" :key="item" @click="onPageChange(item+1)" class="pagination-page"
           :class="{'active': value==item+1}">
         <a role="button">{{item+1}}</a>
       </li>
-      <li v-if="sliceStart<totalPage-maxSize" @click="toPage(0)">
+      <li v-if="sliceStart<totalPage-maxSize" @click="toPage(0)" data-action="next-group">
         <a role="button">...</a>
       </li>
-      <li :class="{'disabled':value>=totalPage}" v-if="directionLinks" @click="onPageChange(value+1)">
+      <li :class="{'disabled':value>=totalPage}" v-if="directionLinks" @click="onPageChange(value+1)" data-action="next-page">
         <a role="button">
           <span aria-hidden="true">&rsaquo;</span>
         </a>
       </li>
-      <li :class="{'disabled':value>=totalPage}" v-if="boundaryLinks" @click="onPageChange(totalPage)">
+      <li :class="{'disabled':value>=totalPage}" v-if="boundaryLinks" @click="onPageChange(totalPage)" data-action="last">
         <a role="button">
           <span aria-hidden="true">&raquo;</span>
         </a>
