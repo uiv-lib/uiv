@@ -78,7 +78,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <demo-code-block demo-file="Pagination.vue">
+        <demo-code-block demo-file="PaginationDoc.vue">
         <pre><code>
 &lt;pagination v-model=&quot;currentPage&quot; :total-page=&quot;totalSize&quot; :max-size=&quot;maxSize&quot;&gt;&lt;/pagination&gt;
         </code></pre>

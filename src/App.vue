@@ -11,6 +11,7 @@
       <dropdown-doc></dropdown-doc>
       <modal-doc></modal-doc>
       <pagination-doc></pagination-doc>
+      <popover-doc></popover-doc>
       <tabs-doc></tabs-doc>
       <tooltip-doc></tooltip-doc>
       <!--<time-picker-doc></time-picker-doc>-->
@@ -35,7 +36,7 @@
   import PaginationDoc from './docs/PaginationDoc.vue'
   import TooltipDoc from './docs/TooltipDoc.vue'
   import TimePickerDoc from './docs/TimePickerDoc.vue'
-
+  import PopoverDoc from './docs/PopoverDoc.vue'
   export default {
     name: 'app',
     components: {
@@ -52,7 +53,8 @@
       AlertDoc,
       PaginationDoc,
       TooltipDoc,
-      TimePickerDoc
+      TimePickerDoc,
+      PopoverDoc
     },
     mounted () {
       // highlight code blocks

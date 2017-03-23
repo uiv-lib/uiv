@@ -25,6 +25,7 @@
               <li><a href="#dropdown">Dropdown</a></li>
               <li><a href="#modal">Modal</a></li>
               <li><a href="#pagination">Pagination</a></li>
+              <li><a href="#popover">Popover</a></li>
               <li><a href="#tabs">Tabs</a></li>
               <li><a href="#tooltip">Tooltip</a></li>
             </ul>

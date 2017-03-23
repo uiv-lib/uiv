@@ -36,7 +36,7 @@ export default {
       tooltip.style.top = containerScrollTop + rect.top + rect.height / 2 - tooltipRect.height / 2 + 'px'
       tooltip.style.left = containerScrollLeft + rect.left + rect.width + 'px'
     } else {
-      tooltip.style.top = containerScrollTop + rect.top - rect.height + 'px'
+      tooltip.style.top = containerScrollTop + rect.top - tooltipRect.height + 'px'
       tooltip.style.left = containerScrollLeft + rect.left + rect.width / 2 - tooltipRect.width / 2 + 'px'
     }
   }
