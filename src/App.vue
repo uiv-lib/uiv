@@ -13,7 +13,7 @@
       <pagination-doc></pagination-doc>
       <tabs-doc></tabs-doc>
       <tooltip-doc></tooltip-doc>
-      <time-picker-doc></time-picker-doc>
+      <!--<time-picker-doc></time-picker-doc>-->
     </div>
     <page-footer></page-footer>
   </section>
