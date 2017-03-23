@@ -6,8 +6,8 @@ describe('CarouselDoc', () => {
     const Constructor = Vue.extend(CarouselDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      expect(vm.$el.querySelectorAll('.carousel-inner .item').length).to.equal(3)
-      expect(vm.$el.querySelectorAll('.carousel-indicators li').length).to.equal(3)
+      expect(vm.$el.querySelectorAll('.carousel-inner .item').length).to.equal(4)
+      expect(vm.$el.querySelectorAll('.carousel-indicators li').length).to.equal(4)
       expect(vm.$el.querySelectorAll('.carousel-control').length).to.equal(2)
       expect(vm.$el.querySelectorAll('.carousel-inner .item')[0].className).to.contain('active')
       done()
@@ -31,11 +31,11 @@ describe('CarouselDoc', () => {
     vm.$el.querySelector('.carousel-control.left').click()
     setTimeout(() => {
       expect(vm.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
-      expect(vm.$el.querySelectorAll('.carousel-inner .item')[2].className).to.contain('active')
+      expect(vm.$el.querySelectorAll('.carousel-inner .item')[3].className).to.contain('active')
       vm.$el.querySelector('.carousel-control.left').click()
       setTimeout(() => {
         expect(vm.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
-        expect(vm.$el.querySelectorAll('.carousel-inner .item')[1].className).to.contain('active')
+        expect(vm.$el.querySelectorAll('.carousel-inner .item')[2].className).to.contain('active')
         done()
       }, 700)
     }, 700)
@@ -76,9 +76,9 @@ describe('CarouselDoc', () => {
         vm.$refs.carousel.select(999)
         setTimeout(() => {
           expect(vm.$el.querySelectorAll('.carousel-indicators .active').length).to.equal(1)
-          expect(vm.$el.querySelectorAll('.carousel-indicators li')[2].className).to.contain('active')
+          expect(vm.$el.querySelectorAll('.carousel-indicators li')[3].className).to.contain('active')
           expect(vm.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
-          expect(vm.$el.querySelectorAll('.carousel-inner .item')[2].className).to.contain('active')
+          expect(vm.$el.querySelectorAll('.carousel-inner .item')[3].className).to.contain('active')
           done()
         }, 700)
       }, 700)
@@ -115,8 +115,8 @@ describe('CarouselDoc', () => {
     vm.$nextTick(() => {
       vm.$el.querySelectorAll('form button')[2].click()
       vm.$nextTick(() => {
-        expect(vm.$el.querySelectorAll('.carousel-indicators li').length).to.equal(4)
-        expect(vm.$el.querySelectorAll('.carousel-inner .item').length).to.equal(4)
+        expect(vm.$el.querySelectorAll('.carousel-indicators li').length).to.equal(5)
+        expect(vm.$el.querySelectorAll('.carousel-inner .item').length).to.equal(5)
         done()
       })
     })
