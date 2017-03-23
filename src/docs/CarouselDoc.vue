@@ -26,7 +26,7 @@
           <form class="form-inline">
             <div class="form-group">
               <label>Interval</label>
-              <input type="number" class="form-control" placeholder="e.g. 2000" step="1" min="0" v-model="interval">
+              <input type="number" class="form-control" placeholder="e.g. 2000" step="1" min="0" v-model.number="interval">
             </div>
           </form>
         </div>

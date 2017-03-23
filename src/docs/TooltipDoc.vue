@@ -7,58 +7,57 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <h3>Simple Static Example</h3>
-        <div class="well">
-          <tooltip text="Static tooltip content goes here.">
-            <button type="button" class="btn btn-default">Hover Me!</button>
-          </tooltip>
-        </div>
+        <h3>Basic Example</h3>
+        <tooltip text="Static tooltip content goes here.">
+          <button type="button" class="btn btn-default">Hover Me!</button>
+        </tooltip>
         <h3>Dynamic Example</h3>
+        <form class="form-inline">
+          <tooltip :text="text" :placement="placement" :trigger="trigger" :enable="enable">
+            <button type="button" class="btn btn-default">Tooltip Sample</button>
+          </tooltip>
+          <tooltip :text="text" :placement="placement" :trigger="trigger" :enable="enable">
+            <button type="button" class="btn btn-default">Another Sample</button>
+          </tooltip>
+          <tooltip :text="text" :placement="placement" :trigger="trigger" :enable="enable">
+            <input type="text" class="form-control" placeholder="An input samle">
+          </tooltip>
+        </form>
+        <br/>
         <div class="well">
-          <div>
-            <tooltip :text="text" :placement="placement" :trigger="trigger" :enable="enable">
-              <button type="button" class="btn btn-default">Tooltip Sample</button>
-            </tooltip>
-            <tooltip :text="text" :placement="placement" :trigger="trigger" :enable="enable">
-              <button type="button" class="btn btn-default">Another Sample</button>
-            </tooltip>
-          </div>
-          <br/>
-          <div>
-            <tooltip :text="text" :placement="placement" :trigger="trigger" :enable="enable">
-              <input type="text" class="form-control" placeholder="An input samle">
-            </tooltip>
-          </div>
-          <br/>
-          <form>
+          <form class="form-horizontal">
             <div class="form-group">
-              <label>Enable / Disable</label>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" v-model="enable"> Enable Tooltips
-                </label>
+              <div class="col-md-6">
+                <label>Enable / Disable</label>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" v-model="enable"> Enable Tooltips
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Tooltip Text (Support HTML)</label>
+                <input type="text" class="form-control" v-model="text">
               </div>
             </div>
             <div class="form-group">
-              <label>Tooltip Text (Support HTML)</label>
-              <input type="text" class="form-control" v-model="text">
-            </div>
-            <div class="form-group">
-              <label>Placement</label>
-              <select class="form-control" v-model="placement">
-                <option>top</option>
-                <option>bottom</option>
-                <option>left</option>
-                <option>right</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Trigger</label>
-              <select class="form-control" v-model="trigger">
-                <option>hover</option>
-                <option>focus</option>
-                <option>click</option>
-              </select>
+              <div class="col-md-6">
+                <label>Placement</label>
+                <select class="form-control" v-model="placement">
+                  <option>top</option>
+                  <option>right</option>
+                  <option>left</option>
+                  <option>bottom</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label>Trigger</label>
+                <select class="form-control" v-model="trigger">
+                  <option>hover</option>
+                  <option>focus</option>
+                  <option>click</option>
+                </select>
+              </div>
             </div>
           </form>
         </div>
@@ -87,12 +86,12 @@
             </p>
           </li>
           <li><p><code>append-to: String</code> Element selector that the tooltip append to. Default: body.</p></li>
-        <li>
-          <p>
-            <code>transition-duration: Number</code>
-            The tooltip show / hide transition time in ms. Default: 150.
-          </p>
-        </li>
+          <li>
+            <p>
+              <code>transition-duration: Number</code>
+              The tooltip show / hide transition time in ms. Default: 150.
+            </p>
+          </li>
         </ul>
       </div>
     </div>

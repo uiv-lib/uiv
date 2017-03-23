@@ -1,4 +1,6 @@
 <script>
+  import utils from './../../utils/domUtils'
+
   export default {
     render (h) {
       return h(
@@ -16,6 +18,10 @@
       tag: {
         type: String,
         'default': 'div'
+      },
+      appendToBody: {
+        type: Boolean,
+        'default': false
       }
     },
     data () {
@@ -40,11 +46,34 @@
     methods: {
       toggle () {
         this.show = !this.show
+        if (this.appendToBody && this.$slots.dropdown && this.$slots.dropdown.length) {
+          if (this.show) {
+            this.appendDropdownToBody()
+          } else {
+            this.removeDropdownFromBody()
+          }
+        }
       },
       windowClicked (event) {
-        if (!this.triggerEl || !this.triggerEl.contains(event.target)) {
+        if (this.triggerEl && !this.triggerEl.contains(event.target)) {
           this.show = false
+          if (this.appendToBody && this.$slots.dropdown && this.$slots.dropdown.length) {
+            this.removeDropdownFromBody()
+          }
         }
+      },
+      appendDropdownToBody () {
+        let el = this.$slots.dropdown[0].elm
+        el.style.display = 'block'
+        document.body.appendChild(el)
+        utils.setDropdownPosition(el, this.$el)
+      },
+      removeDropdownFromBody () {
+        let el = this.$slots.dropdown[0].elm
+        el.style.display = null
+        el.style.top = null
+        el.style.left = null
+        this.$el.appendChild(el)
       }
     }
   }

@@ -39,30 +39,28 @@
         </form>
         <br/>
         <div class="well">
-          <form class="form-inline">
-            <div class="checkbox">
-              <label><input type="checkbox" v-model="todayBtn"> Show Today Btn</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" v-model="clearBtn"> Show clear Btn</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" v-model="closeOnSelected"> Close On Selected</label>
-            </div>
-          </form>
-          <br/>
-          <form class="form-inline">
-            <div class="form-group">
-              <label>Limit From</label>
-              <input type="text" class="form-control" v-model="limitFrom" placeholder="E.g. 2017-03-01">
-            </div>
-            <div class="form-group">
-              <label>Limit To</label>
-              <input type="text" class="form-control" v-model="limitTo" placeholder="E.g. 2017-03-31">
-            </div>
-          </form>
-          <br v-if="date"/>
           <p v-if="date">You selected <b>{{date.toDateString()}}</b>.</p>
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-xs-12">
+                <label class="checkbox-inline"><input type="checkbox" v-model="todayBtn"> Show Today Btn</label>
+                <label class="checkbox-inline"><input type="checkbox" v-model="clearBtn"> Show clear Btn</label>
+                <label class="checkbox-inline"><input type="checkbox" v-model="closeOnSelected">
+                  Close On Selected
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-6">
+                <label>Limit From</label>
+                <input type="text" class="form-control" v-model="limitFrom" placeholder="E.g. 2017-03-01">
+              </div>
+              <div class="col-md-6">
+                <label>Limit To</label>
+                <input type="text" class="form-control" v-model="limitTo" placeholder="E.g. 2017-03-31">
+              </div>
+            </div>
+          </form>
         </div>
       </div>
       <div class="col-md-6">

@@ -59,6 +59,25 @@ describe('TabsDoc', () => {
     })
   })
 
+  it('should not be able to select disabled tab 3', (done) => {
+    const Constructor = Vue.extend(TabsDoc)
+    const vm = new Constructor().$mount()
+    vm.$nextTick(() => {
+      let tab3 = vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[2]
+      expect(tab3.className).to.equal('disabled')
+      expect(tab3.querySelector('a').textContent).to.equal('Tab 3 (Disabled)')
+      tab3.querySelector('a').click()
+      vm.$nextTick(() => {
+        expect(tab3.className).to.equal('disabled')
+        expect(tab3.querySelector('a').textContent).to.equal('Tab 3 (Disabled)')
+        let activeContent = vm.$el.querySelectorAll('.tab-content')[0].querySelectorAll('.tab-pane.active')
+        expect(activeContent.length).to.equal(1)
+        expect(activeContent[0].querySelector('p').textContent).to.equal('This is tab 1.')
+        done()
+      })
+    })
+  })
+
   it('should be able to enable / disable tab 3', (done) => {
     const Constructor = Vue.extend(TabsDoc)
     const vm = new Constructor().$mount()

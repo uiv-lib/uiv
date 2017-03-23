@@ -138,4 +138,21 @@ describe('CarouselDoc', () => {
       })
     })
   })
+
+  it('should be able to stop interval', (done) => {
+    const Constructor = Vue.extend(CarouselDoc)
+    const vm = new Constructor().$mount()
+    vm.$nextTick(() => {
+      vm.interval = 0
+      vm.$nextTick(() => {
+        setTimeout(() => {
+          expect(vm.$el.querySelectorAll('.carousel-indicators .active').length).to.equal(1)
+          expect(vm.$el.querySelectorAll('.carousel-indicators li')[0].className).to.contain('active')
+          expect(vm.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
+          expect(vm.$el.querySelectorAll('.carousel-inner .item')[0].className).to.contain('active')
+          done()
+        }, 1200) // > 500 + 600
+      })
+    })
+  })
 })

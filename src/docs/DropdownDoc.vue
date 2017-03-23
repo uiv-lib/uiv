@@ -7,18 +7,19 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <div class="dropdowns">
+        <h3>Basic Example</h3>
+        <div class="dropdowns well">
           <dropdown id="dropdown-1" ref="dropdown1">
             <button data-role="trigger" class="btn btn-default dropdown-toggle" type="button">
               <span>Dropdown 1</span>
               <span class="caret"></span>
             </button>
             <ul slot="dropdown" class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
+              <li><a role="button">Action</a></li>
+              <li><a role="button">Another action</a></li>
+              <li><a role="button">Something else here</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+              <li><a role="button">Separated link</a></li>
             </ul>
           </dropdown>
           <dropdown id="dropdown-2">
@@ -27,11 +28,11 @@
               <span class="caret"></span>
             </button>
             <ul slot="dropdown" class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
+              <li><a role="button">Action</a></li>
+              <li><a role="button">Another action</a></li>
+              <li><a role="button">Something else here</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+              <li><a role="button">Separated link</a></li>
             </ul>
           </dropdown>
           <dropdown id="dropdown-3" class="btn-group">
@@ -41,11 +42,27 @@
               <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul slot="dropdown" class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
+              <li><a role="button">Action</a></li>
+              <li><a role="button">Another action</a></li>
+              <li><a role="button">Something else here</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+              <li><a role="button">Separated link</a></li>
+            </ul>
+          </dropdown>
+        </div>
+        <h3>Append to Body</h3>
+        <div class="well">
+          <dropdown id="dropdown-4" ref="dropdown4" :append-to-body="true">
+            <button data-role="trigger" class="btn btn-default dropdown-toggle" type="button">
+              <span>Dropdown</span>
+              <span class="caret"></span>
+            </button>
+            <ul slot="dropdown" class="dropdown-menu">
+              <li><a role="button">Action</a></li>
+              <li><a role="button">Another action</a></li>
+              <li><a role="button">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a role="button">Separated link</a></li>
             </ul>
           </dropdown>
         </div>
@@ -63,26 +80,16 @@
         <h4>Props</h4>
         <ul>
           <li>
-            <p>
-              <code>tag: String</code>
-              <span>The HTML tag that render the dropdown component. Default: 'div'</span>
-            </p>
+            <p><code>tag: String</code><span> The HTML tag that render the dropdown component. Default: 'div'</span></p>
+          </li>
+          <li>
+            <p><code>append-to-body: Boolean</code><span> Append the dropdown slot to body. Default: false</span></p>
           </li>
         </ul>
         <h4>Slots</h4>
         <ul>
-          <li>
-            <p>
-              <code>dropdown</code>
-              <span>Replace as the dropdown body.</span>
-            </p>
-          </li>
-          <li>
-            <p>
-              <code>default</code>
-              <span>Replace as the rest of the component (e.g. trigger stuffs).</span>
-            </p>
-          </li>
+          <li><p><code>dropdown</code><span> Replace as the dropdown body.</span></p></li>
+          <li><p><code>default</code><span> Replace as the rest of the component (e.g. trigger stuffs).</span></p></li>
         </ul>
       </div>
     </div>

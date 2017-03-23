@@ -29,6 +29,7 @@
         'default': true
       },
       interval: {
+        type: Number,
         'default': 2000
       }
     },
@@ -54,11 +55,10 @@
     methods: {
       startInterval () {
         this.stopInterval()
-        let interval = parseFloat(this.interval)
-        if (!isNaN(interval) && interval > 0) {
+        if (this.interval > 0) {
           this._interval = setInterval(() => {
             this.next()
-          }, interval)
+          }, this.interval)
         }
       },
       stopInterval () {

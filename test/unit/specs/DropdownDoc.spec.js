@@ -58,6 +58,30 @@ describe('DropdownDoc', () => {
     })
   })
 
+  it('should be able to open dropdown append to body on trigger click', (done) => {
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    const Constructor = Vue.extend(DropdownDoc)
+    const vm = new Constructor().$mount('#app')
+    let dropdown = vm.$el.querySelector(`#dropdown-4`)
+    let trigger = dropdown.querySelector('.dropdown-toggle')
+    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.querySelector('.dropdown-menu')).to.exist
+    trigger.click()
+    vm.$nextTick(() => {
+      expect(dropdown.className).to.contain('open')
+      expect(dropdown.querySelector('.dropdown-menu')).not.exist
+      trigger.click()
+      vm.$nextTick(() => {
+        expect(dropdown.className).not.contain('open')
+        expect(dropdown.querySelector('.dropdown-menu')).to.exist
+        app.remove()
+        done()
+      })
+    })
+  })
+
   it('should be able to destroy', () => {
     const Constructor = Vue.extend(DropdownDoc)
     const vm = new Constructor().$mount()
