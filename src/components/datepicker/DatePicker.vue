@@ -105,13 +105,12 @@
       this.currentYear = this.now.getFullYear()
     },
     watch: {
-      value (value) {
-        try {
-          this.currentMonth = value.getMonth()
-          this.currentYear = value.getFullYear()
-        } catch (e) {
-          // Silent
-        }
+      value: {
+        handler: function (val, oldVal) {
+          this.currentMonth = val.getMonth()
+          this.currentYear = val.getFullYear()
+        },
+        deep: true
       }
     },
     methods: {

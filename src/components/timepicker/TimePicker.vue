@@ -19,14 +19,14 @@
       </tr>
       <tr>
         <td class="form-group">
-          <input class="form-control text-center time-input" v-model="hours">
+          <input class="form-control text-center" v-model="hoursText" size="2">
         </td>
         <td>:</td>
         <td class="form-group">
-          <input class="form-control text-center time-input" v-model="minutes">
+          <input class="form-control text-center" v-model="minutesText" size="2">
         </td>
         <td v-if="showMeridian">
-          <button class="btn btn-default" v-text="meridian?'AM':'PM'" @click="toggleMeridian"></button>
+          <button class="btn btn-default" v-text="meridian?'AM':'PM'" @click="meridian=!meridian"></button>
         </td>
       </tr>
       <tr class="text-center">
@@ -52,11 +52,11 @@
 <script>
   export default {
     props: {
+      value: {},
       showMeridian: {
         type: Boolean,
         'default': true
-      },
-      value: {}
+      }
     },
     data () {
       return {
@@ -67,6 +67,16 @@
     },
     watch: {
       value (value) {
+        this.hours = value.getHours()
+        this.minutes = value.getMinutes()
+      }
+    },
+    computed: {
+      hoursText () {
+        return (this.hours > 9 ? '' : '0') + this.hours
+      },
+      minutesText () {
+        return (this.minutes > 9 ? '' : '0') + this.minutes
       }
     },
     methods: {
@@ -88,16 +98,14 @@
         } else if (!isHour && !isPlus) {
           (this.minutes <= 0) ? this.minutes = 59 : this.minutes -= 1
         }
-      },
-      toggleMeridian () {
-        this.meridian = !this.meridian
+        var time = new Date()
+        time.setHours(this.hours)
+        time.setMinutes(this.minutes)
+        this.$emit('input', time)
       }
     }
   }
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-  .time-input {
-    width: 50px;
-  }
 </style>
