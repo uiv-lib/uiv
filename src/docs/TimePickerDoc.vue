@@ -13,21 +13,19 @@
         </div>
         <div class="form-inline">
           <div class="form-group">
-            <button class="btn btn-default" @click="resetTime">设置14:00</button>
+            <button class="btn btn-default" @click="resetTime">设置9:00</button>
             <button class="btn btn-default" @click="showMeridian=!showMeridian">12H/24H</button>
           </div>
         </div>
       </div>
       <div class="col-md-6">
+        <h4>Notes</h4>
+        <ul>
+          <li>Use <code>v-model:Date</code> to identify the time</li>
+        </ul>
         <h4>Props</h4>
         <ul>
-          <li>
-          </li>
-        </ul>
-        <h4>Events</h4>
-        <ul>
-          <li>
-          </li>
+          <li><code>show-meridian: Boolean</code> Whether to display 12H or 24H mode.Default:true</li>
         </ul>
       </div>
     </div>
@@ -35,7 +33,7 @@
       <div class="col-xs-12">
         <demo-code-block demo-file="TimePickerDoc.vue">
         <pre><code>
-
+&lt;time-picker v-model=&quot;myTime&quot; :show-meridian=&quot;showMeridian&quot;&gt;&lt;/time-picker&gt;
         </code></pre>
         </demo-code-block>
       </div>
@@ -60,11 +58,14 @@
         return (this.myTime.getHours() > 9 ? this.myTime.getHours() : ('0' + this.myTime.getHours())) + ':' + (this.myTime.getMinutes() > 9 ? this.myTime.getMinutes() : ('0' + this.myTime.getMinutes()))
       }
     },
+    mounted () {
+      this.myTime = new Date()
+    },
     methods: {
       resetTime () {
-        console.log(this.myTime)
-        this.myTime.setHours(14)
+        this.myTime.setHours(9)
         this.myTime.setMinutes(0)
+        this.myTime = new Date(this.myTime)
       }
     }
   }

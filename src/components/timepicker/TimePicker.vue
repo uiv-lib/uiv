@@ -26,7 +26,7 @@
           <input class="form-control text-center" v-model="minutesText" size="2">
         </td>
         <td v-if="showMeridian">
-          <button class="btn btn-default" v-text="meridian?'AM':'PM'" @click="meridian=!meridian"></button>
+          <button class="btn btn-default" v-text="meridian?'AM':'PM'" @click="toggleMeridian"></button>
         </td>
       </tr>
       <tr class="text-center">
@@ -52,7 +52,9 @@
 <script>
   export default {
     props: {
-      value: {},
+      value: {
+        type: Date
+      },
       showMeridian: {
         type: Boolean,
         'default': true
@@ -62,42 +64,63 @@
       return {
         hours: 0,
         minutes: 0,
-        meridian: true
+        meridian: true,
+        hoursText: '',
+        minutesText: ''
       }
     },
     watch: {
       value (value) {
-        this.hours = value.getHours()
-        this.minutes = value.getMinutes()
-      }
-    },
-    computed: {
-      hoursText () {
-        return (this.hours > 9 ? '' : '0') + this.hours
+        try {
+          this.hours = value.getHours()
+          if (!this.showMeridian) {
+            this.hoursText = (this.hours > 9 ? '' : '0') + this.hours
+          } else {
+            if (value.getHours() > 12) {
+              this.hoursText = (this.hours - 12 > 9 ? '' : '0') + (this.hours - 12)
+              this.meridian = false
+            } else {
+              this.hoursText = (this.hours > 9 ? '' : '0') + this.hours
+              this.meridian = true
+            }
+          }
+          this.minutes = value.getMinutes()
+          this.minutesText = (this.minutes > 9 ? '' : '0') + this.minutes
+        } catch (e) {
+          //
+        }
       },
-      minutesText () {
-        return (this.minutes > 9 ? '' : '0') + this.minutes
+      showMeridian (value) {
+        this.setTime()
       }
     },
     methods: {
       changeTime (isHour, isPlus) {
         if (isHour && isPlus) {
-          if (this.showMeridian) {
-            (this.hours >= 11) ? this.hours = 0 : this.hours += 1
-          } else {
-            (this.hours >= 23) ? this.hours = 0 : this.hours += 1
-          }
+          (this.hours >= 24) ? this.hours = 1 : this.hours += 1
         } else if (isHour && !isPlus) {
-          if (this.showMeridian) {
-            (this.hours <= 0) ? this.hours = 11 : this.hours -= 1
-          } else {
-            (this.hours <= 0) ? this.hours = 23 : this.hours -= 1
-          }
+          (this.hours <= 1) ? this.hours = 23 : this.hours -= 1
         } else if (!isHour && isPlus) {
           (this.minutes >= 59) ? this.minutes = 0 : this.minutes += 1
         } else if (!isHour && !isPlus) {
           (this.minutes <= 0) ? this.minutes = 59 : this.minutes -= 1
         }
+        this.setTime()
+      },
+      toggleMeridian () {
+        this.meridian = !this.meridian
+        if (this.meridian) {
+          if (this.hours > 12) {
+            this.hours -= 12
+            this.hoursText = this.hours + ''
+          }
+        } else {
+          this.hours += 12
+          this.hoursText = this.hours + ''
+        }
+        this.setTime()
+      },
+      setTime () {
         var time = new Date()
         time.setHours(this.hours)
         time.setMinutes(this.minutes)

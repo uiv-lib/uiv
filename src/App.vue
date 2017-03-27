@@ -13,8 +13,8 @@
       <pagination-doc></pagination-doc>
       <popover-doc></popover-doc>
       <tabs-doc></tabs-doc>
-      <tooltip-doc></tooltip-doc>
       <time-picker-doc></time-picker-doc>
+      <tooltip-doc></tooltip-doc>
     </div>
     <page-footer></page-footer>
   </section>

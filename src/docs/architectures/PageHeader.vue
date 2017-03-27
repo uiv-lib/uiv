@@ -27,6 +27,7 @@
               <li><a href="#pagination">Pagination</a></li>
               <li><a href="#popover">Popover</a></li>
               <li><a href="#tabs">Tabs</a></li>
+              <li><a href="#timepicker">TimePicker</a></li>
               <li><a href="#tooltip">Tooltip</a></li>
             </ul>
           </dropdown>
