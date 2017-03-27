@@ -15,6 +15,7 @@
       <tabs-doc></tabs-doc>
       <time-picker-doc></time-picker-doc>
       <tooltip-doc></tooltip-doc>
+      <typeahead-doc></typeahead-doc>
     </div>
     <page-footer></page-footer>
   </section>
@@ -37,6 +38,7 @@
   import TooltipDoc from './docs/TooltipDoc.vue'
   import TimePickerDoc from './docs/TimePickerDoc.vue'
   import PopoverDoc from './docs/PopoverDoc.vue'
+  import TypeaheadDoc from './docs/TypeaheadDoc.vue'
   export default {
     name: 'app',
     components: {
@@ -54,7 +56,8 @@
       PaginationDoc,
       TooltipDoc,
       TimePickerDoc,
-      PopoverDoc
+      PopoverDoc,
+      TypeaheadDoc
     },
     mounted () {
       // highlight code blocks

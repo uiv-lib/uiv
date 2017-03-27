@@ -29,6 +29,7 @@
               <li><a href="#tabs">Tabs</a></li>
               <li><a href="#timepicker">TimePicker</a></li>
               <li><a href="#tooltip">Tooltip</a></li>
+              <li><a href="#typeahead">Typeahead</a></li>
             </ul>
           </dropdown>
           <li>

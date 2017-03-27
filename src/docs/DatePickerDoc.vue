@@ -67,6 +67,12 @@
         <h4>Note</h4>
         <ul>
           <li><p>Use <code>v-model: Date</code> to bind or change the selected date.</p></li>
+          <li>
+            <p>
+              Make sure to update the date object reference when try to change it from outside the component. E.g.
+              <code>model = new Date(model)</code>
+            </p>
+          </li>
         </ul>
         <h4>Props</h4>
         <ul>

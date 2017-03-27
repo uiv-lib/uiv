@@ -44,8 +44,12 @@
       window.removeEventListener('click', this.windowClicked)
     },
     methods: {
-      toggle () {
-        this.show = !this.show
+      toggle (show) {
+        if (typeof show === 'boolean') {
+          this.show = show
+        } else {
+          this.show = !this.show
+        }
         if (this.appendToBody && this.$slots.dropdown && this.$slots.dropdown.length) {
           if (this.show) {
             this.appendDropdownToBody()
