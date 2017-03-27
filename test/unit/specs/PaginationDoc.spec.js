@@ -227,12 +227,12 @@ describe('PaginationDoc', () => {
       let startBtn = pagination.querySelectorAll('li.pagination-page a')[0]
       expect(Number(startBtn.text)).to.equal(vm.totalSize - vm.maxSize + 1)
       prevGroupBtn.click()
-      vm.$nextTick(() =>{
+      vm.$nextTick(() => {
         pagination = vm.$el.querySelector('ul.pagination')
         startBtn = pagination.querySelectorAll('li.pagination-page a')[0]
-        expect(Number(startBtn.text)).to.equal(vm.totalSize - vm.maxSize*2 + 1)
+        expect(Number(startBtn.text)).to.equal(vm.totalSize - vm.maxSize * 2 + 1)
         prevGroupBtn.click()
-        vm.$nextTick(() =>{
+        vm.$nextTick(() => {
           pagination = vm.$el.querySelector('ul.pagination')
           startBtn = pagination.querySelectorAll('li.pagination-page a')[0]
           expect(Number(startBtn.text)).to.equal(1)
