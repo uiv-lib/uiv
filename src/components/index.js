@@ -11,7 +11,7 @@ import DatePicker from './datepicker/DatePicker.vue'
 import Alert from './alert/Alert.vue'
 import Pagination from './pagination/Pagination.vue'
 import Tooltip from './tooltip/Tooltip.vue'
-
+import Popover from './popover/Popover.vue'
 export {
   Tooltip,
   Carousel,
@@ -23,5 +23,6 @@ export {
   Tabs,
   DatePicker,
   Alert,
-  Pagination
+  Pagination,
+  Popover
 }

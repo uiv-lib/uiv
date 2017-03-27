@@ -106,7 +106,7 @@
     },
     watch: {
       value: {
-        handler: function (val, oldVal) {
+        handler (val) {
           this.currentMonth = val.getMonth()
           this.currentYear = val.getFullYear()
         },
