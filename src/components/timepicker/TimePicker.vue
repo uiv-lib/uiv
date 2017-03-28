@@ -1,5 +1,5 @@
 <template>
-  <section :class="{'invalid':hoursInvalid||minutesInvalid}">
+  <section>
     <table>
       <tbody>
       <tr class="text-center">
@@ -20,23 +20,23 @@
       <tr>
         <td class="form-group">
           <input class="form-control text-center"
-                 :class="{'invalid':hoursInvalid}"
                  @wheel.prevent="hoursWheel"
                  placeholder="HH"
-                 v-model.lazy="hoursText"
+                 v-model="hoursText"
                  size="2">
         </td>
-        <td>:</td>
+        <td>&nbsp;<b>:</b>&nbsp;</td>
         <td class="form-group">
           <input class="form-control text-center"
-                 :class="{'invalid':minutesInvalid}"
                  @wheel.prevent="minutesWheel"
                  placeholder="MM"
-                 v-model.lazy="minutesText"
+                 v-model="minutesText"
                  size="2">
         </td>
         <td v-if="showMeridian">
-          <button class="btn btn-default" id="toggleMeridian" v-text="meridian?'AM':'PM'" @click="toggleMeridian"></button>
+          &nbsp;
+          <button class="btn btn-default" id="toggleMeridian" v-text="meridian?'AM':'PM'"
+                  @click="toggleMeridian"></button>
         </td>
       </tr>
       <tr class="text-center">
@@ -60,12 +60,15 @@
 </template>
 
 <script>
-  const maxDigits = 9
+  import utils from './../../utils/stringUtils'
+
   const maxHours = 23
   const zero = 0
   const maxMinutes = 59
-  const cutPuAmAndPm = 12
+  const cutUpAmAndPm = 12
+
   export default {
+    // min, max, hour-step, min-step, readonly-input
     props: {
       value: {
         type: Date
@@ -81,80 +84,66 @@
         minutes: 0,
         meridian: true,
         hoursText: '',
-        minutesText: '',
-        hoursInvalid: false,
-        minutesInvalid: false
+        minutesText: ''
       }
     },
     watch: {
       value (value) {
-        try {
-          this.hours = value.getHours()
-          if (!this.showMeridian) {
-            this.hoursText = (this.hours > maxDigits ? '' : '0') + this.hours
-          } else {
-            if (value.getHours() >= cutPuAmAndPm) {
-              if (value.getHours() === cutPuAmAndPm) {
-                this.hoursText = this.hours + ''
-              } else {
-                this.hoursText = (this.hours - cutPuAmAndPm > maxDigits ? '' : '0') + (this.hours - cutPuAmAndPm)
-              }
-              this.meridian = false
+        this.hours = value.getHours()
+        if (!this.showMeridian) {
+          this.hoursText = utils.pad(this.hours, 2)
+        } else {
+          if (this.hours >= cutUpAmAndPm) {
+            if (this.hours === cutUpAmAndPm) {
+              this.hoursText = this.hours + ''
             } else {
-              if (this.hours === zero) {
-                this.hoursText = cutPuAmAndPm.toString()
-              } else {
-                this.hoursText = (this.hours > maxDigits ? '' : '0') + this.hours
-              }
-              this.meridian = true
+              this.hoursText = utils.pad(this.hours - cutUpAmAndPm, 2)
             }
+            this.meridian = false
+          } else {
+            if (this.hours === zero) {
+              this.hoursText = cutUpAmAndPm.toString()
+            } else {
+              this.hoursText = utils.pad(this.hours, 2)
+            }
+            this.meridian = true
           }
-          this.minutes = value.getMinutes()
-          this.minutesText = (this.minutes > maxDigits ? '' : '0') + this.minutes
-        } catch (e) {
-          //
         }
+        this.minutes = value.getMinutes()
+        this.minutesText = utils.pad(this.minutes, 2)
       },
       showMeridian (value) {
         this.setTime()
       },
       hoursText (value) {
-        let hoursStr = parseInt(value)
+        let hour = parseInt(value)
         if (this.showMeridian) {
-          if (hoursStr >= 1 && hoursStr <= cutPuAmAndPm) {
-            this.hoursInvalid = false
-            this.hours = hoursStr + cutPuAmAndPm
-            this.setTime()
-          } else {
-            this.hoursInvalid = true
+          if (hour >= 1 && hour <= cutUpAmAndPm) {
+            if (this.meridian) {
+              this.hours = hour === cutUpAmAndPm ? 0 : hour
+            } else {
+              this.hours = hour === cutUpAmAndPm ? cutUpAmAndPm : hour + cutUpAmAndPm
+            }
           }
-        } else {
-          if (hoursStr >= zero && hoursStr <= maxHours) {
-            this.hoursInvalid = false
-            this.hours = hoursStr
-            this.setTime()
-          } else {
-            this.hoursInvalid = true
-          }
+        } else if (hour >= zero && hour <= maxHours) {
+          this.hours = hour
         }
+        this.setTime()
       },
       minutesText (value) {
         let minutesStr = parseInt(value)
         if (minutesStr >= zero && minutesStr <= maxMinutes) {
-          this.minutesInvalid = false
           this.minutes = minutesStr
-          this.setTime()
-        } else {
-          this.minutesInvalid = true
         }
+        this.setTime()
       }
     },
     methods: {
       changeTime (isHour, isPlus) {
         if (isHour && isPlus) {
-          (this.hours >= maxHours) ? this.hours = zero : this.hours += 1
+          this.hours = this.hours >= maxHours ? zero : this.hours + 1
         } else if (isHour && !isPlus) {
-          (this.hours <= zero) ? this.hours = maxHours : this.hours -= 1
+          this.hours = this.hours <= zero ? maxHours : this.hours - 1
         } else if (!isHour && isPlus) {
           if (this.minutes >= maxMinutes) {
             this.minutes = zero
@@ -175,38 +164,30 @@
       toggleMeridian () {
         this.meridian = !this.meridian
         if (this.meridian) {
-          this.hours -= cutPuAmAndPm
+          this.hours -= cutUpAmAndPm
         } else {
-          this.hours += cutPuAmAndPm
+          this.hours += cutUpAmAndPm
         }
         this.setTime()
       },
       minutesWheel (e) {
-        if (e.deltaY > 0) {
-          this.changeTime(false, false)
-        } else {
-          this.changeTime(false, true)
-        }
+        this.changeTime(false, e.deltaY < 0)
       },
       hoursWheel (e) {
-        if (e.deltaY > 0) {
-          this.changeTime(true, false)
-        } else {
-          this.changeTime(true, true)
-        }
+        this.changeTime(true, e.deltaY < 0)
       },
       setTime () {
-        let time = new Date()
+        let time = this.value
         time.setHours(this.hours)
         time.setMinutes(this.minutes)
-        this.$emit('input', time)
+        this.$emit('input', new Date(time))
       }
     }
   }
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-  .invalid {
-    border: 1px solid red !important;
+  input {
+    width: 50px;
   }
 </style>

@@ -21,7 +21,7 @@ describe('TimePickerDoc', () => {
       vm.$nextTick(() => {
         toggleBtn = vm.$el.querySelector('#toggleMeridian')
         let meridianTextAfterClick = toggleBtn.textContent
-        if (meridianText == 'PM') {
+        if (meridianText === 'PM') {
           expect(meridianTextAfterClick).to.equal('AM')
         } else {
           expect(meridianTextAfterClick).to.equal('PM')
