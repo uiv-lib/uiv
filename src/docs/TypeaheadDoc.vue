@@ -9,8 +9,6 @@
       <div class="col-md-6">
         <h3>Static Query Example</h3>
         <div class="well">
-          <p v-if="model1">You selected: {{model1}}</p>
-          <p v-else>Please select an item.</p>
           <form class="form-inline">
             <div class="form-group">
               <label class="control-label">Settings</label>
@@ -38,6 +36,11 @@
           <label class="control-label">States of America</label>
           <input data-role="input" class="form-control" type="text" placeholder="Type to search...">
         </typeahead>
+        <br/>
+        <div class="alert alert-info">
+          <p v-if="model1">You selected: {{model1}}</p>
+          <p v-else>Please select an item.</p>
+        </div>
         <h3>Async & Custom Template Example</h3>
         <typeahead ref="typeahead2"
                    v-model="model2"
@@ -52,6 +55,11 @@
             <span v-text="props.item.login"></span>
           </template>
         </typeahead>
+        <br/>
+        <div class="alert alert-info">
+          <p v-if="model2">You selected: {{model2}}</p>
+          <p v-else>Please select an item.</p>
+        </div>
       </div>
       <div class="col-md-6">
         <h4>Note</h4>
