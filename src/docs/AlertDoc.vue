@@ -30,7 +30,7 @@
           <form class="form-inline">
             <div class="form-group">
               <label>display time</label>
-              <input class="form-control" step="1000" min="0" v-model="duration" type="number"
+              <input class="form-control" step="1000" min="0" v-model.number="duration" type="number"
                      placeholder="input display time">
               <button type="button" class="btn btn-default" id="addAlertHadDuration"
                       @click="addAlert('success',false,true)">

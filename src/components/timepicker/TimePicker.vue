@@ -70,7 +70,6 @@
   const cutUpAmAndPm = 12
 
   export default {
-    // min, max, hour-step, min-step, readonly-input
     props: {
       value: {
         type: Date
@@ -87,15 +86,15 @@
       },
       hourStep: {
         type: Number,
-        default: 1
+        'default': 1
       },
       minStep: {
         type: Number,
-        default: 1
+        'default': 1
       },
       readonlyInput: {
         type: Boolean,
-        default: false
+        'default': false
       }
     },
     data () {
@@ -159,25 +158,39 @@
       }
     },
     methods: {
+      addHour (step) {
+        step = step || this.hourStep
+        this.hours = this.hours >= maxHours ? zero : this.hours + step
+      },
+      reduceHour (step) {
+        step = step || this.hourStep
+        this.hours = this.hours <= zero ? maxHours : this.hours - step
+      },
+      addMinute () {
+        if (this.minutes >= maxMinutes) {
+          this.minutes = zero
+          this.addHour(1)
+        } else {
+          this.minutes += this.minStep
+        }
+      },
+      reduceMinute () {
+        if (this.minutes <= zero) {
+          this.minutes = maxMinutes
+          this.reduceHour(1)
+        } else {
+          this.minutes -= this.minStep
+        }
+      },
       changeTime (isHour, isPlus) {
         if (isHour && isPlus) {
-          this.hours = this.hours >= maxHours ? zero : this.hours + this.hourStep
+          this.addHour()
         } else if (isHour && !isPlus) {
-          this.hours = this.hours <= zero ? maxHours : this.hours - this.hourStep
+          this.reduceHour()
         } else if (!isHour && isPlus) {
-          if (this.minutes >= maxMinutes) {
-            this.minutes = zero
-            this.changeTime(true, true)
-          } else {
-            this.minutes += this.minStep
-          }
+          this.addMinute()
         } else if (!isHour && !isPlus) {
-          if (this.minutes <= zero) {
-            this.minutes = maxMinutes
-            this.changeTime(true, false)
-          } else {
-            this.minutes -= this.minStep
-          }
+          this.reduceMinute()
         }
         this.setTime()
       },
@@ -200,6 +213,18 @@
         let time = this.value
         time.setHours(this.hours)
         time.setMinutes(this.minutes)
+        if (this.max) {
+          let max = new Date(time)
+          max.setHours(this.max.getHours())
+          max.setMinutes(this.max.getMinutes())
+          time = time > max ? max : time
+        }
+        if (this.min) {
+          let min = new Date(time)
+          min.setHours(this.min.getHours())
+          min.setMinutes(this.min.getMinutes())
+          time = time < min ? min : time
+        }
         this.$emit('input', new Date(time))
       }
     }

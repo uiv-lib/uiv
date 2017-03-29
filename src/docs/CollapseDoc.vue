@@ -137,9 +137,5 @@
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-  .dropdowns {
-    .dropdown {
-      display: inline-block;
-    }
-  }
+
 </style>
