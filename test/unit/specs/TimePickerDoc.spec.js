@@ -40,7 +40,7 @@ describe('TimePickerDoc', () => {
       hourPlus.click()
       vm.$nextTick(() => {
         let afterText = vm.$el.querySelectorAll('input')[0].value
-        if (parseInt(beforeText) != 12) {
+        if (parseInt(beforeText) !== 12) {
           expect(parseInt(afterText)).to.equal(parseInt(beforeText) + 1)
         } else {
           expect(parseInt(afterText)).to.equal(1)
@@ -60,7 +60,7 @@ describe('TimePickerDoc', () => {
       minutesPlus.click()
       vm.$nextTick(() => {
         let afterText = vm.$el.querySelectorAll('input')[1].value
-        if (parseInt(beforeText) != 59) {
+        if (parseInt(beforeText) !== 59) {
           expect(parseInt(afterText)).to.equal(parseInt(beforeText) + 1)
         } else {
           expect(parseInt(afterText)).to.equal(0)
@@ -80,7 +80,7 @@ describe('TimePickerDoc', () => {
       hourMinus.click()
       vm.$nextTick(() => {
         let afterText = vm.$el.querySelectorAll('input')[0].value
-        if (parseInt(beforeText) != 1) {
+        if (parseInt(beforeText) !== 1) {
           expect(parseInt(afterText)).to.equal(parseInt(beforeText) - 1)
         } else {
           expect(parseInt(afterText)).to.equal(12)
@@ -100,7 +100,7 @@ describe('TimePickerDoc', () => {
       minutesMinus.click()
       vm.$nextTick(() => {
         let afterText = vm.$el.querySelectorAll('input')[1].value
-        if (parseInt(beforeText) != 0) {
+        if (parseInt(beforeText) !== 0) {
           expect(parseInt(afterText)).to.equal(parseInt(beforeText) - 1)
         } else {
           expect(parseInt(afterText)).to.equal(59)
@@ -124,11 +124,11 @@ describe('TimePickerDoc', () => {
         toggleBtn = vm.$el.querySelector('[data-action="toggleMeridian"]')
         expect(toggleBtn).to.not.exist
         let afterText = vm.$el.querySelectorAll('input')[0].value
-        if (toggleBtnText == 'PM' && parseInt(beforeText) != 12) {
+        if (toggleBtnText === 'PM' && parseInt(beforeText) !== 12) {
           expect(parseInt(afterText)).to.equal(parseInt(beforeText) + 12)
-        } else if (toggleBtnText == 'PM' && parseInt(beforeText) == 12) {
+        } else if (toggleBtnText === 'PM' && parseInt(beforeText) === 12) {
           expect(parseInt(afterText)).to.equal(12)
-        } else if (toggleBtnText == 'AM' && parseInt(beforeText) == 12) {
+        } else if (toggleBtnText === 'AM' && parseInt(beforeText) === 12) {
           expect(parseInt(afterText)).to.equal(0)
         } else {
           expect(parseInt(afterText)).to.equal(parseInt(beforeText))
