@@ -37,7 +37,7 @@
         </td>
         <td v-if="showMeridian">
           &nbsp;
-          <button class="btn btn-default" data-action="toggleMeridian" v-text="meridian?'AM':'PM'"
+          <button type="button" class="btn btn-default" data-action="toggleMeridian" v-text="meridian?'AM':'PM'"
                   @click="toggleMeridian"></button>
         </td>
       </tr>
