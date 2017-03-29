@@ -241,4 +241,85 @@ describe('TimePickerDoc', () => {
       })
     })
   })
+
+  it('can be plus and minus hour after wheel', (done) => {
+    const Constructor = Vue.extend(TimePickerDoc)
+    const vm = new Constructor().$mount()
+    vm.myTime.setHours(9)
+    vm.myTime = new Date(vm.myTime)
+    vm.$nextTick(() => {
+      vm.$refs.timepicker.hoursWheel({deltaY: 1})
+      vm.$nextTick(() => {
+        let hourText = vm.$el.querySelectorAll('input')[0].value
+        expect(hourText).to.equal('08')
+        vm.$refs.timepicker.hoursWheel({deltaY: -1})
+        vm.$nextTick(() => {
+          hourText = vm.$el.querySelectorAll('input')[0].value
+          expect(hourText).to.equal('09')
+          done()
+        })
+      })
+    })
+  })
+
+  it('can be plus and minus minutes after wheel', (done) => {
+    const Constructor = Vue.extend(TimePickerDoc)
+    const vm = new Constructor().$mount()
+    vm.myTime.setMinutes(30)
+    vm.myTime = new Date(vm.myTime)
+    vm.$nextTick(() => {
+      vm.$refs.timepicker.minutesWheel({deltaY: 1})
+      vm.$nextTick(() => {
+        let minutesText = vm.$el.querySelectorAll('input')[1].value
+        expect(minutesText).to.equal('29')
+        vm.$refs.timepicker.minutesWheel({deltaY: -1})
+        vm.$nextTick(() => {
+          minutesText = vm.$el.querySelectorAll('input')[1].value
+          expect(minutesText).to.equal('30')
+          done()
+        })
+      })
+    })
+  })
+
+  it('shouldnt add a time bigger then max', (done) => {
+    const Constructor = Vue.extend(TimePickerDoc)
+    const vm = new Constructor().$mount()
+    vm.max = '09:01'
+    vm.myTime.setHours(9)
+    vm.myTime = new Date(vm.myTime)
+    vm.$nextTick(() => {
+      let hourText = vm.$el.querySelectorAll('input')[0].value
+      let hourPlus = vm.$el.querySelectorAll('td')[0].querySelector('a')
+      expect(hourText).to.equal('09')
+      hourPlus.click()
+      vm.$nextTick(() => {
+        hourText = vm.$el.querySelectorAll('input')[0].value
+        expect(hourText).to.equal('09')
+        done()
+      })
+    })
+  })
+
+  it('shouldnt add a time smaller then min', (done) => {
+    const Constructor = Vue.extend(TimePickerDoc)
+    const vm = new Constructor().$mount()
+    vm.min = '08:30'
+    vm.myTime.setHours(9)
+    vm.myTime.setMinutes(0)
+    vm.myTime = new Date(vm.myTime)
+    vm.$nextTick(() => {
+      let hourText = vm.$el.querySelectorAll('input')[0].value
+      expect(hourText).to.equal('09')
+      let hourMinus = vm.$el.querySelectorAll('tr')[2].querySelector('td a')
+      hourMinus.click()
+      vm.$nextTick(() => {
+        hourText = vm.$el.querySelectorAll('input')[0].value
+        let minutesText = vm.$el.querySelectorAll('input')[1].value
+        expect(hourText).to.equal('08')
+        expect(minutesText).to.equal('30')
+        done()
+      })
+    })
+  })
 })

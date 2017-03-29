@@ -14,7 +14,8 @@
                        :min-step="minStep"
                        :hour-step="hourStep"
                        :min="minTime"
-                       :max="maxTime"></time-picker>
+                       :max="maxTime"
+                       ref="timepicker"></time-picker>
           <br/>
           <div class="alert alert-info">Selected time in 24H is <b>{{timeString}}</b></div>
         </div>
