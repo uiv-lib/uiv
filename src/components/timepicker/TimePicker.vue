@@ -4,13 +4,13 @@
       <tbody>
       <tr class="text-center">
         <td>
-          <a role="button" @click="changeTime(1,1)" id="hoursPlus">
+          <a role="button" @click="changeTime(1,1)">
             <i class="glyphicon glyphicon-chevron-up"></i>
           </a>
         </td>
         <td>&nbsp;</td>
         <td>
-          <a role="button" @click="changeTime(0,1)" id="minutesPlus">
+          <a role="button" @click="changeTime(0,1)">
             <i class="glyphicon glyphicon-chevron-up"></i>
           </a>
         </td>
@@ -23,6 +23,7 @@
                  @wheel.prevent="hoursWheel"
                  placeholder="HH"
                  v-model="hoursText"
+                 :readonly="readonlyInput"
                  size="2">
         </td>
         <td>&nbsp;<b>:</b>&nbsp;</td>
@@ -31,23 +32,24 @@
                  @wheel.prevent="minutesWheel"
                  placeholder="MM"
                  v-model="minutesText"
+                 :readonly="readonlyInput"
                  size="2">
         </td>
         <td v-if="showMeridian">
           &nbsp;
-          <button class="btn btn-default" id="toggleMeridian" v-text="meridian?'AM':'PM'"
+          <button class="btn btn-default" data-action="toggleMeridian" v-text="meridian?'AM':'PM'"
                   @click="toggleMeridian"></button>
         </td>
       </tr>
       <tr class="text-center">
         <td>
-          <a role="button" @click="changeTime(1,0)" id="hoursMinus">
+          <a role="button" @click="changeTime(1,0)">
             <i class="glyphicon glyphicon-chevron-down"></i>
           </a>
         </td>
         <td>&nbsp;</td>
         <td>
-          <a role="button" @click="changeTime(0,0)" id="minutesMinus">
+          <a role="button" @click="changeTime(0,0)">
             <i class="glyphicon glyphicon-chevron-down"></i>
           </a>
         </td>
@@ -76,6 +78,24 @@
       showMeridian: {
         type: Boolean,
         'default': true
+      },
+      min: {
+        type: Date()
+      },
+      max: {
+        type: Date()
+      },
+      hourStep: {
+        type: Number,
+        default: 1
+      },
+      minStep: {
+        type: Number,
+        default: 1
+      },
+      readonlyInput: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
@@ -141,22 +161,22 @@
     methods: {
       changeTime (isHour, isPlus) {
         if (isHour && isPlus) {
-          this.hours = this.hours >= maxHours ? zero : this.hours + 1
+          this.hours = this.hours >= maxHours ? zero : this.hours + this.hourStep
         } else if (isHour && !isPlus) {
-          this.hours = this.hours <= zero ? maxHours : this.hours - 1
+          this.hours = this.hours <= zero ? maxHours : this.hours - this.hourStep
         } else if (!isHour && isPlus) {
           if (this.minutes >= maxMinutes) {
             this.minutes = zero
             this.changeTime(true, true)
           } else {
-            this.minutes += 1
+            this.minutes += this.minStep
           }
         } else if (!isHour && !isPlus) {
           if (this.minutes <= zero) {
             this.minutes = maxMinutes
             this.changeTime(true, false)
           } else {
-            this.minutes -= 1
+            this.minutes -= this.minStep
           }
         }
         this.setTime()

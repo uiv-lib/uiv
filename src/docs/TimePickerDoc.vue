@@ -8,15 +8,38 @@
     <div class="row">
       <div class="col-md-6">
         <div>
-          <time-picker v-model="myTime" :show-meridian="showMeridian"></time-picker>
+          <time-picker v-model="myTime"
+                       :show-meridian="showMeridian"
+                       :readonly-input="isReadOnly"
+                       :min-step="minStep"
+                       :hour-step="hourStep"></time-picker>
           <br/>
           <div class="alert alert-info">Time is:{{timeString}}</div>
         </div>
-        <div class="form-inline">
-          <div class="form-group">
-            <button class="btn btn-default" @click="resetTime">Set to 9:00 AM</button>
-            <button class="btn btn-default" @click="showMeridian=!showMeridian">12H / 24H</button>
-          </div>
+        <div class="well">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-xs-12">
+                <div class="form-inline">
+                  <div class="form-group">
+                    <button class="btn btn-default" @click="resetTime">Set to 9:00 AM</button>
+                    <button class="btn btn-default" @click="showMeridian=!showMeridian">12H / 24H</button>
+                    <button class="btn btn-default" @click="isReadOnly=!isReadOnly">is read only or not</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-6">
+                <label>set hour step:</label>
+                <input class="form-control" v-model.number="hourStep" type="number">
+              </div>
+              <div class="col-md-6">
+                <label>set minutes step:</label>
+                <input class="form-control" v-model.number="minStep" type="number">
+              </div>
+            </div>
+          </form>
         </div>
       </div>
       <div class="col-md-6">
@@ -52,7 +75,12 @@
     data () {
       return {
         myTime: new Date(),
-        showMeridian: true
+        showMeridian: true,
+        isReadOnly: false,
+        hourStep: 1,
+        minStep: 1,
+        min: new Date(),
+        max: new Date()
       }
     },
     computed: {
@@ -62,6 +90,12 @@
     },
     mounted () {
       this.myTime = new Date()
+      this.min.setHours(8)
+      this.min.setMinutes(0)
+      this.min = new Date(this.min)
+      this.max.setHours(18)
+      this.max.setMinutes(0)
+      this.max = new Date(this.min)
     },
     methods: {
       resetTime () {

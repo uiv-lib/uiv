@@ -10,7 +10,7 @@ describe('TimePickerDoc', () => {
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
       let now = new Date()
-      let toggleBtn = vm.$el.querySelector('#toggleMeridian')
+      let toggleBtn = vm.$el.querySelector('[data-action="toggleMeridian"]')
       let meridianText = toggleBtn.textContent
       if (now.getHours() > 12) {
         expect(meridianText).to.equal('PM')
@@ -19,7 +19,7 @@ describe('TimePickerDoc', () => {
       }
       toggleBtn.click()
       vm.$nextTick(() => {
-        toggleBtn = vm.$el.querySelector('#toggleMeridian')
+        toggleBtn = vm.$el.querySelector('[data-action="toggleMeridian"]')
         let meridianTextAfterClick = toggleBtn.textContent
         if (meridianText === 'PM') {
           expect(meridianTextAfterClick).to.equal('AM')

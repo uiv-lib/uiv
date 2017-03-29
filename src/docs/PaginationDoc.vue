@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <div id="alertContainer">
+        <div>
           <pagination :boundary-links="boundaryLinks"
                       :direction-links="directionLinks"
                       :total-page="totalSize"
