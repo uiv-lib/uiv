@@ -80,10 +80,10 @@
         'default': true
       },
       min: {
-        type: Date()
+        type: Date
       },
       max: {
-        type: Date()
+        type: Date
       },
       hourStep: {
         type: Number,

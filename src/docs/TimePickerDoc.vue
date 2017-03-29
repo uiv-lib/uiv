@@ -20,7 +20,7 @@
           <form class="form-horizontal">
             <div class="form-group">
               <div class="col-xs-12">
-                <button class="btn btn-default" @click="resetTime">Set to 9:00 AM</button>
+                <button class="btn btn-default" @click="resetTime" data-action="setNine">Set to 9:00 AM</button>
                 <button class="btn btn-default" @click="showMeridian=!showMeridian">12H / 24H</button>
                 <button class="btn btn-default" @click="isReadOnly=!isReadOnly">is read only or not</button>
               </div>
@@ -47,6 +47,9 @@
         <h4>Props</h4>
         <ul>
           <li><p><code>show-meridian: Boolean</code> Whether to display 12H or 24H mode.Default:true</p></li>
+          <li><p><code>hour-step: Number</code> Number of hours to increase or decrease when using a button.Default:1</p></li>
+          <li><p><code>min-tep: Number</code>  Number of minutes to increase or decrease when using a button..Default:1</p></li>
+          <li><p><code>readonly-input: Boolean</code> Whether user can type inside the hours & minutes input.Default:false</p></li>
         </ul>
       </div>
     </div>
