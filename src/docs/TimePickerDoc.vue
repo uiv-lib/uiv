@@ -20,9 +20,9 @@
           <form class="form-horizontal">
             <div class="form-group">
               <div class="col-xs-12">
-                <button class="btn btn-default" @click="resetTime" data-action="setNine">Set to 9:00 AM</button>
-                <button class="btn btn-default" @click="showMeridian=!showMeridian">12H / 24H</button>
-                <button class="btn btn-default" @click="isReadOnly=!isReadOnly">is read only or not</button>
+                <button class="btn btn-default" type="button" @click="resetTime" data-action="setNine">Set to 9:00 AM</button>
+                <button class="btn btn-default" type="button" @click="showMeridian=!showMeridian">12H / 24H</button>
+                <button class="btn btn-default" type="button" @click="isReadOnly=!isReadOnly">is read only or not</button>
               </div>
             </div>
             <div class="form-group">

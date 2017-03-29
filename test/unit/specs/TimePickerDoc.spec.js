@@ -45,7 +45,16 @@ describe('TimePickerDoc', () => {
         } else {
           expect(parseInt(afterText)).to.equal(1)
         }
-        done()
+        vm.myTime.setHours(23)
+        vm.myTime = new Date(vm.myTime)
+        vm.$nextTick(() => {
+          hourPlus.click()
+          vm.$nextTick(() => {
+            afterText = vm.$el.querySelectorAll('input')[0].value
+            expect(parseInt(afterText)).to.equal(12)
+            done()
+          })
+        })
       })
     })
   })
@@ -85,7 +94,16 @@ describe('TimePickerDoc', () => {
         } else {
           expect(parseInt(afterText)).to.equal(12)
         }
-        done()
+        vm.myTime.setHours(0)
+        vm.myTime = new Date(vm.myTime)
+        vm.$nextTick(() => {
+          hourMinus.click()
+          vm.$nextTick(() => {
+            afterText = vm.$el.querySelectorAll('input')[0].value
+            expect(parseInt(afterText)).to.equal(11)
+            done()
+          })
+        })
       })
     })
   })
@@ -206,21 +224,21 @@ describe('TimePickerDoc', () => {
     })
   })
 
-  // it('can be set to 9:00', (done) => {
-  //   const Constructor = Vue.extend(TimePickerDoc)
-  //   const vm = new Constructor().$mount()
-  //   vm.$nextTick(() => {
-  //     let setNine = vm.$el.querySelector('[data-action="setNine"]')
-  //     setNine.click()
-  //     vm.$nextTick(() => {
-  //       let hourText = vm.$el.querySelectorAll('input')[0].value
-  //       let minutesText = vm.$el.querySelectorAll('input')[1].value
-  //       let toggleBtn = vm.$el.querySelector('[data-action="toggleMeridian"]')
-  //       expect(hourText).to.equal('09')
-  //       expect(minutesText).to.equal('00')
-  //       expect(toggleBtn.textContent).to.equal('AM')
-  //       done()
-  //     })
-  //   })
-  // })
+  it('can be set to 9:00', (done) => {
+    const Constructor = Vue.extend(TimePickerDoc)
+    const vm = new Constructor().$mount()
+    vm.$nextTick(() => {
+      let setNine = vm.$el.querySelector('[data-action="setNine"]')
+      setNine.click()
+      vm.$nextTick(() => {
+        let hourText = vm.$el.querySelectorAll('input')[0].value
+        let minutesText = vm.$el.querySelectorAll('input')[1].value
+        let toggleBtn = vm.$el.querySelector('[data-action="toggleMeridian"]')
+        expect(hourText).to.equal('09')
+        expect(minutesText).to.equal('00')
+        expect(toggleBtn.textContent).to.equal('AM')
+        done()
+      })
+    })
+  })
 })
