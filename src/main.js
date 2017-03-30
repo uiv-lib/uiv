@@ -33,6 +33,7 @@ let routes = [
 ]
 
 let router = new VueRouter({
+  base: 'uiv',
   mode: 'history',
   routes,
   scrollBehavior (to, from, savedPosition) {

@@ -2,8 +2,8 @@
   <aside :class="{'show':isAsideShow}">
     <div class="brand">
       <router-link class="logo" to="/" exact>
-        <img class="vue-logo" src="/static/images/logo.png">
-        <img class="bootstrap-logo" src="/static/images/boostrap_logo.png">
+        <img class="vue-logo" src="./../../assets/img/v-logo.png">
+        <img class="bootstrap-logo" src="./../../assets/img/b-logo.png">
       </router-link>
       <h2 @click="toggleAside(false)" class="text-center">
         <router-link to="/" exact>UIV</router-link>
