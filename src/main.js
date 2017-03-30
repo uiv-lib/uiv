@@ -35,11 +35,11 @@ let routes = [
 
 let router = new VueRouter({
   base: 'uiv',
-  mode: 'history',
-  routes,
-  scrollBehavior (to, from, savedPosition) {
-    return {x: 0, y: 0}
-  }
+  routes
+})
+
+router.afterEach(route => {
+  window.scrollTo(0, 0)
 })
 
 /* eslint-disable no-new */
