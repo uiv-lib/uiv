@@ -29,7 +29,8 @@ let routes = [
   {path: '/tabs', component: require('./docs/pages/TabsDoc.vue')},
   {path: '/time-picker', component: require('./docs/pages/TimePickerDoc.vue')},
   {path: '/tooltip', component: require('./docs/pages/TooltipDoc.vue')},
-  {path: '/typeahead', component: require('./docs/pages/TypeaheadDoc.vue')}
+  {path: '/typeahead', component: require('./docs/pages/TypeaheadDoc.vue')},
+  {path: '*', component: require('./docs/pages/404.vue')}
 ]
 
 let router = new VueRouter({
