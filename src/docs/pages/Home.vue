@@ -27,11 +27,10 @@
             <br/>
             <div>
               <a href="https://github.com/wxsms/uiv" class="btn btn-success btn-lg">
-                <i class="fa fa-github"></i>
                 Code on Github
               </a>
               <a href="https://github.com/wxsms/uiv/archive/master.zip" target="_blank" class="btn btn-success btn-lg">
-                <i class="fa fa-download"></i>
+                <i class="glyphicon glyphicon-download-alt"></i>
                 Download
               </a>
             </div>

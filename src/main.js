@@ -2,7 +2,6 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'highlight.js/styles/github-gist.css'
-import 'font-awesome/css/font-awesome.min.css'
 import './assets/css/common.less'
 
 import 'es6-promise/auto'

@@ -8,7 +8,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <router-link class="navbar-brand" to="/">UIV</router-link>
+        <router-link class="navbar-brand" to="/">uiv</router-link>
       </div>
       <div class="collapse navbar-collapse">
       </div>

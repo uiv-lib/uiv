@@ -1,12 +1,14 @@
 <template>
   <aside :class="{'show':isAsideShow}">
     <div class="brand">
-      <router-link class="logo" to="/" exact>
-        <img class="vue-logo" src="./../../assets/img/v-logo.png">
-        <img class="bootstrap-logo" src="./../../assets/img/b-logo.png">
-      </router-link>
+      <div @click="toggleAside(false)" class="logo">
+        <router-link to="/" exact>
+          <img class="vue-logo" src="./../../assets/img/v-logo.png">
+          <img class="bootstrap-logo" src="./../../assets/img/b-logo.png">
+        </router-link>
+      </div>
       <h2 @click="toggleAside(false)" class="text-center">
-        <router-link to="/" exact>UIV</router-link>
+        <router-link to="/" exact>uiv</router-link>
       </h2>
     </div>
     <div class="nav-container">
@@ -19,14 +21,14 @@
                   <b>{{item.label}}</b>
                 </a>
               </li>
-              <li role="presentation" v-for="_item in item.items">
-                <router-link :to="_item.path" role="button" @click="toggleAside(false)" class="sub-list">
+              <li role="presentation" v-for="_item in item.items" @click="toggleAside(false)">
+                <router-link :to="_item.path" role="button" class="sub-list">
                   {{_item.label}}
                 </router-link>
               </li>
             </template>
-            <li v-else role="presentation">
-              <router-link :to="item.path" role="button" @click="toggleAside(false)">
+            <li v-else role="presentation" @click="toggleAside(false)">
+              <router-link :to="item.path" role="button">
                 <b>{{item.label}}</b>
               </router-link>
             </li>
@@ -97,6 +99,12 @@
         position: relative;
         overflow: hidden;
         display: block;
+
+        a {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
 
         .vue-logo {
           position: absolute;
