@@ -48,8 +48,10 @@
     },
     beforeDestroy () {
       this.clearListeners()
-      if (this.tooltip) {
+      try {
         this.tooltip.parentNode.removeChild(this.tooltip)
+      } catch (e) {
+        // Silent
       }
     },
     watch: {

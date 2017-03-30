@@ -66,7 +66,11 @@
     beforeDestroy () {
       this.clearListeners()
       let popover = this.$refs.popover
-      popover.parentNode.removeChild(popover)
+      try {
+        popover.parentNode.removeChild(popover)
+      } catch (e) {
+        // Silent
+      }
     },
     watch: {
       trigger () {
