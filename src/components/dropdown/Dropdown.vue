@@ -38,6 +38,7 @@
       window.addEventListener('click', this.windowClicked)
     },
     beforeDestroy () {
+      this.removeDropdownFromBody()
       if (this.triggerEl) {
         this.triggerEl.removeEventListener('click', this.toggle)
       }

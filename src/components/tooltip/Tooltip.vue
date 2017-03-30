@@ -48,6 +48,9 @@
     },
     beforeDestroy () {
       this.clearListeners()
+      if (this.tooltip) {
+        this.tooltip.parentNode.removeChild(this.tooltip)
+      }
     },
     watch: {
       trigger () {

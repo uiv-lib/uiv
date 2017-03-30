@@ -65,6 +65,8 @@
     },
     beforeDestroy () {
       this.clearListeners()
+      let popover = this.$refs.popover
+      popover.parentNode.removeChild(popover)
     },
     watch: {
       trigger () {
