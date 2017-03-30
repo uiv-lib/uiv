@@ -106,8 +106,12 @@
     },
     watch: {
       value (val) {
-        this.currentMonth = val.getMonth()
-        this.currentYear = val.getFullYear()
+        try {
+          this.currentMonth = val.getMonth()
+          this.currentYear = val.getFullYear()
+        } catch (e) {
+          // Silent
+        }
       }
     },
     methods: {
@@ -155,7 +159,6 @@
 <style lang="less" rel="stylesheet/less">
   .date-picker {
     .btn-date {
-      border-radius: 0;
       border: none;
       user-select: none;
     }

@@ -12,6 +12,8 @@ import Alert from './alert/Alert.vue'
 import Pagination from './pagination/Pagination.vue'
 import Tooltip from './tooltip/Tooltip.vue'
 import Popover from './popover/Popover.vue'
+import TimePicker from './timepicker/TimePicker.vue'
+import Typeahead from './typeahead/Typeahead.vue'
 export {
   Tooltip,
   Carousel,
@@ -24,5 +26,7 @@ export {
   DatePicker,
   Alert,
   Pagination,
-  Popover
+  Popover,
+  TimePicker,
+  Typeahead
 }
