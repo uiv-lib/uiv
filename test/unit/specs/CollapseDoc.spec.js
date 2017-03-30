@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import CollapseDoc from '@/docs/CollapseDoc.vue'
+import CollapseDoc from '@/docs/pages/CollapseDoc.vue'
 import config from './../config'
 
 describe('CollapseDoc', () => {

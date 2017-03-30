@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import AlertDoc from '@/docs/AlertDoc.vue'
+import AlertDoc from '@/docs/pages/AlertDoc.vue'
 
 describe('AlertDoc', () => {
   it('Alert can be closed', (done) => {

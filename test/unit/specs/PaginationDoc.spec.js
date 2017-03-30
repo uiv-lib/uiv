@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import PaginationDoc from '@/docs/PaginationDoc.vue'
+import PaginationDoc from '@/docs/pages/PaginationDoc.vue'
 
 describe('PaginationDoc', () => {
   it('should be able to disappear Boundary link', (done) => {

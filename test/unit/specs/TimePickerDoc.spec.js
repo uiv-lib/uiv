@@ -2,7 +2,7 @@
  * Created by zhengjingchun on 2017/3/28.
  */
 import Vue from 'vue'
-import TimePickerDoc from '@/docs/TimePickerDoc.vue'
+import TimePickerDoc from '@/docs/pages/TimePickerDoc.vue'
 
 describe('TimePickerDoc', () => {
   it('should be able to toggle meridian', (done) => {

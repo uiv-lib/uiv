@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import DropdownDoc from '@/docs/DropdownDoc.vue'
+import DropdownDoc from '@/docs/pages/DropdownDoc.vue'
 
 describe('DropdownDoc', () => {
   it('should be able to open dropdown on trigger click', (done) => {

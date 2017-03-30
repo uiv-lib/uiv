@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import TooltipDoc from '@/docs/TooltipDoc.vue'
+import TooltipDoc from '@/docs/pages/TooltipDoc.vue'
 
 describe('TooltipDoc', () => {
   it('should be able to destroy', () => {

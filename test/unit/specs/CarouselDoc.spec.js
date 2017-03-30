@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import CarouselDoc from '@/docs/CarouselDoc.vue'
+import CarouselDoc from '@/docs/pages/CarouselDoc.vue'
 
 describe('CarouselDoc', () => {
   it('should be able to render correct contents on init', (done) => {

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import TabsDoc from '@/docs/TabsDoc.vue'
+import TabsDoc from '@/docs/pages/TabsDoc.vue'
 import config from './../config'
 
 describe('TabsDoc', () => {

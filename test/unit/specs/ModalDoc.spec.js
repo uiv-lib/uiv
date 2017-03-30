@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import ModalDoc from '@/docs/ModalDoc.vue'
+import ModalDoc from '@/docs/pages/ModalDoc.vue'
 import config from './../config'
 
 describe('ModalDoc', () => {

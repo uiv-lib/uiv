@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import DatePickerDoc from '@/docs/DatePickerDoc.vue'
+import DatePickerDoc from '@/docs/pages/DatePickerDoc.vue'
 
 describe('DatePickerDoc', () => {
   it('should be able to render date view', (done) => {

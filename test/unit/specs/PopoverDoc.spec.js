@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import PopoverDoc from '@/docs/PopoverDoc.vue'
+import PopoverDoc from '@/docs/pages/PopoverDoc.vue'
 
 describe('PopoverDoc', () => {
   it('should be able to destroy', (done) => {

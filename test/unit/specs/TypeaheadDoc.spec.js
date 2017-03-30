@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import TypeaheadDoc from '@/docs/TypeaheadDoc.vue'
+import TypeaheadDoc from '@/docs/pages/TypeaheadDoc.vue'
 
 describe('TypeaheadDoc', () => {
   let xhr, requests, server
