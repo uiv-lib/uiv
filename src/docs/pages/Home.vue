@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-xs-12">
-            <h1>UIV</h1>
+            <h1>uiv</h1>
             <br/>
             <p>
               <a href="https://travis-ci.org/wxsms/uiv" target="_blank">
