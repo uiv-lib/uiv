@@ -6,10 +6,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <carousel :indicators="indicators" :controls="controls" :interval="interval" ref="carousel">
           <slide v-for="(slide,index) in slides" :key="index">
-            <div style="width: 100%;height: 300px;" :style="{background:index%2===0?'#99a9bf':'#d3dce6'}"></div>
+            <div style="width: 100%;height: 400px;" :style="{background:index%2===0?'#99a9bf':'#d3dce6'}"></div>
             <div class="carousel-caption">
               <h3>This is {{slide.title}}</h3>
             </div>
@@ -32,7 +32,22 @@
           </form>
         </div>
       </div>
-      <div class="col-md-12">
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="CarouselDoc.vue">
+        <pre><code>
+&lt;carousel&gt;
+  &lt;slide&gt;...&lt;/slide&gt;
+  &lt;slide&gt;...&lt;/slide&gt;
+&lt;/carousel&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="page-header">API</h3>
         <h4>Props (Carousel)</h4>
         <ul>
           <li>
@@ -63,18 +78,6 @@
             </p>
           </li>
         </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <demo-code-block demo-file="CarouselDoc.vue">
-        <pre><code>
-&lt;carousel&gt;
-  &lt;slide&gt;...&lt;/slide&gt;
-  &lt;slide&gt;...&lt;/slide&gt;
-&lt;/carousel&gt;
-        </code></pre>
-        </demo-code-block>
       </div>
     </div>
   </section>

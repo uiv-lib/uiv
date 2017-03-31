@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <h3>Basic Example</h3>
         <div class="well">
           <button type="button" id="tabs-btn-1" class="btn btn-default" @click="selectTab(0)">Active Tab 1</button>
@@ -45,7 +45,22 @@
           </tab>
         </tabs>
       </div>
-      <div class="col-md-12">
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="TabsDoc.vue">
+        <pre><code>
+&lt;tabs&gt;
+  &lt;tab&gt;...&lt;/tab&gt;
+  &lt;tab&gt;...&lt;/tab&gt;
+&lt;/tabs&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="page-header">API</h3>
         <h4>Props (Tabs)</h4>
         <ul>
           <li><p><code>justified: Boolean</code> Use justified style. Default: false.</p></li>
@@ -65,18 +80,6 @@
         <ul>
           <li><p><code>after-active (index: Number)</code> Fire after tab active.</p></li>
         </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <demo-code-block demo-file="TabsDoc.vue">
-        <pre><code>
-&lt;tabs&gt;
-  &lt;tab&gt;...&lt;/tab&gt;
-  &lt;tab&gt;...&lt;/tab&gt;
-&lt;/tabs&gt;
-        </code></pre>
-        </demo-code-block>
       </div>
     </div>
   </section>

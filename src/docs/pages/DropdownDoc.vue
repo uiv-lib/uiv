@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <h3>Basic Example</h3>
         <div class="dropdowns well">
           <dropdown id="dropdown-1" ref="dropdown1">
@@ -67,7 +67,31 @@
           </dropdown>
         </div>
       </div>
-      <div class="col-md-12">
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="DropdownDoc.vue">
+        <pre><code>
+&lt;dropdown&gt;
+  &lt;button data-role=&quot;trigger&quot; class=&quot;btn btn-default dropdown-toggle&quot; type=&quot;button&quot;&gt;
+    &lt;span&gt;Dropdown 1&lt;/span&gt;
+    &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;ul slot=&quot;dropdown&quot; class=&quot;dropdown-menu&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Another action&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Something else here&lt;/a&gt;&lt;/li&gt;
+    &lt;li role=&quot;separator&quot; class=&quot;divider&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Separated link&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/dropdown&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="page-header">API</h3>
         <h4>Note</h4>
         <ul>
           <li>
@@ -91,27 +115,6 @@
           <li><p><code>dropdown</code><span> Replace as the dropdown body.</span></p></li>
           <li><p><code>default</code><span> Replace as the rest of the component (e.g. trigger stuffs).</span></p></li>
         </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <demo-code-block demo-file="DropdownDoc.vue">
-        <pre><code>
-&lt;dropdown&gt;
-  &lt;button data-role=&quot;trigger&quot; class=&quot;btn btn-default dropdown-toggle&quot; type=&quot;button&quot;&gt;
-    &lt;span&gt;Dropdown 1&lt;/span&gt;
-    &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;
-  &lt;/button&gt;
-  &lt;ul slot=&quot;dropdown&quot; class=&quot;dropdown-menu&quot;&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Another action&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Something else here&lt;/a&gt;&lt;/li&gt;
-    &lt;li role=&quot;separator&quot; class=&quot;divider&quot;&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Separated link&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/dropdown&gt;
-        </code></pre>
-        </demo-code-block>
       </div>
     </div>
   </section>

@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <h3>Inline Example</h3>
         <hr/>
         <date-picker v-model="date"
@@ -63,7 +63,34 @@
           </form>
         </div>
       </div>
-      <div class="col-md-12">
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="DatePickerDoc.vue">
+        <pre><code>
+&lt;!-- With Dropdown Example --&gt;
+&lt;dropdown tag=&quot;div&quot; class=&quot;form-group&quot;&gt;
+  &lt;div class=&quot;input-group&quot;&gt;
+    &lt;input class=&quot;form-control&quot; type=&quot;text&quot; v-model=&quot;date&quot; readonly&gt;
+    &lt;div class=&quot;input-group-btn&quot;&gt;
+      &lt;button class=&quot;btn btn-default&quot; type=&quot;button&quot; data-role=&quot;trigger&quot;&gt;
+        &lt;i class=&quot;glyphicon glyphicon-calendar&quot;&gt;&lt;/i&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;ul slot=&quot;dropdown&quot; class=&quot;dropdown-menu&quot;&gt;
+    &lt;li&gt;
+      &lt;date-picker v-model=&quot;date&quot;&gt;&lt;/date-picker&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/dropdown&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="page-header">API</h3>
         <h4>Note</h4>
         <ul>
           <li><p>Use <code>v-model: Date</code> to bind or change the selected date.</p></li>
@@ -91,30 +118,6 @@
           </li>
           <li><p><code>limit-to</code> Same as limitFrom.</p></li>
         </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <demo-code-block demo-file="DatePickerDoc.vue">
-        <pre><code>
-&lt;!-- With Dropdown Example --&gt;
-&lt;dropdown tag=&quot;div&quot; class=&quot;form-group&quot;&gt;
-  &lt;div class=&quot;input-group&quot;&gt;
-    &lt;input class=&quot;form-control&quot; type=&quot;text&quot; v-model=&quot;date&quot; readonly&gt;
-    &lt;div class=&quot;input-group-btn&quot;&gt;
-      &lt;button class=&quot;btn btn-default&quot; type=&quot;button&quot; data-role=&quot;trigger&quot;&gt;
-        &lt;i class=&quot;glyphicon glyphicon-calendar&quot;&gt;&lt;/i&gt;
-      &lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;ul slot=&quot;dropdown&quot; class=&quot;dropdown-menu&quot;&gt;
-    &lt;li&gt;
-      &lt;date-picker v-model=&quot;date&quot;&gt;&lt;/date-picker&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/dropdown&gt;
-        </code></pre>
-        </demo-code-block>
       </div>
     </div>
   </section>

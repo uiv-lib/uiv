@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <div>
           <time-picker v-model="myTime"
                        :show-meridian="showMeridian"
@@ -53,7 +53,19 @@
           </form>
         </div>
       </div>
-      <div class="col-md-12">
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="TimePickerDoc.vue">
+        <pre><code>
+&lt;time-picker v-model=&quot;myTime&quot; :show-meridian=&quot;showMeridian&quot;&gt;&lt;/time-picker&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="page-header">API</h3>
         <h4>Notes</h4>
         <ul>
           <li><p>Use <code>v-model: Date</code> to identify the time</p></li>
@@ -72,15 +84,6 @@
           <li><p><code>max: Date</code> The maximum time that user can select or input.</p></li>
           <li><p><code>min: Date</code> The minimum time that user can select or input.</p></li>
         </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <demo-code-block demo-file="TimePickerDoc.vue">
-        <pre><code>
-&lt;time-picker v-model=&quot;myTime&quot; :show-meridian=&quot;showMeridian&quot;&gt;&lt;/time-picker&gt;
-        </code></pre>
-        </demo-code-block>
       </div>
     </div>
   </section>

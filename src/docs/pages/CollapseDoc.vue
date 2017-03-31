@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <h3>Basic Example</h3>
         <div>
           <button type="button" class="btn btn-default" @click="showCollapse1=!showCollapse1">Click me!</button>
@@ -60,7 +60,25 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12">
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="CollapseDoc.vue">
+        <pre><code>
+&lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; @click=&quot;showCollapse1=!showCollapse1&quot;&gt;Click me!&lt;/button&gt;
+
+&lt;collapse :show=&quot;showCollapse1&quot;&gt;
+  &lt;div class=&quot;well&quot;&gt;
+    Hi there.
+  &lt;/div&gt;
+&lt;/collapse&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="page-header">API</h3>
         <h4>Note</h4>
         <ul>
           <li>
@@ -95,21 +113,6 @@
             </p>
           </li>
         </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <demo-code-block demo-file="CollapseDoc.vue">
-        <pre><code>
-&lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; @click=&quot;showCollapse1=!showCollapse1&quot;&gt;Click me!&lt;/button&gt;
-
-&lt;collapse :show=&quot;showCollapse1&quot;&gt;
-  &lt;div class=&quot;well&quot;&gt;
-    Hi there.
-  &lt;/div&gt;
-&lt;/collapse&gt;
-        </code></pre>
-        </demo-code-block>
       </div>
     </div>
   </section>

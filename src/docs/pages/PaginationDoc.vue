@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <div>
           <pagination :boundary-links="boundaryLinks"
                       :direction-links="directionLinks"
@@ -58,7 +58,19 @@
           </form>
         </div>
       </div>
-      <div class="col-md-12">
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="PaginationDoc.vue">
+        <pre><code>
+&lt;pagination v-model=&quot;currentPage&quot; :total-page=&quot;totalSize&quot; :max-size=&quot;maxSize&quot;&gt;&lt;/pagination&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="page-header">API</h3>
         <h4>Note</h4>
         <ul>
           <li><p>Use <code>v-model: Number</code> to identify the current page.</p></li>
@@ -75,15 +87,6 @@
         <ul>
           <li><p><code>page-changed (index:Number)</code> Fire after page changed.</p></li>
         </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <demo-code-block demo-file="PaginationDoc.vue">
-        <pre><code>
-&lt;pagination v-model=&quot;currentPage&quot; :total-page=&quot;totalSize&quot; :max-size=&quot;maxSize&quot;&gt;&lt;/pagination&gt;
-        </code></pre>
-        </demo-code-block>
       </div>
     </div>
   </section>

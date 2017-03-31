@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <h3>Basic Example</h3>
         <tooltip text="Static tooltip content goes here.">
           <button type="button" class="btn btn-default">Hover Me!</button>
@@ -62,7 +62,21 @@
           </form>
         </div>
       </div>
-      <div class="col-md-12">
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="TooltipDoc.vue">
+        <pre><code>
+&lt;tooltip text=&quot;Static tooltip content goes here.&quot;&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;Hover Me!&lt;/button&gt;
+&lt;/tooltip&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="page-header">API</h3>
         <h4>Props</h4>
         <ul>
           <li>
@@ -93,17 +107,6 @@
             </p>
           </li>
         </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <demo-code-block demo-file="TooltipDoc.vue">
-        <pre><code>
-&lt;tooltip text=&quot;Static tooltip content goes here.&quot;&gt;
-  &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;Hover Me!&lt;/button&gt;
-&lt;/tooltip&gt;
-        </code></pre>
-        </demo-code-block>
       </div>
     </div>
   </section>

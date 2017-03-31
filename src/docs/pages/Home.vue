@@ -39,6 +39,46 @@
         </div>
       </div>
     </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <div class="caption">
+              <h3>Light Weight</h3>
+              <p><i class="glyphicon glyphicon-leaf icon-thumbnail"></i></p>
+              <p>~ <b>9KB</b> Gziped</p>
+              <p>Dependencies only</p>
+              <p><b>Vue</b> & <b>Bootstrap CSS</b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <div class="caption">
+              <h3>Compatible</h3>
+              <p><i class="glyphicon glyphicon-check icon-thumbnail"></i></p>
+              <p>Tested with</p>
+              <p><b>Modern Browsers</b></p>
+              <p>And <b>IE 9+</b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <div class="caption">
+              <h3>Open Source</h3>
+              <p><i class="glyphicon glyphicon-grain icon-thumbnail"></i></p>
+              <p>
+                <b>MIT</b> License
+                <a target="_blank" href="https://github.com/wxsms/uiv/blob/master/LICENSE"><i class="glyphicon glyphicon-share"></i></a>
+              </p>
+              <p>Easy and Free</p>
+              <p>Welcome to contribute!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -50,6 +90,19 @@
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
+  @import "./../../assets/css/variables";
+
+  .thumbnail {
+    text-align: center;
+
+    .icon-thumbnail {
+      font-size: 600%;
+      color: @highlight-color;
+      margin: 20px 0;
+      height: 100px;
+    }
+  }
+
   .jumbotron {
     .btn {
       background: transparent;

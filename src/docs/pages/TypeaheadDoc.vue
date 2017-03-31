@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <h3>Static Query Example</h3>
         <div class="well">
           <form class="form-inline">
@@ -61,7 +61,36 @@
           <p v-else>Please select an item.</p>
         </div>
       </div>
-      <div class="col-md-12">
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="TypeaheadDoc.vue">
+        <pre><code>
+// Local data query sample
+&lt;typeahead v-model=&quot;model1&quot; :data=&quot;states&quot; item-key=&quot;name&quot;&gt;
+  &lt;label class=&quot;control-label&quot;&gt;States of America&lt;/label&gt;
+  &lt;input data-role=&quot;input&quot; class=&quot;form-control&quot; type=&quot;text&quot; placeholder=&quot;Type to search...&quot;&gt;
+&lt;/typeahead&gt;
+
+// Async data query &amp; custom template sample
+&lt;typeahead v-model=&quot;model2&quot;
+           async-src=&quot;https://api.github.com/search/users?q=&quot;
+           async-key=&quot;items&quot;
+           item-key=&quot;login&quot;&gt;
+  &lt;label class=&quot;control-label&quot;&gt;Github Users&lt;/label&gt;
+  &lt;input data-role=&quot;input&quot; class=&quot;form-control&quot; type=&quot;text&quot; placeholder=&quot;Type to search...&quot;&gt;
+  &lt;template slot=&quot;item&quot; scope=&quot;props&quot;&gt;
+    &lt;img width=&quot;18px&quot; height=&quot;18px&quot; :src=&quot;props.item.avatar_url&quot;&gt;
+    &lt;span v-text=&quot;props.item.login&quot;&gt;&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/typeahead&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="page-header">API</h3>
         <h4>Note</h4>
         <ul>
           <li><p>Use <code>v-model</code> to bind the input value.</p></li>
@@ -116,32 +145,6 @@
             </p>
           </li>
         </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <demo-code-block demo-file="TypeaheadDoc.vue">
-        <pre><code>
-// Local data query sample
-&lt;typeahead v-model=&quot;model1&quot; :data=&quot;states&quot; item-key=&quot;name&quot;&gt;
-  &lt;label class=&quot;control-label&quot;&gt;States of America&lt;/label&gt;
-  &lt;input data-role=&quot;input&quot; class=&quot;form-control&quot; type=&quot;text&quot; placeholder=&quot;Type to search...&quot;&gt;
-&lt;/typeahead&gt;
-
-// Async data query &amp; custom template sample
-&lt;typeahead v-model=&quot;model2&quot;
-           async-src=&quot;https://api.github.com/search/users?q=&quot;
-           async-key=&quot;items&quot;
-           item-key=&quot;login&quot;&gt;
-  &lt;label class=&quot;control-label&quot;&gt;Github Users&lt;/label&gt;
-  &lt;input data-role=&quot;input&quot; class=&quot;form-control&quot; type=&quot;text&quot; placeholder=&quot;Type to search...&quot;&gt;
-  &lt;template slot=&quot;item&quot; scope=&quot;props&quot;&gt;
-    &lt;img width=&quot;18px&quot; height=&quot;18px&quot; :src=&quot;props.item.avatar_url&quot;&gt;
-    &lt;span v-text=&quot;props.item.login&quot;&gt;&lt;/span&gt;
-  &lt;/template&gt;
-&lt;/typeahead&gt;
-        </code></pre>
-        </demo-code-block>
       </div>
     </div>
   </section>

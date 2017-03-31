@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <div id="alertContainer">
           <alert v-for="(item,index) in alertList"
                  :closable="item.closable"
@@ -43,7 +43,21 @@
           </form>
         </div>
       </div>
-      <div class="col-md-12">
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="AlertDoc.vue">
+        <pre><code>
+&lt;alert type=&quot;warning&quot; :closable=&quot;true&quot; v-if=&quot;show&quot; @closed=&quot;show=false&quot;&gt;
+  &lt;strong&gt;Warning!&lt;/strong&gt; Better check yourself, you're not looking too good.
+&lt;/alert&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="page-header">API</h3>
         <h4>Props</h4>
         <ul>
           <li><p><code>closable: Boolean</code> Show close button on alert. default: true.</p></li>
@@ -66,17 +80,6 @@
               <code>v-for</code> manually due to child components can't change state of parent component.</p>
           </li>
         </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <demo-code-block demo-file="AlertDoc.vue">
-        <pre><code>
-&lt;alert type=&quot;warning&quot; :closable=&quot;true&quot; v-if=&quot;show&quot; @closed=&quot;show=false&quot;&gt;
-  &lt;strong&gt;Warning!&lt;/strong&gt; Better check yourself, you're not looking too good.
-&lt;/alert&gt;
-        </code></pre>
-        </demo-code-block>
       </div>
     </div>
   </section>

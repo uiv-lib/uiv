@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <div>
           <popover :title="title" :placement="placement" :trigger="trigger" :enable="enable">
             <button type="button" class="btn btn-default" data-role="trigger">Dynamic Popover</button>
@@ -65,7 +65,24 @@
           </form>
         </div>
       </div>
-      <div class="col-md-12">
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="PopoverDoc.vue">
+        <pre><code>
+&lt;popover title=&quot;Popover Title&quot;&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; data-role=&quot;trigger&quot;&gt;Popover Trigger&lt;/button&gt;
+  &lt;div slot=&quot;popover&quot;&gt;
+    &lt;h1&gt;Hello world!&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/popover&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="page-header">API</h3>
         <h4>Note</h4>
         <ul>
           <li>
@@ -107,20 +124,6 @@
           <li><p><code>popover</code> Replace as the popover body.</p></li>
           <li><p><code>default</code> Replace as the rest of the component (e.g. trigger stuffs).</p></li>
         </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <demo-code-block demo-file="PopoverDoc.vue">
-        <pre><code>
-&lt;popover title=&quot;Popover Title&quot;&gt;
-  &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; data-role=&quot;trigger&quot;&gt;Popover Trigger&lt;/button&gt;
-  &lt;div slot=&quot;popover&quot;&gt;
-    &lt;h1&gt;Hello world!&lt;/h1&gt;
-  &lt;/div&gt;
-&lt;/popover&gt;
-        </code></pre>
-        </demo-code-block>
       </div>
     </div>
   </section>

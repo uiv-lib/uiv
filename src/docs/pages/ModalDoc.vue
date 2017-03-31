@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <h3>Simple Modal with Callback</h3>
         <div class="well">
           <button type="button" class="btn btn-default" @click="$refs.modal1.toggle()">Show Modal 1</button>
@@ -68,7 +68,21 @@
           <p>This is a modal that can not close by backdrop click.</p>
         </modal>
       </div>
-      <div class="col-md-12">
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <demo-code-block demo-file="ModalDoc.vue">
+        <pre><code>
+&lt;modal title=&quot;Modal 1&quot;&gt;
+  &lt;p&gt;This is a simple modal.&lt;/p&gt;
+&lt;/modal&gt;
+        </code></pre>
+        </demo-code-block>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="page-header">API</h3>
         <h4>Props</h4>
         <ul>
           <li><p><code>title: String</code> The modal title (will be override if title slot exist).</p></li>
@@ -93,17 +107,6 @@
           <li><p><code>modal-show</code> Called after modal shown.</p></li>
           <li><p><code>modal-dismiss</code> Called after modal dismissed.</p></li>
         </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <demo-code-block demo-file="ModalDoc.vue">
-        <pre><code>
-&lt;modal title=&quot;Modal 1&quot;&gt;
-  &lt;p&gt;This is a simple modal.&lt;/p&gt;
-&lt;/modal&gt;
-        </code></pre>
-        </demo-code-block>
       </div>
     </div>
   </section>
