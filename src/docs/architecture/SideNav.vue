@@ -118,6 +118,7 @@
           height: 60px;
           top: 20px;
           left: 50%;
+          opacity: .8;
         }
       }
     }

@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import util from './dateUtils'
+  import util from '../../utils/dateUtils'
   export default {
     props: ['month', 'year'],
     data () {

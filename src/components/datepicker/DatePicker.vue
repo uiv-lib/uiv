@@ -3,7 +3,7 @@
     <date-view v-show="view==='d'"
                :month="currentMonth"
                :year="currentYear"
-               :date="value"
+               :date="valueDateObj"
                :today="now"
                :limit="limit"
                @month-change="onMonthChange"
@@ -41,12 +41,11 @@
   import DateView from './DateView.vue'
   import MonthView from './MonthView.vue'
   import YearView from './YearView.vue'
+  import dateUtils from '../../utils/dateUtils'
   export default {
     components: {DateView, MonthView, YearView},
     props: {
-      value: {
-        type: Date
-      },
+      value: {},
       width: {
         'default': 270
       },
@@ -63,19 +62,30 @@
         'default': true
       },
       limitFrom: {},
-      limitTo: {}
+      limitTo: {},
+      format: {
+        type: String,
+        'default': 'yyyy-MM-dd'
+      }
     },
     data () {
       return {
         show: false,
-        showByTrigger: false,
         now: new Date(),
-        currentMonth: {},
+        currentMonth: 0,
         currentYear: 0,
         view: 'd'
       }
     },
     computed: {
+      valueDateObj () {
+        let date = new Date(this.value)
+        if (isNaN(date.getTime())) {
+          return null
+        } else {
+          return date
+        }
+      },
       pickerStyle () {
         return {
           width: this.width + 'px'
@@ -105,12 +115,15 @@
       this.currentYear = this.now.getFullYear()
     },
     watch: {
-      value (val) {
-        try {
-          this.currentMonth = val.getMonth()
-          this.currentYear = val.getFullYear()
-        } catch (e) {
-          // Silent
+      value (val, oldVal) {
+        let date = new Date(val)
+        if (!isNaN(date.getTime())) {
+          if (this.limit && ((this.limit.from && date < this.limit.from) || (this.limit.to && date >= this.limit.to))) {
+            this.$emit('input', oldVal || '')
+          } else {
+            this.currentMonth = date.getMonth()
+            this.currentYear = date.getFullYear()
+          }
         }
       }
     },
@@ -126,9 +139,10 @@
           typeof date.date === 'number' &&
           typeof date.month === 'number' &&
           typeof date.year === 'number') {
-          this.$emit('input', new Date(date.year, date.month, date.date))
+          let _date = new Date(date.year, date.month, date.date)
+          this.$emit('input', dateUtils.stringify(_date, this.format))
         } else {
-          this.$emit('input', null)
+          this.$emit('input', '')
         }
       },
       onViewChange (view) {

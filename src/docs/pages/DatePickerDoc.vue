@@ -13,12 +13,13 @@
                      :today-btn="todayBtn"
                      :clear-btn="clearBtn"
                      :limit-from="limitFrom"
+                     :format="format"
                      :limit-to="limitTo"></date-picker>
         <h3>With Dropdown</h3>
         <form class="form-inline">
           <dropdown tag="div" class="form-group">
             <div class="input-group">
-              <input class="form-control" type="text" v-model="date" readonly>
+              <input class="form-control" type="text" v-model="date">
               <div class="input-group-btn">
                 <button class="btn btn-default" type="button" data-role="trigger">
                   <i class="glyphicon glyphicon-calendar"></i>
@@ -32,14 +33,15 @@
                              :clear-btn="clearBtn"
                              :limit-from="limitFrom"
                              :limit-to="limitTo"
+                             :format="format"
                              :close-on-selected="closeOnSelected"></date-picker>
               </li>
             </ul>
           </dropdown>
         </form>
         <br/>
+        <div class="alert alert-info" v-if="dateStr">You selected <b>{{dateStr}}</b>.</div>
         <div class="well">
-          <p v-if="date">You selected <b>{{date.toDateString()}}</b>.</p>
           <form class="form-horizontal">
             <div class="form-group">
               <div class="col-xs-12">
@@ -58,6 +60,20 @@
               <div class="col-md-6">
                 <label>Limit To</label>
                 <input type="text" class="form-control" v-model="limitTo" placeholder="E.g. 2017-03-31">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-6">
+                <label>Format (For Example)</label>
+                <select class="form-control" v-model="format">
+                  <option>yyyy-M-d</option>
+                  <option>yyyy-MM-dd</option>
+                  <option>yyyy-MMM-dd</option>
+                  <option>yyyy-MMMM-dd</option>
+                  <option>yyyy/MM/dd</option>
+                  <option>MM/dd/yyyy</option>
+                  <option>yyyy,MM,dd</option>
+                </select>
               </div>
             </div>
           </form>
@@ -93,19 +109,14 @@
         <h3 class="page-header">API</h3>
         <h4>Note</h4>
         <ul>
-          <li><p>Use <code>v-model: Date</code> to bind or change the selected date.</p></li>
-          <li>
-            <p>
-              Make sure to update the date object reference when try to change it from outside the component. E.g.
-              <code>model = new Date(model)</code>
-            </p>
-          </li>
+          <li><p>Use <code>v-model</code> to bind or change the selected date.</p></li>
         </ul>
         <h4>Props</h4>
         <ul>
           <li><p><code>width: Number</code> The date-picker's width in px. Default: 270.</p></li>
           <li><p><code>today-btn: Boolean</code> Show / hide the today button. Default: true.</p></li>
           <li><p><code>clear-btn: Boolean</code> Show / hide the clear button. Default: true.</p></li>
+          <li><p><code>format: String</code> The date format. Default: yyyy-MM-dd.</p></li>
           <li>
             <p><code>close-on-selected: Boolean</code> Close the date-picker after date selected. Default: true.</p>
           </li>
@@ -134,13 +145,24 @@
     components: {AnchorHeader, DemoCodeBlock, DatePicker, Dropdown},
     data () {
       return {
-        date: null,
+        date: '',
         show: false,
         clearBtn: true,
         todayBtn: true,
         closeOnSelected: true,
         limitFrom: '',
-        limitTo: ''
+        limitTo: '',
+        format: 'yyyy-MM-dd'
+      }
+    },
+    computed: {
+      dateStr () {
+        let date = new Date(this.date)
+        if (!isNaN(date.getTime())) {
+          return date.toDateString()
+        } else {
+          return ''
+        }
       }
     }
   }

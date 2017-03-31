@@ -42,7 +42,7 @@
 </template>
 
 <script>
-  import util from './dateUtils'
+  import util from '../../utils/dateUtils'
   export default {
     props: ['month', 'year', 'date', 'today', 'limit'],
     computed: {
@@ -90,10 +90,10 @@
             let afterFrom = true
             let beforeTo = true
             if (this.limit && this.limit.from) {
-              afterFrom = dateObj.getTime() >= this.limit.from.getTime()
+              afterFrom = dateObj >= this.limit.from
             }
             if (this.limit && this.limit.to) {
-              beforeTo = dateObj.getTime() <= this.limit.to.getTime()
+              beforeTo = dateObj < this.limit.to
             }
             date.disabled = !afterFrom || !beforeTo
             rows[i].push(date)
