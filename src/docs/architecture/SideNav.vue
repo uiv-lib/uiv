@@ -40,26 +40,39 @@
 </template>
 
 <script>
-  import types from '../../store/mutationTypes'
-  import Collapse from './../../components/collapse/Collapse.vue'
+  import {bus, events} from './../bus'
+
   export default {
-    components: {Collapse},
+    components: {},
+    props: ['isAsideShow'],
     data () {
       return {
-        query: ''
-      }
-    },
-    computed: {
-      isAsideShow () {
-        return this.$store.state.asideShow
-      },
-      asideItems () {
-        return this.$store.state.asideItems
+        asideItems: [
+          {path: '/getting-started', label: 'Getting Started'},
+          {
+            label: 'Components',
+            show: true,
+            items: [
+              {path: '/alert', label: 'Alert'},
+              {path: '/carousel', label: 'Carousel'},
+              {path: '/collapse', label: 'Collapse'},
+              {path: '/date-picker', label: 'Date Picker'},
+              {path: '/dropdown', label: 'Dropdown'},
+              {path: '/modal', label: 'Modal'},
+              {path: '/pagination', label: 'Pagination'},
+              {path: '/popover', label: 'Popover'},
+              {path: '/tabs', label: 'Tabs'},
+              {path: '/time-picker', label: 'Time Picker'},
+              {path: '/tooltip', label: 'Tooltip'},
+              {path: '/typeahead', label: 'Typeahead'}
+            ]
+          }
+        ]
       }
     },
     methods: {
       toggleAside (show) {
-        this.$store.commit(types.TOGGLE_ASIDE, show)
+        bus.$emit(events.TOGGLE_ASIDE, show)
       }
     }
   }

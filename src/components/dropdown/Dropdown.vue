@@ -38,7 +38,11 @@
       window.addEventListener('click', this.windowClicked)
     },
     beforeDestroy () {
-      this.removeDropdownFromBody()
+      try {
+        this.removeDropdownFromBody()
+      } catch (e) {
+        // Silent
+      }
       if (this.triggerEl) {
         this.triggerEl.removeEventListener('click', this.toggle)
       }

@@ -5,20 +5,13 @@
 </template>
 
 <script>
-  import types from '../../store/mutationTypes'
+  import {bus, events} from './../bus'
 
   export default {
-    data () {
-      return {}
-    },
-    computed: {
-      isAsideShow () {
-        return this.$store.state.asideShow
-      }
-    },
+    props: ['isAsideShow'],
     methods: {
       toggleAside () {
-        this.$store.commit(types.TOGGLE_ASIDE)
+        bus.$emit(events.TOGGLE_ASIDE, false)
       }
     }
   }

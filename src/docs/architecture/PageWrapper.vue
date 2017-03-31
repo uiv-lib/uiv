@@ -1,7 +1,7 @@
 <template>
   <section class="wrapper">
-    <backdrop></backdrop>
-    <side-nav></side-nav>
+    <backdrop :is-aside-show="isAsideShow"></backdrop>
+    <side-nav :is-aside-show="isAsideShow"></side-nav>
     <page></page>
   </section>
 </template>
@@ -10,9 +10,23 @@
   import SideNav from './SideNav.vue'
   import Page from './Page.vue'
   import Backdrop from './Backdrop.vue'
-
+  import {bus, events} from './../bus'
   export default {
-    components: { SideNav, Page, Backdrop }
+    components: {SideNav, Page, Backdrop},
+    data () {
+      return {
+        isAsideShow: false
+      }
+    },
+    mounted () {
+      bus.$on(events.TOGGLE_ASIDE, (show) => {
+        if (typeof show !== 'undefined') {
+          this.isAsideShow = !!show
+        } else {
+          this.isAsideShow = !this.isAsideShow
+        }
+      })
+    }
   }
 </script>
 

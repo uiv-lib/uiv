@@ -17,12 +17,12 @@
 </template>
 
 <script>
-  import types from '../../store/mutationTypes'
+  import {bus, events} from './../bus'
 
   export default {
     methods: {
       toggleAside () {
-        this.$store.commit(types.TOGGLE_ASIDE)
+        bus.$emit(events.TOGGLE_ASIDE)
       }
     }
   }

@@ -1,4 +1,3 @@
-import 'es6-promise/auto'
 import Vue from 'vue'
 import Alert from '@/components/alert/Alert.vue'
 

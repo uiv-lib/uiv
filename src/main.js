@@ -4,11 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'highlight.js/styles/github-gist.css'
 import './assets/css/common.less'
 
-import 'es6-promise/auto'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import PageWrapper from './docs/architecture/PageWrapper.vue'
-import store from './store/store'
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
@@ -43,7 +41,6 @@ router.afterEach(route => {
 
 /* eslint-disable no-new */
 new Vue({
-  store,
   router,
   el: '#app',
   template: '<PageWrapper/>',
