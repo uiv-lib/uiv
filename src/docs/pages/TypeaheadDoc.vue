@@ -51,7 +51,7 @@
           <label class="control-label">Github Users</label>
           <input data-role="input" class="form-control" type="text" placeholder="Type to search...">
           <template slot="item" scope="props">
-            <img width="18px" height="18px" :src="props.item.avatar_url">
+            <img width="22px" height="22px" :src=" props.item.avatar_url + '&s=40' ">
             <span v-text="props.item.login"></span>
           </template>
         </typeahead>
@@ -80,8 +80,7 @@
   &lt;label class=&quot;control-label&quot;&gt;Github Users&lt;/label&gt;
   &lt;input data-role=&quot;input&quot; class=&quot;form-control&quot; type=&quot;text&quot; placeholder=&quot;Type to search...&quot;&gt;
   &lt;template slot=&quot;item&quot; scope=&quot;props&quot;&gt;
-    &lt;img width=&quot;18px&quot; height=&quot;18px&quot; :src=&quot;props.item.avatar_url&quot;&gt;
-    &lt;span v-text=&quot;props.item.login&quot;&gt;&lt;/span&gt;
+    &lt;img width=&quot;22px&quot; height=&quot;22px&quot; :src=&quot; props.item.avatar_url + &#x27;&amp;s=40&#x27; &quot;&gt;
   &lt;/template&gt;
 &lt;/typeahead&gt;
         </code></pre>
@@ -128,7 +127,7 @@
           </li>
           <li>
             <p><code>async-delay: Number</code>
-              Debounce the input for specify milliseconds while using async call. Default: 500.
+              Debounce the input for specify milliseconds while using async call. Default: 200.
             </p>
           </li>
         </ul>
