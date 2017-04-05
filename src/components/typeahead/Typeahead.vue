@@ -58,7 +58,7 @@
       },
       asyncDelay: {
         type: Number,
-        'default': 500
+        'default': 200
       }
     },
     data () {
@@ -66,7 +66,7 @@
         inputEl: null,
         items: [],
         activeIndex: 0,
-        timeout: 0
+        timeoutID: 0
       }
     },
     computed: {
@@ -84,12 +84,16 @@
     mounted () {
       this.inputEl = this.$el.querySelector('[data-role="input"]')
       if (this.inputEl) {
+        this.inputEl.addEventListener('click', this.inputFocused)
+        this.inputEl.addEventListener('focus', this.inputFocused)
         this.inputEl.addEventListener('input', this.inputChanged)
         this.inputEl.addEventListener('keydown', this.inputKeyPressed)
       }
     },
     beforeDestroy () {
       if (this.inputEl) {
+        this.inputEl.removeEventListener('click', this.inputFocused)
+        this.inputEl.removeEventListener('focus', this.inputFocused)
         this.inputEl.removeEventListener('input', this.inputChanged)
         this.inputEl.removeEventListener('keydown', this.inputKeyPressed)
       }
@@ -115,26 +119,35 @@
           }
         }
       },
-      inputChanged () {
-        let value = this.inputEl.value
+      fetchItems (value, asyncDelay) {
         if (value) {
           if (this.data) {
             this.prepareItems(this.data)
             this.$refs.dropdown.toggle(!!this.items.length)
           } else if (this.asyncSrc) {
-            clearTimeout(this.timeout)
-            this.timeout = setTimeout(() => {
+            clearTimeout(this.timeoutID)
+            this.timeoutID = setTimeout(() => {
               utils.get(this.asyncSrc + value)
                 .then(data => {
                   this.prepareItems(this.asyncKey ? data[this.asyncKey] : data)
                   this.$refs.dropdown.toggle(!!this.items.length)
                 })
-            }, this.asyncDelay)
+            }, asyncDelay)
           }
         } else {
-          clearTimeout(this.timeout)
+          clearTimeout(this.timeoutID)
           this.$refs.dropdown.toggle(false)
         }
+      },
+      inputChanged () {
+        let value = this.inputEl.value
+        this.fetchItems(value, this.asyncDelay)
+        console.log(value)
+        this.$emit('input', this.forceSelect ? null : value)
+      },
+      inputFocused () {
+        let value = this.inputEl.value
+        this.fetchItems(value, 0)
         this.$emit('input', this.forceSelect ? null : value)
       },
       inputKeyPressed (event) {
