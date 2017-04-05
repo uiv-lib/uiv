@@ -36,13 +36,13 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      vm.$nextTick(() => {
+      setTimeout(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
         let selected = dropdown.querySelector('li.active a')
         expect(selected.textContent).to.equal('Alabama')
         done()
-      })
+      }, 300)
     })
   })
 
@@ -57,7 +57,7 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      vm.$nextTick(() => {
+      setTimeout(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
         let selected = dropdown.querySelector('li.active a')
@@ -69,7 +69,7 @@ describe('TypeaheadDoc', () => {
           expect(vm.model1).to.equal('Alabama')
           done()
         })
-      })
+      }, 300)
     })
   })
 
@@ -82,7 +82,7 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      vm.$nextTick(() => {
+      setTimeout(() => {
         expect(dropdown.className).to.contain('open')
         input.value = ''
         vm.$refs.typeahead1.inputChanged() // can't auto detect event
@@ -90,7 +90,7 @@ describe('TypeaheadDoc', () => {
           expect(dropdown.className).to.not.contain('open')
           done()
         })
-      })
+      }, 300)
     })
   })
 
@@ -103,13 +103,13 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'a'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      vm.$nextTick(() => {
+      setTimeout(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(10)
         let selected = dropdown.querySelector('li.active a')
         expect(selected.textContent).to.equal('Alabama')
         done()
-      })
+      }, 300)
     })
   })
 
@@ -138,7 +138,7 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      vm.$nextTick(() => {
+      setTimeout(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
         let selected = dropdown.querySelector('li.active a')
@@ -150,7 +150,7 @@ describe('TypeaheadDoc', () => {
           expect(vm.model1.name).to.equal('Alabama')
           done()
         })
-      })
+      }, 300)
     })
   })
 
@@ -164,7 +164,7 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      vm.$nextTick(() => {
+      setTimeout(() => {
         expect(vm.model1).not.exist
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
@@ -177,7 +177,7 @@ describe('TypeaheadDoc', () => {
           expect(vm.model1.name).to.equal('Alabama')
           done()
         })
-      })
+      }, 300)
     })
   })
 
@@ -207,7 +207,7 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      vm.$nextTick(() => {
+      setTimeout(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
         let selected = dropdown.querySelector('li.active a')
@@ -220,7 +220,7 @@ describe('TypeaheadDoc', () => {
           expect(vm.model1.name).to.equal('Alabama')
           done()
         })
-      })
+      }, 300)
     })
   })
 
@@ -233,7 +233,7 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      vm.$nextTick(() => {
+      setTimeout(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
         let selected = dropdown.querySelector('li.active a')
@@ -252,7 +252,7 @@ describe('TypeaheadDoc', () => {
             done()
           })
         })
-      })
+      }, 300)
     })
   })
 
@@ -265,7 +265,7 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      vm.$nextTick(() => {
+      setTimeout(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
         let selected = dropdown.querySelector('li.active a')
@@ -292,7 +292,7 @@ describe('TypeaheadDoc', () => {
             })
           })
         })
-      })
+      }, 300)
     })
   })
 
@@ -306,21 +306,21 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      vm.$nextTick(() => {
+      setTimeout(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(1)
         let selected = dropdown.querySelector('li.active a')
         expect(selected.textContent).to.equal('Palau')
         input.value = 'Ala'
         vm.$refs.typeahead1.inputChanged() // can't auto detect event
-        vm.$nextTick(() => {
+        setTimeout(() => {
           expect(dropdown.className).to.contain('open')
           expect(dropdown.querySelectorAll('li').length).to.equal(2)
           let selected = dropdown.querySelector('li.active a')
           expect(selected.textContent).to.equal('Alabama')
           done()
-        })
-      })
+        }, 300)
+      }, 300)
     })
   })
 
@@ -334,11 +334,11 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      vm.$nextTick(() => {
+      setTimeout(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(2)
         done()
-      })
+      }, 300)
     })
   })
 
