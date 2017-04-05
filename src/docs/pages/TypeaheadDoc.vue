@@ -32,7 +32,8 @@
                    :append-to-body="false"
                    :ignore-case="ignoreCase"
                    :match-start="matchStart"
-                   :force-select="forceSelect">
+                   :force-select="forceSelect"
+                   :open-on-focus="true">
           <label class="control-label">States of America</label>
           <input data-role="input" class="form-control" type="text" placeholder="Type to search...">
         </typeahead>
@@ -112,7 +113,16 @@
               Force user to select from the options or the model will be empty. Default: false.</p>
           </li>
           <li>
+            <p><code>open-on-focus: Boolean</code>
+              Open the typeahead dropdown on focus. Default: true.</p>
+          </li>
+          <li>
             <p><code>limit: Number</code> Limit the options size. Default: 10.</p>
+          </li>
+          <li>
+            <p><code>debounce: Number</code>
+              Debounce the input for specify milliseconds. Default: 200.
+            </p>
           </li>
           <li>
             <p><code>async-src: String</code>
@@ -123,11 +133,6 @@
           <li>
             <p><code>async-key: String</code>
               The async JSON key to render, leave blank to use the original json object (should be Array).
-            </p>
-          </li>
-          <li>
-            <p><code>async-delay: Number</code>
-              Debounce the input for specify milliseconds while using async call. Default: 200.
             </p>
           </li>
         </ul>

@@ -56,9 +56,13 @@
       asyncKey: {
         type: String
       },
-      asyncDelay: {
+      debounce: {
         type: Number,
         'default': 200
+      },
+      openOnFocus: {
+        type: Boolean,
+        'default': true
       }
     },
     data () {
@@ -84,7 +88,6 @@
     mounted () {
       this.inputEl = this.$el.querySelector('[data-role="input"]')
       if (this.inputEl) {
-        this.inputEl.addEventListener('click', this.inputFocused)
         this.inputEl.addEventListener('focus', this.inputFocused)
         this.inputEl.addEventListener('input', this.inputChanged)
         this.inputEl.addEventListener('keydown', this.inputKeyPressed)
@@ -92,7 +95,6 @@
     },
     beforeDestroy () {
       if (this.inputEl) {
-        this.inputEl.removeEventListener('click', this.inputFocused)
         this.inputEl.removeEventListener('focus', this.inputFocused)
         this.inputEl.removeEventListener('input', this.inputChanged)
         this.inputEl.removeEventListener('keydown', this.inputKeyPressed)
@@ -119,36 +121,35 @@
           }
         }
       },
-      fetchItems (value, asyncDelay) {
+      fetchItems (value, debounce) {
+        clearTimeout(this.timeoutID)
         if (value) {
-          if (this.data) {
-            this.prepareItems(this.data)
-            this.$refs.dropdown.toggle(!!this.items.length)
-          } else if (this.asyncSrc) {
-            clearTimeout(this.timeoutID)
-            this.timeoutID = setTimeout(() => {
+          this.timeoutID = setTimeout(() => {
+            if (this.data) {
+              this.prepareItems(this.data)
+              this.$refs.dropdown.toggle(!!this.items.length)
+            } else if (this.asyncSrc) {
               utils.get(this.asyncSrc + value)
                 .then(data => {
                   this.prepareItems(this.asyncKey ? data[this.asyncKey] : data)
                   this.$refs.dropdown.toggle(!!this.items.length)
                 })
-            }, asyncDelay)
-          }
+            }
+          }, debounce)
         } else {
-          clearTimeout(this.timeoutID)
           this.$refs.dropdown.toggle(false)
         }
       },
       inputChanged () {
         let value = this.inputEl.value
-        this.fetchItems(value, this.asyncDelay)
-        console.log(value)
+        this.fetchItems(value, this.debounce)
         this.$emit('input', this.forceSelect ? null : value)
       },
       inputFocused () {
-        let value = this.inputEl.value
-        this.fetchItems(value, 0)
-        this.$emit('input', this.forceSelect ? null : value)
+        if (this.openOnFocus) {
+          let value = this.inputEl.value
+          this.fetchItems(value, this.debounce) // If set to 0 on sync case dropdown won't open
+        }
       },
       inputKeyPressed (event) {
         if (this.$refs.dropdown.show) {
