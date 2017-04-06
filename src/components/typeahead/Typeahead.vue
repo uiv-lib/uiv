@@ -2,7 +2,7 @@
   <div>
     <slot></slot>
     <dropdown ref="dropdown" :append-to-body="appendToBody">
-      <button data-role="trigger" type="button" class="hidden"></button>
+      <button data-role="trigger" type="button" class="typeahead hidden"></button>
       <ul slot="dropdown" class="dropdown-menu">
         <li v-for="(item,index) in items" :class="{active:activeIndex===index}">
           <a href="javascript:void(0)" @click="selectItem(item)">
@@ -90,6 +90,7 @@
       this.inputEl = this.$el.querySelector('[data-role="input"]')
       if (this.inputEl) {
         domUtils.on(this.inputEl, domUtils.events.FOCUS, this.inputFocused)
+        domUtils.on(this.inputEl, domUtils.events.BLUR, this.inputBlured)
         domUtils.on(this.inputEl, domUtils.events.INPUT, this.inputChanged)
         domUtils.on(this.inputEl, domUtils.events.KEY_DOWN, this.inputKeyPressed)
       }
@@ -97,6 +98,7 @@
     beforeDestroy () {
       if (this.inputEl) {
         domUtils.off(this.inputEl, domUtils.events.FOCUS, this.inputFocused)
+        domUtils.off(this.inputEl, domUtils.events.BLUR, this.inputBlured)
         domUtils.off(this.inputEl, domUtils.events.INPUT, this.inputChanged)
         domUtils.off(this.inputEl, domUtils.events.KEY_DOWN, this.inputKeyPressed)
       }
@@ -124,21 +126,19 @@
       },
       fetchItems (value, debounce) {
         clearTimeout(this.timeoutID)
-        if (value) {
-          this.timeoutID = setTimeout(() => {
-            if (this.data) {
-              this.prepareItems(this.data)
-              this.$refs.dropdown.toggle(!!this.items.length)
-            } else if (this.asyncSrc) {
-              httpUtils.get(this.asyncSrc + value)
-                .then(data => {
-                  this.prepareItems(this.asyncKey ? data[this.asyncKey] : data)
-                  this.$refs.dropdown.toggle(!!this.items.length)
-                })
-            }
-          }, debounce)
-        } else {
+        if (value === '') {
           this.$refs.dropdown.toggle(false)
+        } else if (this.data) {
+          this.prepareItems(this.data)
+          this.$refs.dropdown.toggle(!!this.items.length)
+        } else if (this.asyncSrc) {
+          this.timeoutID = setTimeout(() => {
+            httpUtils.get(this.asyncSrc + value)
+              .then(data => {
+                this.prepareItems(this.asyncKey ? data[this.asyncKey] : data)
+                this.$refs.dropdown.toggle(!!this.items.length)
+              })
+          }, debounce)
         }
       },
       inputChanged () {
@@ -149,7 +149,16 @@
       inputFocused () {
         if (this.openOnFocus) {
           let value = this.inputEl.value
-          this.fetchItems(value, this.debounce) // If set to 0 on sync case dropdown won't open
+          this.fetchItems(value, 0) // ~~~If set to 0 on sync case dropdown won't open~~~ Fixed Dropdown click event listener
+        }
+      },
+      inputBlured () {
+        if (Element && !Element.prototype.matches) {
+          let proto = Element.prototype
+          proto.matches = proto.matchesSelector || proto.mozMatchesSelector || proto.msMatchesSelector || proto.oMatchesSelector || proto.webkitMatchesSelector
+        }
+        if (!this.$el.querySelector('.dropdown-menu').matches(':hover')) {
+          this.$refs.dropdown.toggle(false)
         }
       },
       inputKeyPressed (event) {
