@@ -20,9 +20,9 @@
         <h3>Accordion</h3>
         <div class="panel-group">
           <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading" role="button" @click="showAccordion1=!showAccordion1">
               <h4 class="panel-title">
-                <a role="button" @click="showAccordion1=!showAccordion1">Collapsible Group Item #1</a>
+                Collapsible Group Item #1
               </h4>
             </div>
             <collapse :show="showAccordion1">
@@ -33,9 +33,9 @@
             </collapse>
           </div>
           <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading" role="button" @click="showAccordion2=!showAccordion2">
               <h4 class="panel-title">
-                <a role="button" @click="showAccordion2=!showAccordion2">Collapsible Group Item #2</a>
+                Collapsible Group Item #2
               </h4>
             </div>
             <collapse :show="showAccordion2">
@@ -46,9 +46,9 @@
             </collapse>
           </div>
           <div class="panel panel-info">
-            <div class="panel-heading">
+            <div class="panel-heading" role="button" @click="showAccordion3=!showAccordion3">
               <h4 class="panel-title">
-                <a role="button" @click="showAccordion3=!showAccordion3">Collapsible Group Item #3</a>
+                Collapsible Group Item #3
               </h4>
             </div>
             <collapse :show="showAccordion3">
