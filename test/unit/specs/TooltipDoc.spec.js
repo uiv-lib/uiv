@@ -30,6 +30,28 @@ describe('TooltipDoc', () => {
     })
   })
 
+  it('should be able to change trigger to hover-focus', (done) => {
+    const Constructor = Vue.extend(TooltipDoc)
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    const vm = new Constructor().$mount('#app')
+    vm.trigger = 'hover-focus'
+    vm.$nextTick(() => {
+      expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+      vm.$el.querySelectorAll('button')[1].focus()
+      setTimeout(() => {
+        expect(document.querySelectorAll('.tooltip').length).to.equal(1)
+        vm.$el.querySelectorAll('button')[1].blur()
+        setTimeout(() => {
+          expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+          app.remove()
+          done()
+        }, 200)
+      }, 200)
+    })
+  })
+
   it('should be able to keep tooltip show on hover if using hover trigger', (done) => {
     const Constructor = Vue.extend(TooltipDoc)
     let app = document.createElement('div')

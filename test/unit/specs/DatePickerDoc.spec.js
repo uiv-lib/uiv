@@ -333,7 +333,7 @@ describe('DatePickerDoc', () => {
     })
   })
 
-  it('should be able to limit date range', (done) => {
+  it('should be able to limit date range and render correct date view', (done) => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     let tomorrow = new Date()
@@ -347,6 +347,21 @@ describe('DatePickerDoc', () => {
       if (dateInRange.length > 1) {
         expect(dateInRange[1].textContent).to.equal(tomorrow.getDate().toString())
       }
+      done()
+    })
+  })
+
+  it('should be able to limit date range and not able to set invalid date', (done) => {
+    const Constructor = Vue.extend(DatePickerDoc)
+    const vm = new Constructor().$mount()
+    let tomorrow = new Date()
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    vm.limitFrom = '2017-01-01'
+    vm.limitTo = '2017-01-03'
+    vm.date = '2017-01-04'
+    let input = vm.$el.querySelector('input')
+    vm.$nextTick(() => {
+      expect(input.value).to.equal('')
       done()
     })
   })

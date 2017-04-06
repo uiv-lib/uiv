@@ -8,7 +8,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     productionSourceMap: true,
-    productionGzip: false,
+    productionGzip: true,
     productionGzipExtensions: ['js', 'css']
   },
   build: {

@@ -22,16 +22,14 @@ export default {
       if (request.readyState === 4) {
         let e = {status: request.status}
         if (request.status === 200) {
-          try {
-            let response = request.responseText
-            for (let i in data.done) {
+          let response = request.responseText
+          for (let i in data.done) {
+            if (data.done.hasOwnProperty(i) && typeof data.done[i] === 'function') {
               let value = data.done[i](response)
-              if (value !== undefined) {
+              if (typeof value !== 'undefined') {
                 response = value
               }
             }
-          } catch (err) {
-            data.fail.forEach(fail => fail(err))
           }
         } else {
           data.fail.forEach(fail => fail(e))

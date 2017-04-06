@@ -33,6 +33,28 @@ describe('PopoverDoc', () => {
     })
   })
 
+  it('should be able change trigger to hover-focus', (done) => {
+    const Constructor = Vue.extend(PopoverDoc)
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    const vm = new Constructor().$mount('#app')
+    vm.trigger = 'hover-focus'
+    vm.$nextTick(() => {
+      expect(document.querySelectorAll('.popover').length).to.equal(0)
+      vm.$el.querySelectorAll('button')[0].focus()
+      setTimeout(() => {
+        expect(document.querySelectorAll('.popover').length).to.equal(1)
+        vm.$el.querySelectorAll('button')[0].blur()
+        setTimeout(() => {
+          expect(document.querySelectorAll('.popover').length).to.equal(0)
+          app.remove()
+          done()
+        }, 200)
+      }, 200)
+    })
+  })
+
   it('should be able to change trigger to click', (done) => {
     const Constructor = Vue.extend(PopoverDoc)
     let app = document.createElement('div')

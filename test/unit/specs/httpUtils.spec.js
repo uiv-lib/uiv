@@ -31,4 +31,21 @@ describe('httpUtils', () => {
     sinon.assert.called(then)
     sinon.assert.called(always)
   })
+
+  it('should be able to get with fail callback', () => {
+    let then = sinon.spy()
+    let err = sinon.spy()
+    let always = sinon.spy()
+    utils.get('/some/path')
+      .then(then)
+      .catch(err)
+      .always(always)
+    server.requests[1].respond(
+      500,
+      {'Content-Type': 'application/json'},
+      JSON.stringify([{id: 1, text: 'Provide examples', done: true}])
+    )
+    sinon.assert.called(err)
+    sinon.assert.called(always)
+  })
 })
