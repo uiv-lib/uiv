@@ -43,16 +43,16 @@
           <tab title="Tab in Group 2" group="Tab Group">
             <p>This is Tab in group 2.</p>
           </tab>
-		  <form slot="rightside" class="form-inline" @click.stop.prevent>
-	        <label>Something rightside</label>
-            <select class="form-control">
-              <option>option1</option>
-              <option>option2</option>
-              <option>option3</option>
-              <option>option4</option>
-            </select>
-			<button type="button" class="btn btn-success">Button</button>
-		  </form>
+          <form slot="rightside" class="form-inline" @click.stop.prevent>
+              <label>Something rightside</label>
+              <select class="form-control">
+                <option>option1</option>
+                <option>option2</option>
+                <option>option3</option>
+                <option>option4</option>
+              </select>
+            <button type="button" class="btn btn-success">Button</button>
+          </form>
         </tabs>
       </div>
     </div>
@@ -88,7 +88,7 @@
         </ul>
         <h4>Slots</h4>
         <ul>
-		  <li><p><code>defalut</code> The tab content.</p></li>
+		      <li><p><code>defalut</code> The tab content.</p></li>
           <li><p><code>rightside</code> The snip at rightside of tabbar.</p></li>
         </ul>
         <h4>Events (Tabs)</h4>
