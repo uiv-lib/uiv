@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div>
-          <popover :title="title" :placement="placement" :trigger="trigger" :enable="enable">
+          <popover :title="title" :placement="placement" :trigger="trigger" :enable="enable" ref="popover">
             <button type="button" class="btn btn-default" data-role="trigger">Dynamic Popover</button>
             <div slot="popover">
               <h1>Hello world!</h1>
@@ -58,7 +58,9 @@
                 <select class="form-control" v-model="trigger">
                   <option>hover</option>
                   <option>focus</option>
+                  <option>hover-focus</option>
                   <option>click</option>
+                  <option>outside-click</option>
                 </select>
               </div>
             </div>
@@ -108,8 +110,15 @@
           <li>
             <p>
               <code>trigger: String</code>
-              The popover trigger event, support hover / focus / click. Default: click.
+              The popover trigger event, support:
             </p>
+            <ul>
+              <li><p>hover -> show on mouseenter, hide on mouseleave (Default)</p></li>
+              <li><p>focus -> show on focus, hide on blur</p></li>
+              <li><p>hover-focus -> combination of hover and focus trigger</p></li>
+              <li><p>click -> toggle on trigger click</p></li>
+              <li><p>outside-click -> same as click, but not close on popover click and close on outside click</p></li>
+            </ul>
           </li>
           <li><p><code>append-to: String</code> Element selector that the popover append to. Default: body.</p></li>
           <li>
@@ -123,6 +132,11 @@
         <ul>
           <li><p><code>popover</code> Replace as the popover body.</p></li>
           <li><p><code>default</code> Replace as the rest of the component (e.g. trigger stuffs).</p></li>
+        </ul>
+        <h4>Events</h4>
+        <ul>
+          <li><p><code>popover-show</code> Fire after popover show.</p></li>
+          <li><p><code>popover-hide</code> Fire after popover hide.</p></li>
         </ul>
       </div>
     </div>

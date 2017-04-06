@@ -30,6 +30,79 @@ describe('TooltipDoc', () => {
     })
   })
 
+  it('should be able to keep tooltip show on hover if using hover trigger', (done) => {
+    const Constructor = Vue.extend(TooltipDoc)
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    const vm = new Constructor().$mount('#app')
+    vm.trigger = 'hover'
+    let tooltip = vm.$refs.tooltip
+    vm.$nextTick(() => {
+      expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+      tooltip.show() // trigger hover
+      tooltip.hide() // trigger leave
+      tooltip.showOnHover() // tooltip hover
+      setTimeout(() => {
+        expect(document.querySelectorAll('.tooltip').length).to.equal(1)
+        tooltip.hideOnLeave() // tooltip leave
+        setTimeout(() => {
+          expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+          app.remove()
+          done()
+        }, 200)
+      }, 200)
+    })
+  })
+
+  it('should be able to not keep tooltip show on hover if not using hover trigger', (done) => {
+    const Constructor = Vue.extend(TooltipDoc)
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    const vm = new Constructor().$mount('#app')
+    vm.trigger = 'focus'
+    let tooltip = vm.$refs.tooltip
+    vm.$nextTick(() => {
+      expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+      tooltip.show() // trigger focus
+      tooltip.hide() // trigger blur
+      tooltip.hideOnLeave() // tooltip leave
+      tooltip.showOnHover() // tooltip hover
+      setTimeout(() => {
+        expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+        app.remove()
+        done()
+      }, 200)
+    })
+  })
+
+  it('should be able to toggle correctly on fast click', (done) => {
+    const Constructor = Vue.extend(TooltipDoc)
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    const vm = new Constructor().$mount('#app')
+    vm.trigger = 'click'
+    vm.$nextTick(() => {
+      expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+      vm.$el.querySelectorAll('button')[1].click()
+      vm.$el.querySelectorAll('button')[1].click()
+      vm.$el.querySelectorAll('button')[1].click()
+      setTimeout(() => {
+        expect(document.querySelectorAll('.tooltip').length).to.equal(1)
+        vm.$el.querySelectorAll('button')[1].click()
+        vm.$el.querySelectorAll('button')[1].click()
+        vm.$el.querySelectorAll('button')[1].click()
+        setTimeout(() => {
+          expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+          app.remove()
+          done()
+        }, 200)
+      }, 200)
+    })
+  })
+
   it('should be able to change trigger to click', (done) => {
     const Constructor = Vue.extend(TooltipDoc)
     let app = document.createElement('div')
@@ -43,6 +116,32 @@ describe('TooltipDoc', () => {
       setTimeout(() => {
         expect(document.querySelectorAll('.tooltip').length).to.equal(1)
         vm.$el.querySelectorAll('button')[1].click()
+        setTimeout(() => {
+          expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+          app.remove()
+          done()
+        }, 200)
+      }, 200)
+    })
+  })
+
+  it('should be able to change trigger to outside-click', (done) => {
+    const Constructor = Vue.extend(TooltipDoc)
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    const vm = new Constructor().$mount('#app')
+    vm.trigger = 'outside-click'
+    let tooltip = vm.$refs.tooltip
+    let button = vm.$el.querySelectorAll('button')[1]
+    let otherButton = vm.$el.querySelectorAll('button')[2]
+    vm.$nextTick(() => {
+      expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+      button.click()
+      setTimeout(() => {
+        expect(document.querySelectorAll('.tooltip').length).to.equal(1)
+        let event = {target: otherButton}
+        tooltip.windowClicked(event) // other button clicked
         setTimeout(() => {
           expect(document.querySelectorAll('.tooltip').length).to.equal(0)
           app.remove()

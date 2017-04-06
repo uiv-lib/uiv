@@ -33,20 +33,16 @@
     mounted () {
       this.triggerEl = this.$el.querySelector('[data-role="trigger"]')
       if (this.triggerEl) {
-        this.triggerEl.addEventListener('click', this.toggle)
+        utils.on(this.triggerEl, utils.events.CLICK, this.toggle)
       }
-      window.addEventListener('click', this.windowClicked)
+      utils.on(window, utils.events.CLICK, this.windowClicked)
     },
     beforeDestroy () {
-      try {
-        this.removeDropdownFromBody()
-      } catch (e) {
-        // Silent
-      }
+      this.removeDropdownFromBody()
       if (this.triggerEl) {
-        this.triggerEl.removeEventListener('click', this.toggle)
+        utils.off(this.triggerEl, utils.events.CLICK, this.toggle)
       }
-      window.removeEventListener('click', this.windowClicked)
+      utils.off(window, utils.events.CLICK, this.windowClicked)
     },
     methods: {
       toggle (show) {
@@ -55,34 +51,38 @@
         } else {
           this.show = !this.show
         }
-        if (this.appendToBody && this.$slots.dropdown && this.$slots.dropdown.length) {
-          if (this.show) {
-            this.appendDropdownToBody()
-          } else {
-            this.removeDropdownFromBody()
-          }
+        if (this.appendToBody) {
+          this.show ? this.appendDropdownToBody() : this.removeDropdownFromBody()
         }
       },
       windowClicked (event) {
         if (this.triggerEl && !this.triggerEl.contains(event.target)) {
           this.show = false
-          if (this.appendToBody && this.$slots.dropdown && this.$slots.dropdown.length) {
+          if (this.appendToBody) {
             this.removeDropdownFromBody()
           }
         }
       },
       appendDropdownToBody () {
-        let el = this.$slots.dropdown[0].elm
-        el.style.display = 'block'
-        document.body.appendChild(el)
-        utils.setDropdownPosition(el, this.$el)
+        try {
+          let el = this.$slots.dropdown[0].elm
+          el.style.display = 'block'
+          document.body.appendChild(el)
+          utils.setDropdownPosition(el, this.$el)
+        } catch (e) {
+          // Silent
+        }
       },
       removeDropdownFromBody () {
-        let el = this.$slots.dropdown[0].elm
-        el.style.display = null
-        el.style.top = null
-        el.style.left = null
-        this.$el.appendChild(el)
+        try {
+          let el = this.$slots.dropdown[0].elm
+          el.style.display = null
+          el.style.top = null
+          el.style.left = null
+          this.$el.appendChild(el)
+        } catch (e) {
+          // Silent
+        }
       }
     }
   }

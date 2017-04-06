@@ -55,6 +55,106 @@ describe('PopoverDoc', () => {
     })
   })
 
+  it('should be able to keep popover show on hover if using hover trigger', (done) => {
+    const Constructor = Vue.extend(PopoverDoc)
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    const vm = new Constructor().$mount('#app')
+    vm.trigger = 'hover'
+    let popover = vm.$refs.popover
+    vm.$nextTick(() => {
+      expect(document.querySelectorAll('.popover').length).to.equal(0)
+      popover.show() // popover hover
+      popover.hide() // popover leave
+      popover.showOnHover() // popover hover
+      setTimeout(() => {
+        expect(document.querySelectorAll('.popover').length).to.equal(1)
+        popover.hideOnLeave() // popover leave
+        setTimeout(() => {
+          expect(document.querySelectorAll('.popover').length).to.equal(0)
+          app.remove()
+          done()
+        }, 200)
+      }, 200)
+    })
+  })
+
+  it('should be able to not keep popover show on hover if not using hover trigger', (done) => {
+    const Constructor = Vue.extend(PopoverDoc)
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    const vm = new Constructor().$mount('#app')
+    vm.trigger = 'focus'
+    let popover = vm.$refs.popover
+    vm.$nextTick(() => {
+      expect(document.querySelectorAll('.popover').length).to.equal(0)
+      popover.show() // popover hover
+      popover.hide() // popover leave
+      popover.hideOnLeave() // popover leave
+      popover.showOnHover() // popover hover
+      setTimeout(() => {
+        expect(document.querySelectorAll('.popover').length).to.equal(0)
+        app.remove()
+        done()
+      }, 200)
+    })
+  })
+
+  it('should be able to toggle correctly on fast click', (done) => {
+    const Constructor = Vue.extend(PopoverDoc)
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    const vm = new Constructor().$mount('#app')
+    vm.trigger = 'click'
+    let button = vm.$el.querySelectorAll('button')[0]
+    vm.$nextTick(() => {
+      expect(document.querySelectorAll('.popover').length).to.equal(0)
+      button.click()
+      button.click()
+      button.click()
+      setTimeout(() => {
+        expect(document.querySelectorAll('.popover').length).to.equal(1)
+        button.click()
+        button.click()
+        button.click()
+        setTimeout(() => {
+          expect(document.querySelectorAll('.popover').length).to.equal(0)
+          app.remove()
+          done()
+        }, 200)
+      }, 200)
+    })
+  })
+
+  it('should be able to change trigger to outside-click', (done) => {
+    const Constructor = Vue.extend(PopoverDoc)
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    const vm = new Constructor().$mount('#app')
+    vm.trigger = 'outside-click'
+    let popover = vm.$refs.popover
+    let button = vm.$el.querySelectorAll('button')[0]
+    let otherButton = vm.$el.querySelectorAll('button')[1]
+    vm.$nextTick(() => {
+      expect(document.querySelectorAll('.popover').length).to.equal(0)
+      button.click()
+      setTimeout(() => {
+        expect(document.querySelectorAll('.popover').length).to.equal(1)
+        let event = {target: otherButton}
+        popover.windowClicked(event)
+        setTimeout(() => {
+          expect(document.querySelectorAll('.popover').length).to.equal(0)
+          app.remove()
+          done()
+        }, 200)
+      }, 200)
+    })
+  })
+
   it('should be able to disable', (done) => {
     let app = document.createElement('div')
     app.id = 'app'

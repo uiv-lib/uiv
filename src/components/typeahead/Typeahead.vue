@@ -17,7 +17,8 @@
 </template>
 
 <script>
-  import utils from './../../utils/httpUtils'
+  import httpUtils from './../../utils/httpUtils'
+  import domUtils from './../../utils/domUtils'
   import Dropdown from './../dropdown/Dropdown.vue'
 
   export default {
@@ -88,16 +89,16 @@
     mounted () {
       this.inputEl = this.$el.querySelector('[data-role="input"]')
       if (this.inputEl) {
-        this.inputEl.addEventListener('focus', this.inputFocused)
-        this.inputEl.addEventListener('input', this.inputChanged)
-        this.inputEl.addEventListener('keydown', this.inputKeyPressed)
+        domUtils.on(this.inputEl, domUtils.events.FOCUS, this.inputFocused)
+        domUtils.on(this.inputEl, domUtils.events.INPUT, this.inputChanged)
+        domUtils.on(this.inputEl, domUtils.events.KEY_DOWN, this.inputKeyPressed)
       }
     },
     beforeDestroy () {
       if (this.inputEl) {
-        this.inputEl.removeEventListener('focus', this.inputFocused)
-        this.inputEl.removeEventListener('input', this.inputChanged)
-        this.inputEl.removeEventListener('keydown', this.inputKeyPressed)
+        domUtils.off(this.inputEl, domUtils.events.FOCUS, this.inputFocused)
+        domUtils.off(this.inputEl, domUtils.events.INPUT, this.inputChanged)
+        domUtils.off(this.inputEl, domUtils.events.KEY_DOWN, this.inputKeyPressed)
       }
     },
     methods: {
@@ -129,7 +130,7 @@
               this.prepareItems(this.data)
               this.$refs.dropdown.toggle(!!this.items.length)
             } else if (this.asyncSrc) {
-              utils.get(this.asyncSrc + value)
+              httpUtils.get(this.asyncSrc + value)
                 .then(data => {
                   this.prepareItems(this.asyncKey ? data[this.asyncKey] : data)
                   this.$refs.dropdown.toggle(!!this.items.length)

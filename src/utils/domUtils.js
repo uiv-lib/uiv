@@ -1,6 +1,71 @@
 'use strict'
 
+const EVENTS = {
+  MOUSE_ENTER: 'mouseenter',
+  MOUSE_LEAVE: 'mouseleave',
+  FOCUS: 'focus',
+  BLUR: 'blur',
+  CLICK: 'click',
+  INPUT: 'input',
+  KEY_DOWN: 'keydown'
+}
+
+const TRIGGERS = {
+  CLICK: 'click',
+  HOVER: 'hover',
+  FOCUS: 'focus',
+  HOVER_FOCUS: 'hover-focus',
+  OUTSIDE_CLICK: 'outside-click'
+}
+
 export default {
+  events: EVENTS,
+  triggers: TRIGGERS,
+  on (element, event, handler) {
+    element.addEventListener(event, handler)
+  },
+  off (element, event, handler) {
+    element.removeEventListener(event, handler)
+  },
+  removeFromDom (element) {
+    try {
+      element.parentNode.removeChild(element)
+    } catch (e) {
+      // Silent
+    }
+  },
+  addClass (element, className) {
+    if (element.className) {
+      let classes = element.className.split(' ')
+      if (classes.indexOf(className) < 0) {
+        classes.push(className)
+        element.className = classes.join(' ')
+      }
+    } else {
+      element.className = className
+    }
+  },
+  removeClass (element, className) {
+    if (element.className) {
+      let classes = element.className.split(' ')
+      let newClasses = []
+      for (let i = 0, l = classes.length; i < l; i++) {
+        if (classes[i] !== className) {
+          newClasses.push(classes[i])
+        }
+      }
+      element.className = newClasses.join(' ')
+    }
+  },
+  hasClass (element, className) {
+    let classes = element.className.split(' ')
+    for (let i = 0, l = classes.length; i < l; i++) {
+      if (classes[i] === className) {
+        return true
+      }
+    }
+    return false
+  },
   setDropdownPosition (dropdown, trigger) {
     let doc = document.documentElement
     let containerScrollLeft = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0)

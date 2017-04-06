@@ -13,7 +13,7 @@
         </tooltip>
         <h3>Dynamic Example</h3>
         <form class="form-inline">
-          <tooltip :text="text" :placement="placement" :trigger="trigger" :enable="enable">
+          <tooltip :text="text" :placement="placement" :trigger="trigger" :enable="enable" ref="tooltip">
             <button type="button" class="btn btn-default">Tooltip Sample</button>
           </tooltip>
           <tooltip :text="text" :placement="placement" :trigger="trigger" :enable="enable">
@@ -55,7 +55,9 @@
                 <select class="form-control" v-model="trigger">
                   <option>hover</option>
                   <option>focus</option>
+                  <option>hover-focus</option>
                   <option>click</option>
+                  <option>outside-click</option>
                 </select>
               </div>
             </div>
@@ -96,8 +98,15 @@
           <li>
             <p>
               <code>trigger: String</code>
-              The tooltip trigger event, support hover / focus / click. Default: hover.
+              The tooltip trigger event, support:
             </p>
+            <ul>
+              <li><p>hover -> show on mouseenter, hide on mouseleave (Default)</p></li>
+              <li><p>focus -> show on focus, hide on blur</p></li>
+              <li><p>hover-focus -> combination of hover and focus trigger</p></li>
+              <li><p>click -> toggle on trigger click</p></li>
+              <li><p>outside-click -> same as click, but not close on tooltip click and close on outside click</p></li>
+            </ul>
           </li>
           <li><p><code>append-to: String</code> Element selector that the tooltip append to. Default: body.</p></li>
           <li>
@@ -106,6 +115,11 @@
               The tooltip show / hide transition time in ms. Default: 150.
             </p>
           </li>
+        </ul>
+        <h4>Events</h4>
+        <ul>
+          <li><p><code>tooltip-show</code> Fire after tooltip show.</p></li>
+          <li><p><code>tooltip-hide</code> Fire after tooltip hide.</p></li>
         </ul>
       </div>
     </div>

@@ -46,6 +46,27 @@ describe('TypeaheadDoc', () => {
     })
   })
 
+  it('should be able to open typeahead on input focus', (done) => {
+    const Constructor = Vue.extend(TypeaheadDoc)
+    const vm = new Constructor().$mount()
+    vm.$nextTick(() => {
+      let input = vm.$el.querySelectorAll('[data-role=input]')[0]
+      let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
+      expect(dropdown.className).to.not.contain('open')
+      input.value = 'ala'
+      let typeahead = vm.$refs.typeahead1
+      // input.focus()
+      typeahead.inputFocused()
+      setTimeout(() => {
+        expect(dropdown.className).to.contain('open')
+        expect(dropdown.querySelectorAll('li').length).to.equal(3)
+        let selected = dropdown.querySelector('li.active a')
+        expect(selected.textContent).to.equal('Alabama')
+        done()
+      }, 300)
+    })
+  })
+
   it('should be able to use string arrays as data', (done) => {
     const Constructor = Vue.extend(TypeaheadDoc)
     const vm = new Constructor().$mount()

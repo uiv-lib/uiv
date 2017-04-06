@@ -1,11 +1,36 @@
 <script>
   import utils from './../../utils/domUtils'
 
+  const SHOW_CLASS = 'in'
+
   export default {
     render (h) {
       return h(
         this.tag,
-        [this.$slots.default]
+        [
+          this.$slots.default,
+          h('div',
+            {
+              ref: 'tooltip',
+              attrs: {
+                role: 'tooltip'
+              },
+              'class': {
+                tooltip: true,
+                fade: true,
+                [this.placement]: true
+              },
+              on: {
+                mouseenter: this.showOnHover,
+                mouseleave: this.hideOnLeave
+              }
+            },
+            [
+              h('div', {'class': 'tooltip-arrow'}),
+              h('div', {'class': 'tooltip-inner'}, this.text)
+            ]
+          )
+        ]
       )
     },
     props: {
@@ -19,7 +44,7 @@
       },
       trigger: {
         type: String,
-        'default': 'hover'
+        'default': utils.triggers.HOVER
       },
       placement: {
         type: String,
@@ -40,19 +65,17 @@
     },
     data () {
       return {
-        tooltip: null
+        timeoutId: 0,
+        triggerEl: null
       }
     },
     mounted () {
       this.initListeners()
+      utils.removeFromDom(this.$refs.tooltip)
     },
     beforeDestroy () {
       this.clearListeners()
-      try {
-        this.tooltip.parentNode.removeChild(this.tooltip)
-      } catch (e) {
-        // Silent
-      }
+      utils.removeFromDom(this.$refs.tooltip)
     },
     watch: {
       trigger () {
@@ -62,64 +85,83 @@
     },
     methods: {
       initListeners () {
-        let el = this.$el.firstChild
-        if (el) {
-          if (this.trigger === 'hover') {
-            el.addEventListener('mouseenter', this.show)
-            el.addEventListener('mouseleave', this.hide)
-          } else if (this.trigger === 'focus') {
-            el.addEventListener('focus', this.show)
-            el.addEventListener('blur', this.hide)
+        this.triggerEl = this.$el.firstChild === this.$refs.tooltip ? null : this.$el.firstChild
+        if (this.triggerEl) {
+          if (this.trigger === utils.triggers.HOVER) {
+            utils.on(this.triggerEl, utils.events.MOUSE_ENTER, this.show)
+            utils.on(this.triggerEl, utils.events.MOUSE_LEAVE, this.hide)
+          } else if (this.trigger === utils.triggers.FOCUS) {
+            utils.on(this.triggerEl, utils.events.FOCUS, this.show)
+            utils.on(this.triggerEl, utils.events.BLUR, this.hide)
+          } else if (this.trigger === utils.triggers.HOVER_FOCUS) {
+            utils.on(this.triggerEl, utils.events.MOUSE_ENTER, this.show)
+            utils.on(this.triggerEl, utils.events.MOUSE_LEAVE, this.hide)
+            utils.on(this.triggerEl, utils.events.FOCUS, this.show)
+            utils.on(this.triggerEl, utils.events.BLUR, this.hide)
           } else {
-            el.addEventListener('click', this.toggle)
+            utils.on(this.triggerEl, utils.events.CLICK, this.toggle)
           }
         }
+        utils.on(window, utils.events.CLICK, this.windowClicked)
       },
       clearListeners () {
-        let el = this.$el.firstChild
-        if (el) {
-          el.removeEventListener('focus', this.show)
-          el.removeEventListener('blur', this.hide)
-          el.removeEventListener('mouseenter', this.show)
-          el.removeEventListener('mouseleave', this.hide)
-          el.removeEventListener('click', this.toggle)
+        if (this.triggerEl) {
+          utils.off(this.triggerEl, utils.events.FOCUS, this.show)
+          utils.off(this.triggerEl, utils.events.BLUR, this.hide)
+          utils.off(this.triggerEl, utils.events.MOUSE_ENTER, this.show)
+          utils.off(this.triggerEl, utils.events.MOUSE_LEAVE, this.hide)
+          utils.off(this.triggerEl, utils.events.CLICK, this.toggle)
         }
+        utils.off(window, utils.events.CLICK, this.windowClicked)
       },
       show () {
-        let el = this.$el.firstChild
-        if (!this.enable || !el) {
+        if (!this.enable || !this.triggerEl) {
           return
         }
-        let container = document.querySelector(this.appendTo)
-        this.tooltip = document.createElement('div')
-        this.tooltip.setAttribute('role', 'tooltip')
-        this.tooltip.className = `tooltip fade ${this.placement}`
-        this.tooltip.innerHTML = `<div class="tooltip-arrow"></div><div class="tooltip-inner">${this.text}</div>`
-        container.appendChild(this.tooltip)
-        utils.setTooltipPosition(this.tooltip, el, this.placement, this.appendTo)
-        this.tooltip.offsetHeight
-        this.tooltip.className += ' in'
+        let tooltip = this.$refs.tooltip
+        if (this.timeoutId > 0) {
+          clearTimeout(this.timeoutId)
+          this.timeoutId = 0
+        } else {
+          let container = document.querySelector(this.appendTo)
+          container.appendChild(tooltip)
+          utils.setTooltipPosition(tooltip, this.triggerEl, this.placement, this.appendTo)
+          tooltip.offsetHeight
+        }
+        utils.addClass(tooltip, SHOW_CLASS)
+        this.$emit('tooltip-show')
       },
       hide () {
-        let self = this
-        if (self.tooltip) {
-          ((tooltip) => {
-            tooltip.className = `tooltip fade ${self.placement}`
-            setTimeout(() => {
-              try {
-                tooltip.parentNode.removeChild(tooltip)
-              } catch (e) {
-                // Silent
-              }
-            }, self.transitionDuration)
-          })(self.tooltip)
-        }
+        clearTimeout(this.timeoutId)
+        utils.removeClass(this.$refs.tooltip, SHOW_CLASS)
+        this.timeoutId = setTimeout(() => {
+          utils.removeFromDom(this.$refs.tooltip)
+          this.timeoutId = 0
+          this.$emit('tooltip-hide')
+        }, this.transitionDuration)
       },
       toggle () {
-        if (this.tooltip && this.tooltip.className.indexOf('in') >= 0) {
+        if (utils.hasClass(this.$refs.tooltip, SHOW_CLASS)) {
           this.hide()
         } else {
           this.show()
+        }
+      },
+      showOnHover () {
+        if (this.trigger === utils.triggers.HOVER || this.trigger === utils.triggers.HOVER_FOCUS) {
+          this.show()
+        }
+      },
+      hideOnLeave () {
+        if (this.trigger === utils.triggers.HOVER || this.trigger === utils.triggers.HOVER_FOCUS) {
+          this.hide()
+        }
+      },
+      windowClicked (event) {
+        if (this.triggerEl && !this.triggerEl.contains(event.target) &&
+          this.trigger === utils.triggers.OUTSIDE_CLICK && !this.$refs.tooltip.contains(event.target) &&
+          utils.hasClass(this.$refs.tooltip, SHOW_CLASS)) {
+          this.hide()
         }
       }
     }
