@@ -56,7 +56,7 @@
         }
       },
       windowClicked (event) {
-        if (this.triggerEl && !this.triggerEl.contains(event.target)) {
+        if (this.triggerEl && !this.triggerEl.contains(event.target) && this.triggerEl.className !== 'typeahead hidden') {
           this.show = false
           if (this.appendToBody) {
             this.removeDropdownFromBody()
