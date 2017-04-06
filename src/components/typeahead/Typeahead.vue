@@ -1,9 +1,9 @@
 <template>
   <div>
     <slot></slot>
-    <dropdown ref="dropdown" :append-to-body="appendToBody">
-      <button data-role="trigger" type="button" class="typeahead hidden"></button>
-      <ul slot="dropdown" class="dropdown-menu">
+    <dropdown ref="dropdown" :append-to-body="appendToBody" :not-close-elements="elements">
+      <button data-role="trigger" type="button" class="hidden"></button>
+      <ul slot="dropdown" class="dropdown-menu" ref="dropdownMenu">
         <li v-for="(item,index) in items" :class="{active:activeIndex===index}">
           <a href="javascript:void(0)" @click="selectItem(item)">
             <slot name="item" :item="item">
@@ -71,7 +71,8 @@
         inputEl: null,
         items: [],
         activeIndex: 0,
-        timeoutID: 0
+        timeoutID: 0,
+        elements: []
       }
     },
     computed: {
@@ -89,6 +90,7 @@
     mounted () {
       this.inputEl = this.$el.querySelector('[data-role="input"]')
       if (this.inputEl) {
+        this.elements.push(this.inputEl)
         domUtils.on(this.inputEl, domUtils.events.FOCUS, this.inputFocused)
         domUtils.on(this.inputEl, domUtils.events.BLUR, this.inputBlured)
         domUtils.on(this.inputEl, domUtils.events.INPUT, this.inputChanged)
@@ -149,15 +151,12 @@
       inputFocused () {
         if (this.openOnFocus) {
           let value = this.inputEl.value
-          this.fetchItems(value, 0) // ~~~If set to 0 on sync case dropdown won't open~~~ Fixed Dropdown click event listener
+          this.fetchItems(value, 0)
         }
       },
       inputBlured () {
-        if (Element && !Element.prototype.matches) {
-          let proto = Element.prototype
-          proto.matches = proto.matchesSelector || proto.mozMatchesSelector || proto.msMatchesSelector || proto.oMatchesSelector || proto.webkitMatchesSelector
-        }
-        if (!this.$el.querySelector('.dropdown-menu').matches(':hover')) {
+        domUtils.ensureElementMatchesFunction()
+        if (!this.$refs.dropdownMenu.matches(':hover')) {
           this.$refs.dropdown.toggle(false)
         }
       },

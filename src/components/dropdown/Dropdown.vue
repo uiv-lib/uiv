@@ -22,6 +22,9 @@
       appendToBody: {
         type: Boolean,
         'default': false
+      },
+      notCloseElements: {
+        type: Array
       }
     },
     data () {
@@ -56,7 +59,16 @@
         }
       },
       windowClicked (event) {
-        if (this.triggerEl && !this.triggerEl.contains(event.target) && this.triggerEl.className !== 'typeahead hidden') {
+        let targetInNotCloseElements = false
+        if (this.notCloseElements) {
+          for (let i = 0, l = this.notCloseElements.length; i < l; i++) {
+            if (this.notCloseElements[i].contains(event.target)) {
+              targetInNotCloseElements = true
+              break
+            }
+          }
+        }
+        if (this.triggerEl && !this.triggerEl.contains(event.target) && !targetInNotCloseElements) {
           this.show = false
           if (this.appendToBody) {
             this.removeDropdownFromBody()

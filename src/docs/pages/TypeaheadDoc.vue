@@ -120,11 +120,6 @@
             <p><code>limit: Number</code> Limit the options size. Default: 10.</p>
           </li>
           <li>
-            <p><code>debounce: Number</code>
-              Debounce the input for specify milliseconds. Default: 200.
-            </p>
-          </li>
-          <li>
             <p><code>async-src: String</code>
               The ajax url to fetch data using GET method, query string will be append to the end of this prop value,
               should return JSON object or array.
@@ -133,6 +128,11 @@
           <li>
             <p><code>async-key: String</code>
               The async JSON key to render, leave blank to use the original json object (should be Array).
+            </p>
+          </li>
+          <li>
+            <p><code>debounce: Number</code>
+              Debounce the input for specify milliseconds while in async mode. Default: 200.
             </p>
           </li>
         </ul>

@@ -42,6 +42,12 @@ export default {
       // Silent
     }
   },
+  ensureElementMatchesFunction () {
+    if (Element && !Element.prototype.matches) {
+      let proto = Element.prototype
+      proto.matches = proto.matchesSelector || proto.mozMatchesSelector || proto.msMatchesSelector || proto.oMatchesSelector || proto.webkitMatchesSelector
+    }
+  },
   addClass (element, className) {
     if (element.className) {
       let classes = element.className.split(' ')
