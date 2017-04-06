@@ -2,6 +2,7 @@
   import utils from './../../utils/domUtils'
 
   const SHOW_CLASS = 'in'
+  const BASE_CLASS = 'popover fade'
 
   export default {
     render (h) {
@@ -10,11 +11,6 @@
           this.$slots.default,
           h('div',
             {
-              'class': {
-                popover: true,
-                fade: true,
-                [this.placement]: true
-              },
               style: {
                 display: 'block'
               },
@@ -48,7 +44,11 @@
       },
       placement: {
         type: String,
-        'default': 'top'
+        'default': utils.placements.TOP
+      },
+      autoPlacement: {
+        type: Boolean,
+        'default': true
       },
       appendTo: {
         type: String,
@@ -118,17 +118,18 @@
         if (!this.enable || !this.triggerEl) {
           return
         }
+        let popover = this.$refs.popover
         if (this.timeoutId > 0) {
           clearTimeout(this.timeoutId)
           this.timeoutId = 0
         } else {
-          let popover = this.$refs.popover
+          popover.className = `${BASE_CLASS} ${this.placement}`
           let container = document.querySelector(this.appendTo)
           container.appendChild(popover)
-          utils.setTooltipPosition(popover, this.triggerEl, this.placement, this.appendTo)
+          utils.setTooltipPosition(popover, this.triggerEl, this.placement, this.autoPlacement, this.appendTo)
           popover.offsetHeight
         }
-        utils.addClass(this.$refs.popover, SHOW_CLASS)
+        utils.addClass(popover, SHOW_CLASS)
         this.$emit('popover-show')
       },
       hide () {

@@ -18,9 +18,17 @@ const TRIGGERS = {
   OUTSIDE_CLICK: 'outside-click'
 }
 
+const PLACEMENTS = {
+  TOP: 'top',
+  RIGHT: 'right',
+  BOTTOM: 'bottom',
+  LEFT: 'left'
+}
+
 export default {
   events: EVENTS,
   triggers: TRIGGERS,
+  placements: PLACEMENTS,
   on (element, event, handler) {
     element.addEventListener(event, handler)
   },
@@ -75,7 +83,29 @@ export default {
     dropdown.style.top = containerScrollTop + rect.top + rect.height + 'px'
     dropdown.style.left = containerScrollLeft + rect.left + 'px'
   },
-  setTooltipPosition (tooltip, trigger, placement, appendToSelector) {
+  isAvailableAtPosition (trigger, popup, placement) {
+    let triggerRect = trigger.getBoundingClientRect()
+    let popupRect = popup.getBoundingClientRect()
+    let viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+    let viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+    let available
+    switch (placement) {
+      case PLACEMENTS.TOP:
+        available = triggerRect.top >= popupRect.height
+        break
+      case PLACEMENTS.RIGHT:
+        available = triggerRect.right + popupRect.width <= viewportWidth
+        break
+      case PLACEMENTS.BOTTOM:
+        available = triggerRect.bottom + popupRect.height <= viewportHeight
+        break
+      case PLACEMENTS.LEFT:
+        available = triggerRect.left - popupRect.width >= 0
+        break
+    }
+    return available
+  },
+  setTooltipPosition (tooltip, trigger, placement, auto, appendToSelector) {
     let container
     let containerScrollTop
     let containerScrollLeft
@@ -89,15 +119,32 @@ export default {
       containerScrollLeft = container.scrollLeft
       containerScrollTop = container.scrollTop
     }
+    // auto adjust placement
+    if (auto) {
+      let placements = [PLACEMENTS.TOP, PLACEMENTS.RIGHT, PLACEMENTS.BOTTOM, PLACEMENTS.LEFT]
+      if (!this.isAvailableAtPosition(trigger, tooltip, placement)) {
+        for (let i = 0, l = placements.length; i < l; i++) {
+          for (let j = 0; j < l; j++) {
+            this.removeClass(tooltip, placements[j])
+          }
+          this.addClass(tooltip, placements[i])
+          if (this.isAvailableAtPosition(trigger, tooltip, placements[i])) {
+            placement = placements[i]
+            break
+          }
+        }
+      }
+    }
+    // fix left and top for tooltip
     let rect = trigger.getBoundingClientRect()
     let tooltipRect = tooltip.getBoundingClientRect()
-    if (placement === 'bottom') {
+    if (placement === PLACEMENTS.BOTTOM) {
       tooltip.style.top = containerScrollTop + rect.top + rect.height + 'px'
       tooltip.style.left = containerScrollLeft + rect.left + rect.width / 2 - tooltipRect.width / 2 + 'px'
-    } else if (placement === 'left') {
+    } else if (placement === PLACEMENTS.LEFT) {
       tooltip.style.top = containerScrollTop + rect.top + rect.height / 2 - tooltipRect.height / 2 + 'px'
       tooltip.style.left = containerScrollLeft + rect.left - tooltipRect.width + 'px'
-    } else if (placement === 'right') {
+    } else if (placement === PLACEMENTS.RIGHT) {
       tooltip.style.top = containerScrollTop + rect.top + rect.height / 2 - tooltipRect.height / 2 + 'px'
       tooltip.style.left = containerScrollLeft + rect.left + rect.width + 'px'
     } else {

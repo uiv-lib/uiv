@@ -2,6 +2,7 @@
   import utils from './../../utils/domUtils'
 
   const SHOW_CLASS = 'in'
+  const BASE_CLASS = 'tooltip fade'
 
   export default {
     render (h) {
@@ -14,11 +15,6 @@
               ref: 'tooltip',
               attrs: {
                 role: 'tooltip'
-              },
-              'class': {
-                tooltip: true,
-                fade: true,
-                [this.placement]: true
               },
               on: {
                 mouseenter: this.showOnHover,
@@ -48,7 +44,11 @@
       },
       placement: {
         type: String,
-        'default': 'top'
+        'default': utils.placements.TOP
+      },
+      autoPlacement: {
+        type: Boolean,
+        'default': true
       },
       appendTo: {
         type: String,
@@ -123,9 +123,10 @@
           clearTimeout(this.timeoutId)
           this.timeoutId = 0
         } else {
+          tooltip.className = `${BASE_CLASS} ${this.placement}`
           let container = document.querySelector(this.appendTo)
           container.appendChild(tooltip)
-          utils.setTooltipPosition(tooltip, this.triggerEl, this.placement, this.appendTo)
+          utils.setTooltipPosition(tooltip, this.triggerEl, this.placement, this.autoPlacement, this.appendTo)
           tooltip.offsetHeight
         }
         utils.addClass(tooltip, SHOW_CLASS)

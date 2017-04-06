@@ -13,13 +13,16 @@
         </tooltip>
         <h3>Dynamic Example</h3>
         <form class="form-inline">
-          <tooltip :text="text" :placement="placement" :trigger="trigger" :enable="enable" ref="tooltip">
+          <tooltip :text="text" :placement="placement" :auto-placement="autoPlacement" :trigger="trigger"
+                   :enable="enable" ref="tooltip">
             <button type="button" class="btn btn-default">Tooltip Sample</button>
           </tooltip>
-          <tooltip :text="text" :placement="placement" :trigger="trigger" :enable="enable">
+          <tooltip :text="text" :placement="placement" :auto-placement="autoPlacement" :trigger="trigger"
+                   :enable="enable">
             <button type="button" class="btn btn-default">Another Sample</button>
           </tooltip>
-          <tooltip :text="text" :placement="placement" :trigger="trigger" :enable="enable">
+          <tooltip :text="text" :placement="placement" :auto-placement="autoPlacement" :trigger="trigger"
+                   :enable="enable">
             <input type="text" class="form-control" placeholder="An input samle">
           </tooltip>
         </form>
@@ -27,11 +30,19 @@
         <div class="well">
           <form class="form-horizontal">
             <div class="form-group">
-              <div class="col-md-6">
-                <label>Enable / Disable</label>
+              <div class="col-md-3 col-sm-6">
+                <label>Enable / Disable Tooltip</label>
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" v-model="enable"> Enable Tooltips
+                    <input type="checkbox" v-model="enable"> Enable
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <label>Auto Adjust Placement</label>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" v-model="autoPlacement"> Enable
                   </label>
                 </div>
               </div>
@@ -92,7 +103,14 @@
           <li>
             <p>
               <code>placement: String</code>
-              The tooltip placement, support top / bottom / left / right. Default: top.
+              The tooltip placement, support top / right / bottom / left. Default: top.
+            </p>
+          </li>
+          <li>
+            <p>
+              <code>auto-placement: Boolean</code>
+              Try to auto adjust the content placement if the set one does not have enough space to show. Try order:
+              top -> right -> bottom -> left, and use the set one if none of these matched. Default: true.
             </p>
           </li>
           <li>
@@ -138,6 +156,7 @@
       return {
         text: 'Some helpful text',
         placement: 'top',
+        autoPlacement: true,
         trigger: 'hover',
         enable: true
       }

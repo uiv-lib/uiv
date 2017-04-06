@@ -8,13 +8,22 @@
     <div class="row">
       <div class="col-xs-12">
         <div>
-          <popover :title="title" :placement="placement" :trigger="trigger" :enable="enable" ref="popover">
+          <popover :title="title"
+                   :placement="placement"
+                   :auto-placement="autoPlacement"
+                   :trigger="trigger"
+                   :enable="enable"
+                   ref="popover">
             <button type="button" class="btn btn-default" data-role="trigger">Dynamic Popover</button>
             <div slot="popover">
               <h1>Hello world!</h1>
             </div>
           </popover>
-          <popover :title="title" :placement="placement" :trigger="trigger" :enable="enable">
+          <popover :title="title"
+                   :placement="placement"
+                   :auto-placement="autoPlacement"
+                   :trigger="trigger"
+                   :enable="enable">
             <button type="button" class="btn btn-default" data-role="trigger">Functional Popover</button>
             <div slot="popover">
               <form>
@@ -30,11 +39,19 @@
         <div class="well">
           <form class="form-horizontal">
             <div class="form-group">
-              <div class="col-md-6">
-                <label>Enable / Disable</label>
+              <div class="col-md-3 col-sm-6">
+                <label>Enable / Disable Popover</label>
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" v-model="enable"> Enable Popover
+                    <input type="checkbox" v-model="enable"> Enable
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <label>Auto Adjust Placement</label>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" v-model="autoPlacement"> Enable
                   </label>
                 </div>
               </div>
@@ -109,6 +126,13 @@
           </li>
           <li>
             <p>
+              <code>auto-placement: Boolean</code>
+              Try to auto adjust the content placement if the set one does not have enough space to show. Try order:
+              top -> right -> bottom -> left, and use the set one if none of these matched. Default: true.
+            </p>
+          </li>
+          <li>
+            <p>
               <code>trigger: String</code>
               The popover trigger event, support:
             </p>
@@ -156,7 +180,8 @@
         enable: true,
         title: 'Popover Title',
         trigger: 'click',
-        placement: 'top'
+        placement: 'top',
+        autoPlacement: true
       }
     },
     methods: {}

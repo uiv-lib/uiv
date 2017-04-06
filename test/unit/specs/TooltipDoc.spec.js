@@ -221,6 +221,7 @@ describe('TooltipDoc', () => {
     const vm = new Constructor().$mount('#app')
     vm.trigger = 'focus'
     vm.placement = 'bottom'
+    vm.autoPlacement = false
     vm.$nextTick(() => {
       expect(document.querySelectorAll('.tooltip').length).to.equal(0)
       vm.$el.querySelectorAll('button')[1].focus()
@@ -243,6 +244,7 @@ describe('TooltipDoc', () => {
     const vm = new Constructor().$mount('#app')
     vm.trigger = 'focus'
     vm.placement = 'left'
+    vm.autoPlacement = false
     vm.$nextTick(() => {
       expect(document.querySelectorAll('.tooltip').length).to.equal(0)
       vm.$el.querySelectorAll('button')[1].focus()
@@ -265,6 +267,7 @@ describe('TooltipDoc', () => {
     const vm = new Constructor().$mount('#app')
     vm.trigger = 'focus'
     vm.placement = 'right'
+    vm.autoPlacement = false
     vm.$nextTick(() => {
       expect(document.querySelectorAll('.tooltip').length).to.equal(0)
       vm.$el.querySelectorAll('button')[1].focus()
