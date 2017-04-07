@@ -33,7 +33,7 @@
                    :ignore-case="ignoreCase"
                    :match-start="matchStart"
                    :force-select="forceSelect"
-                   :open-on-focus="true">
+                   :open-on-focus="openOnFocus">
           <label class="control-label">States of America</label>
           <input data-role="input" class="form-control" type="text" placeholder="Type to search...">
         </typeahead>
@@ -171,7 +171,8 @@
         states: states.data,
         forceSelect: false,
         ignoreCase: true,
-        matchStart: false
+        matchStart: false,
+        openOnFocus: true
       }
     }
   }

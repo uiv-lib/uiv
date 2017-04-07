@@ -70,13 +70,13 @@ describe('TypeaheadDoc', () => {
   it('should not be able to open typeahead on input focus if set param to false', (done) => {
     const Constructor = Vue.extend(TypeaheadDoc)
     const vm = new Constructor().$mount()
+    vm.openOnFocus = false
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       let typeahead = vm.$refs.typeahead1
-      typeahead.openOnFocus = false
       typeahead.inputFocused()
       vm.$nextTick(() => {
         expect(dropdown.className).not.contain('open')

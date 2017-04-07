@@ -7,7 +7,9 @@ const EVENTS = {
   BLUR: 'blur',
   CLICK: 'click',
   INPUT: 'input',
-  KEY_DOWN: 'keydown'
+  KEY_DOWN: 'keydown',
+  KEY_UP: 'keyup',
+  KEY_PRESS: 'keypress'
 }
 
 const TRIGGERS = {

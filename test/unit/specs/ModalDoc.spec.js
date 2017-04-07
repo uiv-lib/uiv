@@ -3,6 +3,15 @@ import ModalDoc from '@/docs/pages/ModalDoc.vue'
 import config from './../config'
 
 describe('ModalDoc', () => {
+  it('should be able to mount and destroy', (done) => {
+    const Constructor = Vue.extend(ModalDoc)
+    const vm = new Constructor().$mount()
+    vm.$nextTick(() => {
+      vm.$destroy()
+      done()
+    })
+  })
+
   it('should be able to open modal 1', (done) => {
     const Constructor = Vue.extend(ModalDoc)
     const vm = new Constructor().$mount()
@@ -11,8 +20,29 @@ describe('ModalDoc', () => {
     setTimeout(() => {
       expect(vm.$el.querySelector('.modal-backdrop')).to.exist
       expect(vm.$el.querySelector('.modal')).to.exist
-      expect(vm.$el.querySelector('.modal-body p').textContent).to.equal('This is a simple modal.')
+      expect(vm.$el.querySelector('.modal-title').textContent).to.equal('Modal 1')
       done()
+    }, config.transitionDuration)
+  })
+
+  it('should be able to close by esc key click', (done) => {
+    const Constructor = Vue.extend(ModalDoc)
+    const vm = new Constructor().$mount()
+    let trigger = vm.$el.querySelectorAll('button')[0]
+    trigger.click()
+    setTimeout(() => {
+      expect(vm.$el.querySelector('.modal-backdrop')).to.exist
+      expect(vm.$el.querySelector('.modal')).to.exist
+      expect(vm.$el.querySelector('.modal-title').textContent).to.equal('Modal 1')
+      vm.$refs.modal1.onKeyPress({keyCode: 28}) // not a esc key
+      vm.$nextTick(() => {
+        expect(vm.$refs.modal1.show).to.equal(true)
+        vm.$refs.modal1.onKeyPress({keyCode: 27}) // esc key
+        vm.$nextTick(() => {
+          expect(vm.$refs.modal1.show).to.equal(false)
+          done()
+        })
+      })
     }, config.transitionDuration)
   })
 
@@ -24,7 +54,7 @@ describe('ModalDoc', () => {
     setTimeout(() => {
       expect(vm.$el.querySelector('.modal-backdrop')).to.exist
       expect(vm.$el.querySelector('.modal')).to.exist
-      expect(vm.$el.querySelector('.modal-body p').textContent).to.equal('This is a simple modal.')
+      expect(vm.$el.querySelector('.modal-title').textContent).to.equal('Modal 1')
       vm.$el.querySelector('button.close').click()
       setTimeout(() => {
         expect(vm.$el.querySelector('.modal-backdrop')).not.exist
@@ -43,7 +73,7 @@ describe('ModalDoc', () => {
     setTimeout(() => {
       expect(vm.$el.querySelector('.modal-backdrop')).to.exist
       expect(vm.$el.querySelector('.modal')).to.exist
-      expect(vm.$el.querySelector('.modal-body p').textContent).to.equal('This is a simple modal.')
+      expect(vm.$el.querySelector('.modal-title').textContent).to.equal('Modal 1')
       vm.$el.querySelector('.modal-footer').querySelectorAll('button')[1].click()
       setTimeout(() => {
         expect(vm.$el.querySelector('.modal-backdrop')).not.exist
@@ -169,5 +199,17 @@ describe('ModalDoc', () => {
         done()
       }, config.transitionDuration)
     }, config.transitionDuration)
+  })
+
+  it('should be able to auto-focus on ok btn', (done) => {
+    const Constructor = Vue.extend(ModalDoc)
+    const vm = new Constructor().$mount()
+    let trigger = vm.$el.querySelectorAll('button')[8]
+    trigger.click()
+    setTimeout(() => {
+      // expect(vm.$refs.modal9.$el.querySelector('[data-action="auto-focus"]')).to.equal(vm.$refs.modal9.$el.querySelector(':focus'))
+      // have no idea how to get this focused element
+      done()
+    }, config.transitionDuration + 100)
   })
 })
