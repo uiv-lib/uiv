@@ -36,13 +36,13 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      setTimeout(() => {
+      vm.$nextTick(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
         let selected = dropdown.querySelector('li.active a')
         expect(selected.textContent).to.equal('Alabama')
         done()
-      }, 300)
+      })
     })
   })
 
@@ -57,13 +57,99 @@ describe('TypeaheadDoc', () => {
       let typeahead = vm.$refs.typeahead1
       // input.focus()
       typeahead.inputFocused()
-      setTimeout(() => {
+      vm.$nextTick(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
         let selected = dropdown.querySelector('li.active a')
         expect(selected.textContent).to.equal('Alabama')
         done()
-      }, 300)
+      })
+    })
+  })
+
+  it('should not be able to open typeahead on input focus if set param to false', (done) => {
+    const Constructor = Vue.extend(TypeaheadDoc)
+    const vm = new Constructor().$mount()
+    vm.$nextTick(() => {
+      let input = vm.$el.querySelectorAll('[data-role=input]')[0]
+      let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
+      expect(dropdown.className).to.not.contain('open')
+      input.value = 'ala'
+      let typeahead = vm.$refs.typeahead1
+      typeahead.openOnFocus = false
+      typeahead.inputFocused()
+      vm.$nextTick(() => {
+        expect(dropdown.className).not.contain('open')
+        done()
+      })
+    })
+  })
+
+  it('should be able to close typeahead on input blur', (done) => {
+    const Constructor = Vue.extend(TypeaheadDoc)
+    const vm = new Constructor().$mount()
+    vm.$nextTick(() => {
+      let input = vm.$el.querySelectorAll('[data-role=input]')[0]
+      let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
+      expect(dropdown.className).to.not.contain('open')
+      input.value = 'ala'
+      let typeahead = vm.$refs.typeahead1
+      // input.focus()
+      typeahead.inputFocused()
+      vm.$nextTick(() => {
+        expect(dropdown.className).to.contain('open')
+        typeahead.inputBlured()
+        vm.$nextTick(() => {
+          expect(dropdown.className).not.contain('open')
+          done()
+        })
+      })
+    })
+  })
+
+  it('should not close typeahead on input click', (done) => {
+    const Constructor = Vue.extend(TypeaheadDoc)
+    const vm = new Constructor().$mount()
+    vm.$nextTick(() => {
+      let input = vm.$el.querySelectorAll('[data-role=input]')[0]
+      let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
+      expect(dropdown.className).to.not.contain('open')
+      input.value = 'ala'
+      let typeahead = vm.$refs.typeahead1
+      // input.focus()
+      typeahead.inputFocused()
+      vm.$nextTick(() => {
+        expect(dropdown.className).to.contain('open')
+        input.click()
+        typeahead.$refs.dropdown.windowClicked({target: input})
+        vm.$nextTick(() => {
+          expect(dropdown.className).to.contain('open')
+          done()
+        })
+      })
+    })
+  })
+
+  it('should be able to close typeahead on window click', (done) => {
+    const Constructor = Vue.extend(TypeaheadDoc)
+    const vm = new Constructor().$mount()
+    vm.$nextTick(() => {
+      let input = vm.$el.querySelectorAll('[data-role=input]')[0]
+      let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
+      expect(dropdown.className).to.not.contain('open')
+      input.value = 'ala'
+      let typeahead = vm.$refs.typeahead1
+      // input.focus()
+      typeahead.inputFocused()
+      vm.$nextTick(() => {
+        expect(dropdown.className).to.contain('open')
+        input.click()
+        typeahead.$refs.dropdown.windowClicked({target: document.createElement('div')})
+        vm.$nextTick(() => {
+          expect(dropdown.className).not.contain('open')
+          done()
+        })
+      })
     })
   })
 
@@ -78,7 +164,7 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      setTimeout(() => {
+      vm.$nextTick(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
         let selected = dropdown.querySelector('li.active a')
@@ -90,7 +176,7 @@ describe('TypeaheadDoc', () => {
           expect(vm.model1).to.equal('Alabama')
           done()
         })
-      }, 300)
+      })
     })
   })
 
@@ -103,7 +189,7 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      setTimeout(() => {
+      vm.$nextTick(() => {
         expect(dropdown.className).to.contain('open')
         input.value = ''
         vm.$refs.typeahead1.inputChanged() // can't auto detect event
@@ -111,7 +197,7 @@ describe('TypeaheadDoc', () => {
           expect(dropdown.className).to.not.contain('open')
           done()
         })
-      }, 300)
+      })
     })
   })
 
@@ -124,13 +210,13 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'a'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      setTimeout(() => {
+      vm.$nextTick(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(10)
         let selected = dropdown.querySelector('li.active a')
         expect(selected.textContent).to.equal('Alabama')
         done()
-      }, 300)
+      })
     })
   })
 
@@ -159,7 +245,7 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      setTimeout(() => {
+      vm.$nextTick(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
         let selected = dropdown.querySelector('li.active a')
@@ -171,7 +257,7 @@ describe('TypeaheadDoc', () => {
           expect(vm.model1.name).to.equal('Alabama')
           done()
         })
-      }, 300)
+      })
     })
   })
 
@@ -185,7 +271,7 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      setTimeout(() => {
+      vm.$nextTick(() => {
         expect(vm.model1).not.exist
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
@@ -198,7 +284,7 @@ describe('TypeaheadDoc', () => {
           expect(vm.model1.name).to.equal('Alabama')
           done()
         })
-      }, 300)
+      })
     })
   })
 
@@ -228,7 +314,7 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      setTimeout(() => {
+      vm.$nextTick(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
         let selected = dropdown.querySelector('li.active a')
@@ -241,7 +327,7 @@ describe('TypeaheadDoc', () => {
           expect(vm.model1.name).to.equal('Alabama')
           done()
         })
-      }, 300)
+      })
     })
   })
 
@@ -254,7 +340,7 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      setTimeout(() => {
+      vm.$nextTick(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
         let selected = dropdown.querySelector('li.active a')
@@ -273,7 +359,7 @@ describe('TypeaheadDoc', () => {
             done()
           })
         })
-      }, 300)
+      })
     })
   })
 
@@ -286,7 +372,7 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      setTimeout(() => {
+      vm.$nextTick(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(3)
         let selected = dropdown.querySelector('li.active a')
@@ -313,7 +399,7 @@ describe('TypeaheadDoc', () => {
             })
           })
         })
-      }, 300)
+      })
     })
   })
 
@@ -327,21 +413,21 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      setTimeout(() => {
+      vm.$nextTick(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(1)
         let selected = dropdown.querySelector('li.active a')
         expect(selected.textContent).to.equal('Palau')
         input.value = 'Ala'
         vm.$refs.typeahead1.inputChanged() // can't auto detect event
-        setTimeout(() => {
+        vm.$nextTick(() => {
           expect(dropdown.className).to.contain('open')
           expect(dropdown.querySelectorAll('li').length).to.equal(2)
           let selected = dropdown.querySelector('li.active a')
           expect(selected.textContent).to.equal('Alabama')
           done()
-        }, 300)
-      }, 300)
+        })
+      })
     })
   })
 
@@ -355,11 +441,11 @@ describe('TypeaheadDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       input.value = 'ala'
       vm.$refs.typeahead1.inputChanged() // can't auto detect event
-      setTimeout(() => {
+      vm.$nextTick(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelectorAll('li').length).to.equal(2)
         done()
-      }, 300)
+      })
     })
   })
 

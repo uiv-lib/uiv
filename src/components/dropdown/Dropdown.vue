@@ -88,9 +88,7 @@
       removeDropdownFromBody () {
         try {
           let el = this.$slots.dropdown[0].elm
-          el.style.display = null
-          el.style.top = null
-          el.style.left = null
+          el.removeAttribute('style')
           this.$el.appendChild(el)
         } catch (e) {
           // Silent

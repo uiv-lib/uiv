@@ -184,6 +184,85 @@ describe('TimePickerDoc', () => {
     })
   })
 
+  it('should be able to set hour using input in 24h mode', (done) => {
+    const Constructor = Vue.extend(TimePickerDoc)
+    const vm = new Constructor().$mount()
+    vm.myTime.setHours(12)
+    vm.myTime = new Date(vm.myTime)
+    vm.showMeridian = false
+    let timePicker = vm.$refs.timepicker
+    vm.$nextTick(() => {
+      let hourInput = vm.$el.querySelectorAll('input')[0]
+      expect(parseInt(hourInput.value)).to.equal(12)
+      timePicker.hoursText = -1
+      vm.$nextTick(() => {
+        expect(parseInt(hourInput.value)).to.equal(12)
+        timePicker.hoursText = 25
+        vm.$nextTick(() => {
+          expect(parseInt(hourInput.value)).to.equal(12)
+          timePicker.hoursText = 13
+          vm.$nextTick(() => {
+            expect(parseInt(hourInput.value)).to.equal(13)
+            done()
+          })
+        })
+      })
+    })
+  })
+
+  it('should be able to set hour using input in 12h mode', (done) => {
+    const Constructor = Vue.extend(TimePickerDoc)
+    const vm = new Constructor().$mount()
+    vm.myTime.setHours(12)
+    vm.myTime = new Date(vm.myTime)
+    vm.showMeridian = true
+    let timePicker = vm.$refs.timepicker
+    vm.$nextTick(() => {
+      let hourInput = vm.$el.querySelectorAll('input')[0]
+      expect(parseInt(hourInput.value)).to.equal(12)
+      timePicker.hoursText = -1
+      vm.$nextTick(() => {
+        expect(parseInt(hourInput.value)).to.equal(12)
+        timePicker.hoursText = 13
+        vm.$nextTick(() => {
+          expect(parseInt(hourInput.value)).to.equal(12)
+          timePicker.hoursText = 5
+          vm.$nextTick(() => {
+            expect(parseInt(hourInput.value)).to.equal(5)
+            done()
+          })
+        })
+      })
+    })
+  })
+
+  it('should be able to set minute using input', (done) => {
+    const Constructor = Vue.extend(TimePickerDoc)
+    const vm = new Constructor().$mount()
+    vm.myTime.setHours(12)
+    vm.myTime.setMinutes(0)
+    vm.myTime = new Date(vm.myTime)
+    vm.showMeridian = true
+    let timePicker = vm.$refs.timepicker
+    vm.$nextTick(() => {
+      let minuteInput = vm.$el.querySelectorAll('input')[1]
+      expect(parseInt(minuteInput.value)).to.equal(0)
+      timePicker.minutesText = -1
+      vm.$nextTick(() => {
+        expect(parseInt(minuteInput.value)).to.equal(0)
+        timePicker.minutesText = 60
+        vm.$nextTick(() => {
+          expect(parseInt(minuteInput.value)).to.equal(0)
+          timePicker.minutesText = 5
+          vm.$nextTick(() => {
+            expect(parseInt(minuteInput.value)).to.equal(5)
+            done()
+          })
+        })
+      })
+    })
+  })
+
   it('when minutes is 59 then plus minutes it can display true', (done) => {
     const Constructor = Vue.extend(TimePickerDoc)
     const vm = new Constructor().$mount()

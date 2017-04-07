@@ -189,7 +189,7 @@
           this.reduceHour()
         } else if (!isHour && isPlus) {
           this.addMinute()
-        } else if (!isHour && !isPlus) {
+        } else {
           this.reduceMinute()
         }
         this.setTime()
