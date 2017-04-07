@@ -70,6 +70,7 @@
       }
     },
     mounted () {
+      utils.ensureElementMatchesFunction()
       this.triggerEl = this.$el.querySelector('[data-role="trigger"]')
       this.initListeners()
       utils.removeFromDom(this.$refs.popover)
