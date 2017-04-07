@@ -8,3 +8,9 @@ selenium-debug.log
 *.iml
 .idea/
 *.gz
+
+docs/
+static/
+test/
+build/
+config/
