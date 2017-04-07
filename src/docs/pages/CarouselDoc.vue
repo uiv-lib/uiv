@@ -38,8 +38,18 @@
         <demo-code-block demo-file="CarouselDoc.vue">
         <pre><code>
 &lt;carousel&gt;
-  &lt;slide&gt;...&lt;/slide&gt;
-  &lt;slide&gt;...&lt;/slide&gt;
+  &lt;slide v-for=&quot;(slide,index) in slides&quot; :key=&quot;index&quot;&gt;
+    ...
+  &lt;/slide&gt;
+
+  &lt;!-- If need custom indicators --&gt;
+  &lt;template slot=&quot;indicators&quot; scope=&quot;props&quot;&gt;
+    &lt;ol class=&quot;carousel-indicators&quot;&gt;
+      &lt;li v-for=&quot;(slide,index) in slides&quot;
+          :class=&quot;{active:index===props.activeIndex}&quot;
+          @click=&quot;props.select(index)&quot;&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/template&gt;
 &lt;/carousel&gt;
         </code></pre>
         </demo-code-block>
@@ -71,12 +81,11 @@
         </ul>
         <h4>Methods (Carousel)</h4>
         <ul>
-          <li>
-            <p>
-              <code>select(index: Number)</code>
-              <span>Show slide @index</span>
-            </p>
-          </li>
+          <li><p><code>select(index: Number)</code><span> Show slide @index</span></p></li>
+        </ul>
+        <h4>Slots (Carousel)</h4>
+        <ul>
+          <li><p><code>indicators</code><span> Override indicators, see example below.</span></p></li>
         </ul>
       </div>
     </div>

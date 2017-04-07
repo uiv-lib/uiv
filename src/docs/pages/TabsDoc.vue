@@ -48,6 +48,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
+        <br/>
         <demo-code-block demo-file="TabsDoc.vue">
         <pre><code>
 &lt;tabs&gt;

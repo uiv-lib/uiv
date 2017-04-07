@@ -1,22 +1,25 @@
 <template>
   <section>
-    <ul class="nav nav-tabs" :class="{'nav-justified':justified}">
+    <ul class="nav nav-tabs" role="tablist" :class="{'nav-justified':justified}">
       <template v-for="(tab,index) in groupedTabs">
-        <dropdown v-if="tab.tabs" tag="li" :class="{'active':tab.active,'disabled':tab.disabled}">
-          <a data-role="trigger" href="javascript:void(0)">
+        <dropdown v-if="tab.tabs"
+                  role="presentation"
+                  tag="li"
+                  :class="{'active':tab.active,'disabled':tab.disabled}">
+          <a data-role="trigger" role="tab" href="javascript:void(0)">
             <span>{{tab.group}}</span>
             <span class="caret"></span>
           </a>
           <ul slot="dropdown" class="dropdown-menu">
-            <li v-for="subTab in tab.tabs">
+            <li v-for="subTab in tab.tabs" :class="{'active':subTab.active,'disabled':subTab.disabled}">
               <a href="javascript:void(0)" @click="select(subTab)">
                 {{subTab.title}}
               </a>
             </li>
           </ul>
         </dropdown>
-        <li v-else :class="{'active':tab.active,'disabled':tab.disabled}">
-          <a href="javascript:void(0);" @click="select(tab)">
+        <li v-else role="presentation" :class="{'active':tab.active,'disabled':tab.disabled}">
+          <a role="tab" href="javascript:void(0);" @click="select(tab)">
             <span v-if="tab.htmlTitle" v-html="tab.title"></span>
             <span v-else v-text="tab.title"></span>
           </a>

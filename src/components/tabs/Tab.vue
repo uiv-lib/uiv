@@ -1,6 +1,6 @@
 <template>
   <transition name="fade" mode="out-in">
-    <div class="tab-pane" :class="{active:active}" v-show="active">
+    <div class="tab-pane" role="tabpanel" :class="{active:active}" v-show="active">
       <slot></slot>
     </div>
   </transition>

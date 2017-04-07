@@ -20,12 +20,12 @@
         <h3>Accordion</h3>
         <div class="panel-group">
           <div class="panel panel-default">
-            <div class="panel-heading" role="button" @click="showAccordion1=!showAccordion1">
+            <div class="panel-heading" role="button" @click="toggleAccordion(0)">
               <h4 class="panel-title">
                 Collapsible Group Item #1
               </h4>
             </div>
-            <collapse :show="showAccordion1">
+            <collapse :show="showAccordion[0]">
               <div class="panel-body">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
                 moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
@@ -33,12 +33,12 @@
             </collapse>
           </div>
           <div class="panel panel-default">
-            <div class="panel-heading" role="button" @click="showAccordion2=!showAccordion2">
+            <div class="panel-heading" role="button" @click="toggleAccordion(1)">
               <h4 class="panel-title">
                 Collapsible Group Item #2
               </h4>
             </div>
-            <collapse :show="showAccordion2">
+            <collapse :show="showAccordion[1]">
               <div class="panel-body">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
                 moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
@@ -46,12 +46,12 @@
             </collapse>
           </div>
           <div class="panel panel-info">
-            <div class="panel-heading" role="button" @click="showAccordion3=!showAccordion3">
+            <div class="panel-heading" role="button" @click="toggleAccordion(2)">
               <h4 class="panel-title">
                 Collapsible Group Item #3
               </h4>
             </div>
-            <collapse :show="showAccordion3">
+            <collapse :show="showAccordion[2]">
               <div class="panel-body">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
                 moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
@@ -118,9 +118,6 @@
   </section>
 </template>
 
-
-
-
 <script>
   import AnchorHeader from '../architecture/AnchorHeader.vue'
   import DemoCodeBlock from '../architecture/DemoCodeBlock.vue'
@@ -132,9 +129,20 @@
     data () {
       return {
         showCollapse1: false,
-        showAccordion1: false,
-        showAccordion2: false,
-        showAccordion3: false
+        showAccordion: [true, false, false]
+      }
+    },
+    methods: {
+      toggleAccordion (index) {
+        if (this.showAccordion[index]) {
+          this.showAccordion[index] = false
+        } else {
+          for (let i = 0; i < this.showAccordion.length; i++) {
+            this.showAccordion[i] = false
+          }
+          this.showAccordion[index] = true
+        }
+        this.showAccordion = this.showAccordion.map(v => v)
       }
     }
   }

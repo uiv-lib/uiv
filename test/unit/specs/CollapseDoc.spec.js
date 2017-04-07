@@ -19,4 +19,23 @@ describe('CollapseDoc', () => {
       }, config.transitionDuration)
     }, config.transitionDuration)
   })
+
+  it('should be able to toggle accordion', (done) => {
+    const Constructor = Vue.extend(CollapseDoc)
+    const vm = new Constructor().$mount()
+    let triggers = vm.$el.querySelectorAll(`.panel-heading`)
+    let collapse = vm.$el.querySelectorAll(`.collapse`)
+    expect(collapse[1].style.display).to.equal('')
+    expect(collapse[2].style.display).to.equal('none')
+    triggers[1].click()
+    setTimeout(() => {
+      expect(collapse[1].style.display).to.equal('none')
+      expect(collapse[2].style.display).to.equal('')
+      triggers[1].click()
+      setTimeout(() => {
+        expect(collapse[2].style.display).to.equal('none')
+        done()
+      }, config.transitionDuration)
+    }, config.transitionDuration)
+  })
 })
