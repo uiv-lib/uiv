@@ -23,6 +23,7 @@ let routes = [
   {path: '/modal', component: require('./docs/pages/ModalDoc.vue')},
   {path: '/pagination', component: require('./docs/pages/PaginationDoc.vue')},
   {path: '/popover', component: require('./docs/pages/PopoverDoc.vue')},
+  {path: '/progress-bar', component: require('./docs/pages/ProgressBarDoc.vue')},
   {path: '/tabs', component: require('./docs/pages/TabsDoc.vue')},
   {path: '/time-picker', component: require('./docs/pages/TimePickerDoc.vue')},
   {path: '/tooltip', component: require('./docs/pages/TooltipDoc.vue')},

@@ -61,6 +61,7 @@
               {path: '/modal', label: 'Modal'},
               {path: '/pagination', label: 'Pagination'},
               {path: '/popover', label: 'Popover'},
+              {path: '/progress-bar', label: 'Progress Bar'},
               {path: '/tabs', label: 'Tabs'},
               {path: '/time-picker', label: 'Time Picker'},
               {path: '/tooltip', label: 'Tooltip'},
