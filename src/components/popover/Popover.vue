@@ -70,6 +70,7 @@
       }
     },
     mounted () {
+      utils.ensureElementMatchesFunction()
       this.triggerEl = this.$el.querySelector('[data-role="trigger"]')
       this.initListeners()
       utils.removeFromDom(this.$refs.popover)
@@ -94,12 +95,14 @@
             utils.on(this.triggerEl, utils.events.FOCUS, this.show)
             utils.on(this.triggerEl, utils.events.BLUR, this.hide)
           } else if (this.trigger === utils.triggers.HOVER_FOCUS) {
-            utils.on(this.triggerEl, utils.events.MOUSE_ENTER, this.show)
-            utils.on(this.triggerEl, utils.events.MOUSE_LEAVE, this.hide)
-            utils.on(this.triggerEl, utils.events.FOCUS, this.show)
-            utils.on(this.triggerEl, utils.events.BLUR, this.hide)
-          } else {
+            utils.on(this.triggerEl, utils.events.MOUSE_ENTER, this.handleAuto)
+            utils.on(this.triggerEl, utils.events.MOUSE_LEAVE, this.handleAuto)
+            utils.on(this.triggerEl, utils.events.FOCUS, this.handleAuto)
+            utils.on(this.triggerEl, utils.events.BLUR, this.handleAuto)
+          } else if (this.trigger === utils.triggers.CLICK || this.trigger === utils.triggers.OUTSIDE_CLICK) {
             utils.on(this.triggerEl, utils.events.CLICK, this.toggle)
+          } else {
+            throw new TypeError(this.trigger + ' trigger is not support')
           }
         }
         utils.on(window, utils.events.CLICK, this.windowClicked)
@@ -111,11 +114,15 @@
           utils.off(this.triggerEl, utils.events.MOUSE_ENTER, this.show)
           utils.off(this.triggerEl, utils.events.MOUSE_LEAVE, this.hide)
           utils.off(this.triggerEl, utils.events.CLICK, this.toggle)
+          utils.off(this.triggerEl, utils.events.MOUSE_ENTER, this.handleAuto)
+          utils.off(this.triggerEl, utils.events.MOUSE_LEAVE, this.handleAuto)
+          utils.off(this.triggerEl, utils.events.FOCUS, this.handleAuto)
+          utils.off(this.triggerEl, utils.events.BLUR, this.handleAuto)
         }
         utils.off(window, utils.events.CLICK, this.windowClicked)
       },
       show () {
-        if (!this.enable || !this.triggerEl) {
+        if (!this.enable || !this.triggerEl || utils.hasClass(this.$refs.popover, SHOW_CLASS)) {
           return
         }
         let popover = this.$refs.popover
@@ -158,6 +165,13 @@
       },
       hideOnLeave () {
         if (this.trigger === utils.triggers.HOVER || this.trigger === utils.triggers.HOVER_FOCUS) {
+          this.hide()
+        }
+      },
+      handleAuto () {
+        if (this.triggerEl.matches(':hover, :focus')) {
+          this.show()
+        } else {
           this.hide()
         }
       },

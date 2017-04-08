@@ -88,6 +88,7 @@
       }
     },
     mounted () {
+      domUtils.ensureElementMatchesFunction()
       this.inputEl = this.$el.querySelector('[data-role="input"]')
       if (this.inputEl) {
         this.elements.push(this.inputEl)
@@ -155,7 +156,6 @@
         }
       },
       inputBlured () {
-        domUtils.ensureElementMatchesFunction()
         if (!this.$refs.dropdownMenu.matches(':hover')) {
           this.$refs.dropdown.toggle(false)
         }

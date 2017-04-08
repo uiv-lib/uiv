@@ -119,9 +119,9 @@
               The tooltip trigger event, support:
             </p>
             <ul>
-              <li><p>hover -> show on mouseenter, hide on mouseleave (Default)</p></li>
+              <li><p>hover -> show on mouseenter, hide on mouseleave</p></li>
               <li><p>focus -> show on focus, hide on blur</p></li>
-              <li><p>hover-focus -> combination of hover and focus trigger</p></li>
+              <li><p>hover-focus -> combination of hover and focus trigger (Default)</p></li>
               <li><p>click -> toggle on trigger click</p></li>
               <li><p>outside-click -> same as click, but not close on tooltip click and close on outside click</p></li>
             </ul>
@@ -157,7 +157,7 @@
         text: 'Some helpful text',
         placement: 'top',
         autoPlacement: true,
-        trigger: 'hover',
+        trigger: 'hover-focus',
         enable: true
       }
     }
