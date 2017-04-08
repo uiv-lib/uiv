@@ -164,7 +164,7 @@
         }
       },
       hideOnLeave () {
-        if (this.trigger === utils.triggers.HOVER || this.trigger === utils.triggers.HOVER_FOCUS) {
+        if (this.trigger === utils.triggers.HOVER || (this.trigger === utils.triggers.HOVER_FOCUS && !this.triggerEl.matches(':focus'))) {
           this.hide()
         }
       },
