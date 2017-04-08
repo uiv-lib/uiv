@@ -40,7 +40,7 @@
       },
       trigger: {
         type: String,
-        'default': utils.triggers.CLICK
+        'default': utils.triggers.OUTSIDE_CLICK
       },
       placement: {
         type: String,
@@ -102,7 +102,7 @@
           } else if (this.trigger === utils.triggers.CLICK || this.trigger === utils.triggers.OUTSIDE_CLICK) {
             utils.on(this.triggerEl, utils.events.CLICK, this.toggle)
           } else {
-            throw new TypeError(this.trigger + ' trigger is not support')
+            throw new TypeError(this.trigger + ' trigger is not supported.')
           }
         }
         utils.on(window, utils.events.CLICK, this.windowClicked)
@@ -122,10 +122,10 @@
         utils.off(window, utils.events.CLICK, this.windowClicked)
       },
       show () {
-        if (!this.enable || !this.triggerEl || utils.hasClass(this.$refs.popover, SHOW_CLASS)) {
+        let popover = this.$refs.popover
+        if (!this.enable || !this.triggerEl || utils.hasClass(popover, SHOW_CLASS)) {
           return
         }
-        let popover = this.$refs.popover
         if (this.timeoutId > 0) {
           clearTimeout(this.timeoutId)
           this.timeoutId = 0
@@ -169,11 +169,13 @@
         }
       },
       handleAuto () {
-        if (this.triggerEl.matches(':hover, :focus')) {
-          this.show()
-        } else {
-          this.hide()
-        }
+        setTimeout(() => {
+          if (this.triggerEl.matches(':hover, :focus')) {
+            this.show()
+          } else {
+            this.hide()
+          }
+        }, 20) // 20ms make firefox happy
       },
       windowClicked (event) {
         if (this.triggerEl && !this.triggerEl.contains(event.target) &&

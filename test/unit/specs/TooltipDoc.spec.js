@@ -37,12 +37,18 @@ describe('TooltipDoc', () => {
     document.body.appendChild(app)
     const vm = new Constructor().$mount('#app')
     vm.trigger = 'hover-focus'
+    let button = vm.$el.querySelectorAll('button')[1]
     vm.$nextTick(() => {
       expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-      vm.$el.querySelectorAll('button')[1].focus()
+      // matches don't work in here
+      let savedMatches = Element.prototype.matches
+      Element.prototype.matches = () => true
+      button.focus()
       setTimeout(() => {
+        // reset this function
+        Element.prototype.matches = savedMatches
         expect(document.querySelectorAll('.tooltip').length).to.equal(1)
-        vm.$el.querySelectorAll('button')[1].blur()
+        button.blur()
         setTimeout(() => {
           expect(document.querySelectorAll('.tooltip').length).to.equal(0)
           app.remove()

@@ -137,11 +137,12 @@
               The popover trigger event, support:
             </p>
             <ul>
-              <li><p>hover -> show on mouseenter, hide on mouseleave (Default)</p></li>
+              <li><p>hover -> show on mouseenter, hide on mouseleave</p></li>
               <li><p>focus -> show on focus, hide on blur</p></li>
               <li><p>hover-focus -> combination of hover and focus trigger</p></li>
               <li><p>click -> toggle on trigger click</p></li>
-              <li><p>outside-click -> same as click, but not close on popover click and close on outside click</p></li>
+              <li><p>outside-click -> same as click, but not close on popover click and close on outside click
+                (Default)</p></li>
             </ul>
           </li>
           <li><p><code>append-to: String</code> Element selector that the popover append to. Default: body.</p></li>
@@ -179,7 +180,7 @@
       return {
         enable: true,
         title: 'Popover Title',
-        trigger: 'click',
+        trigger: 'outside-click',
         placement: 'top',
         autoPlacement: true
       }

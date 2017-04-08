@@ -42,8 +42,12 @@ describe('PopoverDoc', () => {
     vm.trigger = 'hover-focus'
     vm.$nextTick(() => {
       expect(document.querySelectorAll('.popover').length).to.equal(0)
+      // matches don't work in here
+      let savedMatches = Element.prototype.matches
+      Element.prototype.matches = () => true
       vm.$el.querySelectorAll('button')[0].focus()
       setTimeout(() => {
+        Element.prototype.matches = savedMatches
         expect(document.querySelectorAll('.popover').length).to.equal(1)
         vm.$el.querySelectorAll('button')[0].blur()
         setTimeout(() => {
