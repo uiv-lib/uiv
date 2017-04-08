@@ -25,6 +25,9 @@
           </a>
         </li>
       </template>
+      <li class="rightside">
+        <slot name="rightside"></slot>
+      </li>
     </ul>
     <div class="tab-content">
       <slot></slot>
@@ -102,5 +105,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" scoped>
-
+  .rightside {
+    float:right; 
+    margin-top:5px
+  }
 </style>
