@@ -43,9 +43,9 @@
           <tab title="Tab in Group 2" group="Tab Group">
             <p>This is Tab in group 2.</p>
           </tab>
-          <form slot="rightside" class="form-inline" @click.stop.prevent>
-            <label>Something rightside</label>
-            <select class="form-control">
+          <form slot="nav-right">
+            <label>Something at nav-right</label>
+            <select class="form-control" style="display: inline-block;width: auto">
               <option>option1</option>
               <option>option2</option>
               <option>option3</option>
@@ -87,10 +87,11 @@
           <li><p><code>disabled: Boolean</code> Disable the tab. Default: false.</p></li>
           <li><p><code>group: String</code> Tabs nav with same group will in a dropdown list.</p></li>
         </ul>
-        <h4>Slots</h4>
+        <h4>Slots (Tabs)</h4>
         <ul>
-		      <li><p><code>defalut</code> The tab content.</p></li>
-          <li><p><code>rightside</code> The snip at rightside of tabbar.</p></li>
+          <li><p><code>default</code> The tabs content.</p></li>
+          <li><p><code>nav-right</code> The snip at right side of tab nav. Note: it won't display if using justified
+            style.</p></li>
         </ul>
         <h4>Events (Tabs)</h4>
         <ul>

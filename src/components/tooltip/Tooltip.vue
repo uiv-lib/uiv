@@ -23,7 +23,10 @@
             },
             [
               h('div', {'class': 'tooltip-arrow'}),
-              h('div', {'class': 'tooltip-inner'}, this.text)
+              h('div', {
+                'class': 'tooltip-inner',
+                domProps: {innerHTML: this.text}
+              })
             ]
           )
         ]
