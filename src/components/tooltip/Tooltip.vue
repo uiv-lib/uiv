@@ -70,6 +70,7 @@
       }
     },
     mounted () {
+      utils.ensureElementMatchesFunction()
       this.initListeners()
       utils.removeFromDom(this.$refs.tooltip)
     },
