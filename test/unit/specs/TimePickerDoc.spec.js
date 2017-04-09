@@ -327,11 +327,11 @@ describe('TimePickerDoc', () => {
     vm.myTime.setHours(9)
     vm.myTime = new Date(vm.myTime)
     vm.$nextTick(() => {
-      vm.$refs.timepicker.hoursWheel({deltaY: 1})
+      vm.$refs.timepicker.hoursWheel({deltaY: 1, preventDefault: () => true})
       vm.$nextTick(() => {
         let hourText = vm.$el.querySelectorAll('input')[0].value
         expect(hourText).to.equal('08')
-        vm.$refs.timepicker.hoursWheel({deltaY: -1})
+        vm.$refs.timepicker.hoursWheel({deltaY: -1, preventDefault: () => true})
         vm.$nextTick(() => {
           hourText = vm.$el.querySelectorAll('input')[0].value
           expect(hourText).to.equal('09')
@@ -347,11 +347,11 @@ describe('TimePickerDoc', () => {
     vm.myTime.setMinutes(30)
     vm.myTime = new Date(vm.myTime)
     vm.$nextTick(() => {
-      vm.$refs.timepicker.minutesWheel({deltaY: 1})
+      vm.$refs.timepicker.minutesWheel({deltaY: 1, preventDefault: () => true})
       vm.$nextTick(() => {
         let minutesText = vm.$el.querySelectorAll('input')[1].value
         expect(minutesText).to.equal('29')
-        vm.$refs.timepicker.minutesWheel({deltaY: -1})
+        vm.$refs.timepicker.minutesWheel({deltaY: -1, preventDefault: () => true})
         vm.$nextTick(() => {
           minutesText = vm.$el.querySelectorAll('input')[1].value
           expect(minutesText).to.equal('30')
