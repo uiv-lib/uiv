@@ -20,7 +20,7 @@
       <tr>
         <td class="form-group">
           <input class="form-control text-center"
-                 @wheel.prevent="hoursWheel"
+                 @wheel="hoursWheel"
                  placeholder="HH"
                  v-model="hoursText"
                  :readonly="readonlyInput"
@@ -29,7 +29,7 @@
         <td>&nbsp;<b>:</b>&nbsp;</td>
         <td class="form-group">
           <input class="form-control text-center"
-                 @wheel.prevent="minutesWheel"
+                 @wheel="minutesWheel"
                  placeholder="MM"
                  v-model="minutesText"
                  :readonly="readonlyInput"
@@ -204,10 +204,16 @@
         this.setTime()
       },
       minutesWheel (e) {
-        this.changeTime(false, e.deltaY < 0)
+        if (!this.readonlyInput) {
+          e.preventDefault()
+          this.changeTime(false, e.deltaY < 0)
+        }
       },
       hoursWheel (e) {
-        this.changeTime(true, e.deltaY < 0)
+        if (!this.readonlyInput) {
+          e.preventDefault()
+          this.changeTime(true, e.deltaY < 0)
+        }
       },
       setTime () {
         let time = this.value
