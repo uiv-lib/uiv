@@ -17,16 +17,16 @@
                      :limit-to="limitTo"></date-picker>
         <h3>With Dropdown</h3>
         <form class="form-inline">
-          <dropdown tag="div" class="form-group">
+          <dropdown class="form-group" v-model="openDropdown">
             <div class="input-group">
               <input class="form-control" type="text" v-model="date">
               <div class="input-group-btn">
-                <button class="btn btn-default" type="button" data-role="trigger">
+                <button class="btn btn-default" type="button" @click="openDropdown = !openDropdown">
                   <i class="glyphicon glyphicon-calendar"></i>
                 </button>
               </div>
             </div>
-            <ul slot="dropdown" class="dropdown-menu">
+            <template slot="dropdown">
               <li>
                 <date-picker v-model="date"
                              :today-btn="todayBtn"
@@ -36,7 +36,7 @@
                              :format="format"
                              :close-on-selected="closeOnSelected"></date-picker>
               </li>
-            </ul>
+            </template>
           </dropdown>
         </form>
         <br/>
@@ -152,7 +152,8 @@
         closeOnSelected: true,
         limitFrom: '',
         limitTo: '',
-        format: 'yyyy-MM-dd'
+        format: 'yyyy-MM-dd',
+        openDropdown: false
       }
     },
     computed: {

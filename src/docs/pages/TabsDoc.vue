@@ -12,10 +12,10 @@
           <button type="button" id="tabs-btn-1" class="btn btn-default" @click="selectTab(0)">Active Tab 1</button>
           <button type="button" id="tabs-btn-2" class="btn btn-default" @click="selectTab(1)">Active Tab 2</button>
           <button type="button" id="tabs-btn-3" class="btn btn-default" @click="thirdTabDisabled=!thirdTabDisabled">
-            Enable / Disable Tab 3
+            <span>Enable / Disable Tab 3</span>
           </button>
           <button type="button" id="tabs-btn-4" class="btn btn-default" @click="justified=!justified">
-            Justified Style
+            <span>Justified Style</span>
           </button>
         </div>
         <tabs ref="tabComponent" :justified="justified">

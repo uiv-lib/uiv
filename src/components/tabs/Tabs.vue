@@ -5,18 +5,19 @@
         <dropdown v-if="tab.tabs"
                   role="presentation"
                   tag="li"
+                  v-model="tab.openDropdown"
                   :class="{'active':tab.active,'disabled':tab.disabled}">
-          <a data-role="trigger" role="tab" href="javascript:void(0)">
+          <a @click="$set(tab, 'openDropdown', !tab.openDropdown)" role="tab" href="javascript:void(0)">
             <span>{{tab.group}}</span>
             <span class="caret"></span>
           </a>
-          <ul slot="dropdown" class="dropdown-menu">
+          <template slot="dropdown">
             <li v-for="subTab in tab.tabs" :class="{'active':subTab.active,'disabled':subTab.disabled}">
               <a href="javascript:void(0)" @click="select(subTab)">
                 {{subTab.title}}
               </a>
             </li>
-          </ul>
+          </template>
         </dropdown>
         <li v-else role="presentation" :class="{'active':tab.active,'disabled':tab.disabled}">
           <a role="tab" href="javascript:void(0);" @click="select(tab)">

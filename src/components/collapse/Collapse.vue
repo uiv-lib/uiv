@@ -29,7 +29,7 @@
       }, [
         h(this.tag, {
           directives: [
-            {name: 'show', value: this.show}
+            {name: 'show', value: this.value}
           ],
           'class': {
             collapse: true,
@@ -43,7 +43,7 @@
         type: String,
         'default': 'div'
       },
-      show: {
+      value: {
         type: Boolean,
         'default': false
       }

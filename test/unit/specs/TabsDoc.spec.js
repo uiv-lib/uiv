@@ -137,20 +137,20 @@ describe('TabsDoc', () => {
     const Constructor = Vue.extend(TabsDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      let tab5 = vm.$el.querySelectorAll('.nav-tabs')[1].querySelectorAll('li')[2]
-      tab5.querySelectorAll('[data-role=trigger]')[0].click()
+      let tab5 = vm.$el.querySelectorAll('.nav-tabs')[1].querySelector('li.dropdown')
+      tab5.querySelectorAll('a')[0].click()
       vm.$nextTick(() => {
         expect(tab5.querySelector('.dropdown-menu')).to.exist
+        expect(tab5.className).to.contain('dropdown')
+        expect(tab5.className).to.contain('open')
         tab5.querySelector('.dropdown-menu').querySelector('li').querySelector('a').click()
-        setTimeout(() => {
-          expect(tab5.className).to.contain('dropdown')
-          expect(tab5.className).to.contain('open')
+        vm.$nextTick(() => {
           expect(tab5.className).to.contain('active')
           let activeContent = vm.$el.querySelectorAll('.tab-content')[1].querySelectorAll('.tab-pane.active')
           expect(activeContent.length).to.equal(1)
           expect(activeContent[0].querySelector('p').textContent).to.equal('This is Tab in group 1.')
           done()
-        }, config.transitionDuration)
+        })
       })
     })
   })

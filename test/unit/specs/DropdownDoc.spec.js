@@ -5,52 +5,46 @@ describe('DropdownDoc', () => {
   it('should be able to open dropdown on trigger click', (done) => {
     const Constructor = Vue.extend(DropdownDoc)
     const vm = new Constructor().$mount()
-    for (let i = 0; i < 3; i++) {
-      let dropdown = vm.$el.querySelector(`#dropdown-${i + 1}`)
-      let trigger = dropdown.querySelector('.dropdown-toggle')
-      expect(dropdown.tagName.toLowerCase()).to.equal('div')
-      expect(dropdown.className).to.not.contain('open')
-      trigger.click()
-      vm.$nextTick(() => {
-        expect(dropdown.className).to.contain('open')
-        done()
-      })
-    }
-  })
-
-  it('should be able to close dropdown on trigger click', (done) => {
-    const Constructor = Vue.extend(DropdownDoc)
-    const vm = new Constructor().$mount()
-    for (let i = 0; i < 3; i++) {
-      let dropdown = vm.$el.querySelector(`#dropdown-${i + 1}`)
-      let trigger = dropdown.querySelector('.dropdown-toggle')
-      expect(dropdown.tagName.toLowerCase()).to.equal('div')
-      expect(dropdown.className).to.not.contain('open')
-      trigger.click()
-      vm.$nextTick(() => {
-        expect(dropdown.className).to.contain('open')
-        trigger.click()
-        vm.$nextTick(() => {
-          expect(dropdown.className).to.not.contain('open')
-          done()
-        })
-      })
-    }
-  })
-
-  it('should be able to close dropdown on trigger blur', (done) => {
-    const Constructor = Vue.extend(DropdownDoc)
-    const vm = new Constructor().$mount()
-    let dropdown = vm.$el.querySelector(`#dropdown-1`)
-    let trigger = dropdown.querySelector('.dropdown-toggle')
+    let dropdown = vm.$el.querySelector(`.dropdown`)
+    let trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
     expect(dropdown.className).to.not.contain('open')
     trigger.click()
     vm.$nextTick(() => {
       expect(dropdown.className).to.contain('open')
-      let event = document.createEvent('Events')
-      event.initEvent('click', true, false)
-      vm.$refs.dropdown1.windowClicked(event)
+      done()
+    })
+  })
+
+  it('should be able to close dropdown on trigger click', (done) => {
+    const Constructor = Vue.extend(DropdownDoc)
+    const vm = new Constructor().$mount()
+    let dropdown = vm.$el.querySelector(`.dropdown`)
+    let trigger = dropdown.querySelector('button')
+    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.className).to.not.contain('open')
+    trigger.click()
+    vm.$nextTick(() => {
+      expect(dropdown.className).to.contain('open')
+      trigger.click()
+      vm.$nextTick(() => {
+        expect(dropdown.className).to.not.contain('open')
+        done()
+      })
+    })
+  })
+
+  it('should be able to close dropdown on window click', (done) => {
+    const Constructor = Vue.extend(DropdownDoc)
+    const vm = new Constructor().$mount()
+    let dropdown = vm.$el.querySelector(`.dropdown`)
+    let trigger = dropdown.querySelector('button')
+    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.className).to.not.contain('open')
+    trigger.click()
+    vm.$nextTick(() => {
+      expect(dropdown.className).to.contain('open')
+      vm.$refs.dropdown.windowClicked({target: document.body})
       vm.$nextTick(() => {
         expect(dropdown.className).to.not.contain('open')
         done()
@@ -64,8 +58,8 @@ describe('DropdownDoc', () => {
     document.body.appendChild(app)
     const Constructor = Vue.extend(DropdownDoc)
     const vm = new Constructor().$mount('#app')
-    let dropdown = vm.$el.querySelector(`#dropdown-4`)
-    let trigger = dropdown.querySelector('.dropdown-toggle')
+    let dropdown = vm.$el.querySelectorAll(`.dropdown`)[3]
+    let trigger = dropdown.querySelector('button')
     expect(dropdown.className).to.not.contain('open')
     expect(dropdown.querySelector('.dropdown-menu')).to.exist
     trigger.click()
@@ -85,8 +79,6 @@ describe('DropdownDoc', () => {
   it('should be able to destroy', () => {
     const Constructor = Vue.extend(DropdownDoc)
     const vm = new Constructor().$mount()
-    expect(vm.$refs.dropdown1.triggerEl).to.exist
     vm.$destroy()
-    expect(vm.$refs.dropdown1).to.not.exist
   })
 })

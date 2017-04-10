@@ -12,7 +12,7 @@
           <button type="button" class="btn btn-default" @click="showCollapse1=!showCollapse1">Click me!</button>
         </div>
         <br/>
-        <collapse :show="showCollapse1">
+        <collapse v-model="showCollapse1">
           <div class="well">
             Hi there.
           </div>
@@ -25,7 +25,7 @@
                 Collapsible Group Item #1
               </h4>
             </div>
-            <collapse :show="showAccordion[0]">
+            <collapse v-model="showAccordion[0]">
               <div class="panel-body">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
                 moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
@@ -38,7 +38,7 @@
                 Collapsible Group Item #2
               </h4>
             </div>
-            <collapse :show="showAccordion[1]">
+            <collapse v-model="showAccordion[1]">
               <div class="panel-body">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
                 moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
@@ -51,7 +51,7 @@
                 Collapsible Group Item #3
               </h4>
             </div>
-            <collapse :show="showAccordion[2]">
+            <collapse v-model="showAccordion[2]">
               <div class="panel-body">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
                 moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
@@ -99,7 +99,7 @@
           </li>
           <li>
             <p>
-              <code>show: Boolean</code>
+              <code>v-model: Boolean</code>
               <span>Show / hide the component. Default: false</span>
             </p>
           </li>

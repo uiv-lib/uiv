@@ -51,6 +51,8 @@ import Tooltip from './tooltip/Tooltip.vue'
 import Popover from './popover/Popover.vue'
 import TimePicker from './timepicker/TimePicker.vue'
 import Typeahead from './typeahead/Typeahead.vue'
+import ProgressBar from './progressbar/ProgressBar.vue'
+import ProgressBarStack from './progressbar/ProgressBarStack.vue'
 export {
   Tooltip,
   Carousel,
@@ -65,5 +67,7 @@ export {
   Pagination,
   Popover,
   TimePicker,
-  Typeahead
+  Typeahead,
+  ProgressBar,
+  ProgressBarStack
 }

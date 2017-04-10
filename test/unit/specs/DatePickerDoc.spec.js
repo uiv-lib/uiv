@@ -267,7 +267,7 @@ describe('DatePickerDoc', () => {
     vm.$nextTick(() => {
       let picker = vm.$el.querySelectorAll('.date-picker')[1]
       let dropdown = vm.$el.querySelector('.dropdown')
-      let trigger = dropdown.querySelector('[data-role=trigger]')
+      let trigger = dropdown.querySelector('button')
       expect(dropdown.className).not.contain('open')
       trigger.click()
       vm.$nextTick(() => {

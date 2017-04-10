@@ -1,10 +1,10 @@
 <template>
   <section :class="{'no-transition':!animation}">
     <transition name="backdrop">
-      <div class="modal-backdrop" v-if="show"></div>
+      <div class="modal-backdrop" v-if="value"></div>
     </transition>
     <transition name="modal" @afterEnter="afterModalOpen">
-      <div class="modal" tabindex="-1" role="dialog" v-if="show" @click="backdropClicked">
+      <div class="modal" tabindex="-1" role="dialog" v-if="value" @click="backdropClicked">
         <div ref="modal" class="modal-dialog" :class="modalSizeClass" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -20,9 +20,11 @@
             </div>
             <div class="modal-footer" v-if="footer">
               <slot name="footer">
-                <button type="button" class="btn btn-default" @click="toggle(false,'cancel')">{{cancelText}}</button>
+                <button type="button" class="btn btn-default" @click="toggle(false,'cancel')">
+                  <span>{{cancelText}}</span>
+                </button>
                 <button type="button" class="btn btn-primary" @click="toggle(false,'ok')" data-action="auto-focus">
-                  {{okText}}
+                  <span>{{okText}}</span>
                 </button>
               </slot>
             </div>
@@ -40,6 +42,10 @@
 
   export default {
     props: {
+      value: {
+        type: Boolean,
+        'default': false
+      },
       title: {
         type: String
       },
@@ -77,7 +83,7 @@
     },
     data () {
       return {
-        show: false
+        msg: ''
       }
     },
     computed: {
@@ -88,6 +94,18 @@
         }
       }
     },
+    watch: {
+      value (v) {
+        if (v) {
+          utils.addClass(document.body, MODAL_OPEN_CLASS)
+          this.$emit('modal-show')
+        } else {
+          utils.removeClass(document.body, MODAL_OPEN_CLASS)
+          this.$emit('modal-dismiss', this.msg || 'dismiss')
+        }
+        this.msg = ''
+      }
+    },
     mounted () {
       utils.on(window, utils.events.KEY_UP, this.onKeyPress)
     },
@@ -96,23 +114,13 @@
     },
     methods: {
       onKeyPress (event) {
-        if (this.keyboard && this.show && event.keyCode === 27) {
+        if (this.keyboard && this.value && event.keyCode === 27) {
           this.toggle(false)
         }
       },
       toggle (show, msg) {
-        if (typeof show !== 'undefined') {
-          this.show = !!show
-        } else {
-          this.show = !this.show
-        }
-        if (this.show) {
-          utils.addClass(document.body, MODAL_OPEN_CLASS)
-          this.$emit('modal-show')
-        } else {
-          utils.removeClass(document.body, MODAL_OPEN_CLASS)
-          this.$emit('modal-dismiss', msg || 'dismiss')
-        }
+        this.msg = msg
+        this.$emit('input', show)
       },
       backdropClicked (event) {
         if (this.backdrop && this.$refs.modal && !this.$refs.modal.contains(event.target)) {

@@ -1,9 +1,8 @@
 <template>
   <div>
     <slot></slot>
-    <dropdown ref="dropdown" :append-to-body="appendToBody" :not-close-elements="elements">
-      <button data-role="trigger" type="button" class="hidden"></button>
-      <ul slot="dropdown" class="dropdown-menu" ref="dropdownMenu">
+    <dropdown ref="dropdown" v-model="openDropdown" :append-to-body="appendToBody" :not-close-elements="elements">
+      <template slot="dropdown">
         <li v-for="(item,index) in items" :class="{active:activeIndex===index}">
           <a href="javascript:void(0)" @click="selectItem(item)">
             <slot name="item" :item="item">
@@ -11,7 +10,7 @@
             </slot>
           </a>
         </li>
-      </ul>
+      </template>
     </dropdown>
   </div>
 </template>
@@ -72,7 +71,9 @@
         items: [],
         activeIndex: 0,
         timeoutID: 0,
-        elements: []
+        elements: [],
+        openDropdown: false,
+        dropdownMenuEl: null
       }
     },
     computed: {
@@ -97,6 +98,7 @@
         domUtils.on(this.inputEl, domUtils.events.INPUT, this.inputChanged)
         domUtils.on(this.inputEl, domUtils.events.KEY_DOWN, this.inputKeyPressed)
       }
+      this.dropdownMenuEl = this.$refs.dropdown.$el.querySelector('.dropdown-menu')
     },
     beforeDestroy () {
       if (this.inputEl) {
@@ -130,16 +132,16 @@
       fetchItems (value, debounce) {
         clearTimeout(this.timeoutID)
         if (value === '') {
-          this.$refs.dropdown.toggle(false)
+          this.openDropdown = false
         } else if (this.data) {
           this.prepareItems(this.data)
-          this.$refs.dropdown.toggle(!!this.items.length)
+          this.openDropdown = !!this.items.length
         } else if (this.asyncSrc) {
           this.timeoutID = setTimeout(() => {
             httpUtils.get(this.asyncSrc + value)
               .then(data => {
                 this.prepareItems(this.asyncKey ? data[this.asyncKey] : data)
-                this.$refs.dropdown.toggle(!!this.items.length)
+                this.openDropdown = !!this.items.length
               })
           }, debounce)
         }
@@ -156,12 +158,12 @@
         }
       },
       inputBlured () {
-        if (!this.$refs.dropdownMenu.matches(':hover')) {
-          this.$refs.dropdown.toggle(false)
+        if (!this.dropdownMenuEl.matches(':hover')) {
+          this.openDropdown = false
         }
       },
       inputKeyPressed (event) {
-        if (this.$refs.dropdown.show) {
+        if (this.openDropdown) {
           switch (event.keyCode) {
             case 13:
               this.selectItem(this.items[this.activeIndex])
@@ -179,7 +181,7 @@
       selectItem (item) {
         this.inputEl.value = this.itemKey ? item[this.itemKey] : item
         this.$emit('input', item)
-        this.$refs.dropdown.toggle(false)
+        this.openDropdown = false
       },
       highlight (item) {
         let value = this.itemKey ? item[this.itemKey] : item

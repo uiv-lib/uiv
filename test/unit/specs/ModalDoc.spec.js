@@ -36,10 +36,10 @@ describe('ModalDoc', () => {
       expect(vm.$el.querySelector('.modal-title').textContent).to.equal('Modal 1')
       vm.$refs.modal1.onKeyPress({keyCode: 28}) // not a esc key
       vm.$nextTick(() => {
-        expect(vm.$refs.modal1.show).to.equal(true)
+        expect(vm.open1).to.equal(true)
         vm.$refs.modal1.onKeyPress({keyCode: 27}) // esc key
         vm.$nextTick(() => {
-          expect(vm.$refs.modal1.show).to.equal(false)
+          expect(vm.open1).to.equal(false)
           done()
         })
       })
