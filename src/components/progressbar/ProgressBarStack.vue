@@ -2,7 +2,7 @@
   <div :class="computedClass"
        role="progressbar"
        :aria-valuemin="min"
-       :aria-valuenow="current"
+       :aria-valuenow="value"
        :aria-valuemax="max"
        :style="computedStyle">
     <template v-if="label">
@@ -23,7 +23,7 @@
         type: Number,
         'default': 100
       },
-      current: {
+      value: {
         type: Number,
         'default': 0
       },
@@ -52,7 +52,7 @@
     },
     computed: {
       finished () {
-        return (this.current - this.min) / (this.max - this.min) * 100
+        return (this.value - this.min) / (this.max - this.min) * 100
       },
       computedClass () {
         return {

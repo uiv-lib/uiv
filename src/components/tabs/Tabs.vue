@@ -13,14 +13,14 @@
           </a>
           <template slot="dropdown">
             <li v-for="subTab in tab.tabs" :class="{'active':subTab.active,'disabled':subTab.disabled}">
-              <a href="javascript:void(0)" @click="select(subTab)">
+              <a href="javascript:void(0)" @click="select(tabs.indexOf(subTab))">
                 {{subTab.title}}
               </a>
             </li>
           </template>
         </dropdown>
         <li v-else role="presentation" :class="{'active':tab.active,'disabled':tab.disabled}">
-          <a role="tab" href="javascript:void(0);" @click="select(tab)">
+          <a role="tab" href="javascript:void(0);" @click="select(index)">
             <span v-if="tab.htmlTitle" v-html="tab.title"></span>
             <span v-else v-text="tab.title"></span>
           </a>
@@ -44,6 +44,10 @@
       Dropdown
     },
     props: {
+      value: {
+        type: Number,
+        'default': 0
+      },
       justified: {
         type: Boolean,
         'default': false
@@ -55,9 +59,14 @@
         groupedTabs: []
       }
     },
+    watch: {
+      value () {
+        this.$selectCurrent()
+      }
+    },
     mounted () {
-      if (this.tabs && this.tabs.length > 0) {
-        this.select(0)
+      if (this.tabs.length) {
+        this.$selectCurrent()
       }
     },
     methods: {
@@ -84,20 +93,18 @@
         })
         this.groupedTabs = tabs
       },
+      $selectCurrent () {
+        this.tabs.forEach(tab => {
+          tab.active = false
+        })
+        let tab = this.tabs[this.value]
+        tab.active = true
+        this.computeGroupedTabs()
+        this.$emit('after-active', this.value)
+      },
       select (index) {
-        let tab = index
-        if (typeof index === 'number' && index >= 0 && index < this.tabs.length) {
-          tab = this.tabs[index]
-        } else {
-          index = this.tabs.indexOf(tab)
-        }
-        if (!tab.disabled) {
-          this.tabs.forEach(tab => {
-            tab.active = false
-          })
-          tab.active = true
-          this.computeGroupedTabs()
-          this.$emit('after-active', index)
+        if (!this.tabs[index].disabled) {
+          this.$emit('input', index)
         }
       }
     }

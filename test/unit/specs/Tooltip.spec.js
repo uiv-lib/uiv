@@ -54,4 +54,28 @@ describe('Tooltip', () => {
       done()
     })
   })
+
+  it('should be able to show tooltip on init', (done) => {
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    let res = Vue.compile('<tooltip text="test" v-model="show"><button></button></tooltip>')
+    let vm = new Vue({
+      data () {
+        return {
+          show: true
+        }
+      },
+      components: {Tooltip},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    })
+    vm.$mount('#app')
+    setTimeout(() => {
+      expect(document.querySelectorAll('.tooltip').length).to.equal(1)
+      app.remove()
+      vm.$destroy()
+      done()
+    }, 200)
+  })
 })

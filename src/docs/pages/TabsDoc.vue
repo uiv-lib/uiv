@@ -9,8 +9,8 @@
       <div class="col-xs-12">
         <h3>Basic Example</h3>
         <div class="well">
-          <button type="button" id="tabs-btn-1" class="btn btn-default" @click="selectTab(0)">Active Tab 1</button>
-          <button type="button" id="tabs-btn-2" class="btn btn-default" @click="selectTab(1)">Active Tab 2</button>
+          <button type="button" id="tabs-btn-1" class="btn btn-default" @click="tabIndex1 = 0">Active Tab 1</button>
+          <button type="button" id="tabs-btn-2" class="btn btn-default" @click="tabIndex1 = 1">Active Tab 2</button>
           <button type="button" id="tabs-btn-3" class="btn btn-default" @click="thirdTabDisabled=!thirdTabDisabled">
             <span>Enable / Disable Tab 3</span>
           </button>
@@ -18,7 +18,7 @@
             <span>Justified Style</span>
           </button>
         </div>
-        <tabs ref="tabComponent" :justified="justified">
+        <tabs ref="tabComponent" :justified="justified" v-model="tabIndex1">
           <tab title="Tab 1">
             <p>This is tab 1.</p>
           </tab>
@@ -30,7 +30,7 @@
           </tab>
         </tabs>
         <h3>Advanced</h3>
-        <tabs @after-active="afterTabActive">
+        <tabs @after-active="afterTabActive" v-model="tabIndex2">
           <tab title="<i class='glyphicon glyphicon-heart'></i> HTML Title" :html-title="true">
             <p>This tab has a HTML title.</p>
           </tab>
@@ -61,7 +61,7 @@
         <br/>
         <demo-code-block demo-file="TabsDoc.vue">
         <pre><code>
-&lt;tabs&gt;
+&lt;tabs v-model=&quot;index&quot;&gt;
   &lt;tab&gt;...&lt;/tab&gt;
   &lt;tab&gt;...&lt;/tab&gt;
 &lt;/tabs&gt;
@@ -74,11 +74,8 @@
         <h3 class="page-header">API</h3>
         <h4>Props (Tabs)</h4>
         <ul>
+          <li><p><code>v-model: Number</code> The current tab index. <b>Required.</b> Default: 0.</p></li>
           <li><p><code>justified: Boolean</code> Use justified style. Default: false.</p></li>
-        </ul>
-        <h4>Methods (Tabs)</h4>
-        <ul>
-          <li><p><code>select (index: Number)</code> Select tab by index.</p></li>
         </ul>
         <h4>Props (Tab)</h4>
         <ul>
@@ -117,13 +114,12 @@
       return {
         activeTab: {index: 0},
         thirdTabDisabled: true,
-        justified: false
+        justified: false,
+        tabIndex1: 0,
+        tabIndex2: 0
       }
     },
     methods: {
-      selectTab (index) {
-        this.$refs.tabComponent.select(index)
-      },
       afterTabActive (index) {
         if (index === 1) {
           window.alert('You clicked on a tab that has callback function!')

@@ -4,7 +4,7 @@
       <progress-bar-stack
         :min="min"
         :max="max"
-        :current="current"
+        v-model="value"
         :label="label"
         :label-text="labelText"
         :min-width="minWidth"
@@ -22,7 +22,7 @@
     props: {
       min: Number,
       max: Number,
-      current: Number,
+      value: Number,
       label: Boolean,
       labelText: String,
       minWidth: Boolean,

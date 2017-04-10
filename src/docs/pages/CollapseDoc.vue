@@ -67,7 +67,7 @@
         <pre><code>
 &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; @click=&quot;showCollapse1=!showCollapse1&quot;&gt;Click me!&lt;/button&gt;
 
-&lt;collapse :show=&quot;showCollapse1&quot;&gt;
+&lt;collapse v-model=&quot;showCollapse1&quot;&gt;
   &lt;div class=&quot;well&quot;&gt;
     Hi there.
   &lt;/div&gt;

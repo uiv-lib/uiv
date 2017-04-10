@@ -1,8 +1,8 @@
 <template>
   <div class="carousel slide" data-ride="carousel" @mouseenter="stopInterval" @mouseleave="startInterval">
-    <slot v-if="indicators" name="indicators" :slides="slides" :active-index="activeIndex" :select="select">
+    <slot v-if="indicators" name="indicators">
       <ol class="carousel-indicators">
-        <li v-for="(slide,index) in slides" :class="{active:index===activeIndex}" @click="select(index)"></li>
+        <li v-for="(slide,index) in slides" :class="{active:index===value}" @click="select(index)"></li>
       </ol>
     </slot>
     <div class="carousel-inner" role="listbox">
@@ -22,6 +22,10 @@
 <script>
   export default {
     props: {
+      value: {
+        type: Number,
+        'default': 0
+      },
       indicators: {
         type: Boolean,
         'default': true
@@ -38,7 +42,6 @@
     data () {
       return {
         slides: [],
-        activeIndex: 0,
         timeout: 0,
         _interval: 0
       }
@@ -46,11 +49,37 @@
     watch: {
       interval () {
         this.startInterval()
+      },
+      value (index, oldValue) {
+        let currentActiveIndex = oldValue || 0
+        this.$emit('input', index)
+        let direction
+        if (index > currentActiveIndex) {
+          direction = ['next', 'left']
+        } else {
+          direction = ['prev', 'right']
+        }
+        this.slides[index].slideClass[direction[0]] = true
+        this.$nextTick(() => {
+          this.slides[index].$el.offsetHeight
+          this.slides.forEach((slide, i) => {
+            if (i === currentActiveIndex) {
+              slide.slideClass.active = true
+              slide.slideClass[direction[1]] = true
+            } else if (i === index) {
+              slide.slideClass[direction[1]] = true
+            }
+          })
+          this.timeout = setTimeout(() => {
+            this.$select(index)
+            this.timeout = 0
+          }, 600)
+        })
       }
     },
     mounted () {
       if (this.slides.length > 0) {
-        this.$select(0)
+        this.$select(this.value)
       }
       this.startInterval()
     },
@@ -81,49 +110,19 @@
         this.slides[index].slideClass.active = true
       },
       select (index) {
-        if (this.slides.length === 0) {
-          return
-        }
-        if (index < 0) {
-          index = 0
-        } else if (index >= this.slides.length) {
-          index = this.slides.length - 1
-        }
-        if (index === this.activeIndex) {
-          return
-        }
-        let currentActiveIndex = this.activeIndex
         if (this.timeout === 0) {
-          this.activeIndex = index
-          let direction
-          if (index > currentActiveIndex) {
-            direction = ['next', 'left']
-          } else {
-            direction = ['prev', 'right']
-          }
-          this.slides[index].slideClass[direction[0]] = true
-          this.$nextTick(() => {
-            this.slides[index].$el.offsetHeight
-            this.slides.forEach((slide, i) => {
-              if (i === currentActiveIndex) {
-                slide.slideClass.active = true
-                slide.slideClass[direction[1]] = true
-              } else if (i === index) {
-                slide.slideClass[direction[1]] = true
-              }
-            })
-            this.timeout = setTimeout(() => {
-              this.$select(index)
-              this.timeout = 0
-            }, 600)
-          })
+          this.$emit('input', index)
         }
       },
       prev () {
-        this.select(this.activeIndex === 0 ? this.slides.length - 1 : this.activeIndex - 1)
+        if (this.timeout === 0) {
+          this.$emit('input', this.value === 0 ? this.slides.length - 1 : this.value - 1)
+        }
       },
       next () {
-        this.select(this.activeIndex === this.slides.length - 1 ? 0 : this.activeIndex + 1)
+        if (this.timeout === 0) {
+          this.$emit('input', this.value === this.slides.length - 1 ? 0 : this.value + 1)
+        }
       }
     }
   }

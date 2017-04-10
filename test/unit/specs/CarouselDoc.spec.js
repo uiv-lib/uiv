@@ -63,28 +63,6 @@ describe('CarouselDoc', () => {
     })
   })
 
-  it('select method should work with incorrect index range', (done) => {
-    const Constructor = Vue.extend(CarouselDoc)
-    const vm = new Constructor().$mount()
-    vm.$nextTick(() => {
-      vm.$refs.carousel.select(-1)
-      setTimeout(() => {
-        expect(vm.$el.querySelectorAll('.carousel-indicators .active').length).to.equal(1)
-        expect(vm.$el.querySelectorAll('.carousel-indicators li')[0].className).to.contain('active')
-        expect(vm.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
-        expect(vm.$el.querySelectorAll('.carousel-inner .item')[0].className).to.contain('active')
-        vm.$refs.carousel.select(999)
-        setTimeout(() => {
-          expect(vm.$el.querySelectorAll('.carousel-indicators .active').length).to.equal(1)
-          expect(vm.$el.querySelectorAll('.carousel-indicators li')[3].className).to.contain('active')
-          expect(vm.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
-          expect(vm.$el.querySelectorAll('.carousel-inner .item')[3].className).to.contain('active')
-          done()
-        }, 700)
-      }, 700)
-    })
-  })
-
   it('should be able to hide indicators', (done) => {
     const Constructor = Vue.extend(CarouselDoc)
     const vm = new Constructor().$mount()

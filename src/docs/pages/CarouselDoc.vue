@@ -7,7 +7,8 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <carousel :indicators="indicators" :controls="controls" :interval="interval" ref="carousel">
+        <carousel v-model="currentIndex" :indicators="indicators" :controls="controls" :interval="interval"
+                  ref="carousel">
           <slide v-for="(slide,index) in slides" :key="index">
             <div style="width: 100%;height: 400px;" :style="{background:index%2===0?'#99a9bf':'#d3dce6'}"></div>
             <div class="carousel-caption">
@@ -37,17 +38,17 @@
       <div class="col-xs-12">
         <demo-code-block demo-file="CarouselDoc.vue">
         <pre><code>
-&lt;carousel&gt;
+&lt;carousel v-model=&quot;index&quot;&gt;
   &lt;slide v-for=&quot;(slide,index) in slides&quot; :key=&quot;index&quot;&gt;
     ...
   &lt;/slide&gt;
 
   &lt;!-- If need custom indicators --&gt;
-  &lt;template slot=&quot;indicators&quot; scope=&quot;props&quot;&gt;
+  &lt;template slot=&quot;indicators&quot;&gt;
     &lt;ol class=&quot;carousel-indicators&quot;&gt;
       &lt;li v-for=&quot;(slide,index) in slides&quot;
-          :class=&quot;{active:index===props.activeIndex}&quot;
-          @click=&quot;props.select(index)&quot;&gt;&lt;/li&gt;
+          :class=&quot;{active:index===currentIndex}&quot;
+          @click=&quot;currentIndex = index&quot;&gt;&lt;/li&gt;
     &lt;/ol&gt;
   &lt;/template&gt;
 &lt;/carousel&gt;
@@ -60,6 +61,12 @@
         <h3 class="page-header">API</h3>
         <h4>Props (Carousel)</h4>
         <ul>
+          <li>
+            <p>
+              <code>v-model: Number</code>
+              <span>The current slide index. <b>Required</b>. Default: 0</span>
+            </p>
+          </li>
           <li>
             <p>
               <code>indicators: Boolean</code>
@@ -78,10 +85,6 @@
               <span>Slides running interval time. Default: 2000</span>
             </p>
           </li>
-        </ul>
-        <h4>Methods (Carousel)</h4>
-        <ul>
-          <li><p><code>select(index: Number)</code><span> Show slide @index</span></p></li>
         </ul>
         <h4>Slots (Carousel)</h4>
         <ul>
@@ -106,6 +109,7 @@
         interval: 2000,
         indicators: true,
         controls: true,
+        currentIndex: 0,
         slides: [
           {title: 'Slide 1'},
           {title: 'Slide 2'},
