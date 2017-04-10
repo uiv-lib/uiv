@@ -33,6 +33,10 @@
       )
     },
     props: {
+      value: {
+        type: Boolean,
+        'default': false
+      },
       tag: {
         type: String,
         'default': 'span'
@@ -82,6 +86,9 @@
       utils.removeFromDom(this.$refs.tooltip)
     },
     watch: {
+      value (v) {
+        v ? this.show() : this.hide()
+      },
       trigger () {
         this.clearListeners()
         this.initListeners()
@@ -104,8 +111,6 @@
             utils.on(this.triggerEl, utils.events.BLUR, this.handleAuto)
           } else if (this.trigger === utils.triggers.CLICK || this.trigger === utils.triggers.OUTSIDE_CLICK) {
             utils.on(this.triggerEl, utils.events.CLICK, this.toggle)
-          } else {
-            throw new TypeError(this.trigger + ' trigger is not supported.')
           }
         }
         utils.on(window, utils.events.CLICK, this.windowClicked)
@@ -126,7 +131,7 @@
       },
       show () {
         let tooltip = this.$refs.tooltip
-        if (!this.enable || !this.triggerEl || utils.hasClass(tooltip, SHOW_CLASS)) {
+        if (!this.enable || !this.triggerEl || this.isShown()) {
           return
         }
         if (this.timeoutId > 0) {
@@ -140,19 +145,23 @@
           tooltip.offsetHeight
         }
         utils.addClass(tooltip, SHOW_CLASS)
+        this.$emit('input', true)
         this.$emit('tooltip-show')
       },
       hide () {
-        clearTimeout(this.timeoutId)
-        utils.removeClass(this.$refs.tooltip, SHOW_CLASS)
-        this.timeoutId = setTimeout(() => {
-          utils.removeFromDom(this.$refs.tooltip)
-          this.timeoutId = 0
-          this.$emit('tooltip-hide')
-        }, this.transitionDuration)
+        if (this.isShown()) {
+          clearTimeout(this.timeoutId)
+          utils.removeClass(this.$refs.tooltip, SHOW_CLASS)
+          this.timeoutId = setTimeout(() => {
+            utils.removeFromDom(this.$refs.tooltip)
+            this.timeoutId = 0
+            this.$emit('input', false)
+            this.$emit('tooltip-hide')
+          }, this.transitionDuration)
+        }
       },
       toggle () {
-        if (utils.hasClass(this.$refs.tooltip, SHOW_CLASS)) {
+        if (this.isShown()) {
           this.hide()
         } else {
           this.show()
@@ -177,10 +186,13 @@
           }
         }, 20) // 20ms make firefox happy
       },
+      isShown () {
+        return utils.hasClass(this.$refs.tooltip, SHOW_CLASS)
+      },
       windowClicked (event) {
         if (this.triggerEl && !this.triggerEl.contains(event.target) &&
           this.trigger === utils.triggers.OUTSIDE_CLICK && !this.$refs.tooltip.contains(event.target) &&
-          utils.hasClass(this.$refs.tooltip, SHOW_CLASS)) {
+          this.isShown()) {
           this.hide()
         }
       }

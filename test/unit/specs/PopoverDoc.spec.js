@@ -33,6 +33,25 @@ describe('PopoverDoc', () => {
     })
   })
 
+  it('should be able to change trigger to manual', (done) => {
+    const Constructor = Vue.extend(PopoverDoc)
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    const vm = new Constructor().$mount('#app')
+    vm.trigger = 'manual'
+    vm.open1 = true
+    vm.$nextTick(() => {
+      expect(document.querySelectorAll('.popover').length).to.equal(1)
+      vm.open1 = false
+      setTimeout(() => {
+        expect(document.querySelectorAll('.popover').length).to.equal(0)
+        app.remove()
+        done()
+      }, 200)
+    })
+  })
+
   it('should be able change trigger to hover-focus', (done) => {
     const Constructor = Vue.extend(PopoverDoc)
     let app = document.createElement('div')
@@ -106,24 +125,27 @@ describe('PopoverDoc', () => {
     })
   })
 
-  it('should be able to not keep popover show on hover if not using hover trigger', (done) => {
+  it('should be able to keep popover show on hover if using hover-focus trigger', (done) => {
     const Constructor = Vue.extend(PopoverDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
     const vm = new Constructor().$mount('#app')
-    vm.trigger = 'focus'
+    vm.trigger = 'hover-focus'
     let popover = vm.$refs.popover
     vm.$nextTick(() => {
       expect(document.querySelectorAll('.popover').length).to.equal(0)
       popover.show() // popover hover
       popover.hide() // popover leave
-      popover.hideOnLeave() // popover leave
       popover.showOnHover() // popover hover
       setTimeout(() => {
-        expect(document.querySelectorAll('.popover').length).to.equal(0)
-        app.remove()
-        done()
+        expect(document.querySelectorAll('.popover').length).to.equal(1)
+        popover.hideOnLeave() // popover leave
+        setTimeout(() => {
+          expect(document.querySelectorAll('.popover').length).to.equal(0)
+          app.remove()
+          done()
+        }, 200)
       }, 200)
     })
   })

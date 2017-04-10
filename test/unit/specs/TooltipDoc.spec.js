@@ -30,6 +30,25 @@ describe('TooltipDoc', () => {
     })
   })
 
+  it('should be able to change trigger to manual', (done) => {
+    const Constructor = Vue.extend(TooltipDoc)
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    const vm = new Constructor().$mount('#app')
+    vm.trigger = 'manual'
+    vm.open1 = true
+    vm.$nextTick(() => {
+      expect(document.querySelectorAll('.tooltip').length).to.equal(1)
+      vm.open1 = false
+      setTimeout(() => {
+        expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+        app.remove()
+        done()
+      }, 200)
+    })
+  })
+
   it('should be able to change trigger to hover-focus', (done) => {
     const Constructor = Vue.extend(TooltipDoc)
     let app = document.createElement('div')
@@ -83,24 +102,27 @@ describe('TooltipDoc', () => {
     })
   })
 
-  it('should be able to not keep tooltip show on hover if not using hover trigger', (done) => {
+  it('should be able to keep tooltip show on hover if using hover-focus trigger', (done) => {
     const Constructor = Vue.extend(TooltipDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
     const vm = new Constructor().$mount('#app')
-    vm.trigger = 'focus'
+    vm.trigger = 'hover-focus'
     let tooltip = vm.$refs.tooltip
     vm.$nextTick(() => {
       expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-      tooltip.show() // trigger focus
-      tooltip.hide() // trigger blur
-      tooltip.hideOnLeave() // tooltip leave
+      tooltip.show() // tooltip hover
+      tooltip.hide() // tooltip leave
       tooltip.showOnHover() // tooltip hover
       setTimeout(() => {
-        expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-        app.remove()
-        done()
+        expect(document.querySelectorAll('.tooltip').length).to.equal(1)
+        tooltip.hideOnLeave() // tooltip leave
+        setTimeout(() => {
+          expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+          app.remove()
+          done()
+        }, 200)
       }, 200)
     })
   })

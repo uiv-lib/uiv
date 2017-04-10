@@ -17,7 +17,8 @@ const TRIGGERS = {
   HOVER: 'hover',
   FOCUS: 'focus',
   HOVER_FOCUS: 'hover-focus',
-  OUTSIDE_CLICK: 'outside-click'
+  OUTSIDE_CLICK: 'outside-click',
+  MANUAL: 'manual'
 }
 
 const PLACEMENTS = {

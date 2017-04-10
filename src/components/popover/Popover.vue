@@ -30,6 +30,10 @@
       )
     },
     props: {
+      value: {
+        type: Boolean,
+        'default': false
+      },
       tag: {
         type: String,
         'default': 'span'
@@ -80,6 +84,9 @@
       utils.removeFromDom(this.$refs.popover)
     },
     watch: {
+      value (v) {
+        v ? this.show() : this.hide()
+      },
       trigger () {
         this.clearListeners()
         this.initListeners()
@@ -101,8 +108,6 @@
             utils.on(this.triggerEl, utils.events.BLUR, this.handleAuto)
           } else if (this.trigger === utils.triggers.CLICK || this.trigger === utils.triggers.OUTSIDE_CLICK) {
             utils.on(this.triggerEl, utils.events.CLICK, this.toggle)
-          } else {
-            throw new TypeError(this.trigger + ' trigger is not supported.')
           }
         }
         utils.on(window, utils.events.CLICK, this.windowClicked)
@@ -123,7 +128,7 @@
       },
       show () {
         let popover = this.$refs.popover
-        if (!this.enable || !this.triggerEl || utils.hasClass(popover, SHOW_CLASS)) {
+        if (!this.enable || !this.triggerEl || this.isShown()) {
           return
         }
         if (this.timeoutId > 0) {
@@ -137,16 +142,20 @@
           popover.offsetHeight
         }
         utils.addClass(popover, SHOW_CLASS)
+        this.$emit('input', true)
         this.$emit('popover-show')
       },
       hide () {
-        clearTimeout(this.timeoutId)
-        utils.removeClass(this.$refs.popover, SHOW_CLASS)
-        this.timeoutId = setTimeout(() => {
-          utils.removeFromDom(this.$refs.popover)
-          this.timeoutId = 0
-          this.$emit('popover-hide')
-        }, this.transitionDuration)
+        if (this.isShown()) {
+          clearTimeout(this.timeoutId)
+          utils.removeClass(this.$refs.popover, SHOW_CLASS)
+          this.timeoutId = setTimeout(() => {
+            utils.removeFromDom(this.$refs.popover)
+            this.timeoutId = 0
+            this.$emit('input', false)
+            this.$emit('popover-hide')
+          }, this.transitionDuration)
+        }
       },
       toggle () {
         if (this.isShown()) {

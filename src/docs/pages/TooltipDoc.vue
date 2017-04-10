@@ -14,15 +14,15 @@
         <h3>Dynamic Example</h3>
         <form class="form-inline">
           <tooltip :text="text" :placement="placement" :auto-placement="autoPlacement" :trigger="trigger"
-                   :enable="enable" ref="tooltip">
+                   :enable="enable" ref="tooltip" v-model="open1">
             <button type="button" class="btn btn-default">Tooltip Sample</button>
           </tooltip>
           <tooltip :text="text" :placement="placement" :auto-placement="autoPlacement" :trigger="trigger"
-                   :enable="enable">
+                   :enable="enable" v-model="open2">
             <button type="button" class="btn btn-default">Another Sample</button>
           </tooltip>
           <tooltip :text="text" :placement="placement" :auto-placement="autoPlacement" :trigger="trigger"
-                   :enable="enable">
+                   :enable="enable" v-model="open3">
             <input type="text" class="form-control" placeholder="An input samle">
           </tooltip>
         </form>
@@ -69,7 +69,20 @@
                   <option>hover-focus</option>
                   <option>click</option>
                   <option>outside-click</option>
+                  <option>manual</option>
                 </select>
+                <div v-show="trigger === 'manual'">
+                  <br/>
+                  <button class="btn btn-default" @click="open1 = !open1">
+                    <span>Toggle 1</span>
+                  </button>
+                  <button class="btn btn-default" @click="open2 = !open2">
+                    <span>Toggle 2</span>
+                  </button>
+                  <button class="btn btn-default" @click="open3 = !open3">
+                    <span>Toggle 3</span>
+                  </button>
+                </div>
               </div>
             </div>
           </form>
@@ -98,6 +111,7 @@
               <span>The HTML tag that render the component. Default: 'span'.</span>
             </p>
           </li>
+          <li><p><code>v-model: Boolean</code> Show / hide the tooltip.</p></li>
           <li><p><code>text: String</code> The tooltip content, support HTML string.</p></li>
           <li><p><code>enable: Boolean</code> Enable the tooltip. Default: true.</p></li>
           <li>
@@ -124,6 +138,7 @@
               <li><p>hover-focus -> combination of hover and focus trigger (Default)</p></li>
               <li><p>click -> toggle on trigger click</p></li>
               <li><p>outside-click -> same as click, but not close on tooltip click and close on outside click</p></li>
+              <li><p>manual -> do not add event listeners, and controls only by v-model change</p></li>
             </ul>
           </li>
           <li><p><code>append-to: String</code> Element selector that the tooltip append to. Default: body.</p></li>
@@ -158,7 +173,10 @@
         placement: 'top',
         autoPlacement: true,
         trigger: 'hover-focus',
-        enable: true
+        enable: true,
+        open1: false,
+        open2: false,
+        open3: false
       }
     }
   }

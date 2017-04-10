@@ -13,6 +13,7 @@
                    :auto-placement="autoPlacement"
                    :trigger="trigger"
                    :enable="enable"
+                   v-model="open1"
                    ref="popover">
             <button type="button" class="btn btn-default" data-role="trigger">Dynamic Popover</button>
             <div slot="popover">
@@ -23,6 +24,7 @@
                    :placement="placement"
                    :auto-placement="autoPlacement"
                    :trigger="trigger"
+                   v-model="open2"
                    :enable="enable">
             <button type="button" class="btn btn-default" data-role="trigger">Functional Popover</button>
             <div slot="popover">
@@ -78,7 +80,17 @@
                   <option>hover-focus</option>
                   <option>click</option>
                   <option>outside-click</option>
+                  <option>manual</option>
                 </select>
+                <div v-show="trigger === 'manual'">
+                  <br/>
+                  <button class="btn btn-default" @click="open1 = !open1">
+                    <span>Toggle Popover 1</span>
+                  </button>
+                  <button class="btn btn-default" @click="open2 = !open2">
+                    <span>Toggle Popover 2</span>
+                  </button>
+                </div>
               </div>
             </div>
           </form>
@@ -116,6 +128,7 @@
               <span>The HTML tag that render the component. Default: 'span'.</span>
             </p>
           </li>
+          <li><p><code>v-model: Boolean</code> Show / hide the popover.</p></li>
           <li><p><code>title: String</code> The popover title.</p></li>
           <li><p><code>enable: Boolean</code> Enable the popover. Default: true.</p></li>
           <li>
@@ -143,6 +156,7 @@
               <li><p>click -> toggle on trigger click</p></li>
               <li><p>outside-click -> same as click, but not close on popover click and close on outside click
                 (Default)</p></li>
+              <li><p>manual -> do not add event listeners, and controls only by v-model change</p></li>
             </ul>
           </li>
           <li><p><code>append-to: String</code> Element selector that the popover append to. Default: body.</p></li>
@@ -182,7 +196,9 @@
         title: 'Popover Title',
         trigger: 'outside-click',
         placement: 'top',
-        autoPlacement: true
+        autoPlacement: true,
+        open1: false,
+        open2: false
       }
     },
     methods: {}
