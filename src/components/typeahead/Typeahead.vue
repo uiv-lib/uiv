@@ -115,13 +115,14 @@
         for (let i = 0, l = data.length; i < l; i++) {
           let item = data[i]
           let key = this.itemKey ? item[this.itemKey] : item
+          key = key.toString()
           let index = -1
           if (this.ignoreCase) {
             index = key.toLowerCase().indexOf(this.inputEl.value.toLowerCase())
           } else {
             index = key.indexOf(this.inputEl.value)
           }
-          if ((this.matchStart && index === 0) || (!this.matchStart && index >= 0)) {
+          if (this.matchStart ? index === 0 : index >= 0) {
             this.items.push(item)
           }
           if (this.items.length >= this.limit) {
