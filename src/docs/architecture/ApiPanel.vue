@@ -1,27 +1,31 @@
 <template>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <span>API</span>
+      <span>{{file}}</span>
       <a v-if="folder && file"
          class="pull-right"
          :href="'https://github.com/wxsms/uiv/tree/master/src/components/'+folder+'/'+file">
         <i class="glyphicon glyphicon-share"></i>
-        {{file}}
+        <span>Source</span>
       </a>
     </div>
     <div class="table-responsive">
-      <table class="table table-bordered">
+      <table class="table table-bordered" v-if="api">
         <tbody v-if="api.notes">
-        <tr class="active">
-          <td colspan="5">Note</td>
+        <tr>
+          <td colspan="5">
+            <span class="label label-default">Note</span>
+          </td>
         </tr>
         <tr v-for="note in api.notes">
           <td colspan="5" v-html="note"></td>
         </tr>
         </tbody>
         <tbody v-if="api.props">
-        <tr class="active">
-          <td colspan="5">Props</td>
+        <tr>
+          <td colspan="5">
+            <span class="label label-default">Props</span>
+          </td>
         </tr>
         <tr>
           <th>Name</th>
@@ -39,8 +43,10 @@
         </tr>
         </tbody>
         <tbody v-if="api.slots">
-        <tr class="active">
-          <td colspan="5">Slots</td>
+        <tr>
+          <td colspan="5">
+            <span class="label label-default">Slots</span>
+          </td>
         </tr>
         <tr>
           <th>Name</th>
@@ -52,8 +58,10 @@
         </tr>
         </tbody>
         <tbody v-if="api.events">
-        <tr class="active">
-          <td colspan="5">Events</td>
+        <tr>
+          <td colspan="5">
+            <span class="label label-default">Events</span>
+          </td>
         </tr>
         <tr>
           <th>Name</th>

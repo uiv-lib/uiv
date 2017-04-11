@@ -170,15 +170,15 @@
             {
               name: 'trigger',
               desc: `
-              <p>The popover trigger event, support:</p>
-               <ul>
-              <li><p>hover -> show on mouseenter, hide on mouseleave</p></li>
-              <li><p>focus -> show on focus, hide on blur</p></li>
-              <li><p>hover-focus -> combination of hover and focus trigger</p></li>
-              <li><p>click -> toggle on trigger click</p></li>
-              <li><p>outside-click -> same as click, but not close on popover click and close on outside click</p></li>
-              <li><p>manual -> do not add event listeners, and controls only by v-model change</p></li>
-            </ul>
+<p>The popover trigger event, support:</p>
+<ul>
+  <li><p>hover -> show on mouseenter, hide on mouseleave</p></li>
+  <li><p>focus -> show on focus, hide on blur</p></li>
+  <li><p>hover-focus -> combination of hover and focus trigger</p></li>
+  <li><p>click -> toggle on trigger click</p></li>
+  <li><p>outside-click -> same as click, but not close on popover click and close on outside click</p></li>
+  <li><p>manual -> do not add event listeners, and controls only by v-model change</p></li>
+</ul>
               `,
               type: 'String',
               'default': 'outside-click'
