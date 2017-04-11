@@ -2,17 +2,13 @@
   export default {
     render (h) {
       return h('transition', {
-        props: {name: 'slide'},
-        // The implementation of this height transition is so ugly
         on: {
           enter (el) {
             el.style.height = 'auto'
-            // noinspection JSSuspiciousNameCombination
-            let endWidth = window.getComputedStyle(el).height
+            let height = window.getComputedStyle(el).height
             el.style.height = '0px'
             el.offsetHeight // force repaint
-            // noinspection JSSuspiciousNameCombination
-            el.style.height = endWidth
+            el.style.height = height
           },
           afterEnter (el) {
             el.style.height = null
