@@ -14,16 +14,20 @@
                  :duration="item.duration"
                  :key="item.key"
                  @closed="alertList.splice(index, 1)">
-            <strong>Well done!</strong> You successfully read this important alert message.
+            <strong>Well done!</strong>
+            <span>You successfully read this important alert message.</span>
           </alert>
           <alert type="info" :closable="true" v-if="showAlert1" @closed="showAlert1=false">
-            <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+            <strong>Heads up!</strong>
+            <span>This alert needs your attention, but it's not super important.</span>
           </alert>
           <alert type="warning" :closable="true" v-if="showAlert2" @closed="showAlert2=false">
-            <strong>Warning!</strong> Better check yourself, you're not looking too good.
+            <strong>Warning!</strong>
+            <span>Better check yourself, you're not looking too good.</span>
           </alert>
           <alert type="danger" :closable="true" v-if="showAlert3" @closed="showAlert3=false">
-            <strong>Oh snap!</strong> Change a few things up and try submitting again.
+            <strong>Oh snap!</strong>
+            <span>Change a few things up and try submitting again.</span>
           </alert>
         </div>
         <div class="well">
@@ -34,10 +38,10 @@
                      placeholder="input display time">
               <button type="button" class="btn btn-default" id="addAlertHadDuration"
                       @click="addAlert('success',false,true)">
-                Add Alert (time)
+                <span>Add Alert (time)</span>
               </button>
               <button type="button" class="btn btn-default" id="addAlert" @click="addAlert('success',true)">
-                Add Alert
+                <span>Add Alert</span>
               </button>
             </div>
           </form>
@@ -46,40 +50,14 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <demo-code-block demo-file="AlertDoc.vue">
+        <demo-code-panel demo-file="AlertDoc.vue">
         <pre><code>
 &lt;alert type=&quot;warning&quot; :closable=&quot;true&quot; v-if=&quot;show&quot; @closed=&quot;show=false&quot;&gt;
   &lt;strong&gt;Warning!&lt;/strong&gt; Better check yourself, you're not looking too good.
 &lt;/alert&gt;
         </code></pre>
-        </demo-code-block>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 class="page-header">API</h3>
-        <h4>Props</h4>
-        <ul>
-          <li><p><code>closable: Boolean</code> Show close button on alert. default: true.</p></li>
-          <li><p><code>type: String</code> Alert type (success, info, primary, warning, danger). default: success.</p>
-          </li>
-          <li><p><code>duration: Number</code> Close after millisecond. default: 0 (not going to close by itself)</p>
-          </li>
-        </ul>
-        <h4>Slots</h4>
-        <ul>
-          <li><p><code>default</code> The alert body.</p></li>
-        </ul>
-        <h4>Events</h4>
-        <ul>
-          <li>
-            <p>
-              <code>closed</code>
-              Fire after the alert closed.
-              Note: you have to hide / destroy the alert using <code>v-if</code> / <code>v-show</code> /
-              <code>v-for</code> manually due to child components can't change state of parent component.</p>
-          </li>
-        </ul>
+        </demo-code-panel>
+        <api-panel :api="api" folder="alert" file="Alert.vue"></api-panel>
       </div>
     </div>
   </section>
@@ -88,13 +66,48 @@
 <script>
   import AnchorHeader from '../architecture/AnchorHeader.vue'
   import Alert from '../../components/alert/Alert.vue'
-  import DemoCodeBlock from '../architecture/DemoCodeBlock.vue'
+  import DemoCodePanel from '../architecture/DemoCodePanel.vue'
+  import ApiPanel from './../architecture/ApiPanel.vue'
   import hljsMixin from './../mixins/hljsMixin'
   export default {
     mixins: [hljsMixin],
-    components: {AnchorHeader, Alert, DemoCodeBlock},
+    components: {AnchorHeader, Alert, DemoCodePanel, ApiPanel},
     data () {
       return {
+        api: {
+          props: [
+            {
+              name: 'closable',
+              type: 'Boolean',
+              desc: 'Show close button on alert',
+              'default': true
+            },
+            {
+              name: 'type',
+              type: 'String',
+              desc: 'Alert type (success, info, primary, warning, danger)',
+              'default': 'success'
+            },
+            {
+              name: 'duration',
+              type: 'Number',
+              desc: 'Close after millisecond, set to 0 to prevent self-closing',
+              'default': 0
+            }
+          ],
+          slots: [
+            {
+              name: 'default',
+              desc: 'The alert body'
+            }
+          ],
+          events: [
+            {
+              name: 'closed',
+              desc: 'Fire after the alert closed. Note: you have to hide / destroy the alert using <code>v-if</code> / <code>v-show</code> / <code>v-for</code> manually due to child components can\'t change state of parent component.'
+            }
+          ]
+        },
         alertList: [
           {type: 'success', closable: false, key: new Date().getTime()}
         ],

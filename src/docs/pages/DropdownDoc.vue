@@ -70,7 +70,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <demo-code-block demo-file="DropdownDoc.vue">
+        <demo-code-panel demo-file="DropdownDoc.vue">
         <pre><code>
 &lt;dropdown v-model=&quot;open&quot;&gt;
   &lt;button @click=&quot;open = !open&quot; class=&quot;btn btn-default dropdown-toggle&quot; type=&quot;button&quot;&gt;
@@ -86,29 +86,8 @@
   &lt;/template&gt;
 &lt;/dropdown&gt;
         </code></pre>
-        </demo-code-block>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 class="page-header">API</h3>
-        <h4>Props</h4>
-        <ul>
-          <li>
-            <p><code>v-model: Boolean</code><span> Show / hide the dropdown. Default: false</span></p>
-          </li>
-          <li>
-            <p><code>tag: String</code><span> The HTML tag that render the dropdown component. Default: 'div'</span></p>
-          </li>
-          <li>
-            <p><code>append-to-body: Boolean</code><span> Append the dropdown slot to body. Default: false</span></p>
-          </li>
-        </ul>
-        <h4>Slots</h4>
-        <ul>
-          <li><p><code>dropdown</code><span> Replace as the dropdown body.</span></p></li>
-          <li><p><code>default</code><span> Replace as the rest of the component (e.g. trigger stuffs).</span></p></li>
-        </ul>
+        </demo-code-panel>
+        <api-panel :api="api" folder="dropdown" file="Dropdown.vue"></api-panel>
       </div>
     </div>
   </section>
@@ -116,14 +95,48 @@
 
 <script>
   import AnchorHeader from '../architecture/AnchorHeader.vue'
-  import DemoCodeBlock from '../architecture/DemoCodeBlock.vue'
+  import DemoCodePanel from '../architecture/DemoCodePanel.vue'
   import Dropdown from '../../components/dropdown/Dropdown.vue'
   import hljsMixin from './../mixins/hljsMixin'
+  import ApiPanel from './../architecture/ApiPanel.vue'
   export default {
     mixins: [hljsMixin],
-    components: {AnchorHeader, DemoCodeBlock, Dropdown},
+    components: {AnchorHeader, DemoCodePanel, Dropdown, ApiPanel},
     data () {
       return {
+        api: {
+          props: [
+            {
+              name: 'v-model',
+              type: 'Boolean',
+              'default': false,
+              desc: 'Show / hide the dropdown',
+              required: true
+            },
+            {
+              name: 'tag',
+              type: 'String',
+              'default': 'div',
+              desc: 'The HTML tag that render the dropdown component'
+            },
+            {
+              name: 'append-to-body',
+              type: 'Boolean',
+              'default': false,
+              desc: 'Append the dropdown slot to body'
+            }
+          ],
+          slots: [
+            {
+              name: 'dropdown',
+              desc: 'Replace as the dropdown body'
+            },
+            {
+              name: 'default',
+              desc: 'Replace as the rest of the component (e.g. trigger stuffs)'
+            }
+          ]
+        },
         open1: false,
         open2: false,
         open3: false,

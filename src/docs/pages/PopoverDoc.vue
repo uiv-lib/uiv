@@ -99,7 +99,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <demo-code-block demo-file="PopoverDoc.vue">
+        <demo-code-panel demo-file="PopoverDoc.vue">
         <pre><code>
 &lt;popover title=&quot;Popover Title&quot;&gt;
   &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; data-role=&quot;trigger&quot;&gt;Popover Trigger&lt;/button&gt;
@@ -108,75 +108,8 @@
   &lt;/div&gt;
 &lt;/popover&gt;
         </code></pre>
-        </demo-code-block>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 class="page-header">API</h3>
-        <h4>Note</h4>
-        <ul>
-          <li>
-            <p>The element attached with <code>data-role="trigger"</code> will be the popover trigger.</p>
-          </li>
-        </ul>
-        <h4>Props</h4>
-        <ul>
-          <li>
-            <p>
-              <code>tag: String</code>
-              <span>The HTML tag that render the component. Default: 'span'.</span>
-            </p>
-          </li>
-          <li><p><code>v-model: Boolean</code> Show / hide the popover.</p></li>
-          <li><p><code>title: String</code> The popover title.</p></li>
-          <li><p><code>enable: Boolean</code> Enable the popover. Default: true.</p></li>
-          <li>
-            <p>
-              <code>placement: String</code>
-              The popover placement, support top / bottom / left / right. Default: top.
-            </p>
-          </li>
-          <li>
-            <p>
-              <code>auto-placement: Boolean</code>
-              Try to auto adjust the content placement if the set one does not have enough space to show. Try order:
-              top -> right -> bottom -> left, and use the set one if none of these matched. Default: true.
-            </p>
-          </li>
-          <li>
-            <p>
-              <code>trigger: String</code>
-              The popover trigger event, support:
-            </p>
-            <ul>
-              <li><p>hover -> show on mouseenter, hide on mouseleave</p></li>
-              <li><p>focus -> show on focus, hide on blur</p></li>
-              <li><p>hover-focus -> combination of hover and focus trigger</p></li>
-              <li><p>click -> toggle on trigger click</p></li>
-              <li><p>outside-click -> same as click, but not close on popover click and close on outside click
-                (Default)</p></li>
-              <li><p>manual -> do not add event listeners, and controls only by v-model change</p></li>
-            </ul>
-          </li>
-          <li><p><code>append-to: String</code> Element selector that the popover append to. Default: body.</p></li>
-          <li>
-            <p>
-              <code>transition-duration: Number</code>
-              The popover show / hide transition time in ms. Default: 150.
-            </p>
-          </li>
-        </ul>
-        <h4>Slots</h4>
-        <ul>
-          <li><p><code>popover</code> Replace as the popover body.</p></li>
-          <li><p><code>default</code> Replace as the rest of the component (e.g. trigger stuffs).</p></li>
-        </ul>
-        <h4>Events</h4>
-        <ul>
-          <li><p><code>popover-show</code> Fire after popover show.</p></li>
-          <li><p><code>popover-hide</code> Fire after popover hide.</p></li>
-        </ul>
+        </demo-code-panel>
+        <api-panel :api="api" folder="popover" file="Popover.vue"></api-panel>
       </div>
     </div>
   </section>
@@ -184,14 +117,106 @@
 
 <script>
   import AnchorHeader from '../architecture/AnchorHeader.vue'
-  import DemoCodeBlock from '../architecture/DemoCodeBlock.vue'
+  import DemoCodePanel from '../architecture/DemoCodePanel.vue'
   import Popover from '../../components/popover/Popover.vue'
   import hljsMixin from './../mixins/hljsMixin'
+  import ApiPanel from './../architecture/ApiPanel.vue'
   export default {
     mixins: [hljsMixin],
-    components: {AnchorHeader, DemoCodeBlock, Popover},
+    components: {AnchorHeader, DemoCodePanel, Popover, ApiPanel},
     data () {
       return {
+        api: {
+          notes: [
+            'The element attached with <code>data-role="trigger"</code> will be the popover trigger'
+          ],
+          props: [
+            {
+              name: 'v-model',
+              required: true,
+              desc: 'Show / hide the popover',
+              type: 'Boolean',
+              'default': ''
+            },
+            {
+              name: 'tag',
+              desc: 'The HTML tag that render the component',
+              type: 'String',
+              'default': 'span'
+            },
+            {
+              name: 'title',
+              desc: 'The popover title',
+              type: 'String'
+            },
+            {
+              name: 'enable',
+              desc: 'Enable the popover',
+              type: 'Boolean',
+              'default': 'true'
+            },
+            {
+              name: 'placement',
+              desc: 'The popover placement, support top / bottom / left / right',
+              type: 'String',
+              'default': 'top'
+            },
+            {
+              name: 'auto-placement',
+              desc: 'Try to auto adjust the placement if the set one does not have enough space to show. Try order: top -> right -> bottom -> left, and use the set one if none of these matched',
+              type: 'Boolean',
+              'default': 'true'
+            },
+            {
+              name: 'trigger',
+              desc: `
+              <p>The popover trigger event, support:</p>
+               <ul>
+              <li><p>hover -> show on mouseenter, hide on mouseleave</p></li>
+              <li><p>focus -> show on focus, hide on blur</p></li>
+              <li><p>hover-focus -> combination of hover and focus trigger</p></li>
+              <li><p>click -> toggle on trigger click</p></li>
+              <li><p>outside-click -> same as click, but not close on popover click and close on outside click</p></li>
+              <li><p>manual -> do not add event listeners, and controls only by v-model change</p></li>
+            </ul>
+              `,
+              type: 'String',
+              'default': 'outside-click'
+            },
+            {
+              name: 'append-to',
+              desc: 'Element selector that the popover append to',
+              type: 'String',
+              'default': 'body'
+            },
+            {
+              name: 'transition-duration',
+              desc: 'The popover show / hide transition time in ms',
+              type: 'Number',
+              'default': '150'
+            }
+          ],
+          slots: [
+            {
+              name: 'popover',
+              desc: 'Replace as the popover body'
+            },
+            {
+              name: 'default',
+              desc: 'Replace as the rest of the component (e.g. trigger stuffs)'
+            }
+          ],
+          events: [
+            {
+              name: 'popover-show',
+              desc: 'Fire after popover show'
+            },
+            {
+              name: 'popover-hide',
+              desc: 'Fire after popover hide'
+            }
+          ]
+        },
         enable: true,
         title: 'Popover Title',
         trigger: 'outside-click',

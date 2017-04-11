@@ -36,7 +36,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <demo-code-block demo-file="CarouselDoc.vue">
+        <demo-code-panel demo-file="CarouselDoc.vue">
         <pre><code>
 &lt;carousel v-model=&quot;index&quot;&gt;
   &lt;slide v-for=&quot;(slide,index) in slides&quot; :key=&quot;index&quot;&gt;
@@ -53,43 +53,8 @@
   &lt;/template&gt;
 &lt;/carousel&gt;
         </code></pre>
-        </demo-code-block>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 class="page-header">API</h3>
-        <h4>Props (Carousel)</h4>
-        <ul>
-          <li>
-            <p>
-              <code>v-model: Number</code>
-              <span>The current slide index. <b>Required</b>. Default: 0</span>
-            </p>
-          </li>
-          <li>
-            <p>
-              <code>indicators: Boolean</code>
-              <span>Show / hide the indicators. Default: true</span>
-            </p>
-          </li>
-          <li>
-            <p>
-              <code>controls: Boolean</code>
-              <span>Show / hide the controls. Default: true</span>
-            </p>
-          </li>
-          <li>
-            <p>
-              <code>interval: Number</code>
-              <span>Slides running interval time. Default: 2000</span>
-            </p>
-          </li>
-        </ul>
-        <h4>Slots (Carousel)</h4>
-        <ul>
-          <li><p><code>indicators</code><span> Override indicators, see example below.</span></p></li>
-        </ul>
+        </demo-code-panel>
+        <api-panel :api="carouselApi" folder="carousel" file="Carousel.vue"></api-panel>
       </div>
     </div>
   </section>
@@ -97,15 +62,51 @@
 
 <script>
   import AnchorHeader from '../architecture/AnchorHeader.vue'
-  import DemoCodeBlock from '../architecture/DemoCodeBlock.vue'
+  import DemoCodePanel from '../architecture/DemoCodePanel.vue'
+  import ApiPanel from './../architecture/ApiPanel.vue'
   import Carousel from '../../components/carousel/Carousel.vue'
   import Slide from '../../components/carousel/Slide.vue'
   import hljsMixin from './../mixins/hljsMixin'
   export default {
     mixins: [hljsMixin],
-    components: {AnchorHeader, Carousel, Slide, DemoCodeBlock},
+    components: {AnchorHeader, Carousel, Slide, DemoCodePanel, ApiPanel},
     data () {
       return {
+        carouselApi: {
+          slots: [
+            {
+              name: 'indicators',
+              desc: 'Override indicators, see example in code panel below'
+            }
+          ],
+          props: [
+            {
+              name: 'v-model',
+              type: 'Number',
+              desc: 'The current slide index',
+              'default': 0,
+              required: true
+            },
+            {
+              name: 'indicators',
+              type: 'Boolean',
+              desc: 'Show / hide the indicators',
+              'default': true
+            },
+            {
+              name: 'controls',
+              type: 'Boolean',
+              desc: 'Show / hide the controls',
+              'default': true
+            },
+            {
+              name: 'interval',
+              type: 'Number',
+              desc: 'Slides running interval time',
+              'default': 2000
+            }
+          ]
+        },
         interval: 2000,
         indicators: true,
         controls: true,

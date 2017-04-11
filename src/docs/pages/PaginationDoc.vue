@@ -32,7 +32,8 @@
               <div class="col-md-6">
                 <label>Current Page:</label>
                 <div class="input-group">
-                  <input class="form-control" step="1" min="1" :max="totalSize" v-model.number="currentPage" type="number">
+                  <input class="form-control" step="1" min="1" :max="totalSize" v-model.number="currentPage"
+                         type="number">
                   <span class="input-group-addon" v-text="'/ '+totalSize"></span>
                 </div>
               </div>
@@ -61,32 +62,12 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <demo-code-block demo-file="PaginationDoc.vue">
+        <demo-code-panel demo-file="PaginationDoc.vue">
         <pre><code>
 &lt;pagination v-model=&quot;currentPage&quot; :total-page=&quot;totalSize&quot; :max-size=&quot;maxSize&quot;&gt;&lt;/pagination&gt;
         </code></pre>
-        </demo-code-block>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 class="page-header">API</h3>
-        <h4>Note</h4>
-        <ul>
-          <li><p>Use <code>v-model: Number</code> to identify the current page.</p></li>
-        </ul>
-        <h4>Props</h4>
-        <ul>
-          <li><p><code>boundary-links: Boolean</code> Whether to display First / Last buttons.Default: false</p></li>
-          <li><p><code>direction-links: Boolean</code> Whether to display Previous / Next buttons.Default: true</p></li>
-          <li><p><code>total-page: Number</code> Total number of items in all pages.</p></li>
-          <li><p><code>max-size: Number</code> Maximum number of items per page.Default: 5</p></li>
-          <li><p><code>size: String</code> The pagination size.</p></li>
-        </ul>
-        <h4>Events</h4>
-        <ul>
-          <li><p><code>page-changed (index:Number)</code> Fire after page changed.</p></li>
-        </ul>
+        </demo-code-panel>
+        <api-panel :api="api" folder="pagination" file="Pagination.vue"></api-panel>
       </div>
     </div>
   </section>
@@ -94,14 +75,64 @@
 
 <script>
   import AnchorHeader from '../architecture/AnchorHeader.vue'
-  import DemoCodeBlock from '../architecture/DemoCodeBlock.vue'
+  import DemoCodePanel from '../architecture/DemoCodePanel.vue'
   import Pagination from '../../components/pagination/Pagination.vue'
   import hljsMixin from './../mixins/hljsMixin'
+  import ApiPanel from './../architecture/ApiPanel.vue'
   export default {
     mixins: [hljsMixin],
-    components: {AnchorHeader, DemoCodeBlock, Pagination},
+    components: {AnchorHeader, DemoCodePanel, Pagination, ApiPanel},
     data () {
       return {
+        api: {
+          props: [
+            {
+              name: 'v-model',
+              required: true,
+              desc: 'The current page',
+              type: 'Number',
+              'default': ''
+            },
+            {
+              name: 'boundary-links',
+              desc: 'Whether to display First / Last buttons',
+              type: 'Boolean',
+              'default': 'false'
+            },
+            {
+              name: 'direction-links',
+              desc: 'Whether to display Previous / Next buttons',
+              type: 'Boolean',
+              'default': 'true'
+            },
+            {
+              name: 'total-page',
+              required: true,
+              desc: 'Total number of pages',
+              type: 'Number',
+              'default': ''
+            },
+            {
+              name: 'max-size',
+              desc: 'Maximum number of pages per chunk',
+              type: 'Number',
+              'default': '5'
+            },
+            {
+              name: 'size',
+              desc: 'String',
+              type: 'The pagination size. Support: sm / md / lg',
+              'default': 'md'
+            }
+          ],
+          events: [
+            {
+              name: 'page-changed',
+              params: ['index'],
+              desc: 'Fire after page changed, with the index number changed to'
+            }
+          ]
+        },
         totalSize: 18,
         maxSize: 5,
         currentPage: 1,

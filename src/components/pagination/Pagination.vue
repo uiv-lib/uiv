@@ -88,7 +88,7 @@
         return this.size ? `pagination-${this.size}` : ``
       },
       pageArray () {
-        var newArray = []
+        let newArray = []
         for (let i = 0; i < this.totalPage; i++) {
           newArray.push(i)
         }

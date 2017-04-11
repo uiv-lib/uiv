@@ -8,13 +8,16 @@
     <div class="row">
       <div class="col-xs-12">
         <h3>Inline Example</h3>
-        <hr/>
-        <date-picker v-model="date"
-                     :today-btn="todayBtn"
-                     :clear-btn="clearBtn"
-                     :limit-from="limitFrom"
-                     :format="format"
-                     :limit-to="limitTo"></date-picker>
+        <div class="panel panel-default" style="display: inline-block">
+          <div class="panel-body">
+            <date-picker v-model="date"
+                         :today-btn="todayBtn"
+                         :clear-btn="clearBtn"
+                         :limit-from="limitFrom"
+                         :format="format"
+                         :limit-to="limitTo"></date-picker>
+          </div>
+        </div>
         <h3>With Dropdown</h3>
         <form class="form-inline">
           <dropdown class="form-group" v-model="openDropdown">
@@ -82,7 +85,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <demo-code-block demo-file="DatePickerDoc.vue">
+        <demo-code-panel demo-file="DatePickerDoc.vue">
         <pre><code>
 &lt;!-- With Dropdown Example --&gt;
 &lt;dropdown tag=&quot;div&quot; class=&quot;form-group&quot;&gt;
@@ -101,34 +104,8 @@
   &lt;/ul&gt;
 &lt;/dropdown&gt;
         </code></pre>
-        </demo-code-block>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 class="page-header">API</h3>
-        <h4>Note</h4>
-        <ul>
-          <li><p>Use <code>v-model</code> to bind or change the selected date.</p></li>
-        </ul>
-        <h4>Props</h4>
-        <ul>
-          <li><p><code>width: Number</code> The date-picker's width in px. Default: 270.</p></li>
-          <li><p><code>today-btn: Boolean</code> Show / hide the today button. Default: true.</p></li>
-          <li><p><code>clear-btn: Boolean</code> Show / hide the clear button. Default: true.</p></li>
-          <li><p><code>format: String</code> The date format. Default: yyyy-MM-dd.</p></li>
-          <li>
-            <p><code>close-on-selected: Boolean</code> Close the date-picker after date selected. Default: true.</p>
-          </li>
-          <li>
-            <p>
-              <code>limit-from</code>
-              Anything that can convert to a valid Date object.
-              E.g. '2017-01-01' or 'new Date()'
-            </p>
-          </li>
-          <li><p><code>limit-to</code> Same as limitFrom.</p></li>
-        </ul>
+        </demo-code-panel>
+        <api-panel :api="api" folder="datepicker" file="DatePicker.vue"></api-panel>
       </div>
     </div>
   </section>
@@ -136,15 +113,63 @@
 
 <script>
   import AnchorHeader from '../architecture/AnchorHeader.vue'
-  import DemoCodeBlock from '../architecture/DemoCodeBlock.vue'
+  import DemoCodePanel from '../architecture/DemoCodePanel.vue'
+  import ApiPanel from './../architecture/ApiPanel.vue'
   import DatePicker from '../../components/datepicker/DatePicker.vue'
   import Dropdown from '../../components/dropdown/Dropdown.vue'
   import hljsMixin from './../mixins/hljsMixin'
   export default {
     mixins: [hljsMixin],
-    components: {AnchorHeader, DemoCodeBlock, DatePicker, Dropdown},
+    components: {AnchorHeader, DemoCodePanel, DatePicker, Dropdown, ApiPanel},
     data () {
       return {
+        api: {
+          props: [
+            {
+              name: 'v-model',
+              desc: 'The selected date',
+              required: true
+            },
+            {
+              name: 'width',
+              type: 'Number',
+              desc: 'The date-picker\'s width in px',
+              'default': 270
+            },
+            {
+              name: 'today-btn',
+              type: 'Boolean',
+              desc: 'Show / hide the today button.',
+              'default': 'true'
+            },
+            {
+              name: 'clear-btn',
+              type: 'Boolean',
+              desc: 'Show / hide the clear button.',
+              'default': 'true'
+            },
+            {
+              name: 'format',
+              type: 'String',
+              desc: 'The date format',
+              'default': 'yyyy-MM-dd'
+            },
+            {
+              name: 'close-on-selected',
+              type: 'Boolean',
+              desc: 'Close the date-picker dropdown after date selected',
+              'default': 'true'
+            },
+            {
+              name: 'limit-from',
+              desc: 'Anything that can convert to a valid Date object. E.g. \'2017-01-01\' or \'new Date()\''
+            },
+            {
+              name: 'limit-to',
+              desc: 'Same as limit-from'
+            }
+          ]
+        },
         date: '',
         show: false,
         clearBtn: true,

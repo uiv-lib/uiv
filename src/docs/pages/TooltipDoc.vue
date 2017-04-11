@@ -91,69 +91,14 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <demo-code-block demo-file="TooltipDoc.vue">
+        <demo-code-panel demo-file="TooltipDoc.vue">
         <pre><code>
 &lt;tooltip text=&quot;Static tooltip content goes here.&quot;&gt;
   &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;Hover Me!&lt;/button&gt;
 &lt;/tooltip&gt;
         </code></pre>
-        </demo-code-block>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 class="page-header">API</h3>
-        <h4>Props</h4>
-        <ul>
-          <li>
-            <p>
-              <code>tag: String</code>
-              <span>The HTML tag that render the component. Default: 'span'.</span>
-            </p>
-          </li>
-          <li><p><code>v-model: Boolean</code> Show / hide the tooltip.</p></li>
-          <li><p><code>text: String</code> The tooltip content, support HTML string.</p></li>
-          <li><p><code>enable: Boolean</code> Enable the tooltip. Default: true.</p></li>
-          <li>
-            <p>
-              <code>placement: String</code>
-              The tooltip placement, support top / right / bottom / left. Default: top.
-            </p>
-          </li>
-          <li>
-            <p>
-              <code>auto-placement: Boolean</code>
-              Try to auto adjust the content placement if the set one does not have enough space to show. Try order:
-              top -> right -> bottom -> left, and use the set one if none of these matched. Default: true.
-            </p>
-          </li>
-          <li>
-            <p>
-              <code>trigger: String</code>
-              The tooltip trigger event, support:
-            </p>
-            <ul>
-              <li><p>hover -> show on mouseenter, hide on mouseleave</p></li>
-              <li><p>focus -> show on focus, hide on blur</p></li>
-              <li><p>hover-focus -> combination of hover and focus trigger (Default)</p></li>
-              <li><p>click -> toggle on trigger click</p></li>
-              <li><p>outside-click -> same as click, but not close on tooltip click and close on outside click</p></li>
-              <li><p>manual -> do not add event listeners, and controls only by v-model change</p></li>
-            </ul>
-          </li>
-          <li><p><code>append-to: String</code> Element selector that the tooltip append to. Default: body.</p></li>
-          <li>
-            <p>
-              <code>transition-duration: Number</code>
-              The tooltip show / hide transition time in ms. Default: 150.
-            </p>
-          </li>
-        </ul>
-        <h4>Events</h4>
-        <ul>
-          <li><p><code>tooltip-show</code> Fire after tooltip show.</p></li>
-          <li><p><code>tooltip-hide</code> Fire after tooltip hide.</p></li>
-        </ul>
+        </demo-code-panel>
+        <api-panel :api="api" folder="tooltip" file="Tooltip.vue"></api-panel>
       </div>
     </div>
   </section>
@@ -161,14 +106,96 @@
 
 <script>
   import AnchorHeader from '../architecture/AnchorHeader.vue'
-  import DemoCodeBlock from '../architecture/DemoCodeBlock.vue'
+  import DemoCodePanel from '../architecture/DemoCodePanel.vue'
   import Tooltip from '../../components/tooltip/Tooltip.vue'
   import hljsMixin from './../mixins/hljsMixin'
+  import ApiPanel from './../architecture/ApiPanel.vue'
   export default {
     mixins: [hljsMixin],
-    components: {AnchorHeader, DemoCodeBlock, Tooltip},
+    components: {AnchorHeader, DemoCodePanel, Tooltip, ApiPanel},
     data () {
       return {
+        api: {
+          notes: [
+            'The first element appear in node will be the tooltip trigger.'
+          ],
+          props: [
+            {
+              name: 'v-model',
+              required: true,
+              desc: 'Show / hide the tooltip',
+              type: 'Boolean',
+              'default': ''
+            },
+            {
+              name: 'tag',
+              desc: 'The HTML tag that render the component',
+              type: 'String',
+              'default': 'span'
+            },
+            {
+              name: 'text',
+              desc: 'The tooltip content, support HTML string.',
+              type: 'String'
+            },
+            {
+              name: 'enable',
+              desc: 'Enable the tooltip',
+              type: 'Boolean',
+              'default': 'true'
+            },
+            {
+              name: 'placement',
+              desc: 'The tooltip placement, support top / bottom / left / right',
+              type: 'String',
+              'default': 'top'
+            },
+            {
+              name: 'auto-placement',
+              desc: 'Try to auto adjust the placement if the set one does not have enough space to show. Try order: top -> right -> bottom -> left, and use the set one if none of these matched',
+              type: 'Boolean',
+              'default': 'true'
+            },
+            {
+              name: 'trigger',
+              desc: `
+              <p>The tooltip trigger event, support:</p>
+               <ul>
+              <li><p>hover -> show on mouseenter, hide on mouseleave</p></li>
+              <li><p>focus -> show on focus, hide on blur</p></li>
+              <li><p>hover-focus -> combination of hover and focus trigger</p></li>
+              <li><p>click -> toggle on trigger click</p></li>
+              <li><p>outside-click -> same as click, but not close on tooltip click and close on outside click</p></li>
+              <li><p>manual -> do not add event listeners, and controls only by v-model change</p></li>
+            </ul>
+              `,
+              type: 'String',
+              'default': 'hover-focus'
+            },
+            {
+              name: 'append-to',
+              desc: 'Element selector that the tooltip append to',
+              type: 'String',
+              'default': 'body'
+            },
+            {
+              name: 'transition-duration',
+              desc: 'The tooltip show / hide transition time in ms',
+              type: 'Number',
+              'default': '150'
+            }
+          ],
+          events: [
+            {
+              name: 'tooltip-show',
+              desc: 'Fire after tooltip show'
+            },
+            {
+              name: 'tooltip-hide',
+              desc: 'Fire after tooltip hide'
+            }
+          ]
+        },
         text: 'Some helpful text',
         placement: 'top',
         autoPlacement: true,

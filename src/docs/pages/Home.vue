@@ -7,19 +7,19 @@
             <h1>uiv</h1>
             <br/>
             <p>
-              <a href="https://travis-ci.org/wxsms/uiv" target="_blank">
+              <a href="https://travis-ci.org/wxsms/uiv">
                 <img src="https://travis-ci.org/wxsms/uiv.svg?branch=master" alt="Build Status" height="20px">
               </a>
-              <a href='https://coveralls.io/github/wxsms/uiv?branch=master' target="_blank">
+              <a href='https://coveralls.io/github/wxsms/uiv?branch=master'>
                 <img src='https://coveralls.io/repos/github/wxsms/uiv/badge.svg?branch=master' alt='Coverage Status'
                      height="20px"/>
               </a>
-              <a href='https://github.com/wxsms/uiv' target="_blank">
+              <a href='https://github.com/wxsms/uiv'>
                 <img src='https://img.shields.io/github/license/mashape/apistatus.svg' alt='License' height="20px"/>
               </a>
             </p>
             <p>
-              <a href="https://npmjs.org/package/uiv" target="_blank">
+              <a href="https://npmjs.org/package/uiv">
                 <img src='https://nodei.co/npm/uiv.png' alt='NPM' height="56px"/>
               </a>
             </p>
@@ -70,7 +70,7 @@
               <p><i class="glyphicon glyphicon-grain icon-thumbnail"></i></p>
               <p>
                 <b>MIT</b> License
-                <a target="_blank" href="https://github.com/wxsms/uiv/blob/master/LICENSE"><i class="glyphicon glyphicon-share"></i></a>
+                <a href="https://github.com/wxsms/uiv/blob/master/LICENSE"><i class="glyphicon glyphicon-share"></i></a>
               </p>
               <p>Easy and Free</p>
               <p>Welcome to contribute!</p>

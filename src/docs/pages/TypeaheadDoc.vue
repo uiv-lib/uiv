@@ -65,7 +65,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <demo-code-block demo-file="TypeaheadDoc.vue">
+        <demo-code-panel demo-file="TypeaheadDoc.vue">
         <pre><code>
 // Local data query sample
 &lt;typeahead v-model=&quot;model1&quot; :data=&quot;states&quot; item-key=&quot;name&quot;&gt;
@@ -85,70 +85,8 @@
   &lt;/template&gt;
 &lt;/typeahead&gt;
         </code></pre>
-        </demo-code-block>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 class="page-header">API</h3>
-        <h4>Note</h4>
-        <ul>
-          <li><p>Use <code>v-model</code> to bind the input value.</p></li>
-          <li><p>Element with <code>data-role="input"</code> will be the input source.</p></li>
-        </ul>
-        <h4>Props</h4>
-        <ul>
-          <li><p><code>data: Array</code> The local auto-complete query data.</p></li>
-          <li><p><code>item-key: String</code> Value of each data[key] to show, leave blank to use the data object.</p>
-          </li>
-          <li><p><code>append-to-body: Boolean</code> Append the dropdown to body. Default: false.</p></li>
-          <li>
-            <p><code>ignore-case: Boolean</code> Ignore input case while matching. Default: true.</p>
-          </li>
-          <li>
-            <p><code>match-start: Boolean</code> Match from the head of item. Default: false.</p>
-          </li>
-          <li>
-            <p><code>force-select: Boolean</code>
-              Force user to select from the options or the model will be empty. Default: false.</p>
-          </li>
-          <li>
-            <p><code>open-on-focus: Boolean</code>
-              Open the typeahead dropdown on focus. Default: true.</p>
-          </li>
-          <li>
-            <p><code>limit: Number</code> Limit the options size. Default: 10.</p>
-          </li>
-          <li>
-            <p><code>async-src: String</code>
-              The ajax url to fetch data using GET method, query string will be append to the end of this prop value,
-              should return JSON object or array.
-            </p>
-          </li>
-          <li>
-            <p><code>async-key: String</code>
-              The async JSON key to render, leave blank to use the original json object (should be Array).
-            </p>
-          </li>
-          <li>
-            <p><code>debounce: Number</code>
-              Debounce the input for specify milliseconds while in async mode. Default: 200.
-            </p>
-          </li>
-        </ul>
-        <h4>Slots</h4>
-        <ul>
-          <li><p><code>default</code> Should be the typeahead input element or others.</p></li>
-          <li>
-            <p>
-              <code>item</code>
-              Use this slot to override the typeahead template.
-              Note: This should be a scope slot and use <code>scope="props"</code> as param.
-              The list item object will be <code>props.item</code>.
-              Detail please refer to below sample.
-            </p>
-          </li>
-        </ul>
+        </demo-code-panel>
+        <api-panel :api="api" folder="typeahead" file="Typeahead.vue"></api-panel>
       </div>
     </div>
   </section>
@@ -156,15 +94,104 @@
 
 <script>
   import AnchorHeader from '../architecture/AnchorHeader.vue'
-  import DemoCodeBlock from '../architecture/DemoCodeBlock.vue'
+  import DemoCodePanel from '../architecture/DemoCodePanel.vue'
   import Typeahead from '../../components/typeahead/Typeahead.vue'
   import states from '../data/states.json'
   import hljsMixin from './../mixins/hljsMixin'
+  import ApiPanel from './../architecture/ApiPanel.vue'
   export default {
     mixins: [hljsMixin],
-    components: {AnchorHeader, DemoCodeBlock, Typeahead},
+    components: {AnchorHeader, DemoCodePanel, Typeahead, ApiPanel},
     data () {
       return {
+        api: {
+          notes: [
+            `Element with <code>data-role="input"</code> will be the input source.</code>`
+          ],
+          props: [
+            {
+              name: 'v-model',
+              required: true,
+              desc: 'The input or selected value.'
+            },
+            {
+              name: 'data',
+              desc: 'The local auto-complete query data.',
+              type: 'Array'
+            },
+            {
+              name: 'item-key',
+              desc: 'Value of each data[key] to show, leave blank to use the data object.',
+              type: 'String'
+            },
+            {
+              name: 'append-to-body',
+              desc: 'Append the typeahead dropdown to body.',
+              type: 'Boolean',
+              'default': 'false'
+            },
+            {
+              name: 'ignore-case',
+              desc: 'Ignore input case while matching.',
+              type: 'Boolean',
+              'default': 'true'
+            },
+            {
+              name: 'match-start',
+              desc: 'Match from the head of item.',
+              type: 'Boolean',
+              'default': 'false'
+            },
+            {
+              name: 'force-select',
+              desc: 'Force user to select from the options or the model will be empty.',
+              type: 'Boolean',
+              'default': 'false'
+            },
+            {
+              name: 'open-on-focus',
+              desc: 'Open the typeahead dropdown on input focus.',
+              type: 'Boolean',
+              'default': 'true'
+            },
+            {
+              name: 'limit',
+              desc: 'Limit the options size.',
+              type: 'Number',
+              'default': '10'
+            },
+            {
+              name: 'async-src',
+              desc: 'The ajax url to fetch data using GET method, query string will be append to the end of this prop value, should return JSON object or array.',
+              type: 'String'
+            },
+            {
+              name: 'async-key',
+              desc: 'The async JSON key to render, leave blank to use the original json object (should be Array).',
+              type: 'String'
+            },
+            {
+              name: 'debounce',
+              desc: 'Debounce the input for specify milliseconds while in async mode.',
+              type: 'Number',
+              'default': '200'
+            }
+          ],
+          slots: [
+            {
+              name: 'default',
+              desc: 'Should be the typeahead input element or others.'
+            },
+            {
+              name: 'item',
+              desc: `
+              Use this slot to override the typeahead template.
+              Note: This should be a scope slot and use <code>scope="props"</code> as param.
+              The list item object will be <code>props.item</code>.
+              Detail please refer to below sample in code panel.`
+            }
+          ]
+        },
         model1: '',
         model2: '',
         itemKey: 'name',

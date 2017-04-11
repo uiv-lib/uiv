@@ -23,10 +23,12 @@
           <form class="form-horizontal">
             <div class="form-group">
               <div class="col-xs-12">
-                <button class="btn btn-default" type="button" @click="resetTime" data-action="setNine">Set to 9:00 AM
+                <button class="btn btn-default" type="button" @click="resetTime" data-action="setNine">
+                  <span>Set to 9:00 AM</span>
                 </button>
                 <button class="btn btn-default" type="button" @click="showMeridian=!showMeridian">12H / 24H</button>
-                <button class="btn btn-default" type="button" @click="isReadOnly=!isReadOnly">Toggle Readonly Input
+                <button class="btn btn-default" type="button" @click="isReadOnly=!isReadOnly">
+                  <span>Toggle Readonly Input</span>
                 </button>
               </div>
             </div>
@@ -56,34 +58,12 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <demo-code-block demo-file="TimePickerDoc.vue">
+        <demo-code-panel demo-file="TimePickerDoc.vue">
         <pre><code>
 &lt;time-picker v-model=&quot;myTime&quot; :show-meridian=&quot;showMeridian&quot;&gt;&lt;/time-picker&gt;
         </code></pre>
-        </demo-code-block>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 class="page-header">API</h3>
-        <h4>Notes</h4>
-        <ul>
-          <li><p>Use <code>v-model: Date</code> to identify the time</p></li>
-          <li><p>Make sure to update the date object reference when try to change it from outside the component. E.g.
-            <code>model = new Date(model)</code></p></li>
-        </ul>
-        <h4>Props</h4>
-        <ul>
-          <li><p><code>show-meridian: Boolean</code> Whether to display 12H or 24H mode. Default: true.</p></li>
-          <li><p><code>hour-step: Number</code> Number of hours to increase or decrease when using a button. Default: 1.
-          </p></li>
-          <li><p><code>min-tep: Number</code> Number of minutes to increase or decrease when using a button. Default: 1.
-          </p></li>
-          <li><p><code>readonly-input: Boolean</code> Whether user can type inside the hours & minutes input. Default:
-            false.</p></li>
-          <li><p><code>max: Date</code> The maximum time that user can select or input.</p></li>
-          <li><p><code>min: Date</code> The minimum time that user can select or input.</p></li>
-        </ul>
+        </demo-code-panel>
+        <api-panel :api="api" folder="timepicker" file="TimePicker.vue"></api-panel>
       </div>
     </div>
   </section>
@@ -91,15 +71,64 @@
 
 <script>
   import AnchorHeader from '../architecture/AnchorHeader.vue'
-  import DemoCodeBlock from '../architecture/DemoCodeBlock.vue'
+  import DemoCodePanel from '../architecture/DemoCodePanel.vue'
   import TimePicker from '../../components/timepicker/TimePicker.vue'
   import utils from '../../utils/stringUtils'
   import hljsMixin from './../mixins/hljsMixin'
+  import ApiPanel from './../architecture/ApiPanel.vue'
   export default {
     mixins: [hljsMixin],
-    components: {AnchorHeader, TimePicker, DemoCodeBlock},
+    components: {AnchorHeader, TimePicker, DemoCodePanel, ApiPanel},
     data () {
       return {
+        api: {
+          notes: [
+            `Make sure to update the date object reference when try to change it from outside the component. E.g. <code>model = new Date(model)</code>`
+          ],
+          props: [
+            {
+              name: 'v-model',
+              required: true,
+              desc: 'The selected time.',
+              type: 'Date',
+              'default': ''
+            },
+            {
+              name: 'show-meridian',
+              desc: 'Whether to display 12H or 24H mode.',
+              type: 'Boolean',
+              'default': 'true'
+            },
+            {
+              name: 'hour-step',
+              desc: 'Number of hours to increase or decrease when using a button.',
+              type: 'Number',
+              'default': '1'
+            },
+            {
+              name: 'min-step',
+              desc: 'Number of minutes to increase or decrease when using a button.',
+              type: 'Number',
+              'default': '1'
+            },
+            {
+              name: 'readonly-input',
+              desc: 'Whether user can type inside the hours & minutes input.',
+              type: 'Boolean',
+              'default': 'false'
+            },
+            {
+              name: 'max',
+              desc: 'The maximum time that user can select or input.',
+              type: 'Date'
+            },
+            {
+              name: 'min',
+              desc: 'The minimum time that user can select or input.',
+              type: 'Date'
+            }
+          ]
+        },
         myTime: new Date(),
         showMeridian: true,
         isReadOnly: false,

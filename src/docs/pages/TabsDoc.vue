@@ -59,41 +59,16 @@
     <div class="row">
       <div class="col-xs-12">
         <br/>
-        <demo-code-block demo-file="TabsDoc.vue">
+        <demo-code-panel demo-file="TabsDoc.vue">
         <pre><code>
 &lt;tabs v-model=&quot;index&quot;&gt;
   &lt;tab&gt;...&lt;/tab&gt;
   &lt;tab&gt;...&lt;/tab&gt;
 &lt;/tabs&gt;
         </code></pre>
-        </demo-code-block>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 class="page-header">API</h3>
-        <h4>Props (Tabs)</h4>
-        <ul>
-          <li><p><code>v-model: Number</code> The current tab index. <b>Required.</b> Default: 0.</p></li>
-          <li><p><code>justified: Boolean</code> Use justified style. Default: false.</p></li>
-        </ul>
-        <h4>Props (Tab)</h4>
-        <ul>
-          <li><p><code>title: String</code> The tab title</p></li>
-          <li><p><code>htmlTitle: Boolean</code> Use HTML title. Default: false.</p></li>
-          <li><p><code>disabled: Boolean</code> Disable the tab. Default: false.</p></li>
-          <li><p><code>group: String</code> Tabs nav with same group will in a dropdown list.</p></li>
-        </ul>
-        <h4>Slots (Tabs)</h4>
-        <ul>
-          <li><p><code>default</code> The tabs content.</p></li>
-          <li><p><code>nav-right</code> The snip at right side of tab nav. Note: it won't display if using justified
-            style.</p></li>
-        </ul>
-        <h4>Events (Tabs)</h4>
-        <ul>
-          <li><p><code>after-active (index: Number)</code> Fire after tab active.</p></li>
-        </ul>
+        </demo-code-panel>
+        <api-panel :api="tabsApi" folder="tabs" file="Tabs.vue"></api-panel>
+        <api-panel :api="tabApi" folder="tabs" file="Tab.vue"></api-panel>
       </div>
     </div>
   </section>
@@ -101,17 +76,78 @@
 
 <script>
   import AnchorHeader from '../architecture/AnchorHeader.vue'
-  import DemoCodeBlock from '../architecture/DemoCodeBlock.vue'
+  import DemoCodePanel from '../architecture/DemoCodePanel.vue'
   import Tabs from '../../components/tabs/Tabs.vue'
   import Tab from '../../components/tabs/Tab.vue'
   import hljsMixin from './../mixins/hljsMixin'
+  import ApiPanel from './../architecture/ApiPanel.vue'
   export default {
     mixins: [hljsMixin],
     components: {
-      AnchorHeader, DemoCodeBlock, Tabs, Tab
+      AnchorHeader, DemoCodePanel, Tabs, Tab, ApiPanel
     },
     data () {
       return {
+        tabsApi: {
+          props: [
+            {
+              name: 'v-model',
+              required: true,
+              desc: 'The current tab index.',
+              type: 'Number',
+              'default': '0'
+            },
+            {
+              name: 'justified',
+              desc: 'Use justified style.',
+              type: 'Boolean',
+              'default': 'false'
+            }
+          ],
+          slots: [
+            {
+              name: 'default',
+              desc: 'The tabs content.'
+            },
+            {
+              name: 'nav-right',
+              desc: 'The snip at right side of tab nav. Note: it won\'t display if using justified style.'
+            }
+          ],
+          events: [
+            {
+              name: 'after-active',
+              desc: 'Fire after tab active, with the active index.',
+              params: ['index']
+            }
+          ]
+        },
+        tabApi: {
+          props: [
+            {
+              name: 'title',
+              desc: 'The tab title.',
+              type: 'String'
+            },
+            {
+              name: 'html-title',
+              desc: 'Use HTML title.',
+              'default': 'false',
+              type: 'Boolean'
+            },
+            {
+              name: 'disabled',
+              desc: 'Disable the tab.',
+              'default': 'false',
+              type: 'Boolean'
+            },
+            {
+              name: 'group',
+              desc: 'Tabs nav with same group will in a dropdown list.',
+              type: 'String'
+            }
+          ]
+        },
         activeTab: {index: 0},
         thirdTabDisabled: true,
         justified: false,

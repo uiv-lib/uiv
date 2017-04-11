@@ -116,49 +116,14 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <demo-code-block demo-file="ModalDoc.vue">
+        <demo-code-panel demo-file="ModalDoc.vue">
         <pre><code>
 &lt;modal v-model=&quot;open&quot; title=&quot;Modal 1&quot;&gt;
   &lt;p&gt;This is a simple modal.&lt;/p&gt;
 &lt;/modal&gt;
         </code></pre>
-        </demo-code-block>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 class="page-header">API</h3>
-        <h4>Props</h4>
-        <ul>
-          <li><p><code>v-model: Boolean</code> Show / hide the modal.</p></li>
-          <li><p><code>title: String</code> The modal title (will be override if title slot exist).</p></li>
-          <li><p><code>size: String</code> The modal size. Support 'lg' / 'sm', default normal size.</p></li>
-          <li><p><code>backdrop: Boolean</code> The modal can close by backdrop click. Default true.</p></li>
-          <li><p><code>footer: Boolean</code> The modal shows footer. Default true.</p></li>
-          <li><p><code>cancelText: String</code> The text of cancel button.</p></li>
-          <li><p><code>okText: String</code> The text of ok button.</p></li>
-          <li><p><code>animation: Boolean</code> Use animation while show / hide the modal. Default true.</p></li>
-          <li>
-            <p>
-              <code>auto-focus: Boolean</code>
-              Focus on the action button that has <code>data-action="auto-focus"</code> attribute after modal open,
-              by default it is the OK button.
-              Default false.
-            </p>
-          </li>
-          <li><p><code>keyboard: Boolean</code> Close the modal after esc key pressed. Default true.</p></li>
-        </ul>
-        <h4>Slots</h4>
-        <ul>
-          <li><p><code>title</code> Replace as the modal title.</p></li>
-          <li><p><code>default</code> Replace as the modal body.</p></li>
-          <li><p><code>footer</code> Replace as the modal footer.</p></li>
-        </ul>
-        <h4>Events</h4>
-        <ul>
-          <li><p><code>modal-show</code> Called after modal shown.</p></li>
-          <li><p><code>modal-dismiss</code> Called after modal dismissed.</p></li>
-        </ul>
+        </demo-code-panel>
+        <api-panel :api="api" folder="modal" file="Modal.vue"></api-panel>
       </div>
     </div>
   </section>
@@ -166,16 +131,105 @@
 
 <script>
   import AnchorHeader from '../architecture/AnchorHeader.vue'
-  import DemoCodeBlock from '../architecture/DemoCodeBlock.vue'
+  import DemoCodePanel from '../architecture/DemoCodePanel.vue'
   import Modal from '../../components/modal/Modal.vue'
   import Popover from '../../components/popover/Popover.vue'
   import Tooltip from './../../components/tooltip/Tooltip.vue'
   import hljsMixin from './../mixins/hljsMixin'
+  import ApiPanel from './../architecture/ApiPanel.vue'
   export default {
     mixins: [hljsMixin],
-    components: {AnchorHeader, DemoCodeBlock, Modal, Popover, Tooltip},
+    components: {AnchorHeader, DemoCodePanel, Modal, Popover, Tooltip, ApiPanel},
     data () {
       return {
+        api: {
+          props: [
+            {
+              name: 'v-model',
+              type: 'Boolean',
+              'default': false,
+              desc: 'Show / hide the modal',
+              required: true
+            },
+            {
+              name: 'title',
+              type: 'String',
+              desc: 'The modal title (will be override if title slot exist)'
+            },
+            {
+              name: 'size',
+              type: 'String',
+              desc: 'The alternative modal size. Support \'lg\' / \'sm\''
+            },
+            {
+              name: 'backdrop',
+              type: 'Boolean',
+              desc: 'Dismiss the modal by backdrop click',
+              'default': true
+            },
+            {
+              name: 'footer',
+              type: 'Boolean',
+              desc: 'Show modal footer',
+              'default': true
+            },
+            {
+              name: 'cancel-text',
+              type: 'String',
+              desc: 'The text of cancel button',
+              'default': 'Cancel'
+            },
+            {
+              name: 'ok-text',
+              type: 'String',
+              desc: 'The text of ok button',
+              'default': 'OK'
+            },
+            {
+              name: 'animation',
+              type: 'Boolean',
+              desc: 'Use animation while show / hide the modal',
+              'default': true
+            },
+            {
+              name: 'auto-focus',
+              type: 'Boolean',
+              desc: 'Focus on the action button that has <code>data-action="auto-focus"</code> attribute after modal open, by default it is the OK button.',
+              'default': false
+            },
+            {
+              name: 'keyboard',
+              type: 'Boolean',
+              desc: 'Close the modal after esc key pressed',
+              'default': true
+            }
+          ],
+          slots: [
+            {
+              name: 'title',
+              desc: 'Replace as the modal title'
+            },
+            {
+              name: 'default',
+              desc: 'Replace as the modal body'
+            },
+            {
+              name: 'footer',
+              desc: 'Replace as the modal footer'
+            }
+          ],
+          events: [
+            {
+              name: 'modal-show',
+              desc: 'Called after modal shown'
+            },
+            {
+              name: 'modal-dismiss',
+              desc: 'Called after modal dismissed with message (if exist)',
+              params: ['msg']
+            }
+          ]
+        },
         msg: '',
         open1: false,
         open2: false,

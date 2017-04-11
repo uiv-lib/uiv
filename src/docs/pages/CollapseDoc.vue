@@ -15,6 +15,10 @@
         <collapse v-model="showCollapse1">
           <div class="well">
             Hi there.
+
+
+
+
           </div>
         </collapse>
         <h3>Accordion</h3>
@@ -29,6 +33,10 @@
               <div class="panel-body">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
                 moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+
+
+
+
               </div>
             </collapse>
           </div>
@@ -42,6 +50,10 @@
               <div class="panel-body">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
                 moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+
+
+
+
               </div>
             </collapse>
           </div>
@@ -55,6 +67,10 @@
               <div class="panel-body">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
                 moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+
+
+
+
               </div>
             </collapse>
           </div>
@@ -63,7 +79,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <demo-code-block demo-file="CollapseDoc.vue">
+        <demo-code-panel demo-file="CollapseDoc.vue">
         <pre><code>
 &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; @click=&quot;showCollapse1=!showCollapse1&quot;&gt;Click me!&lt;/button&gt;
 
@@ -73,46 +89,8 @@
   &lt;/div&gt;
 &lt;/collapse&gt;
         </code></pre>
-        </demo-code-block>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 class="page-header">API</h3>
-        <h4>Note</h4>
-        <ul>
-          <li>
-            <p>You may use it on any element that needs collapse.</p>
-          </li>
-          <li>
-            <p>The Collapse component controls only show / hide, advance logic (e.g. accordion once at a time) should be
-              implement by yourself.</p>
-          </li>
-        </ul>
-        <h4>Props</h4>
-        <ul>
-          <li>
-            <p>
-              <code>tag: String</code>
-              <span>The HTML tag that render the collapse component. Default: 'div'</span>
-            </p>
-          </li>
-          <li>
-            <p>
-              <code>v-model: Boolean</code>
-              <span>Show / hide the component. Default: false</span>
-            </p>
-          </li>
-        </ul>
-        <h4>Slots</h4>
-        <ul>
-          <li>
-            <p>
-              <code>default</code>
-              <span>Replace as the collapse body</span>
-            </p>
-          </li>
-        </ul>
+        </demo-code-panel>
+        <api-panel :api="api" folder="collapse" file="Collapse.vue"></api-panel>
       </div>
     </div>
   </section>
@@ -120,14 +98,38 @@
 
 <script>
   import AnchorHeader from '../architecture/AnchorHeader.vue'
-  import DemoCodeBlock from '../architecture/DemoCodeBlock.vue'
+  import DemoCodePanel from '../architecture/DemoCodePanel.vue'
+  import ApiPanel from './../architecture/ApiPanel.vue'
   import Collapse from '../../components/collapse/Collapse.vue'
   import hljsMixin from './../mixins/hljsMixin'
   export default {
     mixins: [hljsMixin],
-    components: {AnchorHeader, DemoCodeBlock, Collapse},
+    components: {AnchorHeader, DemoCodePanel, Collapse, ApiPanel},
     data () {
       return {
+        api: {
+          props: [
+            {
+              name: 'v-model',
+              type: 'Boolean',
+              desc: 'Show / hide the component',
+              'default': false,
+              required: true
+            },
+            {
+              name: 'tag',
+              type: 'String',
+              desc: 'The HTML tag that render the collapse component',
+              'default': 'div'
+            }
+          ],
+          slots: [
+            {
+              name: 'default',
+              desc: 'Replace as the collapse body'
+            }
+          ]
+        },
         showCollapse1: false,
         showAccordion: [true, false, false]
       }
