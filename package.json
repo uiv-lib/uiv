@@ -1,6 +1,6 @@
 {
   "name": "uiv",
-  "version": "0.10.4",
+  "version": "0.11.0",
   "description": "Bootstrap components implemented by Vue",
   "author": "wxsm",
   "main": "dist/uiv.min.js",
