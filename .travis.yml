@@ -4,4 +4,24 @@ cache:
   - node_modules
 node_js:
   - "node"
+script:
+  - npm run test
+  - npm run build
+  - npm run build-docs
 after_success: 'npm run coveralls'
+
+deploy:
+  - provider: npm
+    skip_cleanup: true
+    email: "edisond@qq.com"
+    api_key: $NPM_TOKEN
+    on:
+      tags: true
+      branch: master
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    local_dir: docs
+    on:
+      tags: true
+      branch: master

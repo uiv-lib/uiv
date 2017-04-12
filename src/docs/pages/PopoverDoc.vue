@@ -133,7 +133,6 @@
           props: [
             {
               name: 'v-model',
-              required: true,
               desc: 'Show / hide the popover',
               type: 'Boolean',
               'default': ''

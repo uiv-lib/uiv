@@ -122,7 +122,6 @@
           props: [
             {
               name: 'v-model',
-              required: true,
               desc: 'Show / hide the tooltip',
               type: 'Boolean',
               'default': ''
