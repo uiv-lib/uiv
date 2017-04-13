@@ -45,8 +45,7 @@
     },
     props: {
       value: {
-        type: Number,
-        'default': 0
+        type: Number
       },
       justified: {
         type: Boolean,
@@ -56,15 +55,20 @@
     data () {
       return {
         tabs: [],
+        activeIndex: 0, // Make v-model not required
         groupedTabs: []
       }
     },
     watch: {
-      value () {
+      value (v) {
+        this.activeIndex = v
         this.$selectCurrent()
       }
     },
     mounted () {
+      if (typeof this.value !== 'undefined') {
+        this.activeIndex = this.value
+      }
       if (this.tabs.length) {
         this.$selectCurrent()
       }
@@ -97,14 +101,19 @@
         this.tabs.forEach(tab => {
           tab.active = false
         })
-        let tab = this.tabs[this.value]
+        let tab = this.tabs[this.activeIndex]
         tab.active = true
         this.computeGroupedTabs()
-        this.$emit('after-active', this.value)
+        this.$emit('after-active', this.activeIndex)
       },
       select (index) {
         if (!this.tabs[index].disabled) {
-          this.$emit('input', index)
+          if (typeof this.value !== 'undefined') {
+            this.$emit('input', index)
+          } else {
+            this.activeIndex = index
+            this.$selectCurrent()
+          }
         }
       }
     }

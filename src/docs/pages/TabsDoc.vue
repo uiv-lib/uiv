@@ -30,7 +30,7 @@
           </tab>
         </tabs>
         <h3>Advanced</h3>
-        <tabs @after-active="afterTabActive" v-model="tabIndex2">
+        <tabs @after-active="afterTabActive">
           <tab title="<i class='glyphicon glyphicon-heart'></i> HTML Title" :html-title="true">
             <p>This tab has a HTML title.</p>
           </tab>
@@ -61,7 +61,7 @@
         <br/>
         <demo-code-panel demo-file="TabsDoc.vue">
         <pre><code>
-&lt;tabs v-model=&quot;index&quot;&gt;
+&lt;tabs&gt;
   &lt;tab&gt;...&lt;/tab&gt;
   &lt;tab&gt;...&lt;/tab&gt;
 &lt;/tabs&gt;
@@ -92,10 +92,8 @@
           props: [
             {
               name: 'v-model',
-              required: true,
-              desc: 'The current tab index.',
-              type: 'Number',
-              'default': '0'
+              desc: 'The current tab index, use this to manual change tab index.',
+              type: 'Number'
             },
             {
               name: 'justified',
@@ -151,8 +149,7 @@
         activeTab: {index: 0},
         thirdTabDisabled: true,
         justified: false,
-        tabIndex1: 0,
-        tabIndex2: 0
+        tabIndex1: 0
       }
     },
     methods: {

@@ -7,8 +7,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <carousel v-model="currentIndex" :indicators="indicators" :controls="controls" :interval="interval"
-                  ref="carousel">
+        <carousel :indicators="indicators" :controls="controls" :interval="interval" ref="carousel">
           <slide v-for="(slide,index) in slides" :key="index">
             <div style="width: 100%;height: 400px;" :style="{background:index%2===0?'#99a9bf':'#d3dce6'}"></div>
             <div class="carousel-caption">
@@ -83,9 +82,7 @@
             {
               name: 'v-model',
               type: 'Number',
-              desc: 'The current slide index',
-              'default': 0,
-              required: true
+              desc: 'The current slide index, use this to manual change slide index.'
             },
             {
               name: 'indicators',
