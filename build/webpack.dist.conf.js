@@ -4,15 +4,30 @@ const webpack = require('webpack')
 const config = require('../config')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
 let env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : config.dist.env
 
-let webpackConfig = merge(baseWebpackConfig, {
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
+
+let rules = baseWebpackConfig.module.rules
+// find vue-loader and disable css source map & extract
+for (let i = 0; i < rules.length; i++) {
+  if (rules[i].loader === 'vue-loader') {
+    rules[i].options = {
+      loaders: utils.cssLoaders({
+        sourceMap: false,
+        extract: false
+      })
+    }
+    break
+  }
+}
+
+let webpackConfig = {
   entry: {
     app: './src/components/index.js'
   },
@@ -22,11 +37,15 @@ let webpackConfig = merge(baseWebpackConfig, {
     library: 'uiv',
     libraryTarget: 'umd'
   },
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
+    }
+  },
   module: {
-    rules: utils.styleLoaders({
-      sourceMap: config.dist.productionSourceMap,
-      extract: true
-    })
+    rules: rules
   },
   devtool: config.dist.productionSourceMap ? '#source-map' : false,
   plugins: [
@@ -39,16 +58,9 @@ let webpackConfig = merge(baseWebpackConfig, {
         warnings: false
       },
       sourceMap: true
-    }),
-    // extract css into its own file
-    new ExtractTextPlugin({
-      filename: 'uiv.min.css'
-    }),
-    // Compress extracted CSS. We are using this plugin so that possible
-    // duplicated CSS from different components can be deduped.
-    new OptimizeCSSPlugin()
+    })
   ]
-})
+}
 
 if (config.dist.productionGzip) {
   let CompressionWebpackPlugin = require('compression-webpack-plugin')

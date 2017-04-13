@@ -46,7 +46,7 @@
             <div class="caption">
               <h3>Light Weight</h3>
               <p><i class="glyphicon glyphicon-leaf icon-thumbnail"></i></p>
-              <p>~ <b>10KB</b> Gziped</p>
+              <p>~ <b>14KB</b> Gziped</p>
               <p>Dependencies only</p>
               <p><b>Vue</b> & <b>Bootstrap CSS</b></p>
             </div>
