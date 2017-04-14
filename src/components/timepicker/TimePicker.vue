@@ -4,15 +4,15 @@
       <tbody>
       <tr class="text-center">
         <td>
-          <a role="button" @click="changeTime(1,1)">
+          <button class="btn btn-link btn-sm" type="button" @click="changeTime(1,1)" :disabled="readonly">
             <i class="glyphicon glyphicon-chevron-up"></i>
-          </a>
+          </button>
         </td>
         <td>&nbsp;</td>
         <td>
-          <a role="button" @click="changeTime(0,1)">
+          <button class="btn btn-link btn-sm" type="button" @click="changeTime(0,1)" :disabled="readonly">
             <i class="glyphicon glyphicon-chevron-up"></i>
-          </a>
+          </button>
         </td>
         <td v-if="showMeridian">
         </td>
@@ -23,7 +23,7 @@
                  @wheel="hoursWheel"
                  placeholder="HH"
                  v-model="hoursText"
-                 :readonly="readonlyInput"
+                 :readonly="readonly"
                  size="2">
         </td>
         <td>&nbsp;<b>:</b>&nbsp;</td>
@@ -32,26 +32,26 @@
                  @wheel="minutesWheel"
                  placeholder="MM"
                  v-model="minutesText"
-                 :readonly="readonlyInput"
+                 :readonly="readonly"
                  size="2">
         </td>
         <td v-if="showMeridian">
           &nbsp;
-          <button type="button" class="btn btn-default" data-action="toggleMeridian" v-text="meridian?'AM':'PM'"
+          <button type="button" class="btn btn-default" data-action="toggleMeridian" :disabled="readonly" v-text="meridian?'AM':'PM'"
                   @click="toggleMeridian"></button>
         </td>
       </tr>
       <tr class="text-center">
         <td>
-          <a role="button" @click="changeTime(1,0)">
+          <button class="btn btn-link btn-sm" type="button" @click="changeTime(1,0)" :disabled="readonly">
             <i class="glyphicon glyphicon-chevron-down"></i>
-          </a>
+          </button>
         </td>
         <td>&nbsp;</td>
         <td>
-          <a role="button" @click="changeTime(0,0)">
+          <button class="btn btn-link btn-sm" type="button" @click="changeTime(0,0)" :disabled="readonly">
             <i class="glyphicon glyphicon-chevron-down"></i>
-          </a>
+          </button>
         </td>
         <td v-if="showMeridian">
         </td>
@@ -92,7 +92,7 @@
         type: Number,
         'default': 1
       },
-      readonlyInput: {
+      readonly: {
         type: Boolean,
         'default': false
       }
@@ -204,13 +204,13 @@
         this.setTime()
       },
       minutesWheel (e) {
-        if (!this.readonlyInput) {
+        if (!this.readonly) {
           e.preventDefault()
           this.changeTime(false, e.deltaY < 0)
         }
       },
       hoursWheel (e) {
-        if (!this.readonlyInput) {
+        if (!this.readonly) {
           e.preventDefault()
           this.changeTime(true, e.deltaY < 0)
         }

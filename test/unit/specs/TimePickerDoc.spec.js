@@ -34,9 +34,10 @@ describe('TimePickerDoc', () => {
     const Constructor = Vue.extend(TimePickerDoc)
     const vm = new Constructor().$mount()
     vm.hourStep = 1
+    vm.isReadOnly = false
     vm.$nextTick(() => {
       let beforeText = vm.$el.querySelectorAll('input')[0].value
-      let hourPlus = vm.$el.querySelectorAll('td')[0].querySelector('a')
+      let hourPlus = vm.$el.querySelectorAll('td')[0].querySelector('button')
       hourPlus.click()
       vm.$nextTick(() => {
         let afterText = vm.$el.querySelectorAll('input')[0].value
@@ -63,9 +64,10 @@ describe('TimePickerDoc', () => {
     const Constructor = Vue.extend(TimePickerDoc)
     const vm = new Constructor().$mount()
     vm.minStep = 1
+    vm.isReadOnly = false
     vm.$nextTick(() => {
       let beforeText = vm.$el.querySelectorAll('input')[1].value
-      let minutesPlus = vm.$el.querySelectorAll('tr td a')[1]
+      let minutesPlus = vm.$el.querySelectorAll('tr td button')[1]
       minutesPlus.click()
       vm.$nextTick(() => {
         let afterText = vm.$el.querySelectorAll('input')[1].value
@@ -83,9 +85,10 @@ describe('TimePickerDoc', () => {
     const Constructor = Vue.extend(TimePickerDoc)
     const vm = new Constructor().$mount()
     vm.hourStep = 1
+    vm.isReadOnly = false
     vm.$nextTick(() => {
       let beforeText = vm.$el.querySelectorAll('input')[0].value
-      let hourMinus = vm.$el.querySelectorAll('tr')[2].querySelector('td a')
+      let hourMinus = vm.$el.querySelectorAll('tr')[2].querySelector('td button')
       hourMinus.click()
       vm.$nextTick(() => {
         let afterText = vm.$el.querySelectorAll('input')[0].value
@@ -112,9 +115,10 @@ describe('TimePickerDoc', () => {
     const Constructor = Vue.extend(TimePickerDoc)
     const vm = new Constructor().$mount()
     vm.minStep = 1
+    vm.isReadOnly = false
     vm.$nextTick(() => {
       let beforeText = vm.$el.querySelectorAll('input')[1].value
-      let minutesMinus = vm.$el.querySelectorAll('tr')[2].querySelectorAll('td a')[1]
+      let minutesMinus = vm.$el.querySelectorAll('tr')[2].querySelectorAll('td button')[1]
       minutesMinus.click()
       vm.$nextTick(() => {
         let afterText = vm.$el.querySelectorAll('input')[1].value
@@ -269,9 +273,10 @@ describe('TimePickerDoc', () => {
     vm.myTime.setHours(9)
     vm.myTime.setMinutes(59)
     vm.myTime = new Date(vm.myTime)
+    vm.isReadOnly = false
     vm.$nextTick(() => {
       let beforeHourText = vm.$el.querySelectorAll('input')[0].value
-      let minutesPlus = vm.$el.querySelectorAll('tr td a')[1]
+      let minutesPlus = vm.$el.querySelectorAll('tr td button')[1]
       minutesPlus.click()
       vm.$nextTick(() => {
         let afterHourText = vm.$el.querySelectorAll('input')[0].value
@@ -289,9 +294,10 @@ describe('TimePickerDoc', () => {
     vm.myTime.setHours(9)
     vm.myTime.setMinutes(0)
     vm.myTime = new Date(vm.myTime)
+    vm.isReadOnly = false
     vm.$nextTick(() => {
       let beforeHourText = vm.$el.querySelectorAll('input')[0].value
-      let minutesMinus = vm.$el.querySelectorAll('tr')[2].querySelectorAll('td a')[1]
+      let minutesMinus = vm.$el.querySelectorAll('tr')[2].querySelectorAll('td button')[1]
       minutesMinus.click()
       vm.$nextTick(() => {
         let afterHourText = vm.$el.querySelectorAll('input')[0].value
@@ -367,9 +373,10 @@ describe('TimePickerDoc', () => {
     vm.max = '09:01'
     vm.myTime.setHours(9)
     vm.myTime = new Date(vm.myTime)
+    vm.isReadOnly = false
     vm.$nextTick(() => {
       let hourText = vm.$el.querySelectorAll('input')[0].value
-      let hourPlus = vm.$el.querySelectorAll('td')[0].querySelector('a')
+      let hourPlus = vm.$el.querySelectorAll('td')[0].querySelector('button')
       expect(hourText).to.equal('09')
       hourPlus.click()
       vm.$nextTick(() => {
@@ -387,10 +394,11 @@ describe('TimePickerDoc', () => {
     vm.myTime.setHours(9)
     vm.myTime.setMinutes(0)
     vm.myTime = new Date(vm.myTime)
+    vm.isReadOnly = false
     vm.$nextTick(() => {
       let hourText = vm.$el.querySelectorAll('input')[0].value
       expect(hourText).to.equal('09')
-      let hourMinus = vm.$el.querySelectorAll('tr')[2].querySelector('td a')
+      let hourMinus = vm.$el.querySelectorAll('tr')[2].querySelector('td button')
       hourMinus.click()
       vm.$nextTick(() => {
         hourText = vm.$el.querySelectorAll('input')[0].value
