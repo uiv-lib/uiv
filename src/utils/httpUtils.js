@@ -1,5 +1,3 @@
-'use strict'
-
 export default {
   get (url) {
     let request = new window.XMLHttpRequest()

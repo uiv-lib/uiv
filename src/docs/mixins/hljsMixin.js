@@ -1,5 +1,3 @@
-'use strict'
-
 import hljs from './../../utils/hljsUtils'
 
 let mixin = {

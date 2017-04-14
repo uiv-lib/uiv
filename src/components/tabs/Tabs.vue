@@ -16,7 +16,7 @@
           </template>
         </dropdown>
         <li v-else role="presentation" :class="{'active':tab.active,'disabled':tab.disabled}">
-          <a role="tab" href="javascript:void(0);" @click="select(index)">
+          <a role="tab" href="javascript:void(0);" @click="select(tabs.indexOf(tab))">
             <span v-if="tab.htmlTitle" v-html="tab.title"></span>
             <span v-else v-text="tab.title"></span>
           </a>

@@ -1,5 +1,3 @@
-'use strict'
-
 import stringUtils from './stringUtils'
 
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',

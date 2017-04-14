@@ -1,5 +1,3 @@
-'use strict'
-
 const EVENTS = {
   MOUSE_ENTER: 'mouseenter',
   MOUSE_LEAVE: 'mouseleave',

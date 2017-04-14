@@ -9,8 +9,8 @@
       <div class="col-xs-12">
         <h3>Basic Example</h3>
         <div class="well">
-          <button type="button" id="tabs-btn-1" class="btn btn-default" @click="tabIndex1 = 0">Active Tab 1</button>
-          <button type="button" id="tabs-btn-2" class="btn btn-default" @click="tabIndex1 = 1">Active Tab 2</button>
+          <button type="button" id="tabs-btn-1" class="btn btn-default" @click="tabIndex = 0">Active Tab 1</button>
+          <button type="button" id="tabs-btn-2" class="btn btn-default" @click="tabIndex = 1">Active Tab 2</button>
           <button type="button" id="tabs-btn-3" class="btn btn-default" @click="thirdTabDisabled=!thirdTabDisabled">
             <span>Enable / Disable Tab 3</span>
           </button>
@@ -18,7 +18,7 @@
             <span>Justified Style</span>
           </button>
         </div>
-        <tabs ref="tabComponent" :justified="justified" v-model="tabIndex1">
+        <tabs ref="tabComponent" :justified="justified" v-model="tabIndex"  @after-active="afterTabActive">
           <tab title="Tab 1">
             <p>This is tab 1.</p>
           </tab>
@@ -28,23 +28,25 @@
           <tab :title="thirdTabDisabled?'Tab 3 (Disabled)':'Tab 3 (Enabled)'" :disabled="thirdTabDisabled">
             <p>This tab can be enable / disable.</p>
           </tab>
-        </tabs>
-        <h3>Advanced</h3>
-        <tabs @after-active="afterTabActive">
-          <tab title="<i class='glyphicon glyphicon-heart'></i> HTML Title" :html-title="true">
-            <p>This tab has a HTML title.</p>
-          </tab>
-          <tab title="Tab with Callback">
-            <p>This tab has a callback function after selected.</p>
-          </tab>
           <tab title="Tab in Group 1" group="Tab Group">
             <p>This is Tab in group 1.</p>
           </tab>
           <tab title="Tab in Group 2" group="Tab Group">
             <p>This is Tab in group 2.</p>
           </tab>
+          <tab title="<i class='glyphicon glyphicon-bell'></i> Alert!" :html-title="true">
+            <p>This tab has a HTML and callback function.</p>
+          </tab>
+        </tabs>
+        <h3>With Nav-Right Slot</h3>
+        <tabs>
+          <tab title="Tab 1">
+            <p>This is tab 1.</p>
+          </tab>
+          <tab title="Tab 2">
+            <p>Tab 2 goes here.</p>
+          </tab>
           <form slot="nav-right">
-            <label>Something at nav-right</label>
             <select class="form-control" style="display: inline-block;width: auto">
               <option>option1</option>
               <option>option2</option>
@@ -149,12 +151,12 @@
         activeTab: {index: 0},
         thirdTabDisabled: true,
         justified: false,
-        tabIndex1: 0
+        tabIndex: 0
       }
     },
     methods: {
       afterTabActive (index) {
-        if (index === 1) {
+        if (index === 5) {
           window.alert('You clicked on a tab that has callback function!')
         }
       }

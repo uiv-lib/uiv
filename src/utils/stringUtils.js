@@ -1,5 +1,3 @@
-'use strict'
-
 export default {
   pad (value, num) {
     value = value + ''

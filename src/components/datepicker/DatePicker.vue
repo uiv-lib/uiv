@@ -174,7 +174,6 @@
   .date-picker {
     .btn-date {
       border: none;
-      user-select: none;
     }
   }
 </style>

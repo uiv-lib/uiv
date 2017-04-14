@@ -1,5 +1,3 @@
-'use strict'
-
 import hljs from 'highlight.js/lib/highlight'
 
 /**
