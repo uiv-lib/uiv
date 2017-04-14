@@ -10,7 +10,7 @@
         <div>
           <time-picker v-model="myTime"
                        :show-meridian="showMeridian"
-                       :readonly-input="isReadOnly"
+                       :readonly="isReadOnly"
                        :min-step="minStep"
                        :hour-step="hourStep"
                        :min="minTime"
@@ -28,7 +28,7 @@
                 </button>
                 <button class="btn btn-default" type="button" @click="showMeridian=!showMeridian">12H / 24H</button>
                 <button class="btn btn-default" type="button" @click="isReadOnly=!isReadOnly">
-                  <span>Toggle Readonly Input</span>
+                  <span>Toggle Readonly</span>
                 </button>
               </div>
             </div>
@@ -112,8 +112,8 @@
               'default': '1'
             },
             {
-              name: 'readonly-input',
-              desc: 'Whether user can type inside the hours & minutes input.',
+              name: 'readonly',
+              desc: 'Whether user can change value by typing inside the hours & minutes input or arrow buttons.',
               type: 'Boolean',
               'default': 'false'
             },
