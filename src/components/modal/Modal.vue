@@ -106,7 +106,7 @@
       utils.removeFromDom(this.$refs.backdrop)
       utils.on(window, utils.events.KEY_UP, this.onKeyPress)
       if (this.value) {
-        this.toggle(true)
+        this.$toggle(true)
       }
     },
     beforeDestroy () {

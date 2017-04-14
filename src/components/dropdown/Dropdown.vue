@@ -8,7 +8,7 @@
         {
           'class': {
             dropdown: true,
-            open: this.value
+            open: this.show
           }
         },
         [
@@ -39,8 +39,13 @@
         type: Array
       },
       value: {
-        type: Boolean,
-        'default': false
+        type: Boolean
+      }
+    },
+    data () {
+      return {
+        show: false,
+        triggerEl: undefined
       }
     },
     watch: {
@@ -49,21 +54,37 @@
       }
     },
     mounted () {
+      this.triggerEl = this.$el.querySelector('[data-role="trigger"]')
+      if (this.triggerEl) {
+        utils.on(this.triggerEl, utils.events.CLICK, this.toggle)
+      }
       utils.on(window, utils.events.CLICK, this.windowClicked)
+      if (this.value) {
+        this.toggle(true)
+      }
     },
     beforeDestroy () {
       this.removeDropdownFromBody()
+      if (this.triggerEl) {
+        utils.off(this.triggerEl, utils.events.CLICK, this.toggle)
+      }
       utils.off(window, utils.events.CLICK, this.windowClicked)
     },
     methods: {
       toggle (show) {
+        if (typeof show === 'boolean') {
+          this.show = show
+        } else {
+          this.show = !this.show
+        }
         if (this.appendToBody) {
           show ? this.appendDropdownToBody() : this.removeDropdownFromBody()
         }
+        this.$emit('input', this.show)
       },
       windowClicked (event) {
         let target = event.target
-        if (this.value && target) {
+        if (this.show && target) {
           let targetInNotCloseElements = false
           if (this.notCloseElements) {
             for (let i = 0, l = this.notCloseElements.length; i < l; i++) {
@@ -76,7 +97,7 @@
           let targetInDropdownBody = this.$refs.dropdown.contains(target)
           let targetInTrigger = this.$el.contains(target) && !targetInDropdownBody
           if (!targetInTrigger && !targetInNotCloseElements) {
-            this.$emit('input', false)
+            this.toggle(false)
           }
         }
       },

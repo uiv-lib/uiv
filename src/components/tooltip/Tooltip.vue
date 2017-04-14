@@ -81,9 +81,7 @@
       this.initListeners()
       utils.removeFromDom(this.$refs.tooltip)
       if (this.value) {
-        setTimeout(() => {
-          this.show()
-        }, 20) // if no timeout, windowClicked will hide this again
+        this.show()
       }
     },
     beforeDestroy () {

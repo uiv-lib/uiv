@@ -2,12 +2,8 @@
   <section>
     <ul class="nav nav-tabs" role="tablist" :class="{'nav-justified':justified}">
       <template v-for="(tab,index) in groupedTabs">
-        <dropdown v-if="tab.tabs"
-                  role="presentation"
-                  tag="li"
-                  v-model="tab.openDropdown"
-                  :class="{'active':tab.active,'disabled':tab.disabled}">
-          <a @click="$set(tab, 'openDropdown', !tab.openDropdown)" role="tab" href="javascript:void(0)">
+        <dropdown v-if="tab.tabs" role="presentation" tag="li" :class="{'active':tab.active,'disabled':tab.disabled}">
+          <a data-role="trigger" role="tab" href="javascript:void(0)">
             <span>{{tab.group}}</span>
             <span class="caret"></span>
           </a>

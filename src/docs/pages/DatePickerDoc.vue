@@ -20,11 +20,11 @@
         </div>
         <h3>With Dropdown</h3>
         <form class="form-inline">
-          <dropdown class="form-group" v-model="openDropdown">
+          <dropdown class="form-group">
             <div class="input-group">
               <input class="form-control" type="text" v-model="date">
               <div class="input-group-btn">
-                <button class="btn btn-default" type="button" @click="openDropdown = !openDropdown">
+                <button class="btn btn-default" type="button" data-role="trigger">
                   <i class="glyphicon glyphicon-calendar"></i>
                 </button>
               </div>
@@ -177,8 +177,7 @@
         closeOnSelected: true,
         limitFrom: '',
         limitTo: '',
-        format: 'yyyy-MM-dd',
-        openDropdown: false
+        format: 'yyyy-MM-dd'
       }
     },
     computed: {
