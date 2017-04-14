@@ -105,7 +105,7 @@
           <p>This is a modal that can not close by backdrop click.</p>
         </modal>
         <!--Modal 8-->
-        <modal v-model="open8" title="Modal 8" :animation="false">
+        <modal v-model="open8" title="Modal 8" :transition-duration="0">
           <p>This is a modal that has no transition effect.</p>
         </modal>
         <!--Modal 9-->
@@ -186,10 +186,10 @@
               'default': 'OK'
             },
             {
-              name: 'animation',
-              type: 'Boolean',
-              desc: 'Use animation while show / hide the modal',
-              'default': true
+              name: 'transition-duration',
+              type: 'Number',
+              desc: 'Transition time of the modal, set to 0 to disable animation',
+              'default': 150
             },
             {
               name: 'auto-focus',

@@ -14,6 +14,7 @@
           <li>Chrome</li>
           <li>Firefox</li>
           <li>Safari</li>
+          <li>Edge</li>
           <li>IE 9 / 10 / 11</li>
         </ul>
         <h3 class="page-header">Install</h3>

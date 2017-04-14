@@ -5,13 +5,7 @@ const config = require('../config')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 
-let env = process.env.NODE_ENV === 'testing'
-  ? require('../config/test.env')
-  : config.dist.env
-
-function resolve(dir) {
-  return path.join(__dirname, '..', dir)
-}
+let env = process.env.NODE_ENV === 'testing' ? require('../config/test.env') : config.dist.env
 
 let rules = baseWebpackConfig.module.rules
 // find vue-loader and disable css source map & extract
@@ -37,13 +31,7 @@ let webpackConfig = {
     library: 'uiv',
     libraryTarget: 'umd'
   },
-  resolve: {
-    extensions: ['.js', '.vue', '.json'],
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
-    }
-  },
+  resolve: baseWebpackConfig.resolve,
   module: {
     rules: rules
   },
