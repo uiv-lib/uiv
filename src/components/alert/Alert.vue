@@ -36,7 +36,7 @@
     methods: {
       closeAlert () {
         clearTimeout(this.timeout)
-        this.$emit('closed')
+        this.$emit('close')
       }
     },
     mounted () {

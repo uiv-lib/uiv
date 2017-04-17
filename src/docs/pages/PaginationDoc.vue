@@ -13,7 +13,7 @@
                       :total-page="totalSize"
                       :size="size"
                       v-model="currentPage"
-                      @page-changed="changePage"
+                      @change="changePage"
                       :max-size="maxSize"></pagination>
         </div>
         <div class="well">
@@ -127,7 +127,7 @@
           ],
           events: [
             {
-              name: 'page-changed',
+              name: 'change',
               params: ['index'],
               desc: 'Fire after page changed, with the index number changed to'
             }
@@ -142,8 +142,8 @@
       }
     },
     methods: {
-      changePage () {
-        console.log('Page is changed!')
+      changePage (index) {
+        console.log('Page is change', index)
       }
     }
   }

@@ -100,7 +100,7 @@
         let tab = this.tabs[this.activeIndex]
         tab.active = true
         this.computeGroupedTabs()
-        this.$emit('after-active', this.activeIndex)
+        this.$emit('change', this.activeIndex)
       },
       select (index) {
         if (!this.tabs[index].disabled) {

@@ -16,17 +16,19 @@
       </li>
       <li v-for="item in sliceArray" :key="item" @click="onPageChange(item+1)" class="pagination-page"
           :class="{'active': value==item+1}">
-        <a role="button">{{item+1}}</a>
+        <a role="button">{{item + 1}}</a>
       </li>
       <li v-if="sliceStart<totalPage-maxSize" @click="toPage(0)" data-action="next-group">
         <a role="button">...</a>
       </li>
-      <li :class="{'disabled':value>=totalPage}" v-if="directionLinks" @click="onPageChange(value+1)" data-action="next-page">
+      <li :class="{'disabled':value>=totalPage}" v-if="directionLinks" @click="onPageChange(value+1)"
+          data-action="next-page">
         <a role="button">
           <span aria-hidden="true">&rsaquo;</span>
         </a>
       </li>
-      <li :class="{'disabled':value>=totalPage}" v-if="boundaryLinks" @click="onPageChange(totalPage)" data-action="last">
+      <li :class="{'disabled':value>=totalPage}" v-if="boundaryLinks" @click="onPageChange(totalPage)"
+          data-action="last">
         <a role="button">
           <span aria-hidden="true">&raquo;</span>
         </a>
@@ -103,7 +105,7 @@
       onPageChange (page) {
         if (page > 0 && page <= this.totalPage) {
           this.$emit('input', page)
-          this.$emit('page-changed', page)
+          this.$emit('change', page)
         }
       },
       toPage (pre) {

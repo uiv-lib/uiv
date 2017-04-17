@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <carousel :indicators="indicators" :controls="controls" :interval="interval" ref="carousel">
+        <carousel :indicators="indicators" :controls="controls" :interval="interval" ref="carousel" @change="change">
           <slide v-for="(slide,index) in slides" :key="index">
             <div style="width: 100%;height: 400px;" :style="{background:index%2===0?'#99a9bf':'#d3dce6'}"></div>
             <div class="carousel-caption">
@@ -102,6 +102,13 @@
               desc: 'Slides running interval time',
               'default': 2000
             }
+          ],
+          events: [
+            {
+              name: 'change',
+              params: ['index'],
+              desc: 'Fire after slide changed, with the index number changed to.'
+            }
           ]
         },
         interval: 2000,
@@ -119,6 +126,9 @@
     methods: {
       pushSlide () {
         this.slides.push({title: `Slide ${this.slides.length + 1}`})
+      },
+      change (index) {
+        console.log('Slide change to', index)
       }
     }
   }

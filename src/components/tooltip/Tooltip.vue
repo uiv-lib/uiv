@@ -149,7 +149,7 @@
         }
         utils.addClass(tooltip, SHOW_CLASS)
         this.$emit('input', true)
-        this.$emit('tooltip-show')
+        this.$emit('show')
       },
       hide () {
         if (this.isShown()) {
@@ -159,7 +159,7 @@
             utils.removeFromDom(this.$refs.tooltip)
             this.timeoutId = 0
             this.$emit('input', false)
-            this.$emit('tooltip-hide')
+            this.$emit('hide')
           }, this.transitionDuration)
         }
       },

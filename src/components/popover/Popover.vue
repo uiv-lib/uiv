@@ -146,7 +146,7 @@
         }
         utils.addClass(popover, SHOW_CLASS)
         this.$emit('input', true)
-        this.$emit('popover-show')
+        this.$emit('show')
       },
       hide () {
         if (this.isShown()) {
@@ -156,7 +156,7 @@
             utils.removeFromDom(this.$refs.popover)
             this.timeoutId = 0
             this.$emit('input', false)
-            this.$emit('popover-hide')
+            this.$emit('hide')
           }, this.transitionDuration)
         }
       },

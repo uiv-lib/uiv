@@ -13,19 +13,19 @@
                  :type="item.type"
                  :duration="item.duration"
                  :key="item.key"
-                 @closed="alertList.splice(index, 1)">
+                 @close="alertList.splice(index, 1)">
             <strong>Well done!</strong>
             <span>You successfully read this important alert message.</span>
           </alert>
-          <alert type="info" :closable="true" v-if="showAlert1" @closed="showAlert1=false">
+          <alert type="info" :closable="true" v-if="showAlert1" @close="showAlert1=false">
             <strong>Heads up!</strong>
             <span>This alert needs your attention, but it's not super important.</span>
           </alert>
-          <alert type="warning" :closable="true" v-if="showAlert2" @closed="showAlert2=false">
+          <alert type="warning" :closable="true" v-if="showAlert2" @close="showAlert2=false">
             <strong>Warning!</strong>
             <span>Better check yourself, you're not looking too good.</span>
           </alert>
-          <alert type="danger" :closable="true" v-if="showAlert3" @closed="showAlert3=false">
+          <alert type="danger" :closable="true" v-if="showAlert3" @close="showAlert3=false">
             <strong>Oh snap!</strong>
             <span>Change a few things up and try submitting again.</span>
           </alert>
@@ -52,7 +52,7 @@
       <div class="col-xs-12">
         <demo-code-panel demo-file="AlertDoc.vue">
         <pre><code>
-&lt;alert type=&quot;warning&quot; :closable=&quot;true&quot; v-if=&quot;show&quot; @closed=&quot;show=false&quot;&gt;
+&lt;alert type=&quot;warning&quot; :closable=&quot;true&quot; v-if=&quot;show&quot; @close=&quot;show=false&quot;&gt;
   &lt;strong&gt;Warning!&lt;/strong&gt; Better check yourself, you're not looking too good.
 &lt;/alert&gt;
         </code></pre>
@@ -103,7 +103,7 @@
           ],
           events: [
             {
-              name: 'closed',
+              name: 'close',
               desc: 'Fire after the alert closed. Note: you have to hide / destroy the alert using <code>v-if</code> / <code>v-show</code> / <code>v-for</code> manually due to child components can\'t change state of parent component.'
             }
           ]

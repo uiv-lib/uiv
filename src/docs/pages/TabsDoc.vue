@@ -18,7 +18,7 @@
             <span>Justified Style</span>
           </button>
         </div>
-        <tabs ref="tabComponent" :justified="justified" v-model="tabIndex"  @after-active="afterTabActive">
+        <tabs ref="tabComponent" :justified="justified" v-model="tabIndex"  @change="afterTabActive">
           <tab title="Tab 1">
             <p>This is tab 1.</p>
           </tab>
@@ -116,8 +116,8 @@
           ],
           events: [
             {
-              name: 'after-active',
-              desc: 'Fire after tab active, with the active index.',
+              name: 'change',
+              desc: 'Fire after active tab changed, with the active index.',
               params: ['index']
             }
           ]

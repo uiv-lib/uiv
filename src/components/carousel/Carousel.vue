@@ -89,6 +89,7 @@
           })
           this.timeoutId = setTimeout(() => {
             this.$select(newIndex)
+            this.$emit('change', newIndex)
             this.timeoutId = 0
           }, 600)
         })

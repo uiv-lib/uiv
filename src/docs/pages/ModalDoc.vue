@@ -30,8 +30,8 @@
           <button type="button" class="btn btn-default" @click="open9=true">Auto Focus</button>
         </div>
         <!--Modal 1-->
-        <modal id="modal-demo-1" ref="modal1" v-model="open1" title="Modal 1" @modal-show="showCallback"
-               @modal-dismiss="dismissCallback">
+        <modal id="modal-demo-1" ref="modal1" v-model="open1" title="Modal 1" @show="showCallback"
+               @hide="dismissCallback">
           <h4>Text in a modal</h4>
           <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
           <h4>Popover in a modal</h4>
@@ -220,12 +220,12 @@
           ],
           events: [
             {
-              name: 'modal-show',
-              desc: 'Called after modal shown'
+              name: 'show',
+              desc: 'Fire after modal show'
             },
             {
-              name: 'modal-dismiss',
-              desc: 'Called after modal dismissed with message (if exist)',
+              name: 'hide',
+              desc: 'Fire after modal dismiss with message (if exist)',
               params: ['msg']
             }
           ]

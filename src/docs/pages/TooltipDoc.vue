@@ -186,12 +186,12 @@
           ],
           events: [
             {
-              name: 'tooltip-show',
-              desc: 'Fire after tooltip show'
+              name: 'show',
+              desc: 'Fire after tooltip show.'
             },
             {
-              name: 'tooltip-hide',
-              desc: 'Fire after tooltip hide'
+              name: 'hide',
+              desc: 'Fire after tooltip hide.'
             }
           ]
         },

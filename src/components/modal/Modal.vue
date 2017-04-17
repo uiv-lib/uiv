@@ -142,7 +142,7 @@
                 btn.focus()
               }
             }
-            this.$emit('modal-show')
+            this.$emit('show')
             this.timeoutId = 0
           }, this.transitionDuration)
         } else {
@@ -152,7 +152,7 @@
             modal.style.display = 'none'
             utils.removeFromDom(backdrop)
             utils.removeClass(document.body, MODAL_OPEN)
-            this.$emit('modal-dismiss', this.msg || 'dismiss')
+            this.$emit('hide', this.msg || 'dismiss')
             this.msg = ''
             this.timeoutId = 0
           }, this.transitionDuration)

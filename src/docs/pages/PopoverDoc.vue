@@ -207,11 +207,11 @@
           ],
           events: [
             {
-              name: 'popover-show',
+              name: 'show',
               desc: 'Fire after popover show'
             },
             {
-              name: 'popover-hide',
+              name: 'hide',
               desc: 'Fire after popover hide'
             }
           ]
