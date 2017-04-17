@@ -5,7 +5,7 @@
         <anchor-header text="Getting Started"></anchor-header>
         <h3 class="page-header">Dependencies</h3>
         <ul>
-          <li><strong>Vue 2</strong> (tested on ^2.2.1)</li>
+          <li><strong>Vue 2</strong> (tested on ^2.2.6)</li>
           <li><strong>Bootstrap 3 CSS</strong> (tested on ^3.3.7)</li>
         </ul>
         <h3 class="page-header">Supported Browsers</h3>
