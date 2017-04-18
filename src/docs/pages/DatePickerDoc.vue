@@ -88,20 +88,20 @@
         <demo-code-panel demo-file="DatePickerDoc.vue">
         <pre><code>
 &lt;!-- With Dropdown Example --&gt;
-&lt;dropdown tag=&quot;div&quot; class=&quot;form-group&quot;&gt;
+&lt;dropdown class=&quot;form-group&quot;&gt;
   &lt;div class=&quot;input-group&quot;&gt;
-    &lt;input class=&quot;form-control&quot; type=&quot;text&quot; v-model=&quot;date&quot; readonly&gt;
+    &lt;input class=&quot;form-control&quot; type=&quot;text&quot; v-model=&quot;date&quot;&gt;
     &lt;div class=&quot;input-group-btn&quot;&gt;
       &lt;button class=&quot;btn btn-default&quot; type=&quot;button&quot; data-role=&quot;trigger&quot;&gt;
         &lt;i class=&quot;glyphicon glyphicon-calendar&quot;&gt;&lt;/i&gt;
       &lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;ul slot=&quot;dropdown&quot; class=&quot;dropdown-menu&quot;&gt;
+  &lt;template slot=&quot;dropdown&quot;&gt;
     &lt;li&gt;
       &lt;date-picker v-model=&quot;date&quot;&gt;&lt;/date-picker&gt;
     &lt;/li&gt;
-  &lt;/ul&gt;
+  &lt;/template&gt;
 &lt;/dropdown&gt;
         </code></pre>
         </demo-code-panel>
