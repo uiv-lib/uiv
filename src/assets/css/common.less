@@ -8,16 +8,23 @@ body, html {
   display: flex;
 }
 
-.page-body {
-  > .container-fluid {
+.page {
+  .container-fluid {
     max-width: 860px;
     margin: 0 50px;
+  }
+
+  .navbar {
+    .container-fluid {
+      max-width: 100%;
+      margin: 0;
+    }
   }
 }
 
 @media (max-width: @screen-xs-max) {
-  .page-body {
-    > .container-fluid {
+  .page {
+    .container-fluid {
       margin: 0;
     }
   }
