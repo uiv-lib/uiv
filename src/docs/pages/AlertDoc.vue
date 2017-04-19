@@ -7,6 +7,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
+        <h3>Dynamic Example</h3>
         <div id="alertContainer">
           <alert v-for="(item,index) in alertList"
                  :closable="item.closable"
@@ -46,15 +47,34 @@
             </div>
           </form>
         </div>
+        <h3>Use with Collapse</h3>
+        <div>
+          <button type="button" class="btn btn-default" @click="showAlert4 = true">Show Alert</button>
+        </div>
+        <br/>
+        <collapse v-model="showAlert4">
+          <alert type="warning" :closable="true" @close="showAlert4 = false">
+            This alert will collapse on open / close.
+          </alert>
+        </collapse>
       </div>
     </div>
+    <br/>
     <div class="row">
       <div class="col-xs-12">
         <demo-code-panel demo-file="AlertDoc.vue">
         <pre><code>
+&lt;!-- Basic --&gt;
 &lt;alert type=&quot;warning&quot; :closable=&quot;true&quot; v-if=&quot;show&quot; @close=&quot;show=false&quot;&gt;
   &lt;strong&gt;Warning!&lt;/strong&gt; Better check yourself, you're not looking too good.
 &lt;/alert&gt;
+
+&lt;!-- With Collapse --&gt;
+&lt;collapse v-model=&quot;show&quot;&gt;
+  &lt;alert type=&quot;warning&quot; :closable=&quot;true&quot; @close=&quot;show = false&quot;&gt;
+    ...
+  &lt;/alert&gt;
+&lt;/collapse&gt;
         </code></pre>
         </demo-code-panel>
         <api-panel :api="api" folder="alert" file="Alert.vue"></api-panel>
@@ -66,12 +86,13 @@
 <script>
   import AnchorHeader from '../architecture/AnchorHeader.vue'
   import Alert from '../../components/alert/Alert.vue'
+  import Collapse from './../../components/collapse/Collapse.vue'
   import DemoCodePanel from '../architecture/DemoCodePanel.vue'
   import ApiPanel from './../architecture/ApiPanel.vue'
   import hljsMixin from './../mixins/hljsMixin'
   export default {
     mixins: [hljsMixin],
-    components: {AnchorHeader, Alert, DemoCodePanel, ApiPanel},
+    components: {AnchorHeader, Alert, DemoCodePanel, ApiPanel, Collapse},
     data () {
       return {
         api: {
@@ -114,6 +135,7 @@
         showAlert1: true,
         showAlert2: true,
         showAlert3: true,
+        showAlert4: true,
         duration: 5000
       }
     },
