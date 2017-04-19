@@ -22,7 +22,12 @@
             },
             [
               h('div', {'class': 'arrow'}),
-              h('h3', {'class': 'popover-title'}, this.title),
+              h('h3', {
+                'class': 'popover-title',
+                directives: [
+                  {name: 'show', value: this.title}
+                ]
+              }, this.title),
               h('div', {'class': 'popover-content'}, [this.$slots.popover])
             ]
           )

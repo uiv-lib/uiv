@@ -12,7 +12,7 @@
 
 ## Dependencies:
 
-* **Vue 2** (tested on ^2.2.1)
+* **Vue 2** (tested on ^2.2.6)
 * **Bootstrap 3 CSS** (tested on ^3.3.7)
 
 ## Supported Browsers
@@ -22,6 +22,7 @@ Components and directives are tested with the following browsers:
 * Chrome
 * Firefox
 * Safari
+* Edge
 * IE 9 / 10 / 11
 
 ## Install
