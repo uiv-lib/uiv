@@ -77,13 +77,13 @@
     &lt;span&gt;Dropdown 1&lt;/span&gt;
     &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;
   &lt;/button&gt;
-  &lt;ul slot=&quot;dropdown&quot; class=&quot;dropdown-menu&quot;&gt;
+  &lt;template slot=&quot;dropdown&quot;&gt;
     &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Another action&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Something else here&lt;/a&gt;&lt;/li&gt;
     &lt;li role=&quot;separator&quot; class=&quot;divider&quot;&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Separated link&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
+  &lt;/template&gt;
 &lt;/dropdown&gt;
         </code></pre>
         </demo-code-panel>
