@@ -131,6 +131,7 @@
         if (show) {
           document.body.appendChild(backdrop)
           modal.style.display = 'block'
+          modal.scrollTop = 0
           backdrop.offsetHeight // force repaint
           utils.addClass(backdrop, IN)
           utils.addClass(modal, IN)
