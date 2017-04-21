@@ -6,7 +6,7 @@
 
 [![NPM](https://nodei.co/npm/uiv.png)](https://npmjs.org/package/uiv)
 
-> Bootstrap components implemented by Vue
+> Bootstrap 3  components implemented by Vue 2
 
 [Demo & Docs](https://wxsm.space/uiv)
 

@@ -26,13 +26,12 @@
             <p><b>Bootstrap 3</b> Components Built with <b>Vue 2</b>.</p>
             <br/>
             <div>
-              <a href="https://github.com/wxsms/uiv" class="btn btn-success btn-lg">
+              <a href="https://github.com/wxsms/uiv" class="btn btn-default btn-lg">
                 Code on Github
               </a>
-              <a href="https://github.com/wxsms/uiv/archive/master.zip" target="_blank" class="btn btn-success btn-lg">
-                <i class="glyphicon glyphicon-download-alt"></i>
-                Download
-              </a>
+              <router-link to="/getting-started" class="btn btn-default btn-lg">
+                Getting Started
+              </router-link>
             </div>
             <br/>
           </div>

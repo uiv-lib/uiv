@@ -16,9 +16,9 @@
         <ul class="nav nav-pills nav-stacked" role="tablist">
           <template v-for="item in asideItems">
             <template v-if="item.items">
-              <li role="presentation">
+              <li role="presentation" class="no-link">
                 <a role="button">
-                  <b>{{item.label}}</b>
+                  {{item.label}}
                 </a>
               </li>
               <li role="presentation" v-for="_item in item.items" @click="toggleAside(false)">
@@ -29,7 +29,7 @@
             </template>
             <li v-else role="presentation" @click="toggleAside(false)">
               <router-link :to="item.path" role="button">
-                <b>{{item.label}}</b>
+                {{item.label}}
               </router-link>
             </li>
           </template>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-  import {bus, events} from './../bus'
+  import { bus, events } from './../bus'
 
   export default {
     components: {},
@@ -48,10 +48,14 @@
     data () {
       return {
         asideItems: [
-          {path: '/getting-started', label: 'Getting Started'},
+          {
+            label: 'Usage',
+            items: [
+              {path: '/getting-started', label: 'Getting Started'}
+            ]
+          },
           {
             label: 'Components',
-            show: true,
             items: [
               {path: '/alert', label: 'Alert'},
               {path: '/carousel', label: 'Carousel'},
@@ -149,7 +153,7 @@
           margin: 0;
 
           a {
-            color: #888;
+            color: #333;
             transition: all .3s ease-in-out;
             text-align: left;
             text-transform: none;
@@ -163,7 +167,6 @@
             &.router-link-active {
               background: @side-nav-item-active-bg;
               color: @highlight-color;
-              font-weight: 600;
               box-shadow: -6px 0 0 @highlight-color inset;
             }
 
@@ -171,46 +174,14 @@
               background: @side-nav-item-active-bg;
             }
           }
-        }
-      }
 
-      .toc-div {
-        padding: 0;
-        position: relative;
-
-        .toc-ul {
-          list-style: none;
-          padding: 20px 20px;
-          margin: 0;
-
-          ul {
-            list-style: none;
-            margin: 0;
-            padding-left: 20px;
+          &.no-link {
+            a {
+              font-weight: bold;
+              cursor: default;
+              background: transparent;
+            }
           }
-        }
-      }
-    }
-
-    .social-links {
-      flex-basis: 50px;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 15px;
-
-      a {
-        color: #888;
-        text-decoration: none;
-
-        &:hover, &:active, &:focus {
-          text-decoration: none;
-        }
-
-        i {
-          font-size: x-large;
         }
       }
     }

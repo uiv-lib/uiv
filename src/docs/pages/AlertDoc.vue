@@ -9,15 +9,6 @@
       <div class="col-xs-12">
         <h3>Dynamic Example</h3>
         <div id="alertContainer">
-          <alert v-for="(item,index) in alertList"
-                 :closable="item.closable"
-                 :type="item.type"
-                 :duration="item.duration"
-                 :key="item.key"
-                 @close="alertList.splice(index, 1)">
-            <strong>Well done!</strong>
-            <span>You successfully read this important alert message.</span>
-          </alert>
           <alert type="info" :closable="true" v-if="showAlert1" @close="showAlert1=false">
             <strong>Heads up!</strong>
             <span>This alert needs your attention, but it's not super important.</span>
@@ -30,6 +21,19 @@
             <strong>Oh snap!</strong>
             <span>Change a few things up and try submitting again.</span>
           </alert>
+          <alert type="success" :closable="true" v-if="showAlert4" @close="showAlert4=false">
+            <strong>Well done!</strong>
+            <span>You successfully read this important alert message.</span>
+          </alert>
+          <alert v-for="(item,index) in alertList"
+                 :closable="item.closable"
+                 :type="item.type"
+                 :duration="item.duration"
+                 :key="item.key"
+                 @close="alertList.splice(index, 1)">
+            <span v-if="item.duration">This alert will dismiss after <b>{{item.duration}}ms</b>.</span>
+            <span v-else>This alert will not dismiss over time.</span>
+          </alert>
         </div>
         <div class="well">
           <form class="form-inline">
@@ -39,7 +43,7 @@
                      placeholder="input display time">
               <button type="button" class="btn btn-default" id="addAlertHadDuration"
                       @click="addAlert('success',false,true)">
-                <span>Add Alert (time)</span>
+                <span>Add Alert (Time)</span>
               </button>
               <button type="button" class="btn btn-default" id="addAlert" @click="addAlert('success',true)">
                 <span>Add Alert</span>
@@ -49,11 +53,11 @@
         </div>
         <h3>Use with Collapse</h3>
         <div>
-          <button type="button" class="btn btn-default" @click="showAlert4 = true">Show Alert</button>
+          <button type="button" class="btn btn-default" @click="showAlert5 = true">Show Alert</button>
         </div>
         <br/>
-        <collapse v-model="showAlert4">
-          <alert type="warning" :closable="true" @close="showAlert4 = false">
+        <collapse v-model="showAlert5">
+          <alert type="warning" :closable="true" @close="showAlert5 = false">
             This alert will collapse on open / close.
           </alert>
         </collapse>
@@ -129,13 +133,12 @@
             }
           ]
         },
-        alertList: [
-          {type: 'success', closable: false, key: new Date().getTime()}
-        ],
+        alertList: [],
         showAlert1: true,
         showAlert2: true,
         showAlert3: true,
         showAlert4: true,
+        showAlert5: true,
         duration: 5000
       }
     },
