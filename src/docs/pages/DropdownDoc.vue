@@ -7,9 +7,8 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3>Basic Example</h3>
-        <div class="dropdowns well">
-          <dropdown ref="dropdown">
+        <div class="dropdowns">
+          <dropdown ref="dropdown" :dropup="dropup" :menu-right="menuRight">
             <button data-role="trigger" class="btn btn-default dropdown-toggle" type="button">
               <span>Dropdown 1</span>
               <span class="caret"></span>
@@ -22,7 +21,7 @@
               <li><a role="button">Separated link</a></li>
             </template>
           </dropdown>
-          <dropdown v-model="open2">
+          <dropdown v-model="open2" :dropup="dropup" :menu-right="menuRight">
             <button @click="open2 = !open2" class="btn btn-primary dropdown-toggle" type="button">
               <span>Dropdown 2</span>
               <span class="caret"></span>
@@ -35,7 +34,7 @@
               <li><a role="button">Separated link</a></li>
             </template>
           </dropdown>
-          <dropdown class="btn-group" v-model="open3">
+          <dropdown class="btn-group" v-model="open3" :dropup="dropup" :menu-right="menuRight">
             <button type="button" class="btn btn-danger">Split Button</button>
             <button type="button" class="btn btn-danger dropdown-toggle" @click="open3 = !open3">
               <span class="caret"></span>
@@ -49,12 +48,9 @@
               <li><a role="button">Separated link</a></li>
             </template>
           </dropdown>
-        </div>
-        <h3>Append to Body</h3>
-        <div class="dropdowns well">
-          <dropdown :append-to-body="true" v-model="open4">
+          <dropdown :append-to-body="true" v-model="open4" :dropup="dropup" :menu-right="menuRight">
             <button data-role="trigger" class="btn btn-default dropdown-toggle" type="button">
-              <span>Dropdown</span>
+              <span>Dropdown Append to Body</span>
               <span class="caret"></span>
             </button>
             <template slot="dropdown">
@@ -65,6 +61,21 @@
               <li><a role="button">Separated link</a></li>
             </template>
           </dropdown>
+        </div>
+        <br/>
+        <div class="well">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-xs-12">
+                <label class="checkbox-inline">
+                  <input v-model="dropup" type="checkbox"> Dropup
+                </label>
+                <label class="checkbox-inline">
+                  <input v-model="menuRight" type="checkbox"> Menu on Right
+                </label>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -112,19 +123,31 @@
             {
               name: 'v-model',
               type: 'Boolean',
-              desc: 'Show / hide the dropdown'
+              desc: 'Show / hide the dropdown.'
             },
             {
               name: 'tag',
               type: 'String',
               'default': 'div',
-              desc: 'The HTML tag that render the dropdown component'
+              desc: 'The HTML tag that render the dropdown component.'
             },
             {
               name: 'append-to-body',
               type: 'Boolean',
               'default': false,
-              desc: 'Append the dropdown slot to body'
+              desc: 'Append the dropdown slot to body.'
+            },
+            {
+              name: 'dropup',
+              type: 'Boolean',
+              'default': false,
+              desc: 'Use dropup style.'
+            },
+            {
+              name: 'menu-right',
+              type: 'Boolean',
+              'default': false,
+              desc: 'Use dropdown-menu-right style.'
             }
           ],
           slots: [
@@ -138,6 +161,8 @@
             }
           ]
         },
+        dropup: false,
+        menuRight: false,
         open1: false,
         open2: false,
         open3: false,
@@ -149,7 +174,7 @@
 
 <style lang="less" rel="stylesheet/less" scoped>
   .dropdowns {
-    .dropdown {
+    .dropdown, .dropup {
       display: inline-block;
     }
   }

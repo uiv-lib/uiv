@@ -92,30 +92,44 @@ export default {
     }
     return false
   },
-  setDropdownPosition (dropdown, trigger) {
+  getViewportSize () {
+    let width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+    let height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+    return {width, height}
+  },
+  setDropdownPosition (dropdown, trigger, options = {}) {
     let doc = document.documentElement
     let containerScrollLeft = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0)
     let containerScrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
     let rect = trigger.getBoundingClientRect()
-    // let dropdownRect = dropdown.getBoundingClientRect()
-    dropdown.style.top = containerScrollTop + rect.top + rect.height + 'px'
-    dropdown.style.left = containerScrollLeft + rect.left + 'px'
+    let dropdownRect = dropdown.getBoundingClientRect()
+    dropdown.style.right = 'auto'
+    dropdown.style.bottom = 'auto'
+    if (options.menuRight) {
+      dropdown.style.left = containerScrollLeft + rect.left + rect.width - dropdownRect.width + 'px'
+    } else {
+      dropdown.style.left = containerScrollLeft + rect.left + 'px'
+    }
+    if (options.dropup) {
+      dropdown.style.top = containerScrollTop + rect.top - dropdownRect.height - 4 + 'px'
+    } else {
+      dropdown.style.top = containerScrollTop + rect.top + rect.height + 'px'
+    }
   },
   isAvailableAtPosition (trigger, popup, placement) {
     let triggerRect = trigger.getBoundingClientRect()
     let popupRect = popup.getBoundingClientRect()
-    let viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
-    let viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+    let viewPortSize = this.getViewportSize()
     let available
     switch (placement) {
       case PLACEMENTS.TOP:
         available = triggerRect.top >= popupRect.height
         break
       case PLACEMENTS.RIGHT:
-        available = triggerRect.right + popupRect.width <= viewportWidth
+        available = triggerRect.right + popupRect.width <= viewPortSize.width
         break
       case PLACEMENTS.BOTTOM:
-        available = triggerRect.bottom + popupRect.height <= viewportHeight
+        available = triggerRect.bottom + popupRect.height <= viewPortSize.height
         break
       case PLACEMENTS.LEFT:
         available = triggerRect.left - popupRect.width >= 0

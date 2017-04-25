@@ -7,7 +7,8 @@
         this.tag,
         {
           'class': {
-            dropdown: true,
+            dropdown: !this.dropup,
+            dropup: this.dropup,
             open: this.show
           }
         },
@@ -17,7 +18,8 @@
             'ul',
             {
               'class': {
-                'dropdown-menu': true
+                'dropdown-menu': true,
+                'dropdown-menu-right': this.menuRight
               },
               ref: 'dropdown'
             },
@@ -40,6 +42,14 @@
       },
       value: {
         type: Boolean
+      },
+      dropup: {
+        type: Boolean,
+        'default': false
+      },
+      menuRight: {
+        type: Boolean,
+        'default': false
       }
     },
     data () {
@@ -106,7 +116,7 @@
           let el = this.$refs.dropdown
           el.style.display = 'block'
           document.body.appendChild(el)
-          utils.setDropdownPosition(el, this.$el)
+          utils.setDropdownPosition(el, this.$el, this)
         } catch (e) {
           // Silent
         }

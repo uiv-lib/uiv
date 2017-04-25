@@ -76,6 +76,35 @@ describe('DropdownDoc', () => {
     })
   })
 
+  it('should be able to use dropup & menu-right style', (done) => {
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    const Constructor = Vue.extend(DropdownDoc)
+    const vm = new Constructor().$mount('#app')
+    vm.dropup = true
+    vm.menuRight = true
+    vm.$nextTick(() => {
+      let dropdown = vm.$el.querySelectorAll(`.dropup`)[3]
+      let trigger = dropdown.querySelector('button')
+      expect(dropdown.className).to.not.contain('open')
+      expect(dropdown.querySelector('.dropdown-menu')).to.exist
+      expect(dropdown.querySelector('.dropdown-menu').className).to.contain('dropdown-menu-right')
+      trigger.click()
+      vm.$nextTick(() => {
+        expect(dropdown.className).to.contain('open')
+        expect(dropdown.querySelector('.dropdown-menu')).not.exist
+        trigger.click()
+        vm.$nextTick(() => {
+          expect(dropdown.className).not.contain('open')
+          expect(dropdown.querySelector('.dropdown-menu')).to.exist
+          app.remove()
+          done()
+        })
+      })
+    })
+  })
+
   it('should be able to destroy', () => {
     const Constructor = Vue.extend(DropdownDoc)
     const vm = new Constructor().$mount()
