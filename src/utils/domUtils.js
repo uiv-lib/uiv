@@ -183,5 +183,42 @@ export default {
       tooltip.style.top = containerScrollTop + rect.top - tooltipRect.height + 'px'
       tooltip.style.left = containerScrollLeft + rect.left + rect.width / 2 - tooltipRect.width / 2 + 'px'
     }
+  },
+  hasScrollbar (element) {
+    return element.scrollHeight > element.clientHeight
+  },
+  scrollbarWidth: (() => {
+    let scrollbarWidth = null
+    return (recalculate) => {
+      if (recalculate === null) {
+        recalculate = false
+      }
+      if ((scrollbarWidth !== null) && !recalculate) {
+        return scrollbarWidth
+      }
+      if (document.readyState === 'loading') {
+        return null
+      }
+      const div1 = document.createElement('div')
+      const div2 = document.createElement('div')
+      div1.style.width = div2.style.width = div1.style.height = div2.style.height = '100px'
+      div1.style.overflow = 'scroll'
+      div2.style.overflow = 'hidden'
+      document.body.appendChild(div1)
+      document.body.appendChild(div2)
+      scrollbarWidth = Math.abs(div1.scrollHeight - div2.scrollHeight)
+      document.body.removeChild(div1)
+      document.body.removeChild(div2)
+      return scrollbarWidth
+    }
+  })(),
+  toggleBodyOverflow (enable) {
+    if (enable) {
+      document.body.style.paddingRight = null
+    } else {
+      if (this.hasScrollbar(document.documentElement)) {
+        document.body.style.paddingRight = `${this.scrollbarWidth()}px`
+      }
+    }
   }
 }

@@ -133,6 +133,7 @@
           modal.style.display = 'block'
           modal.scrollTop = 0
           backdrop.offsetHeight // force repaint
+          utils.toggleBodyOverflow(false)
           utils.addClass(backdrop, IN)
           utils.addClass(modal, IN)
           utils.addClass(document.body, MODAL_OPEN)
@@ -153,6 +154,7 @@
             modal.style.display = 'none'
             utils.removeFromDom(backdrop)
             utils.removeClass(document.body, MODAL_OPEN)
+            utils.toggleBodyOverflow(true)
             this.$emit('hide', this.msg || 'dismiss')
             this.msg = ''
             this.timeoutId = 0
