@@ -10,7 +10,8 @@
         <h3>Inline Example</h3>
         <div class="panel panel-default" style="display: inline-block">
           <div class="panel-body">
-            <date-picker v-model="date"
+            <date-picker class="date-picker"
+                         v-model="date"
                          :today-btn="todayBtn"
                          :clear-btn="clearBtn"
                          :limit-from="limitFrom"
@@ -31,7 +32,8 @@
             </div>
             <template slot="dropdown">
               <li>
-                <date-picker v-model="date"
+                <date-picker class="date-picker"
+                             v-model="date"
                              :today-btn="todayBtn"
                              :clear-btn="clearBtn"
                              :limit-from="limitFrom"
