@@ -37,7 +37,7 @@
       let el = this.$el
       utils.addClass(el, COLLAPSE)
       if (this.value) {
-        this.toggle(true)
+        utils.addClass(el, IN)
       }
     },
     methods: {
