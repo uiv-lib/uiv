@@ -21,13 +21,14 @@
         <div class="well">
           <button type="button" class="btn btn-default" @click="open4=true">Modal with HTML Title</button>
           <button type="button" class="btn btn-default" @click="open5=true">Modal with No Footer</button>
-          <button type="button" class="btn btn-default" @click="open6=true">Modal with Customize Footer</button>
+          <button type="button" class="btn btn-default" @click="open6=true">Modal with No Header</button>
+          <button type="button" class="btn btn-default" @click="open7=true">Modal with Customize Footer</button>
         </div>
         <h3>Others</h3>
         <div class="well">
-          <button type="button" class="btn btn-default" @click="open7=true">Disable Backdrop</button>
-          <button type="button" class="btn btn-default" @click="open8=true">Disable Animation</button>
-          <button type="button" class="btn btn-default" @click="open9=true">Auto Focus</button>
+          <button type="button" class="btn btn-default" @click="open8=true">Disable Backdrop</button>
+          <button type="button" class="btn btn-default" @click="open9=true">Disable Animation</button>
+          <button type="button" class="btn btn-default" @click="open10=true">Auto Focus</button>
         </div>
         <!--Modal 1-->
         <modal id="modal-demo-1" ref="modal1" v-model="open1" title="Modal 1" @show="showCallback"
@@ -92,24 +93,28 @@
           <p>This is a modal with no footer.</p>
         </modal>
         <!--Modal 6-->
-        <modal v-model="open6" title="Modal 6">
+        <modal v-model="open6" title="Modal 6" :header="false">
+          <p>This is a modal with no header.</p>
+        </modal>
+        <!--Modal 7-->
+        <modal v-model="open7" title="Modal 7">
           <p>This is a modal with customize footer.</p>
           <div slot="footer">
-            <button type="button" class="btn btn-default" @click="open6=false">Close</button>
+            <button type="button" class="btn btn-default" @click="open7=false">Close</button>
             <button type="button" class="btn btn-warning">Warning Action</button>
             <button type="button" class="btn btn-danger">Danger Action</button>
           </div>
         </modal>
-        <!--Modal 7-->
-        <modal v-model="open7" title="Modal 7" :backdrop="false">
+        <!--Modal 8-->
+        <modal v-model="open8" title="Modal 8" :backdrop="false">
           <p>This is a modal that can not close by backdrop click.</p>
         </modal>
-        <!--Modal 8-->
-        <modal v-model="open8" title="Modal 8" :transition-duration="0">
+        <!--Modal 9-->
+        <modal v-model="open8" title="Modal 9" :transition-duration="0">
           <p>This is a modal that has no transition effect.</p>
         </modal>
-        <!--Modal 9-->
-        <modal v-model="open9" title="Modal 9" :auto-focus="true">
+        <!--Modal 10-->
+        <modal v-model="open10" title="Modal 10" :auto-focus="true">
           <p>Check this out! The OK button is focus now.</p>
         </modal>
       </div>
@@ -171,6 +176,12 @@
               name: 'footer',
               type: 'Boolean',
               desc: 'Show modal footer',
+              'default': true
+            },
+            {
+              name: 'header',
+              type: 'Boolean',
+              desc: 'Show modal header',
               'default': true
             },
             {
@@ -239,7 +250,8 @@
         open6: false,
         open7: false,
         open8: false,
-        open9: false
+        open9: false,
+        open10: false
       }
     },
     methods: {

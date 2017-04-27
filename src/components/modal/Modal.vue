@@ -9,7 +9,7 @@
          @click="backdropClicked">
       <div ref="dialog" class="modal-dialog" :class="modalSizeClass" role="document">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header" v-if="header">
             <button type="button" class="close" aria-label="Close" @click="toggle(false)">
               <span aria-hidden="true">×</span>
             </button>
@@ -59,6 +59,10 @@
         'default': true
       },
       footer: {
+        type: Boolean,
+        'default': true
+      },
+      header: {
         type: Boolean,
         'default': true
       },
