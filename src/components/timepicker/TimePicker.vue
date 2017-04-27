@@ -20,6 +20,7 @@
       <tr>
         <td class="form-group">
           <input class="form-control text-center"
+                 style="width: 50px"
                  @wheel="hoursWheel"
                  placeholder="HH"
                  v-model="hoursText"
@@ -29,6 +30,7 @@
         <td>&nbsp;<b>:</b>&nbsp;</td>
         <td class="form-group">
           <input class="form-control text-center"
+                 style="width: 50px"
                  @wheel="minutesWheel"
                  placeholder="MM"
                  v-model="minutesText"
@@ -37,7 +39,8 @@
         </td>
         <td v-if="showMeridian">
           &nbsp;
-          <button type="button" class="btn btn-default" data-action="toggleMeridian" :disabled="readonly" v-text="meridian?'AM':'PM'"
+          <button type="button" class="btn btn-default" data-action="toggleMeridian" :disabled="readonly"
+                  v-text="meridian?'AM':'PM'"
                   @click="toggleMeridian"></button>
         </td>
       </tr>
@@ -236,9 +239,3 @@
     }
   }
 </script>
-
-<style lang="less" rel="stylesheet/less" scoped>
-  input {
-    width: 50px;
-  }
-</style>

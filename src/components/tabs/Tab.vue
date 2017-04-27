@@ -1,9 +1,7 @@
 <template>
-  <transition name="fade" mode="out-in">
-    <div class="tab-pane" role="tabpanel" :class="{active:active}" v-show="active">
-      <slot></slot>
-    </div>
-  </transition>
+  <div class="tab-pane" role="tabpanel" :class="{active:active}" v-show="active">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -40,14 +38,3 @@
     }
   }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" scoped>
-  .fade-enter-active {
-    transition: opacity .3s ease-in-out;
-  }
-
-  .fade-enter {
-    opacity: 0;
-  }
-</style>
