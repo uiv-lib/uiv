@@ -156,11 +156,27 @@ describe('ModalDoc', () => {
     }, config.transitionDuration)
   })
 
+  it('should be able to render no header modal', (done) => {
+    const Constructor = Vue.extend(ModalDoc)
+    const vm = new Constructor().$mount()
+    let modal = vm.$el.querySelectorAll('.modal')[5]
+    let trigger = vm.$el.querySelectorAll('button')[5]
+    expect(document.querySelector('.modal-backdrop')).not.exist
+    trigger.click()
+    setTimeout(() => {
+      expect(document.querySelector('.modal-backdrop')).to.exist
+      expect(modal.className).to.contain('in')
+      expect(modal.querySelector('.modal-header')).not.exist
+      vm.$destroy()
+      done()
+    }, config.transitionDuration)
+  })
+
   it('should be able to render customize footer modal', (done) => {
     const Constructor = Vue.extend(ModalDoc)
     const vm = new Constructor().$mount()
-    let trigger = vm.$el.querySelectorAll('button')[5]
-    let modal = vm.$el.querySelectorAll('.modal')[5]
+    let trigger = vm.$el.querySelectorAll('button')[6]
+    let modal = vm.$el.querySelectorAll('.modal')[6]
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
     setTimeout(() => {
@@ -175,8 +191,8 @@ describe('ModalDoc', () => {
   it('should be able to close customize footer modal', (done) => {
     const Constructor = Vue.extend(ModalDoc)
     const vm = new Constructor().$mount()
-    let modal = vm.$el.querySelectorAll('.modal')[5]
-    let trigger = vm.$el.querySelectorAll('button')[5]
+    let modal = vm.$el.querySelectorAll('.modal')[6]
+    let trigger = vm.$el.querySelectorAll('button')[6]
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
     setTimeout(() => {
@@ -216,8 +232,8 @@ describe('ModalDoc', () => {
   it('should not be able to close backdrop-false modal', (done) => {
     const Constructor = Vue.extend(ModalDoc)
     const vm = new Constructor().$mount()
-    let modal = vm.$el.querySelectorAll('.modal')[6]
-    let trigger = vm.$el.querySelectorAll('button')[6]
+    let modal = vm.$el.querySelectorAll('.modal')[7]
+    let trigger = vm.$el.querySelectorAll('button')[7]
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
     setTimeout(() => {
@@ -236,7 +252,7 @@ describe('ModalDoc', () => {
   it('should be able to auto-focus on ok btn', (done) => {
     const Constructor = Vue.extend(ModalDoc)
     const vm = new Constructor().$mount()
-    let trigger = vm.$el.querySelectorAll('button')[8]
+    let trigger = vm.$el.querySelectorAll('button')[9]
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
     setTimeout(() => {
