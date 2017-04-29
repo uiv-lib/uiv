@@ -145,8 +145,10 @@
           this.timeoutID = setTimeout(() => {
             httpUtils.get(this.asyncSrc + value)
               .then(data => {
-                this.prepareItems(this.asyncKey ? data[this.asyncKey] : data)
-                this.openDropdown = !!this.items.length
+                if (this.inputEl.matches(':focus')) {
+                  this.prepareItems(this.asyncKey ? data[this.asyncKey] : data)
+                  this.openDropdown = !!this.items.length
+                }
               })
           }, debounce)
         }
