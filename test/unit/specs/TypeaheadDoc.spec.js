@@ -456,6 +456,9 @@ describe('TypeaheadDoc', () => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[1]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[1]
       expect(dropdown.className).to.not.contain('open')
+      // matches don't work in here
+      let savedMatches = Element.prototype.matches
+      Element.prototype.matches = () => true
       input.value = 'wxsm'
       vm.$refs.typeahead2.inputChanged() // can't auto detect event
       setTimeout(() => {
@@ -469,6 +472,7 @@ describe('TypeaheadDoc', () => {
           expect(dropdown.querySelectorAll('li').length).to.equal(1)
           let selected = dropdown.querySelector('li.active a span')
           expect(selected.textContent).to.equal('wxsms')
+          Element.prototype.matches = savedMatches
           done()
         })
       }, 600)
