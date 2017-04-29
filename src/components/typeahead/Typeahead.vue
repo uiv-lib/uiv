@@ -1,7 +1,11 @@
 <template>
   <div>
     <slot></slot>
-    <dropdown ref="dropdown" v-model="openDropdown" :append-to-body="appendToBody" :not-close-elements="elements">
+    <dropdown ref="dropdown"
+              v-model="openDropdown"
+              :append-to-body="appendToBody"
+              :not-close-elements="elements"
+              :position-element="inputEl">
       <template slot="dropdown">
         <li v-for="(item,index) in items" :class="{active:activeIndex===index}">
           <a href="javascript:void(0)" @click="selectItem(item)">

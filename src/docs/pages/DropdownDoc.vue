@@ -148,6 +148,16 @@
               type: 'Boolean',
               'default': false,
               desc: 'Use dropdown-menu-right style.'
+            },
+            {
+              name: 'not-close-elements',
+              type: 'Array',
+              desc: 'Pass an array of element which the dropdown will not close on click.'
+            },
+            {
+              name: 'position-element',
+              'default': 'this.$el',
+              desc: 'Pass an HTML element which the dropdown will be positioned by (in append-to-body mode).'
             }
           ],
           slots: [
