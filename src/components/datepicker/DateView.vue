@@ -3,17 +3,17 @@
     <thead>
     <tr>
       <td>
-        <button type="button" class="btn btn-default btn-sm btn-block btn-date" @click="goPrevMonth">
+        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none" @click="goPrevMonth">
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button>
       </td>
       <td colspan="5">
-        <button type="button" class="btn btn-default btn-sm btn-block btn-date" @click="changeView">
+        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none" @click="changeView">
           <b>{{yearMonthStr}}</b>
         </button>
       </td>
       <td>
-        <button type="button" class="btn btn-default btn-sm btn-block btn-date" @click="goNextMonth">
+        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none" @click="goNextMonth">
           <i class="glyphicon glyphicon-chevron-right"></i>
         </button>
       </td>
@@ -28,7 +28,8 @@
     <tr v-for="row in monthDayRows">
       <td v-for="date in row">
         <button type="button"
-                class="btn btn-sm btn-block btn-date"
+                class="btn btn-sm btn-block"
+                style="border: none"
                 data-action="select"
                 :class="getBtnClass(date)"
                 :disabled="date.disabled"

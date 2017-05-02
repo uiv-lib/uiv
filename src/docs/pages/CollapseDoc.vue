@@ -13,7 +13,7 @@
         </div>
         <collapse v-model="showCollapse1">
           <br/>
-          <div class="well">Hi there.</div>
+          <div class="well" style="margin-bottom: 0">Hi there.</div>
         </collapse>
         <h3>Accordion</h3>
         <div class="panel-group">
@@ -156,6 +156,12 @@
               type: 'String',
               desc: 'The HTML tag that render the collapse component',
               'default': 'div'
+            },
+            {
+              name: 'transition-duration',
+              type: 'Number',
+              desc: 'Collapse transition speed. Set to 0 to disable transition.',
+              'default': 350
             }
           ],
           slots: [

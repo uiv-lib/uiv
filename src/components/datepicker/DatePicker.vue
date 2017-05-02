@@ -1,5 +1,5 @@
 <template>
-  <div class="date-picker" :style="pickerStyle" @click="onPickerClick">
+  <div :style="pickerStyle" @click="onPickerClick">
     <date-view v-show="view==='d'"
                :month="currentMonth"
                :year="currentYear"
@@ -168,12 +168,3 @@
     }
   }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less">
-  .date-picker {
-    .btn-date {
-      border: none;
-    }
-  }
-</style>

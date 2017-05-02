@@ -3,17 +3,17 @@
     <thead>
     <tr>
       <td>
-        <button type="button" class="btn btn-default btn-sm btn-block btn-date" @click="goPrevYear">
+        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none" @click="goPrevYear">
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button>
       </td>
       <td colspan="4">
-        <button type="button" class="btn btn-default btn-sm btn-block btn-date" @click="changeView()">
+        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none" @click="changeView()">
           <b>{{year}}</b>
         </button>
       </td>
       <td>
-        <button type="button" class="btn btn-default btn-sm btn-block btn-date" @click="goNextYear">
+        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none" @click="goNextYear">
           <i class="glyphicon glyphicon-chevron-right"></i>
         </button>
       </td>
@@ -22,7 +22,7 @@
     <tbody>
     <tr v-for="(row,i) in rows">
       <td colspan="2" v-for="(month,j) in row" width="33.333333%">
-        <button type="button" class="btn btn-sm btn-block btn-date"
+        <button type="button" class="btn btn-sm btn-block" style="border: none"
                 :class="getBtnClass(i*3+j)"
                 @click="changeView(i*3+j)">
           <span>{{month}}</span>

@@ -37,9 +37,6 @@
         type: Boolean,
         'default': false
       },
-      notCloseElements: {
-        type: Array
-      },
       value: {
         type: Boolean
       },
@@ -50,7 +47,11 @@
       menuRight: {
         type: Boolean,
         'default': false
-      }
+      },
+      notCloseElements: {
+        type: Array
+      },
+      positionElement: {}
     },
     data () {
       return {
@@ -116,7 +117,8 @@
           let el = this.$refs.dropdown
           el.style.display = 'block'
           document.body.appendChild(el)
-          utils.setDropdownPosition(el, this.$el, this)
+          let positionElement = this.positionElement || this.$el
+          utils.setDropdownPosition(el, positionElement, this)
         } catch (e) {
           // Silent
         }
