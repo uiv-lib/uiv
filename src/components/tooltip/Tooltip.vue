@@ -68,7 +68,8 @@
       enable: {
         type: Boolean,
         'default': true
-      }
+      },
+      target: {}
     },
     data () {
       return {
@@ -95,11 +96,20 @@
       trigger () {
         this.clearListeners()
         this.initListeners()
+      },
+      target () {
+        this.clearListeners()
+        this.initListeners()
       }
     },
     methods: {
       initListeners () {
-        this.triggerEl = this.$el.firstChild === this.$refs.tooltip ? null : this.$el.firstChild
+        if (this.target) {
+          this.triggerEl = this.target
+        } else {
+          let firstChild = this.$el.firstChild
+          this.triggerEl = firstChild === this.$refs.tooltip ? null : firstChild
+        }
         if (this.triggerEl) {
           if (this.trigger === utils.triggers.HOVER) {
             utils.on(this.triggerEl, utils.events.MOUSE_ENTER, this.show)

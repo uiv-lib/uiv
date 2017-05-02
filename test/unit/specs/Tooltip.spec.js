@@ -78,4 +78,35 @@ describe('Tooltip', () => {
       done()
     }, 200)
   })
+
+  it('should be able to use custom target', (done) => {
+    let app = document.createElement('div')
+    app.id = 'app'
+    document.body.appendChild(app)
+    let res = Vue.compile('<div><button ref="btn" type="button">btn</button><tooltip text="test" :target="btn" trigger="focus"></tooltip></div>')
+    let vm = new Vue({
+      data () {
+        return {
+          btn: null
+        }
+      },
+      mounted () {
+        this.btn = this.$refs.btn
+      },
+      components: {Tooltip},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    })
+    vm.$mount('#app')
+    vm.$nextTick(() => {
+      expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+      vm.btn.focus()
+      setTimeout(() => {
+        expect(document.querySelectorAll('.tooltip').length).to.equal(1)
+        vm.$destroy()
+        app.remove()
+        done()
+      }, 200)
+    })
+  })
 })

@@ -70,7 +70,8 @@
       enable: {
         type: Boolean,
         'default': true
-      }
+      },
+      target: {}
     },
     data () {
       return {
@@ -80,7 +81,6 @@
     },
     mounted () {
       utils.ensureElementMatchesFunction()
-      this.triggerEl = this.$el.querySelector('[data-role="trigger"]')
       this.initListeners()
       utils.removeFromDom(this.$refs.popover)
       if (this.value) {
@@ -98,10 +98,19 @@
       trigger () {
         this.clearListeners()
         this.initListeners()
+      },
+      target () {
+        this.clearListeners()
+        this.initListeners()
       }
     },
     methods: {
       initListeners () {
+        if (this.target) {
+          this.triggerEl = this.target
+        } else {
+          this.triggerEl = this.$el.querySelector('[data-role="trigger"]')
+        }
         if (this.triggerEl) {
           if (this.trigger === utils.triggers.HOVER) {
             utils.on(this.triggerEl, utils.events.MOUSE_ENTER, this.show)

@@ -182,6 +182,11 @@
               desc: 'The tooltip show / hide transition time in ms',
               type: 'Number',
               'default': '150'
+            },
+            {
+              name: 'target',
+              desc: 'Use this prop to specify an HTML Element as the tooltip trigger, useful when not able to use parent-child structure.',
+              type: 'HTMLElement'
             }
           ],
           events: [
