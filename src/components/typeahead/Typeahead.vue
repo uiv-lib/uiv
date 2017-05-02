@@ -7,13 +7,13 @@
               :not-close-elements="elements"
               :position-element="inputEl">
       <template slot="dropdown">
-        <li v-for="(item,index) in items" :class="{active:activeIndex===index}">
-          <a href="javascript:void(0)" @click="selectItem(item)">
-            <slot name="item" :item="item">
+        <slot name="item" :items="items" :active-index="activeIndex" :select="selectItem" :highlight="highlight">
+          <li v-for="(item,index) in items" :class="{active:activeIndex===index}">
+            <a href="javascript:void(0)" @click="selectItem(item)">
               <span v-html="highlight(item)"></span>
-            </slot>
-          </a>
-        </li>
+            </a>
+          </li>
+        </slot>
       </template>
     </dropdown>
   </div>

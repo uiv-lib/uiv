@@ -52,8 +52,12 @@
           <label class="control-label">Github Users</label>
           <input data-role="input" class="form-control" type="text" placeholder="Type to search...">
           <template slot="item" scope="props">
-            <img width="22px" height="22px" :src=" props.item.avatar_url + '&s=40' ">
-            <span v-text="props.item.login"></span>
+            <li v-for="(item, index) in props.items" :class="{active:props.activeIndex===index}">
+              <a href="javascript:void(0)" @click="props.select(item)">
+                <img width="22px" height="22px" :src="item.avatar_url + '&s=40'">
+                <span v-html="props.highlight(item)"></span>
+              </a>
+            </li>
           </template>
         </typeahead>
         <br/>
@@ -67,21 +71,27 @@
       <div class="col-xs-12">
         <demo-code-panel demo-file="TypeaheadDoc.vue">
         <pre><code>
-// Local data query sample
+&lt;!--Local data query sample--&gt;
 &lt;typeahead v-model=&quot;model1&quot; :data=&quot;states&quot; item-key=&quot;name&quot;&gt;
   &lt;label class=&quot;control-label&quot;&gt;States of America&lt;/label&gt;
   &lt;input data-role=&quot;input&quot; class=&quot;form-control&quot; type=&quot;text&quot; placeholder=&quot;Type to search...&quot;&gt;
 &lt;/typeahead&gt;
 
-// Async data query &amp; custom template sample
+&lt;!--Async data query &amp; custom template sample--&gt;
 &lt;typeahead v-model=&quot;model2&quot;
            async-src=&quot;https://api.github.com/search/users?q=&quot;
            async-key=&quot;items&quot;
-           item-key=&quot;login&quot;&gt;
+           item-key=&quot;login&quot;
+           :force-select=&quot;true&quot;&gt;
   &lt;label class=&quot;control-label&quot;&gt;Github Users&lt;/label&gt;
   &lt;input data-role=&quot;input&quot; class=&quot;form-control&quot; type=&quot;text&quot; placeholder=&quot;Type to search...&quot;&gt;
   &lt;template slot=&quot;item&quot; scope=&quot;props&quot;&gt;
-    &lt;img width=&quot;22px&quot; height=&quot;22px&quot; :src=&quot; props.item.avatar_url + &#x27;&amp;s=40&#x27; &quot;&gt;
+    &lt;li v-for=&quot;(item, index) in props.items&quot; :class=&quot;{active:props.activeIndex===index}&quot;&gt;
+      &lt;a href=&quot;javascript:void(0)&quot; @click=&quot;props.select(item)&quot;&gt;
+        &lt;img width=&quot;22px&quot; height=&quot;22px&quot; :src=&quot;item.avatar_url + '&amp;s=40'&quot;&gt;
+        &lt;span v-html=&quot;props.highlight(item)&quot;&gt;&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
   &lt;/template&gt;
 &lt;/typeahead&gt;
         </code></pre>
@@ -185,10 +195,14 @@
             {
               name: 'item',
               desc: `
-              Use this slot to override the typeahead template.
-              Note: This should be a scope slot and use <code>scope="props"</code> as param.
-              The list item object will be <code>props.item</code>.
-              Detail please refer to below sample in code panel.`
+<p>Use this slot to override the typeahead template. Note: This should be a scoped slot and use <code>scope="props"</code> as param.</p>
+<ul>
+  <li><p>The items list will be <code>props.items.</code></p></li>
+  <li><p>The current active item index will be <code>props.activeIndex.</code></p></li>
+  <li><p>Use <code>props.select(item)</code> to select item.</code></p></li>
+  <li><p>(Optional) Use <code>props.highlight(item)</code> to highlight search keywords in item.</p></li>
+</ul>
+<p>Detail please refer to below sample in code panel.</p>`
             }
           ]
         },
