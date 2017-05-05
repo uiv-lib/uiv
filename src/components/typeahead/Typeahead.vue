@@ -67,6 +67,10 @@
       openOnFocus: {
         type: Boolean,
         'default': true
+      },
+      openOnEmpty: {
+        type: Boolean,
+        'default': false
       }
     },
     data () {
@@ -136,7 +140,7 @@
       },
       fetchItems (value, debounce) {
         clearTimeout(this.timeoutID)
-        if (value === '') {
+        if (value === '' && !this.openOnEmpty) {
           this.openDropdown = false
         } else if (this.data) {
           this.prepareItems(this.data)

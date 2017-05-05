@@ -165,6 +165,12 @@
               'default': 'true'
             },
             {
+              name: 'open-on-empty',
+              desc: 'Open the typeahead dropdown to show suggestions even if input is empty.',
+              type: 'Boolean',
+              'default': 'false'
+            },
+            {
               name: 'limit',
               desc: 'Limit the options size.',
               type: 'Number',
