@@ -14,7 +14,7 @@
 
 Bootstrap 3  components implemented by Vue 2.
 
-[Demo & Docs](https://wxsm.space/uiv)
+[Demo & Docs](https://uiv.wxsm.space)
 
 ## Dependencies
 
