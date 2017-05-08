@@ -1,16 +1,22 @@
-# uiv 
+<p align="center">
+<img src="https://ooo.0o0.ooo/2017/05/08/590fd61b7ced7.png" alt="uiv-logo.png">
+</p>
 
-[![Build Status](https://travis-ci.org/wxsms/uiv.svg?branch=master)](https://travis-ci.org/wxsms/uiv)
-[![Coverage Status](https://coveralls.io/repos/github/wxsms/uiv/badge.svg?branch=master)](https://coveralls.io/github/wxsms/uiv?branch=master)
-[![license](https://img.shields.io/github/license/wxsms/uiv.svg)](https://github.com/wxsms/uiv)
+<p align="center">
+<a href="https://travis-ci.org/wxsms/uiv"><img src="https://travis-ci.org/wxsms/uiv.svg?branch=master" alt="Build Status"></a>
+<a href="https://coveralls.io/github/wxsms/uiv?branch=master"><img src="https://coveralls.io/repos/github/wxsms/uiv/badge.svg?branch=master" alt="Coverage Status"></a>
+<a href="https://github.com/wxsms/uiv"><img src="https://img.shields.io/github/license/wxsms/uiv.svg" alt="License"></a>
+<a href="https://www.npmjs.com/package/uiv"><img src="https://img.shields.io/npm/dm/uiv.svg" alt="NPM Downloads"></a>
+<a href="https://www.npmjs.com/package/uiv"><img src="https://img.shields.io/npm/v/uiv.svg" alt="NPM Version"></a>
+</p>
 
-[![NPM](https://nodei.co/npm/uiv.png)](https://npmjs.org/package/uiv)
+## Intro
 
-> Bootstrap 3  components implemented by Vue 2
+Bootstrap 3  components implemented by Vue 2.
 
 [Demo & Docs](https://wxsm.space/uiv)
 
-## Dependencies:
+## Dependencies
 
 * **Vue 2** (tested on ^2.2.6)
 * **Bootstrap 3 CSS** (tested on ^3.3.7)

@@ -7,23 +7,14 @@
             <h1>uiv</h1>
             <br/>
             <p>
-              <a href="https://travis-ci.org/wxsms/uiv">
-                <img src="https://travis-ci.org/wxsms/uiv.svg?branch=master" alt="Build Status" height="20px">
-              </a>
-              <a href='https://coveralls.io/github/wxsms/uiv?branch=master'>
-                <img src='https://coveralls.io/repos/github/wxsms/uiv/badge.svg?branch=master' alt='Coverage Status'
-                     height="20px"/>
-              </a>
-              <a href='https://github.com/wxsms/uiv'>
-                <img src='https://img.shields.io/github/license/mashape/apistatus.svg' alt='License' height="20px"/>
-              </a>
+              <a href="https://travis-ci.org/wxsms/uiv"><img src="https://travis-ci.org/wxsms/uiv.svg?branch=master" alt="Build Status"></a>
+              <a href="https://coveralls.io/github/wxsms/uiv?branch=master"><img src="https://coveralls.io/repos/github/wxsms/uiv/badge.svg?branch=master" alt="Coverage Status"></a>
+              <a href="https://www.npmjs.com/package/uiv"><img src="https://img.shields.io/npm/dm/uiv.svg" alt="NPM Downloads"></a>
+              <a href="https://www.npmjs.com/package/uiv"><img src="https://img.shields.io/npm/v/uiv.svg" alt="NPM Version"></a>
+              <a href="https://github.com/wxsms/uiv"><img src="https://img.shields.io/github/license/wxsms/uiv.svg" alt="License"></a>
             </p>
-            <p>
-              <a href="https://npmjs.org/package/uiv">
-                <img src='https://nodei.co/npm/uiv.png' alt='NPM' height="56px"/>
-              </a>
-            </p>
-            <p><b>Bootstrap 3</b> Components Built with <b>Vue 2</b>.</p>
+            <br/>
+            <h3><b>Bootstrap 3</b> Components Built with <b>Vue 2</b>.</h3>
             <br/>
             <div>
               <a href="https://github.com/wxsms/uiv" class="btn btn-default btn-lg">
