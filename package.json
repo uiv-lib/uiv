@@ -21,7 +21,7 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "build-docs": "node build/build-docs.js",
+    "build-docs": "node build/build-docs.js && node build/build-dist-config.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit",
