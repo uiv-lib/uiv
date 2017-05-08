@@ -1,16 +1,16 @@
 <template>
-  <section class="wrapper">
+  <div id="app">
     <backdrop :is-aside-show="isAsideShow"></backdrop>
     <side-nav :is-aside-show="isAsideShow"></side-nav>
     <page></page>
-  </section>
+  </div>
 </template>
 
 <script>
   import SideNav from './SideNav.vue'
   import Page from './Page.vue'
   import Backdrop from './Backdrop.vue'
-  import {bus, events} from './../bus'
+  import { bus, events } from './../bus'
   export default {
     components: {SideNav, Page, Backdrop},
     data () {
@@ -31,7 +31,7 @@
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-  .wrapper {
+  #app {
     max-width: 100vw;
     overflow: hidden;
   }
