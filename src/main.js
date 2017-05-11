@@ -7,9 +7,11 @@ import './assets/css/common.less'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import PageWrapper from './docs/architecture/PageWrapper.vue'
+import * as uiv from './components/index'
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
+Vue.use(uiv)
 Vue.component('PageWrapper', PageWrapper)
 
 let routes = [

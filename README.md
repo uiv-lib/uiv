@@ -33,20 +33,18 @@ Components and directives are tested with the following browsers:
 
 ## Install
 
-uiv is using Webpack UMD exporter, which means you can use it in both:
-
-* **ES6**
-* **CommonJS**
-* **AMD**
-* **Browser**
-
-You can simply include uiv into you js files or HTML page and start working.
+uiv is using UMD exporter, which means you can use it in both ES6 / CommonJS / AMD / Browser.
 
 ### ES6 Sample
 
 ```js
 $ npm install uiv
 
+// Import and register all components once
+import * as uiv from 'uiv'
+Vue.use(uiv)
+
+// Or import respectively
 import { Dropdown } from 'uiv'
 
 new Vue({
@@ -66,6 +64,13 @@ new Vue({
 
 <script src="path/to/vue.min.js"></script>
 <script src="path/to/uiv.min.js"></script>
+
+<!-- Import and register all components once -->
+<script>
+  Vue.use(uiv)
+</script>
+
+<!-- Or import respectively -->
 <script>
   new Vue({
     components: {

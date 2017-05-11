@@ -51,7 +51,34 @@ import TimePicker from './timepicker/TimePicker.vue'
 import Typeahead from './typeahead/Typeahead.vue'
 import ProgressBar from './progressbar/ProgressBar.vue'
 import ProgressBarStack from './progressbar/ProgressBarStack.vue'
+
+const components = {
+  Tooltip,
+  Carousel,
+  Slide,
+  Collapse,
+  Dropdown,
+  Modal,
+  Tab,
+  Tabs,
+  DatePicker,
+  Alert,
+  Pagination,
+  Popover,
+  TimePicker,
+  Typeahead,
+  ProgressBar,
+  ProgressBarStack
+}
+
+const install = (Vue, options = {}) => {
+  for (let key in components) {
+    Vue.component(key, components[key])
+  }
+}
+
 export {
+  install,
   Tooltip,
   Carousel,
   Slide,

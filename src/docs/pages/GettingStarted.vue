@@ -18,18 +18,17 @@
           <li>IE 9 / 10 / 11</li>
         </ul>
         <h3 class="page-header">Install</h3>
-        <p>uiv is using Webpack UMD exporter, which means you can use it in both:</p>
-        <ul>
-          <li><b>ES6</b></li>
-          <li><b>CommonJS</b></li>
-          <li><b>AMD</b></li>
-          <li><b>Browser</b></li>
-        </ul>
-        <p>You can simply include uiv into you js files or HTML page and start working.</p>
+        <p>uiv is using UMD exporter, which means you can use it in both ES6 / CommonJS / AMD / Browser.</p>
+        <br/>
         <h4>ES6 Sample</h4>
         <div><pre><code>
 $ npm install uiv
 
+// Import and register all components once
+import * as uiv from 'uiv'
+Vue.use(uiv)
+
+// Or import respectively
 import { Dropdown } from 'uiv'
 
 new Vue({
@@ -48,6 +47,13 @@ new Vue({
 
 &lt;script src=&quot;path/to/vue.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;path/to/uiv.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Import and register all components once --&gt;
+&lt;script&gt;
+  Vue.use(uiv)
+&lt;/script&gt;
+
+&lt;!-- Or import respectively --&gt;
 &lt;script&gt;
   new Vue({
     components: {
