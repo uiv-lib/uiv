@@ -10,6 +10,11 @@
       <h2 @click="toggleAside(false)" class="text-center">
         <router-link to="/" exact>uiv</router-link>
       </h2>
+      <br/>
+      <select class="form-control input-sm" v-model="$i18n.locale" style="width: auto">
+        <option value="en-US">English</option>
+        <option value="zh-CN">简体中文</option>
+      </select>
     </div>
     <div class="nav-container">
       <div class="nav-div">

@@ -40,7 +40,7 @@
         <td v-if="showMeridian">
           &nbsp;
           <button type="button" class="btn btn-default" data-action="toggleMeridian" :disabled="readonly"
-                  v-text="meridian?'AM':'PM'"
+                  v-text="meridian?t('uiv.timePicker.am'):t('uiv.timePicker.pm')"
                   @click="toggleMeridian"></button>
         </td>
       </tr>
@@ -65,6 +65,7 @@
 </template>
 
 <script>
+  import Local from './../../mixins/locale'
   import utils from './../../utils/stringUtils'
 
   const maxHours = 23
@@ -73,6 +74,7 @@
   const cutUpAmAndPm = 12
 
   export default {
+    mixins: [Local],
     props: {
       value: {
         type: Date

@@ -24,6 +24,14 @@ export default {
       week5: '五',
       week6: '六',
       week7: '日'
+    },
+    timePicker: {
+      am: '上午',
+      pm: '下午'
+    },
+    modal: {
+      cancel: '取消',
+      ok: '确认'
     }
   }
 }

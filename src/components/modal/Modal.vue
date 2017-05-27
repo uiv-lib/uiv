@@ -23,10 +23,10 @@
           <div class="modal-footer" v-if="footer">
             <slot name="footer">
               <button type="button" class="btn btn-default" @click="toggle(false,'cancel')">
-                <span>{{cancelText}}</span>
+                <span>{{cancelText || t('uiv.modal.cancel')}}</span>
               </button>
               <button type="button" class="btn btn-primary" @click="toggle(false,'ok')" data-action="auto-focus">
-                <span>{{okText}}</span>
+                <span>{{okText || t('uiv.modal.ok')}}</span>
               </button>
             </slot>
           </div>
@@ -37,12 +37,14 @@
 </template>
 
 <script>
+  import Local from './../../mixins/locale'
   import utils from './../../utils/domUtils'
 
   const MODAL_OPEN = 'modal-open'
   const IN = 'in'
 
   export default {
+    mixins: [Local],
     props: {
       value: {
         type: Boolean,
@@ -67,12 +69,10 @@
         'default': true
       },
       cancelText: {
-        type: String,
-        'default': 'Cancel'
+        type: String
       },
       okText: {
-        type: String,
-        'default': 'OK'
+        type: String
       },
       transitionDuration: {
         type: Number,

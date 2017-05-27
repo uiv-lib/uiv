@@ -24,6 +24,14 @@ export default {
       week5: 'Fri',
       week6: 'Sat',
       week7: 'Sun'
+    },
+    timePicker: {
+      am: 'AM',
+      pm: 'PM'
+    },
+    modal: {
+      cancel: 'Cancel',
+      ok: 'OK'
     }
   }
 }

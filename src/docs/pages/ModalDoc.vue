@@ -187,14 +187,12 @@
             {
               name: 'cancel-text',
               type: 'String',
-              desc: 'The text of cancel button',
-              'default': 'Cancel'
+              desc: 'Override the text of cancel button'
             },
             {
               name: 'ok-text',
               type: 'String',
-              desc: 'The text of ok button',
-              'default': 'OK'
+              desc: 'Override the text of ok button'
             },
             {
               name: 'transition-duration',

@@ -5,56 +5,15 @@ import 'highlight.js/styles/github-gist.css'
 import './assets/css/common.less'
 
 import Vue from 'vue'
-import VueI18n from 'vue-i18n'
-import VueRouter from 'vue-router'
+import i18n from './locale-docs'
+import router from './routes'
 import PageWrapper from './docs/architecture/PageWrapper.vue'
 import * as uiv from './components/index'
-import zhLocale from './locale/lang/zh-CN'
-import enLocale from './locale/lang/en-US'
 
 Vue.config.productionTip = false
 
-Vue.use(VueRouter)
-Vue.use(VueI18n)
 Vue.use(uiv)
 Vue.component('PageWrapper', PageWrapper)
-
-const messages = {
-  'zh-CN': zhLocale,
-  'en-US': enLocale
-}
-
-const i18n = new VueI18n({
-  locale: 'en-US',
-  messages
-})
-
-let routes = [
-  {path: '/', component: require('./docs/pages/Home.vue')},
-  {path: '/getting-started', component: require('./docs/pages/GettingStarted.vue')},
-  {path: '/alert', component: require('./docs/pages/AlertDoc.vue')},
-  {path: '/carousel', component: require('./docs/pages/CarouselDoc.vue')},
-  {path: '/collapse', component: require('./docs/pages/CollapseDoc.vue')},
-  {path: '/date-picker', component: require('./docs/pages/DatePickerDoc.vue')},
-  {path: '/dropdown', component: require('./docs/pages/DropdownDoc.vue')},
-  {path: '/modal', component: require('./docs/pages/ModalDoc.vue')},
-  {path: '/pagination', component: require('./docs/pages/PaginationDoc.vue')},
-  {path: '/popover', component: require('./docs/pages/PopoverDoc.vue')},
-  {path: '/progress-bar', component: require('./docs/pages/ProgressBarDoc.vue')},
-  {path: '/tabs', component: require('./docs/pages/TabsDoc.vue')},
-  {path: '/time-picker', component: require('./docs/pages/TimePickerDoc.vue')},
-  {path: '/tooltip', component: require('./docs/pages/TooltipDoc.vue')},
-  {path: '/typeahead', component: require('./docs/pages/TypeaheadDoc.vue')}
-]
-
-let router = new VueRouter({
-  mode: 'history',
-  routes
-})
-
-router.afterEach(route => {
-  window.scrollTo(0, 0)
-})
 
 /* eslint-disable no-new */
 let app = new Vue({
