@@ -27,10 +27,10 @@
       <br/>
       <div class="text-center">
         <button type="button" data-action="select" class="btn btn-info btn-sm" v-if="todayBtn" @click="selectToday">
-          Today
+          {{t('uiv.datePicker.today')}}
         </button>
         <button type="button" data-action="select" class="btn btn-default btn-sm" v-if="clearBtn" @click="clearSelect">
-          Clear
+          {{t('uiv.datePicker.clear')}}
         </button>
       </div>
     </div>
@@ -38,11 +38,14 @@
 </template>
 
 <script>
+  import Locale from '../../mixins/locale'
   import DateView from './DateView.vue'
   import MonthView from './MonthView.vue'
   import YearView from './YearView.vue'
   import dateUtils from '../../utils/dateUtils'
+
   export default {
+    mixins: [Locale],
     components: {DateView, MonthView, YearView},
     props: {
       value: {},

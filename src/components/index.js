@@ -51,6 +51,7 @@ import TimePicker from './timepicker/TimePicker.vue'
 import Typeahead from './typeahead/Typeahead.vue'
 import ProgressBar from './progressbar/ProgressBar.vue'
 import ProgressBarStack from './progressbar/ProgressBarStack.vue'
+import locale from './../locale'
 
 const components = {
   Tooltip,
@@ -72,9 +73,16 @@ const components = {
 }
 
 const install = (Vue, options = {}) => {
+  locale.use(options.locale)
+  locale.i18n(options.i18n)
   for (let key in components) {
     Vue.component(key, components[key])
   }
+}
+
+// auto install
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
 }
 
 export {

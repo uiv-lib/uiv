@@ -19,8 +19,8 @@
       </td>
     </tr>
     <tr align="center">
-      <td v-for="day in weekDayNames" width="14.2857142857%">
-        <b>{{day}}</b>
+      <td v-for="day in weekDays" width="14.2857142857%">
+        <small>{{tWeekName(day)}}</small>
       </td>
     </tr>
     </thead>
@@ -43,15 +43,20 @@
 </template>
 
 <script>
+  import Locale from '../../mixins/locale'
   import util from '../../utils/dateUtils'
+
   export default {
+    mixins: [Locale],
     props: ['month', 'year', 'date', 'today', 'limit'],
+    data () {
+      return {
+        weekDays: [7, 1, 2, 3, 4, 5, 6]
+      }
+    },
     computed: {
       yearMonthStr () {
-        return `${this.year} ${util.getMonthNames()[this.month]}`
-      },
-      weekDayNames () {
-        return util.getWeekDayNames()
+        return `${this.year} ${this.t(`uiv.datePicker.month${this.month + 1}`)}`
       },
       monthDayRows () {
         let rows = []
@@ -104,6 +109,9 @@
       }
     },
     methods: {
+      tWeekName (index) {
+        return this.t(`uiv.datePicker.week${index}`)
+      },
       getBtnClass (date) {
         if (this.date &&
           date.date === this.date.getDate() &&

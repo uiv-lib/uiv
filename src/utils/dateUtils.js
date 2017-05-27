@@ -2,7 +2,6 @@ import stringUtils from './stringUtils'
 
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December']
-const weekDayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 export default {
   daysInMonth (month, year) {
@@ -10,9 +9,6 @@ export default {
   },
   getMonthNames () {
     return monthNames
-  },
-  getWeekDayNames () {
-    return weekDayNames
   },
   stringify (date, format) {
     try {

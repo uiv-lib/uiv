@@ -25,7 +25,7 @@
         <button type="button" class="btn btn-sm btn-block" style="border: none"
                 :class="getBtnClass(i*3+j)"
                 @click="changeView(i*3+j)">
-          <span>{{month}}</span>
+          <span>{{ tCell(month) }}</span>
         </button>
       </td>
     </tr>
@@ -34,8 +34,10 @@
 </template>
 
 <script>
-  import util from '../../utils/dateUtils'
+  import Locale from '../../mixins/locale'
+
   export default {
+    mixins: [Locale],
     props: ['month', 'year'],
     data () {
       return {
@@ -46,11 +48,14 @@
       for (let i = 0; i < 4; i++) {
         this.rows.push([])
         for (let j = 0; j < 3; j++) {
-          this.rows[i].push(util.getMonthNames()[i * 3 + j])
+          this.rows[i].push(i * 3 + j + 1)
         }
       }
     },
     methods: {
+      tCell (cell) {
+        return this.t(`uiv.datePicker.month${cell}`)
+      },
       getBtnClass (month) {
         if (month === this.month) {
           return {'btn-primary': true}
