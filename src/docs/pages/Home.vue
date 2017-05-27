@@ -24,14 +24,14 @@
               </a>
             </p>
             <br/>
-            <h3><b>Bootstrap 3</b> Components implemented by <b>Vue 2</b>.</h3>
+            <h3 v-html="$t('home.desc')"></h3>
             <br/>
             <div>
               <a href="https://github.com/wxsms/uiv" class="btn btn-default btn-lg">
-                Code on Github
+                {{$t('home.codeOnGithub')}}
               </a>
               <router-link to="/getting-started" class="btn btn-default btn-lg">
-                Getting Started
+                {{$t('home.gettingStarted')}}
               </router-link>
             </div>
             <br/>
@@ -44,36 +44,33 @@
         <div class="col-sm-6 col-md-4">
           <div class="thumbnail">
             <div class="caption">
-              <h3>Light Weight</h3>
+              <h3>{{$t('home.lightWeight')}}</h3>
               <p><i class="glyphicon glyphicon-leaf icon-thumbnail"></i></p>
-              <p>~ <b>14KB</b> Gziped</p>
-              <p>Dependencies only</p>
-              <p><b>Vue</b> & <b>Bootstrap CSS</b></p>
+              <p v-html="$t('home.lightWeight1')"></p>
+              <p v-html="$t('home.lightWeight2')"></p>
+              <p v-html="$t('home.lightWeight3')"></p>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-4">
           <div class="thumbnail">
             <div class="caption">
-              <h3>Compatible</h3>
+              <h3>{{$t('home.compatible')}}</h3>
               <p><i class="glyphicon glyphicon-check icon-thumbnail"></i></p>
-              <p>Tested with</p>
-              <p><b>Modern Browsers</b></p>
-              <p>And <b>IE 9+</b></p>
+              <p v-html="$t('home.compatible1')"></p>
+              <p v-html="$t('home.compatible2')"></p>
+              <p v-html="$t('home.compatible3')"></p>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-4">
           <div class="thumbnail">
             <div class="caption">
-              <h3>Open Source</h3>
+              <h3>{{$t('home.openSource')}}</h3>
               <p><i class="glyphicon glyphicon-grain icon-thumbnail"></i></p>
-              <p>
-                <b>MIT</b> License
-                <a href="https://github.com/wxsms/uiv/blob/master/LICENSE"><i class="glyphicon glyphicon-share"></i></a>
-              </p>
-              <p>Easy and Free</p>
-              <p>Welcome to contribute!</p>
+              <p v-html="$t('home.openSource1')"></p>
+              <p v-html="$t('home.openSource2')"></p>
+              <p v-html="$t('home.openSource3')"></p>
             </div>
           </div>
         </div>

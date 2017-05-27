@@ -1,16 +1,29 @@
 {
   "presets": [
-    ["latest", {
-      "es2015": { "modules": false }
-    }],
+    [
+      "latest",
+      {
+        "es2015": {
+          "modules": false
+        }
+      }
+    ],
     "stage-2"
   ],
-  "plugins": ["transform-runtime"],
+  "plugins": [
+    "transform-runtime",
+    "transform-object-assign"
+  ],
   "comments": false,
   "env": {
     "test": {
-      "presets": ["latest", "stage-2"],
-      "plugins": [ "istanbul" ]
+      "presets": [
+        "latest",
+        "stage-2"
+      ],
+      "plugins": [
+        "istanbul"
+      ]
     }
   }
 }
