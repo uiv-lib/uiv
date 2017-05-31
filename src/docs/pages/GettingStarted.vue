@@ -2,14 +2,14 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Getting Started"></anchor-header>
-        <h3 class="page-header">Dependencies</h3>
+        <anchor-header :text="$t('menu.gettingStarted')"></anchor-header>
+        <h3 class="page-header">{{$t('gettingStarted.dependencies')}}</h3>
         <ul>
           <li><strong>Vue 2</strong> (tested on ^2.2.6)</li>
           <li><strong>Bootstrap 3 CSS</strong> (tested on ^3.3.7)</li>
         </ul>
-        <h3 class="page-header">Supported Browsers</h3>
-        <p>Components and directives are tested with the following browsers:</p>
+        <h3 class="page-header">{{$t('gettingStarted.supportedBrowsers')}}</h3>
+        <p>{{$t('gettingStarted.supportedBrowsersDesc')}}</p>
         <ul>
           <li>Chrome</li>
           <li>Firefox</li>
@@ -17,10 +17,10 @@
           <li>Edge</li>
           <li>IE 9 / 10 / 11</li>
         </ul>
-        <h3 class="page-header">Install</h3>
-        <p>uiv is using UMD exporter, which means you can use it in both ES6 / CommonJS / AMD / Browser.</p>
+        <h3 class="page-header">{{$t('gettingStarted.install')}}</h3>
+        <p>{{$t('gettingStarted.installDesc')}}</p>
         <br/>
-        <h4>ES6 Sample</h4>
+        <h4>{{$t('gettingStarted.es6Sample')}}</h4>
         <div><pre><code>
 $ npm install uiv
 
@@ -38,7 +38,7 @@ new Vue({
 })
         </code></pre>
         </div>
-        <h4>Browser Sample</h4>
+        <h4>{{$t('gettingStarted.browserSample')}}</h4>
         <div><pre><code>
 &lt;tabs&gt;
   &lt;tab&gt;...&lt;/tab&gt;
@@ -71,8 +71,9 @@ new Vue({
 <script>
   import hljsMixin from './../mixins/hljsMixin'
   import AnchorHeader from '../architecture/AnchorHeader.vue'
+  import Locale from './../../mixins/locale'
   export default {
-    mixins: [hljsMixin],
+    mixins: [hljsMixin, Locale],
     components: {AnchorHeader}
   }
 </script>

@@ -2,12 +2,12 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Alert" source-folder="alert"></anchor-header>
+        <anchor-header :text="$t('menu.alert')" source-folder="alert"></anchor-header>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3>Dynamic Example</h3>
+        <h3>{{$t('common.dynamicExample')}}</h3>
         <div id="alertContainer">
           <alert type="info" :closable="true" v-if="showAlert1" @close="showAlert1=false">
             <strong>Heads up!</strong>
@@ -38,22 +38,22 @@
         <div class="well">
           <form class="form-inline">
             <div class="form-group">
-              <label>display time</label>
+              <label>{{$t('alert.displayTime')}}</label>
               <input class="form-control" step="1000" min="0" v-model.number="duration" type="number"
                      placeholder="input display time">
               <button type="button" class="btn btn-default" id="addAlertHadDuration"
                       @click="addAlert('success',false,true)">
-                <span>Add Alert (Time)</span>
+                <span>{{$t('alert.addAlertTime')}}</span>
               </button>
               <button type="button" class="btn btn-default" id="addAlert" @click="addAlert('success',true)">
-                <span>Add Alert</span>
+                <span>{{$t('alert.addAlert')}}</span>
               </button>
             </div>
           </form>
         </div>
-        <h3>Use with Collapse</h3>
+        <h3>{{$t('alert.useWithCollapse')}}</h3>
         <div>
-          <button type="button" class="btn btn-default" @click="showAlert5 = true">Show Alert</button>
+          <button type="button" class="btn btn-default" @click="showAlert5 = true">{{$t('alert.showAlert')}}</button>
         </div>
         <br/>
         <collapse v-model="showAlert5">
@@ -94,8 +94,9 @@
   import DemoCodePanel from '../architecture/DemoCodePanel.vue'
   import ApiPanel from './../architecture/ApiPanel.vue'
   import hljsMixin from './../mixins/hljsMixin'
+  import Locale from './../../mixins/locale'
   export default {
-    mixins: [hljsMixin],
+    mixins: [Locale, hljsMixin],
     components: {AnchorHeader, Alert, DemoCodePanel, ApiPanel, Collapse},
     data () {
       return {

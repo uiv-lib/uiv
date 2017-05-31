@@ -23,18 +23,18 @@
             <template v-if="item.items">
               <li role="presentation" class="no-link">
                 <a role="button">
-                  {{item.label}}
+                  {{$t(item.label)}}
                 </a>
               </li>
               <li role="presentation" v-for="_item in item.items" @click="toggleAside(false)">
                 <router-link :to="_item.path" role="button" class="sub-list">
-                  {{_item.label}}
+                  {{$t(_item.label)}}
                 </router-link>
               </li>
             </template>
             <li v-else role="presentation" @click="toggleAside(false)">
               <router-link :to="item.path" role="button">
-                {{item.label}}
+                {{$t(item.label)}}
               </router-link>
             </li>
           </template>
@@ -46,35 +46,37 @@
 
 <script>
   import { bus, events } from './../bus'
+  import Locale from './../../mixins/locale'
 
   export default {
+    mixins: [Locale],
     components: {},
     props: ['isAsideShow'],
     data () {
       return {
         asideItems: [
           {
-            label: 'Usage',
+            label: 'menu.usage',
             items: [
-              {path: '/getting-started', label: 'Getting Started'}
+              {path: '/getting-started', label: 'menu.gettingStarted'}
             ]
           },
           {
-            label: 'Components',
+            label: 'menu.components',
             items: [
-              {path: '/alert', label: 'Alert'},
-              {path: '/carousel', label: 'Carousel'},
-              {path: '/collapse', label: 'Collapse'},
-              {path: '/date-picker', label: 'Date Picker'},
-              {path: '/dropdown', label: 'Dropdown'},
-              {path: '/modal', label: 'Modal'},
-              {path: '/pagination', label: 'Pagination'},
-              {path: '/popover', label: 'Popover'},
-              {path: '/progress-bar', label: 'Progress Bar'},
-              {path: '/tabs', label: 'Tabs'},
-              {path: '/time-picker', label: 'Time Picker'},
-              {path: '/tooltip', label: 'Tooltip'},
-              {path: '/typeahead', label: 'Typeahead'}
+              {path: '/alert', label: 'menu.alert'},
+              {path: '/carousel', label: 'menu.carousel'},
+              {path: '/collapse', label: 'menu.collapse'},
+              {path: '/date-picker', label: 'menu.datePicker'},
+              {path: '/dropdown', label: 'menu.dropdown'},
+              {path: '/modal', label: 'menu.modal'},
+              {path: '/pagination', label: 'menu.pagination'},
+              {path: '/popover', label: 'menu.popover'},
+              {path: '/progress-bar', label: 'menu.progressBar'},
+              {path: '/tabs', label: 'menu.tabs'},
+              {path: '/time-picker', label: 'menu.timePicker'},
+              {path: '/tooltip', label: 'menu.tooltip'},
+              {path: '/typeahead', label: 'menu.typeahead'}
             ]
           }
         ]
