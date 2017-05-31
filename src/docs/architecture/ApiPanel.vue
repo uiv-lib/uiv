@@ -6,7 +6,7 @@
          class="pull-right"
          :href="'https://github.com/wxsms/uiv/tree/master/src/components/'+folder+'/'+file">
         <i class="glyphicon glyphicon-share"></i>
-        <span>{{$t('common.source')}}</span>
+        <span>Source</span>
       </a>
     </div>
     <div class="table-responsive">
@@ -14,7 +14,7 @@
         <tbody v-if="api.notes">
         <tr>
           <td colspan="5">
-            <span class="label label-default">{{$t('common.note')}}</span>
+            <span class="label label-default">Note</span>
           </td>
         </tr>
         <tr v-for="note in api.notes">
@@ -24,15 +24,15 @@
         <tbody v-if="api.props">
         <tr>
           <td colspan="5">
-            <span class="label label-default">{{$t('common.props')}}</span>
+            <span class="label label-default">Props</span>
           </td>
         </tr>
         <tr>
-          <th>{{$t('common.name')}}</th>
-          <th>{{$t('common.type')}}</th>
-          <th>{{$t('common.default')}}</th>
-          <th nowrap="nowrap">{{$t('common.required')}}</th>
-          <th>{{$t('common.description')}}</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Required</th>
+          <th>Description</th>
         </tr>
         <tr v-for="prop in api.props">
           <td nowrap="nowrap"><code>{{prop.name}}</code></td>
@@ -45,12 +45,12 @@
         <tbody v-if="api.slots">
         <tr>
           <td colspan="5">
-            <span class="label label-default">{{$t('common.slots')}}</span>
+            <span class="label label-default">Slots</span>
           </td>
         </tr>
         <tr>
-          <th>{{$t('common.name')}}</th>
-          <th colspan="4">{{$t('common.description')}}</th>
+          <th>Name</th>
+          <th colspan="4">Desc</th>
         </tr>
         <tr v-for="slot in api.slots">
           <td nowrap="nowrap"><code>{{slot.name}}</code></td>
@@ -60,13 +60,13 @@
         <tbody v-if="api.events">
         <tr>
           <td colspan="5">
-            <span class="label label-default">{{$t('common.events')}}</span>
+            <span class="label label-default">Events</span>
           </td>
         </tr>
         <tr>
-          <th>{{$t('common.name')}}</th>
-          <th>{{$t('common.params')}}</th>
-          <th colspan="3">{{$t('common.description')}}</th>
+          <th>Name</th>
+          <th>Params</th>
+          <th colspan="3">Desc</th>
         </tr>
         <tr v-for="event in api.events">
           <td nowrap="nowrap"><code>{{event.name}}</code></td>
@@ -82,10 +82,7 @@
 </template>
 
 <script>
-  import Locale from './../../mixins/locale'
-
   export default {
-    mixins: [Locale],
     props: ['api', 'file', 'folder']
   }
 </script>
