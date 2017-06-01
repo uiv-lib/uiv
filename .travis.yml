@@ -23,5 +23,4 @@ deploy:
     github_token: $GITHUB_TOKEN
     local_dir: docs
     on:
-      tags: true
       branch: master

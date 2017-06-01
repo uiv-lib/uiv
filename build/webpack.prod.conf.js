@@ -97,7 +97,7 @@ let webpackConfig = merge(baseWebpackConfig, {
       path.join(__dirname, './../docs'),
       // (REQUIRED) List of routes to prerender
       [
-        '/', '/getting-started', '/alert', '/collapse', '/date-picker', '/dropdown',
+        '/', 'install', '/i18n', '/getting-started', '/alert', '/collapse', '/date-picker', '/dropdown',
         '/modal', '/pagination', '/popover', '/progress-bar', '/tabs', '/time-picker',
         '/tooltip', '/typeahead', '/carousel'
       ]

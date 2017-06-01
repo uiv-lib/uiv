@@ -11,8 +11,16 @@ const messages = {
   'en-US': enLocale
 }
 
+let defaultLocale = 'en-US'
+for (let key in messages) {
+  if (navigator && navigator.language === key) {
+    defaultLocale = key
+    break
+  }
+}
+
 const i18n = new VueI18n({
-  locale: 'en-US',
+  locale: defaultLocale,
   fallbackLocale: 'en-US',
   messages
 })
