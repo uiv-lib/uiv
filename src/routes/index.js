@@ -5,6 +5,8 @@ Vue.use(VueRouter)
 
 const routes = [
   {path: '/', component: require('./../docs/pages/Home.vue')},
+  {path: '/install', component: require('./../docs/pages/Install.vue')},
+  {path: '/i18n', component: require('./../docs/pages/I18n.vue')},
   {path: '/getting-started', component: require('./../docs/pages/GettingStarted.vue')},
   {path: '/alert', component: require('./../docs/pages/AlertDoc.vue')},
   {path: '/carousel', component: require('./../docs/pages/CarouselDoc.vue')},

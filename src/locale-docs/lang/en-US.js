@@ -20,6 +20,8 @@ const docLocale = {
   },
   menu: {
     usage: 'Usage',
+    install: 'Install',
+    i18n: 'I18n',
     gettingStarted: 'Getting Started',
     components: 'Components',
     alert: 'Alert',
@@ -57,10 +59,28 @@ const docLocale = {
     dependencies: 'Dependencies',
     supportedBrowsers: 'Supported Browsers',
     supportedBrowsersDesc: 'Components and directives are tested with the following browsers:',
-    install: 'Install',
-    installDesc: 'uiv is using UMD exporter, which means you can use it in both ES6 / CommonJS / AMD / Browser.',
+    usage: 'Usage',
+    usageDesc: 'uiv is using UMD exporter, which means you can use it in both ES6 / CommonJS / AMD / Browser.',
     es6Sample: 'ES6 Sample',
     browserSample: 'Browser Sample'
+  },
+  install: {
+    viaCdn: 'Via CDN',
+    viaCdnDesc: 'You can fetch uiv library via <a href="https://unpkg.com/uiv/dist/">https://unpkg.com/uiv/dist/</a>, add <code>@version</code> after uiv to switch versions. For example, <a href="https://unpkg.com/uiv@0.11.3/dist/">https://unpkg.com/uiv@0.11.3/dist/</a>',
+    viaNpm: 'Via NPM',
+    viaNpmDesc: 'It is recommended to use NPM as package manager and ES6 / Webpack to develop Vue projects.'
+  },
+  i18n: {
+    basic: 'Basic Usage',
+    basicDesc: 'All uiv components use English as default language, you can config them to others, for Example:',
+    basicDesc2: 'As you see, we can also create custom wordings if not satisfied with the defaults, simply create your own <code>locale</code> object and replace with the one in example code will do.',
+    vueI18n: 'Use with Vue I18n',
+    vueI18nDesc: 'uiv is compatible with <a href="https://github.com/kazupon/vue-i18n">vue-i18n</a> as well.',
+    vueI18nDesc2: '<b>Note</b>: You need to merge uiv language packs into your app\'s. For example:',
+    supported: 'Supported Languages',
+    supported1: 'English (en-US)',
+    supported2: '简体中文 (zh-CN)',
+    supportedContribute: 'Welcome to contribute more languages!'
   },
   alert: {
     displayTime: 'display time',

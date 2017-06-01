@@ -17,8 +17,8 @@
           <li>Edge</li>
           <li>IE 9 / 10 / 11</li>
         </ul>
-        <h3 class="page-header">{{$t('gettingStarted.install')}}</h3>
-        <p>{{$t('gettingStarted.installDesc')}}</p>
+        <h3 class="page-header">{{$t('gettingStarted.usage')}}</h3>
+        <p>{{$t('gettingStarted.usageDesc')}}</p>
         <br/>
         <h4>{{$t('gettingStarted.es6Sample')}}</h4>
         <div><pre><code>
@@ -48,12 +48,8 @@ new Vue({
 &lt;script src=&quot;path/to/vue.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;path/to/uiv.min.js&quot;&gt;&lt;/script&gt;
 
-&lt;!-- Import and register all components once --&gt;
-&lt;script&gt;
-  Vue.use(uiv)
-&lt;/script&gt;
+&lt;!-- No need to install uiv, we already do this for you after script loaded. --&gt;
 
-&lt;!-- Or import respectively --&gt;
 &lt;script&gt;
   new Vue({
     components: {
@@ -71,9 +67,8 @@ new Vue({
 <script>
   import hljsMixin from './../mixins/hljsMixin'
   import AnchorHeader from '../architecture/AnchorHeader.vue'
-  import Locale from './../../mixins/locale'
   export default {
-    mixins: [hljsMixin, Locale],
+    mixins: [hljsMixin],
     components: {AnchorHeader}
   }
 </script>

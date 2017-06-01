@@ -46,10 +46,8 @@
 
 <script>
   import { bus, events } from './../bus'
-  import Locale from './../../mixins/locale'
 
   export default {
-    mixins: [Locale],
     components: {},
     props: ['isAsideShow'],
     data () {
@@ -58,7 +56,9 @@
           {
             label: 'menu.usage',
             items: [
-              {path: '/getting-started', label: 'menu.gettingStarted'}
+              {path: '/install', label: 'menu.install'},
+              {path: '/getting-started', label: 'menu.gettingStarted'},
+              {path: '/i18n', label: 'menu.i18n'}
             ]
           },
           {
