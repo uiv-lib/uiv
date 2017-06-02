@@ -31,7 +31,7 @@ const docLocale = {
     dropdown: 'Dropdown',
     modal: 'Modal',
     pagination: 'Pagination',
-    popover: 'popover',
+    popover: 'Popover',
     progressBar: 'Progress Bar',
     tabs: 'Tabs',
     timePicker: 'Time Picker',

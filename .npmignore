@@ -1,0 +1,14 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+build/
+config/
+static/
+test/
+
+.babelrc
+.editorconfig
+.eslintignore
+.eslintrc.js
+.postcssrc.js
+.travis.yml
+index.html

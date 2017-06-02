@@ -1,3 +1,5 @@
+// https://github.com/ElemeFE/element/blob/dev/src/locale/index.js
+
 import defaultLang from './lang/en-US'
 let lang = defaultLang
 
