@@ -2,7 +2,7 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-·        <anchor-header text="Alert" source-folder="alert"></anchor-header>
+        <anchor-header text="Alert" source-folder="alert"></anchor-header>
       </div>
     </div>
     <div class="row">

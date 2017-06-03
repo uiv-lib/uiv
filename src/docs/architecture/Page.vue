@@ -27,6 +27,7 @@
 
   .page {
     flex-grow: 1;
+    max-width: 100%;
     margin-left: @side-nav-width;
     min-height: 100vh;
     display: flex;
