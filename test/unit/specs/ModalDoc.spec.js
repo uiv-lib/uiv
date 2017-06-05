@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Modal from '@/components/modal/Modal.vue'
 import ModalDoc from '@/docs/pages/ModalDoc.vue'
 import config from '../utils'
 
@@ -261,5 +262,26 @@ describe('ModalDoc', () => {
       vm.$destroy()
       done()
     }, config.transitionDuration + 100)
+  })
+
+  it('should be able to open modal on init', (done) => {
+    let res = Vue.compile('<modal v-model="open" title="Modal 1"><p>This is a simple modal.</p></modal>')
+    let vm = new Vue({
+      data () {
+        return {
+          open: true
+        }
+      },
+      components: {Modal},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    })
+    vm.$mount()
+    vm.$nextTick(() => {
+      expect(document.querySelector('.modal-backdrop')).to.exist
+      expect(vm.$el.querySelector('.modal').className).to.contain('in')
+      vm.$destroy()
+      done()
+    })
   })
 })

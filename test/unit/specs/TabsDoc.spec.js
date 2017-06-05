@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import TabsDoc from '@/docs/pages/TabsDoc.vue'
-import config from '../utils'
+import utils from '../utils'
 
 describe('TabsDoc', () => {
   it('should be able to render first tab on open', (done) => {
@@ -21,20 +21,18 @@ describe('TabsDoc', () => {
     const Constructor = Vue.extend(TabsDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[1].querySelector('a').click()
+      let tab = vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[1].querySelector('a')
+      utils.triggerEvent(tab, 'click')
       // Double click should be fine
-      vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[1].querySelector('a').click()
+      utils.triggerEvent(tab, 'click')
       vm.$nextTick(() => {
         let activeTab = vm.$el.querySelector('.nav-tabs').querySelectorAll('.active')
         expect(activeTab.length).to.equal(1)
         expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 2')
-        // After transition
-        setTimeout(() => {
-          let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane.active')
-          expect(activeContent.length).to.equal(1)
-          expect(activeContent[0].querySelector('p').textContent).to.equal('Tab 2 goes here.')
-          done()
-        }, config.transitionDuration)
+        let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane.active')
+        expect(activeContent.length).to.equal(1)
+        expect(activeContent[0].querySelector('p').textContent).to.equal('Tab 2 goes here.')
+        done()
       })
     })
   })
@@ -43,18 +41,15 @@ describe('TabsDoc', () => {
     const Constructor = Vue.extend(TabsDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      vm.$el.querySelector('#tabs-btn-2').click()
+      utils.triggerEvent(vm.$el.querySelector('#tabs-btn-2'), 'click')
       vm.$nextTick(() => {
         let activeTab = vm.$el.querySelector('.nav-tabs').querySelectorAll('.active')
         expect(activeTab.length).to.equal(1)
         expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 2')
-        // After transition
-        setTimeout(() => {
-          let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane.active')
-          expect(activeContent.length).to.equal(1)
-          expect(activeContent[0].querySelector('p').textContent).to.equal('Tab 2 goes here.')
-          done()
-        }, config.transitionDuration)
+        let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane.active')
+        expect(activeContent.length).to.equal(1)
+        expect(activeContent[0].querySelector('p').textContent).to.equal('Tab 2 goes here.')
+        done()
       })
     })
   })
@@ -66,7 +61,7 @@ describe('TabsDoc', () => {
       let tab3 = vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[2]
       expect(tab3.className).to.equal('disabled')
       expect(tab3.querySelector('a').textContent).to.equal('Tab 3 (Disabled)')
-      tab3.querySelector('a').click()
+      utils.triggerEvent(tab3.querySelector('a'), 'click')
       vm.$nextTick(() => {
         expect(tab3.className).to.equal('disabled')
         expect(tab3.querySelector('a').textContent).to.equal('Tab 3 (Disabled)')
@@ -82,12 +77,13 @@ describe('TabsDoc', () => {
     const Constructor = Vue.extend(TabsDoc)
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
-      vm.$el.querySelector('#tabs-btn-3').click()
+      let enableBtn = vm.$el.querySelector('#tabs-btn-3')
+      utils.triggerEvent(enableBtn, 'click')
       vm.$nextTick(() => {
         let tab3 = vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[2]
         expect(tab3.className).to.equal('')
         expect(tab3.querySelector('a').textContent).to.equal('Tab 3 (Enabled)')
-        vm.$el.querySelector('#tabs-btn-3').click()
+        utils.triggerEvent(enableBtn, 'click')
         vm.$nextTick(() => {
           let tab3 = vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[2]
           expect(tab3.className).to.equal('disabled')
@@ -118,7 +114,7 @@ describe('TabsDoc', () => {
       }
       try {
         let spy = sinon.spy(window, 'alert')
-        vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[6].querySelector('a').click()
+        utils.triggerEvent(vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[6].querySelector('a'), 'click')
         sinon.assert.called(spy)
       } finally {
         window.alert = _savedAlert
@@ -132,12 +128,12 @@ describe('TabsDoc', () => {
     const vm = new Constructor().$mount()
     vm.$nextTick(() => {
       let tab5 = vm.$el.querySelector('.nav-tabs').querySelector('li.dropdown')
-      tab5.querySelectorAll('a')[0].click()
+      utils.triggerEvent(tab5.querySelectorAll('a')[0], 'click')
       vm.$nextTick(() => {
         expect(tab5.querySelector('.dropdown-menu')).to.exist
         expect(tab5.className).to.contain('dropdown')
         expect(tab5.className).to.contain('open')
-        tab5.querySelector('.dropdown-menu').querySelector('li').querySelector('a').click()
+        utils.triggerEvent(tab5.querySelector('.dropdown-menu').querySelector('li').querySelector('a'), 'click')
         vm.$nextTick(() => {
           expect(tab5.className).to.contain('active')
           let activeContent = vm.$el.querySelector('.tab-content').querySelectorAll('.tab-pane.active')
@@ -145,6 +141,24 @@ describe('TabsDoc', () => {
           expect(activeContent[0].querySelector('p').textContent).to.equal('This is Tab in group 1.')
           done()
         })
+      })
+    })
+  })
+
+  it('should be able to use without v-model', (done) => {
+    const Constructor = Vue.extend(TabsDoc)
+    const vm = new Constructor().$mount()
+    vm.$nextTick(() => {
+      let tabs = vm.$el.querySelectorAll('.nav-tabs')[1]
+      utils.triggerEvent(tabs.querySelectorAll('li')[1].querySelector('a'), 'click')
+      vm.$nextTick(() => {
+        let activeTab = tabs.querySelectorAll('.active')
+        expect(activeTab.length).to.equal(1)
+        expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 2')
+        let activeContent = vm.$el.querySelectorAll('.tab-content')[1].querySelectorAll('.tab-pane.active')
+        expect(activeContent.length).to.equal(1)
+        expect(activeContent[0].querySelector('p').textContent).to.equal('Tab 2 goes here.')
+        done()
       })
     })
   })

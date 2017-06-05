@@ -1,5 +1,7 @@
 import Vue from 'vue'
+import Dropdown from '@/components/dropdown/Dropdown.vue'
 import DropdownDoc from '@/docs/pages/DropdownDoc.vue'
+import utils from './../utils'
 
 describe('DropdownDoc', () => {
   it('should be able to open dropdown on trigger click', (done) => {
@@ -9,7 +11,7 @@ describe('DropdownDoc', () => {
     let trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
     expect(dropdown.className).to.not.contain('open')
-    trigger.click()
+    utils.triggerEvent(trigger, 'click')
     vm.$nextTick(() => {
       expect(dropdown.className).to.contain('open')
       done()
@@ -23,10 +25,10 @@ describe('DropdownDoc', () => {
     let trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
     expect(dropdown.className).to.not.contain('open')
-    trigger.click()
+    utils.triggerEvent(trigger, 'click')
     vm.$nextTick(() => {
       expect(dropdown.className).to.contain('open')
-      trigger.click()
+      utils.triggerEvent(trigger, 'click')
       vm.$nextTick(() => {
         expect(dropdown.className).to.not.contain('open')
         done()
@@ -41,9 +43,10 @@ describe('DropdownDoc', () => {
     let trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
     expect(dropdown.className).to.not.contain('open')
-    trigger.click()
+    utils.triggerEvent(trigger, 'click')
     vm.$nextTick(() => {
       expect(dropdown.className).to.contain('open')
+      // Simulate a window click
       vm.$refs.dropdown.windowClicked({target: document.body})
       vm.$nextTick(() => {
         expect(dropdown.className).to.not.contain('open')
@@ -62,11 +65,11 @@ describe('DropdownDoc', () => {
     let trigger = dropdown.querySelector('button')
     expect(dropdown.className).to.not.contain('open')
     expect(dropdown.querySelector('.dropdown-menu')).to.exist
-    trigger.click()
+    utils.triggerEvent(trigger, 'click')
     vm.$nextTick(() => {
       expect(dropdown.className).to.contain('open')
       expect(dropdown.querySelector('.dropdown-menu')).not.exist
-      trigger.click()
+      utils.triggerEvent(trigger, 'click')
       vm.$nextTick(() => {
         expect(dropdown.className).not.contain('open')
         expect(dropdown.querySelector('.dropdown-menu')).to.exist
@@ -90,11 +93,11 @@ describe('DropdownDoc', () => {
       expect(dropdown.className).to.not.contain('open')
       expect(dropdown.querySelector('.dropdown-menu')).to.exist
       expect(dropdown.querySelector('.dropdown-menu').className).to.contain('dropdown-menu-right')
-      trigger.click()
+      utils.triggerEvent(trigger, 'click')
       vm.$nextTick(() => {
         expect(dropdown.className).to.contain('open')
         expect(dropdown.querySelector('.dropdown-menu')).not.exist
-        trigger.click()
+        utils.triggerEvent(trigger, 'click')
         vm.$nextTick(() => {
           expect(dropdown.className).not.contain('open')
           expect(dropdown.querySelector('.dropdown-menu')).to.exist
@@ -105,9 +108,24 @@ describe('DropdownDoc', () => {
     })
   })
 
-  it('should be able to destroy', () => {
-    const Constructor = Vue.extend(DropdownDoc)
-    const vm = new Constructor().$mount()
-    vm.$destroy()
+  it('should be able to open dropdown on init', (done) => {
+    let res = Vue.compile('<dropdown v-model="show"><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template slot="dropdown"><li><a href="#">Action</a></li></template></dropdown>')
+    let vm = new Vue({
+      data () {
+        return {
+          show: true
+        }
+      },
+      components: {Dropdown},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    })
+    vm.$mount()
+    vm.$nextTick(() => {
+      let dropdown = vm.$el
+      expect(dropdown.className).to.contain('open')
+      vm.$destroy()
+      done()
+    })
   })
 })
