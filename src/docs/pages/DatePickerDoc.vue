@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3>Inline Example</h3>
+        <h3 class="page-header">Inline Example</h3>
         <div class="panel panel-default" style="display: inline-block">
           <div class="panel-body">
             <date-picker class="date-picker"
@@ -19,7 +19,7 @@
                          :limit-to="limitTo"></date-picker>
           </div>
         </div>
-        <h3>With Dropdown</h3>
+        <h3 class="page-header">With Dropdown</h3>
         <form class="form-inline">
           <dropdown class="form-group">
             <div class="input-group">

@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3>Basic Example</h3>
+        <h3 class="page-header">Basic Example</h3>
         <div>
           <button type="button" class="btn btn-default" @click="showCollapse1=!showCollapse1">Click me!</button>
         </div>
@@ -15,7 +15,7 @@
           <br/>
           <div class="well" style="margin-bottom: 0">Hi there.</div>
         </collapse>
-        <h3>Accordion</h3>
+        <h3 class="page-header">Accordion</h3>
         <div class="panel-group">
           <div class="panel panel-default">
             <div class="panel-heading" role="button" @click="toggleAccordion(0)">
@@ -51,7 +51,7 @@
             </collapse>
           </div>
         </div>
-        <h3>Navbar</h3>
+        <h3 class="page-header">Navbar</h3>
         <nav class="navbar navbar-default">
           <div class="container-fluid">
             <div class="navbar-header">

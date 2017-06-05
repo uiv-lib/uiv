@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3>Static Query Example</h3>
+        <h3 class="page-header">Static Query Example</h3>
         <div class="well">
           <form class="form-inline">
             <div class="form-group">
@@ -42,7 +42,7 @@
           <p v-if="model1">You selected: {{model1}}</p>
           <p v-else>Please select an item.</p>
         </div>
-        <h3>Async & Custom Template Example</h3>
+        <h3 class="page-header">Async & Custom Template Example</h3>
         <typeahead ref="typeahead2"
                    v-model="model2"
                    async-src="https://api.github.com/search/users?q="

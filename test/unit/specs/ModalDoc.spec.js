@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import ModalDoc from '@/docs/pages/ModalDoc.vue'
-import config from './../config'
+import config from '../utils'
 
 describe('ModalDoc', () => {
   it('should be able to mount and destroy', (done) => {

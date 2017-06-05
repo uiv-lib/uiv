@@ -7,11 +7,11 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3>Basic Example</h3>
+        <h3 class="page-header">Basic Example</h3>
         <tooltip text="Static tooltip content goes here.">
           <button type="button" class="btn btn-default">Hover Me!</button>
         </tooltip>
-        <h3>Dynamic Example</h3>
+        <h3 class="page-header">Dynamic Example</h3>
         <form class="form-inline">
           <tooltip :text="text" :placement="placement" :auto-placement="autoPlacement" :trigger="trigger"
                    :enable="enable" ref="tooltip" v-model="open1">

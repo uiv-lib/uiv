@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3>Basic Example</h3>
+        <h3 class="page-header">Basic Example</h3>
         <div class="well">
           <button type="button" id="tabs-btn-1" class="btn btn-default" @click="tabIndex = 0">Active Tab 1</button>
           <button type="button" id="tabs-btn-2" class="btn btn-default" @click="tabIndex = 1">Active Tab 2</button>
@@ -38,7 +38,7 @@
             <p>This tab has a HTML and callback function.</p>
           </tab>
         </tabs>
-        <h3>With Nav-Right Slot</h3>
+        <h3 class="page-header">With Nav-Right Slot</h3>
         <tabs>
           <tab title="Tab 1">
             <p>This is tab 1.</p>

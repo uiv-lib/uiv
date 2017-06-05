@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import TabsDoc from '@/docs/pages/TabsDoc.vue'
-import config from './../config'
+import config from '../utils'
 
 describe('TabsDoc', () => {
   it('should be able to render first tab on open', (done) => {

@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3>Dynamic Example</h3>
+        <h3 class="page-header">Dynamic Example</h3>
         <div id="alertContainer">
           <alert type="info" :closable="true" v-if="showAlert1" @close="showAlert1=false">
             <strong>Heads up!</strong>
@@ -51,9 +51,9 @@
             </div>
           </form>
         </div>
-        <h3>Use with Collapse</h3>
+        <h3 class="page-header">Use with Collapse</h3>
         <div>
-          <button type="button" class="btn btn-default" @click="showAlert5 = true">Show Alert</button>
+          <button type="button" class="btn btn-default" @click="showAlert5 = !showAlert5">Toggle Alert</button>
         </div>
         <br/>
         <collapse v-model="showAlert5">

@@ -7,24 +7,24 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3>Simple Modal with Callback</h3>
+        <h3 class="page-header">Simple Modal with Callback</h3>
         <div class="well">
           <button type="button" class="btn btn-default" @click="open1=true">Show Modal 1</button>
           <span id="modal1-msg">{{msg || 'A simple modal example.'}}</span>
         </div>
-        <h3>Different Sizes</h3>
+        <h3 class="page-header">Different Sizes</h3>
         <div class="well">
           <button type="button" class="btn btn-default" @click="open2=true">Large Modal</button>
           <button type="button" class="btn btn-default" @click="open3=true">Small Modal</button>
         </div>
-        <h3>Customize Header / Footer</h3>
+        <h3 class="page-header">Customize Header / Footer</h3>
         <div class="well">
           <button type="button" class="btn btn-default" @click="open4=true">Modal with HTML Title</button>
           <button type="button" class="btn btn-default" @click="open5=true">Modal with No Footer</button>
           <button type="button" class="btn btn-default" @click="open6=true">Modal with No Header</button>
           <button type="button" class="btn btn-default" @click="open7=true">Modal with Customize Footer</button>
         </div>
-        <h3>Others</h3>
+        <h3 class="page-header">Others</h3>
         <div class="well">
           <button type="button" class="btn btn-default" @click="open8=true">Disable Backdrop</button>
           <button type="button" class="btn btn-default" @click="open9=true">Disable Animation</button>

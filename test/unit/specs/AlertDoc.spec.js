@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import AlertDoc from '@/docs/pages/AlertDoc.vue'
+import utils from './../utils'
 
 describe('AlertDoc', () => {
   it('Alert can be closed', (done) => {
@@ -9,7 +10,7 @@ describe('AlertDoc', () => {
       let alertInfo = vm.$el.querySelector('.alert-info')
       expect(alertInfo).to.exist
       let closedBtn = alertInfo.querySelector('button.close')
-      closedBtn.click()
+      utils.triggerEvent(closedBtn, 'click')
       vm.$nextTick(() => {
         expect(vm.$el.querySelector('.alert-info')).not.exist
         done()
@@ -24,7 +25,7 @@ describe('AlertDoc', () => {
       let alertSuccess = vm.$el.querySelectorAll('.alert-success')
       let alertSuccessLengthBefore = alertSuccess.length
       let addAlertBtn = vm.$el.querySelector('#addAlert')
-      addAlertBtn.click()
+      utils.triggerEvent(addAlertBtn, 'click')
       vm.$nextTick(() => {
         alertSuccess = vm.$el.querySelectorAll('.alert-success')
         let alertSuccessLengthAfter = alertSuccess.length
@@ -42,7 +43,7 @@ describe('AlertDoc', () => {
       let alertSuccess = vm.$el.querySelectorAll('.alert-success')
       let alertSuccessLengthBefore = alertSuccess.length
       let addAlertBtn = vm.$el.querySelector('#addAlertHadDuration')
-      addAlertBtn.click()
+      utils.triggerEvent(addAlertBtn, 'click')
       vm.$nextTick(() => {
         alertSuccess = vm.$el.querySelectorAll('.alert-success')
         let alertSuccessLengthAfter = alertSuccess.length
