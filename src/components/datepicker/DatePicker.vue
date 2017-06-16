@@ -5,7 +5,7 @@
                :year="currentYear"
                :date="valueDateObj"
                :today="now"
-               :limit="limit"               
+               :limit="limit"
                @month-change="onMonthChange"
                @year-change="onYearChange"
                @date-change="onDateChange"
