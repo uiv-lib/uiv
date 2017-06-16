@@ -5,7 +5,7 @@
                :year="currentYear"
                :date="valueDateObj"
                :today="now"
-               :limit="limit"
+               :limit="limit"               
                @month-change="onMonthChange"
                @year-change="onYearChange"
                @date-change="onDateChange"
@@ -69,6 +69,10 @@
       format: {
         type: String,
         'default': 'yyyy-MM-dd'
+      },
+      initialView: {
+        type: String,
+        'default': 'd'
       }
     },
     data () {
@@ -116,6 +120,9 @@
     mounted () {
       this.currentMonth = this.now.getMonth()
       this.currentYear = this.now.getFullYear()
+      if (!this.value) {
+        this.view = this.initialView
+      }
     },
     watch: {
       value (val, oldVal) {
@@ -136,6 +143,7 @@
       },
       onYearChange (year) {
         this.currentYear = year
+        this.currentMonth = undefined
       },
       onDateChange (date) {
         if (date &&
