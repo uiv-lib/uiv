@@ -110,7 +110,7 @@
           <p>This is a modal that can not close by backdrop click.</p>
         </modal>
         <!--Modal 9-->
-        <modal v-model="open8" title="Modal 9" :transition-duration="0">
+        <modal v-model="open9" title="Modal 9" :transition-duration="0">
           <p>This is a modal that has no transition effect.</p>
         </modal>
         <!--Modal 10-->
