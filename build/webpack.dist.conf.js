@@ -31,7 +31,13 @@ let webpackConfig = {
       commonjs: 'vue',
       commonjs2: 'vue',
       amd: 'vue'
-    }
+    },
+    moment: {
+      root: 'Moment',
+      commonjs: 'momemt',
+      commonjs2: 'moment',
+      amd: 'moment'
+    }    
   },
   output: {
     path: config.dist.assetsRoot,
