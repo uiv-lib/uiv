@@ -28,9 +28,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "coveralls": "cat test/unit/coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
-  "dependencies": {
-    "moment": "^2.18.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.22.1",
