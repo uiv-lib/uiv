@@ -166,7 +166,7 @@
         }
       },
       backdropClicked (event) {
-        if (this.backdrop && !this.$refs.dialog.contains(event.target)) {
+        if (this.backdrop && this.$refs.modal === event.target) {
           this.toggle(false)
         }
       }
