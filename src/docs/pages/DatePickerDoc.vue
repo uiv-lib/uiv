@@ -169,6 +169,12 @@
             {
               name: 'limit-to',
               desc: 'Same as limit-from'
+            },
+            {
+              name: 'initial-view',
+              type: 'String',
+              desc: 'Open the date-picker with specify view (one of d / m / y) on initial. Only works if the v-model is empty.',
+              'default': 'd'
             }
           ]
         },

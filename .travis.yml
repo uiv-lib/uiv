@@ -17,10 +17,10 @@ deploy:
     api_key: $NPM_TOKEN
     on:
       tags: true
-      branch: master
+      branch: release
   - provider: pages
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
     local_dir: docs
     on:
-      branch: master
+      branch: release
