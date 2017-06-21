@@ -73,6 +73,10 @@
       initialView: {
         type: String,
         'default': 'd'
+      },
+      dateParser: {
+        type: Function,
+        'default': Date.parse
       }
     },
     data () {
@@ -86,11 +90,11 @@
     },
     computed: {
       valueDateObj () {
-        let date = new Date(this.value)
-        if (isNaN(date.getTime())) {
+        let ts = this.dateParser(this.value)
+        if (isNaN(ts)) {
           return null
         } else {
-          return date
+          return new Date(ts)
         }
       },
       pickerStyle () {
@@ -101,15 +105,17 @@
       limit () {
         let limit = {}
         if (this.limitFrom) {
-          let from = new Date(this.limitFrom)
-          if (!isNaN(from.getTime())) {
+          let from = this.dateParser(this.limitFrom)
+          if (!isNaN(from)) {
+            from = new Date(from)
             from.setHours(0, 0, 0, 0)
             limit.from = from
           }
         }
         if (this.limitTo) {
-          let to = new Date(this.limitTo)
-          if (!isNaN(to.getTime())) {
+          let to = this.dateParser(this.limitTo)
+          if (!isNaN(to)) {
+            to = new Date(to)
             to.setHours(0, 0, 0, 0)
             limit.to = to
           }
@@ -126,8 +132,9 @@
     },
     watch: {
       value (val, oldVal) {
-        let date = new Date(val)
-        if (!isNaN(date.getTime())) {
+        let ts = this.dateParser(val)
+        if (!isNaN(ts)) {
+          let date = new Date(ts)
           if (this.limit && ((this.limit.from && date < this.limit.from) || (this.limit.to && date >= this.limit.to))) {
             this.$emit('input', oldVal || '')
           } else {

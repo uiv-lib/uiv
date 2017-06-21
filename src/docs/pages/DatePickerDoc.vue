@@ -175,6 +175,19 @@
               type: 'String',
               desc: 'Open the date-picker with specify view (one of d / m / y) on initial. Only works if the v-model is empty.',
               'default': 'd'
+            },
+            {
+              name: 'date-parser',
+              type: 'Function',
+              'default': 'Date.parse',
+              desc: `
+<p>Use this prop to replace the <code>Date.parse</code> call inside the component.
+Useful when The formatted String can not be correctly parsed to Date type by <code>Date.parse</code> (e.g. dd-MM-yyyy).</p>
+<p>Example (use moment.js):</p>
+<pre><code>dateParser (value) {
+  return moment(value, 'DD-MM-YYYY').toDate().getTime()
+}</code></pre>
+`
             }
           ]
         },
