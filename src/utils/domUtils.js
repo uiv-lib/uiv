@@ -125,15 +125,21 @@ export default {
       case PLACEMENTS.TOP:
         available = triggerRect.top >= popupRect.height
         break
-      case PLACEMENTS.RIGHT:
-        available = triggerRect.right + popupRect.width <= viewPortSize.width
+      case PLACEMENTS.RIGHT: {
+        let widthAvailable = triggerRect.right + popupRect.width <= viewPortSize.width
+        let heightAvailable = triggerRect.top + triggerRect.height / 2 >= popupRect.height / 2
+        available = widthAvailable && heightAvailable
         break
+      }
       case PLACEMENTS.BOTTOM:
         available = triggerRect.bottom + popupRect.height <= viewPortSize.height
         break
-      case PLACEMENTS.LEFT:
-        available = triggerRect.left - popupRect.width >= 0
+      case PLACEMENTS.LEFT: {
+        let widthAvailable = triggerRect.left - popupRect.width >= 0
+        let heightAvailable = triggerRect.top + triggerRect.height / 2 >= popupRect.height / 2
+        available = widthAvailable && heightAvailable
         break
+      }
     }
     return available
   },
