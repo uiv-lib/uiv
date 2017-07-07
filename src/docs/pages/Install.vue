@@ -4,7 +4,6 @@
       <div class="col-xs-12">
         <anchor-header :text="$t('menu.install')"></anchor-header>
         <h3 class="page-header">{{$t('install.viaCdn')}}</h3>
-        <p v-html="$t('install.viaCdnDesc')"></p>
         <pre><code>
 &lt;!-- Load Vue from CDN --&gt;
 &lt;script src=&quot;//vuejs.org/js/vue.min.js&quot;&gt;&lt;/script&gt;

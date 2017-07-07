@@ -66,7 +66,6 @@ const docLocale = {
   },
   install: {
     viaCdn: '通过 CDN',
-    viaCdnDesc: '你可以在 <a href="https://unpkg.com/uiv/dist/">https://unpkg.com/uiv/dist/</a> 获取到最新的项目代码, 通过在 uiv 后面追加 <code>@version</code> 来指定版本。举个例子，<a href="https://unpkg.com/uiv@0.11.3/dist/">https://unpkg.com/uiv@0.11.3/dist/</a>',
     viaNpm: '通过 NPM',
     viaNpmDesc: '推荐使用 NPM 进行包管理以及 ES6 / Webpack 来进行 Vue 项目的开发。'
   },

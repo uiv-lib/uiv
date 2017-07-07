@@ -66,7 +66,6 @@ const docLocale = {
   },
   install: {
     viaCdn: 'Via CDN',
-    viaCdnDesc: 'You can fetch uiv library via <a href="https://unpkg.com/uiv/dist/">https://unpkg.com/uiv/dist/</a>, add <code>@version</code> after uiv to switch versions. For example, <a href="https://unpkg.com/uiv@0.11.3/dist/">https://unpkg.com/uiv@0.11.3/dist/</a>',
     viaNpm: 'Via NPM',
     viaNpmDesc: 'It is recommended to use NPM as package manager and ES6 / Webpack to develop Vue projects.'
   },
