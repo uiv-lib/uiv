@@ -32,7 +32,7 @@ describe('DatePickerDoc', () => {
       } else {
         actionBtn.click()
         vm.$nextTick(() => {
-          now = new Date(now.getUTCFullYear(), now.getUTCMonth(), 0)
+          now = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 0))
           expect(textBtn.textContent).to.contain(`${now.getUTCFullYear()} ${now.toDateString().split(' ')[1]}`)
           // console.log(`${now.getFullYear()} ${now.toDateString().split(' ')[1]}`)
           goPrev(--i, actionBtn, now, textBtn, done)
@@ -62,9 +62,9 @@ describe('DatePickerDoc', () => {
         actionBtn.click()
         vm.$nextTick(() => {
           if (now.getUTCMonth() === 11) {
-            now = new Date(now.getUTCFullYear() + 1, 0, 1)
+            now = new Date(Date.UTC(now.getUTCFullYear() + 1, 0, 1))
           } else {
-            now = new Date(now.getUTCFullYear(), now.getUTCMonth() + 1, 1)
+            now = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1))
           }
           expect(textBtn.textContent).to.contain(`${now.getUTCFullYear()} ${now.toDateString().split(' ')[1]}`)
           // console.log(`${now.getFullYear()} ${now.toDateString().split(' ')[1]}`)
@@ -126,7 +126,7 @@ describe('DatePickerDoc', () => {
           expect(monthView.style.display).to.equal('none')
           let yearMonthBtn = dateView.querySelectorAll('button')[1]
           let now = new Date()
-          now = new Date(now.getUTCFullYear(), 0, 1)
+          now = new Date(Date.UTC(now.getUTCFullYear(), 0, 1))
           expect(yearMonthBtn.textContent).to.contain(`${now.getUTCFullYear()} ${now.toDateString().split(' ')[1]}`)
           done()
         })

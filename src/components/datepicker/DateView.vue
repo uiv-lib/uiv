@@ -56,7 +56,7 @@
     },
     computed: {
       yearMonthStr () {
-        return this.month ? `${this.year} ${this.t(`uiv.datePicker.month${this.month + 1}`)}` : this.year
+        return typeof this.month !== 'undefined' ? `${this.year} ${this.t(`uiv.datePicker.month${this.month + 1}`)}` : this.year
       },
       monthDayRows () {
         let rows = []
