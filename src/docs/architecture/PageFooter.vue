@@ -18,7 +18,7 @@
     props: ['title'],
     data () {
       return {
-        year: new Date().getFullYear()
+        year: new Date().getUTCFullYear()
       }
     }
   }

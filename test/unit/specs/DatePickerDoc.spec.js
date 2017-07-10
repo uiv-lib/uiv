@@ -12,9 +12,9 @@ describe('DatePickerDoc', () => {
       expect(dateView.style.display).to.equal('')
       let yearMonthBtn = dateView.querySelectorAll('button')[1]
       let now = new Date()
-      expect(yearMonthBtn.textContent).to.contain(`${now.getFullYear()} ${now.toDateString().split(' ')[1]}`)
+      expect(yearMonthBtn.textContent).to.contain(`${now.getUTCFullYear()} ${now.toDateString().split(' ')[1]}`)
       let todayBtn = dateView.querySelector('.btn-info')
-      expect(todayBtn.textContent).to.equal(now.getDate().toString())
+      expect(todayBtn.textContent).to.equal(now.getUTCDate().toString())
       done()
     })
   })
@@ -32,8 +32,8 @@ describe('DatePickerDoc', () => {
       } else {
         actionBtn.click()
         vm.$nextTick(() => {
-          now = new Date(now.getFullYear(), now.getMonth(), 0)
-          expect(textBtn.textContent).to.contain(`${now.getFullYear()} ${now.toDateString().split(' ')[1]}`)
+          now = new Date(now.getUTCFullYear(), now.getUTCMonth(), 0)
+          expect(textBtn.textContent).to.contain(`${now.getUTCFullYear()} ${now.toDateString().split(' ')[1]}`)
           // console.log(`${now.getFullYear()} ${now.toDateString().split(' ')[1]}`)
           goPrev(--i, actionBtn, now, textBtn, done)
         })
@@ -61,12 +61,12 @@ describe('DatePickerDoc', () => {
       } else {
         actionBtn.click()
         vm.$nextTick(() => {
-          if (now.getMonth() === 11) {
-            now = new Date(now.getFullYear() + 1, 0, 1)
+          if (now.getUTCMonth() === 11) {
+            now = new Date(now.getUTCFullYear() + 1, 0, 1)
           } else {
-            now = new Date(now.getFullYear(), now.getMonth() + 1, 1)
+            now = new Date(now.getUTCFullYear(), now.getUTCMonth() + 1, 1)
           }
-          expect(textBtn.textContent).to.contain(`${now.getFullYear()} ${now.toDateString().split(' ')[1]}`)
+          expect(textBtn.textContent).to.contain(`${now.getUTCFullYear()} ${now.toDateString().split(' ')[1]}`)
           // console.log(`${now.getFullYear()} ${now.toDateString().split(' ')[1]}`)
           goNext(--i, actionBtn, now, textBtn, done)
         })
@@ -103,7 +103,7 @@ describe('DatePickerDoc', () => {
         expect(dateView.style.display).to.equal('none')
         expect(monthView.style.display).to.equal('')
         let now = new Date()
-        expect(monthView.querySelectorAll('button')[1].textContent).to.equal(now.getFullYear().toString())
+        expect(monthView.querySelectorAll('button')[1].textContent).to.equal(now.getUTCFullYear().toString())
         done()
       })
     })
@@ -126,8 +126,8 @@ describe('DatePickerDoc', () => {
           expect(monthView.style.display).to.equal('none')
           let yearMonthBtn = dateView.querySelectorAll('button')[1]
           let now = new Date()
-          now = new Date(now.getFullYear(), 0, 1)
-          expect(yearMonthBtn.textContent).to.contain(`${now.getFullYear()} ${now.toDateString().split(' ')[1]}`)
+          now = new Date(now.getUTCFullYear(), 0, 1)
+          expect(yearMonthBtn.textContent).to.contain(`${now.getUTCFullYear()} ${now.toDateString().split(' ')[1]}`)
           done()
         })
       })
@@ -144,7 +144,7 @@ describe('DatePickerDoc', () => {
       monthView.querySelector('button').click()
       vm.$nextTick(() => {
         let now = new Date()
-        expect(monthView.querySelectorAll('button')[1].textContent).to.equal(now.getFullYear() - 1 + '')
+        expect(monthView.querySelectorAll('button')[1].textContent).to.equal(now.getUTCFullYear() - 1 + '')
         done()
       })
     })
@@ -160,7 +160,7 @@ describe('DatePickerDoc', () => {
       monthView.querySelectorAll('button')[2].click()
       vm.$nextTick(() => {
         let now = new Date()
-        expect(monthView.querySelectorAll('button')[1].textContent).to.equal(now.getFullYear() + 1 + '')
+        expect(monthView.querySelectorAll('button')[1].textContent).to.equal(now.getUTCFullYear() + 1 + '')
         done()
       })
     })
@@ -181,7 +181,7 @@ describe('DatePickerDoc', () => {
         expect(monthView.style.display).to.equal('none')
         expect(yearView.style.display).to.equal('')
         let now = new Date()
-        let start = now.getFullYear() - now.getFullYear() % 20
+        let start = now.getUTCFullYear() - now.getFullYear() % 20
         let yearStr = `${start} ~ ${start + 19}`
         expect(yearView.querySelectorAll('button')[1].textContent).to.equal(yearStr)
         done()
@@ -203,7 +203,7 @@ describe('DatePickerDoc', () => {
         expect(monthView.style.display).to.equal('')
         expect(yearView.style.display).to.equal('none')
         let now = new Date()
-        let year = now.getFullYear() - now.getFullYear() % 20
+        let year = now.getUTCFullYear() - now.getFullYear() % 20
         expect(monthView.querySelectorAll('button')[1].textContent).to.equal(year.toString())
         done()
       })
@@ -220,7 +220,7 @@ describe('DatePickerDoc', () => {
       yearView.querySelector('button').click()
       vm.$nextTick(() => {
         let now = new Date()
-        let start = now.getFullYear() - now.getFullYear() % 20
+        let start = now.getUTCFullYear() - now.getUTCFullYear() % 20
         let yearStr = `${start - 20} ~ ${start - 20 + 19}`
         expect(yearView.querySelectorAll('button')[1].textContent).to.equal(yearStr)
         done()
@@ -238,7 +238,7 @@ describe('DatePickerDoc', () => {
       yearView.querySelectorAll('button')[2].click()
       vm.$nextTick(() => {
         let now = new Date()
-        let start = now.getFullYear() - now.getFullYear() % 20
+        let start = now.getUTCFullYear() - now.getUTCFullYear() % 20
         let yearStr = `${start + 20} ~ ${start + 20 + 19}`
         expect(yearView.querySelectorAll('button')[1].textContent).to.equal(yearStr)
         done()
@@ -290,7 +290,7 @@ describe('DatePickerDoc', () => {
       picker.querySelector('.text-center').querySelectorAll('button')[0].click()
       vm.$nextTick(() => {
         expect(dateView.querySelector('tbody').querySelector('.btn-primary').textContent)
-          .to.equal(new Date().getDate().toString())
+          .to.equal(new Date().getUTCDate().toString())
         done()
       })
     })
@@ -337,15 +337,15 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     let tomorrow = new Date()
-    tomorrow.setDate(tomorrow.getDate() + 1)
+    tomorrow.setDate(tomorrow.getUTCDate() + 1)
     vm.limitFrom = new Date()
     vm.limitTo = tomorrow
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       let dateInRange = picker.querySelector('tbody').querySelectorAll('button:not([disabled])')
-      expect(dateInRange[0].textContent).to.equal(new Date().getDate().toString())
+      expect(dateInRange[0].textContent).to.equal(new Date().getUTCDate().toString())
       if (dateInRange.length > 1) {
-        expect(dateInRange[1].textContent).to.equal(tomorrow.getDate().toString())
+        expect(dateInRange[1].textContent).to.equal(tomorrow.getUTCDate().toString())
       }
       done()
     })
@@ -355,7 +355,7 @@ describe('DatePickerDoc', () => {
     const Constructor = Vue.extend(DatePickerDoc)
     const vm = new Constructor().$mount()
     let tomorrow = new Date()
-    tomorrow.setDate(tomorrow.getDate() + 1)
+    tomorrow.setDate(tomorrow.getUTCDate() + 1)
     vm.limitFrom = '2017-01-01'
     vm.limitTo = '2017-01-03'
     vm.date = '2017-01-04'

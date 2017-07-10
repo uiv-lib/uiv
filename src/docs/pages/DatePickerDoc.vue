@@ -205,7 +205,7 @@ Useful when The formatted String can not be correctly parsed to Date type by <co
       dateStr () {
         let date = new Date(this.date)
         if (!isNaN(date.getTime())) {
-          return date.toDateString()
+          return date.toUTCString()
         } else {
           return ''
         }

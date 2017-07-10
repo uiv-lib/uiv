@@ -5,16 +5,13 @@ const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
 
 export default {
   daysInMonth (month, year) {
-    return new Date(year, month + 1, 0).getDate()
-  },
-  getMonthNames () {
-    return monthNames
+    return new Date(year, month + 1, 0).getUTCDate()
   },
   stringify (date, format) {
     try {
-      let year = date.getFullYear()
-      let month = date.getMonth() + 1
-      let day = date.getDate()
+      let year = date.getUTCFullYear()
+      let month = date.getUTCMonth() + 1
+      let day = date.getUTCDate()
       let monthName = monthNames[month - 1]
       return format
         .replace(/yyyy/g, year)

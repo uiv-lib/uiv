@@ -56,12 +56,12 @@
     },
     computed: {
       yearMonthStr () {
-        return `${this.year} ${this.t(`uiv.datePicker.month${this.month + 1}`)}`
+        return this.month ? `${this.year} ${this.t(`uiv.datePicker.month${this.month + 1}`)}` : this.year
       },
       monthDayRows () {
         let rows = []
         let firstDay = new Date(this.year, this.month, 1)
-        let prevMonthLastDate = new Date(this.year, this.month, 0).getDate()
+        let prevMonthLastDate = new Date(this.year, this.month, 0).getUTCDate()
         let startIndex = firstDay.getDay()
         let daysNum = util.daysInMonth(this.month, this.year)
 
@@ -114,12 +114,12 @@
       },
       getBtnClass (date) {
         if (this.date &&
-          date.date === this.date.getDate() &&
-          date.month === this.date.getMonth() &&
+          date.date === this.date.getUTCDate() &&
+          date.month === this.date.getUTCMonth() &&
           date.year === this.date.getFullYear()) {
           return {'btn-primary': true}
-        } else if (date.date === this.today.getDate() &&
-          date.month === this.today.getMonth() &&
+        } else if (date.date === this.today.getUTCDate() &&
+          date.month === this.today.getUTCMonth() &&
           date.year === this.today.getFullYear()) {
           return {'btn-info': true}
         } else {

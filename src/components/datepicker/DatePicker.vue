@@ -124,8 +124,8 @@
       }
     },
     mounted () {
-      this.currentMonth = this.now.getMonth()
-      this.currentYear = this.now.getFullYear()
+      this.currentMonth = this.now.getUTCMonth()
+      this.currentYear = this.now.getUTCFullYear()
       if (!this.value) {
         this.view = this.initialView
       }
@@ -138,8 +138,8 @@
           if (this.limit && ((this.limit.from && date < this.limit.from) || (this.limit.to && date >= this.limit.to))) {
             this.$emit('input', oldVal || '')
           } else {
-            this.currentMonth = date.getMonth()
-            this.currentYear = date.getFullYear()
+            this.currentMonth = date.getUTCMonth()
+            this.currentYear = date.getUTCFullYear()
           }
         }
       }
@@ -157,7 +157,7 @@
           typeof date.date === 'number' &&
           typeof date.month === 'number' &&
           typeof date.year === 'number') {
-          let _date = new Date(date.year, date.month, date.date)
+          let _date = new Date(Date.UTC(date.year, date.month, date.date))
           this.$emit('input', dateUtils.stringify(_date, this.format))
         } else {
           this.$emit('input', '')
@@ -169,9 +169,9 @@
       selectToday () {
         this.view = 'd'
         this.onDateChange({
-          date: this.now.getDate(),
-          month: this.now.getMonth(),
-          year: this.now.getFullYear()
+          date: this.now.getUTCDate(),
+          month: this.now.getUTCMonth(),
+          year: this.now.getUTCFullYear()
         })
       },
       clearSelect () {
