@@ -26,6 +26,39 @@ const PLACEMENTS = {
   LEFT: 'left'
 }
 
+const getViewportSize = () => {
+  let width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+  let height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+  return {width, height}
+}
+
+let scrollbarWidth = null
+let savedScreenSize = null
+const getScrollbarWidth = (recalculate = false) => {
+  let screenSize = getViewportSize()
+  // return directly when already calculated & not force recalculate & screen size not changed
+  if (scrollbarWidth !== null && !recalculate &&
+    screenSize.height === savedScreenSize.height && screenSize.width === savedScreenSize.width) {
+    return scrollbarWidth
+  }
+  if (document.readyState === 'loading') {
+    return null
+  }
+  const div1 = document.createElement('div')
+  const div2 = document.createElement('div')
+  div1.style.width = div2.style.width = div1.style.height = div2.style.height = '100px'
+  div1.style.overflow = 'scroll'
+  div2.style.overflow = 'hidden'
+  document.body.appendChild(div1)
+  document.body.appendChild(div2)
+  scrollbarWidth = Math.abs(div1.scrollHeight - div2.scrollHeight)
+  document.body.removeChild(div1)
+  document.body.removeChild(div2)
+  // save new screen size
+  savedScreenSize = screenSize
+  return scrollbarWidth
+}
+
 export default {
   events: EVENTS,
   triggers: TRIGGERS,
@@ -92,11 +125,6 @@ export default {
     }
     return false
   },
-  getViewportSize () {
-    let width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
-    let height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-    return {width, height}
-  },
   setDropdownPosition (dropdown, trigger, options = {}) {
     let doc = document.documentElement
     let containerScrollLeft = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0)
@@ -119,7 +147,7 @@ export default {
   isAvailableAtPosition (trigger, popup, placement) {
     let triggerRect = trigger.getBoundingClientRect()
     let popupRect = popup.getBoundingClientRect()
-    let viewPortSize = this.getViewportSize()
+    let viewPortSize = getViewportSize()
     let available
     switch (placement) {
       case PLACEMENTS.TOP:
@@ -193,37 +221,12 @@ export default {
   hasScrollbar (element) {
     return element.scrollHeight > element.clientHeight
   },
-  scrollbarWidth: (() => {
-    let scrollbarWidth = null
-    return (recalculate) => {
-      if (recalculate === null) {
-        recalculate = false
-      }
-      if ((scrollbarWidth !== null) && !recalculate) {
-        return scrollbarWidth
-      }
-      if (document.readyState === 'loading') {
-        return null
-      }
-      const div1 = document.createElement('div')
-      const div2 = document.createElement('div')
-      div1.style.width = div2.style.width = div1.style.height = div2.style.height = '100px'
-      div1.style.overflow = 'scroll'
-      div2.style.overflow = 'hidden'
-      document.body.appendChild(div1)
-      document.body.appendChild(div2)
-      scrollbarWidth = Math.abs(div1.scrollHeight - div2.scrollHeight)
-      document.body.removeChild(div1)
-      document.body.removeChild(div2)
-      return scrollbarWidth
-    }
-  })(),
   toggleBodyOverflow (enable) {
     if (enable) {
       document.body.style.paddingRight = null
     } else {
       if (this.hasScrollbar(document.documentElement)) {
-        document.body.style.paddingRight = `${this.scrollbarWidth()}px`
+        document.body.style.paddingRight = `${getScrollbarWidth()}px`
       }
     }
   }
