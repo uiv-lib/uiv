@@ -24,9 +24,11 @@ let appLocale = Object.assign({}, uivLocale, {
 })
         </code></pre>
         <h3 class="page-header">{{$t('i18n.supported')}}</h3>
+        <p>{{$t('i18n.supportedSortBy')}}</p>
         <ul>
-          <li>{{$t('i18n.supported1')}}</li>
-          <li>{{$t('i18n.supported2')}}</li>
+          <li>en-US</li>
+          <li>pt-BR</li>
+          <li>zh-CN</li>
         </ul>
         <p>{{$t('i18n.supportedContribute')}}</p>
       </div>
