@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12">
-          <p>Designed and built by <a href="https://github.com/wxsms">wxsm</a></p>
+          <p>Designed and built by <a href="https://github.com/wxsms">@wxsm</a></p>
           <p>Code under <a href="https://github.com/wxsms/uiv/blob/master/LICENSE">MIT License</a></p>
           <p>Document under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
         </div>
@@ -33,12 +33,13 @@
     align-items: center;
     background: @footer-bg;
     border-top: 1px solid darken(@gray, 10%);
+    color: #888;
 
     a {
-      color: #888;
+      color: #333;
 
       &:hover, &:active, &:focus {
-        color: #888;
+        color: #333;
         text-decoration: none;
       }
     }
