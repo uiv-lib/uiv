@@ -75,7 +75,7 @@
           slots: [
             {
               name: 'indicators',
-              desc: 'Override indicators, see example in code panel below'
+              desc: 'Override indicators, see example in code panel below.'
             }
           ],
           props: [
@@ -87,20 +87,32 @@
             {
               name: 'indicators',
               type: 'Boolean',
-              desc: 'Show / hide the indicators',
+              desc: 'Show / hide the indicators.',
               'default': true
             },
             {
               name: 'controls',
               type: 'Boolean',
-              desc: 'Show / hide the controls',
+              desc: 'Show / hide the controls.',
               'default': true
             },
             {
               name: 'interval',
               type: 'Number',
-              desc: 'Slides running interval time',
+              desc: 'Slides running interval time.',
               'default': 2000
+            },
+            {
+              name: 'icon-control-left',
+              type: 'String',
+              desc: 'The left control icon font class.',
+              'default': 'glyphicon glyphicon-chevron-left'
+            },
+            {
+              name: 'icon-control-right',
+              type: 'String',
+              desc: 'The right control icon font class.',
+              'default': 'glyphicon glyphicon-chevron-right'
             }
           ],
           events: [

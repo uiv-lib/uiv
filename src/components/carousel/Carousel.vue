@@ -9,11 +9,11 @@
       <slot></slot>
     </div>
     <a class="left carousel-control" href="javascript:void(0)" role="button" v-if="controls" @click="prev()">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span :class="iconControlLeft" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
     <a class="right carousel-control" href="javascript:void(0)" role="button" v-if="controls" @click="next()">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span :class="iconControlRight" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
   </div>
@@ -36,6 +36,14 @@
       interval: {
         type: Number,
         'default': 2000
+      },
+      iconControlLeft: {
+        type: String,
+        'default': 'glyphicon glyphicon-chevron-left'
+      },
+      iconControlRight: {
+        type: String,
+        'default': 'glyphicon glyphicon-chevron-right'
       }
     },
     data () {
