@@ -20,6 +20,22 @@ body, html {
       margin: 0;
     }
   }
+
+  &.page-home {
+    .page-footer {
+      background: @home-bg-gradient-to;
+      border-color: transparent;
+      color: rgba(255, 255, 255, .5);
+
+      a {
+        color: #fff;
+
+        &:hover, &:active, &:focus {
+          color: #fff;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: @screen-xs-max) {
