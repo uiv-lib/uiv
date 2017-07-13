@@ -7,8 +7,12 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3 class="page-header">Dynamic Example</h3>
-        <div id="alertContainer">
+        <h3 class="page-header">Basic Example</h3>
+        <div>
+          <alert type="success" :closable="true" v-if="showAlert4" @close="showAlert4=false">
+            <strong>Well done!</strong>
+            <span>You successfully read this important alert message.</span>
+          </alert>
           <alert type="info" :closable="true" v-if="showAlert1" @close="showAlert1=false">
             <strong>Heads up!</strong>
             <span>This alert needs your attention, but it's not super important.</span>
@@ -18,13 +22,17 @@
             <span>Better check yourself, you're not looking too good.</span>
           </alert>
           <alert type="danger" :closable="true" v-if="showAlert3" @close="showAlert3=false">
-            <strong>Oh snap!</strong>
-            <span>Change a few things up and try submitting again.</span>
+            <h4>Oh snap! You got an error!</h4>
+            <p>
+              Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+            <p>
+              <button type="button" class="btn btn-danger">Take this action</button>
+              <button type="button" class="btn btn-default">Or do this</button>
+            </p>
           </alert>
-          <alert type="success" :closable="true" v-if="showAlert4" @close="showAlert4=false">
-            <strong>Well done!</strong>
-            <span>You successfully read this important alert message.</span>
-          </alert>
+        </div>
+        <h3 class="page-header">Dynamic Example</h3>
+        <div id="alertContainer">
           <alert v-for="(item,index) in alertList"
                  :closable="item.closable"
                  :type="item.type"
