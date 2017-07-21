@@ -120,12 +120,14 @@
   import DatePicker from '../../components/datepicker/DatePicker.vue'
   import Dropdown from '../../components/dropdown/Dropdown.vue'
   import hljsMixin from './../mixins/hljsMixin'
+
   export default {
     mixins: [hljsMixin],
     components: {AnchorHeader, DemoCodePanel, DatePicker, Dropdown, ApiPanel},
     data () {
       return {
         api: {
+          notes: ['DatePicker will always return <b>UTC date</b>, not locale!'],
           props: [
             {
               name: 'v-model',
