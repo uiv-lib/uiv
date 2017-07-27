@@ -14,7 +14,7 @@
 
 Bootstrap 3  components implemented by Vue 2.
 
-[Demo & Docs](https://uiv.wxsm.space)
+:gem: **[Demo & Docs](https://uiv.wxsm.space)**
 
 ## Dependencies
 
@@ -80,26 +80,28 @@ new Vue({
 </script>
 ```
 
+## Contribute
+
+Welcome and thanks to use and contribute to this project. Your support is very important.
+
+If you found any problem / bug during the use of uiv, or have any suggustion that can make this lib better, please [create an issue](https://github.com/wxsms/uiv/issues/new). 
+
+Pull requests are also welcome! However, before you started working on a PR, it is highly recommend to **create an issue with your idea first**, so people can know what's going to happen and avoid duplicated work.
+
 ## Build Setup
 
 ```bash
 # install dependencies
 npm install
 
-# serve docs with hot reload at localhost:8080
+# serve demos & docs with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
+# build uiv lib
 npm run build
 
-# build docs
+# build document
 npm run build-docs
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
 
 # run all tests
 npm test
