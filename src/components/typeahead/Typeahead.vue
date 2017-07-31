@@ -196,7 +196,8 @@
       },
       highlight (item) {
         let value = this.itemKey ? item[this.itemKey] : item
-        return value.replace(new RegExp(`${this.inputEl.value}`, this.regexOptions), '<b>$&</b>')
+        let inputValue = this.inputEl.value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
+        return value.replace(new RegExp(`${inputValue}`, this.regexOptions), '<b>$&</b>')
       }
     }
   }
