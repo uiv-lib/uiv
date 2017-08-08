@@ -50,7 +50,7 @@
         </tr>
         <tr>
           <th>Name</th>
-          <th colspan="4">Desc</th>
+          <th colspan="4">Description</th>
         </tr>
         <tr v-for="slot in api.slots">
           <td nowrap="nowrap"><code>{{slot.name}}</code></td>
@@ -66,7 +66,7 @@
         <tr>
           <th>Name</th>
           <th>Params</th>
-          <th colspan="3">Desc</th>
+          <th colspan="3">Description</th>
         </tr>
         <tr v-for="event in api.events">
           <td nowrap="nowrap"><code>{{event.name}}</code></td>

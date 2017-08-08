@@ -77,8 +77,7 @@ const docLocale = {
     vueI18nDesc: 'uiv is compatible with <a href="https://github.com/kazupon/vue-i18n">vue-i18n</a> as well.',
     vueI18nDesc2: '<b>Note</b>: You need to merge uiv language packs into your app\'s. For example:',
     supported: 'Supported Languages',
-    supported1: 'English (en-US)',
-    supported2: '简体中文 (zh-CN)',
+    supportedSortBy: '(Sorted by alphabet)',
     supportedContribute: 'Welcome to contribute more languages!'
   },
   alert: {

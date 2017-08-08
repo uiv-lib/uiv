@@ -21,6 +21,10 @@
       },
       group: {
         type: String
+      },
+      pullRight: {
+        type: Boolean,
+        'default': false
       }
     },
     data () {

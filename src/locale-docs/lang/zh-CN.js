@@ -77,8 +77,7 @@ const docLocale = {
     vueI18nDesc: 'uiv 兼容 <a href="https://github.com/kazupon/vue-i18n">vue-i18n</a>，可以搭配使用以进行语言切换。',
     vueI18nDesc2: '<b>注意</b>: 你需要将 uiv 的语言包合并到 app 语言包中去。比如：',
     supported: '支持的语言',
-    supported1: 'English (en-US)',
-    supported2: '简体中文 (zh-CN)',
+    supportedSortBy: '（根据字母表排序）',
     supportedContribute: '欢迎贡献代码以支持更多语言！'
   },
   alert: {

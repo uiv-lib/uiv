@@ -145,6 +145,12 @@
               name: 'group',
               desc: 'Tabs nav with same group will in a dropdown list.',
               type: 'String'
+            },
+            {
+              name: 'pull-right',
+              desc: 'Add <code>pull-right</code> class to the tab nav. A grouped tab will be pull to right if one of its sub-tabs has this prop set to <code>true</code>.',
+              'default': 'false',
+              type: 'Boolean'
             }
           ]
         },
