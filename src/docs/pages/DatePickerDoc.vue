@@ -79,6 +79,7 @@
                   <option>MM/dd/yyyy</option>
                   <option>yyyy,MM,dd</option>
                 </select>
+                <p class="help-block">* Some browser (e.g. IE) might not support all of these formats.</p>
               </div>
             </div>
           </form>
@@ -127,7 +128,6 @@
     data () {
       return {
         api: {
-          notes: ['DatePicker will always return <b>UTC date</b>, not locale!'],
           props: [
             {
               name: 'v-model',
