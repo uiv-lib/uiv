@@ -65,12 +65,8 @@ new Vue({
 <script src="path/to/vue.min.js"></script>
 <script src="path/to/uiv.min.js"></script>
 
-<!-- Import and register all components once -->
-<script>
-  Vue.use(uiv)
-</script>
+<!-- No need to install uiv, we already do this for you after script loaded. -->
 
-<!-- Or import respectively -->
 <script>
   new Vue({
     components: {

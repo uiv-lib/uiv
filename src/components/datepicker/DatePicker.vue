@@ -94,7 +94,11 @@
         if (isNaN(ts)) {
           return null
         } else {
-          return new Date(ts)
+          let date = new Date(ts)
+          if (date.getHours() !== 0) {
+            date = new Date(ts + date.getTimezoneOffset() * 60 * 1000)
+          }
+          return date
         }
       },
       pickerStyle () {
@@ -124,8 +128,8 @@
       }
     },
     mounted () {
-      this.currentMonth = this.now.getUTCMonth()
-      this.currentYear = this.now.getUTCFullYear()
+      this.currentMonth = this.now.getMonth()
+      this.currentYear = this.now.getFullYear()
       if (!this.value) {
         this.view = this.initialView
       }
@@ -135,11 +139,14 @@
         let ts = this.dateParser(val)
         if (!isNaN(ts)) {
           let date = new Date(ts)
+          if (date.getHours() !== 0) {
+            date = new Date(ts + date.getTimezoneOffset() * 60 * 1000)
+          }
           if (this.limit && ((this.limit.from && date < this.limit.from) || (this.limit.to && date >= this.limit.to))) {
             this.$emit('input', oldVal || '')
           } else {
-            this.currentMonth = date.getUTCMonth()
-            this.currentYear = date.getUTCFullYear()
+            this.currentMonth = date.getMonth()
+            this.currentYear = date.getFullYear()
           }
         }
       }
@@ -157,7 +164,7 @@
           typeof date.date === 'number' &&
           typeof date.month === 'number' &&
           typeof date.year === 'number') {
-          let _date = new Date(Date.UTC(date.year, date.month, date.date))
+          let _date = new Date(date.year, date.month, date.date)
           this.$emit('input', dateUtils.stringify(_date, this.format))
         } else {
           this.$emit('input', '')
@@ -169,9 +176,9 @@
       selectToday () {
         this.view = 'd'
         this.onDateChange({
-          date: this.now.getUTCDate(),
-          month: this.now.getUTCMonth(),
-          year: this.now.getUTCFullYear()
+          date: this.now.getDate(),
+          month: this.now.getMonth(),
+          year: this.now.getFullYear()
         })
       },
       clearSelect () {
