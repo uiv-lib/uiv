@@ -48,13 +48,21 @@
 
   export default {
     mixins: [Locale],
-    props: ['month', 'year', 'date', 'today', 'limit'],
-    data () {
-      return {
-        weekDays: [7, 1, 2, 3, 4, 5, 6]
-      }
-    },
+    props: ['month', 'year', 'date', 'today', 'limit', 'weekStartsWith'],
     computed: {
+      weekDays () {
+        let days = []
+        let firstDay = this.weekStartsWith
+        while (days.length < 7) {
+          days.push(firstDay)
+          firstDay++
+          if (firstDay > 7) {
+            firstDay = 1
+          }
+        }
+
+        return days
+      },
       yearMonthStr () {
         return typeof this.month !== 'undefined' ? `${this.year} ${this.t(`uiv.datePicker.month${this.month + 1}`)}` : this.year
       },
@@ -68,7 +76,11 @@
         for (let i = 0; i < 6; i++) {
           rows.push([])
           for (let j = 0; j < 7; j++) {
-            let currentIndex = i * 7 + j
+            let plus = this.weekDays[0]
+            if (plus === 7) {
+              plus = 0
+            }
+            let currentIndex = i * 7 + j + plus
             let date = {year: this.year, disabled: false}
             // date in and not in current month
             if (currentIndex < startIndex) {
