@@ -6,6 +6,7 @@
                :date="valueDateObj"
                :today="now"
                :limit="limit"
+               :week-starts-with="weekStartsWith"
                @month-change="onMonthChange"
                @year-change="onYearChange"
                @date-change="onDateChange"
@@ -77,6 +78,13 @@
       dateParser: {
         type: Function,
         'default': Date.parse
+      },
+      weekStartsWith: {
+        type: Number,
+        default: 7,
+        validator (value) {
+          return value >= 1 && value <= 7
+        }
       }
     },
     data () {
