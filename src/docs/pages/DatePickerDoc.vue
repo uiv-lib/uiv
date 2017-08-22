@@ -15,7 +15,8 @@
                          :today-btn="todayBtn"
                          :clear-btn="clearBtn"
                          :limit-from="limitFrom"
-                         :format="format"                         
+                         :format="format"
+                         :week-starts-with="weekStartsWith"
                          :limit-to="limitTo"></date-picker>
           </div>
         </div>
@@ -38,7 +39,7 @@
                              :clear-btn="clearBtn"
                              :limit-from="limitFrom"
                              :limit-to="limitTo"
-                             :format="format"                             
+                             :format="format"
                              :week-starts-with="weekStartsWith"
                              :close-on-selected="closeOnSelected"></date-picker>
               </li>
@@ -85,10 +86,10 @@
               <div class="col-md-6">
                 <label>Week starts with</label>
                 <select class="form-control" v-model="weekStartsWith">
-                  <option v-for="day in 7" :value="day">{{ day }}</option>                  
-                </select>                
-              </div>     
-            </div>       
+                  <option v-for="day in 7" :value="day">{{ day }}</option>
+                </select>
+              </div>
+            </div>
           </form>
         </div>
       </div>
@@ -186,6 +187,12 @@
               'default': 'd'
             },
             {
+              name: 'week-starts-with',
+              type: 'Number',
+              desc: 'Starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).',
+              'default': '0'
+            },
+            {
               name: 'date-parser',
               type: 'Function',
               'default': 'Date.parse',
@@ -197,12 +204,6 @@ Useful when The formatted String can not be correctly parsed to Date type by <co
   return moment(value, 'DD-MM-YYYY').toDate().getTime()
 }</code></pre>
 `
-            },
-            {
-              name: 'week-starts-with',
-              type: 'Number',
-              desc: 'Starting day of the week.',
-              'default': '7'
             }
           ]
         },
@@ -214,7 +215,7 @@ Useful when The formatted String can not be correctly parsed to Date type by <co
         limitFrom: '',
         limitTo: '',
         format: 'yyyy-MM-dd',
-        weekStartsWith: 7
+        weekStartsWith: 0
       }
     },
     computed: {

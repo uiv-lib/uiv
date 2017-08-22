@@ -20,7 +20,7 @@
     </tr>
     <tr align="center">
       <td v-for="day in weekDays" width="14.2857142857%">
-        <small>{{tWeekName(day)}}</small>
+        <small>{{tWeekName(day === 0 ? 7 : day)}}</small>
       </td>
     </tr>
     </thead>
@@ -54,13 +54,11 @@
         let days = []
         let firstDay = this.weekStartsWith
         while (days.length < 7) {
-          days.push(firstDay)
-          firstDay++
-          if (firstDay > 7) {
-            firstDay = 1
+          days.push(firstDay++)
+          if (firstDay > 6) {
+            firstDay = 0
           }
         }
-
         return days
       },
       yearMonthStr () {
@@ -71,16 +69,19 @@
         let firstDay = new Date(this.year, this.month, 1)
         let prevMonthLastDate = new Date(this.year, this.month, 0).getDate()
         let startIndex = firstDay.getDay()
+        // console.log(startIndex)
         let daysNum = util.daysInMonth(this.month, this.year)
-
+        let weekOffset = 0
+        if (this.weekStartsWith > startIndex) {
+          weekOffset = 7 - this.weekStartsWith
+        } else {
+          weekOffset = 0 - this.weekStartsWith
+        }
+        // console.log(prevMonthLastDate, startIndex, daysNum)
         for (let i = 0; i < 6; i++) {
           rows.push([])
-          for (let j = 0; j < 7; j++) {
-            let plus = this.weekDays[0]
-            if (plus === 7) {
-              plus = 0
-            }
-            let currentIndex = i * 7 + j + plus
+          for (let j = 0 - weekOffset; j < 7 - weekOffset; j++) {
+            let currentIndex = i * 7 + j
             let date = {year: this.year, disabled: false}
             // date in and not in current month
             if (currentIndex < startIndex) {

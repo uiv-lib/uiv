@@ -83,7 +83,7 @@
         type: Number,
         default: 7,
         validator (value) {
-          return value >= 1 && value <= 7
+          return value >= 0 && value <= 6
         }
       }
     },
