@@ -142,6 +142,7 @@
   import Tooltip from './../../components/tooltip/Tooltip.vue'
   import hljsMixin from './../mixins/hljsMixin'
   import ApiPanel from './../architecture/ApiPanel.vue'
+
   export default {
     mixins: [hljsMixin],
     components: {AnchorHeader, DemoCodePanel, Modal, Popover, Tooltip, ApiPanel},
@@ -216,15 +217,19 @@
           slots: [
             {
               name: 'title',
-              desc: 'Replace as the modal title'
+              desc: 'Replace as the modal title.'
             },
             {
               name: 'default',
-              desc: 'Replace as the modal body'
+              desc: 'Replace as the modal body.'
+            },
+            {
+              name: 'header',
+              desc: 'Replace as the modal header. Note: this slot will override <code>title</code> slot since it is a completely replacement of header.'
             },
             {
               name: 'footer',
-              desc: 'Replace as the modal footer'
+              desc: 'Replace as the modal footer.'
             }
           ],
           events: [

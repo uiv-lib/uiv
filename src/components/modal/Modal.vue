@@ -10,12 +10,14 @@
       <div ref="dialog" class="modal-dialog" :class="modalSizeClass" role="document">
         <div class="modal-content">
           <div class="modal-header" v-if="header">
-            <button type="button" class="close" aria-label="Close" @click="toggle(false)">
-              <span aria-hidden="true">×</span>
-            </button>
-            <h4 class="modal-title">
-              <slot name="title">{{title}}</slot>
-            </h4>
+            <slot name="header">
+              <button type="button" class="close" aria-label="Close" @click="toggle(false)">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title">
+                <slot name="title">{{title}}</slot>
+              </h4>
+            </slot>
           </div>
           <div class="modal-body">
             <slot></slot>
