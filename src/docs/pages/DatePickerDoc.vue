@@ -86,7 +86,7 @@
               <div class="col-md-6">
                 <label>Week starts with</label>
                 <select class="form-control" v-model="weekStartsWith">
-                  <option v-for="day in 7" :value="day">{{ day }}</option>
+                  <option v-for="day in 7" :value="day - 1">{{ day - 1 }}</option>
                 </select>
               </div>
             </div>

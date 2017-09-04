@@ -26,6 +26,7 @@ let appLocale = Object.assign({}, uivLocale, {
         <h3 class="page-header">{{$t('i18n.supported')}}</h3>
         <p>{{$t('i18n.supportedSortBy')}}</p>
         <ul>
+          <li>bg-BG</li>
           <li>cs-CZ</li>
           <li>en-US</li>
           <li>pt-BR</li>
