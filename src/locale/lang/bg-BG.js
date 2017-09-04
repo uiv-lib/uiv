@@ -1,0 +1,37 @@
+export default {
+  uiv: {
+    datePicker: {
+      clear: 'Изчисти',
+      today: 'Днес',
+      month: 'Месец',
+      month1: 'Януари',
+      month2: 'Февруари',
+      month3: 'Март',
+      month4: 'Април',
+      month5: 'Май',
+      month6: 'Юни',
+      month7: 'Юли',
+      month8: 'Август',
+      month9: 'Септември',
+      month10: 'Октомври',
+      month11: 'Ноември',
+      month12: 'Декември',
+      year: 'Година',
+      week1: 'Пон',
+      week2: 'Вто',
+      week3: 'Сря',
+      week4: 'Чет',
+      week5: 'Пет',
+      week6: 'Съб',
+      week7: 'Нед'
+    },
+    timePicker: {
+      am: 'AM',
+      pm: 'PM'
+    },
+    modal: {
+      cancel: 'Откажи',
+      ok: 'Потвърди'
+    }
+  }
+}
