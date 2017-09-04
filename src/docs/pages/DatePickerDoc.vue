@@ -16,6 +16,7 @@
                          :clear-btn="clearBtn"
                          :limit-from="limitFrom"
                          :format="format"
+                         :week-starts-with="weekStartsWith"
                          :limit-to="limitTo"></date-picker>
           </div>
         </div>
@@ -39,6 +40,7 @@
                              :limit-from="limitFrom"
                              :limit-to="limitTo"
                              :format="format"
+                             :week-starts-with="weekStartsWith"
                              :close-on-selected="closeOnSelected"></date-picker>
               </li>
             </template>
@@ -80,6 +82,12 @@
                   <option>yyyy,MM,dd</option>
                 </select>
                 <p class="help-block">* Some browser (e.g. IE) might not support all of these formats.</p>
+              </div>
+              <div class="col-md-6">
+                <label>Week starts with</label>
+                <select class="form-control" v-model="weekStartsWith">
+                  <option v-for="day in 7" :value="day - 1">{{ day - 1 }}</option>
+                </select>
               </div>
             </div>
           </form>
@@ -179,6 +187,12 @@
               'default': 'd'
             },
             {
+              name: 'week-starts-with',
+              type: 'Number',
+              desc: 'Starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).',
+              'default': '0'
+            },
+            {
               name: 'date-parser',
               type: 'Function',
               'default': 'Date.parse',
@@ -200,7 +214,8 @@ Useful when The formatted String can not be correctly parsed to Date type by <co
         closeOnSelected: true,
         limitFrom: '',
         limitTo: '',
-        format: 'yyyy-MM-dd'
+        format: 'yyyy-MM-dd',
+        weekStartsWith: 0
       }
     },
     computed: {

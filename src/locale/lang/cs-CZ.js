@@ -1,0 +1,37 @@
+export default {
+  uiv: {
+    datePicker: {
+      clear: 'Smazat',
+      today: 'Dnes',
+      month: 'Měsíc',
+      month1: 'Leden',
+      month2: 'Únor',
+      month3: 'Březen',
+      month4: 'Duben',
+      month5: 'Květen',
+      month6: 'Červen',
+      month7: 'Červenec',
+      month8: 'Srpen',
+      month9: 'Září',
+      month10: 'Říjen',
+      month11: 'Listopad',
+      month12: 'Prosinec',
+      year: 'Rok',
+      week1: 'Po',
+      week2: 'Út',
+      week3: 'St',
+      week4: 'Čt',
+      week5: 'Pá',
+      week6: 'So',
+      week7: 'Ne'
+    },
+    timePicker: {
+      am: 'Dop.',
+      pm: 'Odp.'
+    },
+    modal: {
+      cancel: 'Zrušit',
+      ok: 'OK'
+    }
+  }
+}

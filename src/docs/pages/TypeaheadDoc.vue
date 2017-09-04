@@ -24,6 +24,7 @@
             </div>
           </form>
         </div>
+        <label class="control-label">States of America</label>
         <typeahead ref="typeahead1"
                    v-model="model1"
                    :data="states"
@@ -33,24 +34,27 @@
                    :ignore-case="ignoreCase"
                    :match-start="matchStart"
                    :force-select="forceSelect"
-                   :open-on-focus="openOnFocus">
-          <label class="control-label">States of America</label>
-          <input data-role="input" class="form-control" type="text" placeholder="Type to search...">
-        </typeahead>
+                   :open-on-focus="openOnFocus"></typeahead>
+        <br/>
+        <div>
+          <button class="btn btn-primary" type="button" @click="model1 = states[0]">Set model to Alabama</button>
+          <button class="btn btn-default" type="button" @click="model1 = null">Reset</button>
+        </div>
         <br/>
         <div class="alert alert-info">
           <p v-if="model1">You selected: {{model1}}</p>
           <p v-else>Please select an item.</p>
         </div>
         <h3 class="page-header">Async & Custom Template Example</h3>
+        <label class="control-label">Github Users</label>
         <typeahead ref="typeahead2"
                    v-model="model2"
                    async-src="https://api.github.com/search/users?q="
                    async-key="items"
                    item-key="login"
-                   :force-select="true">
-          <label class="control-label">Github Users</label>
-          <input data-role="input" class="form-control" type="text" placeholder="Type to search...">
+                   :ignore-case="ignoreCase"
+                   :match-start="matchStart"
+                   :force-select="forceSelect">
           <template slot="item" scope="props">
             <li v-for="(item, index) in props.items" :class="{active:props.activeIndex===index}">
               <a href="javascript:void(0)" @click="props.select(item)">
@@ -72,12 +76,9 @@
         <demo-code-panel demo-file="TypeaheadDoc.vue">
         <pre><code>
 &lt;!--Local data query sample--&gt;
-&lt;typeahead v-model=&quot;model1&quot; :data=&quot;states&quot; item-key=&quot;name&quot;&gt;
-  &lt;label class=&quot;control-label&quot;&gt;States of America&lt;/label&gt;
-  &lt;input data-role=&quot;input&quot; class=&quot;form-control&quot; type=&quot;text&quot; placeholder=&quot;Type to search...&quot;&gt;
-&lt;/typeahead&gt;
+&lt;typeahead v-model=&quot;model1&quot; :data=&quot;states&quot; item-key=&quot;name&quot;&gt;&lt;/typeahead&gt;
 
-&lt;!--Async data query &amp; custom template sample--&gt;
+&lt;!--Async data query &amp; custom INPUT & ITEMS template sample--&gt;
 &lt;typeahead v-model=&quot;model2&quot;
            async-src=&quot;https://api.github.com/search/users?q=&quot;
            async-key=&quot;items&quot;
@@ -109,6 +110,7 @@
   import states from '../data/states.json'
   import hljsMixin from './../mixins/hljsMixin'
   import ApiPanel from './../architecture/ApiPanel.vue'
+
   export default {
     mixins: [hljsMixin],
     components: {AnchorHeader, DemoCodePanel, Typeahead, ApiPanel},
@@ -196,7 +198,7 @@
           slots: [
             {
               name: 'default',
-              desc: 'Should be the typeahead input element or others.'
+              desc: 'Can be the typeahead input element or others.'
             },
             {
               name: 'item',

@@ -20,7 +20,7 @@
     </tr>
     <tr align="center">
       <td v-for="day in weekDays" width="14.2857142857%">
-        <small>{{tWeekName(day)}}</small>
+        <small>{{tWeekName(day === 0 ? 7 : day)}}</small>
       </td>
     </tr>
     </thead>
@@ -48,13 +48,19 @@
 
   export default {
     mixins: [Locale],
-    props: ['month', 'year', 'date', 'today', 'limit'],
-    data () {
-      return {
-        weekDays: [7, 1, 2, 3, 4, 5, 6]
-      }
-    },
+    props: ['month', 'year', 'date', 'today', 'limit', 'weekStartsWith'],
     computed: {
+      weekDays () {
+        let days = []
+        let firstDay = this.weekStartsWith
+        while (days.length < 7) {
+          days.push(firstDay++)
+          if (firstDay > 6) {
+            firstDay = 0
+          }
+        }
+        return days
+      },
       yearMonthStr () {
         return typeof this.month !== 'undefined' ? `${this.year} ${this.t(`uiv.datePicker.month${this.month + 1}`)}` : this.year
       },
@@ -63,11 +69,18 @@
         let firstDay = new Date(this.year, this.month, 1)
         let prevMonthLastDate = new Date(this.year, this.month, 0).getDate()
         let startIndex = firstDay.getDay()
+        // console.log(startIndex)
         let daysNum = util.daysInMonth(this.month, this.year)
-
+        let weekOffset = 0
+        if (this.weekStartsWith > startIndex) {
+          weekOffset = 7 - this.weekStartsWith
+        } else {
+          weekOffset = 0 - this.weekStartsWith
+        }
+        // console.log(prevMonthLastDate, startIndex, daysNum)
         for (let i = 0; i < 6; i++) {
           rows.push([])
-          for (let j = 0; j < 7; j++) {
+          for (let j = 0 - weekOffset; j < 7 - weekOffset; j++) {
             let currentIndex = i * 7 + j
             let date = {year: this.year, disabled: false}
             // date in and not in current month

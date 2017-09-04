@@ -1,6 +1,8 @@
 <template>
   <div>
-    <slot></slot>
+    <slot>
+      <input data-role="input" class="form-control" type="text" placeholder="Type to search...">
+    </slot>
     <dropdown ref="dropdown"
               v-model="openDropdown"
               :append-to-body="appendToBody"
@@ -116,6 +118,20 @@
         domUtils.off(this.inputEl, domUtils.events.KEY_DOWN, this.inputKeyPressed)
       }
     },
+    watch: {
+      value (newValue, oldValue) {
+        if (typeof newValue === 'string') {
+          // direct
+          this.inputEl.value = newValue
+        } else if (newValue) {
+          // is object
+          this.inputEl.value = this.itemKey ? newValue[this.itemKey] : newValue
+        } else {
+          // is null or undefined or something else not valid
+          this.inputEl.value = ''
+        }
+      }
+    },
     methods: {
       prepareItems (data) {
         this.items = []
@@ -190,7 +206,6 @@
         }
       },
       selectItem (item) {
-        this.inputEl.value = this.itemKey ? item[this.itemKey] : item
         this.$emit('input', item)
         this.openDropdown = false
       },
