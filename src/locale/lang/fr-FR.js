@@ -1,0 +1,37 @@
+export default {
+  uiv: {
+    datePicker: {
+      clear: 'Effacer',
+      today: 'Aujourd\'hui',
+      month: 'Mois',
+      month1: 'Janvier',
+      month2: 'Février',
+      month3: 'Mars',
+      month4: 'Avril',
+      month5: 'Mai',
+      month6: 'Juin',
+      month7: 'Juillet',
+      month8: 'Août',
+      month9: 'Septembre',
+      month10: 'Octobre',
+      month11: 'Novembre',
+      month12: 'Décembre',
+      year: 'Année',
+      week1: 'Lun',
+      week2: 'Mar',
+      week3: 'Mer',
+      week4: 'Jeu',
+      week5: 'Ven',
+      week6: 'Sam',
+      week7: 'Dim'
+    },
+    timePicker: {
+      am: 'Matin',
+      pm: 'Après-midi'
+    },
+    modal: {
+      cancel: 'Annuler',
+      ok: 'OK'
+    }
+  }
+}
