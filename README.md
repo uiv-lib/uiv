@@ -12,7 +12,7 @@
 
 ## Intro
 
-Bootstrap 3  components implemented by Vue 2.
+Bootstrap 3  components implemented by Vue 2. (SSR Supported)
 
 :gem: **[Demo & Docs](https://uiv.wxsm.space)**
 
