@@ -2,8 +2,8 @@ import uivLocale from './../../locale/lang/fr-FR'
 
 const docLocale = {
   common: {
-    basicExample: 'Example Basique',
-    dynamicExample: 'Example Dynamique',
+    basicExample: 'Exemple Basique',
+    dynamicExample: 'Exemple Dynamique',
     sampleCode: 'Code d\'exemple',
     demoSource: 'Code Source de la démo',
     source: 'Source',
