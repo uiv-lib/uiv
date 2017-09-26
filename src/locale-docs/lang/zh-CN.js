@@ -14,7 +14,7 @@ const docLocale = {
     name: '名字',
     type: '类型',
     default: '默认',
-    required: '必须',
+    required: '必填',
     description: '描述',
     params: '参数'
   },

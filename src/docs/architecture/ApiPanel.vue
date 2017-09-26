@@ -30,7 +30,7 @@
         <th>{{$t('common.name')}}</th>
         <th>{{$t('common.type')}}</th>
         <th>{{$t('common.default')}}</th>
-        <th>{{$t('common.required')}}</th>
+        <th width="50px">{{$t('common.required')}}</th>
         <th>{{$t('common.description')}}</th>
       </tr>
       <tr v-for="prop in api.props">
