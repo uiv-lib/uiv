@@ -79,7 +79,7 @@ describe('ModalDoc', () => {
       setTimeout(() => {
         expect(document.querySelector('.modal-backdrop')).not.exist
         expect(vm.$el.querySelector('.modal').className).not.contain('in')
-        expect(vm.$el.querySelector('#modal1-msg').textContent).to.equal('Modal 1 dismiss with msg \'dismiss\'')
+        expect(vm.$el.querySelector('#modal1-msg').textContent).to.equal('Modal dismiss with msg \'dismiss\'')
         done()
       }, config.transitionDuration)
     }, config.transitionDuration)
@@ -98,7 +98,7 @@ describe('ModalDoc', () => {
       setTimeout(() => {
         expect(document.querySelector('.modal-backdrop')).not.exist
         expect(vm.$el.querySelector('.modal').className).not.contain('in')
-        expect(vm.$el.querySelector('#modal1-msg').textContent).to.equal('Modal 1 dismiss with msg \'ok\'')
+        expect(vm.$el.querySelector('#modal1-msg').textContent).to.equal('Modal dismiss with msg \'ok\'')
         done()
       }, config.transitionDuration)
     }, config.transitionDuration)
