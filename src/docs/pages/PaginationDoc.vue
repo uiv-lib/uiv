@@ -2,7 +2,7 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Pagination" source-folder="pagination"></anchor-header>
+        <anchor-header :text="$t('menu.pagination')" source-folder="pagination"></anchor-header>
       </div>
     </div>
     <div class="row">

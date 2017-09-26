@@ -2,7 +2,7 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="TimePicker" source-folder="timepicker"></anchor-header>
+        <anchor-header :text="$t('menu.timePicker')" source-folder="timepicker"></anchor-header>
       </div>
     </div>
     <div class="row">

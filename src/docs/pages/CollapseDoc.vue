@@ -2,12 +2,12 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Collapse" source-folder="collapse"></anchor-header>
+        <anchor-header :text="$t('menu.collapse')" source-folder="collapse"></anchor-header>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3 class="page-header">Basic Example</h3>
+        <h3 class="page-header">{{$t('common.basicExample')}}</h3>
         <div>
           <button type="button" class="btn btn-default" @click="showCollapse1=!showCollapse1">Click me!</button>
         </div>

@@ -1,11 +1,30 @@
 import Vue from 'vue'
 import TabsDoc from '@/docs/pages/TabsDoc.vue'
 import utils from '../utils'
+import i18n from '@/locale-docs'
 
 describe('TabsDoc', () => {
+  let root
+
+  beforeEach(() => {
+    root = new Vue({
+      i18n,
+      template: '<TabsDoc ref="doc"/>',
+      components: {TabsDoc}
+    })
+    root.$i18n.locale = 'en-US'
+  })
+
+  afterEach(() => {
+    try {
+      root.$destroy()
+    } catch (err) {
+      // Silent
+    }
+  })
+
   it('should be able to render first tab on open', (done) => {
-    const Constructor = Vue.extend(TabsDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let activeTab = vm.$el.querySelector('.nav-tabs').querySelectorAll('.active')
       expect(activeTab.length).to.equal(1)
@@ -18,8 +37,7 @@ describe('TabsDoc', () => {
   })
 
   it('should be able to open correct tab content after click on tab nav', (done) => {
-    const Constructor = Vue.extend(TabsDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let tab = vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[1].querySelector('a')
       utils.triggerEvent(tab, 'click')
@@ -38,8 +56,7 @@ describe('TabsDoc', () => {
   })
 
   it('should be able to open tab 2 on method called', (done) => {
-    const Constructor = Vue.extend(TabsDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       utils.triggerEvent(vm.$el.querySelector('#tabs-btn-2'), 'click')
       vm.$nextTick(() => {
@@ -55,8 +72,7 @@ describe('TabsDoc', () => {
   })
 
   it('should not be able to select disabled tab 3', (done) => {
-    const Constructor = Vue.extend(TabsDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let tab3 = vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[2]
       expect(tab3.className).to.equal('disabled')
@@ -74,8 +90,7 @@ describe('TabsDoc', () => {
   })
 
   it('should be able to enable / disable tab 3', (done) => {
-    const Constructor = Vue.extend(TabsDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let enableBtn = vm.$el.querySelector('#tabs-btn-3')
       utils.triggerEvent(enableBtn, 'click')
@@ -95,8 +110,7 @@ describe('TabsDoc', () => {
   })
 
   it('should be able to render HTML title on tab 6', (done) => {
-    const Constructor = Vue.extend(TabsDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let tab = vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[6]
       expect(tab.querySelector('i')).to.exist
@@ -105,8 +119,7 @@ describe('TabsDoc', () => {
   })
 
   it('should be able to run callback after click on tab 6', (done) => {
-    const Constructor = Vue.extend(TabsDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let _savedAlert = window.alert
       window.alert = () => {
@@ -124,8 +137,7 @@ describe('TabsDoc', () => {
   })
 
   it('should be able to open grouped tab 5', (done) => {
-    const Constructor = Vue.extend(TabsDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let tab5 = vm.$el.querySelector('.nav-tabs').querySelector('li.dropdown')
       utils.triggerEvent(tab5.querySelectorAll('a')[0], 'click')
@@ -146,8 +158,7 @@ describe('TabsDoc', () => {
   })
 
   it('should be able to use without v-model', (done) => {
-    const Constructor = Vue.extend(TabsDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let tabs = vm.$el.querySelectorAll('.nav-tabs')[1]
       utils.triggerEvent(tabs.querySelectorAll('li')[1].querySelector('a'), 'click')

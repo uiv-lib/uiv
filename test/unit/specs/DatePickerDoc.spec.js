@@ -1,10 +1,29 @@
 import Vue from 'vue'
 import DatePickerDoc from '@/docs/pages/DatePickerDoc.vue'
+import i18n from '@/locale-docs'
 
 describe('DatePickerDoc', () => {
+  let app
+
+  beforeEach(() => {
+    app = new Vue({
+      i18n,
+      template: '<DatePickerDoc ref="doc"/>',
+      components: {DatePickerDoc}
+    })
+    app.$i18n.locale = 'en-US'
+  })
+
+  afterEach(() => {
+    try {
+      app.$destroy()
+    } catch (err) {
+      // Silent
+    }
+  })
+
   it('should be able to render date view', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
@@ -19,13 +38,14 @@ describe('DatePickerDoc', () => {
     })
   })
 
-  it('should be able to destroy', () => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+  it('should be able to destroy', (done) => {
+    let vm = app.$mount().$refs.doc
     vm.$destroy()
+    done()
   })
 
   it('should be able to go prev month', (done) => {
+    let vm = app.$mount().$refs.doc
     const goPrev = (i, actionBtn, now, textBtn, done) => {
       if (i === 0) {
         done()
@@ -39,14 +59,12 @@ describe('DatePickerDoc', () => {
         })
       }
     }
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
       let dateView = picker.querySelectorAll('table')[0]
       goPrev(
-        36,
+        12,
         dateView.querySelectorAll('button')[0],
         new Date(),
         dateView.querySelectorAll('button')[1],
@@ -55,6 +73,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to go next month', (done) => {
+    let vm = app.$mount().$refs.doc
     const goNext = (i, actionBtn, now, textBtn, done) => {
       if (i === 0) {
         done()
@@ -72,14 +91,12 @@ describe('DatePickerDoc', () => {
         })
       }
     }
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
       let dateView = picker.querySelectorAll('table')[0]
       goNext(
-        36,
+        12,
         dateView.querySelectorAll('button')[2],
         new Date(),
         dateView.querySelectorAll('button')[1],
@@ -88,8 +105,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to switch to month view from date view', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
@@ -110,8 +126,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to switch to date view from month view', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
@@ -135,8 +150,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to go prev year', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
@@ -151,8 +165,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to go next year', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
@@ -167,8 +180,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to switch to year view from month view', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
@@ -190,8 +202,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to switch to month view from year view', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
@@ -211,8 +222,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to go prev year group', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
@@ -229,8 +239,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to go next year group', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       expect(picker).to.exist
@@ -247,8 +256,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to select date', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       let dateView = picker.querySelectorAll('table')[0]
@@ -262,8 +270,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should not close the picker on picker body click', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let picker = vm.$el.querySelectorAll('.date-picker')[1]
       let dropdown = vm.$el.querySelector('.dropdown')
@@ -282,8 +289,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to use today btn', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       let dateView = picker.querySelectorAll('table')[0]
@@ -297,8 +303,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to use clear btn', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
       let dateView = picker.querySelectorAll('table')[0]
@@ -312,8 +317,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to hide today btn', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.todayBtn = false
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
@@ -323,8 +327,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to hide clear btn', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.clearBtn = false
     vm.$nextTick(() => {
       let picker = vm.$el.querySelector('.date-picker')
@@ -334,8 +337,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to limit date range and render correct date view', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     let tomorrow = new Date()
     tomorrow.setDate(tomorrow.getUTCDate() + 1)
     vm.limitFrom = new Date()
@@ -352,8 +354,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to limit date range and not able to set invalid date', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     let tomorrow = new Date()
     tomorrow.setDate(tomorrow.getUTCDate() + 1)
     vm.limitFrom = '2017-01-01'
@@ -367,8 +368,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able handle invalid limit params', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.limitFrom = 'foo'
     vm.limitTo = 'bar'
     vm.$nextTick(() => {
@@ -377,8 +377,7 @@ describe('DatePickerDoc', () => {
   })
 
   it('should be able to toggle popup picker', (done) => {
-    const Constructor = Vue.extend(DatePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$el.querySelector('.input-group-btn button').click()
     vm.$nextTick(() => {
       expect(vm.$el.querySelector('.dropdown').className).to.contain('open')

@@ -2,7 +2,7 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Popover" source-folder="popover"></anchor-header>
+        <anchor-header :text="$t('menu.popover')" source-folder="popover"></anchor-header>
       </div>
     </div>
     <div class="row">

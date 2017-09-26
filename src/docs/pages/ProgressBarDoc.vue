@@ -2,7 +2,7 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Progress Bar" source-folder="progressbar"></anchor-header>
+        <anchor-header :text="$t('menu.progressBar')" source-folder="progressbar"></anchor-header>
       </div>
     </div>
     <div class="row">

@@ -2,7 +2,7 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Modal" source-folder="modal"></anchor-header>
+        <anchor-header :text="$t('menu.modal')" source-folder="modal"></anchor-header>
       </div>
     </div>
     <div class="row">

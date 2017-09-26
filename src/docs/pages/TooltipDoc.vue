@@ -2,7 +2,7 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Tooltip" source-folder="tooltip"></anchor-header>
+        <anchor-header :text="$t('menu.tooltip')" source-folder="tooltip"></anchor-header>
       </div>
     </div>
     <div class="row">

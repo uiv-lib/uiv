@@ -2,7 +2,7 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Dropdown" source-folder="dropdown"></anchor-header>
+        <anchor-header :text="$t('menu.dropdown')" source-folder="dropdown"></anchor-header>
       </div>
     </div>
     <div class="row">
