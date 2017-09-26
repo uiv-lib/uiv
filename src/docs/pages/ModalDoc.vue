@@ -9,20 +9,20 @@
       <div class="col-xs-12">
         <h3 class="page-header">{{$t('modal.simple')}}</h3>
         <div class="well">
-          <button type="button" class="btn btn-default" @click="open1=true">Show Modal 1</button>
-          <span id="modal1-msg">{{msg || 'A simple modal example.'}}</span>
+          <button type="button" class="btn btn-default" @click="open1=true">Show</button>
+          <span id="modal1-msg" style="margin-left: 10px">{{msg || 'A simple modal example.'}}</span>
         </div>
         <h3 class="page-header">{{$t('modal.sizes')}}</h3>
         <div class="well">
-          <button type="button" class="btn btn-default" @click="open2=true">Large Modal</button>
-          <button type="button" class="btn btn-default" @click="open3=true">Small Modal</button>
+          <button type="button" class="btn btn-default" @click="open2=true">Large</button>
+          <button type="button" class="btn btn-default" @click="open3=true">Small</button>
         </div>
         <h3 class="page-header">{{$t('modal.customize')}}</h3>
         <div class="well">
-          <button type="button" class="btn btn-default" @click="open4=true">Modal with HTML Title</button>
-          <button type="button" class="btn btn-default" @click="open5=true">Modal with No Footer</button>
-          <button type="button" class="btn btn-default" @click="open6=true">Modal with No Header</button>
-          <button type="button" class="btn btn-default" @click="open7=true">Modal with Customize Footer</button>
+          <button type="button" class="btn btn-default" @click="open4=true">HTML Title</button>
+          <button type="button" class="btn btn-default" @click="open5=true">No Footer</button>
+          <button type="button" class="btn btn-default" @click="open6=true">No Header</button>
+          <button type="button" class="btn btn-default" @click="open7=true">Customize Footer</button>
         </div>
         <h3 class="page-header">{{$t('modal.others')}}</h3>
         <div class="well">
@@ -262,7 +262,7 @@
         // console.log('show')
       },
       dismissCallback (msg) {
-        this.msg = `Modal 1 dismiss with msg '${msg}'`
+        this.msg = `Modal dismiss with msg '${msg}'`
       }
     }
   }

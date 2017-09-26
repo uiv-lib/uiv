@@ -81,7 +81,7 @@ const docLocale = {
     supportedContribute: 'Welcome to contribute more languages!'
   },
   alert: {
-    displayTime: 'display time',
+    displayTime: 'Display Time',
     addAlertTime: 'Add Alert (Time)',
     addAlert: 'Alert',
     useWithCollapse: 'Use with Collapse',
