@@ -7,11 +7,11 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3 class="page-header">Basic Example</h3>
+        <h3 class="page-header">{{$t('common.basicExample')}}</h3>
         <tooltip text="Static tooltip content goes here.">
           <button type="button" class="btn btn-default">Hover Me!</button>
         </tooltip>
-        <h3 class="page-header">Dynamic Example</h3>
+        <h3 class="page-header">{{$t('common.dynamicExample')}}</h3>
         <form class="form-inline">
           <tooltip :text="text" :placement="placement" :auto-placement="autoPlacement" :trigger="trigger"
                    :enable="enable" ref="tooltip" v-model="open1">
@@ -31,7 +31,7 @@
           <form class="form-horizontal">
             <div class="form-group">
               <div class="col-md-3 col-sm-6">
-                <label>Enable / Disable Tooltip</label>
+                <label>{{$t('tooltip.enableOrDisable')}}</label>
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" v-model="enable"> Enable
@@ -39,7 +39,7 @@
                 </div>
               </div>
               <div class="col-md-3 col-sm-6">
-                <label>Auto Adjust Placement</label>
+                <label>{{$t('tooltip.autoAdjust')}}</label>
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" v-model="autoPlacement"> Enable
@@ -47,13 +47,13 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <label>Tooltip Text (Support HTML)</label>
+                <label>{{$t('tooltip.text')}}</label>
                 <input type="text" class="form-control" v-model="text">
               </div>
             </div>
             <div class="form-group">
               <div class="col-md-6">
-                <label>Placement</label>
+                <label>{{$t('tooltip.placement')}}</label>
                 <select class="form-control" v-model="placement">
                   <option>top</option>
                   <option>right</option>
@@ -62,7 +62,7 @@
                 </select>
               </div>
               <div class="col-md-6">
-                <label>Trigger</label>
+                <label>{{$t('tooltip.trigger')}}</label>
                 <select class="form-control" v-model="trigger">
                   <option>hover</option>
                   <option>focus</option>

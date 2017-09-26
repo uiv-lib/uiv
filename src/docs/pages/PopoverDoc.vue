@@ -15,7 +15,7 @@
                    :enable="enable"
                    v-model="open1"
                    ref="popover">
-            <button type="button" class="btn btn-default" data-role="trigger">Dynamic Popover</button>
+            <button type="button" class="btn btn-default" data-role="trigger">{{$t('popover.dynamicPopover')}}</button>
             <div slot="popover">
               <h1>Hello world!</h1>
             </div>
@@ -26,7 +26,7 @@
                    :trigger="trigger"
                    v-model="open2"
                    :enable="enable">
-            <button type="button" class="btn btn-default" data-role="trigger">Functional Popover</button>
+            <button type="button" class="btn btn-default" data-role="trigger">{{$t('popover.functionalPopover')}}</button>
             <div slot="popover">
               <form>
                 <div class="form-group">
@@ -42,7 +42,7 @@
           <form class="form-horizontal">
             <div class="form-group">
               <div class="col-md-3 col-sm-6">
-                <label>Enable / Disable Popover</label>
+                <label>{{$t('popover.enableOrDisable')}}</label>
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" v-model="enable"> Enable
@@ -50,7 +50,7 @@
                 </div>
               </div>
               <div class="col-md-3 col-sm-6">
-                <label>Auto Adjust Placement</label>
+                <label>{{$t('popover.autoAdjust')}}</label>
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" v-model="autoPlacement"> Enable
@@ -58,13 +58,13 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <label>Title</label>
+                <label>{{$t('popover.title')}}</label>
                 <input type="text" class="form-control" v-model="title">
               </div>
             </div>
             <div class="form-group">
               <div class="col-md-6">
-                <label>Placement</label>
+                <label>{{$t('popover.placement')}}</label>
                 <select class="form-control" v-model="placement">
                   <option>top</option>
                   <option>right</option>
@@ -73,7 +73,7 @@
                 </select>
               </div>
               <div class="col-md-6">
-                <label>Trigger</label>
+                <label>{{$t('popover.trigger')}}</label>
                 <select class="form-control" v-model="trigger">
                   <option>hover</option>
                   <option>focus</option>

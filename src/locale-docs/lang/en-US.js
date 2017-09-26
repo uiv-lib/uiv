@@ -92,6 +92,95 @@ const docLocale = {
     toggleControls: 'Toggle Controls',
     pushSlide: 'Push Slide',
     interval: 'Interval'
+  },
+  collapse: {
+    accordion: 'Accordion',
+    navbar: 'Navbar',
+    navbarNote: 'Note:',
+    navbarNote1: 'Change viewport to mobile size to view the collapse part.',
+    navbarNote2: 'Remember to add <code>class="navbar-collapse"</code> to the collapse component. View demo source for details.'
+  },
+  datePicker: {
+    inlineExample: 'Inline Example',
+    withDropdown: 'With Dropdown',
+    showTodayBtn: 'Show Today Btn',
+    showClearBtn: 'Show Clear Btn',
+    closeOnSelected: 'Close on Selected',
+    limitFrom: 'Limit From',
+    limitTo: 'Limit To',
+    weekStartsWith: 'Week Starts With',
+    format: 'Format (For Example)',
+    formatNote: 'Some browser (e.g. IE) might not support all of these formats'
+  },
+  dropdown: {
+    dropdown1: 'Dropdown 1',
+    dropdown2: 'Dropdown 2',
+    splitButton: 'Split Button',
+    dropdownAppendToBody: 'Dropdown Append to Body',
+    dropup: 'Dropup',
+    menuOnRight: 'Menu on Right'
+  },
+  modal: {
+    simple: 'Simple Modal with Callback',
+    sizes: 'Different Sizes',
+    customize: 'Customize Header / Footer',
+    others: 'Others'
+  },
+  pagination: {
+    currentPage: 'Current Page',
+    size: 'Size',
+    totalPage: 'Total Page',
+    maxSize: 'Max Size',
+    boundaryLinks: 'Boundary Links',
+    directionLinks: 'Direction Links'
+  },
+  popover: {
+    dynamicPopover: 'Dynamic Popover',
+    functionalPopover: 'Functional Popover',
+    enableOrDisable: 'Enable / Disable Popover',
+    autoAdjust: 'Auto Adjust Placement',
+    title: 'Title',
+    placement: 'Placement',
+    trigger: 'Trigger'
+  },
+  progressBar: {
+    label: 'Label',
+    customLabel: 'Custom Label',
+    minimumWidth: 'Minimum Width',
+    differentStyles: 'Different Styles',
+    striped: 'Striped',
+    activeStriped: 'Active Striped',
+    stacked: 'Stacked'
+  },
+  tabs: {
+    activeTab: 'Active Tab',
+    enableOrDisable: 'Enable / Disable Tab',
+    justifiedStyle: 'Justified Style',
+    withSlot: 'With nav-right Slot'
+  },
+  timePicker: {
+    setTo: 'Set to',
+    toggleReadonly: 'Toggle Readonly',
+    hourStep: 'Hour Step',
+    minuteStep: 'Minute Step',
+    minTime: 'Max Time',
+    maxTime: 'Max Time'
+  },
+  tooltip: {
+    enableOrDisable: 'Enable / Disable Tooltip',
+    autoAdjust: 'Auto Adjust Placement',
+    text: 'Tooltip Text (Support HTML)',
+    placement: 'Placement',
+    trigger: 'Trigger'
+  },
+  typeahead: {
+    staticQueryExample: 'Static Query Example',
+    ignoreCase: 'Ignore Case',
+    matchStart: 'Match Start',
+    forceSelect: 'Force Select',
+    reset: 'Reset',
+    setTo: 'Set To',
+    customExample: 'Async & Custom Template Example'
   }
 }
 

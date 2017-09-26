@@ -24,31 +24,31 @@
             <div class="form-group">
               <div class="col-xs-12">
                 <button class="btn btn-default" type="button" @click="resetTime" data-action="setNine">
-                  <span>Set to 9:00 AM</span>
+                  <span>{{$t('timePicker.setTo')}} 9:00 AM</span>
                 </button>
                 <button class="btn btn-default" type="button" @click="showMeridian=!showMeridian">12H / 24H</button>
                 <button class="btn btn-default" type="button" @click="isReadOnly=!isReadOnly">
-                  <span>Toggle Readonly</span>
+                  <span>{{$t('timePicker.toggleReadonly')}}</span>
                 </button>
               </div>
             </div>
             <div class="form-group">
               <div class="col-md-6">
-                <label>Hour Step</label>
+                <label>{{$t('timePicker.hourStep')}}</label>
                 <input class="form-control" v-model.number="hourStep" type="number" min="1" max="12">
               </div>
               <div class="col-md-6">
-                <label>Minute Step</label>
+                <label>{{$t('timePicker.minuteStep')}}</label>
                 <input class="form-control" v-model.number="minStep" type="number" min="1" max="60">
               </div>
             </div>
             <div class="form-group">
               <div class="col-md-6">
-                <label>Min Time (24H)</label>
+                <label>{{$t('timePicker.minTime')}} (24H)</label>
                 <input class="form-control" v-model="min" type="text" placeholder="HH:MM">
               </div>
               <div class="col-md-6">
-                <label>Max Time (24H)</label>
+                <label>{{$t('timePicker.maxTime')}} (24H)</label>
                 <input class="form-control" v-model="max" type="text" placeholder="HH:MM">
               </div>
             </div>

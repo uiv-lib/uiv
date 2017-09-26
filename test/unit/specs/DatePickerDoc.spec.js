@@ -70,7 +70,7 @@ describe('DatePickerDoc', () => {
         dateView.querySelectorAll('button')[1],
         done)
     })
-  })
+  }).timeout(5000)
 
   it('should be able to go next month', (done) => {
     let vm = app.$mount().$refs.doc
@@ -102,7 +102,7 @@ describe('DatePickerDoc', () => {
         dateView.querySelectorAll('button')[1],
         done)
     })
-  })
+  }).timeout(5000)
 
   it('should be able to switch to month view from date view', (done) => {
     let vm = app.$mount().$refs.doc

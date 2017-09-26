@@ -7,18 +7,22 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3 class="page-header">Basic Example</h3>
+        <h3 class="page-header">{{$t('common.basicExample')}}</h3>
         <div class="well">
-          <button type="button" id="tabs-btn-1" class="btn btn-default" @click="tabIndex = 0">Active Tab 1</button>
-          <button type="button" id="tabs-btn-2" class="btn btn-default" @click="tabIndex = 1">Active Tab 2</button>
+          <button type="button" id="tabs-btn-1" class="btn btn-default" @click="tabIndex = 0">
+            {{$t('tabs.activeTab')}} 1
+          </button>
+          <button type="button" id="tabs-btn-2" class="btn btn-default" @click="tabIndex = 1">
+            {{$t('tabs.activeTab')}} 2
+          </button>
           <button type="button" id="tabs-btn-3" class="btn btn-default" @click="thirdTabDisabled=!thirdTabDisabled">
-            <span>Enable / Disable Tab 3</span>
+            <span>{{$t('tabs.enableOrDisable')}} 3</span>
           </button>
           <button type="button" id="tabs-btn-4" class="btn btn-default" @click="justified=!justified">
-            <span>Justified Style</span>
+            <span>{{$t('tabs.justifiedStyle')}}</span>
           </button>
         </div>
-        <tabs ref="tabComponent" :justified="justified" v-model="tabIndex"  @change="afterTabActive">
+        <tabs ref="tabComponent" :justified="justified" v-model="tabIndex" @change="afterTabActive">
           <tab title="Tab 1">
             <p>This is tab 1.</p>
           </tab>
@@ -38,7 +42,7 @@
             <p>This tab has a HTML and callback function.</p>
           </tab>
         </tabs>
-        <h3 class="page-header">With Nav-Right Slot</h3>
+        <h3 class="page-header">{{$t('tabs.withSlot')}}</h3>
         <tabs>
           <tab title="Tab 1">
             <p>This is tab 1.</p>
@@ -83,6 +87,7 @@
   import Tab from '../../components/tabs/Tab.vue'
   import hljsMixin from './../mixins/hljsMixin'
   import ApiPanel from './../architecture/ApiPanel.vue'
+
   export default {
     mixins: [hljsMixin],
     components: {

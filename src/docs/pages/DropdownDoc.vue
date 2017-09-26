@@ -10,7 +10,7 @@
         <div class="dropdowns">
           <dropdown ref="dropdown" :dropup="dropup" :menu-right="menuRight">
             <button data-role="trigger" class="btn btn-default dropdown-toggle" type="button">
-              <span>Dropdown 1</span>
+              <span>{{$t('dropdown.dropdown1')}}</span>
               <span class="caret"></span>
             </button>
             <template slot="dropdown">
@@ -23,7 +23,7 @@
           </dropdown>
           <dropdown v-model="open2" :dropup="dropup" :menu-right="menuRight">
             <button @click="open2 = !open2" class="btn btn-primary dropdown-toggle" type="button">
-              <span>Dropdown 2</span>
+              <span>{{$t('dropdown.dropdown2')}}</span>
               <span class="caret"></span>
             </button>
             <template slot="dropdown">
@@ -35,7 +35,7 @@
             </template>
           </dropdown>
           <dropdown class="btn-group" v-model="open3" :dropup="dropup" :menu-right="menuRight">
-            <button type="button" class="btn btn-danger">Split Button</button>
+            <button type="button" class="btn btn-danger">{{$t('dropdown.splitButton')}}</button>
             <button type="button" class="btn btn-danger dropdown-toggle" @click="open3 = !open3">
               <span class="caret"></span>
               <span class="sr-only">Toggle Dropdown</span>
@@ -50,7 +50,7 @@
           </dropdown>
           <dropdown :append-to-body="true" v-model="open4" :dropup="dropup" :menu-right="menuRight">
             <button data-role="trigger" class="btn btn-default dropdown-toggle" type="button">
-              <span>Dropdown Append to Body</span>
+              <span>{{$t('dropdown.dropdownAppendToBody')}}</span>
               <span class="caret"></span>
             </button>
             <template slot="dropdown">
@@ -68,10 +68,10 @@
             <div class="form-group">
               <div class="col-xs-12">
                 <label class="checkbox-inline">
-                  <input v-model="dropup" type="checkbox"> Dropup
+                  <input v-model="dropup" type="checkbox"> {{$t('dropdown.dropup')}}
                 </label>
                 <label class="checkbox-inline">
-                  <input v-model="menuRight" type="checkbox"> Menu on Right
+                  <input v-model="menuRight" type="checkbox"> {{$t('dropdown.menuOnRight')}}
                 </label>
               </div>
             </div>
