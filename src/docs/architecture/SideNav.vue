@@ -14,6 +14,7 @@
       <select class="form-control input-sm" v-model="$i18n.locale" style="width: auto">
         <option value="en-US">English</option>
         <option value="zh-CN">简体中文</option>
+        <option value="fr-FR">Français</option>
       </select>
     </div>
     <div class="nav-container">

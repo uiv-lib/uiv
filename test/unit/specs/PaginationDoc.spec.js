@@ -1,10 +1,29 @@
 import Vue from 'vue'
 import PaginationDoc from '@/docs/pages/PaginationDoc.vue'
+import i18n from '@/locale-docs'
 
 describe('PaginationDoc', () => {
+  let app
+
+  beforeEach(() => {
+    app = new Vue({
+      i18n,
+      template: '<PaginationDoc ref="doc"/>',
+      components: {PaginationDoc}
+    })
+    app.$i18n.locale = 'en-US'
+  })
+
+  afterEach(() => {
+    try {
+      app.$destroy()
+    } catch (err) {
+      // Silent
+    }
+  })
+
   it('should be able to disappear Boundary link', (done) => {
-    const Constructor = Vue.extend(PaginationDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.boundaryLinks = true
     vm.$nextTick(() => {
       let pagination = vm.$el.querySelector('ul.pagination')
@@ -24,8 +43,7 @@ describe('PaginationDoc', () => {
   })
 
   it('should be able to appear Boundary link', (done) => {
-    const Constructor = Vue.extend(PaginationDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.boundaryLinks = false
     vm.$nextTick(() => {
       let pagination = vm.$el.querySelector('ul.pagination')
@@ -45,8 +63,7 @@ describe('PaginationDoc', () => {
   })
 
   it('should be able to disappear direction link', (done) => {
-    const Constructor = Vue.extend(PaginationDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.directionLinks = true
     vm.$nextTick(() => {
       let pagination = vm.$el.querySelector('ul.pagination')
@@ -66,8 +83,7 @@ describe('PaginationDoc', () => {
   })
 
   it('should be able to appear direction link', (done) => {
-    const Constructor = Vue.extend(PaginationDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.directionLinks = false
     vm.$nextTick(() => {
       let pagination = vm.$el.querySelector('ul.pagination')
@@ -87,8 +103,7 @@ describe('PaginationDoc', () => {
   })
 
   it('should be able to change current page', (done) => {
-    const Constructor = Vue.extend(PaginationDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.currentPage = 1
     vm.$nextTick(() => {
       let pagination = vm.$el.querySelector('ul.pagination')
@@ -105,8 +120,7 @@ describe('PaginationDoc', () => {
   })
 
   it('should be able to change size', (done) => {
-    const Constructor = Vue.extend(PaginationDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.size = ''
     vm.$nextTick(() => {
       let pagination = vm.$el.querySelector('ul.pagination')
@@ -126,8 +140,7 @@ describe('PaginationDoc', () => {
   })
 
   it('should be able to change total page', (done) => {
-    const Constructor = Vue.extend(PaginationDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.totalSize = 18
     vm.$nextTick(() => {
       let pagination = vm.$el.querySelector('ul.pagination')
@@ -150,8 +163,7 @@ describe('PaginationDoc', () => {
   })
 
   it('should be able to go to first page', (done) => {
-    const Constructor = Vue.extend(PaginationDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.totalSize = 18
     vm.currentPage = 18
     vm.$nextTick(() => {
@@ -174,8 +186,7 @@ describe('PaginationDoc', () => {
   })
 
   it('last group has max size item', (done) => {
-    const Constructor = Vue.extend(PaginationDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.currentPage = 18
     vm.$nextTick(() => {
       let pagination = vm.$el.querySelector('ul.pagination')
@@ -192,8 +203,7 @@ describe('PaginationDoc', () => {
   })
 
   it('should be go to next group', (done) => {
-    const Constructor = Vue.extend(PaginationDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.totalSize = 13
     vm.$nextTick(() => {
       let pagination = vm.$el.querySelector('ul.pagination')
@@ -217,8 +227,7 @@ describe('PaginationDoc', () => {
   })
 
   it('should be go to perv group', (done) => {
-    const Constructor = Vue.extend(PaginationDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.totalSize = 13
     vm.currentPage = 12
     vm.$nextTick(() => {

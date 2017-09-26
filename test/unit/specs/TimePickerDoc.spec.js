@@ -3,11 +3,30 @@
  */
 import Vue from 'vue'
 import TimePickerDoc from '@/docs/pages/TimePickerDoc.vue'
+import i18n from '@/locale-docs'
 
 describe('TimePickerDoc', () => {
+  let root
+
+  beforeEach(() => {
+    root = new Vue({
+      i18n,
+      template: '<TimePickerDoc ref="doc"/>',
+      components: {TimePickerDoc}
+    })
+    root.$i18n.locale = 'en-US'
+  })
+
+  afterEach(() => {
+    try {
+      root.$destroy()
+    } catch (err) {
+      // Silent
+    }
+  })
+
   it('should be able to toggle meridian', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.myTime.setHours(9)
     vm.myTime = new Date(vm.myTime)
     vm.$nextTick(() => {
@@ -31,8 +50,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('should be able to add 1 hours', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.hourStep = 1
     vm.isReadOnly = false
     vm.$nextTick(() => {
@@ -61,8 +79,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('should be able to add 1 minutes', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.minStep = 1
     vm.isReadOnly = false
     vm.$nextTick(() => {
@@ -82,8 +99,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('should be able to minus 1 hours', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.hourStep = 1
     vm.isReadOnly = false
     vm.$nextTick(() => {
@@ -112,8 +128,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('should be able to minus 1 minutes', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.minStep = 1
     vm.isReadOnly = false
     vm.$nextTick(() => {
@@ -133,8 +148,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('should be change to 24H', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.showMeridian = true
     vm.$nextTick(() => {
       let toggleBtn = vm.$el.querySelector('[data-action="toggleMeridian"]')
@@ -161,8 +175,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('when hour is zero it can display true', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.myTime.setHours(0)
     vm.myTime = new Date(vm.myTime)
     vm.$nextTick(() => {
@@ -175,8 +188,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('when hour is 12 it can display true', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.myTime.setHours(12)
     vm.myTime = new Date(vm.myTime)
     vm.$nextTick(() => {
@@ -189,8 +201,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('should be able to set hour using input in 24h mode', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.myTime.setHours(12)
     vm.myTime = new Date(vm.myTime)
     vm.showMeridian = false
@@ -215,8 +226,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('should be able to set hour using input in 12h mode', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.myTime.setHours(12)
     vm.myTime = new Date(vm.myTime)
     vm.showMeridian = true
@@ -241,8 +251,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('should be able to set minute using input', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.myTime.setHours(12)
     vm.myTime.setMinutes(0)
     vm.myTime = new Date(vm.myTime)
@@ -268,8 +277,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('when minutes is 59 then plus minutes it can display true', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.myTime.setHours(9)
     vm.myTime.setMinutes(59)
     vm.myTime = new Date(vm.myTime)
@@ -289,8 +297,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('when minutes is 0 then minus minutes it can display true', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.myTime.setHours(9)
     vm.myTime.setMinutes(0)
     vm.myTime = new Date(vm.myTime)
@@ -310,8 +317,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('can be set to 9:00', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let setNine = vm.$el.querySelector('[data-action="setNine"]')
       setNine.click()
@@ -328,8 +334,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('can be plus and minus hour after wheel', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.myTime.setHours(9)
     vm.myTime = new Date(vm.myTime)
     vm.$nextTick(() => {
@@ -348,8 +353,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('can be plus and minus minutes after wheel', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.myTime.setMinutes(30)
     vm.myTime = new Date(vm.myTime)
     vm.$nextTick(() => {
@@ -368,8 +372,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('shouldnt add a time bigger then max', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.max = '09:01'
     vm.myTime.setHours(9)
     vm.myTime = new Date(vm.myTime)
@@ -388,8 +391,7 @@ describe('TimePickerDoc', () => {
   })
 
   it('shouldnt add a time smaller then min', (done) => {
-    const Constructor = Vue.extend(TimePickerDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.min = '08:30'
     vm.myTime.setHours(9)
     vm.myTime.setMinutes(0)

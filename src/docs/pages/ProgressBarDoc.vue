@@ -2,32 +2,32 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Progress Bar" source-folder="progressbar"></anchor-header>
+        <anchor-header :text="$t('menu.progressBar')" source-folder="progressbar"></anchor-header>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3 class="page-header">Basic Example</h3>
+        <h3 class="page-header">{{$t('common.basicExample')}}</h3>
         <progress-bar v-model="progress66"></progress-bar>
-        <h3 class="page-header">With Label</h3>
+        <h3 class="page-header">{{$t('progressBar.label')}}</h3>
         <progress-bar v-model="progress66" :label="true"></progress-bar>
-        <h3 class="page-header">With Custom Label</h3>
+        <h3 class="page-header">{{$t('progressBar.customLabel')}}</h3>
         <progress-bar v-model="progress66" :label="true" label-text="Loading... 66% completed"></progress-bar>
-        <h3 class="page-header">With Minimum Width</h3>
+        <h3 class="page-header">{{$t('progressBar.minimumWidth')}}</h3>
         <progress-bar v-model="progress1" :min-width="true" :label="true"></progress-bar>
-        <h3 class="page-header">Different Styles</h3>
+        <h3 class="page-header">{{$t('progressBar.differentStyles')}}</h3>
         <progress-bar v-model="progress40" type="success"></progress-bar>
         <progress-bar v-model="progress20" type="info"></progress-bar>
         <progress-bar v-model="progress60" type="warning"></progress-bar>
         <progress-bar v-model="progress80" type="danger"></progress-bar>
-        <h3 class="page-header">Striped</h3>
+        <h3 class="page-header">{{$t('progressBar.striped')}}</h3>
         <progress-bar v-model="progress40" type="success" :striped="true"></progress-bar>
         <progress-bar v-model="progress20" type="info" :striped="true"></progress-bar>
         <progress-bar v-model="progress60" type="warning" :striped="true"></progress-bar>
         <progress-bar v-model="progress80" type="danger" :striped="true"></progress-bar>
-        <h3 class="page-header">Active Striped</h3>
+        <h3 class="page-header">{{$t('progressBar.activeStriped')}}</h3>
         <progress-bar v-model="progress40" :striped="true" :active="true"></progress-bar>
-        <h3 class="page-header">Stacked</h3>
+        <h3 class="page-header">{{$t('progressBar.stacked')}}</h3>
         <progress-bar>
           <progress-bar-stack v-model="progress35" type="success"></progress-bar-stack>
           <progress-bar-stack v-model="progress20" type="warning" :striped="true"></progress-bar-stack>

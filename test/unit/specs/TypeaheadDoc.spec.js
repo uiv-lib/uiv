@@ -1,8 +1,27 @@
 import Vue from 'vue'
 import TypeaheadDoc from '@/docs/pages/TypeaheadDoc.vue'
+import i18n from '@/locale-docs'
 
 describe('TypeaheadDoc', () => {
   let xhr, requests, server
+  let root
+
+  beforeEach(() => {
+    root = new Vue({
+      i18n,
+      template: '<TypeaheadDoc ref="doc"/>',
+      components: {TypeaheadDoc}
+    })
+    root.$i18n.locale = 'en-US'
+  })
+
+  afterEach(() => {
+    try {
+      root.$destroy()
+    } catch (err) {
+      // Silent
+    }
+  })
 
   before(function () {
     xhr = sinon.useFakeXMLHttpRequest()
@@ -19,8 +38,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able to mount and destroy', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       vm.$destroy()
       done()
@@ -28,8 +46,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able to open typeahead when input change', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
@@ -47,8 +64,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able to open typeahead on input focus', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
@@ -68,8 +84,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should not be able to open typeahead on input focus if set param to false', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.openOnFocus = false
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
@@ -86,8 +101,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able to close typeahead on input blur', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
@@ -108,8 +122,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should not close typeahead on input click', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
@@ -131,8 +144,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able to close typeahead on window click', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
@@ -154,8 +166,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able to use string arrays as data', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.states = vm.states.map(v => v.name)
     vm.itemKey = ''
     vm.$nextTick(() => {
@@ -181,8 +192,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able to close typeahead when input change to empty', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
@@ -202,8 +212,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able to slice item length', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
@@ -221,8 +230,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should not open dropdown if nothing match', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
@@ -237,8 +245,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able to select item', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
@@ -262,8 +269,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able to use force select', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.forceSelect = true
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
@@ -289,8 +295,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should not be able to select item using keyboard while dropdown not open', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
@@ -306,8 +311,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able to select item using keyboard', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
@@ -332,8 +336,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able use keyboard nav to go next', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
@@ -364,8 +367,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able use keyboard nav to go prev', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[0]
@@ -404,8 +406,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able to not ignore case', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.ignoreCase = false
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
@@ -432,8 +433,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able to match start', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.matchStart = true
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[0]
@@ -450,8 +450,7 @@ describe('TypeaheadDoc', () => {
   })
 
   it('should be able to use async typeahead', (done) => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let input = vm.$el.querySelectorAll('[data-role=input]')[1]
       let dropdown = vm.$el.querySelectorAll('.dropdown')[1]

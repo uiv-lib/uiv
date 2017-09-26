@@ -2,12 +2,12 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Alert" source-folder="alert"></anchor-header>
+        <anchor-header :text="$t('menu.alert')" source-folder="alert"></anchor-header>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3 class="page-header">Basic Example</h3>
+        <h3 class="page-header">{{$t('common.basicExample')}}</h3>
         <div>
           <alert type="success" :closable="true" v-if="showAlert4" @close="showAlert4=false">
             <strong>Well done!</strong>
@@ -31,7 +31,7 @@
             </p>
           </alert>
         </div>
-        <h3 class="page-header">Dynamic Example</h3>
+        <h3 class="page-header">{{$t('common.dynamicExample')}}</h3>
         <div id="alertContainer">
           <alert v-for="(item,index) in alertList"
                  :closable="item.closable"
@@ -46,22 +46,21 @@
         <div class="well">
           <form class="form-inline">
             <div class="form-group">
-              <label>display time</label>
-              <input class="form-control" step="1000" min="0" v-model.number="duration" type="number"
-                     placeholder="input display time">
+              <label>{{$t('alert.displayTime')}}</label>
+              <input class="form-control" step="1000" min="0" v-model.number="duration" type="number">
               <button type="button" class="btn btn-default" id="addAlertHadDuration"
                       @click="addAlert('success',false,true)">
-                <span>Add Alert (Time)</span>
+                <span>{{$t('alert.addAlertTime')}}</span>
               </button>
               <button type="button" class="btn btn-default" id="addAlert" @click="addAlert('success',true)">
-                <span>Add Alert</span>
+                <span>{{$t('alert.addAlert')}}</span>
               </button>
             </div>
           </form>
         </div>
-        <h3 class="page-header">Use with Collapse</h3>
+        <h3 class="page-header">{{$t('alert.useWithCollapse')}}</h3>
         <div>
-          <button type="button" class="btn btn-default" @click="showAlert5 = !showAlert5">Toggle Alert</button>
+          <button type="button" class="btn btn-default" @click="showAlert5 = !showAlert5">{{$t('alert.showAlert')}}</button>
         </div>
         <br/>
         <collapse v-model="showAlert5">
@@ -146,7 +145,7 @@
         showAlert2: true,
         showAlert3: true,
         showAlert4: true,
-        showAlert5: true,
+        showAlert5: false,
         duration: 5000
       }
     },

@@ -81,7 +81,7 @@
       },
       weekStartsWith: {
         type: Number,
-        default: 7,
+        'default': 0,
         validator (value) {
           return value >= 0 && value <= 6
         }
@@ -136,14 +136,21 @@
       }
     },
     mounted () {
-      this.currentMonth = this.now.getMonth()
-      this.currentYear = this.now.getFullYear()
-      if (!this.value) {
+      if (this.value) {
+        this.setMonthAndYearByValue(this.value)
+      } else {
+        this.currentMonth = this.now.getMonth()
+        this.currentYear = this.now.getFullYear()
         this.view = this.initialView
       }
     },
     watch: {
       value (val, oldVal) {
+        this.setMonthAndYearByValue(val, oldVal)
+      }
+    },
+    methods: {
+      setMonthAndYearByValue (val, oldVal) {
         let ts = this.dateParser(val)
         if (!isNaN(ts)) {
           let date = new Date(ts)
@@ -157,9 +164,7 @@
             this.currentYear = date.getFullYear()
           }
         }
-      }
-    },
-    methods: {
+      },
       onMonthChange (month) {
         this.currentMonth = month
       },

@@ -2,12 +2,12 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="DatePicker" source-folder="datepicker"></anchor-header>
+        <anchor-header :text="$t('menu.datePicker')" source-folder="datepicker"></anchor-header>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3 class="page-header">Inline Example</h3>
+        <h3 class="page-header">{{$t('datePicker.inlineExample')}}</h3>
         <div class="panel panel-default" style="display: inline-block">
           <div class="panel-body">
             <date-picker class="date-picker"
@@ -20,7 +20,7 @@
                          :limit-to="limitTo"></date-picker>
           </div>
         </div>
-        <h3 class="page-header">With Dropdown</h3>
+        <h3 class="page-header">{{$t('datePicker.withDropdown')}}</h3>
         <form class="form-inline">
           <dropdown class="form-group">
             <div class="input-group">
@@ -52,26 +52,26 @@
           <form class="form-horizontal">
             <div class="form-group">
               <div class="col-xs-12">
-                <label class="checkbox-inline"><input type="checkbox" v-model="todayBtn"> Show Today Btn</label>
-                <label class="checkbox-inline"><input type="checkbox" v-model="clearBtn"> Show clear Btn</label>
+                <label class="checkbox-inline"><input type="checkbox" v-model="todayBtn"> {{$t('datePicker.showTodayBtn')}}</label>
+                <label class="checkbox-inline"><input type="checkbox" v-model="clearBtn"> {{$t('datePicker.showClearBtn')}}</label>
                 <label class="checkbox-inline"><input type="checkbox" v-model="closeOnSelected">
-                  Close On Selected
+                  {{$t('datePicker.closeOnSelected')}}
                 </label>
               </div>
             </div>
             <div class="form-group">
               <div class="col-md-6">
-                <label>Limit From</label>
+                <label>{{$t('datePicker.limitFrom')}}</label>
                 <input type="text" class="form-control" v-model="limitFrom" placeholder="E.g. 2017-03-01">
               </div>
               <div class="col-md-6">
-                <label>Limit To</label>
+                <label>{{$t('datePicker.limitTo')}}</label>
                 <input type="text" class="form-control" v-model="limitTo" placeholder="E.g. 2017-03-31">
               </div>
             </div>
             <div class="form-group">
               <div class="col-md-6">
-                <label>Format (For Example)</label>
+                <label>{{$t('datePicker.format')}}</label>
                 <select class="form-control" v-model="format">
                   <option>yyyy-M-d</option>
                   <option>yyyy-MM-dd</option>
@@ -81,10 +81,10 @@
                   <option>MM/dd/yyyy</option>
                   <option>yyyy,MM,dd</option>
                 </select>
-                <p class="help-block">* Some browser (e.g. IE) might not support all of these formats.</p>
+                <p class="help-block">* {{$t('datePicker.formatNote')}}</p>
               </div>
               <div class="col-md-6">
-                <label>Week starts with</label>
+                <label>{{$t('datePicker.weekStartsWith')}}</label>
                 <select class="form-control" v-model="weekStartsWith">
                   <option v-for="day in 7" :value="day - 1">{{ day - 1 }}</option>
                 </select>

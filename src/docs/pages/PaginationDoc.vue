@@ -2,7 +2,7 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Pagination" source-folder="pagination"></anchor-header>
+        <anchor-header :text="$t('menu.pagination')" source-folder="pagination"></anchor-header>
       </div>
     </div>
     <div class="row">
@@ -21,16 +21,16 @@
             <div class="form-group">
               <div class="col-xs-12">
                 <label class="checkbox-inline">
-                  <input v-model="boundaryLinks" type="checkbox"> Boundary Links
+                  <input v-model="boundaryLinks" type="checkbox"> {{$t('pagination.boundaryLinks')}}
                 </label>
                 <label class="checkbox-inline">
-                  <input v-model="directionLinks" type="checkbox"> Direction Links
+                  <input v-model="directionLinks" type="checkbox"> {{$t('pagination.directionLinks')}}
                 </label>
               </div>
             </div>
             <div class="form-group">
               <div class="col-md-6">
-                <label>Current Page:</label>
+                <label>{{$t('pagination.currentPage')}}</label>
                 <div class="input-group">
                   <input class="form-control" step="1" min="1" :max="totalSize" v-model.number="currentPage"
                          type="number">
@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <label>Size:</label>
+                <label>{{$t('pagination.size')}}</label>
                 <select class="form-control" v-model="size">
                   <option value="sm">sm</option>
                   <option value="">md</option>
@@ -48,11 +48,11 @@
             </div>
             <div class="form-group">
               <div class="col-md-6">
-                <label>Total Page:</label>
+                <label>{{$t('pagination.totalPage')}}</label>
                 <input class="form-control" step="1" min="0" v-model.number="totalSize" type="number">
               </div>
               <div class="col-md-6">
-                <label>Max Size:</label>
+                <label>{{$t('pagination.maxSize')}}</label>
                 <input class="form-control" step="1" min="0" v-model.number="maxSize" type="number">
               </div>
             </div>

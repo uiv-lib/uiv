@@ -2,11 +2,30 @@ import Vue from 'vue'
 import Dropdown from '@/components/dropdown/Dropdown.vue'
 import DropdownDoc from '@/docs/pages/DropdownDoc.vue'
 import utils from './../utils'
+import i18n from '@/locale-docs'
 
 describe('DropdownDoc', () => {
+  let app
+
+  beforeEach(() => {
+    app = new Vue({
+      i18n,
+      template: '<DropdownDoc ref="doc"/>',
+      components: {DropdownDoc}
+    })
+    app.$i18n.locale = 'en-US'
+  })
+
+  afterEach(() => {
+    try {
+      app.$destroy()
+    } catch (err) {
+      // Silent
+    }
+  })
+
   it('should be able to open dropdown on trigger click', (done) => {
-    const Constructor = Vue.extend(DropdownDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     let dropdown = vm.$el.querySelector(`.dropdown`)
     let trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
@@ -19,8 +38,7 @@ describe('DropdownDoc', () => {
   })
 
   it('should be able to close dropdown on trigger click', (done) => {
-    const Constructor = Vue.extend(DropdownDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     let dropdown = vm.$el.querySelector(`.dropdown`)
     let trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
@@ -37,8 +55,7 @@ describe('DropdownDoc', () => {
   })
 
   it('should be able to close dropdown on window click', (done) => {
-    const Constructor = Vue.extend(DropdownDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     let dropdown = vm.$el.querySelector(`.dropdown`)
     let trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
@@ -56,11 +73,10 @@ describe('DropdownDoc', () => {
   })
 
   it('should be able to open dropdown append to body on trigger click', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    const Constructor = Vue.extend(DropdownDoc)
-    const vm = new Constructor().$mount('#app')
+    let appDom = document.createElement('div')
+    appDom.id = 'app'
+    document.body.appendChild(appDom)
+    let vm = app.$mount('#app').$refs.doc
     let dropdown = vm.$el.querySelectorAll(`.dropdown`)[3]
     let trigger = dropdown.querySelector('button')
     expect(dropdown.className).to.not.contain('open')
@@ -73,18 +89,17 @@ describe('DropdownDoc', () => {
       vm.$nextTick(() => {
         expect(dropdown.className).not.contain('open')
         expect(dropdown.querySelector('.dropdown-menu')).to.exist
-        app.remove()
+        appDom.remove()
         done()
       })
     })
   })
 
   it('should be able to use dropup & menu-right style', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    const Constructor = Vue.extend(DropdownDoc)
-    const vm = new Constructor().$mount('#app')
+    let appDom = document.createElement('div')
+    appDom.id = 'app'
+    document.body.appendChild(appDom)
+    let vm = app.$mount('#app').$refs.doc
     vm.dropup = true
     vm.menuRight = true
     vm.$nextTick(() => {
@@ -101,7 +116,7 @@ describe('DropdownDoc', () => {
         vm.$nextTick(() => {
           expect(dropdown.className).not.contain('open')
           expect(dropdown.querySelector('.dropdown-menu')).to.exist
-          app.remove()
+          appDom.remove()
           done()
         })
       })

@@ -1,10 +1,29 @@
 import Vue from 'vue'
 import PopoverDoc from '@/docs/pages/PopoverDoc.vue'
+import i18n from '@/locale-docs'
 
 describe('PopoverDoc', () => {
+  let root
+
+  beforeEach(() => {
+    root = new Vue({
+      i18n,
+      template: '<PopoverDoc ref="doc"/>',
+      components: {PopoverDoc}
+    })
+    root.$i18n.locale = 'en-US'
+  })
+
+  afterEach(() => {
+    try {
+      root.$destroy()
+    } catch (err) {
+      // Silent
+    }
+  })
+
   it('should be able to destroy', (done) => {
-    const Constructor = Vue.extend(PopoverDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       vm.$destroy()
       done()
@@ -12,11 +31,10 @@ describe('PopoverDoc', () => {
   })
 
   it('should be able to show popover', (done) => {
-    const Constructor = Vue.extend(PopoverDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'focus'
     vm.$nextTick(() => {
       expect(document.querySelectorAll('.popover').length).to.equal(0)
@@ -34,11 +52,10 @@ describe('PopoverDoc', () => {
   })
 
   it('should be able to change trigger to manual', (done) => {
-    const Constructor = Vue.extend(PopoverDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'manual'
     vm.open1 = true
     vm.$nextTick(() => {
@@ -53,11 +70,10 @@ describe('PopoverDoc', () => {
   })
 
   it('should be able change trigger to hover-focus', (done) => {
-    const Constructor = Vue.extend(PopoverDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'hover-focus'
     vm.$nextTick(() => {
       expect(document.querySelectorAll('.popover').length).to.equal(0)
@@ -79,11 +95,10 @@ describe('PopoverDoc', () => {
   })
 
   it('should be able to change trigger to click', (done) => {
-    const Constructor = Vue.extend(PopoverDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'click'
     vm.$nextTick(() => {
       expect(document.querySelectorAll('.popover').length).to.equal(0)
@@ -101,11 +116,10 @@ describe('PopoverDoc', () => {
   })
 
   it('should be able to keep popover show on hover if using hover trigger', (done) => {
-    const Constructor = Vue.extend(PopoverDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'hover'
     let popover = vm.$refs.popover
     vm.$nextTick(() => {
@@ -126,11 +140,10 @@ describe('PopoverDoc', () => {
   })
 
   it('should be able to keep popover show on hover if using hover-focus trigger', (done) => {
-    const Constructor = Vue.extend(PopoverDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'hover-focus'
     let popover = vm.$refs.popover
     vm.$nextTick(() => {
@@ -151,11 +164,10 @@ describe('PopoverDoc', () => {
   })
 
   it('should be able to toggle correctly on fast click', (done) => {
-    const Constructor = Vue.extend(PopoverDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'click'
     let button = vm.$el.querySelectorAll('button')[0]
     vm.$nextTick(() => {
@@ -178,11 +190,10 @@ describe('PopoverDoc', () => {
   })
 
   it('should be able to change trigger to outside-click', (done) => {
-    const Constructor = Vue.extend(PopoverDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'outside-click'
     let popover = vm.$refs.popover
     let button = vm.$el.querySelectorAll('button')[0]
@@ -207,8 +218,7 @@ describe('PopoverDoc', () => {
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const Constructor = Vue.extend(PopoverDoc)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'focus'
     vm.enable = false
     vm.$nextTick(() => {
@@ -226,8 +236,7 @@ describe('PopoverDoc', () => {
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const Constructor = Vue.extend(PopoverDoc)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'focus'
     vm.title = 'test test test'
     vm.$nextTick(() => {
@@ -247,8 +256,7 @@ describe('PopoverDoc', () => {
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const Constructor = Vue.extend(PopoverDoc)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'focus'
     vm.placement = 'top'
     vm.$nextTick(() => {
@@ -269,8 +277,7 @@ describe('PopoverDoc', () => {
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const Constructor = Vue.extend(PopoverDoc)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'focus'
     vm.placement = 'bottom'
     vm.autoPlacement = false
@@ -292,8 +299,7 @@ describe('PopoverDoc', () => {
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const Constructor = Vue.extend(PopoverDoc)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'focus'
     vm.placement = 'left'
     vm.autoPlacement = false
@@ -315,8 +321,7 @@ describe('PopoverDoc', () => {
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const Constructor = Vue.extend(PopoverDoc)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'focus'
     vm.placement = 'right'
     vm.autoPlacement = false
@@ -335,8 +340,7 @@ describe('PopoverDoc', () => {
   })
 
   it('should be able to render with hover trigger', (done) => {
-    const Constructor = Vue.extend(PopoverDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.trigger = 'hover'
     vm.$nextTick(() => {
       done()

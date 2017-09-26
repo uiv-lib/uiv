@@ -1,11 +1,11 @@
 <template>
   <div class="panel panel-default">
     <div class="panel-heading clearfix">
-      <span>Sample Code</span>
+      <span>{{$t('common.sampleCode')}}</span>
       <a v-if="demoFile" class="pull-right"
          :href="'https://github.com/wxsms/uiv/blob/master/src/docs/pages/'+demoFile">
         <i class="glyphicon glyphicon-share"></i>
-        <span>Demo Source</span>
+        <span>{{$t('common.demoSource')}}</span>
       </a>
     </div>
     <div class="panel-body">

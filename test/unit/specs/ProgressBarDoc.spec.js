@@ -1,10 +1,29 @@
 import Vue from 'vue'
 import ProgressBarDoc from '@/docs/pages/ProgressBarDoc.vue'
+import i18n from '@/locale-docs'
 
 describe('ProgressBarDoc', () => {
+  let root
+
+  beforeEach(() => {
+    root = new Vue({
+      i18n,
+      template: '<ProgressBarDoc ref="doc"/>',
+      components: {ProgressBarDoc}
+    })
+    root.$i18n.locale = 'en-US'
+  })
+
+  afterEach(() => {
+    try {
+      root.$destroy()
+    } catch (err) {
+      // Silent
+    }
+  })
+
   it('should be able to render', (done) => {
-    const Constructor = Vue.extend(ProgressBarDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$nextTick(() => {
       let bars = vm.$el.querySelectorAll('.progress')
       expect(bars[0].querySelector('.progress-bar').style.width).to.equal('66%')

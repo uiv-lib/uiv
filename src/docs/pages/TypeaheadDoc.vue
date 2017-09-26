@@ -2,24 +2,23 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Typeahead" source-folder="typeahead"></anchor-header>
+        <anchor-header :text="$t('menu.typeahead')" source-folder="typeahead"></anchor-header>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3 class="page-header">Static Query Example</h3>
+        <h3 class="page-header">{{$t('typeahead.staticQueryExample')}}</h3>
         <div class="well">
           <form class="form-inline">
             <div class="form-group">
-              <label class="control-label">Settings</label>
               <label class="checkbox-inline">
-                <input type="checkbox" v-model="ignoreCase"> Ignore Case
+                <input type="checkbox" v-model="ignoreCase"> {{$t('typeahead.ignoreCase')}}
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" v-model="matchStart"> Match Start
+                <input type="checkbox" v-model="matchStart"> {{$t('typeahead.matchStart')}}
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" v-model="forceSelect"> Force Select
+                <input type="checkbox" v-model="forceSelect"> {{$t('typeahead.forceSelect')}}
               </label>
             </div>
           </form>
@@ -37,15 +36,17 @@
                    :open-on-focus="openOnFocus"></typeahead>
         <br/>
         <div>
-          <button class="btn btn-primary" type="button" @click="model1 = states[0]">Set model to Alabama</button>
-          <button class="btn btn-default" type="button" @click="model1 = null">Reset</button>
+          <button class="btn btn-primary" type="button" @click="model1 = states[0]">
+            {{$t('typeahead.setTo')}} Alabama
+          </button>
+          <button class="btn btn-default" type="button" @click="model1 = null">{{$t('typeahead.reset')}}</button>
         </div>
         <br/>
         <div class="alert alert-info">
           <p v-if="model1">You selected: {{model1}}</p>
           <p v-else>Please select an item.</p>
         </div>
-        <h3 class="page-header">Async & Custom Template Example</h3>
+        <h3 class="page-header">{{$t('typeahead.customExample')}}</h3>
         <label class="control-label">Github Users</label>
         <typeahead ref="typeahead2"
                    v-model="model2"

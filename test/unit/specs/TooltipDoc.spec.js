@@ -1,19 +1,37 @@
 import Vue from 'vue'
 import TooltipDoc from '@/docs/pages/TooltipDoc.vue'
+import i18n from '@/locale-docs'
 
 describe('TooltipDoc', () => {
+  let root
+
+  beforeEach(() => {
+    root = new Vue({
+      i18n,
+      template: '<TooltipDoc ref="doc"/>',
+      components: {TooltipDoc}
+    })
+    root.$i18n.locale = 'en-US'
+  })
+
+  afterEach(() => {
+    try {
+      root.$destroy()
+    } catch (err) {
+      // Silent
+    }
+  })
+
   it('should be able to destroy', () => {
-    const Constructor = Vue.extend(TooltipDoc)
-    const vm = new Constructor().$mount()
+    let vm = root.$mount().$refs.doc
     vm.$destroy()
   })
 
   it('should be able to show tooltip', (done) => {
-    const Constructor = Vue.extend(TooltipDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'focus'
     vm.$nextTick(() => {
       expect(document.querySelectorAll('.tooltip').length).to.equal(0)
@@ -31,11 +49,10 @@ describe('TooltipDoc', () => {
   })
 
   it('should be able to change trigger to manual', (done) => {
-    const Constructor = Vue.extend(TooltipDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'manual'
     vm.open1 = true
     vm.$nextTick(() => {
@@ -50,11 +67,10 @@ describe('TooltipDoc', () => {
   })
 
   it('should be able to change trigger to hover-focus', (done) => {
-    const Constructor = Vue.extend(TooltipDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'hover-focus'
     let button = vm.$el.querySelectorAll('button')[1]
     vm.$nextTick(() => {
@@ -78,11 +94,10 @@ describe('TooltipDoc', () => {
   })
 
   it('should be able to keep tooltip show on hover if using hover trigger', (done) => {
-    const Constructor = Vue.extend(TooltipDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'hover'
     let tooltip = vm.$refs.tooltip
     vm.$nextTick(() => {
@@ -103,11 +118,10 @@ describe('TooltipDoc', () => {
   })
 
   it('should be able to keep tooltip show on hover if using hover-focus trigger', (done) => {
-    const Constructor = Vue.extend(TooltipDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'hover-focus'
     let tooltip = vm.$refs.tooltip
     vm.$nextTick(() => {
@@ -128,11 +142,10 @@ describe('TooltipDoc', () => {
   })
 
   it('should be able to toggle correctly on fast click', (done) => {
-    const Constructor = Vue.extend(TooltipDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'click'
     vm.$nextTick(() => {
       expect(document.querySelectorAll('.tooltip').length).to.equal(0)
@@ -154,11 +167,10 @@ describe('TooltipDoc', () => {
   })
 
   it('should be able to change trigger to click', (done) => {
-    const Constructor = Vue.extend(TooltipDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'click'
     vm.$nextTick(() => {
       expect(document.querySelectorAll('.tooltip').length).to.equal(0)
@@ -176,11 +188,10 @@ describe('TooltipDoc', () => {
   })
 
   it('should be able to change trigger to outside-click', (done) => {
-    const Constructor = Vue.extend(TooltipDoc)
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'outside-click'
     let tooltip = vm.$refs.tooltip
     let button = vm.$el.querySelectorAll('button')[1]
@@ -205,8 +216,7 @@ describe('TooltipDoc', () => {
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const Constructor = Vue.extend(TooltipDoc)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'focus'
     vm.enable = false
     vm.$nextTick(() => {
@@ -224,8 +234,7 @@ describe('TooltipDoc', () => {
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const Constructor = Vue.extend(TooltipDoc)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'focus'
     vm.text = 'test test test'
     vm.$nextTick(() => {
@@ -245,8 +254,7 @@ describe('TooltipDoc', () => {
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const Constructor = Vue.extend(TooltipDoc)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'focus'
     vm.placement = 'top'
     vm.$nextTick(() => {
@@ -267,8 +275,7 @@ describe('TooltipDoc', () => {
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const Constructor = Vue.extend(TooltipDoc)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'focus'
     vm.placement = 'bottom'
     vm.autoPlacement = false
@@ -290,8 +297,7 @@ describe('TooltipDoc', () => {
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const Constructor = Vue.extend(TooltipDoc)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'focus'
     vm.placement = 'left'
     vm.autoPlacement = false
@@ -313,8 +319,7 @@ describe('TooltipDoc', () => {
     let app = document.createElement('div')
     app.id = 'app'
     document.body.appendChild(app)
-    const Constructor = Vue.extend(TooltipDoc)
-    const vm = new Constructor().$mount('#app')
+    let vm = root.$mount('#app').$refs.doc
     vm.trigger = 'focus'
     vm.placement = 'right'
     vm.autoPlacement = false

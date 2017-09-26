@@ -2,7 +2,7 @@
   <section class="container-fluid" id="carousel-doc">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Carousel" source-folder="carousel"></anchor-header>
+        <anchor-header :text="$t('menu.carousel')" source-folder="carousel"></anchor-header>
       </div>
     </div>
     <div class="row">
@@ -18,14 +18,14 @@
         <br/>
         <div class="well">
           <form class="form-inline">
-            <button type="button" class="btn btn-default" @click="indicators=!indicators">Toggle Indicators</button>
-            <button type="button" class="btn btn-default" @click="controls=!controls">Toggle Controls</button>
-            <button type="button" class="btn btn-default" @click="pushSlide">Push Slide</button>
+            <button type="button" class="btn btn-default" @click="indicators=!indicators">{{$t('carousel.toggleIndicators')}}</button>
+            <button type="button" class="btn btn-default" @click="controls=!controls">{{$t('carousel.toggleControls')}}</button>
+            <button type="button" class="btn btn-default" @click="pushSlide">{{$t('carousel.pushSlide')}}</button>
           </form>
           <br/>
           <form class="form-inline">
             <div class="form-group">
-              <label>Interval</label>
+              <label>{{$t('carousel.interval')}}</label>
               <input type="number" class="form-control" placeholder="e.g. 2000" step="1" min="0"
                      v-model.number="interval">
             </div>

@@ -1,11 +1,30 @@
 import Vue from 'vue'
 import AlertDoc from '@/docs/pages/AlertDoc.vue'
 import utils from './../utils'
+import i18n from '@/locale-docs'
 
 describe('AlertDoc', () => {
+  let app
+
+  beforeEach(() => {
+    app = new Vue({
+      i18n,
+      template: '<alert-doc ref="doc"/>',
+      components: {AlertDoc}
+    })
+    app.$i18n.locale = 'en-US'
+  })
+
+  afterEach(() => {
+    try {
+      app.$destroy()
+    } catch (err) {
+      // Silent
+    }
+  })
+
   it('Alert can be closed', (done) => {
-    const Constructor = Vue.extend(AlertDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let alertInfo = vm.$el.querySelector('.alert-info')
       expect(alertInfo).to.exist
@@ -19,8 +38,7 @@ describe('AlertDoc', () => {
   })
 
   it('Can add a Alert', (done) => {
-    const Constructor = Vue.extend(AlertDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.$nextTick(() => {
       let alertSuccess = vm.$el.querySelectorAll('.alert-success')
       let alertSuccessLengthBefore = alertSuccess.length
@@ -36,8 +54,7 @@ describe('AlertDoc', () => {
   })
 
   it('Can add a Alert had duration', (done) => {
-    const Constructor = Vue.extend(AlertDoc)
-    const vm = new Constructor().$mount()
+    let vm = app.$mount().$refs.doc
     vm.duration = 1000
     vm.$nextTick(() => {
       let alertSuccess = vm.$el.querySelectorAll('.alert-success')

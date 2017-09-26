@@ -2,12 +2,12 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        <anchor-header text="Collapse" source-folder="collapse"></anchor-header>
+        <anchor-header :text="$t('menu.collapse')" source-folder="collapse"></anchor-header>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h3 class="page-header">Basic Example</h3>
+        <h3 class="page-header">{{$t('common.basicExample')}}</h3>
         <div>
           <button type="button" class="btn btn-default" @click="showCollapse1=!showCollapse1">Click me!</button>
         </div>
@@ -15,7 +15,7 @@
           <br/>
           <div class="well" style="margin-bottom: 0">Hi there.</div>
         </collapse>
-        <h3 class="page-header">Accordion</h3>
+        <h3 class="page-header">{{$t('collapse.accordion')}}</h3>
         <div class="panel-group">
           <div class="panel panel-default">
             <div class="panel-heading" role="button" @click="toggleAccordion(0)">
@@ -51,7 +51,7 @@
             </collapse>
           </div>
         </div>
-        <h3 class="page-header">Navbar</h3>
+        <h3 class="page-header">{{$t('collapse.navbar')}}</h3>
         <nav class="navbar navbar-default">
           <div class="container-fluid">
             <div class="navbar-header">
@@ -100,13 +100,10 @@
             </collapse>
           </div>
         </nav>
-        <p>Navbar note:</p>
+        <p>{{$t('collapse.navbarNote')}}</p>
         <ul>
-          <li>Change viewport to mobile size to view the collapse part</li>
-          <li>
-            <span>Remember to add <code>class=&quot;navbar-collapse&quot;</code> to the collapse component.</span>
-            <span>View demo source for details.</span>
-          </li>
+          <li v-html="$t('collapse.navbarNote1')"></li>
+          <li v-html="$t('collapse.navbarNote2')"></li>
         </ul>
         <br/>
       </div>
@@ -137,6 +134,7 @@
   import Collapse from '../../components/collapse/Collapse.vue'
   import Dropdown from './../../components/dropdown/Dropdown.vue'
   import hljsMixin from './../mixins/hljsMixin'
+
   export default {
     mixins: [hljsMixin],
     components: {AnchorHeader, DemoCodePanel, Collapse, ApiPanel, Dropdown},

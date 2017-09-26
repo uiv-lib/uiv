@@ -8,9 +8,9 @@ const docLocale = {
     demoSource: '示例源码',
     source: '源码',
     note: '注意',
-    props: '参数',
-    slots: '槽位',
-    events: '事件',
+    props: 'Props',
+    slots: 'Slots',
+    events: 'Events',
     name: '名字',
     type: '类型',
     default: '默认',
@@ -92,6 +92,95 @@ const docLocale = {
     toggleControls: '切换左右控制',
     pushSlide: '增加一页',
     interval: '循环时间'
+  },
+  collapse: {
+    accordion: '手风琴示例',
+    navbar: '导航条',
+    navbarNote: '注意:',
+    navbarNote1: '使用移动设备分辨率来观察可折叠部分。',
+    navbarNote2: '记得给折叠组件加上 <code>class="navbar-collapse"</code>， 详细请看示例代码。'
+  },
+  datePicker: {
+    inlineExample: '行内示例',
+    withDropdown: '下拉示例',
+    showTodayBtn: '显示“今天”按钮',
+    showClearBtn: '显示“清空”按钮',
+    closeOnSelected: '选中后关闭',
+    limitFrom: '限制起始日期',
+    limitTo: '限制结束日期',
+    weekStartsWith: '一周始于',
+    format: '格式化（示例）',
+    formatNote: '一些浏览器（比如 IE）可能无法支持以上的所有格式'
+  },
+  dropdown: {
+    dropdown1: '下拉 1',
+    dropdown2: '下拉 2',
+    splitButton: '分裂式按钮',
+    dropdownAppendToBody: '追加到 Body 的下拉',
+    dropup: '上拉',
+    menuOnRight: '菜单右对齐'
+  },
+  modal: {
+    simple: '简单的模态框与回调',
+    sizes: '不同的尺寸',
+    customize: '自定义模态框头与脚',
+    others: '其它'
+  },
+  pagination: {
+    currentPage: '当前页',
+    size: '尺寸',
+    totalPage: '总页数',
+    maxSize: '最大显示页数',
+    boundaryLinks: '边界按钮',
+    directionLinks: '方向按钮'
+  },
+  popover: {
+    dynamicPopover: '动态弹出框',
+    functionalPopover: '功能性的弹出框',
+    enableOrDisable: '启用或禁用弹出框',
+    autoAdjust: '自动调整位置',
+    title: '标题',
+    placement: '位置',
+    trigger: '触发方式'
+  },
+  progressBar: {
+    label: '提示标签',
+    customLabel: '自定义提示标签',
+    minimumWidth: '最小宽度',
+    differentStyles: '情景样式',
+    striped: '条纹效果',
+    activeStriped: '动画效果',
+    stacked: '堆叠效果'
+  },
+  tabs: {
+    activeTab: '激活标签页',
+    enableOrDisable: '启用或禁用标签页',
+    justifiedStyle: '两端对齐',
+    withSlot: '带有右侧插槽'
+  },
+  timePicker: {
+    setTo: '设为',
+    toggleReadonly: '切换只读',
+    hourStep: '时阶',
+    minuteStep: '分阶',
+    minTime: '最小时间',
+    maxTime: '最大时间'
+  },
+  tooltip: {
+    enableOrDisable: '启用或禁用提示',
+    autoAdjust: '自动调整位置',
+    text: '提示文字（支持 HTML）',
+    placement: '位置',
+    trigger: '触发方式'
+  },
+  typeahead: {
+    staticQueryExample: '静态查询示例',
+    ignoreCase: '忽略大小写',
+    matchStart: '从头匹配',
+    forceSelect: '强制选择',
+    reset: '重置',
+    setTo: '设为',
+    customExample: '异步以及自定义模板示例'
   }
 }
 
