@@ -65,7 +65,7 @@ describe('PopoverDoc', () => {
         expect(document.querySelectorAll('.popover').length).to.equal(0)
         app.remove()
         done()
-      }, 200)
+      }, 500)
     })
   })
 

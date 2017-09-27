@@ -23,6 +23,7 @@ describe('Tabs', () => {
       })
       vm.$mount()
       sinon.assert.called(spy)
+      vm.$destroy()
     } finally {
       window.console.error = _error
     }
