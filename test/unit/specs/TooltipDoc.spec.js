@@ -62,7 +62,7 @@ describe('TooltipDoc', () => {
         expect(document.querySelectorAll('.tooltip').length).to.equal(0)
         app.remove()
         done()
-      }, 200)
+      }, 500)
     })
   })
 

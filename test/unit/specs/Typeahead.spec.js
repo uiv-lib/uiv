@@ -26,6 +26,7 @@ describe('Typeahead', () => {
       vm.$refs.typeahead.inputChanged()
       vm.$nextTick(() => {
         expect(dropdown.className).not.contain('open')
+        vm.$destroy()
         done()
       })
     })

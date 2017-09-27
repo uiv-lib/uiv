@@ -73,13 +73,13 @@
                 </select>
                 <div v-show="trigger === 'manual'">
                   <br/>
-                  <button class="btn btn-default" @click="open1 = !open1">
+                  <button class="btn btn-default" type="button" @click="open1 = !open1">
                     <span>Toggle 1</span>
                   </button>
-                  <button class="btn btn-default" @click="open2 = !open2">
+                  <button class="btn btn-default" type="button" @click="open2 = !open2">
                     <span>Toggle 2</span>
                   </button>
-                  <button class="btn btn-default" @click="open3 = !open3">
+                  <button class="btn btn-default" type="button" @click="open3 = !open3">
                     <span>Toggle 3</span>
                   </button>
                 </div>
@@ -110,6 +110,7 @@
   import Tooltip from '../../components/tooltip/Tooltip.vue'
   import hljsMixin from './../mixins/hljsMixin'
   import ApiPanel from './../architecture/ApiPanel.vue'
+
   export default {
     mixins: [hljsMixin],
     components: {AnchorHeader, DemoCodePanel, Tooltip, ApiPanel},

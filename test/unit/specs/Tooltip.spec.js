@@ -25,6 +25,7 @@ describe('Tooltip', () => {
       vm.$el.querySelector('button').focus()
       setTimeout(() => {
         expect(tag.querySelector('.tooltip')).to.exist
+        vm.$destroy()
         tag.remove()
         app.remove()
         done()
@@ -73,8 +74,8 @@ describe('Tooltip', () => {
     vm.$mount('#app')
     setTimeout(() => {
       expect(document.querySelectorAll('.tooltip').length).to.equal(1)
-      app.remove()
       vm.$destroy()
+      app.remove()
       done()
     }, 200)
   })

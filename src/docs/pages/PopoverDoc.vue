@@ -84,10 +84,10 @@
                 </select>
                 <div v-show="trigger === 'manual'">
                   <br/>
-                  <button class="btn btn-default" @click="open1 = !open1">
+                  <button class="btn btn-default" type="button" @click="open1 = !open1">
                     <span>Toggle Popover 1</span>
                   </button>
-                  <button class="btn btn-default" @click="open2 = !open2">
+                  <button class="btn btn-default" type="button" @click="open2 = !open2">
                     <span>Toggle Popover 2</span>
                   </button>
                 </div>

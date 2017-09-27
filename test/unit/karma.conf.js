@@ -15,6 +15,7 @@ module.exports = function (config) {
     frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage'],
     files: ['./index.js'],
+    singleRun: true,
     preprocessors: {
       './index.js': ['webpack', 'sourcemap']
     },
@@ -25,8 +26,8 @@ module.exports = function (config) {
     coverageReporter: {
       dir: './coverage',
       reporters: [
-        { type: 'lcov', subdir: '.' },
-        { type: 'text-summary' }
+        {type: 'lcov', subdir: '.'},
+        {type: 'text-summary'}
       ]
     }
   })
