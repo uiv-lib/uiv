@@ -52,7 +52,7 @@
     },
     computed: {
       finished () {
-        return (this.value - this.min) / (this.max - this.min) * 100
+        return Math.round((this.value - this.min) / (this.max - this.min) * 100)
       },
       computedClass () {
         return {
