@@ -30,6 +30,7 @@ let appLocale = Object.assign({}, uivLocale, {
           <li>cs-CZ</li>
           <li>en-US</li>
           <li>fr-FR</li>
+          <li>nb-NO</li>
           <li>pt-BR</li>
           <li>zh-CN</li>
         </ul>
