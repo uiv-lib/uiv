@@ -148,28 +148,33 @@ export default {
     let triggerRect = trigger.getBoundingClientRect()
     let popupRect = popup.getBoundingClientRect()
     let viewPortSize = getViewportSize()
-    let available
+    let top = true
+    let right = true
+    let bottom = true
+    let left = true
     switch (placement) {
       case PLACEMENTS.TOP:
-        available = triggerRect.top >= popupRect.height
+        top = triggerRect.top >= popupRect.height
+        left = triggerRect.left + triggerRect.width / 2 >= popupRect.width / 2
+        right = triggerRect.right - triggerRect.width / 2 + popupRect.width / 2 <= viewPortSize.width
         break
-      case PLACEMENTS.RIGHT: {
-        let widthAvailable = triggerRect.right + popupRect.width <= viewPortSize.width
-        let heightAvailable = triggerRect.top + triggerRect.height / 2 >= popupRect.height / 2
-        available = widthAvailable && heightAvailable
-        break
-      }
       case PLACEMENTS.BOTTOM:
-        available = triggerRect.bottom + popupRect.height <= viewPortSize.height
+        bottom = triggerRect.bottom + popupRect.height <= viewPortSize.height
+        left = triggerRect.left + triggerRect.width / 2 >= popupRect.width / 2
+        right = triggerRect.right - triggerRect.width / 2 + popupRect.width / 2 <= viewPortSize.width
         break
-      case PLACEMENTS.LEFT: {
-        let widthAvailable = triggerRect.left - popupRect.width >= 0
-        let heightAvailable = triggerRect.top + triggerRect.height / 2 >= popupRect.height / 2
-        available = widthAvailable && heightAvailable
+      case PLACEMENTS.RIGHT:
+        right = triggerRect.right + popupRect.width <= viewPortSize.width
+        top = triggerRect.top + triggerRect.height / 2 >= popupRect.height / 2
+        bottom = triggerRect.bottom - triggerRect.height / 2 + popupRect.height / 2 <= viewPortSize.height
         break
-      }
+      case PLACEMENTS.LEFT:
+        left = triggerRect.left >= popupRect.width
+        top = triggerRect.top + triggerRect.height / 2 >= popupRect.height / 2
+        bottom = triggerRect.bottom - triggerRect.height / 2 + popupRect.height / 2 <= viewPortSize.height
+        break
     }
-    return available
+    return top && right && bottom && left
   },
   setTooltipPosition (tooltip, trigger, placement, auto, appendToSelector) {
     let container
@@ -187,18 +192,29 @@ export default {
     }
     // auto adjust placement
     if (auto) {
-      let placements = [PLACEMENTS.TOP, PLACEMENTS.RIGHT, PLACEMENTS.BOTTOM, PLACEMENTS.LEFT]
+      // Try: right -> bottom -> left -> top
+      // Cause the default placement is top
+      let placements = [PLACEMENTS.RIGHT, PLACEMENTS.BOTTOM, PLACEMENTS.LEFT, PLACEMENTS.TOP]
+      // The class switch helper function
+      const changePlacementClass = (placement) => {
+        // console.log(placement)
+        placements.forEach(placement => {
+          this.removeClass(tooltip, placement)
+        })
+        this.addClass(tooltip, placement)
+      }
+      // No need to adjust if the default placement fits
       if (!this.isAvailableAtPosition(trigger, tooltip, placement)) {
         for (let i = 0, l = placements.length; i < l; i++) {
-          for (let j = 0; j < l; j++) {
-            this.removeClass(tooltip, placements[j])
-          }
-          this.addClass(tooltip, placements[i])
+          // Re-assign placement class
+          changePlacementClass(placements[i])
+          // Break if new placement fits
           if (this.isAvailableAtPosition(trigger, tooltip, placements[i])) {
             placement = placements[i]
             break
           }
         }
+        changePlacementClass(placement)
       }
     }
     // fix left and top for tooltip

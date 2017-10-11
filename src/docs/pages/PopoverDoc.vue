@@ -162,7 +162,7 @@
             },
             {
               name: 'auto-placement',
-              desc: 'Try to auto adjust the placement if the set one does not have enough space to show. Try order: top -> right -> bottom -> left, and use the set one if none of these matched',
+              desc: 'Try to auto adjust the placement if the set one does not have enough space to show. Try order: right -> bottom -> left -> top, and use the set one if none of these matched',
               type: 'Boolean',
               'default': 'true'
             },
