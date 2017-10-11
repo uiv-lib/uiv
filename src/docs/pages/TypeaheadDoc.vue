@@ -145,13 +145,13 @@
             },
             {
               name: 'ignore-case',
-              desc: 'Ignore input case while matching.',
+              desc: 'Ignore input case while matching. Only work in local data mode.',
               type: 'Boolean',
               'default': 'true'
             },
             {
               name: 'match-start',
-              desc: 'Match from the head of item.',
+              desc: 'Match from the head of item. Only work in local data mode.',
               type: 'Boolean',
               'default': 'false'
             },
