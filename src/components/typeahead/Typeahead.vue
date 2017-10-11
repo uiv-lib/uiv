@@ -133,7 +133,11 @@
       }
     },
     methods: {
-      prepareItems (data) {
+      prepareItems (data, disableFilters = false) {
+        if (disableFilters) {
+          this.items = data.slice(0, this.limit)
+          return
+        }
         this.items = []
         this.activeIndex = 0
         for (let i = 0, l = data.length; i < l; i++) {
@@ -166,7 +170,7 @@
             httpUtils.get(this.asyncSrc + value)
               .then(data => {
                 if (this.inputEl.matches(':focus')) {
-                  this.prepareItems(this.asyncKey ? data[this.asyncKey] : data)
+                  this.prepareItems(this.asyncKey ? data[this.asyncKey] : data, true)
                   this.openDropdown = !!this.items.length
                 }
               })
