@@ -1,4 +1,4 @@
-### OS, browser, uiv version
+### Browser and uiv version
 
 
 ### Which component
