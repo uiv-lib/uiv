@@ -56,7 +56,7 @@
                    :ignore-case="ignoreCase"
                    :match-start="matchStart"
                    :force-select="forceSelect">
-          <template slot="item" scope="props">
+          <template slot="item" slot-scope="props">
             <li v-for="(item, index) in props.items" :class="{active:props.activeIndex===index}">
               <a href="javascript:void(0)" @click="props.select(item)">
                 <img width="22px" height="22px" :src="item.avatar_url + '&s=40'">
@@ -87,7 +87,7 @@
            :force-select=&quot;true&quot;&gt;
   &lt;label class=&quot;control-label&quot;&gt;Github Users&lt;/label&gt;
   &lt;input data-role=&quot;input&quot; class=&quot;form-control&quot; type=&quot;text&quot; placeholder=&quot;Type to search...&quot;&gt;
-  &lt;template slot=&quot;item&quot; scope=&quot;props&quot;&gt;
+  &lt;template slot=&quot;item&quot; slot-scope=&quot;props&quot;&gt;
     &lt;li v-for=&quot;(item, index) in props.items&quot; :class=&quot;{active:props.activeIndex===index}&quot;&gt;
       &lt;a href=&quot;javascript:void(0)&quot; @click=&quot;props.select(item)&quot;&gt;
         &lt;img width=&quot;22px&quot; height=&quot;22px&quot; :src=&quot;item.avatar_url + '&amp;s=40'&quot;&gt;
@@ -204,10 +204,11 @@
             {
               name: 'item',
               desc: `
-<p>Use this slot to override the typeahead template. Note: This should be a scoped slot and use <code>scope="props"</code> as param.</p>
+<p>Use this <b>scoped</b> slot to override the typeahead template.</p>
 <ul>
-  <li><p>The items list will be <code>props.items.</code></p></li>
-  <li><p>The current active item index will be <code>props.activeIndex.</code></p></li>
+  <li><p>Use <code>slot-scope="props"</code> in Vue 2.5+, otherwise <code>scope="props"</code>.</p></li>
+  <li><p>The items list will be <code>props.items</code>.</p></li>
+  <li><p>The current active item index will be <code>props.activeIndex</code>.</p></li>
   <li><p>Use <code>props.select(item)</code> to select item.</code></p></li>
   <li><p>(Optional) Use <code>props.highlight(item)</code> to highlight search keywords in item.</p></li>
 </ul>

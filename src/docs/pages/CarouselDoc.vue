@@ -140,7 +140,7 @@
         this.slides.push({title: `Slide ${this.slides.length + 1}`})
       },
       change (index) {
-        console.log('Slide change to', index)
+        // console.log('Slide change to', index)
       }
     }
   }

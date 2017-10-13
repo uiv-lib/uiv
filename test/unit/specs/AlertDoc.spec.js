@@ -70,7 +70,7 @@ describe('AlertDoc', () => {
           alertSuccessLengthAfter = alertSuccess.length
           expect(alertSuccessLengthAfter).to.equal(alertSuccessLengthBefore)
           done()
-        }, 1000)
+        }, 1200)
       })
     })
   })

@@ -143,7 +143,7 @@
     },
     methods: {
       changePage (index) {
-        console.log('Page is change', index)
+        // console.log('Page is change', index)
       }
     }
   }

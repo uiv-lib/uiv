@@ -125,14 +125,13 @@ describe('TabsDoc', () => {
       window.alert = () => {
         // Silent to remove out logs in terminal
       }
-      try {
-        let spy = sinon.spy(window, 'alert')
-        utils.triggerEvent(vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[6].querySelector('a'), 'click')
+      let spy = sinon.spy(window, 'alert')
+      utils.triggerEvent(vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[6].querySelector('a'), 'click')
+      vm.$nextTick(() => {
         sinon.assert.called(spy)
-      } finally {
         window.alert = _savedAlert
         done()
-      }
+      })
     })
   })
 
