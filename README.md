@@ -26,6 +26,49 @@ All browsers supported by [Vue 2](https://github.com/vuejs/vue) and [Bootstrap 3
 
 To check out live examples and docs, visit [https://uiv.wxsm.space](https://uiv.wxsm.space).
 
+## Install
+
+### ES6 Sample
+
+```javascript
+$ npm install uiv
+
+// Import and register all components once
+import * as uiv from 'uiv'
+Vue.use(uiv)
+
+// Or import respectively
+import { Dropdown } from 'uiv'
+
+new Vue({
+  components: {
+    Dropdown
+  }
+})
+```
+
+### Browser Sample
+
+```html
+<tabs>
+  <tab>...</tab>
+  <tab>...</tab>
+</tabs>
+
+<script src="path/to/vue.min.js"></script>
+<script src="path/to/uiv.min.js"></script>
+
+<!-- No need to install uiv, we already do this for you after script loaded. -->
+
+<script>
+  new Vue({
+    components: {
+      Tabs: uiv.Tabs, Tab: uiv.Tab
+    }
+  })
+</script>
+```
+
 ## Changelog
 
 Detailed changes for each release are documented in the [release notes](https://github.com/wxsms/uiv/releases).
