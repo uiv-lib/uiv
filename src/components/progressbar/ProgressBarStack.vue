@@ -17,7 +17,10 @@
     props: {
       value: {
         type: Number,
-        'default': 0
+        required: true,
+        validator (value) {
+          return value >= 0 && value <= 100
+        }
       },
       label: {
         type: Boolean,
