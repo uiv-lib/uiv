@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import ProgressBarDoc from '@/docs/pages/ProgressBarDoc.vue'
-import i18n from '@/locale-docs'
+import ProgressBarDoc from '@docs/components/pages/ProgressBarDoc.vue'
+import i18n from '@docs/locale'
 
 describe('ProgressBarDoc', () => {
   let root

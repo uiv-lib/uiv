@@ -1,4 +1,4 @@
-import utils from '@/utils/httpUtils.js'
+import utils from '@src/utils/httpUtils.js'
 
 describe('httpUtils', () => {
   let xhr, requests, server

@@ -94,7 +94,7 @@ let webpackConfig = merge(baseWebpackConfig, {
     ]),
     new PrerenderSpaPlugin(
       // (REQUIRED) Absolute path to static root
-      path.join(__dirname, './../docs'),
+      path.join(__dirname, './../dist-docs'),
       // (REQUIRED) List of routes to prerender
       [
         '/', '/install', '/i18n', '/getting-started', '/alert', '/collapse', '/date-picker', '/dropdown',

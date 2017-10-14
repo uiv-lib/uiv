@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Alert from '@/components/alert/Alert.vue'
+import Alert from '@src/components/alert/Alert.vue'
 
 describe('Alert', () => {
   it('Should be able to add alert with no type', (done) => {

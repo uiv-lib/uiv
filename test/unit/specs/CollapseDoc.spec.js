@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import CollapseDoc from '@/docs/pages/CollapseDoc.vue'
-import i18n from '@/locale-docs'
+import CollapseDoc from '@docs/components/pages/CollapseDoc.vue'
+import i18n from '@docs/locale'
 
 describe('CollapseDoc', () => {
   let app

@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import TabsDoc from '@/docs/pages/TabsDoc.vue'
+import TabsDoc from '@docs/components/pages/TabsDoc.vue'
 import utils from '../utils'
-import i18n from '@/locale-docs'
+import i18n from '@docs/locale'
 
 describe('TabsDoc', () => {
   let root

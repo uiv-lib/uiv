@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import TooltipDoc from '@/docs/pages/TooltipDoc.vue'
-import i18n from '@/locale-docs'
+import TooltipDoc from '@docs/components/pages/TooltipDoc.vue'
+import i18n from '@docs/locale'
 
 describe('TooltipDoc', () => {
   let root

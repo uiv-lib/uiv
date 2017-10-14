@@ -13,8 +13,8 @@ module.exports = {
   },
   build: {
     env: require('./prod.env'),
-    index: path.resolve(__dirname, '../docs/index.html'),
-    assetsRoot: path.resolve(__dirname, '../docs'),
+    index: path.resolve(__dirname, '../dist-docs/index.html'),
+    assetsRoot: path.resolve(__dirname, '../dist-docs'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     productionSourceMap: true,

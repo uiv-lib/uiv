@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import CarouselDoc from '@/docs/pages/CarouselDoc.vue'
-import i18n from '@/locale-docs'
+import CarouselDoc from '@docs/components/pages/CarouselDoc.vue'
+import i18n from '@docs/locale'
 
 describe('CarouselDoc', () => {
   let app

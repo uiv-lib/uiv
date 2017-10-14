@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import PaginationDoc from '@/docs/pages/PaginationDoc.vue'
-import i18n from '@/locale-docs'
+import PaginationDoc from '@docs/components/pages/PaginationDoc.vue'
+import i18n from '@docs/locale'
 
 describe('PaginationDoc', () => {
   let app
