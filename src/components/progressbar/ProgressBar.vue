@@ -2,8 +2,6 @@
   <div class="progress">
     <slot>
       <progress-bar-stack
-        :min="min"
-        :max="max"
         v-model="value"
         :label="label"
         :label-text="labelText"
@@ -20,8 +18,6 @@
   export default {
     components: {ProgressBarStack},
     props: {
-      min: Number,
-      max: Number,
       value: Number,
       label: Boolean,
       labelText: String,

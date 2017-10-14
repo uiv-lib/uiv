@@ -64,6 +64,7 @@
   import ProgressBarStack from '../../../src/components/progressbar/ProgressBarStack.vue'
   import hljsMixin from '../../mixins/hljsMixin'
   import ApiPanel from '../architecture/ApiPanel.vue'
+
   export default {
     mixins: [hljsMixin],
     components: {AnchorHeader, DemoCodePanel, ProgressBar, ProgressBarStack, ApiPanel},
@@ -77,21 +78,9 @@
             {
               name: 'v-model',
               required: true,
-              desc: 'Current progress.',
+              desc: 'Current progress (0 ~ 100).',
               type: 'Number',
               'default': ''
-            },
-            {
-              name: 'min',
-              desc: '',
-              type: 'Number',
-              'default': '0'
-            },
-            {
-              name: 'max',
-              desc: '',
-              type: 'Number',
-              'default': '100'
             },
             {
               name: 'label',
