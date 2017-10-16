@@ -9,8 +9,32 @@
     "url": "git+https://github.com/wxsms/uiv.git"
   },
   "keywords": [
-    "Boostrap",
-    "Vue"
+    "Bootstrap",
+    "Bootstrap 3",
+    "Bootstrap for Vue",
+    "SSR",
+    "Web",
+    "Components",
+    "Vue",
+    "VueJS",
+    "Vue2",
+    "WebComponents",
+    "vue-strap",
+    "vuestrap",
+    "CSS",
+    "Alert",
+    "Carousel",
+    "Slider",
+    "Collapse",
+    "Dropdown",
+    "Nav",
+    "Modal",
+    "Navbar",
+    "Pagination",
+    "Popover",
+    "Progress",
+    "Tab",
+    "Tooltip"
   ],
   "license": "MIT",
   "bugs": {
@@ -27,10 +51,11 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "coveralls": "cat test/unit/coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
-  "dependencies": {
+  "peerDependencies": {
     "bootstrap": "^3.3.7",
     "vue": "^2.5.0"
   },
+  "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.22.1",
