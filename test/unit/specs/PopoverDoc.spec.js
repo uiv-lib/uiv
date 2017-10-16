@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import PopoverDoc from '@/docs/pages/PopoverDoc.vue'
-import i18n from '@/locale-docs'
+import PopoverDoc from '@docs/components/pages/PopoverDoc.vue'
+import i18n from '@docs/locale'
 
 describe('PopoverDoc', () => {
   let root

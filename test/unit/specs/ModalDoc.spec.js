@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import Modal from '@/components/modal/Modal.vue'
-import ModalDoc from '@/docs/pages/ModalDoc.vue'
+import Modal from '@src/components/modal/Modal.vue'
+import ModalDoc from '@docs/components/pages/ModalDoc.vue'
 import config from '../utils'
-import i18n from '@/locale-docs'
+import i18n from '@docs/locale'
 
 describe('ModalDoc', () => {
   let app

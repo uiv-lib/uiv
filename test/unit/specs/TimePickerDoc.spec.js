@@ -2,8 +2,8 @@
  * Created by zhengjingchun on 2017/3/28.
  */
 import Vue from 'vue'
-import TimePickerDoc from '@/docs/pages/TimePickerDoc.vue'
-import i18n from '@/locale-docs'
+import TimePickerDoc from '@docs/components/pages/TimePickerDoc.vue'
+import i18n from '@docs/locale'
 
 describe('TimePickerDoc', () => {
   let root

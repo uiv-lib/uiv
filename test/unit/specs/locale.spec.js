@@ -1,4 +1,4 @@
-import * as locale from '@/locale/index'
+import * as locale from '@src/locale/index'
 
 describe('locale', () => {
   it('should fetch correct value for given key', () => {
@@ -8,7 +8,7 @@ describe('locale', () => {
   })
 
   it('should fetch empty value for not exist given key', () => {
-    console.log(locale.t('uiv.datePicker.month13'))
+    expect(locale.t('uiv.datePicker.month13')).not.exist
     expect(locale.t('312.123')).to.equal('')
   })
 })

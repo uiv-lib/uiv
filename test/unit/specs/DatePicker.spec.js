@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import DatePicker from '@/components/datepicker/DatePicker.vue'
-import i18n from '@/locale-docs'
+import DatePicker from '@src/components/datepicker/DatePicker.vue'
+import i18n from '@docs/locale'
 
 describe('DatePicker', () => {
   it('should render correct month and year with given date on init', (done) => {

@@ -1,0 +1,37 @@
+export default {
+  uiv: {
+    datePicker: {
+      clear: 'Nullstill',
+      today: 'I dag',
+      month: 'Måned',
+      month1: 'januar',
+      month2: 'februar',
+      month3: 'mars',
+      month4: 'april',
+      month5: 'mai',
+      month6: 'juni',
+      month7: 'juli',
+      month8: 'august',
+      month9: 'september',
+      month10: 'oktober',
+      month11: 'november',
+      month12: 'desember',
+      year: 'År',
+      week1: 'man',
+      week2: 'tir',
+      week3: 'ons',
+      week4: 'tor',
+      week5: 'fre',
+      week6: 'lør',
+      week7: 'søn'
+    },
+    timePicker: {
+      am: 'AM',
+      pm: 'PM'
+    },
+    modal: {
+      cancel: 'Avbryt',
+      ok: 'OK'
+    }
+  }
+}

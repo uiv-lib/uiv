@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import TabsDoc from '@/docs/pages/TabsDoc.vue'
+import TabsDoc from '@docs/components/pages/TabsDoc.vue'
 import utils from '../utils'
-import i18n from '@/locale-docs'
+import i18n from '@docs/locale'
 
 describe('TabsDoc', () => {
   let root
@@ -125,14 +125,13 @@ describe('TabsDoc', () => {
       window.alert = () => {
         // Silent to remove out logs in terminal
       }
-      try {
-        let spy = sinon.spy(window, 'alert')
-        utils.triggerEvent(vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[6].querySelector('a'), 'click')
+      let spy = sinon.spy(window, 'alert')
+      utils.triggerEvent(vm.$el.querySelector('.nav-tabs').querySelectorAll('li')[6].querySelector('a'), 'click')
+      vm.$nextTick(() => {
         sinon.assert.called(spy)
-      } finally {
         window.alert = _savedAlert
         done()
-      }
+      })
     })
   })
 

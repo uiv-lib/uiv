@@ -1,13 +1,13 @@
 <template>
   <div :class="computedClass"
        role="progressbar"
-       :aria-valuemin="min"
+       aria-valuemin="0"
        :aria-valuenow="value"
-       :aria-valuemax="max"
+       aria-valuemax="100"
        :style="computedStyle">
     <template v-if="label">
       <template v-if="labelText">{{labelText}}</template>
-      <template v-else>{{finished}}%</template>
+      <template v-else>{{value}}%</template>
     </template>
   </div>
 </template>
@@ -15,17 +15,12 @@
 <script>
   export default {
     props: {
-      min: {
-        type: Number,
-        'default': 0
-      },
-      max: {
-        type: Number,
-        'default': 100
-      },
       value: {
         type: Number,
-        'default': 0
+        required: true,
+        validator (value) {
+          return value >= 0 && value <= 100
+        }
       },
       label: {
         type: Boolean,
@@ -51,9 +46,6 @@
       }
     },
     computed: {
-      finished () {
-        return (this.value - this.min) / (this.max - this.min) * 100
-      },
       computedClass () {
         return {
           'progress-bar': true,
@@ -65,7 +57,7 @@
       computedStyle () {
         return {
           minWidth: this.minWidth ? '2em' : null,
-          width: `${this.finished}%`
+          width: `${this.value}%`
         }
       }
     }

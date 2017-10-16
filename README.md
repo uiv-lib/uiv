@@ -10,34 +10,27 @@
 <a href="https://github.com/wxsms/uiv"><img src="https://img.shields.io/github/license/wxsms/uiv.svg" alt="License"></a>
 </p>
 
-## Intro
+## Introduction
 
-Bootstrap 3  components implemented by Vue 2. (SSR Supported)
+Bootstrap 3 components implemented by Vue 2.
 
-:gem: **[Demo & Docs](https://uiv.wxsm.space)**
+* **Lightweight**: ~14KB Gziped, Dependencies only Vue & Bootstrap CSS
+* **SSR** (server-side rendering) supported.
+* ES6 / CommonJS / AMD / Browser supported.
 
-## Dependencies
+#### Browser Compatibility
 
-* **Vue 2** (tested on ^2.2.6)
-* **Bootstrap 3 CSS** (tested on ^3.3.7)
+All browsers supported by [Vue 2](https://github.com/vuejs/vue) and [Bootstrap 3 CSS](https://github.com/twbs/bootstrap) are suppose to be also supported by this lib  (IE8 and below are not supported).
 
-## Supported Browsers
+## Documentation
 
-Components and directives are tested with the following browsers:
-
-* Chrome
-* Firefox
-* Safari
-* Edge
-* IE 9 / 10 / 11
+To check out live examples and docs, visit [https://uiv.wxsm.space](https://uiv.wxsm.space).
 
 ## Install
 
-uiv is using UMD exporter, which means you can use it in both ES6 / CommonJS / AMD / Browser.
-
 ### ES6 Sample
 
-```js
+```javascript
 $ npm install uiv
 
 // Import and register all components once
@@ -75,6 +68,10 @@ new Vue({
   })
 </script>
 ```
+
+## Changelog
+
+Detailed changes for each release are documented in the [release notes](https://github.com/wxsms/uiv/releases).
 
 ## Contribute
 

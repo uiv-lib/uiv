@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import TypeaheadDoc from '@/docs/pages/TypeaheadDoc.vue'
-import i18n from '@/locale-docs'
+import TypeaheadDoc from '@docs/components/pages/TypeaheadDoc.vue'
+import i18n from '@docs/locale'
 
 describe('TypeaheadDoc', () => {
   let xhr, requests, server

@@ -1,9 +1,12 @@
 # Created by .ignore support plugin (hsz.mobi)
 
+.github/
 build/
 config/
 static/
 test/
+docs/
+dist-docs/
 
 .babelrc
 .editorconfig
@@ -12,3 +15,4 @@ test/
 .postcssrc.js
 .travis.yml
 index.html
+.yarnrc

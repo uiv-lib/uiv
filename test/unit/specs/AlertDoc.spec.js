@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import AlertDoc from '@/docs/pages/AlertDoc.vue'
+import AlertDoc from '@docs/components/pages/AlertDoc.vue'
 import utils from './../utils'
-import i18n from '@/locale-docs'
+import i18n from '@docs/locale'
 
 describe('AlertDoc', () => {
   let app
@@ -70,7 +70,7 @@ describe('AlertDoc', () => {
           alertSuccessLengthAfter = alertSuccess.length
           expect(alertSuccessLengthAfter).to.equal(alertSuccessLengthBefore)
           done()
-        }, 1000)
+        }, 1200)
       })
     })
   })

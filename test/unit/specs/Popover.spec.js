@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Popover from '@/components/popover/Popover.vue'
+import Popover from '@src/components/popover/Popover.vue'
 
 describe('Popover', () => {
   it('should be ok if no trigger present', (done) => {

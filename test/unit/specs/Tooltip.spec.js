@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Tooltip from '@/components/tooltip/Tooltip.vue'
+import Tooltip from '@src/components/tooltip/Tooltip.vue'
 
 describe('Tooltip', () => {
   it('should be able to append to custom tags', (done) => {

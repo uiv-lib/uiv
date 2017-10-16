@@ -1,8 +1,6 @@
-const path = require('path')
 const utils = require('./utils')
 const webpack = require('webpack')
 const config = require('../config')
-const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 
 let env = process.env.NODE_ENV === 'testing' ? require('../config/test.env') : config.dist.env

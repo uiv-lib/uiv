@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import Dropdown from '@/components/dropdown/Dropdown.vue'
-import DropdownDoc from '@/docs/pages/DropdownDoc.vue'
+import Dropdown from '@src/components/dropdown/Dropdown.vue'
+import DropdownDoc from '@docs/components/pages/DropdownDoc.vue'
 import utils from './../utils'
-import i18n from '@/locale-docs'
+import i18n from '@docs/locale'
 
 describe('DropdownDoc', () => {
   let app

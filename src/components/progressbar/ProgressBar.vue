@@ -2,8 +2,6 @@
   <div class="progress">
     <slot>
       <progress-bar-stack
-        :min="min"
-        :max="max"
         v-model="value"
         :label="label"
         :label-text="labelText"
@@ -17,18 +15,35 @@
 
 <script>
   import ProgressBarStack from './ProgressBarStack.vue'
+
   export default {
     components: {ProgressBarStack},
     props: {
-      min: Number,
-      max: Number,
-      value: Number,
-      label: Boolean,
-      labelText: String,
-      minWidth: Boolean,
-      type: String,
-      striped: Boolean,
-      active: Boolean
+      value: {
+        type: Number
+      },
+      label: {
+        type: Boolean,
+        'default': false
+      },
+      labelText: {
+        type: String
+      },
+      minWidth: {
+        type: Boolean,
+        'default': false
+      },
+      type: {
+        type: String
+      },
+      striped: {
+        type: Boolean,
+        'default': false
+      },
+      active: {
+        type: Boolean,
+        'default': false
+      }
     }
   }
 </script>

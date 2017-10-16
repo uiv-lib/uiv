@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import DatePickerDoc from '@/docs/pages/DatePickerDoc.vue'
-import i18n from '@/locale-docs'
+import DatePickerDoc from '@docs/components/pages/DatePickerDoc.vue'
+import i18n from '@docs/locale'
 
 describe('DatePickerDoc', () => {
   let app
