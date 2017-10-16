@@ -167,6 +167,24 @@
               name: 'default',
               desc: 'Replace as the collapse body'
             }
+          ],
+          events: [
+            {
+              name: 'show',
+              desc: 'This event fires immediately when the v-model prop is set to true.'
+            },
+            {
+              name: 'shown',
+              desc: 'This event is fired when a collapse element has been made visible to the user (will wait for CSS transitions to complete).'
+            },
+            {
+              name: 'hide',
+              desc: 'This event is fired immediately when the v-model prop is set to false.'
+            },
+            {
+              name: 'hidden',
+              desc: 'This event is fired when a collapse element has been hidden from the user (will wait for CSS transitions to complete).'
+            }
           ]
         },
         showCollapse1: false,
