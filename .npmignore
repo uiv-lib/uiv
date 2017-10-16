@@ -16,3 +16,4 @@ dist-docs/
 .travis.yml
 index.html
 .yarnrc
+yarn.lock
