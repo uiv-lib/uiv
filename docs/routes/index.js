@@ -1,5 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import NProgress from 'nprogress'
+
+NProgress.configure({
+  showSpinner: false,
+  trickleSpeed: 250,
+  minimum: 0.15
+})
 
 Vue.use(VueRouter)
 
@@ -8,7 +15,7 @@ const routes = [
   {path: '/install', component: require('./../components/pages/Install.vue')},
   {path: '/i18n', component: require('./../components/pages/I18n.vue')},
   {path: '/getting-started', component: require('./../components/pages/GettingStarted.vue')},
-  {path: '/alert', component: require('./../pages/components/Alert.md')},
+  {path: '/alert', component: () => import('./../pages/components/Alert.md')},
   {path: '/carousel', component: require('./../components/pages/CarouselDoc.vue')},
   {path: '/collapse', component: require('./../components/pages/CollapseDoc.vue')},
   {path: '/date-picker', component: require('./../components/pages/DatePickerDoc.vue')},
@@ -39,8 +46,15 @@ const router = new VueRouter({
   }
 })
 
+router.beforeEach((to, from, next) => {
+  // Start progressbar
+  NProgress.start()
+  next()
+})
+
 router.afterEach(route => {
-  // TODO
+  // Finish progress
+  NProgress.done()
 })
 
 export default router

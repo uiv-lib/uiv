@@ -15,6 +15,22 @@
 <style lang="less" rel="stylesheet/less">
   .markdown-wrapper {
 
+    h1, h2, h3, h4, h5, h6 {
+      position: relative;
+
+      .header-anchor {
+        font-size: 80%;
+        display: none;
+        text-decoration: none !important;
+      }
+
+      &:hover {
+        .header-anchor {
+          display: inline;
+        }
+      }
+    }
+
     // Add `page-header` style
     h1 {
       padding-bottom: 9px;

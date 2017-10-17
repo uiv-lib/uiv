@@ -94,11 +94,6 @@
 <style lang="less" rel="stylesheet/less" scoped>
   @import "../../assets/css/variables";
 
-  .search-box-placeholder-mixin {
-    color: #CFD8DC;
-    font-size: 12px
-  }
-
   aside {
     position: fixed;
     left: 0;
@@ -108,7 +103,7 @@
     flex-shrink: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    z-index: 5;
+    // z-index: 5;
     background: @aside-bg;
     box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
 

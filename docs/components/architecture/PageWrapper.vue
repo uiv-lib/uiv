@@ -31,6 +31,8 @@
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
+  @import "./../../assets/css/variables";
+
   #app {
     max-width: 100%;
     overflow: hidden;

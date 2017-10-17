@@ -55,7 +55,17 @@ module.exports = {
           wrapper: 'markdown-wrapper',
           preprocess: function (markdownIt, source) {
             return utils.assembleMarkdownDemo(source)
-          }
+          },
+          use: [
+            /* markdown-it plugins */
+            [
+              require('markdown-it-anchor'),
+              {
+                permalink: true,
+                permalinkSymbol: '&#128279;'
+              }
+            ]
+          ]
         },
         include: [resolve('docs')]
       },

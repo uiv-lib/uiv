@@ -1,7 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'highlight.js/styles/github-gist.css'
+import './assets/css/vender.less'
 import './assets/css/common.less'
 
 import Vue from 'vue'

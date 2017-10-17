@@ -53,7 +53,7 @@
   @media (max-width: @screen-xs-max) {
     .page {
       margin-left: 0;
-      margin-top: 50px;
+      margin-top: 0;
     }
   }
 </style>

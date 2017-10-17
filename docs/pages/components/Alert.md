@@ -12,7 +12,7 @@ Wrap any text or HTML in `<alert>` and use one of the four alert types (`success
 <alert type="warning"><b>Warning!</b> Better check yourself, you're not looking too good.</alert>
 <alert type="danger"><b>Oh snap!</b> Change this and that and try again.</alert>
 
-<!-- Demo Code -->
+<!-- Live demo -->
 ```
 
 ## Dismissible Alerts
@@ -62,7 +62,7 @@ Wrap any text or HTML in `<alert>` and use one of the four alert types (`success
   }
 </script>
 
-<!-- Demo Code -->
+<!-- Live demo -->
 ```
 
 ## Use with Collapse
@@ -88,7 +88,7 @@ Wrap any text or HTML in `<alert>` and use one of the four alert types (`success
   }
 </script>
 
-<!-- Demo Code -->
+<!-- Live demo -->
 ```
 
 # Component Reference
@@ -165,6 +165,7 @@ Wrap any text or HTML in `<alert>` and use one of the four alert types (`success
   </table>
 </div>
 
+<!-- Live demo script
 <script>
   export default {
     data () {
@@ -187,3 +188,4 @@ Wrap any text or HTML in `<alert>` and use one of the four alert types (`success
     }
   }
 </script>
+-->
