@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import CollapseDoc from '@docs/components/pages/CollapseDoc.vue'
+import CollapseDoc from '@docs/pages/components/Collapse.md'
 import i18n from '@docs/locale'
 
-describe('CollapseDoc', () => {
+describe('Collapse', () => {
   let app
 
   beforeEach(() => {

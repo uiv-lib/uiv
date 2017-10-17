@@ -14,7 +14,7 @@ const routes = [
   {path: '/getting-started', component: require('./../components/pages/GettingStarted.vue')},
   {path: '/alert', component: () => import('./../pages/components/Alert.md')},
   {path: '/carousel', component: () => import('./../pages/components/Carousel.md')},
-  {path: '/collapse', component: require('./../components/pages/CollapseDoc.vue')},
+  {path: '/collapse', component: () => import('./../pages/components/Collapse.md')},
   {path: '/date-picker', component: require('./../components/pages/DatePickerDoc.vue')},
   {path: '/dropdown', component: require('./../components/pages/DropdownDoc.vue')},
   {path: '/modal', component: require('./../components/pages/ModalDoc.vue')},
