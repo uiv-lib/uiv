@@ -4,6 +4,7 @@ import './assets/css/vender.less'
 import './assets/css/common.less'
 
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import i18n from './locale'
 import router from './routes'
 import PageWrapper from './components/architecture/PageWrapper.vue'
@@ -12,17 +13,15 @@ import * as uiv from './../src/components/index'
 
 Vue.config.productionTip = false
 
+Vue.use(VueRouter)
 Vue.use(uiv)
 Vue.component('MarkdownWrapper', MarkdownWrapper)
 
-/* eslint-disable no-new */
-let app = new Vue({
-  router,
-  i18n,
-  template: '<PageWrapper/>',
-  components: {PageWrapper}
-})
-
 document.addEventListener('DOMContentLoaded', () => {
-  app.$mount('#app')
+  new Vue({
+    router,
+    i18n,
+    template: '<PageWrapper/>',
+    components: {PageWrapper}
+  }).$mount('#app')
 })

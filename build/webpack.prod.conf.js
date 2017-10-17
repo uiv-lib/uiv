@@ -100,7 +100,12 @@ let webpackConfig = merge(baseWebpackConfig, {
         '/', '/install', '/i18n', '/getting-started', '/alert', '/collapse', '/date-picker', '/dropdown',
         '/modal', '/pagination', '/popover', '/progress-bar', '/tabs', '/time-picker',
         '/tooltip', '/typeahead', '/carousel'
-      ]
+      ],
+      {
+        maxAttempts: 5,
+        navigationLocked: true,
+        captureAfterTime: 1000
+      }
     )
   ]
 })

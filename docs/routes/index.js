@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import VueRouter from 'vue-router'
 import NProgress from 'nprogress'
 
@@ -7,8 +6,6 @@ NProgress.configure({
   trickleSpeed: 250,
   minimum: 0.15
 })
-
-Vue.use(VueRouter)
 
 const routes = [
   {path: '/', component: require('./../components/pages/Home.vue')},
