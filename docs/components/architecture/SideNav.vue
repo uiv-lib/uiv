@@ -7,7 +7,7 @@
           <img class="bootstrap-logo" src="../../assets/img/b-logo.png">
         </router-link>
       </div>
-      <h2 @click="toggleAside(false)" class="text-center">
+      <h2 class="site-name text-center" @click="toggleAside(false)">
         <router-link to="/" exact>uiv</router-link>
       </h2>
       <br/>
@@ -111,6 +111,17 @@
     z-index: 5;
     background: @aside-bg;
     box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
+
+    .site-name {
+      a {
+        color: @site-color;
+
+        &:hover, &:focus, &:active {
+          color: @site-color;
+          text-decoration: none;
+        }
+      }
+    }
 
     .brand {
       padding: 20px 15px;

@@ -1,7 +1,7 @@
 @import "variables";
 
 body, html {
-  max-width: 100vw;
+  max-width: 100%;
 }
 
 #app {
@@ -46,58 +46,22 @@ body, html {
   }
 }
 
-pre {
-  background-color: #fff !important;
-}
-
 .nav-pills > li > a {
   border-radius: 0;
 }
 
-h1, .h1 {
-  font-size: 36px
-}
+pre {
+  padding: 0;
+  border-color: #ddd;
 
-h2, .h2 {
-  font-size: 30px
-}
-
-h3, .h3 {
-  font-size: 24px
-}
-
-h4, .h4 {
-  font-size: 18px
-}
-
-h5, .h5 {
-  font-size: 14px
-}
-
-h6, .h6 {
-  font-size: 12px
-}
-
-h1, h2, h3, h4, h5, h6 {
-  a {
-    color: @site-color;
-
-    &:hover, &:focus, &:active {
-      color: @site-color;
-      text-decoration: none;
-    }
-  }
-}
-
-.icon-spin {
-  animation: spinIt 1.5s infinite linear;
-}
-
-@keyframes spinIt {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(359deg);
+  code {
+    white-space: pre;
+    word-wrap: normal;
+    display: block;
+    overflow-x: auto;
+    border-radius: 0;
+    border: none;
+    padding: 12px !important;
+    background-color: transparent !important;
   }
 }

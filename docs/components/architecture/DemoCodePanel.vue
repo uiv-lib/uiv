@@ -24,6 +24,10 @@
   .panel {
     pre {
       border: none;
+      margin: 0;
+    }
+
+    .panel-body {
       padding: 0;
     }
   }

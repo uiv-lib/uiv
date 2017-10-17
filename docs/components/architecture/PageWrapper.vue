@@ -32,7 +32,7 @@
 
 <style lang="less" rel="stylesheet/less" scoped>
   #app {
-    max-width: 100vw;
+    max-width: 100%;
     overflow: hidden;
   }
 </style>

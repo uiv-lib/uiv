@@ -8,7 +8,7 @@ const routes = [
   {path: '/install', component: require('./../components/pages/Install.vue')},
   {path: '/i18n', component: require('./../components/pages/I18n.vue')},
   {path: '/getting-started', component: require('./../components/pages/GettingStarted.vue')},
-  {path: '/alert', component: require('./../components/pages/AlertDoc.vue')},
+  {path: '/alert', component: require('./../pages/components/Alert.md')},
   {path: '/carousel', component: require('./../components/pages/CarouselDoc.vue')},
   {path: '/collapse', component: require('./../components/pages/CollapseDoc.vue')},
   {path: '/date-picker', component: require('./../components/pages/DatePickerDoc.vue')},
@@ -25,11 +25,22 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        selector: to.hash
+      }
+    } else if (savedPosition) {
+      return savedPosition
+    } else {
+      return {x: 0, y: 0}
+    }
+  }
 })
 
 router.afterEach(route => {
-  window.scrollTo(0, 0)
+  // TODO
 })
 
 export default router

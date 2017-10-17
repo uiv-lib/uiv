@@ -4,7 +4,7 @@ import AlertDoc from '@docs/pages/components/Alert.md'
 import utils from './../utils'
 import i18n from '@docs/locale'
 
-describe('AlertDoc', () => {
+describe('Alert', () => {
   let app
 
   beforeEach(() => {

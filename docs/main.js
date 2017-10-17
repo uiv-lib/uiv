@@ -8,12 +8,13 @@ import Vue from 'vue'
 import i18n from './locale'
 import router from './routes'
 import PageWrapper from './components/architecture/PageWrapper.vue'
+import MarkdownWrapper from './components/architecture/MarkdownWrapper.vue'
 import * as uiv from './../src/components/index'
 
 Vue.config.productionTip = false
 
 Vue.use(uiv)
-Vue.component('PageWrapper', PageWrapper)
+Vue.component('MarkdownWrapper', MarkdownWrapper)
 
 /* eslint-disable no-new */
 let app = new Vue({

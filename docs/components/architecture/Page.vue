@@ -14,11 +14,6 @@
 
   export default {
     components: {Navbar, PageFooter},
-    methods: {
-      scrollTop () {
-        window.scrollTo(0, 0)
-      }
-    },
     computed: {
       pageClassFix () {
         switch (this.$route.path) {
