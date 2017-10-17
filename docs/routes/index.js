@@ -13,7 +13,7 @@ const routes = [
   {path: '/i18n', component: require('./../components/pages/I18n.vue')},
   {path: '/getting-started', component: require('./../components/pages/GettingStarted.vue')},
   {path: '/alert', component: () => import('./../pages/components/Alert.md')},
-  {path: '/carousel', component: require('./../components/pages/CarouselDoc.vue')},
+  {path: '/carousel', component: () => import('./../pages/components/Carousel.md')},
   {path: '/collapse', component: require('./../components/pages/CollapseDoc.vue')},
   {path: '/date-picker', component: require('./../components/pages/DatePickerDoc.vue')},
   {path: '/dropdown', component: require('./../components/pages/DropdownDoc.vue')},

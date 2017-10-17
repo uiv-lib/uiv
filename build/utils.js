@@ -75,10 +75,12 @@ exports.assembleMarkdownDemo = (source) => {
   const NEW_LINE = '\r\n'
   const DEMO_CODE_REGEX = /<!-- Live demo -->/
   const DEMO_SCRIPT_REGEX = /<!-- Live demo script([\S\s]+?)-->/
+  const DEMO_CSS_REGEX = /<style>([\S\s]+?)<\/style>/
   const PRE_REGEX = /```([\S\s]+?)```/igm
   const TEMPLATE_REGEX = /<template>([\s\S]*)<\/template>/
   let matches = []
   let match = null
+  let stylesheets = []
   let result = source
   // Find demo code blocks
   do {
@@ -88,25 +90,37 @@ exports.assembleMarkdownDemo = (source) => {
     }
   } while (match)
   // Loop code blocks for operations
-  for (let i = matches.length - 1; i >= 0; i--) {
-    let match = matches[i]
+  matches.forEach(match => {
     // Fetch template string in code block
     let template = TEMPLATE_REGEX.exec(match[0])
-    if (template !== null) {
+    if (template) {
       template = template[0]
     } else {
       template = match[0]
         .replace(/```([\S\s]+?)[\n\r]/, '')
         .replace(/```/, '')
     }
+    // Fetch stylesheets in code block
+    let style = DEMO_CSS_REGEX.exec(match[0])
+    if (style) {
+      stylesheets.push(style[1])
+    }
     // Insert real template before it's <pre> tag
     // IMPORTANT: This assumes that every code block is unique in a single markdown file
     result = result.replace(match[0], '<div class="markdown-live-example">' + template + '</div>' + NEW_LINE + NEW_LINE + match[0])
-  }
+  })
   // Uncomment live demo script
   let demoScript = DEMO_SCRIPT_REGEX.exec(result)
   if (demoScript) {
     result = result.replace(demoScript[0], demoScript[1])
+  }
+  // Assemble stylesheet
+  if (stylesheets.length) {
+    result += NEW_LINE + NEW_LINE + '<style>'
+    stylesheets.forEach(style => {
+      result += NEW_LINE + NEW_LINE + style + NEW_LINE + NEW_LINE
+    })
+    result += '</style>' + NEW_LINE + NEW_LINE
   }
   // console.log('-------------\n', result)
   return result
