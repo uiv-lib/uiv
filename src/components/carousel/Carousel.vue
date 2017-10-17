@@ -128,13 +128,14 @@
         this.slides[index].slideClass.active = true
       },
       select (index) {
-        if (this.timeoutId === 0) {
-          if (typeof this.value !== 'undefined') {
-            this.$emit('input', index)
-          } else {
-            this.run(index, this.activeIndex)
-            this.activeIndex = index
-          }
+        if (this.timeoutId !== 0 || index === this.activeIndex) {
+          return
+        }
+        if (typeof this.value !== 'undefined') {
+          this.$emit('input', index)
+        } else {
+          this.run(index, this.activeIndex)
+          this.activeIndex = index
         }
       },
       prev () {
