@@ -12,7 +12,7 @@
     props: {
       closable: {
         type: Boolean,
-        'default': true
+        'default': false
       },
       duration: {
         type: Number,
