@@ -3,8 +3,7 @@
     <div class="brand">
       <div @click="toggleAside(false)" class="logo">
         <router-link to="/" exact>
-          <img class="vue-logo" src="../../assets/img/v-logo.png">
-          <img class="bootstrap-logo" src="../../assets/img/b-logo.png">
+          <logo></logo>
         </router-link>
       </div>
     </div>
@@ -20,7 +19,7 @@
               </li>
               <li role="presentation" v-for="_item in item.items" @click="toggleAside(false)">
                 <router-link :to="_item.path" role="button" class="sub-list">
-                  {{_item.label}}
+                  {{_item.meta.label}}
                 </router-link>
               </li>
             </template>
@@ -37,40 +36,18 @@
 </template>
 
 <script>
-  import { bus, events } from '../../bus'
+  import {bus, events} from '../../bus'
+  import Logo from './Logo.vue'
+  import routes from '../../router/routes'
 
   export default {
-    components: {},
+    components: {Logo},
     props: ['isAsideShow'],
     data () {
       return {
         asideItems: [
-          {
-            label: 'Usage',
-            items: [
-              {path: '/getting-started', label: 'Getting Started'},
-              {path: '/i18n', label: 'I18n'}
-            ]
-          },
-          {
-            label: 'Components',
-            items: [
-              {path: '/affix', label: 'Affix'},
-              {path: '/alert', label: 'Alert'},
-              {path: '/carousel', label: 'Carousel'},
-              {path: '/collapse', label: 'Collapse'},
-              {path: '/date-picker', label: 'Date Picker'},
-              {path: '/dropdown', label: 'Dropdown'},
-              {path: '/modal', label: 'Modal'},
-              {path: '/pagination', label: 'Pagination'},
-              {path: '/popover', label: 'Popover'},
-              {path: '/progress-bar', label: 'Progress Bar'},
-              {path: '/tabs', label: 'Tabs'},
-              {path: '/time-picker', label: 'Time Picker'},
-              {path: '/tooltip', label: 'Tooltip'},
-              {path: '/typeahead', label: 'Typeahead'}
-            ]
-          }
+          {label: 'Usage', items: routes.filter(v => v.meta && v.meta.type === 'usage')},
+          {label: 'Components', items: routes.filter(v => v.meta && v.meta.type === 'component')}
         ]
       }
     },
@@ -91,10 +68,8 @@
     top: 0;
     width: @side-nav-width;
     height: 100vh;
-    flex-shrink: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    // z-index: 5;
     background: @aside-bg;
     box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
 
@@ -126,21 +101,6 @@
           display: block;
           width: 100%;
           height: 100%;
-        }
-
-        .vue-logo {
-          position: absolute;
-          height: 100px;
-          top: 0;
-          left: 20%;
-        }
-
-        .bootstrap-logo {
-          position: absolute;
-          height: 60px;
-          top: 20px;
-          left: 50%;
-          opacity: .8;
         }
       }
     }

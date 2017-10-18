@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="pageClassFix">
     <backdrop :is-aside-show="isAsideShow"></backdrop>
     <side-nav :is-aside-show="isAsideShow"></side-nav>
     <page></page>
@@ -16,6 +16,16 @@
     data () {
       return {
         isAsideShow: false
+      }
+    },
+    computed: {
+      pageClassFix () {
+        switch (this.$route.path) {
+          case '/':
+            return 'home'
+          default:
+            return ''
+        }
       }
     },
     mounted () {

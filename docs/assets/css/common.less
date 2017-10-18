@@ -5,16 +5,30 @@ body, html {
 }
 
 #app {
-  display: flex;
-}
 
-.page {
-
-  &.page-home {
+  &.home {
     background: @home-bg-gradient-to;
     background: -webkit-linear-gradient(to bottom, @home-bg-gradient-from, @home-bg-gradient-to);
     background: linear-gradient(to bottom, @home-bg-gradient-from, @home-bg-gradient-to);
     color: #fff;
+
+    > aside {
+      display: none;
+    }
+
+    .page {
+      margin-left: 0;
+      width: 100%;
+      max-width: 100%;
+
+      .page-body {
+        padding-bottom: 0;
+      }
+
+      .navbar-toggle {
+        display: none;
+      }
+    }
 
     .page-footer {
       background: transparent;

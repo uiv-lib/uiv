@@ -14,26 +14,7 @@ const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : config.build.env
 
-let staticPaths = [
-  '/',
-  '/install',
-  '/i18n',
-  '/getting-started',
-  '/affix',
-  '/alert',
-  '/collapse',
-  '/date-picker',
-  '/dropdown',
-  '/modal',
-  '/pagination',
-  '/popover',
-  '/progress-bar',
-  '/tabs',
-  '/time-picker',
-  '/tooltip',
-  '/typeahead',
-  '/carousel'
-]
+let staticPaths = utils.getDocumentRoutes()
 let processProgress = 0
 
 let webpackConfig = merge(baseWebpackConfig, {

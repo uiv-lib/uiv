@@ -1,7 +1,8 @@
 <template>
   <section>
-    <div class="jumbotron text-center">
-      <h1>uiv</h1>
+    <div class="jumbotron">
+      <logo :scale="1.5"></logo>
+      <br/>
       <br/>
       <p>
         <a href="https://travis-ci.org/wxsms/uiv">
@@ -20,7 +21,7 @@
           <img src="https://img.shields.io/github/license/wxsms/uiv.svg" alt="License">
         </a>
       </p>
-      <br/>
+      <h1 class="page-header">uiv</h1>
       <h3><b>Bootstrap 3</b> Components implemented by <b>Vue 2</b>.</h3>
       <br/>
       <div>
@@ -32,34 +33,42 @@
 </template>
 
 <script>
+  import Logo from './architecture/Logo.vue'
 
   export default {
-    components: {}
+    components: {Logo}
   }
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
   @import "../assets/css/variables";
 
-  .jumbotron {
-    background: transparent;
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 
-    .btn {
+    .jumbotron {
       background: transparent;
-      color: #fff;
-      transition: all .3s ease-in-out;
-      border: 1px solid #fff;
-      margin-right: 10px;
 
-      &:visited, &:focus, &:active {
+      .btn {
+        background: transparent;
         color: #fff;
+        transition: all .3s ease-in-out;
         border: 1px solid #fff;
-      }
+        margin-right: 10px;
 
-      &:hover {
-        background: #fff;
-        color: #333;
-        border: 1px solid #fff;
+        &:visited, &:focus, &:active {
+          color: #fff;
+          border: 1px solid #fff;
+        }
+
+        &:hover {
+          background: #fff;
+          color: #333;
+          border: 1px solid #fff;
+        }
       }
     }
   }

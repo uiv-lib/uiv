@@ -1,6 +1,7 @@
 const path = require('path')
 const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const babel = require('babel-core')
 
 exports.assetsPath = function (_path) {
   let assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -124,4 +125,15 @@ exports.assembleMarkdownDemo = (source) => {
   }
   // console.log('-------------\n', result)
   return result
+}
+
+// Get routes array from /docs/router/routes.js
+exports.getDocumentRoutes = () => {
+  let routesCode = babel.transformFileSync(path.join(__dirname, '../docs/router/routes.js')).code
+  routesCode = routesCode
+    .replace(/import\('[\S\s].*?'\)/ig, 'null')
+    .replace(/export default[\S\s].*?;/, '')
+  var routes = []
+  eval(routesCode)
+  return routes.map(v => v.path)
 }

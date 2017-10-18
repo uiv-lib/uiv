@@ -1,5 +1,5 @@
 <template>
-  <section class="page" :class="pageClassFix">
+  <section class="page">
     <div class="page-body">
       <navbar></navbar>
       <router-view :key="$route.path"></router-view>
@@ -13,17 +13,7 @@
   import PageFooter from './PageFooter.vue'
 
   export default {
-    components: {Navbar, PageFooter},
-    computed: {
-      pageClassFix () {
-        switch (this.$route.path) {
-          case '/':
-            return 'page-home'
-          default:
-            return ''
-        }
-      }
-    }
+    components: {Navbar, PageFooter}
   }
 </script>
 
@@ -31,7 +21,6 @@
   @import "../../assets/css/variables";
 
   .page {
-    flex-grow: 1;
     max-width: ~"calc(100% - @{side-nav-width})";
     width: ~"calc(100% - @{side-nav-width})"; // IE need this
     margin-left: @side-nav-width;
@@ -49,12 +38,6 @@
     .page-body {
       flex: 1 0 auto;
       padding-bottom: 50px;
-    }
-
-    &.page-home {
-      .page-body {
-        padding-bottom: 0;
-      }
     }
   }
 </style>
