@@ -9,17 +9,6 @@ body, html {
 }
 
 .page {
-  .container-fluid {
-    max-width: 860px;
-    margin: 0 50px;
-  }
-
-  .navbar {
-    .container-fluid {
-      max-width: 100%;
-      margin: 0;
-    }
-  }
 
   &.page-home {
     background: @home-bg-gradient-to;
@@ -43,14 +32,6 @@ body, html {
   }
 }
 
-@media (max-width: @screen-xs-max) {
-  .page {
-    .container-fluid {
-      margin: 0;
-    }
-  }
-}
-
 .nav-pills > li > a {
   border-radius: 0;
 }
@@ -68,5 +49,59 @@ pre {
     border: none;
     padding: 12px !important;
     background-color: transparent !important;
+  }
+}
+
+.container-markdown {
+
+  h1, h2, h3, h4, h5, h6 {
+    position: relative;
+
+    .header-anchor {
+      font-size: 80%;
+      display: none;
+      text-decoration: none !important;
+    }
+
+    &:hover {
+      .header-anchor {
+        display: inline;
+      }
+    }
+  }
+
+  // Add `page-header` style
+  h1, h2 {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .markdown-live-example {
+    margin-right: 0;
+    margin-left: 0;
+    background-color: #fff;
+    border: #ddd 1px solid;
+    border-radius: 4px 4px 0 0;
+    box-shadow: none;
+    padding: 45px 15px 15px;
+    position: relative;
+
+    &:after {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #959595;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      content: "Example";
+    }
+
+    + pre {
+      border-radius: 0 0 4px 4px;
+      border-top: none;
+    }
   }
 }

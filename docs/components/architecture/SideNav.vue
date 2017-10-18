@@ -55,6 +55,7 @@
           {
             label: 'Components',
             items: [
+              {path: '/affix', label: 'Affix'},
               {path: '/alert', label: 'Alert'},
               {path: '/carousel', label: 'Carousel'},
               {path: '/collapse', label: 'Collapse'},

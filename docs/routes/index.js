@@ -11,6 +11,7 @@ const routes = [
   {path: '/', component: () => import('./../components/Home.vue')},
   {path: '/i18n', component: () => import('./../pages/usage/I18n.md')},
   {path: '/getting-started', component: () => import('./../pages/usage/GettingStarted.md')},
+  {path: '/affix', component: () => import('./../pages/components/Affix.md')},
   {path: '/alert', component: () => import('./../pages/components/Alert.md')},
   {path: '/carousel', component: () => import('./../pages/components/Carousel.md')},
   {path: '/collapse', component: () => import('./../pages/components/Collapse.md')},

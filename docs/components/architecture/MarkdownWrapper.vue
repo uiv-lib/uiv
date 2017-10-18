@@ -1,69 +1,66 @@
 <template>
-  <div class="container-fluid markdown-wrapper">
+  <section>
     <div class="row">
-      <div class="col-xs-12">
-        <slot></slot>
+      <div class="col-xs-12 col-sm-12 col-md-10">
+        <div class="container container-markdown">
+          <div class="row">
+            <div class="col-xs-12" ref="markdown">
+              <slot></slot>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 hidden-xs hidden-sm">
+        <affix :offset="30">
+          <toc :anchors="anchors"></toc>
+        </affix>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
-  export default {}
-</script>
+  import Toc from './Toc.vue'
 
-<style lang="less" rel="stylesheet/less">
-  .markdown-wrapper {
-
-    h1, h2, h3, h4, h5, h6 {
-      position: relative;
-
-      .header-anchor {
-        font-size: 80%;
-        display: none;
-        text-decoration: none !important;
-      }
-
-      &:hover {
-        .header-anchor {
-          display: inline;
-        }
-      }
+  const getAnchors = (element) => {
+    let anchors = []
+    if (document) {
+      let headings = element.querySelectorAll(`h1,h2`)
+      // Filter those have no id present
+      headings
+        .forEach(h => {
+          if (!h.id) {
+            return
+          }
+          let t = {
+            level: parseInt(h.tagName.substr(1, 1)),
+            href: `#${h.id}`,
+            label: h.innerText,
+            items: []
+          }
+          if (t.level === 1) {
+            anchors.push(t)
+          } else if (anchors.length) {
+            anchors[anchors.length - 1].items.push(t)
+          }
+        })
     }
+    return anchors
+  }
 
-    // Add `page-header` style
-    h1, h2 {
-      padding-bottom: 9px;
-      margin: 40px 0 20px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .markdown-live-example {
-      margin-right: 0;
-      margin-left: 0;
-      background-color: #fff;
-      border: #ddd 1px solid;
-      border-radius: 4px 4px 0 0;
-      box-shadow: none;
-      padding: 45px 15px 15px;
-      position: relative;
-
-      &:after {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        font-size: 12px;
-        font-weight: 700;
-        color: #959595;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        content: "Example";
+  export default {
+    components: {Toc},
+    data () {
+      return {
+        anchors: []
       }
-
-      + pre {
-        border-radius: 0 0 4px 4px;
-        border-top: none;
-      }
+    },
+    mounted () {
+      this.anchors = getAnchors(this.$refs.markdown)
     }
   }
+</script>
+
+<style lang="less" rel="stylesheet/less" scoped>
+
 </style>

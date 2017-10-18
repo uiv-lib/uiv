@@ -52,7 +52,7 @@ To ensure that the label text remains legible even for low percentages, consider
 <!-- Live demo -->
 ```
 
-## Contextual alternatives
+## Contextual Alternatives
 
 Progress bars use some of the same button and alert classes for consistent styles.
 

@@ -32,11 +32,19 @@
 
   .page {
     flex-grow: 1;
-    max-width: 100%;
+    max-width: ~"calc(100% - @{side-nav-width})";
+    width: ~"calc(100% - @{side-nav-width})"; // IE need this
     margin-left: @side-nav-width;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: @screen-xs-max) {
+      max-width: 100%;
+      width: 100%; // IE need this
+      margin-left: 0;
+      margin-top: 0;
+    }
 
     .page-body {
       flex: 1 0 auto;
@@ -47,13 +55,6 @@
       .page-body {
         padding-bottom: 0;
       }
-    }
-  }
-
-  @media (max-width: @screen-xs-max) {
-    .page {
-      margin-left: 0;
-      margin-top: 0;
     }
   }
 </style>

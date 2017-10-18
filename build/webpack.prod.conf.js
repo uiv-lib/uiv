@@ -15,9 +15,24 @@ const env = process.env.NODE_ENV === 'testing'
   : config.build.env
 
 let staticPaths = [
-  '/', '/install', '/i18n', '/getting-started', '/alert', '/collapse', '/date-picker', '/dropdown',
-  '/modal', '/pagination', '/popover', '/progress-bar', '/tabs', '/time-picker',
-  '/tooltip', '/typeahead', '/carousel'
+  '/',
+  '/install',
+  '/i18n',
+  '/getting-started',
+  '/affix',
+  '/alert',
+  '/collapse',
+  '/date-picker',
+  '/dropdown',
+  '/modal',
+  '/pagination',
+  '/popover',
+  '/progress-bar',
+  '/tabs',
+  '/time-picker',
+  '/tooltip',
+  '/typeahead',
+  '/carousel'
 ]
 let processProgress = 0
 
