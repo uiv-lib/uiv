@@ -24,15 +24,11 @@
               </a>
             </p>
             <br/>
-            <h3 v-html="$t('home.desc')"></h3>
+            <h3><b>Bootstrap 3</b> Components implemented by <b>Vue 2</b>.</h3>
             <br/>
             <div>
-              <a href="https://github.com/wxsms/uiv" class="btn btn-default btn-lg">
-                {{$t('home.codeOnGithub')}}
-              </a>
-              <router-link to="/getting-started" class="btn btn-default btn-lg">
-                {{$t('home.gettingStarted')}}
-              </router-link>
+              <a href="https://github.com/wxsms/uiv" class="btn btn-default btn-lg">Code On Github</a>
+              <router-link to="/getting-started" class="btn btn-default btn-lg">Getting Started</router-link>
             </div>
             <br/>
           </div>
@@ -44,33 +40,33 @@
         <div class="col-sm-6 col-md-4">
           <div class="thumbnail">
             <div class="caption">
-              <h3>{{$t('home.lightWeight')}}</h3>
+              <h3>Light Weight</h3>
               <p><i class="glyphicon glyphicon-leaf icon-thumbnail"></i></p>
-              <p v-html="$t('home.lightWeight1')"></p>
-              <p v-html="$t('home.lightWeight2')"></p>
-              <p v-html="$t('home.lightWeight3')"></p>
+              <p>~ 14KB Gziped</p>
+              <p>Dependencies only</p>
+              <p>Vue & Bootstrap CSS</p>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-4">
           <div class="thumbnail">
             <div class="caption">
-              <h3>{{$t('home.compatible')}}</h3>
+              <h3>Compatible</h3>
               <p><i class="glyphicon glyphicon-check icon-thumbnail"></i></p>
-              <p v-html="$t('home.compatible1')"></p>
-              <p v-html="$t('home.compatible2')"></p>
-              <p v-html="$t('home.compatible3')"></p>
+              <p>Tested with</p>
+              <p>Modern Browsers</p>
+              <p>And IE 9+</p>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-4">
           <div class="thumbnail">
             <div class="caption">
-              <h3>{{$t('home.openSource')}}</h3>
+              <h3>Open Source</h3>
               <p><i class="glyphicon glyphicon-grain icon-thumbnail"></i></p>
-              <p v-html="$t('home.openSource1')"></p>
-              <p v-html="$t('home.openSource2')"></p>
-              <p v-html="$t('home.openSource3')"></p>
+              <p>MIT License</p>
+              <p>Easy and Free</p>
+              <p>Welcome to contribute!</p>
             </div>
           </div>
         </div>
@@ -87,7 +83,7 @@
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-  @import "../../assets/css/variables";
+  @import "../assets/css/variables";
 
   section {
     background: @home-bg-gradient-to;

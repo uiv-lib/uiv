@@ -2,18 +2,15 @@ import Vue from 'vue'
 import Alert from '@src/components/alert/Alert.vue'
 import AlertDoc from '@docs/pages/components/Alert.md'
 import utils from './../utils'
-import i18n from '@docs/locale'
 
 describe('Alert', () => {
   let app
 
   beforeEach(() => {
     app = new Vue({
-      i18n,
       template: '<alert-doc ref="doc"/>',
       components: {AlertDoc}
     })
-    app.$i18n.locale = 'en-US'
   })
 
   afterEach(() => {

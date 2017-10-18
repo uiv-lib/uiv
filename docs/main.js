@@ -5,7 +5,6 @@ import './assets/css/common.less'
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import i18n from './locale'
 import router from './routes'
 import PageWrapper from './components/architecture/PageWrapper.vue'
 import MarkdownWrapper from './components/architecture/MarkdownWrapper.vue'
@@ -20,7 +19,6 @@ Vue.component('MarkdownWrapper', MarkdownWrapper)
 document.addEventListener('DOMContentLoaded', () => {
   new Vue({
     router,
-    i18n,
     template: '<PageWrapper/>',
     components: {PageWrapper}
   }).$mount('#app')

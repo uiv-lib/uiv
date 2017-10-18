@@ -2,18 +2,15 @@ import Vue from 'vue'
 import Dropdown from '@src/components/dropdown/Dropdown.vue'
 import DropdownDoc from '@docs/pages/components/Dropdown.md'
 import utils from './../utils'
-import i18n from '@docs/locale'
 
 describe('Dropdown', () => {
   let app
 
   beforeEach(() => {
     app = new Vue({
-      i18n,
       template: '<DropdownDoc ref="doc"/>',
       components: {DropdownDoc}
     })
-    app.$i18n.locale = 'en-US'
   })
 
   afterEach(() => {

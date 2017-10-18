@@ -1,6 +1,10 @@
 # Date Picker
 
+> A lightweight & configurable date picker.
+
 ## Inline Example
+
+Use `v-model` to bind the selected date.
 
 ```html
 <template>

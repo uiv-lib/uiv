@@ -1,17 +1,14 @@
 import Vue from 'vue'
 import CollapseDoc from '@docs/pages/components/Collapse.md'
-import i18n from '@docs/locale'
 
 describe('Collapse', () => {
   let app
 
   beforeEach(() => {
     app = new Vue({
-      i18n,
       template: '<CollapseDoc ref="doc"/>',
       components: {CollapseDoc}
     })
-    app.$i18n.locale = 'en-US'
   })
 
   afterEach(() => {

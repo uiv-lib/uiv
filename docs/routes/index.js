@@ -8,23 +8,22 @@ NProgress.configure({
 })
 
 const routes = [
-  {path: '/', component: require('./../components/pages/Home.vue')},
-  {path: '/install', component: require('./../components/pages/Install.vue')},
-  {path: '/i18n', component: require('./../components/pages/I18n.vue')},
-  {path: '/getting-started', component: require('./../components/pages/GettingStarted.vue')},
+  {path: '/', component: () => import('./../components/Home.vue')},
+  {path: '/i18n', component: () => import('./../pages/usage/I18n.md')},
+  {path: '/getting-started', component: () => import('./../pages/usage/GettingStarted.md')},
   {path: '/alert', component: () => import('./../pages/components/Alert.md')},
   {path: '/carousel', component: () => import('./../pages/components/Carousel.md')},
   {path: '/collapse', component: () => import('./../pages/components/Collapse.md')},
   {path: '/date-picker', component: () => import('./../pages/components/DatePicker.md')},
   {path: '/dropdown', component: () => import('./../pages/components/Dropdown.md')},
-  {path: '/modal', component: require('./../components/pages/ModalDoc.vue')},
-  {path: '/pagination', component: require('./../components/pages/PaginationDoc.vue')},
-  {path: '/popover', component: require('./../components/pages/PopoverDoc.vue')},
-  {path: '/progress-bar', component: require('./../components/pages/ProgressBarDoc.vue')},
-  {path: '/tabs', component: require('./../components/pages/TabsDoc.vue')},
-  {path: '/time-picker', component: require('./../components/pages/TimePickerDoc.vue')},
-  {path: '/tooltip', component: require('./../components/pages/TooltipDoc.vue')},
-  {path: '/typeahead', component: require('./../components/pages/TypeaheadDoc.vue')}
+  {path: '/modal', component: () => import('./../pages/components/Modal.md')},
+  {path: '/pagination', component: () => import('./../pages/components/Pagination.md')},
+  {path: '/popover', component: () => import('./../pages/components/Popover.md')},
+  {path: '/progress-bar', component: () => import('./../pages/components/ProgressBar.md')},
+  {path: '/tabs', component: () => import('./../pages/components/Tabs.md')},
+  {path: '/time-picker', component: () => import('./../pages/components/TimePicker.md')},
+  {path: '/tooltip', component: () => import('./../pages/components/Tooltip.md')},
+  {path: '/typeahead', component: () => import('./../pages/components/Typeahead.md')}
 ]
 
 const router = new VueRouter({

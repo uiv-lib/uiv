@@ -2,18 +2,15 @@ import Vue from 'vue'
 import Carousel from '@src/components/carousel/Carousel.vue'
 import Slide from '@src/components/carousel/Slide.vue'
 import CarouselDoc from '@docs/pages/components/Carousel.md'
-import i18n from '@docs/locale'
 
 describe('Carousel', () => {
   let app
 
   beforeEach(() => {
     app = new Vue({
-      i18n,
       template: '<CarouselDoc ref="doc"/>',
       components: {CarouselDoc}
     })
-    app.$i18n.locale = 'en-US'
   })
 
   afterEach(() => {

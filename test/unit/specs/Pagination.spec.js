@@ -1,17 +1,14 @@
 import Vue from 'vue'
-import PaginationDoc from '@docs/components/pages/PaginationDoc.vue'
-import i18n from '@docs/locale'
+import PaginationDoc from '@docs/pages/components/Pagination.md'
 
-describe('PaginationDoc', () => {
+describe('Pagination', () => {
   let app
 
   beforeEach(() => {
     app = new Vue({
-      i18n,
       template: '<PaginationDoc ref="doc"/>',
       components: {PaginationDoc}
     })
-    app.$i18n.locale = 'en-US'
   })
 
   afterEach(() => {

@@ -7,15 +7,6 @@
           <img class="bootstrap-logo" src="../../assets/img/b-logo.png">
         </router-link>
       </div>
-      <h2 class="site-name text-center" @click="toggleAside(false)">
-        <router-link to="/" exact>uiv</router-link>
-      </h2>
-      <br/>
-      <select class="form-control input-sm" v-model="$i18n.locale" style="width: auto">
-        <option value="en-US">English</option>
-        <option value="zh-CN">简体中文</option>
-        <option value="fr-FR">Français</option>
-      </select>
     </div>
     <div class="nav-container">
       <div class="nav-div">
@@ -24,18 +15,18 @@
             <template v-if="item.items">
               <li role="presentation" class="no-link">
                 <a role="button">
-                  {{$t(item.label)}}
+                  {{item.label}}
                 </a>
               </li>
               <li role="presentation" v-for="_item in item.items" @click="toggleAside(false)">
                 <router-link :to="_item.path" role="button" class="sub-list">
-                  {{$t(_item.label)}}
+                  {{_item.label}}
                 </router-link>
               </li>
             </template>
             <li v-else role="presentation" @click="toggleAside(false)">
               <router-link :to="item.path" role="button">
-                {{$t(item.label)}}
+                {{item.label}}
               </router-link>
             </li>
           </template>
@@ -55,29 +46,28 @@
       return {
         asideItems: [
           {
-            label: 'menu.usage',
+            label: 'Usage',
             items: [
-              {path: '/install', label: 'menu.install'},
-              {path: '/getting-started', label: 'menu.gettingStarted'},
-              {path: '/i18n', label: 'menu.i18n'}
+              {path: '/getting-started', label: 'Getting Started'},
+              {path: '/i18n', label: 'I18n'}
             ]
           },
           {
-            label: 'menu.components',
+            label: 'Components',
             items: [
-              {path: '/alert', label: 'menu.alert'},
-              {path: '/carousel', label: 'menu.carousel'},
-              {path: '/collapse', label: 'menu.collapse'},
-              {path: '/date-picker', label: 'menu.datePicker'},
-              {path: '/dropdown', label: 'menu.dropdown'},
-              {path: '/modal', label: 'menu.modal'},
-              {path: '/pagination', label: 'menu.pagination'},
-              {path: '/popover', label: 'menu.popover'},
-              {path: '/progress-bar', label: 'menu.progressBar'},
-              {path: '/tabs', label: 'menu.tabs'},
-              {path: '/time-picker', label: 'menu.timePicker'},
-              {path: '/tooltip', label: 'menu.tooltip'},
-              {path: '/typeahead', label: 'menu.typeahead'}
+              {path: '/alert', label: 'Alert'},
+              {path: '/carousel', label: 'Carousel'},
+              {path: '/collapse', label: 'Collapse'},
+              {path: '/date-picker', label: 'Date Picker'},
+              {path: '/dropdown', label: 'Dropdown'},
+              {path: '/modal', label: 'Modal'},
+              {path: '/pagination', label: 'Pagination'},
+              {path: '/popover', label: 'Popover'},
+              {path: '/progress-bar', label: 'Progress Bar'},
+              {path: '/tabs', label: 'Tabs'},
+              {path: '/time-picker', label: 'Time Picker'},
+              {path: '/tooltip', label: 'Tooltip'},
+              {path: '/typeahead', label: 'Typeahead'}
             ]
           }
         ]
@@ -123,7 +113,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      border-bottom: 1px solid darken(@gray, 10%);
 
       .logo {
         height: 100px;

@@ -2,19 +2,16 @@
  * Created by zhengjingchun on 2017/3/28.
  */
 import Vue from 'vue'
-import TimePickerDoc from '@docs/components/pages/TimePickerDoc.vue'
-import i18n from '@docs/locale'
+import TimePickerDoc from '@docs/pages/components/TimePicker.md'
 
-describe('TimePickerDoc', () => {
+describe('TimePicker', () => {
   let root
 
   beforeEach(() => {
     root = new Vue({
-      i18n,
       template: '<TimePickerDoc ref="doc"/>',
       components: {TimePickerDoc}
     })
-    root.$i18n.locale = 'en-US'
   })
 
   afterEach(() => {
