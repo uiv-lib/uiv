@@ -1,11 +1,9 @@
 import Vue from 'vue'
 import * as uiv from '@src/components/index.js'
-import MarkdownWrapper from '@docs/components/architecture/MarkdownWrapper.vue'
 
 Vue.config.productionTip = false
 
 Vue.use(uiv)
-Vue.component('MarkdownWrapper', MarkdownWrapper)
 
 // Polyfill fn.bind() for PhantomJS
 /* eslint-disable no-extend-native */

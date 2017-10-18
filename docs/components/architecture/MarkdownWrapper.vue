@@ -26,24 +26,24 @@
     let anchors = []
     if (document) {
       let headings = element.querySelectorAll(`h1,h2`)
-      // Filter those have no id present
-      headings
-        .forEach(h => {
-          if (!h.id) {
-            return
-          }
-          let t = {
-            level: parseInt(h.tagName.substr(1, 1)),
-            href: `#${h.id}`,
-            label: h.innerText,
-            items: []
-          }
-          if (t.level === 1) {
-            anchors.push(t)
-          } else if (anchors.length) {
-            anchors[anchors.length - 1].items.push(t)
-          }
-        })
+      for (let i = 0; i < headings.length; i++) {
+        let h = headings[i]
+        // Filter those have no id present
+        if (!h.id) {
+          continue
+        }
+        let t = {
+          level: parseInt(h.tagName.substr(1, 1)),
+          href: `#${h.id}`,
+          label: h.innerText.replace('🔗', ''),
+          items: []
+        }
+        if (t.level === 1) {
+          anchors.push(t)
+        } else if (anchors.length) {
+          anchors[anchors.length - 1].items.push(t)
+        }
+      }
     }
     return anchors
   }
