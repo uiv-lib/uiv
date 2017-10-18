@@ -22,8 +22,13 @@ body, html {
   }
 
   &.page-home {
+    background: @home-bg-gradient-to;
+    background: -webkit-linear-gradient(to bottom, @home-bg-gradient-from, @home-bg-gradient-to);
+    background: linear-gradient(to bottom, @home-bg-gradient-from, @home-bg-gradient-to);
+    color: #fff;
+
     .page-footer {
-      background: @home-bg-gradient-to;
+      background: transparent;
       border-color: transparent;
       color: rgba(255, 255, 255, .5);
 
