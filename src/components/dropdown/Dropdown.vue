@@ -89,7 +89,7 @@
           this.show = !this.show
         }
         if (this.appendToBody) {
-          show ? this.appendDropdownToBody() : this.removeDropdownFromBody()
+          this.show ? this.appendDropdownToBody() : this.removeDropdownFromBody()
         }
         this.$emit('input', this.show)
       },
