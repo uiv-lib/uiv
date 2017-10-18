@@ -103,7 +103,7 @@ Use the `indicators` slot to override default Bootstrap indicators.
 <!-- Live demo -->
 ```
 
-# Component Reference
+# API Reference
 
 ## [Carousel.vue](https://github.com/wxsms/uiv/tree/master/src/components/carousel/Carousel.vue)
 

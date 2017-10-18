@@ -35,6 +35,7 @@ Wrap any text or HTML in `<alert>` and use one of the four alert types (`success
       <span v-if="item.duration">This alert <b>will dismiss after {{item.duration}}ms</b>.</span>
       <span v-else>This alert <b>will not dismiss over time</b>.</span>
     </alert>
+    <hr/>
     <button type="button" class="btn btn-default" id="add-alert-1" @click="addAlert(false)">Add Alert (Dismiss After 2000ms)</button>
     <button type="button" class="btn btn-default" id="add-alert-2" @click="addAlert(true)">Add Alert (Dismissible)</button>
   </section>
@@ -70,7 +71,7 @@ Wrap any text or HTML in `<alert>` and use one of the four alert types (`success
 ```html
 <template>
   <div>
-    <button type="button" class="btn btn-default" @click="show2 = !show2">Toggle Collapsing Alert</button>
+    <button type="button" class="btn btn-primary" @click="show2 = !show2">Toggle Collapsing Alert</button>
   </div>
   <br/>
   <collapse v-model="show2">
@@ -91,7 +92,7 @@ Wrap any text or HTML in `<alert>` and use one of the four alert types (`success
 <!-- Live demo -->
 ```
 
-# Component Reference
+# API Reference
 
 ## [Alert.vue](https://github.com/wxsms/uiv/tree/master/src/components/alert/Alert.vue)
 

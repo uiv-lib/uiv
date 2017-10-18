@@ -9,7 +9,7 @@ Click the button below to show and hide another element.
 ```html
 <template>
   <div>
-    <button type="button" class="btn btn-default" @click="show=!show">Click me!</button>
+    <button type="button" class="btn btn-primary" @click="show=!show">Click me!</button>
   </div>
   <br/>
   <collapse v-model="show">
@@ -157,7 +157,7 @@ Extend the default collapse behavior to create an accordion with the panel compo
 <!-- Live demo -->
 ```
 
-# Component Reference
+# API Reference
 
 ## [Collapse.vue](https://github.com/wxsms/uiv/tree/master/src/components/collapse/Collapse.vue)
 

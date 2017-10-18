@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Dropdown from '@src/components/dropdown/Dropdown.vue'
-import DropdownDoc from '@docs/components/pages/DropdownDoc.vue'
+import DropdownDoc from '@docs/pages/components/Dropdown.md'
 import utils from './../utils'
 import i18n from '@docs/locale'
 
-describe('DropdownDoc', () => {
+describe('Dropdown', () => {
   let app
 
   beforeEach(() => {
@@ -77,7 +77,7 @@ describe('DropdownDoc', () => {
     appDom.id = 'app'
     document.body.appendChild(appDom)
     let vm = app.$mount('#app').$refs.doc
-    let dropdown = vm.$el.querySelectorAll(`.dropdown`)[3]
+    let dropdown = vm.$el.querySelectorAll(`.dropdown`)[2]
     let trigger = dropdown.querySelector('button')
     expect(dropdown.className).to.not.contain('open')
     expect(dropdown.querySelector('.dropdown-menu')).to.exist
@@ -96,30 +96,15 @@ describe('DropdownDoc', () => {
   })
 
   it('should be able to use dropup & menu-right style', (done) => {
-    let appDom = document.createElement('div')
-    appDom.id = 'app'
-    document.body.appendChild(appDom)
-    let vm = app.$mount('#app').$refs.doc
+    let vm = app.$mount().$refs.doc
     vm.dropup = true
     vm.menuRight = true
     vm.$nextTick(() => {
-      let dropdown = vm.$el.querySelectorAll(`.dropup`)[3]
-      let trigger = dropdown.querySelector('button')
+      let dropdown = vm.$el.querySelector(`.dropup`)
       expect(dropdown.className).to.not.contain('open')
       expect(dropdown.querySelector('.dropdown-menu')).to.exist
       expect(dropdown.querySelector('.dropdown-menu').className).to.contain('dropdown-menu-right')
-      utils.triggerEvent(trigger, 'click')
-      vm.$nextTick(() => {
-        expect(dropdown.className).to.contain('open')
-        expect(dropdown.querySelector('.dropdown-menu')).not.exist
-        utils.triggerEvent(trigger, 'click')
-        vm.$nextTick(() => {
-          expect(dropdown.className).not.contain('open')
-          expect(dropdown.querySelector('.dropdown-menu')).to.exist
-          appDom.remove()
-          done()
-        })
-      })
+      done()
     })
   })
 
