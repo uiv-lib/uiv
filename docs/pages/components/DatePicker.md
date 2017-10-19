@@ -82,7 +82,7 @@ Use `v-model` to bind the selected date.
 <!-- Live demo -->
 ```
 
-## Dropdown Example
+## With Dropdown
 
 ```html
 <template>

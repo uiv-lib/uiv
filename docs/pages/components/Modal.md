@@ -96,7 +96,7 @@ Modals have two optional sizes: `lg` and `sm`.
 <!-- Live demo -->
 ```
 
-## Customize Header / Footer
+## Header & Footer
 
 ```html
 <template>

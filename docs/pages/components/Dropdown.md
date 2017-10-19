@@ -67,7 +67,7 @@ The element attached with `data-role="trigger"` will be the dropdown trigger, us
 <!-- Live demo -->
 ```
 
-### Append To Body
+## Append To Body
 
 Use this option to avoid influence from the parent node by appending dropdown list to `<body>`.
 
@@ -85,6 +85,104 @@ Use this option to avoid influence from the parent node by appending dropdown li
     <li><a role="button">Separated link</a></li>
   </template>
 </dropdown>
+
+<!-- Live demo -->
+```
+
+## Within Navbar
+
+```html
+<template>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" @click="showNavbar=!showNavbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" role="button">Brand</a>
+      </div>
+      <collapse class="navbar-collapse" v-model="showNavbar">
+        <ul class="nav navbar-nav">
+          <dropdown tag="li">
+            <a class="dropdown-toggle" role="button" data-role="trigger">Dropdown 1<span class="caret"></span></a>
+            <template slot="dropdown">
+              <li><a role="button">Action</a></li>
+              <li><a role="button">Another action</a></li>
+              <li><a role="button">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a role="button">Separated link</a></li>
+            </template>
+          </dropdown>
+          <dropdown tag="li">
+            <a class="dropdown-toggle" role="button" data-role="trigger">Dropdown 2<span class="caret"></span></a>
+            <template slot="dropdown">
+              <li><a role="button">Action</a></li>
+              <li><a role="button">Another action</a></li>
+              <li><a role="button">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a role="button">Separated link</a></li>
+            </template>
+          </dropdown>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <dropdown tag="li">
+            <a class="dropdown-toggle" role="button" data-role="trigger">Dropdown 3<span class="caret"></span></a>
+            <template slot="dropdown">
+              <li><a role="button">Action</a></li>
+              <li><a role="button">Another action</a></li>
+              <li><a role="button">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a role="button">Separated link</a></li>
+            </template>
+          </dropdown>
+        </ul>
+      </collapse>
+    </div>
+  </nav>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        showNavbar: false
+      }
+    }
+  }
+</script>
+
+<!-- Live demo -->
+```
+
+## Within Pills
+
+```html
+<ul class="nav nav-pills" role="tablist">
+  <li role="presentation" class="active"><a href="javascript:void(0)">Regular link</a></li>
+  <dropdown tag="li">
+    <a class="dropdown-toggle" role="button" data-role="trigger">Dropdown<span class="caret"></span></a>
+    <template slot="dropdown">
+      <li><a role="button">Action</a></li>
+      <li><a role="button">Another action</a></li>
+      <li><a role="button">Something else here</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a role="button">Separated link</a></li>
+    </template>
+  </dropdown>
+  <dropdown tag="li">
+    <a class="dropdown-toggle" role="button" data-role="trigger">Dropdown<span class="caret"></span></a>
+    <template slot="dropdown">
+      <li><a role="button">Action</a></li>
+      <li><a role="button">Another action</a></li>
+      <li><a role="button">Something else here</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a role="button">Separated link</a></li>
+    </template>
+  </dropdown>
+</ul>
 
 <!-- Live demo -->
 ```
@@ -196,7 +294,8 @@ Use this option to avoid influence from the parent node by appending dropdown li
         dropup: false,
         menuRight: false,
         open1: false,
-        open: false
+        open: false,
+        showNavbar: false
       }
     }
   }

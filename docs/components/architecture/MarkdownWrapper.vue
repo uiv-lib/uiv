@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section style="overflow: hidden">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-10">
         <div class="container container-markdown">
@@ -62,7 +62,5 @@
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-  section {
-    overflow: hidden;
-  }
+
 </style>

@@ -1,55 +1,46 @@
 import Vue from 'vue'
+import $ from 'jquery'
 import CollapseDoc from '@docs/pages/components/Collapse.md'
+import utils from './../utils'
 
 describe('Collapse', () => {
-  let app
+  let vm
+  let $el
 
   beforeEach(() => {
-    app = new Vue({
-      template: '<CollapseDoc ref="doc"/>',
-      components: {CollapseDoc}
-    })
+    let Constructor = Vue.extend(CollapseDoc)
+    vm = new Constructor().$mount()
+    $el = $(vm.$el)
   })
 
   afterEach(() => {
-    try {
-      app.$destroy()
-    } catch (err) {
-      // Silent
-    }
+    vm.$destroy()
+    $el.remove()
   })
 
-  it('should be able to toggle collapse on trigger click', (done) => {
-    let vm = app.$mount().$refs.doc
-    let trigger = vm.$el.querySelector(`button`)
-    let collapse = vm.$el.querySelector(`.collapse`)
+  it('should be able to toggle collapse on trigger click', async () => {
+    let trigger = $el.find(`button`).get(0)
+    let collapse = $el.find(`.collapse`).get(0)
     expect(collapse.className).to.equal('collapse')
     trigger.click()
-    setTimeout(() => {
-      expect(collapse.className).to.equal('collapse in')
-      trigger.click()
-      setTimeout(() => {
-        expect(collapse.className).to.equal('collapse')
-        done()
-      }, 400)
-    }, 400)
+    await utils.sleep(400)
+    expect(collapse.className).to.equal('collapse in')
+    trigger.click()
+    await utils.sleep(400)
+    expect(collapse.className).to.equal('collapse')
   })
 
-  it('should be able to toggle accordion', (done) => {
-    let vm = app.$mount().$refs.doc
-    let triggers = vm.$el.querySelectorAll(`.panel-heading`)
-    let collapse = vm.$el.querySelectorAll(`.collapse`)
-    expect(collapse[1].className).to.equal('collapse in')
-    expect(collapse[2].className).to.equal('collapse')
-    triggers[1].click()
-    setTimeout(() => {
-      expect(collapse[1].className).to.equal('collapse')
-      expect(collapse[2].className).to.equal('collapse in')
-      triggers[1].click()
-      setTimeout(() => {
-        expect(collapse[2].className).to.equal('collapse')
-        done()
-      }, 400)
-    }, 400)
+  it('should be able to toggle accordion', async () => {
+    let triggers = $el.find(`.panel-heading`)
+    let collapse = $el.find(`.collapse`)
+    expect(collapse.get(1).className).to.equal('collapse in')
+    expect(collapse.get(2).className).to.equal('collapse')
+    triggers.get(1).click()
+    await utils.sleep(400)
+    expect(collapse.get(1).className).to.equal('collapse')
+    expect(collapse.get(2).className).to.equal('collapse in')
+    triggers.get(1).click()
+    await utils.sleep(400)
+    expect(collapse.get(2).className).to.equal('collapse')
   })
 })

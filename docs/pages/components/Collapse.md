@@ -30,7 +30,7 @@ Click the button below to show and hide another element.
 <!-- Live demo -->
 ```
 
-### Accordion Example
+## Accordion
 
 Extend the default collapse behavior to create an accordion with the panel component.
 
@@ -95,7 +95,7 @@ Extend the default collapse behavior to create an accordion with the panel compo
 <!-- Live demo -->
 ```
 
-## Navbar Example
+## Navbar
 
 **Note**:
 
