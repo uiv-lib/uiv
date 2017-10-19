@@ -20,7 +20,7 @@
       },
       type: {
         type: String,
-        'default': 'success'
+        'default': 'info'
       }
     },
     data () {

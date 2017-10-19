@@ -22,5 +22,10 @@ export default {
       ? elm.dispatchEvent(evt)
       : elm.fireEvent('on' + name, evt)
     return elm
+  },
+  sleep (time) {
+    return new Promise(resolve => {
+      setTimeout(resolve, time)
+    })
   }
 }

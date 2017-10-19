@@ -1,27 +1,31 @@
 import Vue from 'vue'
+import $ from 'jquery'
 import Alert from '@src/components/alert/Alert.vue'
 import AlertDoc from '@docs/pages/components/Alert.md'
 import utils from './../utils'
 
+const DEFAULT_ALERT_CLASS = 'alert-info'
+
 describe('Alert', () => {
-  let app
+  let vm
+  let $el
 
   beforeEach(() => {
-    app = new Vue({
-      template: '<alert-doc ref="doc"/>',
-      components: {AlertDoc}
-    })
+    let Constructor = Vue.extend(AlertDoc)
+    vm = new Constructor().$mount()
+    $el = $(vm.$el)
   })
 
   afterEach(() => {
-    try {
-      app.$destroy()
-    } catch (err) {
-      // Silent
-    }
+    vm.$destroy()
+    $el = null
   })
 
-  it('Should be able to add alert with no type', (done) => {
+  const getDefaultAlertLength = () => {
+    return $el.find(`.${DEFAULT_ALERT_CLASS}`).length
+  }
+
+  it('Should be able to add alert with no type', () => {
     let res = Vue.compile('<alert>{{ msg }}</alert>')
     let vm = new Vue({
       data () {
@@ -34,62 +38,41 @@ describe('Alert', () => {
       staticRenderFns: res.staticRenderFns
     })
     vm.$mount()
-    vm.$nextTick(() => {
-      expect(vm.$el.className).to.equal('alert alert-success')
-      vm.$destroy()
-      done()
-    })
+    let $el = $(vm.$el)
+    expect($el.hasClass('alert')).to.be.true
+    expect($el.hasClass(DEFAULT_ALERT_CLASS)).to.be.true
+    vm.$destroy()
   })
 
-  it('Alert can be closed', (done) => {
-    let vm = app.$mount().$refs.doc
-    vm.$nextTick(() => {
-      let alertInfo = vm.$el.querySelector('#alert-test')
-      expect(alertInfo).to.exist
-      let closedBtn = alertInfo.querySelector('button.close')
-      utils.triggerEvent(closedBtn, 'click')
-      vm.$nextTick(() => {
-        expect(vm.$el.querySelector('#alert-test')).not.exist
-        done()
-      })
-    })
+  it('Should be able to dismiss alerts', async () => {
+    let alert = $el.find('#alert-test')
+    expect(alert.length).to.equal(1)
+    let closedBtn = alert.find('button.close')
+    closedBtn.click()
+    await vm.$nextTick()
+    expect($el.find('#alert-test').length).to.equal(0)
   })
 
-  it('Can add a Alert', (done) => {
-    let vm = app.$mount().$refs.doc
-    vm.$nextTick(() => {
-      let alertSuccess = vm.$el.querySelectorAll('.alert-success')
-      let alertSuccessLengthBefore = alertSuccess.length
-      let addAlertBtn = vm.$el.querySelector('#add-alert-2')
-      utils.triggerEvent(addAlertBtn, 'click')
-      vm.$nextTick(() => {
-        alertSuccess = vm.$el.querySelectorAll('.alert-success')
-        let alertSuccessLengthAfter = alertSuccess.length
-        expect(alertSuccessLengthAfter).to.equal(alertSuccessLengthBefore + 1)
-        done()
-      })
-    })
+  it('Should be able to add dismissible alerts', async () => {
+    let before = getDefaultAlertLength()
+    let addAlertBtn = $el.find('#add-alert-1')
+    addAlertBtn.click()
+    await vm.$nextTick()
+    let after = getDefaultAlertLength()
+    expect(after).to.equal(before + 1)
   })
 
-  it('Can add a Alert had duration', (done) => {
-    let vm = app.$mount().$refs.doc
+  it('Should be able to add auto dismiss alerts', async () => {
     vm.duration = 1000
-    vm.$nextTick(() => {
-      let alertSuccess = vm.$el.querySelectorAll('.alert-success')
-      let alertSuccessLengthBefore = alertSuccess.length
-      let addAlertBtn = vm.$el.querySelector('#add-alert-1')
-      utils.triggerEvent(addAlertBtn, 'click')
-      vm.$nextTick(() => {
-        alertSuccess = vm.$el.querySelectorAll('.alert-success')
-        let alertSuccessLengthAfter = alertSuccess.length
-        expect(alertSuccessLengthAfter).to.equal(alertSuccessLengthBefore + 1)
-        setTimeout(() => {
-          alertSuccess = vm.$el.querySelectorAll('.alert-success')
-          alertSuccessLengthAfter = alertSuccess.length
-          expect(alertSuccessLengthAfter).to.equal(alertSuccessLengthBefore)
-          done()
-        }, 1200)
-      })
-    })
+    await vm.$nextTick()
+    let before = getDefaultAlertLength()
+    let addAlertBtn = $el.find('#add-alert-2')
+    addAlertBtn.click()
+    await vm.$nextTick()
+    let after = getDefaultAlertLength()
+    expect(after).to.equal(before + 1)
+    await utils.sleep(vm.duration + 200)
+    let _after = getDefaultAlertLength()
+    expect(_after).to.equal(before)
   })
 })

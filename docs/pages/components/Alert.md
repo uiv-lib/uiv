@@ -15,29 +15,21 @@ Wrap any text or HTML in `<alert>` and use one of the four alert types (`success
 <!-- Live demo -->
 ```
 
-## Dismissible Alerts
+## Dismissible
 
-* Use `dismissible` to allow user to dismiss alerts.
-* Use `duration` to auto dismiss alerts after milliseconds.
-* These 2 props can be used in combinations.
-
+Use `dismissible` to allow user to dismiss alerts.
 
 ```html
 <template>
   <section>
-    <alert type="warning" v-if="show1" :dismissible="true" @dismissed="show1 = false" id="alert-test"><b>Warning!</b> Better check yourself, you're not looking too good.</alert>
-    <alert v-for="(item, index) in alerts"
-           :dismissible="item.dismissible"
-           :type="item.type"
-           :duration="item.duration"
-           :key="item.key"
-           @dismissed="alerts.splice(index, 1)">
-      <span v-if="item.duration">This alert <b>will dismiss after {{item.duration}}ms</b>.</span>
-      <span v-else>This alert <b>will not dismiss over time</b>.</span>
+    <alert type="warning" v-if="show1" :dismissible="true" @dismissed="show1 = false" id="alert-test">
+      <b>Warning!</b> Better check yourself, you're not looking too good.
+    </alert>
+    <alert v-for="(item, index) in alerts" :dismissible="true" :key="item.key" @dismissed="alerts.splice(index, 1)">
+      <b>Heads up!</b> This alert needs your attention, but it's not super important.
     </alert>
     <hr/>
-    <button type="button" class="btn btn-default" id="add-alert-1" @click="addAlert(false)">Add Alert (Dismiss After 2000ms)</button>
-    <button type="button" class="btn btn-default" id="add-alert-2" @click="addAlert(true)">Add Alert (Dismissible)</button>
+    <button type="button" class="btn btn-primary" id="add-alert-1" @click="addDismissibleAlert()">Add Dismissible Alert</button>
   </section>
 </template>
 
@@ -46,18 +38,46 @@ Wrap any text or HTML in `<alert>` and use one of the four alert types (`success
     data () {
       return {
         show1: true,
-        alerts: [],
+        alerts: []
+      }
+    },
+    methods: {
+      addDismissibleAlert () {
+        this.alerts.push({key: new Date().getTime()})
+      }
+    }
+  }
+</script>
+
+<!-- Live demo -->
+```
+
+## Auto Dismissing
+
+Use `duration` in milliseconds to auto dismiss alert.
+
+```html
+<template>
+  <section>
+    <alert v-for="(item, index) in alerts2" :duration="duration" :key="item.key" @dismissed="alerts2.splice(index, 1)">
+      This alert <b>will dismiss after {{duration}}ms</b>.
+    </alert>
+    <hr/>
+    <button type="button" class="btn btn-primary" id="add-alert-2" @click="addAutoDismissAlert()">Add Auto Dismiss Alert</button>
+  </section>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        alerts2: [],
         duration: 2000
       }
     },
     methods: {
-      addAlert (dismissible) {
-        this.alerts.push({
-          type: 'success', 
-          dismissible: dismissible, 
-          duration: dismissible ? 0 : this.duration, 
-          key: new Date().getTime()
-        })
+      addAutoDismissAlert () {
+        this.alerts2.push({key: new Date().getTime()})
       }
     }
   }
@@ -119,7 +139,7 @@ Wrap any text or HTML in `<alert>` and use one of the four alert types (`success
     <tr>
       <td nowrap="nowrap"><code>type</code></td>
       <td>String</td>
-      <td>success</td>
+      <td>info</td>
       <td></td>
       <td>Alert type (success, info, warning, danger).</td>
     </tr>
@@ -172,19 +192,18 @@ Wrap any text or HTML in `<alert>` and use one of the four alert types (`success
     data () {
       return {
         alerts: [],
+        alerts2: [],
         show1: true,
         show2: true,
         duration: 2000
       }
     },
     methods: {
-      addAlert (dismissible) {
-        this.alerts.push({
-          type: 'success', 
-          dismissible: dismissible, 
-          duration: dismissible ? 0 : this.duration, 
-          key: new Date().getTime()
-        })
+      addDismissibleAlert () {
+        this.alerts.push({key: new Date().getTime()})
+      },
+      addAutoDismissAlert () {
+        this.alerts2.push({key: new Date().getTime()})
       }
     }
   }

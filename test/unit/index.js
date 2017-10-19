@@ -1,3 +1,4 @@
+import 'es6-promise/auto'
 import Vue from 'vue'
 import * as uiv from '@src/components/index.js'
 
