@@ -62,5 +62,7 @@
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-
+  section {
+    overflow: hidden;
+  }
 </style>

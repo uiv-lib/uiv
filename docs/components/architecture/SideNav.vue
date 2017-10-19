@@ -6,6 +6,9 @@
           <logo></logo>
         </router-link>
       </div>
+      <a href="https://www.npmjs.com/package/uiv">
+        <img src="https://img.shields.io/npm/v/uiv.svg" alt="NPM Version" height="20px">
+      </a>
     </div>
     <div class="nav-container">
       <div class="nav-div">
@@ -94,8 +97,7 @@
         height: 100px;
         width: 100%;
         position: relative;
-        overflow: hidden;
-        display: block;
+        margin-bottom: 20px;
 
         a {
           display: block;

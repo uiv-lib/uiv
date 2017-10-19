@@ -54,7 +54,7 @@ Use `dismissible` to allow user to dismiss alerts.
 
 ## Auto Dismissing
 
-Use `duration` in milliseconds to auto dismiss alert.
+Use `duration` in milliseconds to auto dismiss alert. It can be used together with `dismissible`.
 
 ```html
 <template>

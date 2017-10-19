@@ -4,7 +4,12 @@
 
 The navigation **on the right** is a live demo of the affix component.
 
-## Example Code
+**Note**:
+
+* You must provide CSS for the positioning and width of your affixed content.
+* Do not use affix on an element contained in a relatively positioned element, such as a pulled or pushed column.
+
+## Example
 
 ```html
 <affix :offset="50">

@@ -25,7 +25,7 @@ describe('Alert', () => {
     return $el.find(`.${DEFAULT_ALERT_CLASS}`).length
   }
 
-  it('Should be able to add alert with no type', () => {
+  it('should be able to add alert with no type', () => {
     let res = Vue.compile('<alert>{{ msg }}</alert>')
     let vm = new Vue({
       data () {
@@ -44,7 +44,7 @@ describe('Alert', () => {
     vm.$destroy()
   })
 
-  it('Should be able to dismiss alerts', async () => {
+  it('should be able to dismiss alerts', async () => {
     let alert = $el.find('#alert-test')
     expect(alert.length).to.equal(1)
     let closedBtn = alert.find('button.close')
@@ -53,7 +53,7 @@ describe('Alert', () => {
     expect($el.find('#alert-test').length).to.equal(0)
   })
 
-  it('Should be able to add dismissible alerts', async () => {
+  it('should be able to add dismissible alerts', async () => {
     let before = getDefaultAlertLength()
     let addAlertBtn = $el.find('#add-alert-1')
     addAlertBtn.click()
@@ -62,7 +62,7 @@ describe('Alert', () => {
     expect(after).to.equal(before + 1)
   })
 
-  it('Should be able to add auto dismiss alerts', async () => {
+  it('should be able to add auto dismiss alerts', async () => {
     vm.duration = 1000
     await vm.$nextTick()
     let before = getDefaultAlertLength()
