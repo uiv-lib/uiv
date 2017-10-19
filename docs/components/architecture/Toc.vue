@@ -27,7 +27,7 @@
 
     ul {
       list-style: none;
-      padding-left: 20px;
+      padding-left: 0;
     }
 
     li {
@@ -35,7 +35,7 @@
     }
 
     a {
-      color: #767676 !important;
+      color: #99979c !important;
       text-decoration: none !important;
       display: block;
 

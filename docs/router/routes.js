@@ -1,3 +1,4 @@
+// DO NOT ADD ANYTHING ELSE EXCEPT ROUTE ITEM INTO THIS FILE
 // routes order = menu order
 const routes = [
   {
