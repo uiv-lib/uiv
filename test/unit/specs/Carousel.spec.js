@@ -1,24 +1,23 @@
 import Vue from 'vue'
+import $ from 'jquery'
 import Carousel from '@src/components/carousel/Carousel.vue'
 import Slide from '@src/components/carousel/Slide.vue'
 import CarouselDoc from '@docs/pages/components/Carousel.md'
+import utils from './../utils'
 
 describe('Carousel', () => {
-  let app
+  let vm
+  let $el
 
   beforeEach(() => {
-    app = new Vue({
-      template: '<CarouselDoc ref="doc"/>',
-      components: {CarouselDoc}
-    })
+    let Constructor = Vue.extend(CarouselDoc)
+    vm = new Constructor().$mount()
+    $el = $(vm.$el)
   })
 
   afterEach(() => {
-    try {
-      app.$destroy()
-    } catch (err) {
-      // Silent
-    }
+    vm.$destroy()
+    $el.remove()
   })
 
   it('should not be able to work if not using <carousel><slide>...</slide></carousel>', () => {
@@ -38,16 +37,16 @@ describe('Carousel', () => {
         components: {Carousel, Slide},
         render: res.render,
         staticRenderFns: res.staticRenderFns
-      })
-      vm.$mount()
+      }).$mount()
       sinon.assert.called(spy)
+      $(vm.$el).remove()
       vm.$destroy()
     } finally {
       window.console.error = _error
     }
   })
 
-  it('should not be able to work with v-model', (done) => {
+  it('should be able to work with v-model', async () => {
     let res = Vue.compile('<carousel v-model="index"><slide>1</slide><slide>2</slide></carousel>')
     let vm = new Vue({
       data () {
@@ -58,20 +57,18 @@ describe('Carousel', () => {
       components: {Carousel, Slide},
       render: res.render,
       staticRenderFns: res.staticRenderFns
-    })
-    vm.$mount()
-    vm.$nextTick(() => {
-      expect(vm.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
-      expect(vm.$el.querySelectorAll('.carousel-inner .item')[1].className).to.contain('active')
-      vm.$el.querySelector('.carousel-control.right').click()
-      setTimeout(() => {
-        expect(vm.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
-        expect(vm.$el.querySelectorAll('.carousel-inner .item')[0].className).to.contain('active')
-        expect(vm.index).to.equal(0)
-        vm.$destroy()
-        done()
-      }, 700)
-    })
+    }).$mount()
+    let $el = $(vm.$el)
+    await vm.$nextTick()
+    expect($el.find('.carousel-inner .item.active').length).to.equal(1)
+    expect($el.find('.carousel-inner .item').get(1).className).to.contain('active')
+    $el.find('.carousel-control.right').get(0).click()
+    await utils.sleep(700)
+    expect($el.find('.carousel-inner .item.active').length).to.equal(1)
+    expect($el.find('.carousel-inner .item').get(0).className).to.contain('active')
+    expect(vm.index).to.equal(0)
+    $el.remove()
+    vm.$destroy()
   })
 
   it('should be ok if no <slide> present in <carousel>', () => {
@@ -85,135 +82,105 @@ describe('Carousel', () => {
       components: {Carousel, Slide},
       render: res.render,
       staticRenderFns: res.staticRenderFns
-    })
-    vm.$mount()
+    }).$mount()
+    $(vm.$el).remove()
     vm.$destroy()
   })
 
-  it('should be able to render correct contents on init', (done) => {
-    let vm = app.$mount().$refs.doc
-    vm.$nextTick(() => {
-      expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item').length).to.equal(4)
-      expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-indicators li').length).to.equal(4)
-      expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-control').length).to.equal(2)
-      expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item')[0].className).to.contain('active')
-      done()
-    })
+  it('should be able to render correct contents on init', async () => {
+    let $el = $(vm.$refs.carousel.$el)
+    await vm.$nextTick()
+    expect($el.find('.carousel-inner .item').length).to.equal(4)
+    expect($el.find('.carousel-indicators li').length).to.equal(4)
+    expect($el.find('.carousel-control').length).to.equal(2)
+    expect($el.find('.carousel-inner .item').get(0).className).to.contain('active')
   })
 
-  it('should be able to go next on right control click', (done) => {
-    let vm = app.$mount().$refs.doc
-    vm.$nextTick(() => {
-      vm.$refs.carousel.$el.querySelector('.carousel-control.right').click()
-      setTimeout(() => {
-        expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
-        expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item')[1].className).to.contain('active')
-        done()
-      }, 700)
-    })
+  it('should be able to go next on right control click', async () => {
+    let $el = $(vm.$refs.carousel.$el)
+    await vm.$nextTick()
+    $el.find('.carousel-control.right').get(0).click()
+    await utils.sleep(700)
+    expect($el.find('.carousel-inner .item.active').length).to.equal(1)
+    expect($el.find('.carousel-inner .item').get(1).className).to.contain('active')
   })
 
-  it('should be able to go prev on left control click', (done) => {
-    let vm = app.$mount().$refs.doc
-    vm.$nextTick(() => {
-      vm.$refs.carousel.$el.querySelector('.carousel-control.left').click()
-      setTimeout(() => {
-        expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
-        expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item')[3].className).to.contain('active')
-        vm.$refs.carousel.$el.querySelector('.carousel-control.left').click()
-        setTimeout(() => {
-          expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
-          expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item')[2].className).to.contain('active')
-          done()
-        }, 700)
-      }, 700)
-    })
+  it('should be able to go prev on left control click', async () => {
+    let $el = $(vm.$refs.carousel.$el)
+    await vm.$nextTick()
+    $el.find('.carousel-control.left').get(0).click()
+    await utils.sleep(700)
+    expect($el.find('.carousel-inner .item.active').length).to.equal(1)
+    expect($el.find('.carousel-inner .item').get(3).className).to.contain('active')
+    $el.find('.carousel-control.left').get(0).click()
+    await utils.sleep(700)
+    expect($el.find('.carousel-inner .item.active').length).to.equal(1)
+    expect($el.find('.carousel-inner .item').get(2).className).to.contain('active')
   })
 
-  it('should be able to go index on indicator click', (done) => {
-    let vm = app.$mount().$refs.doc
-    vm.$nextTick(() => {
-      vm.$refs.carousel.$el.querySelectorAll('.carousel-indicators li')[1].click()
-      setTimeout(() => {
-        expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-indicators .active').length).to.equal(1)
-        expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-indicators li')[1].className).to.contain('active')
-        expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
-        expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item')[1].className).to.contain('active')
-        vm.$refs.carousel.$el.querySelectorAll('.carousel-indicators li')[0].click()
-        setTimeout(() => {
-          expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-indicators .active').length).to.equal(1)
-          expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-indicators li')[0].className).to.contain('active')
-          expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
-          expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item')[0].className).to.contain('active')
-          done()
-        }, 700)
-      }, 700)
-    })
+  it('should be able to go index on indicator click', async () => {
+    let $el = $(vm.$refs.carousel.$el)
+    await vm.$nextTick()
+    $el.find('.carousel-indicators li').get(1).click()
+    await utils.sleep(700)
+    expect($el.find('.carousel-indicators .active').length).to.equal(1)
+    expect($el.find('.carousel-indicators li').get(1).className).to.contain('active')
+    expect($el.find('.carousel-inner .item.active').length).to.equal(1)
+    expect($el.find('.carousel-inner .item').get(1).className).to.contain('active')
+    $el.find('.carousel-indicators li').get(0).click()
+    await utils.sleep(700)
+    expect($el.find('.carousel-indicators .active').length).to.equal(1)
+    expect($el.find('.carousel-indicators li').get(0).className).to.contain('active')
+    expect($el.find('.carousel-inner .item.active').length).to.equal(1)
+    expect($el.find('.carousel-inner .item').get(0).className).to.contain('active')
   })
 
-  it('should be able to hide indicators', (done) => {
-    let vm = app.$mount().$refs.doc
-    vm.$nextTick(() => {
-      vm.$el.querySelectorAll('form button')[0].click()
-      vm.$nextTick(() => {
-        expect(vm.$refs.carousel.$el.querySelector('.carousel-indicators')).not.exist
-        done()
-      })
-    })
+  it('should be able to hide indicators', async () => {
+    let _$el = $(vm.$refs.carousel.$el)
+    await vm.$nextTick()
+    $el.find('form button').get(0).click()
+    await vm.$nextTick()
+    expect(_$el.find('.carousel-indicators').length).to.equal(0)
   })
 
-  it('should be able to hide controls', (done) => {
-    let vm = app.$mount().$refs.doc
-    vm.$nextTick(() => {
-      vm.$el.querySelectorAll('form button')[1].click()
-      vm.$nextTick(() => {
-        expect(vm.$refs.carousel.$el.querySelector('.carousel-control')).not.exist
-        done()
-      })
-    })
+  it('should be able to hide controls', async () => {
+    let _$el = $(vm.$refs.carousel.$el)
+    await vm.$nextTick()
+    $el.find('form button').get(1).click()
+    await vm.$nextTick()
+    expect(_$el.find('.carousel-control').length).to.equal(0)
   })
 
-  it('should be able to push slide', (done) => {
-    let vm = app.$mount().$refs.doc
-    vm.$nextTick(() => {
-      vm.$el.querySelectorAll('form button')[2].click()
-      vm.$nextTick(() => {
-        expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-indicators li').length).to.equal(5)
-        expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item').length).to.equal(5)
-        done()
-      })
-    })
+  it('should be able to push slide', async () => {
+    let _$el = $(vm.$refs.carousel.$el)
+    await vm.$nextTick()
+    $el.find('form button').get(2).click()
+    await vm.$nextTick()
+    expect(_$el.find('.carousel-indicators li').length).to.equal(5)
+    expect(_$el.find('.carousel-inner .item').length).to.equal(5)
   })
 
-  it('should be able to change interval', (done) => {
-    let vm = app.$mount().$refs.doc
-    vm.$nextTick(() => {
-      vm.interval = 500
-      vm.$nextTick(() => {
-        setTimeout(() => {
-          expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-indicators .active').length).to.equal(1)
-          expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-indicators li')[1].className).to.contain('active')
-          expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
-          expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item')[1].className).to.contain('active')
-          done()
-        }, 1200) // > 500 + 600
-      })
-    })
+  it('should be able to change interval', async () => {
+    let $el = $(vm.$refs.carousel.$el)
+    await vm.$nextTick()
+    vm.interval = 500
+    await vm.$nextTick()
+    await utils.sleep(1200)
+    expect($el.find('.carousel-indicators .active').length).to.equal(1)
+    expect($el.find('.carousel-indicators li').get(1).className).to.contain('active')
+    expect($el.find('.carousel-inner .item.active').length).to.equal(1)
+    expect($el.find('.carousel-inner .item').get(1).className).to.contain('active')
   })
 
-  it('should be able to stop interval', (done) => {
-    let vm = app.$mount().$refs.doc
-    vm.$nextTick(() => {
-      vm.interval = 0
-      vm.$nextTick(() => {
-        setTimeout(() => {
-          expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-indicators .active').length).to.equal(1)
-          expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-indicators li')[0].className).to.contain('active')
-          expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item.active').length).to.equal(1)
-          expect(vm.$refs.carousel.$el.querySelectorAll('.carousel-inner .item')[0].className).to.contain('active')
-          done()
-        }, 1200) // > 500 + 600
-      })
-    })
+  it('should be able to stop interval', async () => {
+    let $el = $(vm.$refs.carousel.$el)
+    await vm.$nextTick()
+    vm.interval = 0
+    await vm.$nextTick()
+    await utils.sleep(1200)
+    expect($el.find('.carousel-indicators .active').length).to.equal(1)
+    expect($el.find('.carousel-indicators li').get(0).className).to.contain('active')
+    expect($el.find('.carousel-inner .item.active').length).to.equal(1)
+    expect($el.find('.carousel-inner .item').get(0).className).to.contain('active')
   })
 })

@@ -1,8 +1,8 @@
 <template>
   <div class="carousel slide" data-ride="carousel" @mouseenter="stopInterval" @mouseleave="startInterval">
-    <slot v-if="indicators" name="indicators">
+    <slot v-if="indicators" name="indicators" :select="select" :active-index="activeIndex">
       <ol class="carousel-indicators">
-        <li v-for="(slide,index) in slides" :class="{active:index===activeIndex}" @click="select(index)"></li>
+        <li v-for="(slide, index) in slides" :class="{active: index === activeIndex}" @click="select(index)"></li>
       </ol>
     </slot>
     <div class="carousel-inner" role="listbox">

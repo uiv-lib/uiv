@@ -18,7 +18,7 @@ describe('Alert', () => {
 
   afterEach(() => {
     vm.$destroy()
-    $el = null
+    $el.remove()
   })
 
   const getDefaultAlertLength = () => {
@@ -41,6 +41,7 @@ describe('Alert', () => {
     let $el = $(vm.$el)
     expect($el.hasClass('alert')).to.be.true
     expect($el.hasClass(DEFAULT_ALERT_CLASS)).to.be.true
+    $el.remove()
     vm.$destroy()
   })
 

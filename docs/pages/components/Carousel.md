@@ -8,7 +8,7 @@
 <template>
   <carousel :indicators="indicators" :controls="controls" :interval="interval" ref="carousel">
     <slide v-for="(slide, index) in slides" :key="index">
-      <div style="width: 100%;height: 400px;" :style="{background:index%2===0?'#99a9bf':'#d3dce6'}"></div>
+      <div style="width: 100%;height: 400px;" :style="{background:index % 2 === 0? '#99a9bf' : '#d3dce6'}"></div>
       <div class="carousel-caption">
         <h3>This is {{slide.title}}</h3>
       </div>
@@ -57,23 +57,25 @@
 
 ## Override Indicators
 
-Use the `indicators` slot to override default Bootstrap indicators.
+Use the `indicators` slot to override default Bootstrap indicators. 
+
+This is a scoped slot, use `slot-scope="props"` in Vue 2.5+, otherwise `scope="props"`.
 
 ```html
 <template>
-  <carousel v-model="currentIndex">
-    <slide v-for="(slide, index) in slides" :key="index">
-      <div style="width: 100%;height: 400px;" :style="{background:index%2===0?'#99a9bf':'#d3dce6'}"></div>
+  <carousel>
+    <slide v-for="(slide, index) in slides2" :key="index">
+      <div style="width: 100%;height: 400px;" :style="{background:index % 2 === 0 ? '#99a9bf' : '#d3dce6'}"></div>
       <div class="carousel-caption">
         <h3>This is {{slide.title}}</h3>
       </div>
     </slide>
     <!-- Use this slot for custom indicators -->
-    <template slot="indicators">
+    <template slot="indicators" slot-scope="props">
       <ol class="carousel-indicators custom-carousel-indicators">
-        <li v-for="(slide,index) in slides"
-            :class="{active:index===currentIndex}"
-            @click="currentIndex = index">
+        <li v-for="(slide, index) in slides2"
+            :class="{active:index === props.activeIndex}"
+            @click="props.select(index)">
             <!-- Anything you like here -->
         </li>
       </ol>
@@ -85,7 +87,12 @@ Use the `indicators` slot to override default Bootstrap indicators.
   export default {
     data () {
       return {
-        currentIndex: 0
+        slides2: [
+          {title: 'Slide 1'},
+          {title: 'Slide 2'},
+          {title: 'Slide 3'},
+          {title: 'Slide 4'}
+        ]
       }
     }
   }
@@ -174,7 +181,7 @@ Use the `indicators` slot to override default Bootstrap indicators.
     </tr>
     <tr>
       <td nowrap="nowrap"><code>indicators</code></td>
-      <td colspan="4">Override indicators, see example section below.</td>
+      <td colspan="4">Override indicators. This is a scoped slot with <code>activeIndex</code> prop and <code>select</code> method. See example section above for usage details.</td>
     </tr>
     </tbody>
     <tbody>
@@ -209,7 +216,12 @@ Use the `indicators` slot to override default Bootstrap indicators.
           {title: 'Slide 3'},
           {title: 'Slide 4'}
         ],
-        currentIndex: 0
+        slides2: [
+          {title: 'Slide 1'},
+          {title: 'Slide 2'},
+          {title: 'Slide 3'},
+          {title: 'Slide 4'}
+        ]
       }
     },
     methods: {
