@@ -61,11 +61,10 @@ Toggle a modal by clicking the button below. It will slide down and fade in from
     }
   }
 </script>
-
 <!-- Live demo -->
 ```
 
-## Optional sizes
+## Optional Sizes
 
 Modals have two optional sizes: `lg` and `sm`.
 
@@ -73,12 +72,10 @@ Modals have two optional sizes: `lg` and `sm`.
 <template>
   <button type="button" class="btn btn-primary" @click="open2=true" id="btn-2">Large Modal</button>
   <button type="button" class="btn btn-primary" @click="open3=true" id="btn-3">Small Modal</button>
-  <!--Modal 2-->
-  <modal v-model="open2" title="Modal 2" size="lg">
+  <modal v-model="open2" title="Modal Title" size="lg">
     <p>This is a large modal.</p>
   </modal>
-  <!--Modal 3-->
-  <modal v-model="open3" title="Modal 3" size="sm">
+  <modal v-model="open3" title="Modal Title" size="sm">
     <p>This is a small modal.</p>
   </modal>
 </template>
@@ -96,35 +93,22 @@ Modals have two optional sizes: `lg` and `sm`.
 <!-- Live demo -->
 ```
 
-## Header & Footer
+## Custom Header
+
+* Use `title` slot to customize the modal title.
+* Set `header` prop to `false` to hide the modal header.
+* You can also use `header` slot to take full control of the modal header. Notice that this slot will override `title` slot since it is a completely replacement
 
 ```html
 <template>
   <button type="button" class="btn btn-primary" @click="open4=true" id="btn-4">HTML Title</button>
-  <button type="button" class="btn btn-primary" @click="open5=true" id="btn-5">No Footer</button>
-  <button type="button" class="btn btn-primary" @click="open6=true" id="btn-6">No Header</button>
-  <button type="button" class="btn btn-primary" @click="open7=true" id="btn-7">Customize Footer</button>
-  <!--Modal 4-->
+  <button type="button" class="btn btn-primary" @click="open5=true" id="btn-5">No Header</button>
   <modal v-model="open4">
-    <span slot="title"><span><i class="glyphicon glyphicon-heart"></i> Modal 4</span></span>
+    <span slot="title"><i class="glyphicon glyphicon-heart"></i> Modal Title</span>
     <p>This is a modal with HTML title.</p>
   </modal>
-  <!--Modal 5-->
-  <modal v-model="open5" title="Modal 5" :footer="false">
-    <p>This is a modal with no footer.</p>
-  </modal>
-  <!--Modal 6-->
-  <modal v-model="open6" title="Modal 6" :header="false">
+  <modal v-model="open5" :header="false">
     <p>This is a modal with no header.</p>
-  </modal>
-  <!--Modal 7-->
-  <modal v-model="open7" title="Modal 7">
-    <p>This is a modal with customize footer.</p>
-    <div slot="footer">
-      <button type="button" class="btn btn-default" @click="open7=false">Close</button>
-      <button type="button" class="btn btn-warning">Warning Action</button>
-      <button type="button" class="btn btn-danger">Danger Action</button>
-    </div>
   </modal>
 </template>
 
@@ -133,7 +117,40 @@ Modals have two optional sizes: `lg` and `sm`.
     data () {
       return {
         open4: false,
-        open5: false,
+        open5: false
+      }
+    }
+  }
+</script>
+<!-- Live demo -->
+```
+
+## Custom Footer
+
+* Use `footer` slot to customize the modal footer.
+* Set `footer` prop to `false` to hide the modal footer.
+
+```html
+<template>
+  <button type="button" class="btn btn-primary" @click="open6=true" id="btn-6">Custom Footer</button>
+  <button type="button" class="btn btn-primary" @click="open7=true" id="btn-7">No Footer</button>
+  <modal v-model="open6" title="Modal Title">
+    <p>This is a modal with custom footer.</p>
+    <div slot="footer">
+      <button type="button" class="btn btn-default" @click="open6=false">Cancel</button>
+      <button type="button" class="btn btn-warning">Warning Action</button>
+      <button type="button" class="btn btn-danger">Danger Action</button>
+    </div>
+  </modal>
+  <modal v-model="open7" title="Modal Title" :footer="false">
+    <p>This is a modal with no footer.</p>
+  </modal>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
         open6: false,
         open7: false
       }
@@ -143,24 +160,15 @@ Modals have two optional sizes: `lg` and `sm`.
 <!-- Live demo -->
 ```
 
-## Others
+## Auto Focus
+
+Auto focus on footer button with `data-action="auto-focus"` attribute after modal open. By default it is the OK button.
 
 ```html
 <template>
-  <button type="button" class="btn btn-primary" @click="open8=true" id="btn-8">Disable Backdrop</button>
-  <button type="button" class="btn btn-primary" @click="open9=true" id="btn-9">Disable Animation</button>
-  <button type="button" class="btn btn-primary" @click="open10=true" id="btn-10">Auto Focus</button>
-  <!--Modal 8-->
-  <modal v-model="open8" title="Modal 8" :backdrop="false">
-    <p>This is a modal that can not close by backdrop click.</p>
-  </modal>
-  <!--Modal 9-->
-  <modal v-model="open9" title="Modal 9" :transition-duration="0">
-    <p>This is a modal that has no transition effect.</p>
-  </modal>
-  <!--Modal 10-->
-  <modal v-model="open10" title="Modal 10" :auto-focus="true">
-    <p>Check this out! The OK button is focus now.</p>
+  <button type="button" class="btn btn-primary" @click="open8=true" id="btn-8">Auto Focus</button>
+  <modal v-model="open8" title="Modal Title" :auto-focus="true">
+    <p>Check this out! The OK button is focused now.</p>
   </modal>
 </template>
 
@@ -168,8 +176,54 @@ Modals have two optional sizes: `lg` and `sm`.
   export default {
     data () {
       return {
-        open8: false,
-        open9: false,
+        open8: false
+      }
+    }
+  }
+</script>
+<!-- Live demo -->
+```
+
+## Disable Backdrop
+
+Set `backdrop` prop to `false` to disable the modal dismiss action on backdrop click.
+
+```html
+<template>
+  <button type="button" class="btn btn-primary" @click="open9=true" id="btn-9">Disable Backdrop</button>
+  <modal v-model="open9" title="Modal Title" :backdrop="false">
+    <p>This is a modal that can not close by backdrop click.</p>
+  </modal>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        open9: false
+      }
+    }
+  }
+</script>
+<!-- Live demo -->
+```
+
+## Disable Animation
+
+Set `transition-duration` to `0` to disable modal animations.
+
+```html
+<template>
+  <button type="button" class="btn btn-primary" @click="open10=true" id="btn-10">Disable Animation</button>
+  <modal v-model="open10" title="Modal Title" :transition-duration="0">
+    <p>This is a modal that has no transition effect.</p>
+  </modal>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
         open10: false
       }
     }
