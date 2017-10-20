@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="col-md-2 hidden-xs hidden-sm">
-        <affix :offset="100">
+        <affix :offset="80">
           <toc :anchors="anchors"></toc>
         </affix>
       </div>

@@ -42,16 +42,16 @@ Supported placements:
 * **left**
 
 ```html
+<popover title="Title" placement="left">
+  <button type="button" class="btn btn-primary" data-role="trigger" id="left-trigger">Left</button>
+  <div slot="popover">
+    <p>Popover on left</p>
+  </div>
+</popover>
 <popover title="Title" placement="top">
   <button type="button" class="btn btn-primary" data-role="trigger" id="top-trigger">Top</button>
   <div slot="popover">
     <p>Popover on top</p>
-  </div>
-</popover>
-<popover title="Title" placement="right">
-  <button type="button" class="btn btn-primary" data-role="trigger" id="right-trigger">Right</button>
-  <div slot="popover">
-    <p>Popover on right</p>
   </div>
 </popover>
 <popover title="Title" placement="bottom">
@@ -60,10 +60,10 @@ Supported placements:
     <p>Popover on bottom</p>
   </div>
 </popover>
-<popover title="Title" placement="left">
-  <button type="button" class="btn btn-primary" data-role="trigger" id="left-trigger">Left</button>
+<popover title="Title" placement="right">
+  <button type="button" class="btn btn-primary" data-role="trigger" id="right-trigger">Right</button>
   <div slot="popover">
-    <p>Popover on left</p>
+    <p>Popover on right</p>
   </div>
 </popover>
 <!-- Live demo -->

@@ -8,6 +8,9 @@
         </li>
       </ul>
     </li>
+    <li>
+      <a href="#" class="back-to-top">Back to top</a>
+    </li>
   </ul>
 </template>
 
@@ -41,6 +44,12 @@
 
       &:hover {
         color: @highlight-color !important;
+      }
+
+      &.back-to-top {
+        opacity: .8;
+        margin-top: 20px;
+        font-size: 90%;
       }
     }
   }

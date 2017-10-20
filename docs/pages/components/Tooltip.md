@@ -2,109 +2,110 @@
 
 ## Example
 
-Hover over the button below to see tooltips.
+The first element appear in `<tooltip>` node will be the trigger element.
 
-**Note**: The first element appear in `<tooltip>` node will be the trigger element.
+Hover over the button below to toggle tooltips.
 
 ```html
-<tooltip text="Static tooltip content goes here.">
+<tooltip text="Static tooltip content goes here">
   <button type="button" class="btn btn-primary">Hover me!</button>
 </tooltip>
 <!-- Live demo -->
 ```
 
-## With Options
+## Placements
+
+Supported placements:
+
+* **top** (Default)
+* **right**
+* **bottom**
+* **left**
+
+```html
+<tooltip text="Tooltip content on left" placement="left">
+  <button type="button" class="btn btn-primary" id="left-trigger">Left</button>
+</tooltip>
+<tooltip text="Tooltip content on top">
+  <button type="button" class="btn btn-primary" id="top-trigger">Top</button>
+</tooltip>
+<tooltip text="Tooltip content on bottom" placement="bottom">
+  <button type="button" class="btn btn-primary" id="bottom-trigger">Bottom</button>
+</tooltip>
+<tooltip text="Tooltip content on right" placement="right">
+  <button type="button" class="btn btn-primary" id="right-trigger">Right</button>
+</tooltip>
+<!-- Live demo -->
+```
+
+## Auto Placement
+
+Tooltips will try to find the best placement for displaying while `auto-placement` is set to `true` (by default) base on the default placement setting. Useful while there does not have enough space to show the entire tooltip content.
+
+`auto-placement` try order: right -> bottom -> left -> top, and use the set one if none of these matched.
+
+## Triggers
+
+Supported triggers:
+
+* `hover` show on mouseenter, hide on mouseleave.
+* `focus` show on focus, hide on blur.
+* `hover-focus` (Default) combination of hover and focus trigger.
+* `click` toggle on trigger click.
+* `outside-click` same as click, but not close on tooltip click and close on outside click.
+
+```html
+<tooltip text="Static tooltip content goes here">
+  <button type="button" class="btn btn-primary">Hover-Focus (Default)</button>
+</tooltip>
+<tooltip text="Static tooltip content goes here" trigger="hover">
+  <button type="button" class="btn btn-primary" id="hover-trigger">Hover</button>
+</tooltip>
+<tooltip text="Static tooltip content goes here" trigger="focus">
+  <button type="button" class="btn btn-primary" id="focus-trigger">Focus</button>
+</tooltip>
+<tooltip text="Static tooltip content goes here" trigger="click">
+  <button type="button" class="btn btn-primary" id="click-trigger">Click</button>
+</tooltip>
+<tooltip text="Static tooltip content goes here" trigger="outside-click">
+  <button type="button" class="btn btn-primary" id="outside-click-trigger">Outside-Click</button>
+</tooltip>
+<!-- Live demo -->
+```
+
+## Manual Trigger
+
+Set `trigger` prop to `manual` to disable all the event listeners, and controls tooltips show / hide only by `v-model` change.
 
 ```html
 <template>
-  <form class="form-inline">
-    <tooltip :text="text" :placement="placement" :auto-placement="autoPlacement" :trigger="trigger"
-             :enable="enable" ref="tooltip" v-model="open1">
-      <button type="button" class="btn btn-default">Tooltip Sample</button>
-    </tooltip>
-    <tooltip :text="text" :placement="placement" :auto-placement="autoPlacement" :trigger="trigger"
-             :enable="enable" v-model="open2">
-      <button type="button" class="btn btn-default">Another Sample</button>
-    </tooltip>
-    <tooltip :text="text" :placement="placement" :auto-placement="autoPlacement" :trigger="trigger"
-             :enable="enable" v-model="open3">
-      <input type="text" class="form-control" placeholder="An input samle">
-    </tooltip>
-  </form>
+  <tooltip text="Static tooltip content goes here" trigger="manual" v-model="show">
+    <button type="button" class="btn btn-default">You Can't Trigger Tooltip Here...</button>
+  </tooltip>
   <hr/>
-  <h4>Settings</h4>
-  <form class="form-horizontal">
-    <div class="form-group">
-      <div class="col-md-3 col-sm-6">
-        <label>Enable / Disable Tooltip</label>
-        <div class="checkbox">
-          <label><input type="checkbox" v-model="enable"> Enable</label>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <label>Auto Adjust Placement</label>
-        <div class="checkbox">
-          <label><input type="checkbox" v-model="autoPlacement"> Enable</label>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <label>Tooltip Text (Support HTML)</label>
-        <input type="text" class="form-control" v-model="text">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-6">
-        <label>Placement</label>
-        <select class="form-control" v-model="placement">
-          <option>top</option>
-          <option>right</option>
-          <option>left</option>
-          <option>bottom</option>
-        </select>
-      </div>
-      <div class="col-md-6">
-        <label>Trigger</label>
-        <select class="form-control" v-model="trigger">
-          <option>hover</option>
-          <option>focus</option>
-          <option>hover-focus</option>
-          <option>click</option>
-          <option>outside-click</option>
-          <option>manual</option>
-        </select>
-        <div v-show="trigger === 'manual'">
-          <br/>
-          <button class="btn btn-default" type="button" @click="open1 = !open1">
-            <span>Toggle 1</span>
-          </button>
-          <button class="btn btn-default" type="button" @click="open2 = !open2">
-            <span>Toggle 2</span>
-          </button>
-          <button class="btn btn-default" type="button" @click="open3 = !open3">
-            <span>Toggle 3</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </form>
+  <button type="button" class="btn btn-primary" @click="show = !show">Toggle Tooltip</button>
 </template>
 
 <script>
   export default {
     data () {
       return {
-        text: 'Some helpful text',
-        placement: 'top',
-        autoPlacement: true,
-        trigger: 'hover-focus',
-        enable: true,
-        open1: false,
-        open2: false,
-        open3: false
+        show: false
       }
     }
   }
 </script>
+<!-- Live demo -->
+```
+
+## Disable Tooltip
+
+Set `enable` prop to `false` to disable a tooltip.
+
+```html
+<tooltip text="Static tooltip content goes here" :enable="false">
+  <button type="button" class="btn btn-primary" id="disabled-trigger">Disabled Tooltip</button>
+</tooltip>
 <!-- Live demo -->
 ```
 
@@ -239,14 +240,7 @@ Hover over the button below to see tooltips.
   export default {
     data () {
       return {
-        text: 'Some helpful text',
-        placement: 'top',
-        autoPlacement: true,
-        trigger: 'hover-focus',
-        enable: true,
-        open1: false,
-        open2: false,
-        open3: false
+        show: false
       }
     }
   }
