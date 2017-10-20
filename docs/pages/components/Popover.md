@@ -6,96 +6,158 @@
 
 The element attached with `data-role="trigger"` will be the popover trigger.
 
+Click the button below to toggle popover.
+
+```html
+<popover title="Title">
+  <button type="button" class="btn btn-primary" data-role="trigger">Popover</button>
+  <div slot="popover">
+    <h1>Hello world!</h1>
+  </div>
+</popover>
+<!-- Live demo -->
+```
+
+## With Empty Title
+
+If you don't want the title of popover, just leave the `title` prop unset or blank.
+
+```html
+<popover>
+  <button type="button" class="btn btn-primary" data-role="trigger" id="empty-title-trigger">Popover</button>
+  <div slot="popover">
+    <h1>Hello world!</h1>
+  </div>
+</popover>
+<!-- Live demo -->
+```
+
+## Placements
+
+Supported placements:
+
+* **top** (Default)
+* **right**
+* **bottom**
+* **left**
+
+```html
+<popover title="Title" placement="top">
+  <button type="button" class="btn btn-primary" data-role="trigger" id="top-trigger">Top</button>
+  <div slot="popover">
+    <p>Popover on top</p>
+  </div>
+</popover>
+<popover title="Title" placement="right">
+  <button type="button" class="btn btn-primary" data-role="trigger" id="right-trigger">Right</button>
+  <div slot="popover">
+    <p>Popover on right</p>
+  </div>
+</popover>
+<popover title="Title" placement="bottom">
+  <button type="button" class="btn btn-primary" data-role="trigger" id="bottom-trigger">Bottom</button>
+  <div slot="popover">
+    <p>Popover on bottom</p>
+  </div>
+</popover>
+<popover title="Title" placement="left">
+  <button type="button" class="btn btn-primary" data-role="trigger" id="left-trigger">Left</button>
+  <div slot="popover">
+    <p>Popover on left</p>
+  </div>
+</popover>
+<!-- Live demo -->
+```
+
+## Auto Placement
+
+Popover will try to find the best placement for displaying while `auto-placement` is set to `true` (by default) base on the default placement setting. Useful while there does not have enough space to show the entire popover content.
+
+`auto-placement` try order: right -> bottom -> left -> top, and use the set one if none of these matched.
+
+## Triggers
+
+Supported triggers:
+
+* `hover` show on mouseenter, hide on mouseleave.
+* `focus` show on focus, hide on blur.
+* `hover-focus` combination of hover and focus trigger.
+* `click` toggle on trigger click.
+* `outside-click` (Default) same as click, but not close on popover click and close on outside click.
+
+```html
+<popover title="Title">
+  <button type="button" class="btn btn-primary" data-role="trigger">Outside-Click (Default)</button>
+  <div slot="popover">
+    <p>Popover content</p>
+  </div>
+</popover>
+<popover title="Title" trigger="hover">
+  <button type="button" class="btn btn-primary" data-role="trigger" id="hover-trigger">Hover</button>
+  <div slot="popover">
+    <p>Popover content</p>
+  </div>
+</popover>
+<popover title="Title" trigger="focus">
+  <button type="button" class="btn btn-primary" data-role="trigger" id="focus-trigger">Focus</button>
+  <div slot="popover">
+    <p>Popover content</p>
+  </div>
+</popover>
+<popover title="Title" trigger="hover-focus">
+  <button type="button" class="btn btn-primary" data-role="trigger" id="hover-focus-trigger">Hover-Focus</button>
+  <div slot="popover">
+    <p>Popover content</p>
+  </div>
+</popover>
+<popover title="Title" trigger="click">
+  <button type="button" class="btn btn-primary" data-role="trigger" id="click-trigger">Click</button>
+  <div slot="popover">
+    <p>Popover content</p>
+  </div>
+</popover>
+<!-- Live demo -->
+```
+
+## Manual Trigger
+
+Set `trigger` prop to `manual` to disable all the event listeners, and controls popover show / hide only by `v-model` change.
+
 ```html
 <template>
-  <popover v-model="open1" :title="title" :placement="placement" :auto-placement="autoPlacement" :trigger="trigger" :enable="enable" ref="popover">
-    <button type="button" class="btn btn-default" data-role="trigger">Popover</button>
+  <popover title="Title" trigger="manual" v-model="show">
+    <button type="button" class="btn btn-default" data-role="trigger">You Can't Trigger Popover Here...</button>
     <div slot="popover">
-      <h1>Hello world!</h1>
-    </div>
-  </popover>
-  <popover v-model="open2" :title="title" :placement="placement" :auto-placement="autoPlacement" :trigger="trigger" :enable="enable">
-    <button type="button" class="btn btn-default" data-role="trigger">Functional Popover</button>
-    <div slot="popover">
-      <form>
-        <div class="form-group">
-          <label>Title</label>
-          <input type="text" class="form-control" v-model="title">
-        </div>
-      </form>
+      <p>Popover content</p>
     </div>
   </popover>
   <hr/>
-  <h4>Settings</h4>
-  <form class="form-horizontal">
-    <div class="form-group">
-      <div class="col-md-3 col-sm-6">
-        <label>Enable / Disable Popover</label>
-        <div class="checkbox">
-          <label><input type="checkbox" v-model="enable"> Enable</label>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <label>Auto Adjust Placement</label>
-        <div class="checkbox">
-          <label><input type="checkbox" v-model="autoPlacement"> Enable</label>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <label>Title</label>
-        <input type="text" class="form-control" v-model="title">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-6">
-        <label>Placement</label>
-        <select class="form-control" v-model="placement">
-          <option>top</option>
-          <option>right</option>
-          <option>left</option>
-          <option>bottom</option>
-        </select>
-      </div>
-      <div class="col-md-6">
-        <label>Trigger</label>
-        <select class="form-control" v-model="trigger">
-          <option>hover</option>
-          <option>focus</option>
-          <option>hover-focus</option>
-          <option>click</option>
-          <option>outside-click</option>
-          <option>manual</option>
-        </select>
-        <div v-show="trigger === 'manual'">
-          <br/>
-          <button class="btn btn-default" type="button" @click="open1 = !open1">
-            <span>Toggle Popover 1</span>
-          </button>
-          <button class="btn btn-default" type="button" @click="open2 = !open2">
-            <span>Toggle Popover 2</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </form>
+  <button type="button" class="btn btn-primary" @click="show = !show">Toggle Popover</button>
 </template>
 
 <script>
   export default {
     data () {
       return {
-        enable: true,
-        title: 'Popover Title',
-        trigger: 'outside-click',
-        placement: 'top',
-        autoPlacement: true,
-        open1: false,
-        open2: false
+        show: false
       }
-    },
-    methods: {}
+    }
   }
 </script>
+<!-- Live demo -->
+```
+
+## Disable Popover
+
+Set `enable` prop to `false` to disable a popover.
+
+```html
+<popover title="Title" :enable="false">
+  <button type="button" class="btn btn-primary" data-role="trigger" id="disabled-trigger">Disabled Popover</button>
+  <div slot="popover">
+    <h1>Hello world!</h1>
+  </div>
+</popover>
 <!-- Live demo -->
 ```
 
@@ -251,22 +313,15 @@ The element attached with `data-role="trigger"` will be the popover trigger.
   </table>
 </div>
 
-
 <!-- Live demo script
 <script>
   export default {
     data () {
       return {
-        enable: true,
-        title: 'Popover Title',
-        trigger: 'outside-click',
-        placement: 'top',
-        autoPlacement: true,
-        open1: false,
-        open2: false
+        show: false
       }
-    },
-    methods: {}
+    }
   }
 </script>
+
 -->

@@ -1,38 +1,33 @@
 import Vue from 'vue'
+import $ from 'jquery'
 import Popover from '@src/components/popover/Popover.vue'
 import PopoverDoc from '@docs/pages/components/Popover.md'
+import utils from './../utils'
 
 describe('Popover', () => {
-  let root
+  let vm
+  let $el
 
   beforeEach(() => {
-    root = new Vue({
-      template: '<PopoverDoc ref="doc"/>',
-      components: {PopoverDoc}
-    })
+    let Constructor = Vue.extend(PopoverDoc)
+    vm = new Constructor().$mount()
+    $el = $(vm.$el).appendTo('body')
   })
 
   afterEach(() => {
-    try {
-      root.$destroy()
-    } catch (err) {
-      // Silent
-    }
+    vm.$destroy()
+    $el.remove()
   })
 
-  it('should be ok if no trigger present', (done) => {
+  it('should be ok to render if no trigger present', async () => {
     const Constructor = Vue.extend(Popover)
     const vm = new Constructor().$mount()
-    vm.$nextTick(() => {
-      vm.$destroy()
-      done()
-    })
+    await vm.$nextTick()
+    $(vm.$el).remove()
+    vm.$destroy()
   })
 
-  it('should be able to show popover on init', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
+  it('should be able to show popover on init', async () => {
     let res = Vue.compile('<popover v-model="show"><button data-role="trigger"></button></popover>')
     let vm = new Vue({
       data () {
@@ -43,20 +38,15 @@ describe('Popover', () => {
       components: {Popover},
       render: res.render,
       staticRenderFns: res.staticRenderFns
-    })
-    vm.$mount('#app')
-    setTimeout(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(1)
-      app.remove()
-      vm.$destroy()
-      done()
-    }, 200)
+    }).$mount()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    $(vm.$el).remove()
+    $('.popover').remove()
+    vm.$destroy()
   })
 
-  it('should be able to use custom target', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
+  it('should be able to use custom target', async () => {
     let res = Vue.compile('<div><button ref="btn" type="button">btn</button><popover :target="btn" trigger="focus"></popover></div>')
     let vm = new Vue({
       data () {
@@ -70,342 +60,215 @@ describe('Popover', () => {
       components: {Popover},
       render: res.render,
       staticRenderFns: res.staticRenderFns
-    })
-    vm.$mount('#app')
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(0)
-      vm.btn.focus()
-      setTimeout(() => {
-        expect(document.querySelectorAll('.popover').length).to.equal(1)
-        vm.$destroy()
-        app.remove()
-        done()
-      }, 200)
-    })
+    }).$mount()
+    let $el = $(vm.$el).appendTo('body')
+    await vm.$nextTick()
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    vm.btn.focus()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    $el.remove()
+    $('.popover').remove()
+    vm.$destroy()
   })
 
-  it('should be able to destroy', (done) => {
-    let vm = root.$mount().$refs.doc
-    vm.$nextTick(() => {
-      vm.$destroy()
-      done()
-    })
+  it('should be able to show popover on click', async () => {
+    await vm.$nextTick()
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    vm.$el.querySelectorAll('button')[0].click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    vm.$el.querySelectorAll('button')[0].click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
-  it('should be able to show popover', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    let vm = root.$mount('#app').$refs.doc
-    vm.trigger = 'focus'
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(0)
-      vm.$el.querySelectorAll('button')[0].focus()
-      setTimeout(() => {
-        expect(document.querySelectorAll('.popover').length).to.equal(1)
-        vm.$el.querySelectorAll('button')[0].blur()
-        setTimeout(() => {
-          expect(document.querySelectorAll('.popover').length).to.equal(0)
-          app.remove()
-          done()
-        }, 200)
-      }, 200)
-    })
+  it('should be able to change trigger to manual', async () => {
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    vm.show = true
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    vm.show = false
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
-  it('should be able to change trigger to manual', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    let vm = root.$mount('#app').$refs.doc
-    vm.trigger = 'manual'
-    vm.open1 = true
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(1)
-      vm.open1 = false
-      setTimeout(() => {
-        expect(document.querySelectorAll('.popover').length).to.equal(0)
-        app.remove()
-        done()
-      }, 500)
-    })
+  it('should be able change trigger to hover-focus', async () => {
+    await vm.$nextTick()
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    // matches don't work in here
+    let savedMatches = Element.prototype.matches
+    Element.prototype.matches = () => true
+    let trigger = vm.$el.querySelector('#hover-focus-trigger')
+    trigger.focus()
+    await utils.sleep(200)
+    Element.prototype.matches = savedMatches
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    trigger.blur()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
-  it('should be able change trigger to hover-focus', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    let vm = root.$mount('#app').$refs.doc
-    vm.trigger = 'hover-focus'
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(0)
-      // matches don't work in here
-      let savedMatches = Element.prototype.matches
-      Element.prototype.matches = () => true
-      vm.$el.querySelectorAll('button')[0].focus()
-      setTimeout(() => {
-        Element.prototype.matches = savedMatches
-        expect(document.querySelectorAll('.popover').length).to.equal(1)
-        vm.$el.querySelectorAll('button')[0].blur()
-        setTimeout(() => {
-          expect(document.querySelectorAll('.popover').length).to.equal(0)
-          app.remove()
-          done()
-        }, 200)
-      }, 200)
-    })
+  it('should be able to change trigger to click', async () => {
+    await vm.$nextTick()
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    let trigger = vm.$el.querySelector('#click-trigger')
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
-  it('should be able to change trigger to click', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    let vm = root.$mount('#app').$refs.doc
-    vm.trigger = 'click'
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(0)
-      vm.$el.querySelectorAll('button')[0].click()
-      setTimeout(() => {
-        expect(document.querySelectorAll('.popover').length).to.equal(1)
-        vm.$el.querySelectorAll('button')[0].click()
-        setTimeout(() => {
-          expect(document.querySelectorAll('.popover').length).to.equal(0)
-          app.remove()
-          done()
-        }, 200)
-      }, 200)
-    })
+  it('should be able to change trigger to hover', async () => {
+    await vm.$nextTick()
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    let trigger = vm.$el.querySelector('#hover-trigger')
+    utils.triggerEvent(trigger, 'mouseenter')
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    utils.triggerEvent(trigger, 'mouseleave')
+    utils.triggerEvent(document.querySelector('.popover'), 'mouseenter')
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    utils.triggerEvent(document.querySelector('.popover'), 'mouseleave')
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
-  it('should be able to keep popover show on hover if using hover trigger', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    let vm = root.$mount('#app').$refs.doc
-    vm.trigger = 'hover'
-    let popover = vm.$refs.popover
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(0)
-      popover.show() // popover hover
-      popover.hide() // popover leave
-      popover.showOnHover() // popover hover
-      setTimeout(() => {
-        expect(document.querySelectorAll('.popover').length).to.equal(1)
-        popover.hideOnLeave() // popover leave
-        setTimeout(() => {
-          expect(document.querySelectorAll('.popover').length).to.equal(0)
-          app.remove()
-          done()
-        }, 200)
-      }, 200)
-    })
+  it('should be able to toggle correctly on fast click', async () => {
+    let button = vm.$el.querySelector('#click-trigger')
+    await vm.$nextTick()
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    button.click()
+    button.click()
+    button.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    button.click()
+    button.click()
+    button.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
-  it('should be able to keep popover show on hover if using hover-focus trigger', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    let vm = root.$mount('#app').$refs.doc
-    vm.trigger = 'hover-focus'
-    let popover = vm.$refs.popover
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(0)
-      popover.show() // popover hover
-      popover.hide() // popover leave
-      popover.showOnHover() // popover hover
-      setTimeout(() => {
-        expect(document.querySelectorAll('.popover').length).to.equal(1)
-        popover.hideOnLeave() // popover leave
-        setTimeout(() => {
-          expect(document.querySelectorAll('.popover').length).to.equal(0)
-          app.remove()
-          done()
-        }, 200)
-      }, 200)
-    })
-  })
-
-  it('should be able to toggle correctly on fast click', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    let vm = root.$mount('#app').$refs.doc
-    vm.trigger = 'click'
+  it('should be able to change trigger to outside-click', async () => {
     let button = vm.$el.querySelectorAll('button')[0]
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(0)
-      button.click()
-      button.click()
-      button.click()
-      setTimeout(() => {
-        expect(document.querySelectorAll('.popover').length).to.equal(1)
-        button.click()
-        button.click()
-        button.click()
-        setTimeout(() => {
-          expect(document.querySelectorAll('.popover').length).to.equal(0)
-          app.remove()
-          done()
-        }, 200)
-      }, 200)
-    })
+    await vm.$nextTick()
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    button.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    document.body.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
-  it('should be able to change trigger to outside-click', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    let vm = root.$mount('#app').$refs.doc
-    vm.trigger = 'outside-click'
-    let popover = vm.$refs.popover
-    let button = vm.$el.querySelectorAll('button')[0]
-    let otherButton = vm.$el.querySelectorAll('button')[1]
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(0)
-      button.click()
-      setTimeout(() => {
-        expect(document.querySelectorAll('.popover').length).to.equal(1)
-        let event = {target: otherButton}
-        popover.windowClicked(event)
-        setTimeout(() => {
-          expect(document.querySelectorAll('.popover').length).to.equal(0)
-          app.remove()
-          done()
-        }, 200)
-      }, 200)
-    })
+  it('should be able to disable', async () => {
+    await vm.$nextTick()
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    vm.$el.querySelector('#disabled-trigger').click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
-  it('should be able to disable', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    let vm = root.$mount('#app').$refs.doc
-    vm.trigger = 'focus'
-    vm.enable = false
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(0)
-      vm.$el.querySelectorAll('button')[0].focus()
-      setTimeout(() => {
-        expect(document.querySelectorAll('.popover').length).to.equal(0)
-        app.remove()
-        done()
-      }, 200)
-    })
+  it('should be able to hide title', async () => {
+    await vm.$nextTick()
+    let trigger = vm.$el.querySelector('#empty-title-trigger')
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelector('.popover .popover-title').style.display).to.equal('none')
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
-  it('should be able to change title', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    let vm = root.$mount('#app').$refs.doc
-    vm.trigger = 'focus'
-    vm.title = 'test test test'
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(0)
-      vm.$el.querySelectorAll('button')[0].focus()
-      setTimeout(() => {
-        expect(document.querySelectorAll('.popover').length).to.equal(1)
-        expect(document.querySelector('.popover .popover-title').textContent).to.equal('test test test')
-        document.querySelector('.popover').remove()
-        app.remove()
-        done()
-      }, 200)
-    })
+  it('should be able to change placement to top', async () => {
+    await vm.$nextTick()
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    let trigger = vm.$el.querySelector('#top-trigger')
+    trigger.click()
+    await utils.sleep(200)
+    let popover = document.querySelector('.popover')
+    expect(popover).to.exist
+    expect(popover.className).to.contain('top')
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
-  it('should be able to change placement to top', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    let vm = root.$mount('#app').$refs.doc
-    vm.trigger = 'focus'
-    vm.placement = 'top'
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(0)
-      vm.$el.querySelectorAll('button')[0].focus()
-      setTimeout(() => {
-        let popover = document.querySelector('.popover')
-        expect(popover).to.exist
-        expect(popover.className).to.contain('top')
-        popover.remove()
-        app.remove()
-        done()
-      }, 200)
-    })
+  it('should be able to change placement to bottom', async () => {
+    await vm.$nextTick()
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    let trigger = vm.$el.querySelector('#bottom-trigger')
+    trigger.click()
+    await utils.sleep(200)
+    let popover = document.querySelector('.popover')
+    expect(popover).to.exist
+    expect(popover.className).to.contain('bottom')
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
-  it('should be able to change placement to bottom', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    let vm = root.$mount('#app').$refs.doc
-    vm.trigger = 'focus'
-    vm.placement = 'bottom'
-    vm.autoPlacement = false
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(0)
-      vm.$el.querySelectorAll('button')[0].focus()
-      setTimeout(() => {
-        let popover = document.querySelector('.popover')
-        expect(popover).to.exist
-        expect(popover.className).to.contain('bottom')
-        popover.remove()
-        app.remove()
-        done()
-      }, 200)
-    })
+  it('should be able to change placement to left', async () => {
+    await vm.$nextTick()
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    let trigger = vm.$el.querySelector('#left-trigger')
+    trigger.click()
+    await utils.sleep(200)
+    let popover = document.querySelector('.popover')
+    expect(popover).to.exist
+    expect(popover.className).to.contain('left')
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
-  it('should be able to change placement to left', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    let vm = root.$mount('#app').$refs.doc
-    vm.trigger = 'focus'
-    vm.placement = 'left'
-    vm.autoPlacement = false
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(0)
-      vm.$el.querySelectorAll('button')[0].focus()
-      setTimeout(() => {
-        let popover = document.querySelector('.popover')
-        expect(popover).to.exist
-        expect(popover.className).to.contain('left')
-        popover.remove()
-        app.remove()
-        done()
-      }, 200)
-    })
+  it('should be able to change placement to right', async () => {
+    await vm.$nextTick()
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    let trigger = vm.$el.querySelector('#right-trigger')
+    trigger.click()
+    await utils.sleep(200)
+    let popover = document.querySelector('.popover')
+    expect(popover).to.exist
+    expect(popover.className).to.contain('right')
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
-  it('should be able to change placement to right', (done) => {
-    let app = document.createElement('div')
-    app.id = 'app'
-    document.body.appendChild(app)
-    let vm = root.$mount('#app').$refs.doc
-    vm.trigger = 'focus'
-    vm.placement = 'right'
-    vm.autoPlacement = false
-    vm.$nextTick(() => {
-      expect(document.querySelectorAll('.popover').length).to.equal(0)
-      vm.$el.querySelectorAll('button')[0].focus()
-      setTimeout(() => {
-        let popover = document.querySelector('.popover')
-        expect(popover).to.exist
-        expect(popover.className).to.contain('right')
-        popover.remove()
-        app.remove()
-        done()
-      }, 200)
-    })
-  })
-
-  it('should be able to render with hover trigger', (done) => {
-    let vm = root.$mount().$refs.doc
-    vm.trigger = 'hover'
-    vm.$nextTick(() => {
-      done()
-    })
+  it('should be able to change trigger in runtime', async () => {
+    let res = Vue.compile('<popover :trigger="trigger"><button data-role="trigger"></button></popover>')
+    let vm = new Vue({
+      data () {
+        return {
+          trigger: 'focus'
+        }
+      },
+      components: {Popover},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    let $el = $(vm.$el).appendTo('body')
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    let trigger = vm.$el.querySelector('button')
+    trigger.focus()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    vm.trigger = 'click'
+    await vm.$nextTick()
+    trigger.blur()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    $el.remove()
+    vm.$destroy()
   })
 })
