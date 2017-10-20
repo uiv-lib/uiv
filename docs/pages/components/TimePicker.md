@@ -8,7 +8,7 @@
 
 ```html
 <template>
-  <time-picker v-model="myTime"
+  <time-picker v-model="time"
                :show-meridian="showMeridian"
                :readonly="isReadOnly"
                :min-step="minStep"
@@ -16,7 +16,7 @@
                :min="minTime"
                :max="maxTime"
                ref="timepicker"></time-picker>
-  <alert type="info">Selected time in 24H is <b>{{timeString}}</b></alert>
+  <alert type="info">The selected time is <b>{{timeString}}</b></alert>
   <hr/>
   <h4>Settings</h4>
   <form class="form-horizontal">
@@ -54,7 +54,7 @@
   export default {
     data () {
       return {
-        myTime: new Date(),
+        time: new Date(),
         showMeridian: true,
         isReadOnly: false,
         hourStep: 1,
@@ -65,7 +65,7 @@
     },
     computed: {
       timeString () {
-        return `${this.myTime.getHours()} : ${this.myTime.getMinutes()}`
+        return this.time ? this.time.toTimeString() : ''
       },
       maxTime () {
         return this.max ? new Date(`2000/01/01 ${this.max}`) : null
@@ -75,20 +75,63 @@
       }
     },
     mounted () {
-      this.myTime = new Date()
+      this.time = new Date()
     },
     methods: {
       resetTime () {
-        this.myTime.setHours(9)
-        this.myTime.setMinutes(0)
-        this.myTime = new Date(this.myTime)
+        this.time.setHours(9)
+        this.time.setMinutes(0)
+        this.time = new Date(this.time)
       }
     }
   }
 </script>
-
 <!-- Live demo -->
 ```
+
+## With Dropdown
+
+```html
+<template>
+  <form class="form-inline">
+    <dropdown class="form-group">
+      <div class="input-group">
+        <input class="form-control" type="text" v-model="timeStr2" readonly="readonly">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="button" data-role="trigger">
+            <i class="glyphicon glyphicon-time"></i>
+          </button>
+        </div>
+      </div>
+      <template slot="dropdown">
+        <li style="padding: 10px">
+          <time-picker v-model="time2"></time-picker>
+        </li>
+      </template>
+    </dropdown>
+  </form>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        time2: null
+      }
+    },
+    mounted () {
+      this.time2 = new Date()
+    },
+    computed: {
+      timeStr2 () {
+        return this.time2 ? this.time2.toTimeString() : ''
+      }
+    }
+  }
+</script>
+<!-- Live demo -->
+```
+
 
 # API Reference
 
@@ -169,7 +212,8 @@
   export default {
     data () {
       return {
-        myTime: new Date(),
+        time2: null,
+        time: null,
         showMeridian: true,
         isReadOnly: false,
         hourStep: 1,
@@ -179,8 +223,11 @@
       }
     },
     computed: {
+      timeStr2 () {
+        return this.time2 ? this.time2.toTimeString() : ''
+      },
       timeString () {
-        return `${this.myTime.getHours()} : ${this.myTime.getMinutes()}`
+        return this.time ? this.time.toTimeString() : ''
       },
       maxTime () {
         return this.max ? new Date(`2000/01/01 ${this.max}`) : null
@@ -190,13 +237,14 @@
       }
     },
     mounted () {
-      this.myTime = new Date()
+      this.time = new Date()
+      this.time2 = new Date()
     },
     methods: {
       resetTime () {
-        this.myTime.setHours(9)
-        this.myTime.setMinutes(0)
-        this.myTime = new Date(this.myTime)
+        this.time.setHours(9)
+        this.time.setMinutes(0)
+        this.time = new Date(this.time)
       }
     }
   }

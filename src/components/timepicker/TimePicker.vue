@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section @click.stop>
     <table>
       <tbody>
       <tr class="text-center">
