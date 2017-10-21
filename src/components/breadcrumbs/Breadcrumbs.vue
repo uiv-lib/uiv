@@ -7,7 +7,10 @@
         :active="isItemActive(item, index)"
         :href="item.href"
         :target="item.target"
-        :to="item.to">{{item.text}}</breadcrumb-item>
+        :to="item.to"
+        :replace="item.replace"
+        :append="item.append"
+        :exact="item.exact">{{item.text}}</breadcrumb-item>
     </slot>
   </ol>
 </template>

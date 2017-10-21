@@ -9,7 +9,7 @@
       </a>
     </template>
     <template v-else-if="to">
-      <router-link :to="to">
+      <router-link :to="to" :replace="replace" :append="append" :exact="exact">
         <slot></slot>
       </router-link>
     </template>
@@ -32,7 +32,19 @@
         default: '_self'
       },
       // <router-link> props
-      to: {}
+      to: {},
+      replace: {
+        type: Boolean,
+        default: false
+      },
+      append: {
+        type: Boolean,
+        default: false
+      },
+      exact: {
+        type: Boolean,
+        default: false
+      }
     }
   }
 </script>

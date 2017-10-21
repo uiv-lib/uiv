@@ -57,7 +57,7 @@ Parse `to` (String or Object) instead of `href` will create a `router-link` for 
     data () {
       return {
         items2: [
-          {text: 'Home', to: '/'},
+          {text: 'Home', to: '/', exact: true},
           {text: 'Breadcrumbs', to: '/breadcrumbs'}
         ]
       }
@@ -78,7 +78,7 @@ Parse `to` (String or Object) instead of `href` will create a `router-link` for 
           {text: 'Data', href: '#'}
         ],
         items2: [
-          {text: 'Home', to: '/'},
+          {text: 'Home', to: '/', exact: true},
           {text: 'Breadcrumbs', to: '/breadcrumbs'}
         ]
       }
@@ -155,14 +155,14 @@ Parse `to` (String or Object) instead of `href` will create a `router-link` for 
       <td>String</td>
       <td></td>
       <td></td>
-      <td>An ordinary link will be created if this prop present.</td>
+      <td>An native link will be created if this prop present.</td>
     </tr>
     <tr>
       <td nowrap="nowrap"><code>target</code></td>
       <td>String</td>
-      <td></td>
       <td>_self</td>
       <td></td>
+      <td>Native link prop.</td>
     </tr>
     <tr>
       <td nowrap="nowrap"><code>to</code></td>
@@ -170,6 +170,27 @@ Parse `to` (String or Object) instead of `href` will create a `router-link` for 
       <td></td>
       <td></td>
       <td>An Vue-Router link will be created if this prop present.</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><code>replace</code></td>
+      <td>Boolean</td>
+      <td>false</td>
+      <td></td>
+      <td>Vue-Router link prop.</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><code>append</code></td>
+      <td>Boolean</td>
+      <td>false</td>
+      <td></td>
+      <td>Vue-Router link prop.</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><code>exact</code></td>
+      <td>Boolean</td>
+      <td>false</td>
+      <td></td>
+      <td>Vue-Router link prop.</td>
     </tr>
     </tbody>
     <tbody>
