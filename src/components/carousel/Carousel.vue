@@ -1,8 +1,8 @@
 <template>
   <div class="carousel slide" data-ride="carousel" @mouseenter="stopInterval" @mouseleave="startInterval">
-    <slot v-if="indicators" name="indicators">
+    <slot v-if="indicators" name="indicators" :select="select" :active-index="activeIndex">
       <ol class="carousel-indicators">
-        <li v-for="(slide,index) in slides" :class="{active:index===activeIndex}" @click="select(index)"></li>
+        <li v-for="(slide, index) in slides" :class="{active: index === activeIndex}" @click="select(index)"></li>
       </ol>
     </slot>
     <div class="carousel-inner" role="listbox">
@@ -128,13 +128,14 @@
         this.slides[index].slideClass.active = true
       },
       select (index) {
-        if (this.timeoutId === 0) {
-          if (typeof this.value !== 'undefined') {
-            this.$emit('input', index)
-          } else {
-            this.run(index, this.activeIndex)
-            this.activeIndex = index
-          }
+        if (this.timeoutId !== 0 || index === this.activeIndex) {
+          return
+        }
+        if (typeof this.value !== 'undefined') {
+          this.$emit('input', index)
+        } else {
+          this.run(index, this.activeIndex)
+          this.activeIndex = index
         }
       },
       prev () {

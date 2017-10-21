@@ -45,6 +45,7 @@
         clearTimeout(this.timeoutId)
         let el = this.$el
         if (show) {
+          this.$emit('show')
           utils.removeClass(el, COLLAPSE)
           el.style.height = 'auto'
           let height = window.getComputedStyle(el).height
@@ -58,8 +59,10 @@
             utils.addClass(el, IN)
             el.style.height = null
             this.timeoutId = 0
+            this.$emit('shown')
           }, this.transitionDuration)
         } else {
+          this.$emit('hide')
           el.style.height = window.getComputedStyle(el).height
           utils.removeClass(el, IN)
           utils.removeClass(el, COLLAPSE)
@@ -71,6 +74,7 @@
             utils.removeClass(el, COLLAPSING)
             el.style.height = null
             this.timeoutId = 0
+            this.$emit('hidden')
           }, this.transitionDuration)
         }
       }

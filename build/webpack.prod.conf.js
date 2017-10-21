@@ -14,6 +14,9 @@ const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : config.build.env
 
+let staticPaths = utils.getDocumentRoutes()
+let processProgress = 0
+
 let webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
@@ -96,11 +99,16 @@ let webpackConfig = merge(baseWebpackConfig, {
       // (REQUIRED) Absolute path to static root
       path.join(__dirname, './../dist-docs'),
       // (REQUIRED) List of routes to prerender
-      [
-        '/', '/install', '/i18n', '/getting-started', '/alert', '/collapse', '/date-picker', '/dropdown',
-        '/modal', '/pagination', '/popover', '/progress-bar', '/tabs', '/time-picker',
-        '/tooltip', '/typeahead', '/carousel'
-      ]
+      staticPaths,
+      {
+        maxAttempts: 5,
+        navigationLocked: true,
+        captureAfterTime: 1000,
+        postProcessHtml: function (context) {
+          console.log(`[PRE-RENDER] (${++processProgress} / ${staticPaths.length}) ${context.route}`)
+          return context.html
+        }
+      }
     )
   ]
 })

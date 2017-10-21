@@ -1,9 +1,10 @@
-var path = require('path')
-var config = require('../config')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+const path = require('path')
+const config = require('../config')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const babel = require('babel-core')
 
 exports.assetsPath = function (_path) {
-  var assetsSubDirectory = process.env.NODE_ENV === 'production'
+  let assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.build.assetsSubDirectory
     : config.dev.assetsSubDirectory
   return path.posix.join(assetsSubDirectory, _path)
@@ -12,7 +13,7 @@ exports.assetsPath = function (_path) {
 exports.cssLoaders = function (options) {
   options = options || {}
 
-  var cssLoader = {
+  let cssLoader = {
     loader: 'css-loader',
     options: {
       minimize: process.env.NODE_ENV === 'production',
@@ -22,7 +23,7 @@ exports.cssLoaders = function (options) {
 
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
-    var loaders = [cssLoader]
+    let loaders = [cssLoader]
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
@@ -49,7 +50,7 @@ exports.cssLoaders = function (options) {
     css: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders('less'),
-    sass: generateLoaders('sass', { indentedSyntax: true }),
+    sass: generateLoaders('sass', {indentedSyntax: true}),
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
@@ -58,14 +59,81 @@ exports.cssLoaders = function (options) {
 
 // Generate loaders for standalone style files (outside of .vue)
 exports.styleLoaders = function (options) {
-  var output = []
-  var loaders = exports.cssLoaders(options)
-  for (var extension in loaders) {
-    var loader = loaders[extension]
+  let output = []
+  let loaders = exports.cssLoaders(options)
+  for (let extension in loaders) {
+    let loader = loaders[extension]
     output.push({
       test: new RegExp('\\.' + extension + '$'),
       use: loader
     })
   }
   return output
+}
+
+// Assemble markdown demo page
+exports.assembleMarkdownDemo = (source) => {
+  const NEW_LINE = '\r\n'
+  const DEMO_CODE_REGEX = /<!-- Live demo -->/
+  const DEMO_SCRIPT_REGEX = /<!-- Live demo script([\S\s]+?)-->/
+  const DEMO_CSS_REGEX = /<style>([\S\s]+?)<\/style>/
+  const PRE_REGEX = /```([\S\s]+?)```/igm
+  const TEMPLATE_REGEX = /<template>([\s\S]*)<\/template>/
+  let matches = []
+  let match = null
+  let stylesheets = []
+  let result = source
+  // Find demo code blocks
+  do {
+    match = PRE_REGEX.exec(source)
+    if (match && DEMO_CODE_REGEX.exec(match[0])) {
+      matches.push(match)
+    }
+  } while (match)
+  // Loop code blocks for operations
+  matches.forEach(match => {
+    // Fetch template string in code block
+    let template = TEMPLATE_REGEX.exec(match[0])
+    if (template) {
+      template = template[0]
+    } else {
+      template = match[0]
+        .replace(/```([\S\s]+?)[\n\r]/, '')
+        .replace(/```/, '')
+    }
+    // Fetch stylesheets in code block
+    let style = DEMO_CSS_REGEX.exec(match[0])
+    if (style) {
+      stylesheets.push(style[1])
+    }
+    // Insert real template before it's <pre> tag
+    // IMPORTANT: This assumes that every code block is unique in a single markdown file
+    result = result.replace(match[0], '<div class="markdown-live-example">' + template + '</div>' + NEW_LINE + NEW_LINE + match[0])
+  })
+  // Uncomment live demo script
+  let demoScript = DEMO_SCRIPT_REGEX.exec(result)
+  if (demoScript) {
+    result = result.replace(demoScript[0], demoScript[1])
+  }
+  // Assemble stylesheet
+  if (stylesheets.length) {
+    result += NEW_LINE + NEW_LINE + '<style>'
+    stylesheets.forEach(style => {
+      result += NEW_LINE + NEW_LINE + style + NEW_LINE + NEW_LINE
+    })
+    result += '</style>' + NEW_LINE + NEW_LINE
+  }
+  // console.log('-------------\n', result)
+  return result
+}
+
+// Get routes array from /docs/router/routes.js
+exports.getDocumentRoutes = () => {
+  let routesCode = babel.transformFileSync(path.join(__dirname, '../docs/router/routes.js')).code
+  routesCode = routesCode
+    .replace(/import\('[\S\s].*?'\)/ig, 'null')
+    .replace(/export default[\S\s].*?;/, '')
+  var routes = []
+  eval(routesCode)
+  return routes.map(v => v.path)
 }

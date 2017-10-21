@@ -29,6 +29,9 @@ module.exports = function (config) {
         {type: 'lcov', subdir: '.'},
         {type: 'text-summary'}
       ]
+    },
+    client: {
+      useIframe: false // Page scroll not working without this!!!
     }
   })
 }

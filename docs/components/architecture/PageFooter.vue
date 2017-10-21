@@ -1,14 +1,8 @@
 <template>
   <section class="page-footer">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12">
-          <p>Designed and built by <a href="https://github.com/wxsms">@wxsm</a></p>
-          <p>Code under <a href="https://github.com/wxsms/uiv/blob/master/LICENSE">MIT License</a></p>
-          <p>Document under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
-        </div>
-      </div>
-    </div>
+    <p>Designed and built by <a href="https://github.com/wxsms">@wxsm</a></p>
+    <p>Code under <a href="https://github.com/wxsms/uiv/blob/master/LICENSE">MIT License</a></p>
+    <p>Document under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
   </section>
 </template>
 
@@ -29,11 +23,13 @@
 
   .page-footer {
     flex-basis: @footer-height;
-    display: flex;
-    align-items: center;
     background: @footer-bg;
     border-top: 1px solid darken(@gray, 10%);
     color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
     a {
       color: #333;

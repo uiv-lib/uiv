@@ -1,0 +1,23 @@
+// Bootstrap
+@import "~bootstrap/less/bootstrap.less";
+// Others
+@import "~highlight.js/styles/github-gist.css";
+@import "~nprogress/nprogress.css";
+
+// Custom classes
+.container-markdown {
+  width: 100%;
+
+  @media (min-width: @screen-sm-min) {
+    max-width: @container-sm;
+    padding: 0 50px;
+  }
+  @media (min-width: @screen-md-min) {
+    max-width: @container-md;
+    padding: 0 50px;
+  }
+  @media (min-width: @screen-lg-min) {
+    max-width: @container-lg;
+    padding: 0 50px;
+  }
+}

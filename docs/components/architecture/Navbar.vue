@@ -1,19 +1,10 @@
 <template>
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" @click="toggleAside()">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <router-link class="navbar-brand" to="/">uiv</router-link>
-      </div>
-      <div class="collapse navbar-collapse">
-      </div>
-    </div>
-  </nav>
+  <button type="button" class="navbar-toggle collapsed" @click="toggleAside()">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
 </template>
 
 <script>
@@ -31,16 +22,30 @@
 <style lang="less" rel="stylesheet/less" scoped>
   @import "../../assets/css/variables";
 
-  nav {
-    z-index: 4;
+  .navbar-toggle {
+    background: #000;
+    opacity: .25;
     display: none;
-    margin-bottom: 0;
-    background: @aside-bg;
+    z-index: 1000;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    margin: 0;
+
+    .icon-bar {
+      background-color: #fff;
+    }
   }
 
   @media (max-width: @screen-xs-max) {
-    nav {
+    .navbar-toggle {
       display: block;
+    }
+  }
+
+  @media print {
+    .navbar-toggle {
+      display: none;
     }
   }
 </style>

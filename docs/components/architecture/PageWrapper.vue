@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="pageClassFix">
     <backdrop :is-aside-show="isAsideShow"></backdrop>
     <side-nav :is-aside-show="isAsideShow"></side-nav>
     <page></page>
@@ -18,6 +18,16 @@
         isAsideShow: false
       }
     },
+    computed: {
+      pageClassFix () {
+        switch (this.$route.path) {
+          case '/':
+            return 'home'
+          default:
+            return ''
+        }
+      }
+    },
     mounted () {
       bus.$on(events.TOGGLE_ASIDE, (show) => {
         if (typeof show !== 'undefined') {
@@ -31,8 +41,10 @@
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
+  @import "./../../assets/css/variables";
+
   #app {
-    max-width: 100vw;
+    max-width: 100%;
     overflow: hidden;
   }
 </style>

@@ -3,7 +3,7 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
-function resolve(dir) {
+function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -46,6 +46,28 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('docs'), resolve('test')]
+      },
+      {
+        test: /\.md$/,
+        loader: 'vue-markdown-loader',
+        options: {
+          preventExtract: true,
+          wrapper: 'markdown-wrapper',
+          preprocess: function (markdownIt, source) {
+            return utils.assembleMarkdownDemo(source)
+          },
+          use: [
+            /* markdown-it plugins */
+            [
+              require('markdown-it-anchor'),
+              {
+                permalink: true,
+                permalinkSymbol: '&#128279;'
+              }
+            ]
+          ]
+        },
+        include: [resolve('docs')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

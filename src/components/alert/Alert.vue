@@ -1,6 +1,6 @@
 <template>
   <div role="alert" :class="alertClass">
-    <button type="button" class="close" aria-label="Close" v-if="closable" @click="closeAlert">
+    <button type="button" class="close" aria-label="Close" v-if="dismissible" @click="closeAlert">
       <span aria-hidden="true">&times;</span>
     </button>
     <slot></slot>
@@ -10,9 +10,9 @@
 <script>
   export default {
     props: {
-      closable: {
+      dismissible: {
         type: Boolean,
-        'default': true
+        'default': false
       },
       duration: {
         type: Number,
@@ -20,7 +20,7 @@
       },
       type: {
         type: String,
-        'default': 'success'
+        'default': 'info'
       }
     },
     data () {
@@ -30,13 +30,17 @@
     },
     computed: {
       alertClass () {
-        return `alert alert-${this.type}`
+        return {
+          'alert': true,
+          [`alert-${this.type}`]: !!this.type,
+          'alert-dismissible': this.dismissible
+        }
       }
     },
     methods: {
       closeAlert () {
         clearTimeout(this.timeout)
-        this.$emit('close')
+        this.$emit('dismissed')
       }
     },
     mounted () {
