@@ -1,4 +1,5 @@
 import * as components from './components'
+import * as directives from './directives'
 import locale from './locale'
 
 const install = (Vue, options = {}) => {
@@ -8,6 +9,10 @@ const install = (Vue, options = {}) => {
   // Register components
   for (let key in components) {
     Vue.component(key, components[key])
+  }
+  // Register directives
+  for (let key in directives) {
+    Vue.directive(key, directives[key])
   }
 }
 

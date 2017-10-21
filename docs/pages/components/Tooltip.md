@@ -13,6 +13,15 @@ Hover over the button below to toggle tooltips.
 <!-- Live demo -->
 ```
 
+## Directive
+
+You can also simply use tooltips via `v-tooltip` directive.
+
+```html
+<button v-tooltip="'Static tooltip content goes here'" type="button" class="btn btn-primary">Hover me!</button>
+<!-- Live demo -->
+```
+
 ## Placements
 
 Supported placements:
@@ -23,18 +32,10 @@ Supported placements:
 * **left**
 
 ```html
-<tooltip text="Tooltip content on left" placement="left">
-  <button type="button" class="btn btn-primary" id="left-trigger">Left</button>
-</tooltip>
-<tooltip text="Tooltip content on top">
-  <button type="button" class="btn btn-primary" id="top-trigger">Top</button>
-</tooltip>
-<tooltip text="Tooltip content on bottom" placement="bottom">
-  <button type="button" class="btn btn-primary" id="bottom-trigger">Bottom</button>
-</tooltip>
-<tooltip text="Tooltip content on right" placement="right">
-  <button type="button" class="btn btn-primary" id="right-trigger">Right</button>
-</tooltip>
+<button v-tooltip.left="'Tooltip content on left'" type="button" class="btn btn-primary" id="left-trigger">Left</button>
+<button v-tooltip.top="'Tooltip content on top'" type="button" class="btn btn-primary" id="top-trigger">Top</button>
+<button v-tooltip.bottom="'Tooltip content on bottom'" type="button" class="btn btn-primary" id="bottom-trigger">Bottom</button>
+<button v-tooltip.right="'Tooltip content on right'" type="button" class="btn btn-primary" id="right-trigger">Right</button>
 <!-- Live demo -->
 ```
 
@@ -55,21 +56,11 @@ Supported triggers:
 * `outside-click` same as click, but not close on tooltip click and close on outside click.
 
 ```html
-<tooltip text="Static tooltip content goes here">
-  <button type="button" class="btn btn-primary">Hover-Focus (Default)</button>
-</tooltip>
-<tooltip text="Static tooltip content goes here" trigger="hover">
-  <button type="button" class="btn btn-primary" id="hover-trigger">Hover</button>
-</tooltip>
-<tooltip text="Static tooltip content goes here" trigger="focus">
-  <button type="button" class="btn btn-primary" id="focus-trigger">Focus</button>
-</tooltip>
-<tooltip text="Static tooltip content goes here" trigger="click">
-  <button type="button" class="btn btn-primary" id="click-trigger">Click</button>
-</tooltip>
-<tooltip text="Static tooltip content goes here" trigger="outside-click">
-  <button type="button" class="btn btn-primary" id="outside-click-trigger">Outside-Click</button>
-</tooltip>
+<button v-tooltip="'Static tooltip content'" type="button" class="btn btn-primary">Hover-Focus (Default)</button>
+<button v-tooltip.hover="'Static tooltip content'" type="button" class="btn btn-primary" id="hover-trigger">Hover</button>
+<button v-tooltip.focus="'Static tooltip content'" type="button" class="btn btn-primary" id="focus-trigger">Focus</button>
+<button v-tooltip.click="'Static tooltip content'" type="button" class="btn btn-primary" id="click-trigger">Click</button>
+<button v-tooltip.outside-click="'Static tooltip content'" type="button" class="btn btn-primary" id="outside-click-trigger">Outside-Click</button>
 <!-- Live demo -->
 ```
 
@@ -108,6 +99,18 @@ Set `enable` prop to `false` to disable a tooltip.
 </tooltip>
 <!-- Live demo -->
 ```
+
+<!-- Live demo script
+<script>
+  export default {
+    data () {
+      return {
+        show: false
+      }
+    }
+  }
+</script>
+-->
 
 # API Reference
 
@@ -234,15 +237,33 @@ Set `enable` prop to `false` to disable a tooltip.
   </table>
 </div>
 
+## [tooltip.js](https://github.com/wxsms/uiv/tree/master/src/directives/tooltip/tooltip.js)
 
-<!-- Live demo script
-<script>
-  export default {
-    data () {
-      return {
-        show: false
-      }
-    }
-  }
-</script>
--->
+This is the directive for `Tooltip.vue`. The binding value will be the text content of corresponding tooltip.
+
+**Simplest Usage**
+
+```
+v-tooltip="'tooltip content'"
+```
+
+**Placements Examples**
+
+```
+v-tooltip.left="'tooltip content'"
+v-tooltip.right="'tooltip content'"
+```
+
+**Triggers Examples**
+
+```
+v-tooltip.hover="'tooltip content'"
+v-tooltip.click="'tooltip content'"
+```
+
+**Combination**
+
+```
+v-tooltip.left.hover="'tooltip content'"
+v-tooltip.right.click="'tooltip content'"
+```
