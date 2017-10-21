@@ -3,15 +3,15 @@
     <template v-if="active">
       <slot></slot>
     </template>
-    <template v-else-if="href">
-      <a :href="href" :target="target">
-        <slot></slot>
-      </a>
-    </template>
     <template v-else-if="to">
       <router-link :to="to" :replace="replace" :append="append" :exact="exact">
         <slot></slot>
       </router-link>
+    </template>
+    <template v-else>
+      <a :href="href" :target="target">
+        <slot></slot>
+      </a>
     </template>
   </li>
 </template>
