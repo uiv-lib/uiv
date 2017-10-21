@@ -9,7 +9,7 @@ import VueRouter from 'vue-router'
 import router from './router'
 import PageWrapper from './components/architecture/PageWrapper.vue'
 import MarkdownWrapper from './components/architecture/MarkdownWrapper.vue'
-import * as uiv from './../src/components/index'
+import * as uiv from './../src'
 
 Vue.config.productionTip = false
 

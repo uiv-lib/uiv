@@ -15,43 +15,10 @@ import TimePicker from './timepicker/TimePicker.vue'
 import Typeahead from './typeahead/Typeahead.vue'
 import ProgressBar from './progressbar/ProgressBar.vue'
 import ProgressBarStack from './progressbar/ProgressBarStack.vue'
-import locale from './../locale'
-
-const components = {
-  Affix,
-  Tooltip,
-  Carousel,
-  Slide,
-  Collapse,
-  Dropdown,
-  Modal,
-  Tab,
-  Tabs,
-  DatePicker,
-  Alert,
-  Pagination,
-  Popover,
-  TimePicker,
-  Typeahead,
-  ProgressBar,
-  ProgressBarStack
-}
-
-const install = (Vue, options = {}) => {
-  locale.use(options.locale)
-  locale.i18n(options.i18n)
-  for (let key in components) {
-    Vue.component(key, components[key])
-  }
-}
-
-// auto install
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
-}
+import Breadcrumbs from './breadcrumbs/Breadcrumbs.vue'
+import BreadcrumbItem from './breadcrumbs/BreadcrumbItem.vue'
 
 export {
-  install,
   Affix,
   Tooltip,
   Carousel,
@@ -68,5 +35,7 @@ export {
   TimePicker,
   Typeahead,
   ProgressBar,
-  ProgressBarStack
+  ProgressBarStack,
+  Breadcrumbs,
+  BreadcrumbItem
 }

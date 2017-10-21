@@ -27,6 +27,11 @@ const routes = [
     component: () => import('./../pages/components/Alert.md')
   },
   {
+    path: '/breadcrumbs',
+    meta: {type: 'component', label: 'Breadcrumbs'},
+    component: () => import('./../pages/components/Breadcrumbs.md')
+  },
+  {
     path: '/carousel',
     meta: {type: 'component', label: 'Carousel'},
     component: () => import('./../pages/components/Carousel.md')

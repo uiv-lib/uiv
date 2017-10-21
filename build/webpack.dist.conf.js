@@ -21,7 +21,7 @@ for (let i = 0; i < rules.length; i++) {
 
 let webpackConfig = {
   entry: {
-    app: './src/components/index.js'
+    app: './src/index.js'
   },
   externals: {
     vue: {
