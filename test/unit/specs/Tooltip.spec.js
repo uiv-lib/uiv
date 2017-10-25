@@ -11,6 +11,7 @@ describe('Tooltip', () => {
   beforeEach(() => {
     let Constructor = Vue.extend(TooltipDoc)
     vm = new Constructor().$mount()
+    $('body').css('text-align', 'center').css('padding-top', '200px')
     $el = $(vm.$el).appendTo('body')
   })
 
@@ -18,6 +19,7 @@ describe('Tooltip', () => {
     vm.$destroy()
     $el.remove()
     $('.tooltip').remove()
+    $('body').css('text-align', '').css('padding-top', '')
   })
 
   it('should be able to append to custom tags', async () => {

@@ -11,12 +11,15 @@ describe('Popover', () => {
   beforeEach(() => {
     let Constructor = Vue.extend(PopoverDoc)
     vm = new Constructor().$mount()
+    $('body').css('text-align', 'center').css('padding-top', '200px')
     $el = $(vm.$el).appendTo('body')
   })
 
   afterEach(() => {
     vm.$destroy()
     $el.remove()
+    $('.popover').remove()
+    $('body').css('text-align', '').css('padding-top', '')
   })
 
   it('should be ok to render if no trigger present', async () => {
