@@ -109,6 +109,7 @@
 
     .nav-container {
       position: relative;
+      padding-bottom: 30px;
 
       .nav-div {
         position: relative;
