@@ -19,7 +19,7 @@
     <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>
   </tab>
 </tabs>
-<!-- Live demo -->
+<!-- tabs-example.vue -->
 ```
 
 ## Disable Tabs
@@ -41,7 +41,7 @@ Add `disabled` to `<tab>` to disable it.
     <p>@bootstrap tab.</p>
   </tab>
 </tabs>
-<!-- Live demo -->
+<!-- tabs-disable.vue -->
 ```
 
 ## Pull Right
@@ -63,7 +63,7 @@ Add `pull-right` to `<tab>` to pull it right. A grouped tab will be pulled to ri
     <p>@bootstrap tab.</p>
   </tab>
 </tabs>
-<!-- Live demo -->
+<!-- tabs-pull-right.vue -->
 ```
 
 ## Justified Style
@@ -82,7 +82,7 @@ Add `justified` to `<tabs>` to use justified style.
     <p>Others tab.</p>
   </tab>
 </tabs>
-<!-- Live demo -->
+<!-- tabs-justified-style.vue -->
 ```
 
 ## With Callbacks
@@ -101,7 +101,6 @@ Add `justified` to `<tabs>` to use justified style.
     </tab>
   </tabs>
 </template>
-
 <script>
   export default {
     methods: {
@@ -113,8 +112,7 @@ Add `justified` to `<tabs>` to use justified style.
     }
   }
 </script>
-
-<!-- Live demo -->
+<!-- tabs-with-callbacks.vue -->
 ```
 
 ## With `nav-right` Slot
@@ -137,7 +135,7 @@ Add `justified` to `<tabs>` to use justified style.
     <button type="button" class="btn btn-success">Button</button>
   </form>
 </tabs>
-<!-- Live demo -->
+<!-- tabs-with-nav-right-slot.vue -->
 ```
 
 # API Reference
@@ -264,17 +262,3 @@ Add `justified` to `<tabs>` to use justified style.
     </tbody>
   </table>
 </div>
-
-<!-- Live demo script
-<script>
-  export default {
-    methods: {
-      onChange (index) {
-        if (index === 2) {
-          window.alert('You clicked on a tab that has callback function!')
-        }
-      }
-    }
-  }
-</script>
--->

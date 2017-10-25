@@ -60,7 +60,6 @@ Use `v-model` to bind the selected date.
     </div>
   </form>
 </template>
-
 <script>
   export default {
     data () {
@@ -78,8 +77,7 @@ Use `v-model` to bind the selected date.
     }
   }
 </script>
-
-<!-- Live demo -->
+<!-- date-picker-inline-example.vue -->
 ```
 
 ## With Dropdown
@@ -89,7 +87,7 @@ Use `v-model` to bind the selected date.
   <form class="form-inline">
     <dropdown class="form-group">
       <div class="input-group">
-        <input class="form-control" type="text" v-model="date2">
+        <input class="form-control" type="text" v-model="date">
         <div class="input-group-btn">
           <button class="btn btn-default" type="button" data-role="trigger">
             <i class="glyphicon glyphicon-calendar"></i>
@@ -98,24 +96,22 @@ Use `v-model` to bind the selected date.
       </div>
       <template slot="dropdown">
         <li>
-          <date-picker id="date-picker-2" v-model="date2"></date-picker>
+          <date-picker id="date-picker-2" v-model="date"></date-picker>
         </li>
       </template>
     </dropdown>
   </form>
 </template>
-
 <script>
   export default {
     data () {
       return {
-        date2: ''
+        date: ''
       }
     }
   }
 </script>
-
-<!-- Live demo -->
+<!-- date-picker-dropdown-example.vue -->
 ```
 
 # API Reference
@@ -219,25 +215,3 @@ Use `v-model` to bind the selected date.
     </tbody>
   </table>
 </div>
-
-
-<!-- Live demo script
-<script>
-  export default {
-    data () {
-      return {
-        date: '',
-        date2: '',
-        show: false,
-        clearBtn: true,
-        todayBtn: true,
-        closeOnSelected: true,
-        limitFrom: '',
-        limitTo: '',
-        format: 'yyyy-MM-dd',
-        weekStartsWith: 0
-      }
-    }
-  }
-</script>
--->

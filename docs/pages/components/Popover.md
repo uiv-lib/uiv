@@ -15,7 +15,7 @@ Click the button below to toggle popover.
     <h1>Hello world!</h1>
   </div>
 </popover>
-<!-- Live demo -->
+<!-- popover-example.vue -->
 ```
 
 ## With Empty Title
@@ -29,7 +29,7 @@ If you don't want the title of popover, just leave the `title` prop unset or bla
     <h1>Hello world!</h1>
   </div>
 </popover>
-<!-- Live demo -->
+<!-- popover-with-empty-title.vue -->
 ```
 
 ## Placements
@@ -66,7 +66,7 @@ Supported placements:
     <p>Popover on right</p>
   </div>
 </popover>
-<!-- Live demo -->
+<!-- popover-placements.vue -->
 ```
 
 ## Auto Placement
@@ -116,7 +116,7 @@ Supported triggers:
     <p>Popover content</p>
   </div>
 </popover>
-<!-- Live demo -->
+<!-- popover-triggers.vue -->
 ```
 
 ## Manual Trigger
@@ -134,7 +134,6 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
   <hr/>
   <button type="button" class="btn btn-primary" @click="show = !show">Toggle Popover</button>
 </template>
-
 <script>
   export default {
     data () {
@@ -144,7 +143,7 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
     }
   }
 </script>
-<!-- Live demo -->
+<!-- popover-manual-trigger.vue -->
 ```
 
 ## Disable Popover
@@ -158,7 +157,7 @@ Set `enable` prop to `false` to disable a popover.
     <h1>Hello world!</h1>
   </div>
 </popover>
-<!-- Live demo -->
+<!-- popover-disable.vue -->
 ```
 
 # API Reference
@@ -312,16 +311,3 @@ Set `enable` prop to `false` to disable a popover.
     </tbody>
   </table>
 </div>
-
-<!-- Live demo script
-<script>
-  export default {
-    data () {
-      return {
-        show: false
-      }
-    }
-  }
-</script>
-
--->

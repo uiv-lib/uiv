@@ -16,7 +16,6 @@ Click the button below to show and hide another element.
     <div class="well" style="margin-bottom: 0">Hi there.</div>
   </collapse>
 </template>
-
 <script>
   export default {
     data () {
@@ -26,8 +25,7 @@ Click the button below to show and hide another element.
     }
   }
 </script>
-
-<!-- Live demo -->
+<!-- collapse-example.vue -->
 ```
 
 ## Accordion
@@ -72,7 +70,6 @@ Extend the default collapse behavior to create an accordion with the panel compo
     </div>
   </div>
 </template>
-
 <script>
   export default {
     data () {
@@ -91,8 +88,7 @@ Extend the default collapse behavior to create an accordion with the panel compo
     }
   }
 </script>
-
-<!-- Live demo -->
+<!-- collapse-accordion.vue -->
 ```
 
 ## Navbar
@@ -143,7 +139,6 @@ Extend the default collapse behavior to create an accordion with the panel compo
     </div>
   </nav>
 </template>
-
 <script>
   export default {
     data () {
@@ -153,8 +148,7 @@ Extend the default collapse behavior to create an accordion with the panel compo
     }
   }
 </script>
-
-<!-- Live demo -->
+<!-- collapse-navbar.vue -->
 ```
 
 # API Reference
@@ -246,27 +240,3 @@ Extend the default collapse behavior to create an accordion with the panel compo
     </tbody>
   </table>
 </div>
-
-
-<!-- Live demo script
-<script>
-  export default {
-    data () {
-      return {
-        show: false,
-        showAccordion: [true, false, false],
-        showNavbar: false
-      }
-    },
-    methods: {
-      toggleAccordion (index) {
-        if (this.showAccordion[index]) {
-          this.$set(this.showAccordion, index, false)
-        } else {
-          this.showAccordion = this.showAccordion.map((v, i) => i === index)
-        }
-      }
-    }
-  }
-</script>
--->

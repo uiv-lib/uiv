@@ -23,9 +23,9 @@ The element attached with `data-role="trigger"` will be the dropdown trigger, us
     </template>
   </dropdown>
   <!-- This one is using v-model -->
-  <dropdown class="btn-group" v-model="open1" :dropup="dropup" :menu-right="menuRight" style="display: inline-block">
+  <dropdown class="btn-group" v-model="open" :dropup="dropup" :menu-right="menuRight" style="display: inline-block">
     <button type="button" class="btn btn-info">Split Button</button>
-    <button type="button" class="btn btn-info dropdown-toggle" @click="open1 = !open1">
+    <button type="button" class="btn btn-info dropdown-toggle" @click="open = !open">
       <span class="caret"></span>
       <span class="sr-only">Toggle Dropdown</span>
     </button>
@@ -52,19 +52,18 @@ The element attached with `data-role="trigger"` will be the dropdown trigger, us
     </div>
   </form>
 </template>
-
 <script>
   export default {
     data () {
       return {
         dropup: false,
         menuRight: false,
-        open1: false
+        open: false
       }
     }
   }
 </script>
-<!-- Live demo -->
+<!-- dropdown-examples.vue -->
 ```
 
 ## Append To Body
@@ -85,8 +84,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
     <li><a role="button">Separated link</a></li>
   </template>
 </dropdown>
-
-<!-- Live demo -->
+<!-- dropdown-append-to-body.vue -->
 ```
 
 ## Within Navbar
@@ -143,7 +141,6 @@ Use this option to avoid influence from the parent node by appending dropdown li
     </div>
   </nav>
 </template>
-
 <script>
   export default {
     data () {
@@ -153,8 +150,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
     }
   }
 </script>
-
-<!-- Live demo -->
+<!-- dropdown-within-navbar.vue -->
 ```
 
 ## Within Pills
@@ -183,8 +179,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
     </template>
   </dropdown>
 </ul>
-
-<!-- Live demo -->
+<!-- dropdown-within-pills.vue -->
 ```
 
 # API Reference
@@ -284,20 +279,3 @@ Use this option to avoid influence from the parent node by appending dropdown li
     </tbody>
   </table>
 </div>
-
-
-<!-- Live demo script
-<script>
-  export default {
-    data () {
-      return {
-        dropup: false,
-        menuRight: false,
-        open1: false,
-        open: false,
-        showNavbar: false
-      }
-    }
-  }
-</script>
--->

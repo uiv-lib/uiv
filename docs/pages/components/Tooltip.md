@@ -10,7 +10,7 @@ Hover over the button below to toggle tooltips.
 <tooltip text="Static tooltip content goes here">
   <button type="button" class="btn btn-primary">Hover me!</button>
 </tooltip>
-<!-- Live demo -->
+<!-- tooltip-example.vue -->
 ```
 
 ## Directive
@@ -19,7 +19,7 @@ You can also simply use tooltips via `v-tooltip` directive.
 
 ```html
 <button v-tooltip="'Static tooltip content goes here'" type="button" class="btn btn-primary">Hover me!</button>
-<!-- Live demo -->
+<!-- tooltip-directive.vue -->
 ```
 
 ## Placements
@@ -36,7 +36,7 @@ Supported placements:
 <button v-tooltip.top="'Tooltip content on top'" type="button" class="btn btn-primary" id="top-trigger">Top</button>
 <button v-tooltip.bottom="'Tooltip content on bottom'" type="button" class="btn btn-primary" id="bottom-trigger">Bottom</button>
 <button v-tooltip.right="'Tooltip content on right'" type="button" class="btn btn-primary" id="right-trigger">Right</button>
-<!-- Live demo -->
+<!-- tooltip-placements.vue -->
 ```
 
 ## Auto Placement
@@ -61,7 +61,7 @@ Supported triggers:
 <button v-tooltip.focus="'Static tooltip content'" type="button" class="btn btn-primary" id="focus-trigger">Focus</button>
 <button v-tooltip.click="'Static tooltip content'" type="button" class="btn btn-primary" id="click-trigger">Click</button>
 <button v-tooltip.outside-click="'Static tooltip content'" type="button" class="btn btn-primary" id="outside-click-trigger">Outside-Click</button>
-<!-- Live demo -->
+<!-- tooltip-triggers.vue -->
 ```
 
 ## Manual Trigger
@@ -76,7 +76,6 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
   <hr/>
   <button type="button" class="btn btn-primary" @click="show = !show">Toggle Tooltip</button>
 </template>
-
 <script>
   export default {
     data () {
@@ -86,7 +85,7 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
     }
   }
 </script>
-<!-- Live demo -->
+<!-- tooltip-manual-trigger.vue -->
 ```
 
 ## Disable Tooltip
@@ -97,20 +96,8 @@ Set `enable` prop to `false` to disable a tooltip.
 <tooltip text="Static tooltip content goes here" :enable="false">
   <button type="button" class="btn btn-primary" id="disabled-trigger">Disabled Tooltip</button>
 </tooltip>
-<!-- Live demo -->
+<!-- tooltip-disable.vue -->
 ```
-
-<!-- Live demo script
-<script>
-  export default {
-    data () {
-      return {
-        show: false
-      }
-    }
-  }
-</script>
--->
 
 # API Reference
 

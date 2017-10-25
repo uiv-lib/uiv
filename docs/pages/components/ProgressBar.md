@@ -8,20 +8,18 @@ Default progress bar.
 
 ```html
 <template>
-  <progress-bar v-model="progress66"></progress-bar>
+  <progress-bar v-model="progress"></progress-bar>
 </template>
-
 <script>
   export default {
     data () {
       return {
-        progress66: 66
+        progress: 66
       }
     }
   }
 </script>
-
-<!-- Live demo -->
+<!-- progress-bar-example.vue -->
 ```
 
 ## With Label
@@ -31,25 +29,23 @@ To ensure that the label text remains legible even for low percentages, consider
 ```html
 <template>
   <h4>Default Label</h4>
-  <progress-bar v-model="progress66" :label="true"></progress-bar>
+  <progress-bar v-model="progress" :label="true"></progress-bar>
   <h4>Custom Label</h4>
-  <progress-bar v-model="progress66" :label="true" label-text="Loading......Please wait."></progress-bar>
+  <progress-bar v-model="progress" :label="true" label-text="Loading......Please wait."></progress-bar>
   <h4>Minimum Width</h4>
   <progress-bar v-model="progress1" :min-width="true" :label="true"></progress-bar>
 </template>
-
 <script>
   export default {
     data () {
       return {
         progress1: 1,
-        progress66: 66
+        progress: 66
       }
     }
   }
 </script>
-
-<!-- Live demo -->
+<!-- progress-bar-with-label.vue -->
 ```
 
 ## Contextual Alternatives
@@ -63,7 +59,6 @@ Progress bars use some of the same button and alert classes for consistent style
   <progress-bar v-model="progress60" type="warning"></progress-bar>
   <progress-bar v-model="progress80" type="danger"></progress-bar>
 </template>
-
 <script>
   export default {
     data () {
@@ -76,7 +71,7 @@ Progress bars use some of the same button and alert classes for consistent style
     }
   }
 </script>
-<!-- Live demo -->
+<!-- progress-bar-contextual-alternatives.vue -->
 ```
 
 ## Striped
@@ -90,7 +85,6 @@ Uses a gradient to create a striped effect. Not available in IE9 and below.
   <progress-bar v-model="progress60" type="warning" :striped="true"></progress-bar>
   <progress-bar v-model="progress80" type="danger" :striped="true"></progress-bar>
 </template>
-
 <script>
   export default {
     data () {
@@ -103,7 +97,7 @@ Uses a gradient to create a striped effect. Not available in IE9 and below.
     }
   }
 </script>
-<!-- Live demo -->
+<!-- progress-bar-striped.vue -->
 ```
 
 ## Animated
@@ -112,19 +106,18 @@ Animate the stripes right to left. Not available in IE9 and below.
 
 ```html
 <template>
-  <progress-bar v-model="progress40" :striped="true" :active="true"></progress-bar>
+  <progress-bar v-model="progress" :striped="true" :active="true"></progress-bar>
 </template>
-
 <script>
   export default {
     data () {
       return {
-        progress40: 40
+        progress: 40
       }
     }
   }
 </script>
-<!-- Live demo -->
+<!-- progress-bar-animated.vue -->
 ```
 
 ## Stacked
@@ -139,7 +132,6 @@ Place multiple `<progress-bar-stack>` into the same `<progress-bar>` to stack th
     <progress-bar-stack v-model="progress10" type="danger"></progress-bar-stack>
   </progress-bar>
 </template>
-
 <script>
   export default {
     data () {
@@ -151,7 +143,7 @@ Place multiple `<progress-bar-stack>` into the same `<progress-bar>` to stack th
     }
   }
 </script>
-<!-- Live demo -->
+<!-- progress-bar-stacked.vue -->
 ```
 
 # API Reference
@@ -245,23 +237,3 @@ Place multiple `<progress-bar-stack>` into the same `<progress-bar>` to stack th
     </tbody>
   </table>
 </div>
-
-
-<!-- Live demo script
-<script>
-  export default {
-    data () {
-      return {
-        progress1: 1,
-        progress66: 66,
-        progress20: 20,
-        progress40: 40,
-        progress60: 60,
-        progress80: 80,
-        progress35: 35,
-        progress10: 10
-      }
-    }
-  }
-</script>
--->

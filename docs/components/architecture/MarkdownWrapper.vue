@@ -56,7 +56,9 @@
       }
     },
     mounted () {
-      this.anchors = getAnchors(this.$refs.markdown)
+      this.$nextTick(() => {
+        this.anchors = getAnchors(this.$refs.markdown)
+      })
     }
   }
 </script>

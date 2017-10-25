@@ -28,7 +28,6 @@
     </div>
   </form>
 </template>
-
 <script>
   export default {
     data () {
@@ -51,8 +50,7 @@
     }
   }
 </script>
-
-<!-- Live demo -->
+<!-- carousel-example.vue -->
 ```
 
 ## Override Indicators
@@ -64,7 +62,7 @@ This is a scoped slot, use `slot-scope="props"` in Vue 2.5+, otherwise `scope="p
 ```html
 <template>
   <carousel>
-    <slide v-for="(slide, index) in slides2" :key="index">
+    <slide v-for="(slide, index) in slides" :key="index">
       <div style="width: 100%;height: 400px;" :style="{background:index % 2 === 0 ? '#99a9bf' : '#d3dce6'}"></div>
       <div class="carousel-caption">
         <h3>This is {{slide.title}}</h3>
@@ -73,7 +71,7 @@ This is a scoped slot, use `slot-scope="props"` in Vue 2.5+, otherwise `scope="p
     <!-- Use this slot for custom indicators -->
     <template slot="indicators" slot-scope="props">
       <ol class="carousel-indicators custom-carousel-indicators">
-        <li v-for="(slide, index) in slides2"
+        <li v-for="(slide, index) in slides"
             :class="{active:index === props.activeIndex}"
             @click="props.select(index)">
             <!-- Anything you like here -->
@@ -82,12 +80,11 @@ This is a scoped slot, use `slot-scope="props"` in Vue 2.5+, otherwise `scope="p
     </template>
   </carousel>
 </template>
-
 <script>
   export default {
     data () {
       return {
-        slides2: [
+        slides: [
           {title: 'Slide 1'},
           {title: 'Slide 2'},
           {title: 'Slide 3'},
@@ -97,7 +94,6 @@ This is a scoped slot, use `slot-scope="props"` in Vue 2.5+, otherwise `scope="p
     }
   }
 </script>
-
 <style>
   .custom-carousel-indicators li, .custom-carousel-indicators li.active {
     width: 50px;
@@ -106,8 +102,7 @@ This is a scoped slot, use `slot-scope="props"` in Vue 2.5+, otherwise `scope="p
     border-radius: 0;
   }
 </style>
-
-<!-- Live demo -->
+<!-- carousel-override-indicators.vue -->
 ```
 
 # API Reference
@@ -201,35 +196,3 @@ This is a scoped slot, use `slot-scope="props"` in Vue 2.5+, otherwise `scope="p
     </tbody>
   </table>
 </div>
-
-<!-- Live demo script
-<script>
-  export default {
-    data () {
-      return {
-        interval: 2000,
-        indicators: true,
-        controls: true,
-        slides: [
-          {title: 'Slide 1'},
-          {title: 'Slide 2'},
-          {title: 'Slide 3'},
-          {title: 'Slide 4'}
-        ],
-        slides2: [
-          {title: 'Slide 1'},
-          {title: 'Slide 2'},
-          {title: 'Slide 3'},
-          {title: 'Slide 4'}
-        ]
-      }
-    },
-    methods: {
-      pushSlide () {
-        this.slides.push({title: `Slide ${this.slides.length + 1}`})
-      }
-    }
-  }
-</script>
--->
-

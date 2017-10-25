@@ -21,8 +21,9 @@ describe('TimePicker', () => {
   })
 
   it('should be able to toggle meridian', async () => {
-    vm.time.setHours(9)
-    vm.time = new Date(vm.time)
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.time.setHours(9)
+    _vm.time = new Date(_vm.time)
     await vm.$nextTick()
     let toggleBtn = vm.$el.querySelector('[data-action="toggleMeridian"]')
     let meridianText = toggleBtn.textContent
@@ -40,6 +41,7 @@ describe('TimePicker', () => {
   })
 
   it('should be able to add 1 hours', async () => {
+    let _vm = vm.$refs['time-picker-inline-example']
     await vm.$nextTick()
     let beforeText = vm.$el.querySelectorAll('input')[0].value
     let hourPlus = vm.$el.querySelectorAll('td')[0].querySelector('button')
@@ -51,8 +53,8 @@ describe('TimePicker', () => {
     } else {
       expect(parseInt(afterText)).to.equal(1)
     }
-    vm.time.setHours(23)
-    vm.time = new Date(vm.time)
+    _vm.time.setHours(23)
+    _vm.time = new Date(_vm.time)
     await vm.$nextTick()
     hourPlus.click()
     await vm.$nextTick()
@@ -61,8 +63,9 @@ describe('TimePicker', () => {
   })
 
   it('should be able to add 1 minutes', async () => {
-    vm.minStep = 1
-    vm.isReadOnly = false
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.minStep = 1
+    _vm.isReadOnly = false
     await vm.$nextTick()
     let beforeText = vm.$el.querySelectorAll('input')[1].value
     let minutesPlus = vm.$el.querySelectorAll('tr td button')[1]
@@ -77,8 +80,9 @@ describe('TimePicker', () => {
   })
 
   it('should be able to minus 1 hours', async () => {
-    vm.hourStep = 1
-    vm.isReadOnly = false
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.hourStep = 1
+    _vm.isReadOnly = false
     await vm.$nextTick()
     let beforeText = vm.$el.querySelectorAll('input')[0].value
     let hourMinus = vm.$el.querySelectorAll('tr')[2].querySelector('td button')
@@ -90,8 +94,8 @@ describe('TimePicker', () => {
     } else {
       expect(parseInt(afterText)).to.equal(12)
     }
-    vm.time.setHours(0)
-    vm.time = new Date(vm.time)
+    _vm.time.setHours(0)
+    _vm.time = new Date(_vm.time)
     await vm.$nextTick()
     hourMinus.click()
     await vm.$nextTick()
@@ -100,8 +104,9 @@ describe('TimePicker', () => {
   })
 
   it('should be able to minus 1 minutes', async () => {
-    vm.minStep = 1
-    vm.isReadOnly = false
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.minStep = 1
+    _vm.isReadOnly = false
     await vm.$nextTick()
     let beforeText = vm.$el.querySelectorAll('input')[1].value
     let minutesMinus = vm.$el.querySelectorAll('tr')[2].querySelectorAll('td button')[1]
@@ -116,15 +121,16 @@ describe('TimePicker', () => {
   })
 
   it('should be change to 24H', async () => {
-    vm.showMeridian = true
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.showMeridian = true
     await vm.$nextTick()
-    let toggleBtn = vm.$refs.timepicker.$el.querySelector('[data-action="toggleMeridian"]')
+    let toggleBtn = _vm.$refs.timepicker.$el.querySelector('[data-action="toggleMeridian"]')
     let toggleBtnText = toggleBtn.textContent
     let beforeText = vm.$el.querySelectorAll('input')[0].value
     expect(toggleBtn).to.exist
-    vm.showMeridian = false
+    _vm.showMeridian = false
     await vm.$nextTick()
-    toggleBtn = vm.$refs.timepicker.$el.querySelector('[data-action="toggleMeridian"]')
+    toggleBtn = _vm.$refs.timepicker.$el.querySelector('[data-action="toggleMeridian"]')
     expect(toggleBtn).to.not.exist
     let afterText = vm.$el.querySelectorAll('input')[0].value
     if (toggleBtnText === 'PM' && parseInt(beforeText) !== 12) {
@@ -139,8 +145,9 @@ describe('TimePicker', () => {
   })
 
   it('when hour is zero it can display true', async () => {
-    vm.time.setHours(0)
-    vm.time = new Date(vm.time)
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.time.setHours(0)
+    _vm.time = new Date(_vm.time)
     await vm.$nextTick()
     let hourText = vm.$el.querySelectorAll('input')[0].value
     let toggleBtn = vm.$el.querySelector('[data-action="toggleMeridian"]')
@@ -149,8 +156,9 @@ describe('TimePicker', () => {
   })
 
   it('when hour is 12 it can display true', async () => {
-    vm.time.setHours(12)
-    vm.time = new Date(vm.time)
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.time.setHours(12)
+    _vm.time = new Date(_vm.time)
     await vm.$nextTick()
     let hourText = vm.$el.querySelectorAll('input')[0].value
     let toggleBtn = vm.$el.querySelector('[data-action="toggleMeridian"]')
@@ -159,10 +167,11 @@ describe('TimePicker', () => {
   })
 
   it('should be able to set hour using input in 24h mode', async () => {
-    vm.time.setHours(12)
-    vm.time = new Date(vm.time)
-    vm.showMeridian = false
-    let timePicker = vm.$refs.timepicker
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.time.setHours(12)
+    _vm.time = new Date(_vm.time)
+    _vm.showMeridian = false
+    let timePicker = _vm.$refs.timepicker
     await vm.$nextTick()
     let hourInput = vm.$el.querySelectorAll('input')[0]
     expect(parseInt(hourInput.value)).to.equal(12)
@@ -178,10 +187,11 @@ describe('TimePicker', () => {
   })
 
   it('should be able to set hour using input in 12h mode', async () => {
-    vm.time.setHours(12)
-    vm.time = new Date(vm.time)
-    vm.showMeridian = true
-    let timePicker = vm.$refs.timepicker
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.time.setHours(12)
+    _vm.time = new Date(_vm.time)
+    _vm.showMeridian = true
+    let timePicker = _vm.$refs.timepicker
     await vm.$nextTick()
     let hourInput = vm.$el.querySelectorAll('input')[0]
     expect(parseInt(hourInput.value)).to.equal(12)
@@ -197,11 +207,12 @@ describe('TimePicker', () => {
   })
 
   it('should be able to set minute using input', async () => {
-    vm.time.setHours(12)
-    vm.time.setMinutes(0)
-    vm.time = new Date(vm.time)
-    vm.showMeridian = true
-    let timePicker = vm.$refs.timepicker
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.time.setHours(12)
+    _vm.time.setMinutes(0)
+    _vm.time = new Date(_vm.time)
+    _vm.showMeridian = true
+    let timePicker = _vm.$refs.timepicker
     await vm.$nextTick()
     let minuteInput = vm.$el.querySelectorAll('input')[1]
     expect(parseInt(minuteInput.value)).to.equal(0)
@@ -217,10 +228,11 @@ describe('TimePicker', () => {
   })
 
   it('when minutes is 59 then plus minutes it can display true', async () => {
-    vm.time.setHours(9)
-    vm.time.setMinutes(59)
-    vm.time = new Date(vm.time)
-    vm.isReadOnly = false
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.time.setHours(9)
+    _vm.time.setMinutes(59)
+    _vm.time = new Date(_vm.time)
+    _vm.isReadOnly = false
     await vm.$nextTick()
     let beforeHourText = vm.$el.querySelectorAll('input')[0].value
     let minutesPlus = vm.$el.querySelectorAll('tr td button')[1]
@@ -233,10 +245,11 @@ describe('TimePicker', () => {
   })
 
   it('when minutes is 0 then minus minutes it can display true', async () => {
-    vm.time.setHours(9)
-    vm.time.setMinutes(0)
-    vm.time = new Date(vm.time)
-    vm.isReadOnly = false
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.time.setHours(9)
+    _vm.time.setMinutes(0)
+    _vm.time = new Date(_vm.time)
+    _vm.isReadOnly = false
     await vm.$nextTick()
     let beforeHourText = vm.$el.querySelectorAll('input')[0].value
     let minutesMinus = vm.$el.querySelectorAll('tr')[2].querySelectorAll('td button')[1]
@@ -262,38 +275,41 @@ describe('TimePicker', () => {
   })
 
   it('can be plus and minus hour after wheel', async () => {
-    vm.time.setHours(9)
-    vm.time = new Date(vm.time)
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.time.setHours(9)
+    _vm.time = new Date(_vm.time)
     await vm.$nextTick()
-    vm.$refs.timepicker.hoursWheel({deltaY: 1, preventDefault: () => true})
+    _vm.$refs.timepicker.hoursWheel({deltaY: 1, preventDefault: () => true})
     await vm.$nextTick()
     let hourText = vm.$el.querySelectorAll('input')[0].value
     expect(hourText).to.equal('08')
-    vm.$refs.timepicker.hoursWheel({deltaY: -1, preventDefault: () => true})
+    _vm.$refs.timepicker.hoursWheel({deltaY: -1, preventDefault: () => true})
     await vm.$nextTick()
     hourText = vm.$el.querySelectorAll('input')[0].value
     expect(hourText).to.equal('09')
   })
 
   it('can be plus and minus minutes after wheel', async () => {
-    vm.time.setMinutes(30)
-    vm.time = new Date(vm.time)
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.time.setMinutes(30)
+    _vm.time = new Date(_vm.time)
     await vm.$nextTick()
-    vm.$refs.timepicker.minutesWheel({deltaY: 1, preventDefault: () => true})
+    _vm.$refs.timepicker.minutesWheel({deltaY: 1, preventDefault: () => true})
     await vm.$nextTick()
     let minutesText = vm.$el.querySelectorAll('input')[1].value
     expect(minutesText).to.equal('29')
-    vm.$refs.timepicker.minutesWheel({deltaY: -1, preventDefault: () => true})
+    _vm.$refs.timepicker.minutesWheel({deltaY: -1, preventDefault: () => true})
     await vm.$nextTick()
     minutesText = vm.$el.querySelectorAll('input')[1].value
     expect(minutesText).to.equal('30')
   })
 
   it('shouldnt add a time bigger then max', async () => {
-    vm.max = '09:01'
-    vm.time.setHours(9)
-    vm.time = new Date(vm.time)
-    vm.isReadOnly = false
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.max = '09:01'
+    _vm.time.setHours(9)
+    _vm.time = new Date(_vm.time)
+    _vm.isReadOnly = false
     await vm.$nextTick()
     let hourText = vm.$el.querySelectorAll('input')[0].value
     let hourPlus = vm.$el.querySelectorAll('td')[0].querySelector('button')
@@ -305,11 +321,12 @@ describe('TimePicker', () => {
   })
 
   it('shouldnt add a time smaller then min', async () => {
-    vm.min = '08:30'
-    vm.time.setHours(9)
-    vm.time.setMinutes(0)
-    vm.time = new Date(vm.time)
-    vm.isReadOnly = false
+    let _vm = vm.$refs['time-picker-inline-example']
+    _vm.min = '08:30'
+    _vm.time.setHours(9)
+    _vm.time.setMinutes(0)
+    _vm.time = new Date(_vm.time)
+    _vm.isReadOnly = false
     await vm.$nextTick()
     let hourText = vm.$el.querySelectorAll('input')[0].value
     expect(hourText).to.equal('09')

@@ -8,13 +8,13 @@ Toggle a modal by clicking the button below. It will slide down and fade in from
 
 ```html
 <template>
-  <button type="button" class="btn btn-primary" @click="open1=true" id="btn-1">Launch Demo Modal</button>
-  <span id="modal1-msg" style="margin-left: 10px">{{msg || 'A simple modal example with callback.'}}</span>
-  <modal id="modal-demo-1" ref="modal1" v-model="open1" title="Modal 1" @hide="dismissCallback">
+  <button type="button" class="btn btn-primary" @click="open=true">Launch Demo Modal</button>
+  <span id="modal-msg" style="margin-left: 10px">{{msg || 'A simple modal example with callback.'}}</span>
+  <modal v-model="open" title="Modal 1" @hide="dismissCallback" ref="modal" id="modal-demo">
     <h4>Text in a modal</h4>
     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
     <h4>Popover in a modal</h4>
-    <popover title="A Title" placement="right" append-to="#modal-demo-1 [role=dialog]">
+    <popover title="A Title" placement="right" append-to="#modal-demo [role=dialog]">
       <p>
         This
         <a role="button" class="btn btn-default" data-role="trigger">button</a> should trigger a popover on click.
@@ -23,11 +23,11 @@ Toggle a modal by clicking the button below. It will slide down and fade in from
     </popover>
     <h4>Tooltips in a modal</h4>
     <p>
-      <tooltip text="Tooltip" append-to="#modal-demo-1 [role=dialog]">
+      <tooltip text="Tooltip" append-to="#modal-demo [role=dialog]">
         <a role="button" class="tooltip-test">This link</a>
       </tooltip>
       <span>and</span>
-      <tooltip text="Tooltip" append-to="#modal-demo-1 [role=dialog]">
+      <tooltip text="Tooltip" append-to="#modal-demo [role=dialog]">
         <a role="button" class="tooltip-test">that link</a>
       </tooltip>
       <span>should have tooltips on hover.</span>
@@ -45,13 +45,12 @@ Toggle a modal by clicking the button below. It will slide down and fade in from
     <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
   </modal>
 </template>
-
 <script>
   export default {
     data () {
       return {
         msg: '',
-        open1: false
+        open: false
       }
     },
     methods: {
@@ -61,7 +60,7 @@ Toggle a modal by clicking the button below. It will slide down and fade in from
     }
   }
 </script>
-<!-- Live demo -->
+<!-- modal-example.vue -->
 ```
 
 ## Optional Sizes
@@ -70,27 +69,26 @@ Modals have two optional sizes: `lg` and `sm`.
 
 ```html
 <template>
-  <button type="button" class="btn btn-primary" @click="open2=true" id="btn-2">Large Modal</button>
-  <button type="button" class="btn btn-primary" @click="open3=true" id="btn-3">Small Modal</button>
-  <modal v-model="open2" title="Modal Title" size="lg">
+  <button type="button" class="btn btn-primary" @click="open1=true">Large Modal</button>
+  <button type="button" class="btn btn-primary" @click="open2=true">Small Modal</button>
+  <modal v-model="open1" title="Modal Title" size="lg">
     <p>This is a large modal.</p>
   </modal>
-  <modal v-model="open3" title="Modal Title" size="sm">
+  <modal v-model="open2" title="Modal Title" size="sm">
     <p>This is a small modal.</p>
   </modal>
 </template>
-
 <script>
   export default {
     data () {
       return {
-        open2: false,
-        open3: false
+        open1: false,
+        open2: false
       }
     }
   }
 </script>
-<!-- Live demo -->
+<!-- modal-optional-sizes.vue -->
 ```
 
 ## Custom Header
@@ -101,28 +99,27 @@ Modals have two optional sizes: `lg` and `sm`.
 
 ```html
 <template>
-  <button type="button" class="btn btn-primary" @click="open4=true" id="btn-4">HTML Title</button>
-  <button type="button" class="btn btn-primary" @click="open5=true" id="btn-5">No Header</button>
-  <modal v-model="open4">
+  <button type="button" class="btn btn-primary" @click="open1=true">HTML Title</button>
+  <button type="button" class="btn btn-primary" @click="open2=true">No Header</button>
+  <modal v-model="open1">
     <span slot="title"><i class="glyphicon glyphicon-heart"></i> Modal Title</span>
     <p>This is a modal with HTML title.</p>
   </modal>
-  <modal v-model="open5" :header="false">
+  <modal v-model="open2" :header="false">
     <p>This is a modal with no header.</p>
   </modal>
 </template>
-
 <script>
   export default {
     data () {
       return {
-        open4: false,
-        open5: false
+        open1: false,
+        open2: false
       }
     }
   }
 </script>
-<!-- Live demo -->
+<!-- modal-custom-header.vue -->
 ```
 
 ## Custom Footer
@@ -132,32 +129,31 @@ Modals have two optional sizes: `lg` and `sm`.
 
 ```html
 <template>
-  <button type="button" class="btn btn-primary" @click="open6=true" id="btn-6">Custom Footer</button>
-  <button type="button" class="btn btn-primary" @click="open7=true" id="btn-7">No Footer</button>
-  <modal v-model="open6" title="Modal Title">
+  <button type="button" class="btn btn-primary" @click="open1=true">Custom Footer</button>
+  <button type="button" class="btn btn-primary" @click="open2=true">No Footer</button>
+  <modal v-model="open1" title="Modal Title">
     <p>This is a modal with custom footer.</p>
     <div slot="footer">
-      <button type="button" class="btn btn-default" @click="open6=false">Cancel</button>
+      <button type="button" class="btn btn-default" @click="open1=false">Cancel</button>
       <button type="button" class="btn btn-warning">Warning Action</button>
       <button type="button" class="btn btn-danger">Danger Action</button>
     </div>
   </modal>
-  <modal v-model="open7" title="Modal Title" :footer="false">
+  <modal v-model="open2" title="Modal Title" :footer="false">
     <p>This is a modal with no footer.</p>
   </modal>
 </template>
-
 <script>
   export default {
     data () {
       return {
-        open6: false,
-        open7: false
+        open1: false,
+        open2: false
       }
     }
   }
 </script>
-<!-- Live demo -->
+<!-- modal-custom-footer.vue -->
 ```
 
 ## Auto Focus
@@ -166,22 +162,21 @@ Auto focus on footer button with `data-action="auto-focus"` attribute after moda
 
 ```html
 <template>
-  <button type="button" class="btn btn-primary" @click="open8=true" id="btn-8">Auto Focus</button>
-  <modal v-model="open8" title="Modal Title" :auto-focus="true">
+  <button type="button" class="btn btn-primary" @click="open=true">Auto Focus</button>
+  <modal v-model="open" title="Modal Title" :auto-focus="true">
     <p>Check this out! The OK button is focused now.</p>
   </modal>
 </template>
-
 <script>
   export default {
     data () {
       return {
-        open8: false
+        open: false
       }
     }
   }
 </script>
-<!-- Live demo -->
+<!-- modal-auto-focus.vue -->
 ```
 
 ## Disable Backdrop
@@ -190,8 +185,8 @@ Set `backdrop` prop to `false` to disable the modal dismiss action on backdrop c
 
 ```html
 <template>
-  <button type="button" class="btn btn-primary" @click="open9=true" id="btn-9">Disable Backdrop</button>
-  <modal v-model="open9" title="Modal Title" :backdrop="false">
+  <button type="button" class="btn btn-primary" @click="open=true">Disable Backdrop</button>
+  <modal v-model="open" title="Modal Title" :backdrop="false">
     <p>This is a modal that can not close by backdrop click.</p>
   </modal>
 </template>
@@ -200,12 +195,12 @@ Set `backdrop` prop to `false` to disable the modal dismiss action on backdrop c
   export default {
     data () {
       return {
-        open9: false
+        open: false
       }
     }
   }
 </script>
-<!-- Live demo -->
+<!-- modal-disable-backdrop.vue -->
 ```
 
 ## Disable Animation
@@ -214,8 +209,8 @@ Set `transition-duration` to `0` to disable modal animations.
 
 ```html
 <template>
-  <button type="button" class="btn btn-primary" @click="open10=true" id="btn-10">Disable Animation</button>
-  <modal v-model="open10" title="Modal Title" :transition-duration="0">
+  <button type="button" class="btn btn-primary" @click="open=true">Disable Animation</button>
+  <modal v-model="open" title="Modal Title" :transition-duration="0">
     <p>This is a modal that has no transition effect.</p>
   </modal>
 </template>
@@ -224,12 +219,12 @@ Set `transition-duration` to `0` to disable modal animations.
   export default {
     data () {
       return {
-        open10: false
+        open: false
       }
     }
   }
 </script>
-<!-- Live demo -->
+<!-- modal-disable-animation.vue -->
 ```
 
 # API Reference
@@ -379,31 +374,3 @@ Set `transition-duration` to `0` to disable modal animations.
     </tbody>
   </table>
 </div>
-
-
-<!-- Live demo script
-<script>
-  export default {
-    data () {
-      return {
-        msg: '',
-        open1: false,
-        open2: false,
-        open3: false,
-        open4: false,
-        open5: false,
-        open6: false,
-        open7: false,
-        open8: false,
-        open9: false,
-        open10: false
-      }
-    },
-    methods: {
-      dismissCallback (msg) {
-        this.msg = `Modal dismiss with msg '${msg}'.`
-      }
-    }
-  }
-</script>
--->

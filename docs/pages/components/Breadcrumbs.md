@@ -10,7 +10,6 @@ Use `items` array to create a breadcrumbs nav. `active` state of last element is
 <template>
   <breadcrumbs :items="items"/>
 </template>
-
 <script>
   export default {
     data () {
@@ -24,7 +23,7 @@ Use `items` array to create a breadcrumbs nav. `active` state of last element is
     }
   }
 </script>
-<!-- Live demo -->
+<!-- breadcrumbs-example.vue -->
 ```
 
 
@@ -40,7 +39,7 @@ Note that `active` state will not automatically set if using this mode.
   <breadcrumb-item href="#">Library</breadcrumb-item>
   <breadcrumb-item :active="true">Data</breadcrumb-item>
 </breadcrumbs>
-<!-- Live demo -->
+<!-- breadcrumbs-item.vue -->
 ```
 
 ## Router Link
@@ -49,35 +48,13 @@ Parse `to` (String or Object) instead of `href` will create a `router-link` for 
 
 ```html
 <template>
-  <breadcrumbs :items="items2"/>
+  <breadcrumbs :items="items"/>
 </template>
-
-<script>
-  export default {
-    data () {
-      return {
-        items2: [
-          {text: 'Home', to: '/', exact: true},
-          {text: 'Breadcrumbs', to: '/breadcrumbs'}
-        ]
-      }
-    }
-  }
-</script>
-<!-- Live demo -->
-```
-
-<!-- Live demo script
 <script>
   export default {
     data () {
       return {
         items: [
-          {text: 'Home', href: '#'},
-          {text: 'Library', href: '#'},
-          {text: 'Data', href: '#'}
-        ],
-        items2: [
           {text: 'Home', to: '/', exact: true},
           {text: 'Breadcrumbs', to: '/breadcrumbs'}
         ]
@@ -85,7 +62,8 @@ Parse `to` (String or Object) instead of `href` will create a `router-link` for 
     }
   }
 </script>
--->
+<!-- breadcrumbs-router-link.vue -->
+```
 
 # API Reference
 

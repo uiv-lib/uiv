@@ -49,7 +49,6 @@
     </div>
   </form>
 </template>
-
 <script>
   export default {
     data () {
@@ -86,7 +85,7 @@
     }
   }
 </script>
-<!-- Live demo -->
+<!-- time-picker-inline-example.vue -->
 ```
 
 ## With Dropdown
@@ -96,7 +95,7 @@
   <form class="form-inline">
     <dropdown class="form-group">
       <div class="input-group">
-        <input class="form-control" type="text" v-model="timeStr2" readonly="readonly">
+        <input class="form-control" type="text" v-model="timeStr" readonly="readonly">
         <div class="input-group-btn">
           <button class="btn btn-default" type="button" data-role="trigger">
             <i class="glyphicon glyphicon-time"></i>
@@ -105,31 +104,30 @@
       </div>
       <template slot="dropdown">
         <li style="padding: 10px">
-          <time-picker v-model="time2"></time-picker>
+          <time-picker v-model="time"></time-picker>
         </li>
       </template>
     </dropdown>
   </form>
 </template>
-
 <script>
   export default {
     data () {
       return {
-        time2: null
+        time: null
       }
     },
     mounted () {
-      this.time2 = new Date()
+      this.time = new Date()
     },
     computed: {
-      timeStr2 () {
-        return this.time2 ? this.time2.toTimeString() : ''
+      timeStr () {
+        return this.time ? this.time.toTimeString() : ''
       }
     }
   }
 </script>
-<!-- Live demo -->
+<!-- time-picker-with-dropdown.vue -->
 ```
 
 
@@ -204,50 +202,3 @@
     </tbody>
   </table>
 </div>
-
-
-
-<!-- Live demo script
-<script>
-  export default {
-    data () {
-      return {
-        time2: null,
-        time: null,
-        showMeridian: true,
-        isReadOnly: false,
-        hourStep: 1,
-        minStep: 1,
-        min: ``,
-        max: ``
-      }
-    },
-    computed: {
-      timeStr2 () {
-        return this.time2 ? this.time2.toTimeString() : ''
-      },
-      timeString () {
-        return this.time ? this.time.toTimeString() : ''
-      },
-      maxTime () {
-        return this.max ? new Date(`2000/01/01 ${this.max}`) : null
-      },
-      minTime () {
-        return this.min ? new Date(`2000/01/01 ${this.min}`) : null
-      }
-    },
-    mounted () {
-      this.time = new Date()
-      this.time2 = new Date()
-    },
-    methods: {
-      resetTime () {
-        this.time.setHours(9)
-        this.time.setMinutes(0)
-        this.time = new Date(this.time)
-      }
-    }
-  }
-</script>
-
--->

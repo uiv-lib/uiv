@@ -1,8 +1,8 @@
 language: node_js
 cache:
-  yarn: true
   directories:
   - node_modules
+#  yarn: true
 node_js:
   - "node"
 script:

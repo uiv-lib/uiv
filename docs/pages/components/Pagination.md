@@ -52,7 +52,6 @@ Use `v-model` to indicate the current page.
     </div>
   </form>
 </template>
-
 <script>
   export default {
     data () {
@@ -67,8 +66,7 @@ Use `v-model` to indicate the current page.
     }
   }
 </script> 
-
-<!-- Live demo -->
+<!-- pagination-example.vue -->
 ```
 
 # API Reference
@@ -148,21 +146,3 @@ Use `v-model` to indicate the current page.
     </tbody>
   </table>
 </div>
-
-
-<!-- Live demo script
-<script>
-  export default {
-    data () {
-      return {
-        totalSize: 18,
-        maxSize: 5,
-        currentPage: 1,
-        boundaryLinks: true,
-        directionLinks: true,
-        size: ''
-      }
-    }
-  }
-</script> 
--->

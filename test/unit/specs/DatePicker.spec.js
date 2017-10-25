@@ -262,14 +262,14 @@ describe('DatePicker', () => {
   })
 
   it('should be able to hide today btn', async () => {
-    vm.todayBtn = false
+    vm.$refs['date-picker-inline-example'].todayBtn = false
     await vm.$nextTick()
     let picker = vm.$el.querySelector('#date-picker-1')
     expect(picker.querySelector('.text-center').querySelector('.btn-info')).not.exist
   })
 
   it('should be able to hide clear btn', async () => {
-    vm.clearBtn = false
+    vm.$refs['date-picker-inline-example'].clearBtn = false
     await vm.$nextTick()
     let picker = vm.$el.querySelector('#date-picker-1')
     expect(picker.querySelector('.text-center').querySelector('.btn-default')).not.exist
@@ -278,8 +278,8 @@ describe('DatePicker', () => {
   it('should be able to limit date range and render correct date view', async () => {
     let tomorrow = new Date()
     tomorrow.setDate(tomorrow.getDate() + 1)
-    vm.limitFrom = new Date()
-    vm.limitTo = tomorrow
+    vm.$refs['date-picker-inline-example'].limitFrom = new Date()
+    vm.$refs['date-picker-inline-example'].limitTo = tomorrow
     await vm.$nextTick()
     let picker = vm.$el.querySelector('#date-picker-1')
     let dateInRange = picker.querySelector('tbody').querySelectorAll('button:not([disabled])')
@@ -292,16 +292,16 @@ describe('DatePicker', () => {
   it('should be able to limit date range and not able to set invalid date', async () => {
     let tomorrow = new Date()
     tomorrow.setDate(tomorrow.getDate() + 1)
-    vm.limitFrom = '2017-01-01'
-    vm.limitTo = '2017-01-03'
-    vm.date = '2017-01-04'
+    vm.$refs['date-picker-inline-example'].limitFrom = '2017-01-01'
+    vm.$refs['date-picker-inline-example'].limitTo = '2017-01-03'
+    vm.$refs['date-picker-inline-example'].date = '2017-01-04'
     await vm.$nextTick()
-    expect(vm.date).to.equal('')
+    expect(vm.$refs['date-picker-inline-example'].date).to.equal('')
   })
 
   it('should be able handle invalid limit params', async () => {
-    vm.limitFrom = 'foo'
-    vm.limitTo = 'bar'
+    vm.$refs['date-picker-inline-example'].limitFrom = 'foo'
+    vm.$refs['date-picker-inline-example'].limitTo = 'bar'
     await vm.$nextTick()
   })
 

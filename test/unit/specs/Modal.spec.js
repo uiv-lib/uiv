@@ -20,64 +20,73 @@ describe('Modal', () => {
   })
 
   it('should be able to open modal 1', async () => {
-    let trigger = vm.$el.querySelector('#btn-1')
+    let _vm = vm.$refs['modal-example']
+    let _$el = $(_vm.$el)
+    let trigger = _$el.find('.btn').get(0)
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
     await utils.sleep(utils.transitionDuration)
-    setTimeout()
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(vm.$el.querySelector('.modal').className).to.contain('in')
-    expect(vm.$el.querySelector('.modal-title').textContent).to.equal('Modal 1')
+    expect(_$el.find('.modal').get(0).className).to.contain('in')
+    expect(_$el.find('.modal-title').get(0).textContent).to.equal('Modal 1')
   })
 
   it('should be able to close by esc key click', async () => {
-    let trigger = vm.$el.querySelector('#btn-1')
+    let _vm = vm.$refs['modal-example']
+    let _$el = $(_vm.$el)
+    let trigger = _$el.find('.btn').get(0)
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(vm.$el.querySelector('.modal').className).to.contain('in')
-    expect(vm.$el.querySelector('.modal-title').textContent).to.equal('Modal 1')
-    vm.$refs.modal1.onKeyPress({keyCode: 28}) // not a esc key
+    expect(_$el.find('.modal').get(0).className).to.contain('in')
+    expect(_$el.find('.modal-title').get(0).textContent).to.equal('Modal 1')
+    _vm.$refs.modal.onKeyPress({keyCode: 28}) // not a esc key
     await vm.$nextTick()
-    expect(vm.open1).to.equal(true)
-    vm.$refs.modal1.onKeyPress({keyCode: 27}) // esc key
+    expect(_vm.open).to.equal(true)
+    _vm.$refs.modal.onKeyPress({keyCode: 27}) // esc key
     await vm.$nextTick()
-    expect(vm.open1).to.equal(false)
+    expect(_vm.open).to.equal(false)
   })
 
   it('should be able to close modal 1 and fire callback', async () => {
-    let trigger = vm.$el.querySelector('#btn-1')
+    let _vm = vm.$refs['modal-example']
+    let _$el = $(_vm.$el)
+    let trigger = _$el.find('.btn').get(0)
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(vm.$el.querySelector('.modal').className).to.contain('in')
-    expect(vm.$el.querySelector('.modal-title').textContent).to.equal('Modal 1')
-    vm.$el.querySelector('button.close').click()
+    expect(_$el.find('.modal').get(0).className).to.contain('in')
+    expect(_$el.find('.modal-title').get(0).textContent).to.equal('Modal 1')
+    _$el.find('button.close').get(0).click()
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).not.exist
-    expect(vm.$el.querySelector('.modal').className).not.contain('in')
-    expect(vm.$el.querySelector('#modal1-msg').textContent).to.contain('Modal dismiss with msg \'dismiss\'')
+    expect(_$el.find('.modal').get(0).className).not.contain('in')
+    expect(_$el.find('#modal-msg').get(0).textContent).to.contain('Modal dismiss with msg \'dismiss\'')
   })
 
   it('should be able to close modal 1 with ok option and fire callback', async () => {
-    let trigger = vm.$el.querySelector('#btn-1')
+    let _vm = vm.$refs['modal-example']
+    let _$el = $(_vm.$el)
+    let trigger = _$el.find('.btn').get(0)
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(vm.$el.querySelector('.modal').className).to.contain('in')
-    expect(vm.$el.querySelector('.modal-title').textContent).to.equal('Modal 1')
-    vm.$el.querySelector('.modal-footer').querySelectorAll('button')[1].click()
+    expect(_$el.find('.modal').get(0).className).to.contain('in')
+    expect(_$el.find('.modal-title').get(0).textContent).to.equal('Modal 1')
+    _$el.find('.modal-footer button').get(1).click()
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).not.exist
-    expect(vm.$el.querySelector('.modal').className).not.contain('in')
-    expect(vm.$el.querySelector('#modal1-msg').textContent).to.contain('Modal dismiss with msg \'ok\'')
+    expect(_$el.find('.modal').get(0).className).not.contain('in')
+    expect(_$el.find('#modal-msg').get(0).textContent).to.contain('Modal dismiss with msg \'ok\'')
   })
 
   it('should be able to render large modal', async () => {
-    let trigger = vm.$el.querySelector('#btn-2')
+    let _vm = vm.$refs['modal-optional-sizes']
+    let _$el = $(_vm.$el)
+    let trigger = _$el.find('.btn').get(0)
     let modal = vm.$el.querySelectorAll('.modal')[1]
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
@@ -88,7 +97,9 @@ describe('Modal', () => {
   })
 
   it('should be able to render small modal', async () => {
-    let trigger = vm.$el.querySelector('#btn-3')
+    let _vm = vm.$refs['modal-optional-sizes']
+    let _$el = $(_vm.$el)
+    let trigger = _$el.find('.btn').get(1)
     let modal = vm.$el.querySelectorAll('.modal')[2]
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
@@ -99,7 +110,9 @@ describe('Modal', () => {
   })
 
   it('should be able to render HTML title modal', async () => {
-    let trigger = vm.$el.querySelector('#btn-4')
+    let _vm = vm.$refs['modal-custom-header']
+    let _$el = $(_vm.$el)
+    let trigger = _$el.find('.btn').get(0)
     let modal = vm.$el.querySelectorAll('.modal')[3]
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
@@ -110,8 +123,10 @@ describe('Modal', () => {
   })
 
   it('should be able to render no header modal', async () => {
+    let _vm = vm.$refs['modal-custom-header']
+    let _$el = $(_vm.$el)
+    let trigger = _$el.find('.btn').get(1)
     let modal = vm.$el.querySelectorAll('.modal')[4]
-    let trigger = vm.$el.querySelector('#btn-5')
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
     await utils.sleep(utils.transitionDuration)
@@ -121,7 +136,9 @@ describe('Modal', () => {
   })
 
   it('should be able to render customize footer modal', async () => {
-    let trigger = vm.$el.querySelector('#btn-6')
+    let _vm = vm.$refs['modal-custom-footer']
+    let _$el = $(_vm.$el)
+    let trigger = _$el.find('.btn').get(0)
     let modal = vm.$el.querySelectorAll('.modal')[5]
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
@@ -132,8 +149,10 @@ describe('Modal', () => {
   })
 
   it('should be able to render no footer modal', async () => {
+    let _vm = vm.$refs['modal-custom-footer']
+    let _$el = $(_vm.$el)
+    let trigger = _$el.find('.btn').get(1)
     let modal = vm.$el.querySelectorAll('.modal')[6]
-    let trigger = vm.$el.querySelector('#btn-7')
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
     await utils.sleep(utils.transitionDuration)
@@ -143,8 +162,10 @@ describe('Modal', () => {
   })
 
   it('should be able to close customize footer modal', async () => {
+    let _vm = vm.$refs['modal-custom-footer']
+    let _$el = $(_vm.$el)
+    let trigger = _$el.find('.btn').get(0)
     let modal = vm.$el.querySelectorAll('.modal')[5]
-    let trigger = vm.$el.querySelector('#btn-6')
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
     await utils.sleep(utils.transitionDuration)
@@ -158,7 +179,9 @@ describe('Modal', () => {
   })
 
   it('should be able to auto-focus on ok btn', async () => {
-    let trigger = vm.$el.querySelector('#btn-8')
+    let _vm = vm.$refs['modal-auto-focus']
+    let _$el = $(_vm.$el)
+    let trigger = _$el.find('.btn').get(0)
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
     await utils.sleep(utils.transitionDuration + 100)
@@ -167,8 +190,10 @@ describe('Modal', () => {
   })
 
   it('should be able to close modal on backdrop click', async () => {
+    let _vm = vm.$refs['modal-example']
+    let _$el = $(_vm.$el)
+    let trigger = _$el.find('.btn').get(0)
     let modal = vm.$el.querySelectorAll('.modal')[0]
-    let trigger = vm.$el.querySelector('#btn-1')
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
     await utils.sleep(utils.transitionDuration)
@@ -181,8 +206,10 @@ describe('Modal', () => {
   })
 
   it('should not be able to close backdrop-false modal', async () => {
+    let _vm = vm.$refs['modal-disable-backdrop']
+    let _$el = $(_vm.$el)
+    let trigger = _$el.find('.btn').get(0)
     let modal = vm.$el.querySelectorAll('.modal')[8]
-    let trigger = vm.$el.querySelector('#btn-9')
     expect(document.querySelector('.modal-backdrop')).not.exist
     trigger.click()
     await utils.sleep(utils.transitionDuration)

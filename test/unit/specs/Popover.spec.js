@@ -84,11 +84,12 @@ describe('Popover', () => {
   })
 
   it('should be able to change trigger to manual', async () => {
+    let _vm = vm.$refs['popover-manual-trigger']
     expect(document.querySelectorAll('.popover').length).to.equal(0)
-    vm.show = true
+    _vm.show = true
     await utils.sleep(200)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
-    vm.show = false
+    _vm.show = false
     await utils.sleep(200)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })

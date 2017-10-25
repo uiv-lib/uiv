@@ -8,7 +8,7 @@
 <template>
   <label class="control-label">States of America</label>
   <typeahead ref="typeahead1"
-             v-model="model1"
+             v-model="model"
              :data="states"
              :item-key="itemKey"
              :ignore-case="ignoreCase"
@@ -18,8 +18,8 @@
   <hr/>
   <h4>Settings</h4>
   <form class="form-inline">
-    <button class="btn btn-primary" type="button" @click="model1 = states[0]">Set to Alabama</button>
-    <button class="btn btn-default" type="button" @click="model1 = null">Reset</button>
+    <button class="btn btn-primary" type="button" @click="model = states[0]">Set to Alabama</button>
+    <button class="btn btn-default" type="button" @click="model = null">Reset</button>
     <div class="form-group">
       <label class="checkbox-inline"><input type="checkbox" v-model="ignoreCase"> Ignore Case</label>
       <label class="checkbox-inline"><input type="checkbox" v-model="matchStart"> Match Start</label>
@@ -27,16 +27,15 @@
     </div>
   </form>
   <br/>
-  <alert type="info" v-if="model1">You selected: {{model1}}</alert>
+  <alert type="info" v-if="model">You selected: {{model}}</alert>
 </template>
-
 <script>
   import states from '../../assets/data/states.json'
 
   export default {
     data () {
       return {
-        model1: '',
+        model: '',
         itemKey: 'name',
         states: states.data,
         forceSelect: false,
@@ -47,7 +46,7 @@
     }
   }
 </script>
-<!-- Live demo -->
+<!-- typeahead-example.vue -->
 ```
 
 ## Async & Custom Template
@@ -55,23 +54,34 @@
 **Note**: `ignore-case` and `match-start` won't work in async query mode.
 
 ```html
-<typeahead ref="typeahead2"
-           v-model="model2"
-           async-src="https://api.github.com/search/users?q="
-           async-key="items"
-           item-key="login">
-  <template slot="item" slot-scope="props">
-    <li v-for="(item, index) in props.items" :class="{active:props.activeIndex===index}">
-      <a href="javascript:void(0)" @click="props.select(item)">
-        <img width="22px" height="22px" :src="item.avatar_url + '&s=40'">
-        <span v-html="props.highlight(item)"></span>
-      </a>
-    </li>
-  </template>
-</typeahead>
-<br/>
-<alert type="info" v-if="model2">You selected: {{model2}}</alert>
-<!-- Live demo -->
+<template>
+  <typeahead ref="typeahead2"
+             v-model="model"
+             async-src="https://api.github.com/search/users?q="
+             async-key="items"
+             item-key="login">
+    <template slot="item" slot-scope="props">
+      <li v-for="(item, index) in props.items" :class="{active:props.activeIndex===index}">
+        <a href="javascript:void(0)" @click="props.select(item)">
+          <img width="22px" height="22px" :src="item.avatar_url + '&s=40'">
+          <span v-html="props.highlight(item)"></span>
+        </a>
+      </li>
+    </template>
+  </typeahead>
+  <br/>
+  <alert type="info" v-if="model">You selected: {{model}}</alert>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        model: ''
+      }
+    }
+  }
+</script>
+<!-- typeahead-async.vue -->
 ```
 
 # API Reference
@@ -223,25 +233,3 @@
     </tbody>
   </table>
 </div>
-
-
-<!-- Live demo script
-<script>
-  import states from '../../assets/data/states.json'
-
-  export default {
-    data () {
-      return {
-        model1: '',
-        model2: '',
-        itemKey: 'name',
-        states: states.data,
-        forceSelect: false,
-        ignoreCase: true,
-        matchStart: false,
-        openOnFocus: true
-      }
-    }
-  }
-</script>
--->
