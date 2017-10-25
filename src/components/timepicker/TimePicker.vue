@@ -147,9 +147,6 @@
     },
     methods: {
       updateByValue (value) {
-        if (!value) {
-          return
-        }
         this.hours = value.getHours()
         if (!this.showMeridian) {
           this.hoursText = utils.pad(this.hours, 2)

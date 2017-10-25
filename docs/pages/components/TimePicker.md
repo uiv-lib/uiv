@@ -2,87 +2,92 @@
 
 > A lightweight & configurable time picker.
 
-## Inline Example
+## Example
 
-**Note**: Make sure to update the `v-model` reference when try to change it from outside the component. E.g. `model = new Date(model)`. See the example of 'Set to 9:00 AM' below.
+You can:
+
+* Click on the add / minus button.
+* Use mouse wheel.
+* Input directly.
+
+**Note**: Make sure to update the `v-model` reference when trying to change it from outside the component.
+
+e.g. `time = new Date(time)`
 
 ```html
 <template>
-  <time-picker v-model="time"
-               :show-meridian="showMeridian"
-               :readonly="isReadOnly"
-               :min-step="minStep"
-               :hour-step="hourStep"
-               :min="minTime"
-               :max="maxTime"
-               ref="timepicker"></time-picker>
-  <alert type="info">The selected time is <b>{{timeString}}</b></alert>
-  <hr/>
-  <h4>Settings</h4>
-  <form class="form-horizontal">
-    <div class="form-group">
-      <div class="col-xs-12">
-        <button class="btn btn-default" type="button" @click="resetTime" data-action="setNine">Set to 9:00 AM</button>
-        <button class="btn btn-default" type="button" @click="showMeridian=!showMeridian">12H / 24H</button>
-        <button class="btn btn-default" type="button" @click="isReadOnly=!isReadOnly">Toggle Readonly</button>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-6">
-        <label>Hour Setp</label>
-        <input class="form-control" v-model.number="hourStep" type="number" min="1" max="12">
-      </div>
-      <div class="col-md-6">
-        <label>Minute Step</label>
-        <input class="form-control" v-model.number="minStep" type="number" min="1" max="60">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-6">
-        <label>Min Time (24H)</label>
-        <input class="form-control" v-model="min" type="text" placeholder="HH:MM">
-      </div>
-      <div class="col-md-6">
-        <label>Max Time (24H)</label>
-        <input class="form-control" v-model="max" type="text" placeholder="HH:MM">
-      </div>
-    </div>
-  </form>
+  <time-picker v-model="time"></time-picker>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        time: new Date()
+      }
+    }
+  }
+</script>
+<!-- time-picker-example.vue -->
+```
+
+## 24-Hour
+
+```html
+<template>
+  <time-picker v-model="time" :show-meridian="false"></time-picker>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        time: new Date()
+      }
+    }
+  }
+</script>
+<!-- time-picker-24-example.vue -->
+```
+
+## Readonly
+
+All input methods are all disabled in readonly mode.
+
+```html
+<template>
+  <time-picker v-model="time" readonly></time-picker>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        time: new Date()
+      }
+    }
+  }
+</script>
+<!-- time-picker-readonly-example.vue -->
+```
+
+## Range Limit
+
+Example that limit time range from **8:00 AM** to **8:00 PM**:
+
+```html
+<template>
+  <time-picker v-model="time" :max="max" :min="min"></time-picker>
 </template>
 <script>
   export default {
     data () {
       return {
         time: new Date(),
-        showMeridian: true,
-        isReadOnly: false,
-        hourStep: 1,
-        minStep: 1,
-        min: '',
-        max: ''
-      }
-    },
-    computed: {
-      timeString () {
-        return this.time ? this.time.toTimeString() : ''
-      },
-      maxTime () {
-        return this.max ? new Date(`2000/01/01 ${this.max}`) : null
-      },
-      minTime () {
-        return this.min ? new Date(`2000/01/01 ${this.min}`) : null
-      }
-    },
-    methods: {
-      resetTime () {
-        this.time.setHours(9)
-        this.time.setMinutes(0)
-        this.time = new Date(this.time)
+        min: new Date('2017/01/01 8:00'), // date doesn't matter
+        max: new Date('2017/01/01 20:00')
       }
     }
   }
 </script>
-<!-- time-picker-inline-example.vue -->
+<!-- time-picker-limit-example.vue -->
 ```
 
 ## With Dropdown
@@ -92,7 +97,7 @@
   <form class="form-inline">
     <dropdown class="form-group">
       <div class="input-group">
-        <input class="form-control" type="text" v-model="timeStr" readonly="readonly">
+        <input class="form-control" type="text" :value="this.time.toTimeString()" readonly="readonly">
         <div class="input-group-btn">
           <button class="btn btn-default" type="button" data-role="trigger">
             <i class="glyphicon glyphicon-time"></i>
@@ -112,11 +117,6 @@
     data () {
       return {
         time: new Date()
-      }
-    },
-    computed: {
-      timeStr () {
-        return this.time ? this.time.toTimeString() : ''
       }
     }
   }
