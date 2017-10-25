@@ -58,8 +58,8 @@
         isReadOnly: false,
         hourStep: 1,
         minStep: 1,
-        min: ``,
-        max: ``
+        min: '',
+        max: ''
       }
     },
     computed: {
@@ -72,9 +72,6 @@
       minTime () {
         return this.min ? new Date(`2000/01/01 ${this.min}`) : null
       }
-    },
-    mounted () {
-      this.time = new Date()
     },
     methods: {
       resetTime () {
@@ -114,11 +111,8 @@
   export default {
     data () {
       return {
-        time: null
+        time: new Date()
       }
-    },
-    mounted () {
-      this.time = new Date()
     },
     computed: {
       timeStr () {
