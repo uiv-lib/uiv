@@ -260,6 +260,7 @@ describe('Popover', () => {
     }).$mount()
     let $el = $(vm.$el).appendTo('body')
     expect(document.querySelectorAll('.popover').length).to.equal(0)
+    await vm.$nextTick()
     let trigger = vm.$el.querySelector('button')
     trigger.focus()
     await utils.sleep(200)
