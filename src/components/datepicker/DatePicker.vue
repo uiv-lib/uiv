@@ -1,5 +1,5 @@
 <template>
-  <div :style="pickerStyle" @click="onPickerClick">
+  <div :style="pickerStyle" data-role="date-picker" @click="onPickerClick">
     <date-view v-show="view==='d'"
                :month="currentMonth"
                :year="currentYear"
