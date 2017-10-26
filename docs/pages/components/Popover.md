@@ -4,13 +4,11 @@
 
 ## Example
 
-The element attached with `data-role="trigger"` will be the popover trigger.
-
 Click the button below to toggle popover.
 
 ```html
-<popover title="Title">
-  <button type="button" class="btn btn-primary" data-role="trigger">Popover</button>
+<button type="button" class="btn btn-primary" id="popover-trigger">Popover</button>
+<popover title="Title" target="#popover-trigger">
   <div slot="popover">
     <h1>Hello world!</h1>
   </div>
@@ -18,13 +16,27 @@ Click the button below to toggle popover.
 <!-- popover-example.vue -->
 ```
 
+## Trigger Target
+
+Order to decide the popover trigger:
+
+1. Use `target` if exist.
+2. Use element in default slot with `data-role="trigger"` attribute if exist.
+3. Use the first element present in default slot.
+
+A `target` can be:
+
+* Selector that can be recognized by `querySelect`.
+* Reference to Element.
+* Reference to Component.
+
 ## With Empty Title
 
 If you don't want the title of popover, just leave the `title` prop unset or blank.
 
 ```html
 <popover>
-  <button type="button" class="btn btn-primary" data-role="trigger" id="empty-title-trigger">Popover</button>
+  <button type="button" class="btn btn-primary" id="empty-title-trigger">Popover</button>
   <div slot="popover">
     <h1>Hello world!</h1>
   </div>
@@ -43,25 +55,25 @@ Supported placements:
 
 ```html
 <popover title="Title" placement="left">
-  <button type="button" class="btn btn-primary" data-role="trigger" id="left-trigger">Left</button>
+  <button type="button" class="btn btn-primary" id="left-trigger">Left</button>
   <div slot="popover">
     <p>Popover on left</p>
   </div>
 </popover>
 <popover title="Title" placement="top">
-  <button type="button" class="btn btn-primary" data-role="trigger" id="top-trigger">Top</button>
+  <button type="button" class="btn btn-primary" id="top-trigger">Top</button>
   <div slot="popover">
     <p>Popover on top</p>
   </div>
 </popover>
 <popover title="Title" placement="bottom">
-  <button type="button" class="btn btn-primary" data-role="trigger" id="bottom-trigger">Bottom</button>
+  <button type="button" class="btn btn-primary" id="bottom-trigger">Bottom</button>
   <div slot="popover">
     <p>Popover on bottom</p>
   </div>
 </popover>
 <popover title="Title" placement="right">
-  <button type="button" class="btn btn-primary" data-role="trigger" id="right-trigger">Right</button>
+  <button type="button" class="btn btn-primary" id="right-trigger">Right</button>
   <div slot="popover">
     <p>Popover on right</p>
   </div>
@@ -87,31 +99,31 @@ Supported triggers:
 
 ```html
 <popover title="Title">
-  <button type="button" class="btn btn-primary" data-role="trigger">Outside-Click (Default)</button>
+  <button type="button" class="btn btn-primary">Outside-Click (Default)</button>
   <div slot="popover">
     <p>Popover content</p>
   </div>
 </popover>
 <popover title="Title" trigger="hover">
-  <button type="button" class="btn btn-primary" data-role="trigger" id="hover-trigger">Hover</button>
+  <button type="button" class="btn btn-primary" id="hover-trigger">Hover</button>
   <div slot="popover">
     <p>Popover content</p>
   </div>
 </popover>
 <popover title="Title" trigger="focus">
-  <button type="button" class="btn btn-primary" data-role="trigger" id="focus-trigger">Focus</button>
+  <button type="button" class="btn btn-primary" id="focus-trigger">Focus</button>
   <div slot="popover">
     <p>Popover content</p>
   </div>
 </popover>
 <popover title="Title" trigger="hover-focus">
-  <button type="button" class="btn btn-primary" data-role="trigger" id="hover-focus-trigger">Hover-Focus</button>
+  <button type="button" class="btn btn-primary" id="hover-focus-trigger">Hover-Focus</button>
   <div slot="popover">
     <p>Popover content</p>
   </div>
 </popover>
 <popover title="Title" trigger="click">
-  <button type="button" class="btn btn-primary" data-role="trigger" id="click-trigger">Click</button>
+  <button type="button" class="btn btn-primary" id="click-trigger">Click</button>
   <div slot="popover">
     <p>Popover content</p>
   </div>
@@ -126,7 +138,7 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
 ```html
 <template>
   <popover title="Title" trigger="manual" v-model="show">
-    <button type="button" class="btn btn-default" data-role="trigger">You Can't Trigger Popover Here...</button>
+    <button type="button" class="btn btn-default">You Can't Trigger Popover Here...</button>
     <div slot="popover">
       <p>Popover content</p>
     </div>
@@ -152,7 +164,7 @@ Set `enable` prop to `false` to disable a popover.
 
 ```html
 <popover title="Title" :enable="false">
-  <button type="button" class="btn btn-primary" data-role="trigger" id="disabled-trigger">Disabled Popover</button>
+  <button type="button" class="btn btn-primary" id="disabled-trigger">Disabled Popover</button>
   <div slot="popover">
     <h1>Hello world!</h1>
   </div>
@@ -169,6 +181,7 @@ Set `enable` prop to `false` to disable a popover.
 Name                  | Type       | Default       | Required | Description
 ----------------      | ---------- | --------      | -------- | -----------------------
 `v-model`             | Boolean    |               |          | Show / hide the popover.
+`target`              |            |               |          | Popover trigger, can be a select or reference to Element / Component.
 `tag`                 | String     | span          |          | The HTML tag that render the component.
 `title`               | String     |               |          | The popover title.
 `enable`              | Boolean    | true          |          | Enable the popover.
@@ -177,7 +190,6 @@ Name                  | Type       | Default       | Required | Description
 `trigger`             | String     | outside-click |          | The popover trigger event, support `hover` / `focus` / `hover-focus` / `click` / `outside-click` / `manual`
 `append-to`           | String     | body          |          | Element selector that the popover append to.
 `transition-duration` | Number     | 150           |          | The popover show / hide transition time in ms.
-`target`              | Element    |               |          | Use this prop to specify an HTML Element as the popover trigger, useful when not able to use parent-child structure.
 
 ### Slots
 
