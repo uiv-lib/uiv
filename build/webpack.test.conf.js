@@ -21,12 +21,4 @@ var webpackConfig = merge(baseConfig, {
 // no need for app entry during tests
 delete webpackConfig.entry
 
-// Markdown loader: Use HTML section tag for test and remove plugins
-webpackConfig.module.rules.forEach(rule => {
-  if (rule.loader === 'vue-markdown-loader') {
-    rule.options.wrapper = 'section'
-    rule.options.use = []
-  }
-})
-
 module.exports = webpackConfig

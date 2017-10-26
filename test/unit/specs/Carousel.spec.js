@@ -88,7 +88,7 @@ describe('Carousel', () => {
   })
 
   it('should be able to render correct contents on init', async () => {
-    let $el = $(vm.$refs.carousel.$el)
+    let $el = $(vm.$refs['carousel-example'].$refs.carousel.$el)
     await vm.$nextTick()
     expect($el.find('.carousel-inner .item').length).to.equal(4)
     expect($el.find('.carousel-indicators li').length).to.equal(4)
@@ -97,7 +97,7 @@ describe('Carousel', () => {
   })
 
   it('should be able to go next on right control click', async () => {
-    let $el = $(vm.$refs.carousel.$el)
+    let $el = $(vm.$refs['carousel-example'].$refs.carousel.$el)
     await vm.$nextTick()
     $el.find('.carousel-control.right').get(0).click()
     await utils.sleep(700)
@@ -106,7 +106,7 @@ describe('Carousel', () => {
   })
 
   it('should be able to go prev on left control click', async () => {
-    let $el = $(vm.$refs.carousel.$el)
+    let $el = $(vm.$refs['carousel-example'].$refs.carousel.$el)
     await vm.$nextTick()
     $el.find('.carousel-control.left').get(0).click()
     await utils.sleep(700)
@@ -119,7 +119,7 @@ describe('Carousel', () => {
   })
 
   it('should be able to go index on indicator click', async () => {
-    let $el = $(vm.$refs.carousel.$el)
+    let $el = $(vm.$refs['carousel-example'].$refs.carousel.$el)
     await vm.$nextTick()
     $el.find('.carousel-indicators li').get(1).click()
     await utils.sleep(700)
@@ -136,7 +136,7 @@ describe('Carousel', () => {
   })
 
   it('should be able to hide indicators', async () => {
-    let _$el = $(vm.$refs.carousel.$el)
+    let _$el = $(vm.$refs['carousel-example'].$refs.carousel.$el)
     await vm.$nextTick()
     $el.find('form button').get(0).click()
     await vm.$nextTick()
@@ -144,7 +144,7 @@ describe('Carousel', () => {
   })
 
   it('should be able to hide controls', async () => {
-    let _$el = $(vm.$refs.carousel.$el)
+    let _$el = $(vm.$refs['carousel-example'].$refs.carousel.$el)
     await vm.$nextTick()
     $el.find('form button').get(1).click()
     await vm.$nextTick()
@@ -152,7 +152,7 @@ describe('Carousel', () => {
   })
 
   it('should be able to push slide', async () => {
-    let _$el = $(vm.$refs.carousel.$el)
+    let _$el = $(vm.$refs['carousel-example'].$refs.carousel.$el)
     await vm.$nextTick()
     $el.find('form button').get(2).click()
     await vm.$nextTick()
@@ -161,9 +161,9 @@ describe('Carousel', () => {
   })
 
   it('should be able to change interval', async () => {
-    let $el = $(vm.$refs.carousel.$el)
+    let $el = $(vm.$refs['carousel-example'].$refs.carousel.$el)
     await vm.$nextTick()
-    vm.interval = 500
+    vm.$refs['carousel-example'].interval = 500
     await vm.$nextTick()
     await utils.sleep(1200)
     expect($el.find('.carousel-indicators .active').length).to.equal(1)
@@ -173,9 +173,9 @@ describe('Carousel', () => {
   })
 
   it('should be able to stop interval', async () => {
-    let $el = $(vm.$refs.carousel.$el)
+    let $el = $(vm.$refs['carousel-example'].$refs.carousel.$el)
     await vm.$nextTick()
-    vm.interval = 0
+    vm.$refs['carousel-example'].interval = 0
     await vm.$nextTick()
     await utils.sleep(1200)
     expect($el.find('.carousel-indicators .active').length).to.equal(1)

@@ -11,6 +11,7 @@ describe('Tooltip', () => {
   beforeEach(() => {
     let Constructor = Vue.extend(TooltipDoc)
     vm = new Constructor().$mount()
+    $('body').css('text-align', 'center').css('padding-top', '200px')
     $el = $(vm.$el).appendTo('body')
   })
 
@@ -18,6 +19,7 @@ describe('Tooltip', () => {
     vm.$destroy()
     $el.remove()
     $('.tooltip').remove()
+    $('body').css('text-align', '').css('padding-top', '')
   })
 
   it('should be able to append to custom tags', async () => {
@@ -128,10 +130,11 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change trigger to manual', async () => {
-    vm.show = true
+    let _vm = vm.$refs['tooltip-manual-trigger']
+    _vm.show = true
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
-    vm.show = false
+    _vm.show = false
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
@@ -284,6 +287,7 @@ describe('Tooltip', () => {
     }).$mount()
     let $el = $(vm.$el).appendTo('body')
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+    await vm.$nextTick()
     let trigger = vm.$el.querySelector('button')
     trigger.focus()
     await utils.sleep(200)

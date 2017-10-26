@@ -77,7 +77,8 @@
     mixins: [Local],
     props: {
       value: {
-        type: Date
+        type: Date,
+        required: true
       },
       showMeridian: {
         type: Boolean,
@@ -111,30 +112,12 @@
         minutesText: ''
       }
     },
+    mounted () {
+      this.updateByValue(this.value)
+    },
     watch: {
       value (value) {
-        this.hours = value.getHours()
-        if (!this.showMeridian) {
-          this.hoursText = utils.pad(this.hours, 2)
-        } else {
-          if (this.hours >= cutUpAmAndPm) {
-            if (this.hours === cutUpAmAndPm) {
-              this.hoursText = this.hours + ''
-            } else {
-              this.hoursText = utils.pad(this.hours - cutUpAmAndPm, 2)
-            }
-            this.meridian = false
-          } else {
-            if (this.hours === zero) {
-              this.hoursText = cutUpAmAndPm.toString()
-            } else {
-              this.hoursText = utils.pad(this.hours, 2)
-            }
-            this.meridian = true
-          }
-        }
-        this.minutes = value.getMinutes()
-        this.minutesText = utils.pad(this.minutes, 2)
+        this.updateByValue(value)
       },
       showMeridian (value) {
         this.setTime()
@@ -163,6 +146,30 @@
       }
     },
     methods: {
+      updateByValue (value) {
+        this.hours = value.getHours()
+        if (!this.showMeridian) {
+          this.hoursText = utils.pad(this.hours, 2)
+        } else {
+          if (this.hours >= cutUpAmAndPm) {
+            if (this.hours === cutUpAmAndPm) {
+              this.hoursText = this.hours + ''
+            } else {
+              this.hoursText = utils.pad(this.hours - cutUpAmAndPm, 2)
+            }
+            this.meridian = false
+          } else {
+            if (this.hours === zero) {
+              this.hoursText = cutUpAmAndPm.toString()
+            } else {
+              this.hoursText = utils.pad(this.hours, 2)
+            }
+            this.meridian = true
+          }
+        }
+        this.minutes = value.getMinutes()
+        this.minutesText = utils.pad(this.minutes, 2)
+      },
       addHour (step) {
         step = step || this.hourStep
         this.hours = this.hours >= maxHours ? zero : this.hours + step

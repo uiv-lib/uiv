@@ -35,39 +35,39 @@
     props: {
       value: {
         type: Boolean,
-        'default': false
+        default: false
       },
       tag: {
         type: String,
-        'default': 'span'
+        default: 'span'
       },
       text: {
         type: String,
-        'default': ''
+        default: ''
       },
       trigger: {
         type: String,
-        'default': utils.triggers.HOVER_FOCUS
+        default: utils.triggers.HOVER_FOCUS
       },
       placement: {
         type: String,
-        'default': utils.placements.TOP
+        default: utils.placements.TOP
       },
       autoPlacement: {
         type: Boolean,
-        'default': true
+        default: true
       },
       appendTo: {
         type: String,
-        'default': 'body'
+        default: 'body'
       },
       transitionDuration: {
         type: Number,
-        'default': 150
+        default: 150
       },
       enable: {
         type: Boolean,
-        'default': true
+        default: true
       },
       target: {}
     },
@@ -79,11 +79,14 @@
     },
     mounted () {
       utils.ensureElementMatchesFunction()
-      this.initListeners()
       utils.removeFromDom(this.$refs.tooltip)
-      if (this.value) {
-        this.show()
-      }
+      this.$nextTick(() => {
+        this.initTriggerElByTarget(this.target)
+        this.initListeners()
+        if (this.value) {
+          this.show()
+        }
+      })
     },
     beforeDestroy () {
       this.clearListeners()
@@ -97,19 +100,30 @@
         this.clearListeners()
         this.initListeners()
       },
-      target () {
+      target (value) {
         this.clearListeners()
+        this.initTriggerElByTarget(value)
         this.initListeners()
       }
     },
     methods: {
-      initListeners () {
-        if (this.target) {
-          this.triggerEl = this.target
+      initTriggerElByTarget (target) {
+        if (target) {
+          // target exist
+          if (typeof target === 'string') { // is selector
+            this.triggerEl = document.querySelector(target)
+          } else if (utils.isElement(target)) { // is element
+            this.triggerEl = target
+          } else if (utils.isElement(target.$el)) { // is component
+            this.triggerEl = target.$el
+          }
         } else {
+          // use the first child
           let firstChild = this.$el.firstChild
           this.triggerEl = firstChild === this.$refs.tooltip ? null : firstChild
         }
+      },
+      initListeners () {
         if (this.triggerEl) {
           if (this.trigger === utils.triggers.HOVER) {
             utils.on(this.triggerEl, utils.events.MOUSE_ENTER, this.show)

@@ -11,12 +11,15 @@ describe('Popover', () => {
   beforeEach(() => {
     let Constructor = Vue.extend(PopoverDoc)
     vm = new Constructor().$mount()
+    $('body').css('text-align', 'center').css('padding-top', '200px')
     $el = $(vm.$el).appendTo('body')
   })
 
   afterEach(() => {
     vm.$destroy()
     $el.remove()
+    $('.popover').remove()
+    $('body').css('text-align', '').css('padding-top', '')
   })
 
   it('should be ok to render if no trigger present', async () => {
@@ -84,11 +87,12 @@ describe('Popover', () => {
   })
 
   it('should be able to change trigger to manual', async () => {
+    let _vm = vm.$refs['popover-manual-trigger']
     expect(document.querySelectorAll('.popover').length).to.equal(0)
-    vm.show = true
+    _vm.show = true
     await utils.sleep(200)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
-    vm.show = false
+    _vm.show = false
     await utils.sleep(200)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
@@ -256,6 +260,7 @@ describe('Popover', () => {
     }).$mount()
     let $el = $(vm.$el).appendTo('body')
     expect(document.querySelectorAll('.popover').length).to.equal(0)
+    await vm.$nextTick()
     let trigger = vm.$el.querySelector('button')
     trigger.focus()
     await utils.sleep(200)

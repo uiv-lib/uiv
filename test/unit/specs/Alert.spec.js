@@ -46,17 +46,19 @@ describe('Alert', () => {
   })
 
   it('should be able to dismiss alerts', async () => {
-    let alert = $el.find('#alert-test')
+    let _$el = $(vm.$refs['alert-dismissible'].$el)
+    let alert = _$el.find('.alert')
     expect(alert.length).to.equal(1)
     let closedBtn = alert.find('button.close')
     closedBtn.click()
     await vm.$nextTick()
-    expect($el.find('#alert-test').length).to.equal(0)
+    expect(_$el.find('.alert').length).to.equal(0)
   })
 
   it('should be able to add dismissible alerts', async () => {
+    let _$el = $(vm.$refs['alert-dismissible'].$el)
     let before = getDefaultAlertLength()
-    let addAlertBtn = $el.find('#add-alert-1')
+    let addAlertBtn = _$el.find('.btn-primary')
     addAlertBtn.click()
     await vm.$nextTick()
     let after = getDefaultAlertLength()
@@ -64,15 +66,17 @@ describe('Alert', () => {
   })
 
   it('should be able to add auto dismiss alerts', async () => {
-    vm.duration = 1000
+    let _vm = vm.$refs['alert-auto-dismissing']
+    let _$el = $(_vm.$el)
+    _vm.duration = 1000
     await vm.$nextTick()
     let before = getDefaultAlertLength()
-    let addAlertBtn = $el.find('#add-alert-2')
+    let addAlertBtn = _$el.find('.btn-primary')
     addAlertBtn.click()
     await vm.$nextTick()
     let after = getDefaultAlertLength()
     expect(after).to.equal(before + 1)
-    await utils.sleep(vm.duration + 200)
+    await utils.sleep(_vm.duration + 200)
     let _after = getDefaultAlertLength()
     expect(_after).to.equal(before)
   })

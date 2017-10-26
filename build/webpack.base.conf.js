@@ -31,7 +31,7 @@ module.exports = {
       {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
-        enforce: "pre",
+        enforce: 'pre',
         include: [resolve('src'), resolve('docs'), resolve('test')],
         options: {
           formatter: require('eslint-friendly-formatter')
@@ -49,24 +49,31 @@ module.exports = {
       },
       {
         test: /\.md$/,
-        loader: 'vue-markdown-loader',
-        options: {
-          preventExtract: true,
-          wrapper: 'markdown-wrapper',
-          preprocess: function (markdownIt, source) {
-            return utils.assembleMarkdownDemo(source)
-          },
-          use: [
-            /* markdown-it plugins */
-            [
-              require('markdown-it-anchor'),
-              {
-                permalink: true,
-                permalinkSymbol: '&#128279;'
-              }
-            ]
-          ]
-        },
+        loaders: [
+          'vue-loader',
+          {
+            loader: 'vue-md-loader',
+            options: {
+              wrapper: process.env.BABEL_ENV === 'test' ? 'section' : 'markdown-wrapper',
+              liveTemplateProcessor: function (template) {
+                return `<div class="markdown-live-example">${template}</div>`
+              },
+              rules: {
+                'table_open': () => '<div class="table-responsive"><table class="table table-bordered table-hover">',
+                'table_close': () => '</table></div>'
+              },
+              plugins: [
+                [
+                  require('markdown-it-anchor'),
+                  {
+                    permalink: true,
+                    permalinkSymbol: '&#128279;'
+                  }
+                ]
+              ]
+            }
+          }
+        ],
         include: [resolve('docs')]
       },
       {

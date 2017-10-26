@@ -51,7 +51,7 @@ describe('Dropdown', () => {
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     // Simulate a window click
-    vm.$refs.dropdown.windowClicked({target: document.body})
+    vm.$refs['dropdown-examples'].$refs.dropdown.windowClicked({target: document.body})
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
   })
@@ -72,8 +72,8 @@ describe('Dropdown', () => {
   })
 
   it('should be able to use dropup & menu-right style', async () => {
-    vm.dropup = true
-    vm.menuRight = true
+    vm.$refs['dropdown-examples'].dropup = true
+    vm.$refs['dropdown-examples'].menuRight = true
     await vm.$nextTick()
     let dropdown = vm.$el.querySelector(`.dropup`)
     expect(dropdown.className).to.not.contain('open')

@@ -1,24 +1,19 @@
 <template>
-  <div>
-    <slot>
-      <input data-role="input" class="form-control" type="text" placeholder="Type to search...">
-    </slot>
-    <dropdown ref="dropdown"
-              v-model="openDropdown"
-              :append-to-body="appendToBody"
-              :not-close-elements="elements"
-              :position-element="inputEl">
-      <template slot="dropdown">
-        <slot name="item" :items="items" :active-index="activeIndex" :select="selectItem" :highlight="highlight">
-          <li v-for="(item,index) in items" :class="{active:activeIndex===index}">
-            <a href="javascript:void(0)" @click="selectItem(item)">
-              <span v-html="highlight(item)"></span>
-            </a>
-          </li>
-        </slot>
-      </template>
-    </dropdown>
-  </div>
+  <dropdown ref="dropdown"
+            v-model="open"
+            :append-to-body="appendToBody"
+            :not-close-elements="elements"
+            :position-element="inputEl">
+    <template slot="dropdown">
+      <slot name="item" :items="items" :active-index="activeIndex" :select="selectItem" :highlight="highlight">
+        <li v-for="(item,index) in items" :class="{active:activeIndex===index}">
+          <a href="javascript:void(0)" @click="selectItem(item)">
+            <span v-html="highlight(item)"></span>
+          </a>
+        </li>
+      </slot>
+    </template>
+  </dropdown>
 </template>
 
 <script>
@@ -29,7 +24,9 @@
   export default {
     components: {Dropdown},
     props: {
-      value: {},
+      value: {
+        required: true
+      },
       data: {
         type: Array
       },
@@ -38,23 +35,23 @@
       },
       appendToBody: {
         type: Boolean,
-        'default': false
+        default: false
       },
       ignoreCase: {
         type: Boolean,
-        'default': true
+        default: true
       },
       matchStart: {
         type: Boolean,
-        'default': false
+        default: false
       },
       forceSelect: {
         type: Boolean,
-        'default': false
+        default: false
       },
       limit: {
         type: Number,
-        'default': 10
+        default: 10
       },
       asyncSrc: {
         type: String
@@ -64,15 +61,18 @@
       },
       debounce: {
         type: Number,
-        'default': 200
+        default: 200
       },
       openOnFocus: {
         type: Boolean,
-        'default': true
+        default: true
       },
       openOnEmpty: {
         type: Boolean,
-        'default': false
+        default: false
+      },
+      target: {
+        required: true
       }
     },
     data () {
@@ -82,7 +82,7 @@
         activeIndex: 0,
         timeoutID: 0,
         elements: [],
-        openDropdown: false,
+        open: false,
         dropdownMenuEl: null
       }
     },
@@ -100,25 +100,21 @@
     },
     mounted () {
       domUtils.ensureElementMatchesFunction()
-      this.inputEl = this.$el.querySelector('[data-role="input"]')
-      if (this.inputEl) {
-        this.elements.push(this.inputEl)
-        domUtils.on(this.inputEl, domUtils.events.FOCUS, this.inputFocused)
-        domUtils.on(this.inputEl, domUtils.events.BLUR, this.inputBlured)
-        domUtils.on(this.inputEl, domUtils.events.INPUT, this.inputChanged)
-        domUtils.on(this.inputEl, domUtils.events.KEY_DOWN, this.inputKeyPressed)
-      }
-      this.dropdownMenuEl = this.$refs.dropdown.$el.querySelector('.dropdown-menu')
+      this.$nextTick(() => {
+        this.initInputElByTarget(this.target)
+        this.initListeners()
+        this.dropdownMenuEl = this.$refs.dropdown.$el.querySelector('.dropdown-menu')
+      })
     },
     beforeDestroy () {
-      if (this.inputEl) {
-        domUtils.off(this.inputEl, domUtils.events.FOCUS, this.inputFocused)
-        domUtils.off(this.inputEl, domUtils.events.BLUR, this.inputBlured)
-        domUtils.off(this.inputEl, domUtils.events.INPUT, this.inputChanged)
-        domUtils.off(this.inputEl, domUtils.events.KEY_DOWN, this.inputKeyPressed)
-      }
+      this.removeListeners()
     },
     watch: {
+      target (el) {
+        this.removeListeners()
+        this.initInputElByTarget(el)
+        this.initListeners()
+      },
       value (newValue, oldValue) {
         if (typeof newValue === 'string') {
           // direct
@@ -133,6 +129,36 @@
       }
     },
     methods: {
+      initInputElByTarget (target) {
+        if (!target) {
+          return
+        }
+        if (typeof target === 'string') { // is selector
+          this.inputEl = document.querySelector(target)
+        } else if (domUtils.isElement(target)) { // is element
+          this.inputEl = target
+        } else if (domUtils.isElement(target.$el)) { // is component
+          this.inputEl = target.$el
+        }
+      },
+      initListeners () {
+        if (this.inputEl) {
+          this.elements = [this.inputEl]
+          domUtils.on(this.inputEl, domUtils.events.FOCUS, this.inputFocused)
+          domUtils.on(this.inputEl, domUtils.events.BLUR, this.inputBlured)
+          domUtils.on(this.inputEl, domUtils.events.INPUT, this.inputChanged)
+          domUtils.on(this.inputEl, domUtils.events.KEY_DOWN, this.inputKeyPressed)
+        }
+      },
+      removeListeners () {
+        this.elements = []
+        if (this.inputEl) {
+          domUtils.off(this.inputEl, domUtils.events.FOCUS, this.inputFocused)
+          domUtils.off(this.inputEl, domUtils.events.BLUR, this.inputBlured)
+          domUtils.off(this.inputEl, domUtils.events.INPUT, this.inputChanged)
+          domUtils.off(this.inputEl, domUtils.events.KEY_DOWN, this.inputKeyPressed)
+        }
+      },
       prepareItems (data, disableFilters = false) {
         if (disableFilters) {
           this.items = data.slice(0, this.limit)
@@ -161,18 +187,24 @@
       fetchItems (value, debounce) {
         clearTimeout(this.timeoutID)
         if (value === '' && !this.openOnEmpty) {
-          this.openDropdown = false
+          this.open = false
         } else if (this.data) {
           this.prepareItems(this.data)
-          this.openDropdown = !!this.items.length
+          this.open = !!this.items.length
         } else if (this.asyncSrc) {
           this.timeoutID = setTimeout(() => {
+            this.$emit('loading')
             httpUtils.get(this.asyncSrc + value)
               .then(data => {
                 if (this.inputEl.matches(':focus')) {
                   this.prepareItems(this.asyncKey ? data[this.asyncKey] : data, true)
-                  this.openDropdown = !!this.items.length
+                  this.open = !!this.items.length
                 }
+                this.$emit('loaded')
+              })
+              .catch(err => {
+                console.error(err)
+                this.$emit('loaded-error')
               })
           }, debounce)
         }
@@ -190,11 +222,11 @@
       },
       inputBlured () {
         if (!this.dropdownMenuEl.matches(':hover')) {
-          this.openDropdown = false
+          this.open = false
         }
       },
       inputKeyPressed (event) {
-        if (this.openDropdown) {
+        if (this.open) {
           switch (event.keyCode) {
             case 13:
               this.selectItem(this.items[this.activeIndex])
@@ -211,7 +243,7 @@
       },
       selectItem (item) {
         this.$emit('input', item)
-        this.openDropdown = false
+        this.open = false
       },
       highlight (item) {
         let value = this.itemKey ? item[this.itemKey] : item

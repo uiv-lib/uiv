@@ -39,8 +39,10 @@ describe('DatePicker', () => {
   })
 
   it('should be able to render date view', async () => {
+    let _vm = vm.$refs['date-picker-example']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = $el.find('#date-picker-1').get(0)
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
     let dateView = picker.querySelectorAll('table')[0]
     expect(dateView.style.display).to.equal('')
@@ -52,6 +54,8 @@ describe('DatePicker', () => {
   })
 
   it('should be able to go prev month', async () => {
+    let _vm = vm.$refs['date-picker-example']
+    let _$el = $(_vm.$el)
     const goPrev = async (i, actionBtn, now, textBtn) => {
       if (i > 0) {
         actionBtn.click()
@@ -63,7 +67,7 @@ describe('DatePicker', () => {
       }
     }
     await vm.$nextTick()
-    let picker = $el.find('#date-picker-1').get(0)
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
     let dateView = picker.querySelectorAll('table')[0]
     await goPrev(
@@ -74,6 +78,8 @@ describe('DatePicker', () => {
   }).timeout(5000)
 
   it('should be able to go next month', async () => {
+    let _vm = vm.$refs['date-picker-example']
+    let _$el = $(_vm.$el)
     const goNext = async (i, actionBtn, now, textBtn) => {
       if (i > 0) {
         actionBtn.click()
@@ -89,19 +95,21 @@ describe('DatePicker', () => {
       }
     }
     await vm.$nextTick()
-    let picker = $el.find('#date-picker-1').get(0)
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
     let dateView = picker.querySelectorAll('table')[0]
     await goNext(
-      12,
+      24,
       dateView.querySelectorAll('button')[2],
       new Date(),
       dateView.querySelectorAll('button')[1])
   }).timeout(5000)
 
   it('should be able to switch to month view from date view', async () => {
+    let _vm = vm.$refs['date-picker-example']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-1')
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
     let dateView = picker.querySelectorAll('table')[0]
     let yearMonthBtn = dateView.querySelectorAll('button')[1]
@@ -117,8 +125,10 @@ describe('DatePicker', () => {
   })
 
   it('should be able to switch to date view from month view', async () => {
+    let _vm = vm.$refs['date-picker-example']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-1')
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
     let dateView = picker.querySelectorAll('table')[0]
     let yearMonthBtn = dateView.querySelectorAll('button')[1]
@@ -136,8 +146,10 @@ describe('DatePicker', () => {
   })
 
   it('should be able to go prev year', async () => {
+    let _vm = vm.$refs['date-picker-example']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-1')
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
     let monthView = picker.querySelectorAll('table')[1]
     monthView.querySelector('button').click()
@@ -147,8 +159,10 @@ describe('DatePicker', () => {
   })
 
   it('should be able to go next year', async () => {
+    let _vm = vm.$refs['date-picker-example']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-1')
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
     let monthView = picker.querySelectorAll('table')[1]
     monthView.querySelectorAll('button')[2].click()
@@ -158,8 +172,10 @@ describe('DatePicker', () => {
   })
 
   it('should be able to switch to year view from month view', async () => {
+    let _vm = vm.$refs['date-picker-example']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-1')
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
     let yearView = picker.querySelectorAll('table')[2]
     let monthView = picker.querySelectorAll('table')[1]
@@ -176,8 +192,10 @@ describe('DatePicker', () => {
   })
 
   it('should be able to switch to month view from year view', async () => {
+    let _vm = vm.$refs['date-picker-example']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-1')
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
     let yearView = picker.querySelectorAll('table')[2]
     let monthView = picker.querySelectorAll('table')[1]
@@ -192,8 +210,10 @@ describe('DatePicker', () => {
   })
 
   it('should be able to go prev year group', async () => {
+    let _vm = vm.$refs['date-picker-example']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-1')
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
     let yearView = picker.querySelectorAll('table')[2]
     yearView.querySelector('button').click()
@@ -205,8 +225,10 @@ describe('DatePicker', () => {
   })
 
   it('should be able to go next year group', async () => {
+    let _vm = vm.$refs['date-picker-example']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-1')
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
     let yearView = picker.querySelectorAll('table')[2]
     yearView.querySelectorAll('button')[2].click()
@@ -218,8 +240,10 @@ describe('DatePicker', () => {
   })
 
   it('should be able to select date', async () => {
+    let _vm = vm.$refs['date-picker-example']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-1')
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     let dateView = picker.querySelectorAll('table')[0]
     let dateBtn = dateView.querySelector('tbody').querySelectorAll('button')[15]
     dateBtn.click()
@@ -228,8 +252,10 @@ describe('DatePicker', () => {
   })
 
   it('should not close the picker on picker body click', async () => {
+    let _vm = vm.$refs['date-picker-dropdown-example']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-2')
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     let dropdown = vm.$el.querySelector('.dropdown')
     let trigger = dropdown.querySelector('button')
     expect(dropdown.className).not.contain('open')
@@ -242,8 +268,10 @@ describe('DatePicker', () => {
   })
 
   it('should be able to use today btn', async () => {
+    let _vm = vm.$refs['date-picker-example']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-1')
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     let dateView = picker.querySelectorAll('table')[0]
     picker.querySelector('.text-center').querySelectorAll('button')[0].click()
     await vm.$nextTick()
@@ -252,8 +280,10 @@ describe('DatePicker', () => {
   })
 
   it('should be able to use clear btn', async () => {
+    let _vm = vm.$refs['date-picker-example']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-1')
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
     let dateView = picker.querySelectorAll('table')[0]
     picker.querySelector('.text-center').querySelectorAll('button')[0].click()
     picker.querySelector('.text-center').querySelectorAll('button')[1].click()
@@ -262,55 +292,47 @@ describe('DatePicker', () => {
   })
 
   it('should be able to hide today btn', async () => {
-    vm.todayBtn = false
+    let _vm = vm.$refs['date-picker-without-buttons']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-1')
-    expect(picker.querySelector('.text-center').querySelector('.btn-info')).not.exist
+    expect(_$el.find('button:contains(Today)').length).to.equal(0)
   })
 
   it('should be able to hide clear btn', async () => {
-    vm.clearBtn = false
+    let _vm = vm.$refs['date-picker-without-buttons']
+    let _$el = $(_vm.$el)
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-1')
-    expect(picker.querySelector('.text-center').querySelector('.btn-default')).not.exist
+    expect(_$el.find('button:contains(Clear)').length).to.equal(0)
   })
 
   it('should be able to limit date range and render correct date view', async () => {
-    let tomorrow = new Date()
-    tomorrow.setDate(tomorrow.getDate() + 1)
-    vm.limitFrom = new Date()
-    vm.limitTo = tomorrow
+    let _vm = vm.$refs['date-picker-range-limit']
+    let _$el = $(_vm.$el)
+    _vm.date = '2017-01-01'
     await vm.$nextTick()
-    let picker = vm.$el.querySelector('#date-picker-1')
-    let dateInRange = picker.querySelector('tbody').querySelectorAll('button:not([disabled])')
-    expect(dateInRange[0].textContent).to.equal(new Date().getDate().toString())
-    if (dateInRange.length > 1) {
-      expect(dateInRange[1].textContent).to.equal(tomorrow.getDate().toString())
-    }
+    let picker = _$el.find('[data-role="date-picker"]').get(0)
+    let btnDisabled = picker.querySelector('tbody').querySelectorAll('button:disabled')
+    expect(btnDisabled.length).to.equal(0)
+    _vm.date = '2017-12-31'
+    await vm.$nextTick()
+    btnDisabled = picker.querySelector('tbody').querySelectorAll('button:disabled')
+    expect(btnDisabled.length).to.equal(6)
   })
 
   it('should be able to limit date range and not able to set invalid date', async () => {
-    let tomorrow = new Date()
-    tomorrow.setDate(tomorrow.getDate() + 1)
-    vm.limitFrom = '2017-01-01'
-    vm.limitTo = '2017-01-03'
-    vm.date = '2017-01-04'
+    let _vm = vm.$refs['date-picker-range-limit']
+    _vm.date = '2019-01-01'
     await vm.$nextTick()
-    expect(vm.date).to.equal('')
-  })
-
-  it('should be able handle invalid limit params', async () => {
-    vm.limitFrom = 'foo'
-    vm.limitTo = 'bar'
-    await vm.$nextTick()
+    expect(_vm.date).to.equal('')
   })
 
   it('should be able to toggle popup picker', async () => {
-    vm.$el.querySelector('.input-group-btn button').click()
+    let _vm = vm.$refs['date-picker-dropdown-example']
+    _vm.$el.querySelector('.input-group-btn button').click()
     await vm.$nextTick()
-    expect(vm.$el.querySelector('.dropdown').className).to.contain('open')
-    vm.$el.querySelector('.input-group-btn button').click()
+    expect(_vm.$el.querySelector('.dropdown').className).to.contain('open')
+    _vm.$el.querySelector('.input-group-btn button').click()
     await vm.$nextTick()
-    expect(vm.$el.querySelector('.dropdown').className).not.contain('open')
+    expect(_vm.$el.querySelector('.dropdown').className).not.contain('open')
   })
 })
