@@ -287,6 +287,7 @@ describe('Tooltip', () => {
     }).$mount()
     let $el = $(vm.$el).appendTo('body')
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+    await vm.$nextTick()
     let trigger = vm.$el.querySelector('button')
     trigger.focus()
     await utils.sleep(200)

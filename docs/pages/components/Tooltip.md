@@ -2,7 +2,7 @@
 
 ## Example
 
-The first element appear in `<tooltip>` node will be the trigger element.
+The first element appear in `<tooltip>` node will be the trigger element. You can also use `target` to reference it from outside the component.
 
 Hover over the button below to toggle tooltips.
 
@@ -110,6 +110,7 @@ Set `enable` prop to `false` to disable a tooltip.
 Name                  | Type       | Default       | Required | Description
 ----------------      | ---------- | --------      | -------- | -----------------------
 `v-model`             | Boolean    |               |          | Show / hide the tooltip.
+`target`              |            |               |          | Tooltip trigger, can be a select or reference to Element / Component.
 `tag`                 | String     | span          |          | The HTML tag that render the component.
 `title`               | String     |               |          | The tooltip title.
 `enable`              | Boolean    | true          |          | Enable the tooltip.
@@ -118,7 +119,6 @@ Name                  | Type       | Default       | Required | Description
 `trigger`             | String     | hover-focus   |          | The tooltip trigger event, support `hover` / `focus` / `hover-focus` / `click` / `outside-click` / `manual`
 `append-to`           | String     | body          |          | Element selector that the tooltip append to.
 `transition-duration` | Number     | 150           |          | The tooltip show / hide transition time in ms.
-`target`              | Element    |               |          | Use this prop to specify an HTML Element as the tooltip trigger, useful when not able to use parent-child structure.
 
 ### Events
 

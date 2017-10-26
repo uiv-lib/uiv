@@ -37,39 +37,39 @@
     props: {
       value: {
         type: Boolean,
-        'default': false
+        default: false
       },
       tag: {
         type: String,
-        'default': 'span'
+        default: 'span'
       },
       title: {
         type: String,
-        'default': ''
+        default: ''
       },
       trigger: {
         type: String,
-        'default': utils.triggers.OUTSIDE_CLICK
+        default: utils.triggers.OUTSIDE_CLICK
       },
       placement: {
         type: String,
-        'default': utils.placements.TOP
+        default: utils.placements.TOP
       },
       autoPlacement: {
         type: Boolean,
-        'default': true
+        default: true
       },
       appendTo: {
         type: String,
-        'default': 'body'
+        default: 'body'
       },
       transitionDuration: {
         type: Number,
-        'default': 150
+        default: 150
       },
       enable: {
         type: Boolean,
-        'default': true
+        default: true
       },
       target: {}
     },
