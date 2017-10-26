@@ -16,9 +16,7 @@
           <template v-for="item in asideItems">
             <template v-if="item.items">
               <li role="presentation" class="no-link">
-                <a role="button">
-                  {{item.label}}
-                </a>
+                <a role="button"><b>{{item.label}}</b></a>
               </li>
               <li role="presentation" v-for="_item in item.items" @click="toggleAside(false)">
                 <router-link :to="_item.path" role="button" class="sub-list">
@@ -26,10 +24,11 @@
                 </router-link>
               </li>
             </template>
+            <li v-else-if="item.href" role="presentation" @click="toggleAside(false)">
+              <a :href="item.href" target="_blank"><b>{{item.label}}</b></a>
+            </li>
             <li v-else role="presentation" @click="toggleAside(false)">
-              <router-link :to="item.path" role="button">
-                {{item.label}}
-              </router-link>
+              <router-link :to="item.path" role="button">{{item.label}}</router-link>
             </li>
           </template>
         </ul>
@@ -50,6 +49,7 @@
       return {
         asideItems: [
           {label: 'Usage', items: routes.filter(v => v.meta && v.meta.type === 'usage')},
+          {label: 'Changelog', href: 'https://github.com/wxsms/uiv/releases'},
           {label: 'Components', items: routes.filter(v => v.meta && v.meta.type === 'component')}
         ]
       }
@@ -144,7 +144,6 @@
 
           &.no-link {
             a {
-              font-weight: bold;
               cursor: default;
               background: transparent;
             }
