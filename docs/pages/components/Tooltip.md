@@ -70,11 +70,13 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
 
 ```html
 <template>
-  <tooltip text="Static tooltip content goes here" trigger="manual" v-model="show">
-    <button type="button" class="btn btn-default">You Can't Trigger Tooltip Here...</button>
-  </tooltip>
-  <hr/>
-  <button type="button" class="btn btn-primary" @click="show = !show">Toggle Tooltip</button>
+  <section>
+    <tooltip text="Static tooltip content goes here" trigger="manual" v-model="show">
+      <button type="button" class="btn btn-default">You Can't Trigger Tooltip Here...</button>
+    </tooltip>
+    <hr/>
+    <button type="button" class="btn btn-primary" @click="show = !show">Toggle Tooltip</button>
+  </section>
 </template>
 <script>
   export default {
@@ -103,126 +105,27 @@ Set `enable` prop to `false` to disable a tooltip.
 
 ## [Tooltip.vue](https://github.com/wxsms/uiv/tree/master/src/components/tooltip/Tooltip.vue)
 
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Props</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th width="50px">Required</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>v-model</code></td>
-      <td>Boolean</td>
-      <td></td>
-      <td></td>
-      <td>Show / hide the tooltip</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>tag</code></td>
-      <td>String</td>
-      <td>span</td>
-      <td></td>
-      <td>The HTML tag that render the component</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>text</code></td>
-      <td>String</td>
-      <td></td>
-      <td></td>
-      <td>The tooltip content, support HTML string.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>enable</code></td>
-      <td>Boolean</td>
-      <td>true</td>
-      <td></td>
-      <td>Enable the tooltip</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>placement</code></td>
-      <td>String</td>
-      <td>top</td>
-      <td></td>
-      <td>The tooltip placement, support top / bottom / left / right</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>auto-placement</code></td>
-      <td>Boolean</td>
-      <td>true</td>
-      <td></td>
-      <td>
-        Try to auto adjust the placement if the set one does not have enough space to show. Try order: right -&gt; bottom -&gt; left -&gt; top, and use the set one if none of these matched
-      </td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>trigger</code></td>
-      <td>String</td>
-      <td>hover-focus</td>
-      <td></td>
-      <td>
-        <p>The tooltip trigger event, support:</p>
-        <ul>
-          <li><p>hover -&gt; show on mouseenter, hide on mouseleave</p></li>
-          <li><p>focus -&gt; show on focus, hide on blur</p></li>
-          <li><p>hover-focus -&gt; combination of hover and focus trigger</p></li>
-          <li><p>click -&gt; toggle on trigger click</p></li>
-          <li><p>outside-click -&gt; same as click, but not close on tooltip click and close on outside click</p></li>
-          <li><p>manual -&gt; do not add event listeners, and controls only by v-model change</p></li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>append-to</code></td>
-      <td>String</td>
-      <td>body</td>
-      <td></td>
-      <td>Element selector that the tooltip append to</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>transition-duration</code></td>
-      <td>Number</td>
-      <td>150</td>
-      <td></td>
-      <td>The tooltip show / hide transition time in ms</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>target</code></td>
-      <td>HTMLElement</td>
-      <td></td>
-      <td></td>
-      <td>
-        Use this prop to specify an HTML Element as the tooltip trigger, useful when not able to use parent-child structure.
-      </td>
-    </tr>
-    </tbody>
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Events</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Params</th>
-      <th colspan="3">Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>show</code></td>
-      <td></td>
-      <td colspan="3">Fire after tooltip show.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>hide</code></td>
-      <td></td>
-      <td colspan="3">Fire after tooltip hide.</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+### Props
+
+Name                  | Type       | Default       | Required | Description
+----------------      | ---------- | --------      | -------- | -----------------------
+`v-model`             | Boolean    |               |          | Show / hide the tooltip.
+`tag`                 | String     | span          |          | The HTML tag that render the component.
+`title`               | String     |               |          | The tooltip title.
+`enable`              | Boolean    | true          |          | Enable the tooltip.
+`placement`           | String     | top           |          | The tooltip placement, support `top` / `bottom` / `left` / `right`.
+`auto-placement`      | Boolean    | true          |          | Try to auto adjust the placement if the set one does not have enough space to show.
+`trigger`             | String     | hover-focus   |          | The tooltip trigger event, support `hover` / `focus` / `hover-focus` / `click` / `outside-click` / `manual`
+`append-to`           | String     | body          |          | Element selector that the tooltip append to.
+`transition-duration` | Number     | 150           |          | The tooltip show / hide transition time in ms.
+`target`              | Element    |               |          | Use this prop to specify an HTML Element as the tooltip trigger, useful when not able to use parent-child structure.
+
+### Events
+
+Name        | Params | Description
+----------- | ------ | ---------------
+`show`      |        | Fire after tooltip show.
+`hide`      |        | Fire after tooltip hide.
 
 ## [tooltip.js](https://github.com/wxsms/uiv/tree/master/src/directives/tooltip/tooltip.js)
 

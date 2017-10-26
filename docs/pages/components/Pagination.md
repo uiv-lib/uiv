@@ -73,76 +73,19 @@ Use `v-model` to indicate the current page.
 
 ## [Pagination.vue](https://github.com/wxsms/uiv/tree/master/src/components/pagination/Pagination.vue)
 
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Props</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th width="50px">Required</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>v-model</code></td>
-      <td>Number</td>
-      <td></td>
-      <td><i class="glyphicon glyphicon-ok"></i></td>
-      <td>The current page</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>boundary-links</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td></td>
-      <td>Whether to display First / Last buttons</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>direction-links</code></td>
-      <td>Boolean</td>
-      <td>true</td>
-      <td></td>
-      <td>Whether to display Previous / Next buttons</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>total-page</code></td>
-      <td>Number</td>
-      <td></td>
-      <td><i class="glyphicon glyphicon-ok"></i></td>
-      <td>Total number of pages</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>max-size</code></td>
-      <td>Number</td>
-      <td>5</td>
-      <td></td>
-      <td>Maximum number of pages per chunk</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>size</code></td>
-      <td>The pagination size. Support: sm / md / lg</td>
-      <td>md</td>
-      <td></td>
-      <td>String</td>
-    </tr>
-    </tbody>
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Events</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Params</th>
-      <th colspan="3">Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>change</code></td>
-      <td><p>index</p></td>
-      <td colspan="3">Fire after page changed, with the index number changed to</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+### Props
+
+Name              | Type       | Default  | Required | Description
+----------------  | ---------- | -------- | -------- | -----------------------
+`v-model`         | Number     |          | &#10004; | The current page.
+`boundary-links`  | Boolean    | false    |          | Whether to display First / Last buttons.
+`direction-links` | Boolean    | true     |          | Whether to display Previous / Next buttons.
+`total-page`      | Number     |          | &#10004; | Total number of pages.
+`max-size`        | Number     | 5        |          | Maximum number of pages per chunk.
+`size`            | String     | md       |          | The pagination size. Support: `sm` / `md` / `lg`
+
+### Events
+
+Name        | Params | Description
+----------- | ------ | ---------------
+`change`    | index  | Fire after page changed, with the index number changed to.

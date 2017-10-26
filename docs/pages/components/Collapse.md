@@ -8,13 +8,15 @@ Click the button below to show and hide another element.
 
 ```html
 <template>
-  <div>
-    <button type="button" class="btn btn-primary" @click="show=!show">Click me!</button>
-  </div>
-  <br/>
-  <collapse v-model="show">
-    <div class="well" style="margin-bottom: 0">Hi there.</div>
-  </collapse>
+  <section>
+    <div>
+      <button type="button" class="btn btn-primary" @click="show=!show">Click me!</button>
+    </div>
+    <br/>
+    <collapse v-model="show">
+      <div class="well" style="margin-bottom: 0">Hi there.</div>
+    </collapse>
+  </section>
 </template>
 <script>
   export default {
@@ -155,88 +157,25 @@ Extend the default collapse behavior to create an accordion with the panel compo
 
 ## [Collapse.vue](https://github.com/wxsms/uiv/tree/master/src/components/collapse/Collapse.vue)
 
+### Props
 
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Props</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th width="50px">Required</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>v-model</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td><i class="glyphicon glyphicon-ok"></i></td>
-      <td>Show / hide the component</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>tag</code></td>
-      <td>String</td>
-      <td>div</td>
-      <td></td>
-      <td>The HTML tag that render the collapse component</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>transition-duration</code></td>
-      <td>Number</td>
-      <td>350</td>
-      <td></td>
-      <td>Collapse transition speed. Set to 0 to disable transition.</td>
-    </tr>
-    </tbody>
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Slots</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th colspan="4">Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>default</code></td>
-      <td colspan="4">Replace as the collapse body</td>
-    </tr>
-    </tbody>
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Events</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Params</th>
-      <th colspan="3">Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>show</code></td>
-      <td></td>
-      <td colspan="3">This event fires immediately when the v-model prop is set to true.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>shown</code></td>
-      <td></td>
-      <td colspan="3">
-        This event is fired when a collapse element has been made visible to the user (will wait for CSS transitions to complete).
-      </td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>hide</code></td>
-      <td></td>
-      <td colspan="3">This event is fired immediately when the v-model prop is set to false.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>hidden</code></td>
-      <td></td>
-      <td colspan="3">
-        This event is fired when a collapse element has been hidden from the user (will wait for CSS transitions to complete).
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+Name                  | Type       | Default  | Required | Description
+----------------      | ---------- | -------- | -------- | -----------------------
+`v-model`             | Boolean    | false    | &#10004; | Show / hide the component.
+`tag`                 | String     | div      |          | The HTML tag that render the collapse component.
+`transition-duration` | Number     | 350      |          | Collapse transition speed. Use 0 to disable transition.
+
+### Slots
+
+Name      | Description
+--------- | -----------------------
+`default` | Replace as the collapse body.
+
+### Events
+
+Name        | Params | Description
+----------- | ------ | ---------------
+`show`      |        | This event fires immediately when the v-model prop is set to true.
+`shown`     |        | This event is fired when a collapse element has been made visible to the user (will wait for CSS transitions to complete).
+`hide`      |        | 	This event is fired immediately when the v-model prop is set to false.
+`hidden`    |        | This event is fired when a collapse element has been hidden from the user (will wait for CSS transitions to complete).

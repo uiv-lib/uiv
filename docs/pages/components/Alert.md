@@ -85,13 +85,13 @@ Use `duration` in milliseconds to auto dismiss alert. It can be used together wi
 
 ```html
 <template>
-  <div>
+  <section>
     <button type="button" class="btn btn-primary" @click="show = !show">Toggle Collapsing Alert</button>
-  </div>
-  <br/>
-  <collapse v-model="show">
-    <alert type="warning" :dismissible="true" @dismissed="show = false">This alert <b>will collapse on open / close</b>.</alert>
-  </collapse>
+    <hr/>
+    <collapse v-model="show">
+      <alert type="warning" :dismissible="true" @dismissed="show = false">This alert <b>will collapse on open / close</b>.</alert>
+    </collapse>
+  </section>
 </template>
 <script>
   export default {
@@ -109,72 +109,22 @@ Use `duration` in milliseconds to auto dismiss alert. It can be used together wi
 
 ## [Alert.vue](https://github.com/wxsms/uiv/tree/master/src/components/alert/Alert.vue)
 
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Props</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th width="50px">Required</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>dismissible</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td></td>
-      <td>Show dismiss button in alert.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>type</code></td>
-      <td>String</td>
-      <td>info</td>
-      <td></td>
-      <td>Alert type (success, info, warning, danger).</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>duration</code></td>
-      <td>Number</td>
-      <td>0</td>
-      <td></td>
-      <td>Dismiss after milliseconds, use 0 to prevent self-closing.</td>
-    </tr>
-    </tbody>
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Slots</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th colspan="4">Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>default</code></td>
-      <td colspan="4">The alert body.</td>
-    </tr>
-    </tbody>
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Events</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Params</th>
-      <th colspan="3">Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>dismissed</code></td>
-      <td></td>
-      <td colspan="3">
-        Fire after the alert dismissed. Note: you have to hide / destroy the alert using <code>v-if</code>
-        / <code>v-show</code> / <code>v-for</code>
-        manually due to child components can't change state of parent component.
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+### Props
+
+Name             | Type       | Default  | Required | Description
+---------------- | ---------- | -------- | -------- | -----------------------
+`dismissible`    | Boolean    | false    |          | Show dismiss button in alert.
+`type`           | String     | info     |          | Alert type (success, info, warning, danger).
+`duration`       | Number     | 0        |          | Dismiss after milliseconds, use 0 to prevent self-closing.
+
+### Slots
+
+Name      | Description
+--------- | -----------------------
+`default` | The alert body.
+
+### Events
+
+Name        | Params | Description
+----------- | ------ | ---------------
+`dismissed` |        | Fire after the alert dismissed. Note: you have to hide / destroy the alert using `v-if` / `v-show` / `v-for` manually due to child components can't change state of parent component.

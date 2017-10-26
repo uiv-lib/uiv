@@ -69,120 +69,34 @@ Parse `to` (String or Object) instead of `href` will create a `router-link` for 
 
 ## [Breadcrumbs.vue](https://github.com/wxsms/uiv/tree/master/src/components/breadcrumbs/Breadcrumbs.vue)
 
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Props</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th width="50px">Required</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>items</code></td>
-      <td>Array</td>
-      <td></td>
-      <td></td>
-      <td>Breadcrumb items to create. Props defined in each item object is the same with BreadcrumbItem.vue, except <code>text</code> will be replace as the breadcrumb item body.</td>
-    </tr>
-    </tbody>
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Slots</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th colspan="4">Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>default</code></td>
-      <td colspan="4">The breadcrumbs body.</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+### Props
+
+Name             | Type       | Default  | Required | Description
+---------------- | ---------- | -------- | -------- | -----------------------
+`items`          | Array      |          |          | Breadcrumb items to create. Props defined in each item object is the same with BreadcrumbItem.vue, except `text` will be replace as the breadcrumb item body.
+
+### Slots
+
+Name      | Description
+--------- | -----------------------
+`default` | The breadcrumbs body.
 
 ## [BreadcrumbItem.vue](https://github.com/wxsms/uiv/tree/master/src/components/breadcrumbs/BreadcrumbItem.vue)
 
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Props</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th width="50px">Required</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>acive</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td></td>
-      <td>Set item to active state.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>href</code></td>
-      <td>String</td>
-      <td></td>
-      <td></td>
-      <td>An native link will be created if this prop present.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>target</code></td>
-      <td>String</td>
-      <td>_self</td>
-      <td></td>
-      <td>Native link prop.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>to</code></td>
-      <td>String or Object</td>
-      <td></td>
-      <td></td>
-      <td>An Vue-Router link will be created if this prop present.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>replace</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td></td>
-      <td>Vue-Router link prop.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>append</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td></td>
-      <td>Vue-Router link prop.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>exact</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td></td>
-      <td>Vue-Router link prop.</td>
-    </tr>
-    </tbody>
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Slots</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th colspan="4">Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>default</code></td>
-      <td colspan="4">The breadcrumb item body.</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+### Props
+
+Name             | Type             | Default  | Required | Description
+---------------- | ----------       | -------- | -------- | -----------------------
+`acive`          | Boolean          | false    |          | Set item to active state.
+`href`           | String           |          |          | An native link will be created if this prop present.
+`target`         | String           | _self    |          | Native link prop.
+`to`             | String or Object |          |          | An Vue-Router link will be created if this prop present.
+`replace`        | Boolean          | false    |          | Vue-Router link prop.
+`append`         | Boolean          | false    |          | Vue-Router link prop.
+`exact`          | Boolean          | false    |          | Vue-Router link prop.
+
+### Slots
+
+Name      | Description
+--------- | -----------------------
+`default` | The breadcrumb item body.

@@ -118,100 +118,18 @@ Use `v-model` to bind the selected date.
 
 ## [DatePicker.vue](https://github.com/wxsms/uiv/tree/master/src/components/datepicker/DatePicker.vue)
 
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Props</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th width="50px">Required</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>v-model</code></td>
-      <td></td>
-      <td></td>
-      <td><i class="glyphicon glyphicon-ok"></i></td>
-      <td>The selected date</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>width</code></td>
-      <td>Number</td>
-      <td>270</td>
-      <td></td>
-      <td>The date-picker's width in px</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>today-btn</code></td>
-      <td>Boolean</td>
-      <td>true</td>
-      <td></td>
-      <td>Show / hide the today button.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>clear-btn</code></td>
-      <td>Boolean</td>
-      <td>true</td>
-      <td></td>
-      <td>Show / hide the clear button.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>format</code></td>
-      <td>String</td>
-      <td>yyyy-MM-dd</td>
-      <td></td>
-      <td>The date format</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>close-on-selected</code></td>
-      <td>Boolean</td>
-      <td>true</td>
-      <td></td>
-      <td>Close the date-picker dropdown after date selected</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>limit-from</code></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Anything that can convert to a valid Date object. E.g. '2017-01-01' or 'new Date()'</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>limit-to</code></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Same as limit-from</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>initial-view</code></td>
-      <td>String</td>
-      <td>d</td>
-      <td></td>
-      <td>Open the date-picker with specify view (one of d / m / y) on initial. Only works if the v-model is empty.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>week-starts-with</code></td>
-      <td>Number</td>
-      <td>0</td>
-      <td></td>
-      <td>Starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>date-parser</code></td>
-      <td>Function</td>
-      <td>Date.parse</td>
-      <td></td>
-      <td>
-        <p>Use this prop to replace the <code>Date.parse</code> call inside the component.
-          Useful when The formatted String can not be correctly parsed to Date type by <code>Date.parse</code>
-          (e.g. dd-MM-yyyy).</p>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+### Props
+
+Name                | Type       | Default    | Required | Description
+----------------    | ---------- | --------   | -------- | -----------------------
+`v-model`           |            |            | &#10004; | The selected date.
+`width`             | Number     | 270        |          | The date-picker's width in px.
+`today-btn`         | Boolean    | true       |          | Show / hide the today button.
+`clear-btn`         | Boolean    | true       |          | Show / hide the clear button.
+`format`            | String     | yyyy-MM-dd |          | The date format.
+`close-on-selected` | Boolean    | true       |          | Close the date-picker dropdown after date selected.
+`limit-from`        |            |            |          | Anything that can convert to a valid Date object. E.g. `2017-01-01` or `new Date()`.
+`limit-to`          |            |            |          | Same as `limit-from`.
+`initial-view`      | String     | d          |          | Open the date-picker with specify view (one of `d` / `m` / `y`) on initial. Only works if the `v-model` is empty.
+`week-starts-with`  | Number     | 0          |          | Starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
+`date-parser`       | Function   | Date.parse |          | Use this prop to replace the `Date.parse` call inside the component. Useful when The formatted String can not be correctly parsed to Date type by `Date.parse` (e.g. dd-MM-yyyy).

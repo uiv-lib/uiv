@@ -142,123 +142,34 @@ Add `justified` to `<tabs>` to use justified style.
 
 ## [Tabs.vue](https://github.com/wxsms/uiv/tree/master/src/components/tabs/Tabs.vue)
 
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Props</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th width="50px">Required</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>v-model</code></td>
-      <td>Number</td>
-      <td></td>
-      <td></td>
-      <td>The current tab index, use this to manual change tab index.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>justified</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td></td>
-      <td>Use justified style.</td>
-    </tr>
-    </tbody>
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Slots</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th colspan="4">Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>default</code></td>
-      <td colspan="4">The tabs content.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>nav-right</code></td>
-      <td colspan="4">
-        The snip at right side of tab nav. Note: it won't display if using justified style.
-      </td>
-    </tr>
-    </tbody>
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Events</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Params</th>
-      <th colspan="3">Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>change</code></td>
-      <td><p>index</p></td>
-      <td colspan="3">Fire after active tab changed, with the active index.</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+### Props
+
+Name             | Type       | Default  | Required | Description
+---------------- | ---------- | -------- | -------- | -----------------------
+`v-model`        | Number     |          |          | The current tab index, use this to manual change tab index.
+`justified`      | Boolean    | false    |          | Use justified style.
+
+### Slots
+
+Name        | Description
+---------   | -----------------------
+`default`   | The tabs content.
+`nav-right` | The snip at right side of tab nav. Note: it won't display if using justified style.
+
+### Events
+
+Name        | Params | Description
+----------- | ------ | ---------------
+`change`    | index  | Fire after active tab changed, with the active index.
 
 ## [Tab.vue](https://github.com/wxsms/uiv/tree/master/src/components/tabs/Tab.vue)
 
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Props</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th width="50px">Required</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>title</code></td>
-      <td>String</td>
-      <td></td>
-      <td></td>
-      <td>The tab title.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>html-title</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td></td>
-      <td>Use HTML title.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>disabled</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td></td>
-      <td>Disable the tab.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>group</code></td>
-      <td>String</td>
-      <td></td>
-      <td></td>
-      <td>Tabs nav with same group will in a dropdown list.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>pull-right</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td></td>
-      <td>Add <code>pull-right</code>
-        class to the tab nav. A grouped tab will be pull to right if one of its sub-tabs has this prop set to <code>true</code>.
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+### Props
+
+Name             | Type       | Default  | Required | Description
+---------------- | ---------- | -------- | -------- | -----------------------
+`title`          | String     |          |          | The tab title.
+`html-title`     | Boolean    | false    |          | Use HTML title.
+`disabled`       | Boolean    | false    |          | Disable the tab.
+`group`          | String     |          |          | Tabs nav with same group will in a dropdown list.
+`pull-right`     | Boolean    | false    |          | Add `pull-right` class to the tab nav. A grouped tab will be pull to right if one of its sub-tabs has this prop set to `true`.

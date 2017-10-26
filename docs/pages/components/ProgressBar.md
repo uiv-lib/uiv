@@ -28,12 +28,14 @@ To ensure that the label text remains legible even for low percentages, consider
 
 ```html
 <template>
-  <h4>Default Label</h4>
-  <progress-bar v-model="progress" :label="true"></progress-bar>
-  <h4>Custom Label</h4>
-  <progress-bar v-model="progress" :label="true" label-text="Loading......Please wait."></progress-bar>
-  <h4>Minimum Width</h4>
-  <progress-bar v-model="progress1" :min-width="true" :label="true"></progress-bar>
+  <section>
+    <h4>Default Label</h4>
+    <progress-bar v-model="progress" :label="true"></progress-bar>
+    <h4>Custom Label</h4>
+    <progress-bar v-model="progress" :label="true" label-text="Loading......Please wait."></progress-bar>
+    <h4>Minimum Width</h4>
+    <progress-bar v-model="progress1" :min-width="true" :label="true"></progress-bar>
+  </section>
 </template>
 <script>
   export default {
@@ -54,10 +56,12 @@ Progress bars use some of the same button and alert classes for consistent style
 
 ```html
 <template>
-  <progress-bar v-model="progress40" type="success"></progress-bar>
-  <progress-bar v-model="progress20" type="info"></progress-bar>
-  <progress-bar v-model="progress60" type="warning"></progress-bar>
-  <progress-bar v-model="progress80" type="danger"></progress-bar>
+  <section>
+    <progress-bar v-model="progress40" type="success"></progress-bar>
+    <progress-bar v-model="progress20" type="info"></progress-bar>
+    <progress-bar v-model="progress60" type="warning"></progress-bar>
+    <progress-bar v-model="progress80" type="danger"></progress-bar>
+  </section>
 </template>
 <script>
   export default {
@@ -80,10 +84,12 @@ Uses a gradient to create a striped effect. Not available in IE9 and below.
 
 ```html
 <template>
-  <progress-bar v-model="progress40" type="success" :striped="true"></progress-bar>
-  <progress-bar v-model="progress20" type="info" :striped="true"></progress-bar>
-  <progress-bar v-model="progress60" type="warning" :striped="true"></progress-bar>
-  <progress-bar v-model="progress80" type="danger" :striped="true"></progress-bar>
+  <section>
+    <progress-bar v-model="progress40" type="success" :striped="true"></progress-bar>
+    <progress-bar v-model="progress20" type="info" :striped="true"></progress-bar>
+    <progress-bar v-model="progress60" type="warning" :striped="true"></progress-bar>
+    <progress-bar v-model="progress80" type="danger" :striped="true"></progress-bar>
+  </section>
 </template>
 <script>
   export default {
@@ -150,90 +156,22 @@ Place multiple `<progress-bar-stack>` into the same `<progress-bar>` to stack th
 
 ## [ProgressBar.vue](https://github.com/wxsms/uiv/tree/master/src/components/progressbar/ProgressBar.vue)
 
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Note</span></td>
-    </tr>
-    <tr>
-      <td colspan="5"><code>ProgressBar.vue</code> and <code>ProgressBarStack.vue</code> share same prop attributes.
-      </td>
-    </tr>
-    </tbody>
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Props</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th width="50px">Required</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>v-model</code></td>
-      <td>Number</td>
-      <td></td>
-      <td><i class="glyphicon glyphicon-ok"></i></td>
-      <td>Current progress (0 ~ 100).</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>label</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td></td>
-      <td>Show label on progress bar.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>label-text</code></td>
-      <td>String</td>
-      <td></td>
-      <td></td>
-      <td>Custom label text.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>min-width</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td></td>
-      <td>Apply a minimum width to the progress bar, useful when showing label and small current value.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>type</code></td>
-      <td>String</td>
-      <td></td>
-      <td></td>
-      <td>Progress bar type, support success / info / warning / danger. Or you can add custom types.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>striped</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td></td>
-      <td>Apply striped style.</td>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>active</code></td>
-      <td>Boolean</td>
-      <td>false</td>
-      <td></td>
-      <td>Apply active to striped style.</td>
-    </tr>
-    </tbody>
-    <tbody>
-    <tr>
-      <td colspan="5"><span class="label label-default">Slots</span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th colspan="4">Description</th>
-    </tr>
-    <tr>
-      <td nowrap="nowrap"><code>default</code></td>
-      <td colspan="4">Use this slot if need stacked progress bar, see example in the code panel below.</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+`ProgressBar.vue` and `ProgressBarStack.vue` share same prop attributes.
+
+### Props
+
+Name             | Type       | Default  | Required | Description
+---------------- | ---------- | -------- | -------- | -----------------------
+`v-model`        | Number     |          | &#10004; | Current progress (0 ~ 100).
+`label`          | Boolean    | false    |          | Show label on progress bar.
+`label-text`     | String     |          |          | Custom label text.
+`min-width`      | Boolean    | false    |          | Apply a minimum width to the progress bar, useful when showing label and small current value.
+`type`           | String     |          |          | Progress bar type, support success / info / warning / danger. Or you can add custom types.
+`striped`        | Boolean    | false    |          | Apply striped style.
+`active`         | Boolean    | false    |          | Apply active to striped style.
+
+### Slots
+
+Name      | Description
+--------- | -----------------------
+`default` | Use this slot if need stacked progress bar, see example in the code panel above.
