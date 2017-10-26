@@ -2,34 +2,19 @@
 
 > A basic, easily extended component for quickly creating elegant typeaheads with any form text input.
 
-## Static Query
+## Example
 
-A default input field will be auto generated within typeahead component. You can override it if you wish, attach element with `data-role="input"` to be the input source.
+Use `v-model` to bind the input value, and `target` to point to the ideal input element.
 
 ```html
 <template>
-  <label class="control-label">States of America</label>
-  <typeahead ref="typeahead1"
-             v-model="model"
-             :data="states"
-             :item-key="itemKey"
-             :ignore-case="ignoreCase"
-             :match-start="matchStart"
-             :force-select="forceSelect"
-             :open-on-focus="openOnFocus"></typeahead>
-  <hr/>
-  <h4>Settings</h4>
-  <form class="form-inline">
-    <button class="btn btn-primary" type="button" @click="model = states[0]">Set to Alabama</button>
-    <button class="btn btn-default" type="button" @click="model = null">Reset</button>
-    <div class="form-group">
-      <label class="checkbox-inline"><input type="checkbox" v-model="ignoreCase"> Ignore Case</label>
-      <label class="checkbox-inline"><input type="checkbox" v-model="matchStart"> Match Start</label>
-      <label class="checkbox-inline"><input type="checkbox" v-model="forceSelect"> Force Select</label>
-    </div>
-  </form>
-  <br/>
-  <alert type="info" v-if="model">You selected: {{model}}</alert>
+  <section>
+    <label for="input">States of America:</label>
+    <input id="input" class="form-control" type="text" placeholder="Type to search...">
+    <typeahead v-model="model" target="#input" :data="states" item-key="name"/>
+    <br/>
+    <alert v-show="model">You selected {{model}}</alert>
+  </section>
 </template>
 <script>
   import states from '../../assets/data/states.json'
@@ -38,12 +23,7 @@ A default input field will be auto generated within typeahead component. You can
     data () {
       return {
         model: '',
-        itemKey: 'name',
-        states: states.data,
-        forceSelect: false,
-        ignoreCase: true,
-        matchStart: false,
-        openOnFocus: true
+        states: states.data
       }
     }
   }
@@ -51,9 +31,130 @@ A default input field will be auto generated within typeahead component. You can
 <!-- typeahead-example.vue -->
 ```
 
-## Async & Custom Template
+## Target
+
+A `target` can be:
+
+* Selector that can be recognized by `querySelect`.
+* Reference to Element.
+* Reference to Component.
+
+Note that if you use a component reference, the corresponding component's root element must be an input element.
+
+An example using element reference target:
+
+```html
+<template>
+  <section>
+    <label>States of America:</label>
+    <input ref="input" class="form-control" type="text" placeholder="Type to search...">
+    <typeahead v-model="model" :target="target" :data="states" item-key="name"/>
+    <br/>
+    <alert v-show="model">You selected {{model}}</alert>
+  </section>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        model: '',
+        target: null,
+        states: states.data // import states from '../../assets/data/states.json'
+      }
+    },
+    mounted () {
+      this.target = this.$refs.input
+    }
+  }
+</script>
+<!-- typeahead-target.vue -->
+```
+
+## Match Start
+
+Match from the head of item.
+
+**Note**: Only work in local data query mode.
+
+```html
+<template>
+  <section>
+    <label for="input-2">States of America:</label>
+    <input id="input-2" class="form-control" type="text" placeholder="Type to search...">
+    <typeahead v-model="model" target="#input-2" match-start :data="states" item-key="name"/>
+    <br/>
+    <alert v-show="model">You selected {{model}}</alert>
+  </section>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        model: '',
+        states: states.data // import states from '../../assets/data/states.json'
+      }
+    }
+  }
+</script>
+<!-- typeahead-match-start.vue -->
+```
+
+## Force Select
+
+Force user to select from the options or the model will be empty.
+
+**Note**: Only work in local data query mode.
+
+```html
+<template>
+  <section>
+    <label for="input-3">States of America:</label>
+    <input id="input-3" class="form-control" type="text" placeholder="Type to search...">
+    <typeahead v-model="model" target="#input-3" force-select :data="states" item-key="name"/>
+    <br/>
+    <alert v-show="model">You selected {{model}}</alert>
+  </section>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        model: '',
+        states: states.data // import states from '../../assets/data/states.json'
+      }
+    }
+  }
+</script>
+<!-- typeahead-force-select.vue -->
+```
+
+## Async Query
 
 **Note**: `ignore-case` and `match-start` won't work in async query mode.
+
+```html
+<template>
+  <section>
+    <label for="input-4">Users of Github:</label>
+    <input id="input-4" class="form-control" type="text" placeholder="Type to search...">
+    <typeahead v-model="model" target="#input-4" async-src="https://api.github.com/search/users?q=" async-key="items" item-key="login"/>
+    <br/>
+    <alert v-show="model">You selected {{model}}</alert>
+  </section>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        model: ''
+      }
+    }
+  }
+</script>
+<!-- typeahead-async-query.vue -->
+```
+
+## Custom Template
 
 Use the `item` scoped slot to override the typeahead item's template.
 
@@ -65,22 +166,22 @@ Use the `item` scoped slot to override the typeahead item's template.
 
 ```html
 <template>
-  <typeahead ref="typeahead2"
-             v-model="model"
-             async-src="https://api.github.com/search/users?q="
-             async-key="items"
-             item-key="login">
-    <template slot="item" slot-scope="props">
-      <li v-for="(item, index) in props.items" :class="{active:props.activeIndex===index}">
-        <a href="javascript:void(0)" @click="props.select(item)">
-          <img width="22px" height="22px" :src="item.avatar_url + '&s=40'">
-          <span v-html="props.highlight(item)"></span>
-        </a>
-      </li>
-    </template>
-  </typeahead>
-  <br/>
-  <alert type="info" v-if="model">You selected: {{model}}</alert>
+  <section>
+    <label for="input-5">Users of Github:</label>
+    <input id="input-5" class="form-control" type="text" placeholder="Type to search...">
+    <typeahead v-model="model" target="#input-5" async-src="https://api.github.com/search/users?q=" async-key="items" item-key="login">
+      <template slot="item" slot-scope="props">
+        <li v-for="(item, index) in props.items" :class="{active:props.activeIndex===index}">
+          <a role="button" @click="props.select(item)">
+            <img width="22px" height="22px" :src="item.avatar_url + '&s=40'">
+            <span v-html="props.highlight(item)"></span>
+          </a>
+        </li>
+      </template>
+    </typeahead>
+    <br/>
+    <alert v-show="model">You selected {{model}}</alert>
+  </section>
 </template>
 <script>
   export default {
@@ -91,7 +192,7 @@ Use the `item` scoped slot to override the typeahead item's template.
     }
   }
 </script>
-<!-- typeahead-async.vue -->
+<!-- typeahead-custom-template.vue -->
 ```
 
 # API Reference
@@ -103,6 +204,7 @@ Use the `item` scoped slot to override the typeahead item's template.
 Name             | Type       | Default  | Required | Description
 ---------------- | ---------- | -------- | -------- | -----------------------
 `v-model`        |            |          | &#10004; | The input or selected value.
+`target`         |            |          | &#10004; | The input element to bind with. Can be a select or reference to Element / Component.
 `data`           | Array      |          |          | The local auto-complete query data.
 `item-key`       | String     |          |          | Value of each `data[key]` to show, leave blank to use the data object.
 `append-to-body` | Boolean    | false    |          | Append the typeahead dropdown to body.
@@ -120,5 +222,12 @@ Name             | Type       | Default  | Required | Description
 
 Name      | Description
 --------- | -----------------------
-`default` | Can be the typeahead input element or others.
 `item`    | Use this scoped slot to override the typeahead item's template.
+
+### Events
+
+Name           | Description
+---------      | -----------------------
+`loading`      | Async loading.
+`loaded`       | Async load complete.
+`loaded-error` | Async load complete with error.

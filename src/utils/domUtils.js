@@ -71,6 +71,9 @@ export default {
   off (element, event, handler) {
     element.removeEventListener(event, handler)
   },
+  isElement (el) {
+    return el && el.nodeType === Node.ELEMENT_NODE
+  },
   removeFromDom (element) {
     try {
       element.parentNode.removeChild(element)
