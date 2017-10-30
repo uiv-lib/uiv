@@ -36,3 +36,10 @@ Name             | Type       | Default      | Required | Description
 Name      | Description
 --------- | -----------------------
 `default` | The affix body.
+
+### Events
+
+Name      | Description
+--------- | -----------------------
+`affix`   | This event fires immediately before the element has been affixed.
+`affixed` | This event is fired after the element has been affixed.
