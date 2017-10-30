@@ -1,27 +1,21 @@
 <template>
   <section>
-    <ul class="nav nav-tabs" role="tablist" :class="{'nav-justified':justified}">
-      <template v-for="(tab,index) in groupedTabs">
+    <ul class="nav nav-tabs" role="tablist" :class="{'nav-justified': justified}">
+      <template v-for="(tab, index) in groupedTabs">
         <dropdown v-if="tab.tabs" role="presentation" tag="li"
-                  :class="{'active':tab.active,'disabled':tab.disabled,'pull-right':tab.pullRight}">
-          <a data-role="trigger" role="tab" href="javascript:void(0)">
-            <span>{{tab.group}}</span>
-            <span class="caret"></span>
-          </a>
+                  :class="{active: tab.active, disabled: tab.disabled, 'pull-right': tab.pullRight}">
+          <a class="dropdown-toggle" role="tab" href="javascript:void(0)">{{tab.group}} <span class="caret"></span></a>
           <template slot="dropdown">
-            <li v-for="subTab in tab.tabs" :class="{'active':subTab.active,'disabled':subTab.disabled}">
-              <a href="javascript:void(0)" @click="select(tabs.indexOf(subTab))">
-                {{subTab.title}}
-              </a>
+            <li v-for="subTab in tab.tabs" :class="{active: subTab.active, disabled: subTab.disabled}">
+              <a href="javascript:void(0)" @click="select(tabs.indexOf(subTab))">{{subTab.title}}</a>
             </li>
           </template>
         </dropdown>
         <li v-else role="presentation"
-            :class="{'active':tab.active,'disabled':tab.disabled,'pull-right':tab.pullRight}">
-          <a role="tab" href="javascript:void(0);" @click="select(tabs.indexOf(tab))">
-            <span v-if="tab.htmlTitle" v-html="tab.title"></span>
-            <span v-else v-text="tab.title"></span>
-          </a>
+            :class="{active: tab.active, disabled: tab.disabled, 'pull-right': tab.pullRight}">
+          <a v-if="tab.htmlTitle" v-html="tab.title" role="tab" href="javascript:void(0);"
+             @click="select(tabs.indexOf(tab))"></a>
+          <a v-else role="tab" href="javascript:void(0);" @click="select(tabs.indexOf(tab))">{{tab.title}}</a>
         </li>
       </template>
       <li class="pull-right" v-if="!justified && $slots['nav-right']">

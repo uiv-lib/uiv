@@ -132,9 +132,7 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
       <div class="input-group">
         <input class="form-control" type="text" v-model="date">
         <div class="input-group-btn">
-          <button class="btn btn-default" type="button" data-role="trigger">
-            <i class="glyphicon glyphicon-calendar"></i>
-          </button>
+          <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-calendar"></i></button>
         </div>
       </div>
       <template slot="dropdown">

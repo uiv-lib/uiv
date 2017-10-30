@@ -252,8 +252,9 @@ export default {
       document.body.style.paddingRight = null
     } else {
       if (this.hasScrollbar(document.documentElement)) {
-        document.body.style.paddingRight = `${getScrollbarWidth()}px`
+        document.body.style.paddingRight = `${this.getScrollbarWidth()}px`
       }
     }
-  }
+  },
+  getScrollbarWidth
 }
