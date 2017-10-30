@@ -39,6 +39,9 @@ describe('Affix', () => {
 
   it('should be able to toggle affix class', async () => {
     expect($el.find('.affix').length).to.equal(0)
+    window.scrollTo(0, 200)
+    await utils.sleep(200)
+    expect($el.find('.affix').length).to.equal(1)
     window.scrollTo(0, 500)
     await utils.sleep(200)
     expect($el.find('.affix').length).to.equal(1)
@@ -48,11 +51,18 @@ describe('Affix', () => {
   })
 
   it('should not toggle affix class if element is hidden', async () => {
+    let $body = $('html, body')
+    $body.css('height', '9999px')
     $el.css('display', 'none')
+    await vm.$nextTick()
     expect($el.find('.affix').length).to.equal(0)
     window.scrollTo(0, 500)
     await utils.sleep(200)
     expect($el.find('.affix').length).to.equal(0)
+    window.scrollTo(0, 0)
+    await utils.sleep(200)
+    expect($el.find('.affix').length).to.equal(0)
+    $body.css('height', '')
   })
 
   it('should be able to use offset', async () => {

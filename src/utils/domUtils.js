@@ -74,12 +74,8 @@ export default {
   isElement (el) {
     return el && el.nodeType === Node.ELEMENT_NODE
   },
-  removeFromDom (element) {
-    try {
-      element.parentNode.removeChild(element)
-    } catch (e) {
-      // Silent
-    }
+  removeFromDom (el) {
+    this.isElement(el) && this.isElement(el.parentNode) && el.parentNode.removeChild(el)
   },
   ensureElementMatchesFunction () {
     if (!Element.prototype.matches) {
@@ -98,31 +94,40 @@ export default {
         }
     }
   },
-  addClass (element, className) {
-    if (element.className) {
-      let classes = element.className.split(' ')
+  addClass (el, className) {
+    if (!this.isElement(el)) {
+      return
+    }
+    if (el.className) {
+      let classes = el.className.split(' ')
       if (classes.indexOf(className) < 0) {
         classes.push(className)
-        element.className = classes.join(' ')
+        el.className = classes.join(' ')
       }
     } else {
-      element.className = className
+      el.className = className
     }
   },
-  removeClass (element, className) {
-    if (element.className) {
-      let classes = element.className.split(' ')
+  removeClass (el, className) {
+    if (!this.isElement(el)) {
+      return
+    }
+    if (el.className) {
+      let classes = el.className.split(' ')
       let newClasses = []
       for (let i = 0, l = classes.length; i < l; i++) {
         if (classes[i] !== className) {
           newClasses.push(classes[i])
         }
       }
-      element.className = newClasses.join(' ')
+      el.className = newClasses.join(' ')
     }
   },
-  hasClass (element, className) {
-    let classes = element.className.split(' ')
+  hasClass (el, className) {
+    if (!this.isElement(el)) {
+      return false
+    }
+    let classes = el.className.split(' ')
     for (let i = 0, l = classes.length; i < l; i++) {
       if (classes[i] === className) {
         return true
@@ -239,16 +244,17 @@ export default {
       tooltip.style.left = containerScrollLeft + rect.left + rect.width / 2 - tooltipRect.width / 2 + 'px'
     }
   },
-  hasScrollbar (element) {
-    return element.scrollHeight > element.clientHeight
+  hasScrollbar (el) {
+    return el.scrollHeight > el.clientHeight
   },
   toggleBodyOverflow (enable) {
     if (enable) {
       document.body.style.paddingRight = null
     } else {
       if (this.hasScrollbar(document.documentElement)) {
-        document.body.style.paddingRight = `${getScrollbarWidth()}px`
+        document.body.style.paddingRight = `${this.getScrollbarWidth()}px`
       }
     }
-  }
+  },
+  getScrollbarWidth
 }

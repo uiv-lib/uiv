@@ -1,15 +1,21 @@
 <script>
   import utils from './../../utils/domUtils'
 
+  const DEFAULT_TAG = 'div'
+
   export default {
     render (h) {
       return h(
         this.tag,
         {
-          'class': {
+          class: {
             dropdown: !this.dropup,
             dropup: this.dropup,
             open: this.show
+          },
+          style: {
+            'display': this.tag === DEFAULT_TAG ? 'inline-block' : null,
+            'vertical-align': this.tag === DEFAULT_TAG ? 'middle' : null
           }
         },
         [
@@ -31,22 +37,22 @@
     props: {
       tag: {
         type: String,
-        'default': 'div'
+        default: DEFAULT_TAG
       },
       appendToBody: {
         type: Boolean,
-        'default': false
+        default: false
       },
       value: {
         type: Boolean
       },
       dropup: {
         type: Boolean,
-        'default': false
+        default: false
       },
       menuRight: {
         type: Boolean,
-        'default': false
+        default: false
       },
       notCloseElements: {
         type: Array
@@ -65,8 +71,11 @@
       }
     },
     mounted () {
-      this.triggerEl = this.$el.querySelector('[data-role="trigger"]')
-      if (this.triggerEl) {
+      this.triggerEl = this.$el.querySelector('[data-role="trigger"]') || this.$el.querySelector('.dropdown-toggle') || this.$el.firstChild
+      // attach trigger events if:
+      // 1. trigger exist
+      // 2. not the dropdown menu
+      if (this.triggerEl && this.triggerEl !== this.$refs.dropdown) {
         utils.on(this.triggerEl, utils.events.CLICK, this.toggle)
       }
       utils.on(window, utils.events.CLICK, this.windowClicked)

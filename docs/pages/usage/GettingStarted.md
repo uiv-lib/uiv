@@ -2,7 +2,7 @@
 
 **uiv** is a Bootstrap 3 component lib implemented by Vue 2.
 
-* **Lightweight**: ~14KB Gziped, Dependencies only Vue & Bootstrap CSS
+* **Lightweight**: ~16KB Gziped, Dependencies only Vue & Bootstrap CSS
 * **SSR** (server-side rendering) supported.
 * ES6 / CommonJS / AMD / Browser supported.
 

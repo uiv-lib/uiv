@@ -48,21 +48,19 @@
         const body = document.body
         for (let type of ['Top', 'Left']) {
           let t = type.toLowerCase()
-          let ret = window['page' + (type === 'Top' ? 'Y' : 'X') + 'Offset']
-          const method = 'scroll' + type
-          if (typeof ret !== 'number') {
-            // ie6,7,8 standard mode
-            ret = document.documentElement[method]
-            if (typeof ret !== 'number') {
-              // quirks mode
-              ret = document.body[method]
-            }
-          }
-          scroll[t] = ret
+          scroll[t] = window['page' + (type === 'Top' ? 'Y' : 'X') + 'Offset']
           element[t] = scroll[t] + rect[t] - (this.$el['client' + type] || body['client' + type] || 0)
         }
         let fix = scroll.top > element.top - this.offset
-        if (this.affixed !== fix) { this.affixed = fix }
+        if (this.affixed !== fix) {
+          this.affixed = fix
+          if (this.affixed) {
+            this.$emit('affix')
+            this.$nextTick(() => {
+              this.$emit('affixed')
+            })
+          }
+        }
       }
     }
   }

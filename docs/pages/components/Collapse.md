@@ -127,7 +127,7 @@ Extend the default collapse behavior to create an accordion with the panel compo
         <ul class="nav navbar-nav navbar-right">
           <li><a role="button">Link</a></li>
           <dropdown tag="li">
-            <a class="dropdown-toggle" role="button" data-role="trigger">Dropdown <span class="caret"></span></a>
+            <a class="dropdown-toggle" role="button">Dropdown <span class="caret"></span></a>
             <template slot="dropdown">
               <li><a role="button">Action</a></li>
               <li><a role="button">Another action</a></li>

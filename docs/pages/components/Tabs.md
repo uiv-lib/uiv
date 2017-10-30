@@ -144,10 +144,11 @@ Add `justified` to `<tabs>` to use justified style.
 
 ### Props
 
-Name             | Type       | Default  | Required | Description
----------------- | ---------- | -------- | -------- | -----------------------
-`v-model`        | Number     |          |          | The current tab index, use this to manual change tab index.
-`justified`      | Boolean    | false    |          | Use justified style.
+Name                  | Type       | Default  | Required | Description
+----------------      | ---------- | -------- | -------- | -----------------------
+`v-model`             | Number     |          |          | The current tab index, use this to manual change tab index.
+`justified`           | Boolean    | false    |          | Use justified style.
+`transition-duration` | Number     | 150      |          | The tabs show / hide transition time in ms. Use 0 to disable transitions.
 
 ### Slots
 

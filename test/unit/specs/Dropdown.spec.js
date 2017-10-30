@@ -20,7 +20,8 @@ describe('Dropdown', () => {
   })
 
   it('should be able to open dropdown on trigger click', async () => {
-    let dropdown = vm.$el.querySelector(`.dropdown`)
+    let _vm = vm.$refs['dropdown-examples']
+    let dropdown = _vm.$el.querySelector(`.dropdown`)
     let trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
     expect(dropdown.className).to.not.contain('open')
@@ -30,7 +31,8 @@ describe('Dropdown', () => {
   })
 
   it('should be able to close dropdown on trigger click', async () => {
-    let dropdown = vm.$el.querySelector(`.dropdown`)
+    let _vm = vm.$refs['dropdown-examples']
+    let dropdown = _vm.$el.querySelector(`.dropdown`)
     let trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
     expect(dropdown.className).to.not.contain('open')
@@ -43,7 +45,8 @@ describe('Dropdown', () => {
   })
 
   it('should be able to close dropdown on window click', async () => {
-    let dropdown = vm.$el.querySelector(`.dropdown`)
+    let _vm = vm.$refs['dropdown-examples']
+    let dropdown = _vm.$el.querySelector(`.dropdown`)
     let trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
     expect(dropdown.className).to.not.contain('open')
@@ -57,7 +60,8 @@ describe('Dropdown', () => {
   })
 
   it('should be able to open dropdown append to body on trigger click', async () => {
-    let dropdown = vm.$el.querySelectorAll(`.dropdown`)[2]
+    let _vm = vm.$refs['dropdown-append-to-body']
+    let dropdown = _vm.$el.querySelector(`.dropdown`)
     let trigger = dropdown.querySelector('button')
     expect(dropdown.className).to.not.contain('open')
     expect(dropdown.querySelector('.dropdown-menu')).to.exist
@@ -71,14 +75,51 @@ describe('Dropdown', () => {
     expect(dropdown.querySelector('.dropdown-menu')).to.exist
   })
 
-  it('should be able to use dropup & menu-right style', async () => {
-    vm.$refs['dropdown-examples'].dropup = true
-    vm.$refs['dropdown-examples'].menuRight = true
+  it('should be able to use dropup style', async () => {
+    let _vm = vm.$refs['dropdown-dropup']
     await vm.$nextTick()
-    let dropdown = vm.$el.querySelector(`.dropup`)
+    let dropup = _vm.$el.querySelector(`.dropup`)
+    expect(dropup.className).to.not.contain('open')
+    expect(dropup.querySelector('.dropdown-menu')).to.exist
+  })
+
+  it('should be able to use menu-right style', async () => {
+    let _vm = vm.$refs['dropdown-menu-right']
+    await vm.$nextTick()
+    let menuRight = _vm.$el.querySelector(`.dropdown`)
+    expect(menuRight.querySelector('.dropdown-menu').className).to.contain('dropdown-menu-right')
+  })
+
+  it('should be able to open dropdown append to body & menu-right on trigger click', async () => {
+    let _vm = vm.$refs['dropdown-append-to-body']
+    let dropdown = _vm.$el.querySelectorAll(`.dropdown`)[1]
+    let trigger = dropdown.querySelector('button')
+    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.querySelector('.dropdown-menu-right')).to.exist
+    utils.triggerEvent(trigger, 'click')
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    expect(dropdown.querySelector('.dropdown-menu-right')).not.exist
+    utils.triggerEvent(trigger, 'click')
+    await vm.$nextTick()
+    expect(dropdown.className).not.contain('open')
+    expect(dropdown.querySelector('.dropdown-menu-right')).to.exist
+  })
+
+  it('should be able to open dropdown append to body & dropup on trigger click', async () => {
+    let _vm = vm.$refs['dropdown-append-to-body']
+    let dropdown = _vm.$el.querySelector(`.dropup`)
+    let trigger = dropdown.querySelector('button')
     expect(dropdown.className).to.not.contain('open')
     expect(dropdown.querySelector('.dropdown-menu')).to.exist
-    expect(dropdown.querySelector('.dropdown-menu').className).to.contain('dropdown-menu-right')
+    utils.triggerEvent(trigger, 'click')
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    expect(dropdown.querySelector('.dropdown-menu')).not.exist
+    utils.triggerEvent(trigger, 'click')
+    await vm.$nextTick()
+    expect(dropdown.className).not.contain('open')
+    expect(dropdown.querySelector('.dropdown-menu')).to.exist
   })
 
   it('should be able to open dropdown on init', async () => {

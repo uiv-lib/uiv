@@ -1,27 +1,21 @@
 <template>
   <section>
-    <ul class="nav nav-tabs" role="tablist" :class="{'nav-justified':justified}">
-      <template v-for="(tab,index) in groupedTabs">
+    <ul class="nav nav-tabs" role="tablist" :class="{'nav-justified': justified}">
+      <template v-for="(tab, index) in groupedTabs">
         <dropdown v-if="tab.tabs" role="presentation" tag="li"
-                  :class="{'active':tab.active,'disabled':tab.disabled,'pull-right':tab.pullRight}">
-          <a data-role="trigger" role="tab" href="javascript:void(0)">
-            <span>{{tab.group}}</span>
-            <span class="caret"></span>
-          </a>
+                  :class="{active: tab.active, disabled: tab.disabled, 'pull-right': tab.pullRight}">
+          <a class="dropdown-toggle" role="tab" href="javascript:void(0)">{{tab.group}} <span class="caret"></span></a>
           <template slot="dropdown">
-            <li v-for="subTab in tab.tabs" :class="{'active':subTab.active,'disabled':subTab.disabled}">
-              <a href="javascript:void(0)" @click="select(tabs.indexOf(subTab))">
-                {{subTab.title}}
-              </a>
+            <li v-for="subTab in tab.tabs" :class="{active: subTab.active, disabled: subTab.disabled}">
+              <a href="javascript:void(0)" @click="select(tabs.indexOf(subTab))">{{subTab.title}}</a>
             </li>
           </template>
         </dropdown>
         <li v-else role="presentation"
-            :class="{'active':tab.active,'disabled':tab.disabled,'pull-right':tab.pullRight}">
-          <a role="tab" href="javascript:void(0);" @click="select(tabs.indexOf(tab))">
-            <span v-if="tab.htmlTitle" v-html="tab.title"></span>
-            <span v-else v-text="tab.title"></span>
-          </a>
+            :class="{active: tab.active, disabled: tab.disabled, 'pull-right': tab.pullRight}">
+          <a v-if="tab.htmlTitle" v-html="tab.title" role="tab" href="javascript:void(0);"
+             @click="select(tabs.indexOf(tab))"></a>
+          <a v-else role="tab" href="javascript:void(0);" @click="select(tabs.indexOf(tab))">{{tab.title}}</a>
         </li>
       </template>
       <li class="pull-right" v-if="!justified && $slots['nav-right']">
@@ -47,73 +41,81 @@
       },
       justified: {
         type: Boolean,
-        'default': false
+        default: false
+      },
+      transitionDuration: {
+        type: Number,
+        default: 150
       }
     },
     data () {
       return {
         tabs: [],
-        activeIndex: 0, // Make v-model not required
-        groupedTabs: []
+        activeIndex: 0 // Make v-model not required
       }
     },
     watch: {
       value (v) {
         this.activeIndex = v
-        this.$selectCurrent()
+        this.selectCurrent()
       }
     },
     mounted () {
-      if (typeof this.value !== 'undefined') {
+      if (typeof this.value === 'number') {
         this.activeIndex = this.value
       }
       if (this.tabs.length) {
-        this.$selectCurrent()
+        this.tabs.forEach((tab, i) => {
+          tab.transition = this.transitionDuration
+          if (i === this.activeIndex) {
+            tab.show()
+          }
+        })
+        this.selectCurrent()
       }
     },
-    methods: {
-      computeGroupedTabs () {
+    computed: {
+      groupedTabs () {
         let tabs = []
-        let groupNameHash = {}
+        let hash = {}
         this.tabs.forEach(tab => {
           if (tab.group) {
-            if (groupNameHash.hasOwnProperty(tab.group)) {
-              tabs[groupNameHash[tab.group]].tabs.push(tab)
+            if (hash.hasOwnProperty(tab.group)) {
+              tabs[hash[tab.group]].tabs.push(tab)
             } else {
               tabs.push({
                 tabs: [tab],
                 group: tab.group
               })
-              groupNameHash[tab.group] = tabs.length - 1
+              hash[tab.group] = tabs.length - 1
             }
             if (tab.active) {
-              tabs[groupNameHash[tab.group]].active = true
+              tabs[hash[tab.group]].active = true
             }
             if (tab.pullRight) {
-              tabs[groupNameHash[tab.group]].pullRight = true
+              tabs[hash[tab.group]].pullRight = true
             }
           } else {
             tabs.push(tab)
           }
         })
-        this.groupedTabs = tabs
-      },
-      $selectCurrent () {
-        this.tabs.forEach(tab => {
-          tab.active = false
+        return tabs
+      }
+    },
+    methods: {
+      selectCurrent () {
+        this.tabs.forEach((tab, index) => {
+          tab.active = index === this.activeIndex
         })
-        let tab = this.tabs[this.activeIndex]
-        tab.active = true
-        this.computeGroupedTabs()
         this.$emit('change', this.activeIndex)
       },
       select (index) {
         if (!this.tabs[index].disabled) {
-          if (typeof this.value !== 'undefined') {
+          if (typeof this.value === 'number') {
             this.$emit('input', index)
           } else {
             this.activeIndex = index
-            this.$selectCurrent()
+            this.selectCurrent()
           }
         }
       }
