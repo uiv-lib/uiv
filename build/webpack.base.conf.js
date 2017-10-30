@@ -55,7 +55,7 @@ module.exports = {
             loader: 'vue-md-loader',
             options: {
               wrapper: process.env.BABEL_ENV === 'test' ? 'section' : 'markdown-wrapper',
-              liveTemplateProcessor: function (template) {
+              afterProcessLiveTemplate (template) {
                 return `<div class="markdown-live-example">${template}</div>`
               },
               rules: {

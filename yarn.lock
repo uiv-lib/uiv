@@ -6495,9 +6495,9 @@ vue-loader@^11.0.0:
     vue-style-loader "^2.0.0"
     vue-template-es2015-compiler "^1.2.2"
 
-vue-md-loader@^0.1.3:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/vue-md-loader/-/vue-md-loader-0.1.4.tgz#0892244a50a4337ca19d65b4e69e9d0bff74a0d8"
+vue-md-loader@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/vue-md-loader/-/vue-md-loader-0.2.0.tgz#b0612934141522bdf2d037b37903b8aabf2e29fd"
   dependencies:
     highlight.js "^9.12.0"
     loader-utils "^1.1.0"
