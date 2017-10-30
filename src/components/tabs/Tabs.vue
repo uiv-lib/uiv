@@ -41,73 +41,71 @@
       },
       justified: {
         type: Boolean,
-        'default': false
+        default: false
       }
     },
     data () {
       return {
         tabs: [],
-        activeIndex: 0, // Make v-model not required
-        groupedTabs: []
+        activeIndex: 0 // Make v-model not required
       }
     },
     watch: {
       value (v) {
         this.activeIndex = v
-        this.$selectCurrent()
+        this.selectCurrent()
       }
     },
     mounted () {
-      if (typeof this.value !== 'undefined') {
+      if (typeof this.value === 'number') {
         this.activeIndex = this.value
       }
       if (this.tabs.length) {
-        this.$selectCurrent()
+        this.selectCurrent()
       }
     },
-    methods: {
-      computeGroupedTabs () {
+    computed: {
+      groupedTabs () {
         let tabs = []
-        let groupNameHash = {}
+        let hash = {}
         this.tabs.forEach(tab => {
           if (tab.group) {
-            if (groupNameHash.hasOwnProperty(tab.group)) {
-              tabs[groupNameHash[tab.group]].tabs.push(tab)
+            if (hash.hasOwnProperty(tab.group)) {
+              tabs[hash[tab.group]].tabs.push(tab)
             } else {
               tabs.push({
                 tabs: [tab],
                 group: tab.group
               })
-              groupNameHash[tab.group] = tabs.length - 1
+              hash[tab.group] = tabs.length - 1
             }
             if (tab.active) {
-              tabs[groupNameHash[tab.group]].active = true
+              tabs[hash[tab.group]].active = true
             }
             if (tab.pullRight) {
-              tabs[groupNameHash[tab.group]].pullRight = true
+              tabs[hash[tab.group]].pullRight = true
             }
           } else {
             tabs.push(tab)
           }
         })
-        this.groupedTabs = tabs
-      },
-      $selectCurrent () {
-        this.tabs.forEach(tab => {
-          tab.active = false
+        return tabs
+      }
+    },
+    methods: {
+      selectCurrent () {
+        this.tabs.forEach((tab, index) => {
+          tab.active = index === this.activeIndex
         })
-        let tab = this.tabs[this.activeIndex]
-        tab.active = true
-        this.computeGroupedTabs()
         this.$emit('change', this.activeIndex)
       },
       select (index) {
         if (!this.tabs[index].disabled) {
-          if (typeof this.value !== 'undefined') {
+          if (typeof this.value === 'number') {
             this.$emit('input', index)
           } else {
             this.activeIndex = index
-            this.$selectCurrent()
+            this.selectCurrent()
           }
         }
       }
