@@ -42,6 +42,10 @@
       justified: {
         type: Boolean,
         default: false
+      },
+      transitionDuration: {
+        type: Number,
+        default: 150
       }
     },
     data () {
@@ -61,6 +65,12 @@
         this.activeIndex = this.value
       }
       if (this.tabs.length) {
+        this.tabs.forEach((tab, i) => {
+          tab.transition = this.transitionDuration
+          if (i === this.activeIndex) {
+            tab.show()
+          }
+        })
         this.selectCurrent()
       }
     },
