@@ -68,23 +68,6 @@
         sliceStart: 0
       }
     },
-    watch: {
-      value (value) {
-        if (value > this.sliceStart + this.maxSize) {
-          if (value > this.totalPage - this.maxSize) {
-            this.sliceStart = this.totalPage - this.maxSize
-          } else {
-            this.sliceStart = value - 1
-          }
-        } else if (value < this.sliceStart + 1) {
-          if (value - this.maxSize > 0) {
-            this.sliceStart = value - this.maxSize
-          } else {
-            this.sliceStart = 0
-          }
-        }
-      }
-    },
     computed: {
       pageSize () {
         return this.size ? `pagination-${this.size}` : ``
@@ -102,6 +85,22 @@
       }
     },
     methods: {
+      calculateSliceStart() {
+        if (this.value > this.sliceStart + this.maxSize) {
+          if (this.value > this.totalPage - this.maxSize) {
+            this.sliceStart = this.totalPage - this.maxSize
+          } else {
+            this.sliceStart = this.value - 1
+          }
+        } else if (this.value < this.sliceStart + 1) {
+          if (this.value - this.maxSize > 0) {
+            this.sliceStart = this.value - this.maxSize
+          } else {
+            this.sliceStart = 0
+          }
+        }
+      },
+
       onPageChange (page) {
         if (page > 0 && page <= this.totalPage) {
           this.$emit('input', page)
@@ -118,6 +117,10 @@
           this.sliceStart = start
         }
       }
+    },
+    created() {
+      this.calculateSliceStart()
+      this.$watch(vm => [vm.value, vm.maxSize, vm.totalPage].join(), this.calculateSliceStart)
     }
   }
 </script>
