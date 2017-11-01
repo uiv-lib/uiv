@@ -41,26 +41,28 @@
   export default {
     props: {
       value: {
-        type: Number
+        type: Number,
+        required: true
       },
       boundaryLinks: {
         type: Boolean,
-        'default': false
+        default: false
       },
       directionLinks: {
         type: Boolean,
-        'default': true
+        default: true
       },
       size: {
         type: String,
-        'default': ''
+        default: ''
       },
       totalPage: {
-        type: Number
+        type: Number,
+        required: true
       },
       maxSize: {
         type: Number,
-        'default': 5
+        default: 5
       }
     },
     data () {
@@ -85,7 +87,7 @@
       }
     },
     methods: {
-      calculateSliceStart() {
+      calculateSliceStart () {
         if (this.value > this.sliceStart + this.maxSize) {
           if (this.value > this.totalPage - this.maxSize) {
             this.sliceStart = this.totalPage - this.maxSize
@@ -100,7 +102,6 @@
           }
         }
       },
-
       onPageChange (page) {
         if (page > 0 && page <= this.totalPage) {
           this.$emit('input', page)
@@ -118,9 +119,10 @@
         }
       }
     },
-    created() {
-      this.calculateSliceStart()
-      this.$watch(vm => [vm.value, vm.maxSize, vm.totalPage].join(), this.calculateSliceStart)
+    created () {
+      this.$watch(vm => [vm.value, vm.maxSize, vm.totalPage].join(), this.calculateSliceStart, {
+        immediate: true
+      })
     }
   }
 </script>
