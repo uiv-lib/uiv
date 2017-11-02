@@ -54,8 +54,7 @@
         default: true
       },
       size: {
-        type: String,
-        default: ''
+        type: String
       },
       totalPage: {
         type: Number,
