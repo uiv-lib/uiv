@@ -21,14 +21,14 @@ describe('Pagination', () => {
     let _vm = vm.$refs['pagination-example']
     _vm.boundaryLinks = true
     await vm.$nextTick()
-    let pagination = vm.$el.querySelector('ul.pagination')
-    let first = pagination.querySelector('[data-action="first"]')
+    let pagination = _vm.$el.querySelector('.pagination')
+    let first = pagination.querySelector('[aria-label="First"]')
     let beforeLength = pagination.querySelectorAll('li').length
     expect(first).to.exist
     _vm.boundaryLinks = false
     await vm.$nextTick()
-    pagination = vm.$el.querySelector('ul.pagination')
-    first = pagination.querySelector('[data-action="first"]')
+    pagination = _vm.$el.querySelector('.pagination')
+    first = pagination.querySelector('[aria-label="First"]')
     let afterLength = pagination.querySelectorAll('li').length
     expect(first).to.not.exist
     expect(afterLength).to.equal(beforeLength - 2)
@@ -38,14 +38,14 @@ describe('Pagination', () => {
     let _vm = vm.$refs['pagination-example']
     _vm.boundaryLinks = false
     await vm.$nextTick()
-    let pagination = vm.$el.querySelector('ul.pagination')
-    let first = pagination.querySelector('[data-action="first"]')
+    let pagination = _vm.$el.querySelector('ul.pagination')
+    let first = pagination.querySelector('[aria-label="First"]')
     let beforeLength = pagination.querySelectorAll('li').length
     expect(first).to.not.exist
     _vm.boundaryLinks = true
     await vm.$nextTick()
-    pagination = vm.$el.querySelector('ul.pagination')
-    first = pagination.querySelector('[data-action="first"]')
+    pagination = _vm.$el.querySelector('ul.pagination')
+    first = pagination.querySelector('[aria-label="First"]')
     let afterLength = pagination.querySelectorAll('li').length
     expect(first).to.exist
     expect(afterLength).to.equal(beforeLength + 2)
@@ -55,14 +55,14 @@ describe('Pagination', () => {
     let _vm = vm.$refs['pagination-example']
     _vm.directionLinks = true
     await vm.$nextTick()
-    let pagination = vm.$el.querySelector('ul.pagination')
-    let prePage = pagination.querySelector('[data-action="prev-page"]')
+    let pagination = _vm.$el.querySelector('ul.pagination')
+    let prePage = pagination.querySelector('[aria-label="Previous"]')
     let beforeLength = pagination.querySelectorAll('li').length
     expect(prePage).to.exist
     _vm.directionLinks = false
     await vm.$nextTick()
-    pagination = vm.$el.querySelector('ul.pagination')
-    prePage = pagination.querySelector('[data-action="prev-page"]')
+    pagination = _vm.$el.querySelector('ul.pagination')
+    prePage = pagination.querySelector('[aria-label="Previous"]')
     let afterLength = pagination.querySelectorAll('li').length
     expect(prePage).to.not.exist
     expect(afterLength).to.equal(beforeLength - 2)
@@ -72,14 +72,14 @@ describe('Pagination', () => {
     let _vm = vm.$refs['pagination-example']
     _vm.directionLinks = false
     await vm.$nextTick()
-    let pagination = vm.$el.querySelector('ul.pagination')
-    let prePage = pagination.querySelector('[data-action="prev-page"]')
+    let pagination = _vm.$el.querySelector('ul.pagination')
+    let prePage = pagination.querySelector('[aria-label="Previous"]')
     let beforeLength = pagination.querySelectorAll('li').length
     expect(prePage).to.not.exist
     _vm.directionLinks = true
     await vm.$nextTick()
-    pagination = vm.$el.querySelector('ul.pagination')
-    prePage = pagination.querySelector('[data-action="prev-page"]')
+    pagination = _vm.$el.querySelector('ul.pagination')
+    prePage = pagination.querySelector('[aria-label="Previous"]')
     let afterLength = pagination.querySelectorAll('li').length
     expect(prePage).to.exist
     expect(afterLength).to.equal(beforeLength + 2)
@@ -120,7 +120,7 @@ describe('Pagination', () => {
     _vm.totalSize = 18
     await vm.$nextTick()
     let pagination = vm.$el.querySelector('ul.pagination')
-    let lastBtn = pagination.querySelector('[data-action="last"]')
+    let lastBtn = pagination.querySelector('[aria-label="Last"]')
     lastBtn.click()
     await vm.$nextTick()
     let activeBtn = pagination.querySelector('.active a')
@@ -139,12 +139,12 @@ describe('Pagination', () => {
     _vm.currentPage = 18
     await vm.$nextTick()
     let pagination = vm.$el.querySelector('ul.pagination')
-    let lastBtn = pagination.querySelector('[data-action="last"]')
+    let lastBtn = pagination.querySelector('[aria-label="Last"]')
     lastBtn.click()
     await vm.$nextTick()
     let activeBtn = pagination.querySelector('.active a')
     expect(Number(activeBtn.text)).to.equal(_vm.totalSize)
-    let firstBtn = pagination.querySelector('[data-action="first"]')
+    let firstBtn = pagination.querySelector('[aria-label="First"]')
     firstBtn.click()
     await vm.$nextTick()
     activeBtn = pagination.querySelector('.active a')
@@ -157,12 +157,12 @@ describe('Pagination', () => {
     _vm.currentPage = 18
     await vm.$nextTick()
     let pagination = vm.$el.querySelector('ul.pagination')
-    let startBtn = pagination.querySelectorAll('li.pagination-page a')[0]
+    let startBtn = $(pagination).find('a:not([aria-label])').get(0)
     expect(Number(startBtn.text)).to.equal(_vm.totalSize - _vm.maxSize + 1)
     _vm.currentPage = 12
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
-    startBtn = pagination.querySelectorAll('li.pagination-page a')[0]
+    startBtn = $(pagination).find('a:not([aria-label])').get(0)
     expect(Number(startBtn.text)).to.equal(_vm.currentPage - _vm.maxSize + 1)
   })
 
@@ -171,18 +171,18 @@ describe('Pagination', () => {
     _vm.totalSize = 13
     await vm.$nextTick()
     let pagination = vm.$el.querySelector('ul.pagination')
-    let nextGroupBtn = pagination.querySelector('[data-action="next-group"]')
-    let startBtn = pagination.querySelectorAll('li.pagination-page a')[0]
+    let nextGroupBtn = pagination.querySelector('[aria-label="Next group"]')
+    let startBtn = $(pagination).find('a:not([aria-label])').get(0)
     expect(Number(startBtn.text)).to.equal(1)
     nextGroupBtn.click()
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
-    startBtn = pagination.querySelectorAll('li.pagination-page a')[0]
+    startBtn = $(pagination).find('a:not([aria-label])').get(0)
     expect(Number(startBtn.text)).to.equal(1 + _vm.maxSize)
     nextGroupBtn.click()
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
-    startBtn = pagination.querySelectorAll('li.pagination-page a')[0]
+    startBtn = $(pagination).find('a:not([aria-label])').get(0)
     expect(Number(startBtn.text)).to.equal(_vm.totalSize - _vm.maxSize + 1)
   })
 
@@ -192,18 +192,18 @@ describe('Pagination', () => {
     _vm.currentPage = 12
     await vm.$nextTick()
     let pagination = vm.$el.querySelector('ul.pagination')
-    let prevGroupBtn = pagination.querySelector('[data-action="prev-group"]')
-    let startBtn = pagination.querySelectorAll('li.pagination-page a')[0]
+    let prevGroupBtn = pagination.querySelector('[aria-label="Previous group"]')
+    let startBtn = $(pagination).find('a:not([aria-label])').get(0)
     expect(Number(startBtn.text)).to.equal(_vm.totalSize - _vm.maxSize + 1)
     prevGroupBtn.click()
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
-    startBtn = pagination.querySelectorAll('li.pagination-page a')[0]
+    startBtn = $(pagination).find('a:not([aria-label])').get(0)
     expect(Number(startBtn.text)).to.equal(_vm.totalSize - _vm.maxSize * 2 + 1)
     prevGroupBtn.click()
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
-    startBtn = pagination.querySelectorAll('li.pagination-page a')[0]
+    startBtn = $(pagination).find('a:not([aria-label])').get(0)
     expect(Number(startBtn.text)).to.equal(1)
   })
 })
