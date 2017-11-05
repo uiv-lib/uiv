@@ -14,7 +14,7 @@ const router = new VueRouter({
   scrollBehavior (to, from, savedPosition) {
     if (to.hash) {
       return {
-        selector: to.hash
+        selector: `[id='${to.hash.slice(1)}']`
       }
     } else if (savedPosition) {
       return savedPosition
@@ -25,8 +25,11 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // Start progressbar
-  NProgress.start()
+  // not start progressbar on same path && not the same hash
+  // which means hash jumping inside a route
+  if (!(from.path === to.path && from.hash !== to.hash)) {
+    NProgress.start()
+  }
   next()
 })
 

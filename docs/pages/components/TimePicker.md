@@ -30,7 +30,7 @@ e.g. `time = new Date(time)`
 <!-- time-picker-example.vue -->
 ```
 
-## In 24-Hour
+## 24-Hour
 
 ```html
 <template>
