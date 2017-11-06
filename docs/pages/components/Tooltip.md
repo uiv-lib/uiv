@@ -16,7 +16,7 @@ Hover over the button below to toggle tooltips:
 
 ### Trigger Target
 
-Order to decide the popover trigger:
+Order to decide the tooltip trigger:
 
 1. Use `target` if exist.
 3. Use the first element present in default slot.
@@ -46,10 +46,10 @@ Supported placements:
 * **left**
 
 ```html
-<button v-tooltip.left="'Tooltip content on left'" type="button" class="btn btn-primary" id="left-trigger">Left</button>
-<button v-tooltip.top="'Tooltip content on top'" type="button" class="btn btn-primary" id="top-trigger">Top</button>
-<button v-tooltip.bottom="'Tooltip content on bottom'" type="button" class="btn btn-primary" id="bottom-trigger">Bottom</button>
-<button v-tooltip.right="'Tooltip content on right'" type="button" class="btn btn-primary" id="right-trigger">Right</button>
+<button v-tooltip.left="'Tooltip content on left'" type="button" class="btn btn-primary">Left</button>
+<button v-tooltip.top="'Tooltip content on top'" type="button" class="btn btn-primary">Top</button>
+<button v-tooltip.bottom="'Tooltip content on bottom'" type="button" class="btn btn-primary">Bottom</button>
+<button v-tooltip.right="'Tooltip content on right'" type="button" class="btn btn-primary">Right</button>
 <!-- tooltip-placements.vue -->
 ```
 
@@ -71,10 +71,10 @@ Supported triggers:
 
 ```html
 <button v-tooltip="'Static tooltip content'" type="button" class="btn btn-primary">Hover-Focus (Default)</button>
-<button v-tooltip.hover="'Static tooltip content'" type="button" class="btn btn-primary" id="hover-trigger">Hover</button>
-<button v-tooltip.focus="'Static tooltip content'" type="button" class="btn btn-primary" id="focus-trigger">Focus</button>
-<button v-tooltip.click="'Static tooltip content'" type="button" class="btn btn-primary" id="click-trigger">Click</button>
-<button v-tooltip.outside-click="'Static tooltip content'" type="button" class="btn btn-primary" id="outside-click-trigger">Outside-Click</button>
+<button v-tooltip.hover="'Static tooltip content'" type="button" class="btn btn-primary">Hover</button>
+<button v-tooltip.focus="'Static tooltip content'" type="button" class="btn btn-primary">Focus</button>
+<button v-tooltip.click="'Static tooltip content'" type="button" class="btn btn-primary">Click</button>
+<button v-tooltip.outside-click="'Static tooltip content'" type="button" class="btn btn-primary">Outside-Click</button>
 <!-- tooltip-triggers.vue -->
 ```
 
@@ -110,7 +110,7 @@ Set `enable` prop to `false` to disable a tooltip.
 
 ```html
 <tooltip text="Static tooltip content goes here" :enable="false">
-  <button type="button" class="btn btn-primary" id="disabled-trigger">Disabled Tooltip</button>
+  <button type="button" class="btn btn-primary">Disabled Tooltip</button>
 </tooltip>
 <!-- tooltip-disable.vue -->
 ```
@@ -126,7 +126,7 @@ Name                  | Type       | Default       | Required | Description
 `v-model`             | Boolean    |               |          | Show / hide the tooltip.
 `target`              |            |               |          | Tooltip trigger, can be a select or reference to Element / Component.
 `tag`                 | String     | span          |          | The HTML tag that render the component.
-`title`               | String     |               |          | The tooltip title.
+`text`                | String     |               |          | The tooltip text.
 `enable`              | Boolean    | true          |          | Enable the tooltip.
 `placement`           | String     | top           |          | The tooltip placement, support `top` / `bottom` / `left` / `right`.
 `auto-placement`      | Boolean    | true          |          | Try to auto adjust the placement if the set one does not have enough space to show.

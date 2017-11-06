@@ -134,9 +134,10 @@ describe('Tooltip', () => {
   })
 
   it('should be able to show tooltip', async () => {
+    let _vm = vm.$refs['tooltip-example']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    let trigger = vm.$el.querySelector('button')
+    let trigger = _vm.$el.querySelector('button')
     // matches don't work in here
     let savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
@@ -160,9 +161,10 @@ describe('Tooltip', () => {
   })
 
   it('should be able to keep tooltip show on hover if using hover trigger', async () => {
+    let _vm = vm.$refs['tooltip-triggers']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    let trigger = vm.$el.querySelector('#hover-trigger')
+    let trigger = _vm.$el.querySelectorAll('button')[1]
     utils.triggerEvent(trigger, 'mouseenter')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
@@ -176,7 +178,8 @@ describe('Tooltip', () => {
   })
 
   it('should be able to toggle correctly on fast click', async () => {
-    let button = vm.$el.querySelector('#click-trigger')
+    let _vm = vm.$refs['tooltip-triggers']
+    let button = _vm.$el.querySelectorAll('button')[3]
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     button.click()
@@ -192,18 +195,20 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change trigger to click', async () => {
+    let _vm = vm.$refs['tooltip-triggers']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    vm.$el.querySelector('#click-trigger').click()
+    _vm.$el.querySelectorAll('button')[3].click()
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
-    vm.$el.querySelector('#click-trigger').click()
+    _vm.$el.querySelectorAll('button')[3].click()
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
   it('should be able to change trigger to outside-click', async () => {
-    let button = vm.$el.querySelector('#outside-click-trigger')
+    let _vm = vm.$refs['tooltip-triggers']
+    let button = _vm.$el.querySelectorAll('button')[4]
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     button.click()
@@ -215,20 +220,22 @@ describe('Tooltip', () => {
   })
 
   it('should be able to disable', async () => {
+    let _vm = vm.$refs['tooltip-disable']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     let savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
-    vm.$el.querySelector('#disabled-trigger').focus()
+    _vm.$el.querySelector('button').focus()
     await utils.sleep(200)
     Element.prototype.matches = savedMatches
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
   it('should be able to change placement to top', async () => {
+    let _vm = vm.$refs['tooltip-placements']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    let trigger = vm.$el.querySelector('#top-trigger')
+    let trigger = _vm.$el.querySelectorAll('button')[1]
     let savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     trigger.focus()
@@ -243,9 +250,10 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change placement to bottom', async () => {
+    let _vm = vm.$refs['tooltip-placements']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    let trigger = vm.$el.querySelector('#bottom-trigger')
+    let trigger = _vm.$el.querySelectorAll('button')[2]
     let savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     trigger.focus()
@@ -260,9 +268,10 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change placement to left', async () => {
+    let _vm = vm.$refs['tooltip-placements']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    let trigger = vm.$el.querySelector('#left-trigger')
+    let trigger = _vm.$el.querySelectorAll('button')[0]
     let savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     trigger.focus()
@@ -277,9 +286,10 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change placement to right', async () => {
+    let _vm = vm.$refs['tooltip-placements']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    let trigger = vm.$el.querySelector('#right-trigger')
+    let trigger = _vm.$el.querySelectorAll('button')[3]
     let savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     trigger.focus()
