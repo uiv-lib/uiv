@@ -158,22 +158,21 @@
       },
       show () {
         let tooltip = this.$refs.tooltip
-        if (!this.enable || !this.triggerEl || this.isShown()) {
-          return
+        if (this.enable && this.triggerEl && this.text && !this.isShown()) {
+          if (this.timeoutId > 0) {
+            clearTimeout(this.timeoutId)
+            this.timeoutId = 0
+          } else {
+            tooltip.className = `${BASE_CLASS} ${this.placement}`
+            let container = document.querySelector(this.appendTo)
+            container.appendChild(tooltip)
+            utils.setTooltipPosition(tooltip, this.triggerEl, this.placement, this.autoPlacement, this.appendTo)
+            tooltip.offsetHeight
+          }
+          utils.addClass(tooltip, SHOW_CLASS)
+          this.$emit('input', true)
+          this.$emit('show')
         }
-        if (this.timeoutId > 0) {
-          clearTimeout(this.timeoutId)
-          this.timeoutId = 0
-        } else {
-          tooltip.className = `${BASE_CLASS} ${this.placement}`
-          let container = document.querySelector(this.appendTo)
-          container.appendChild(tooltip)
-          utils.setTooltipPosition(tooltip, this.triggerEl, this.placement, this.autoPlacement, this.appendTo)
-          tooltip.offsetHeight
-        }
-        utils.addClass(tooltip, SHOW_CLASS)
-        this.$emit('input', true)
-        this.$emit('show')
       },
       hide () {
         if (this.isShown()) {

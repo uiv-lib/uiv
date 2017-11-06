@@ -87,6 +87,26 @@ describe('Tooltip', () => {
     vm.$destroy()
   })
 
+  it('should not show tooltip with empty text', async () => {
+    let res = Vue.compile('<tooltip v-model="show"><button></button></tooltip>')
+    let vm = new Vue({
+      data () {
+        return {
+          show: true
+        }
+      },
+      components: {Tooltip},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    let $el = $(vm.$el)
+    $el.appendTo('body')
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+    $el.remove()
+    vm.$destroy()
+  })
+
   it('should be able to use custom target', async () => {
     let res = Vue.compile('<div><button ref="btn" type="button">btn</button><tooltip text="test" :target="btn" trigger="focus"></tooltip></div>')
     let vm = new Vue({
@@ -274,7 +294,7 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change trigger in runtime', async () => {
-    let res = Vue.compile('<tooltip :trigger="trigger"><button></button></tooltip>')
+    let res = Vue.compile('<tooltip text="test" :trigger="trigger"><button></button></tooltip>')
     let vm = new Vue({
       data () {
         return {
