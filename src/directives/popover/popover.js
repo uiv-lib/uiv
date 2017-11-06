@@ -1,12 +1,12 @@
-import Tooltip from './../../components/tooltip/Tooltip.vue'
+import Popover from './../../components/popover/Popover.vue'
 import Vue from 'vue'
 
-const INSTANCE = '_uiv_tooltip_instance'
+const INSTANCE = '_uiv_popover_instance'
 
 const bind = (el, binding) => {
   // console.log('bind')
   unbind(el)
-  let Constructor = Vue.extend(Tooltip)
+  let Constructor = Vue.extend(Popover)
   let vm = new Constructor()
   vm.target = el
   let options = []
@@ -22,7 +22,8 @@ const bind = (el, binding) => {
       vm.trigger = option
     }
   })
-  vm.text = binding.value && binding.value.toString()
+  vm.title = binding.value && binding.value.title && binding.value.title.toString()
+  vm.content = binding.value && binding.value.content && binding.value.content.toString()
   vm.$mount()
   el[INSTANCE] = vm
 }

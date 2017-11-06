@@ -28,7 +28,7 @@
                   {name: 'show', value: this.title}
                 ]
               }, this.title),
-              h('div', {'class': 'popover-content'}, [this.$slots.popover])
+              h('div', {'class': 'popover-content'}, [this.content || this.$slots.popover])
             ]
           )
         ]
@@ -44,6 +44,10 @@
         default: 'span'
       },
       title: {
+        type: String,
+        default: ''
+      },
+      content: {
         type: String,
         default: ''
       },

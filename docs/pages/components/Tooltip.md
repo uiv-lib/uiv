@@ -6,18 +6,30 @@ The first element appear in `<tooltip>` node will be the trigger element. You ca
 
 **Note**: Tooltips with zero-length texts are never displayed.
 
-Hover over the button below to toggle tooltips.
+Hover over the button below to toggle tooltips:
 
 ```html
-<tooltip text="Static tooltip content goes here">
-  <button type="button" class="btn btn-primary">Hover me!</button>
-</tooltip>
+<button type="button" class="btn btn-primary" id="btn">Hover me!</button>
+<tooltip text="Static tooltip content goes here" target="#btn"/>
 <!-- tooltip-example.vue -->
 ```
 
+### Trigger Target
+
+Order to decide the popover trigger:
+
+1. Use `target` if exist.
+3. Use the first element present in default slot.
+
+A `target` can be:
+
+* Selector that can be recognized by `querySelect`.
+* Reference to Element.
+* Reference to Component.
+
 ## Directive
 
-You can also simply use tooltips via `v-tooltip` directive.
+You can also simply use tooltips via `v-tooltip` directive:
 
 ```html
 <button v-tooltip="'Static tooltip content goes here'" type="button" class="btn btn-primary">Hover me!</button>

@@ -76,12 +76,13 @@ describe('Popover', () => {
   })
 
   it('should be able to show popover on click', async () => {
+    let _vm = vm.$refs['popover-example']
     await vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
-    vm.$el.querySelectorAll('button')[0].click()
+    _vm.$el.querySelector('button').click()
     await utils.sleep(200)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
-    vm.$el.querySelectorAll('button')[0].click()
+    _vm.$el.querySelector('button').click()
     await utils.sleep(200)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
@@ -98,12 +99,13 @@ describe('Popover', () => {
   })
 
   it('should be able change trigger to hover-focus', async () => {
+    let _vm = vm.$refs['popover-triggers']
     await vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     // matches don't work in here
     let savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
-    let trigger = vm.$el.querySelector('#hover-focus-trigger')
+    let trigger = _vm.$el.querySelectorAll('button')[3]
     trigger.focus()
     await utils.sleep(200)
     Element.prototype.matches = savedMatches
@@ -114,9 +116,10 @@ describe('Popover', () => {
   })
 
   it('should be able to change trigger to click', async () => {
+    let _vm = vm.$refs['popover-triggers']
     await vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
-    let trigger = vm.$el.querySelector('#click-trigger')
+    let trigger = _vm.$el.querySelectorAll('button')[4]
     trigger.click()
     await utils.sleep(200)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
@@ -126,9 +129,10 @@ describe('Popover', () => {
   })
 
   it('should be able to change trigger to hover', async () => {
+    let _vm = vm.$refs['popover-triggers']
     await vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
-    let trigger = vm.$el.querySelector('#hover-trigger')
+    let trigger = _vm.$el.querySelectorAll('button')[1]
     utils.triggerEvent(trigger, 'mouseenter')
     await utils.sleep(200)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
@@ -142,7 +146,8 @@ describe('Popover', () => {
   })
 
   it('should be able to toggle correctly on fast click', async () => {
-    let button = vm.$el.querySelector('#click-trigger')
+    let _vm = vm.$refs['popover-triggers']
+    let button = _vm.$el.querySelectorAll('button')[4]
     await vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     button.click()
@@ -158,7 +163,8 @@ describe('Popover', () => {
   })
 
   it('should be able to change trigger to outside-click', async () => {
-    let button = vm.$el.querySelectorAll('button')[0]
+    let _vm = vm.$refs['popover-triggers']
+    let button = _vm.$el.querySelectorAll('button')[0]
     await vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     button.click()
@@ -170,16 +176,18 @@ describe('Popover', () => {
   })
 
   it('should be able to disable', async () => {
+    let _vm = vm.$refs['popover-disable']
     await vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
-    vm.$el.querySelector('#disabled-trigger').click()
+    _vm.$el.querySelector('button').click()
     await utils.sleep(200)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
   it('should be able to hide title', async () => {
+    let _vm = vm.$refs['popover-with-empty-title']
     await vm.$nextTick()
-    let trigger = vm.$el.querySelector('#empty-title-trigger')
+    let trigger = _vm.$el.querySelector('button')
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     trigger.click()
     await utils.sleep(200)
@@ -191,9 +199,10 @@ describe('Popover', () => {
   })
 
   it('should be able to change placement to top', async () => {
+    let _vm = vm.$refs['popover-placements']
     await vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
-    let trigger = vm.$el.querySelector('#top-trigger')
+    let trigger = _vm.$el.querySelectorAll('button')[1]
     trigger.click()
     await utils.sleep(200)
     let popover = document.querySelector('.popover')
@@ -205,9 +214,10 @@ describe('Popover', () => {
   })
 
   it('should be able to change placement to bottom', async () => {
+    let _vm = vm.$refs['popover-placements']
     await vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
-    let trigger = vm.$el.querySelector('#bottom-trigger')
+    let trigger = _vm.$el.querySelectorAll('button')[2]
     trigger.click()
     await utils.sleep(200)
     let popover = document.querySelector('.popover')
@@ -219,9 +229,10 @@ describe('Popover', () => {
   })
 
   it('should be able to change placement to left', async () => {
+    let _vm = vm.$refs['popover-placements']
     await vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
-    let trigger = vm.$el.querySelector('#left-trigger')
+    let trigger = _vm.$el.querySelectorAll('button')[0]
     trigger.click()
     await utils.sleep(200)
     let popover = document.querySelector('.popover')
@@ -233,9 +244,10 @@ describe('Popover', () => {
   })
 
   it('should be able to change placement to right', async () => {
+    let _vm = vm.$refs['popover-placements']
     await vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
-    let trigger = vm.$el.querySelector('#right-trigger')
+    let trigger = _vm.$el.querySelectorAll('button')[3]
     trigger.click()
     await utils.sleep(200)
     let popover = document.querySelector('.popover')
@@ -247,7 +259,7 @@ describe('Popover', () => {
   })
 
   it('should be able to change trigger in runtime', async () => {
-    let res = Vue.compile('<popover :trigger="trigger"><button data-role="trigger"></button></popover>')
+    let res = Vue.compile('<popover title="123" :trigger="trigger"><button data-role="trigger"></button></popover>')
     let vm = new Vue({
       data () {
         return {
