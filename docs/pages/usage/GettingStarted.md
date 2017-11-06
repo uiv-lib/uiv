@@ -36,6 +36,21 @@ Vue.use(uiv)
 
 That's it. Happy coding!
 
+### No Conflict
+
+All components & directives will be installed with no prefix by default, you can add any prefix to them to avoid conflicts with other libs if needed.
+
+For example:
+
+```javascript
+Vue.use(uiv, {prefix: 'uiv'})
+```
+
+Results in:
+
+* Components such as `<alert>` becomes `<uiv-alert>`
+* Directives such as `v-tooltip` becomes `v-uiv-tooltip`
+
 ## Import Individually
 
 If you don't want all of the components for some reason (e.g. to save the bundle size), you can also import them individually.
