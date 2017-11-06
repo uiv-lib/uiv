@@ -31,7 +31,7 @@ describe('Popover', () => {
   })
 
   it('should be able to show popover on init', async () => {
-    let res = Vue.compile('<popover v-model="show"><button data-role="trigger"></button></popover>')
+    let res = Vue.compile('<popover v-model="show" title="123"><button data-role="trigger"></button></popover>')
     let vm = new Vue({
       data () {
         return {
@@ -49,8 +49,27 @@ describe('Popover', () => {
     vm.$destroy()
   })
 
+  it('should not show popover with no title and content', async () => {
+    let res = Vue.compile('<popover v-model="show"><button data-role="trigger"></button></popover>')
+    let vm = new Vue({
+      data () {
+        return {
+          show: true
+        }
+      },
+      components: {Popover},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    $(vm.$el).remove()
+    $('.popover').remove()
+    vm.$destroy()
+  })
+
   it('should be able to use custom target', async () => {
-    let res = Vue.compile('<div><button ref="btn" type="button">btn</button><popover :target="btn" trigger="focus"></popover></div>')
+    let res = Vue.compile('<div><button ref="btn" type="button">btn</button><popover :target="btn" trigger="focus" title="123"></popover></div>')
     let vm = new Vue({
       data () {
         return {

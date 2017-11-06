@@ -169,23 +169,22 @@
         utils.off(window, utils.events.CLICK, this.windowClicked)
       },
       show () {
-        let popover = this.$refs.popover
-        if (!this.enable || !this.triggerEl || this.isShown()) {
-          return
+        if (this.enable && this.triggerEl && (this.title || this.content || this.$slots.popover) && !this.isShown()) {
+          let popover = this.$refs.popover
+          if (this.timeoutId > 0) {
+            clearTimeout(this.timeoutId)
+            this.timeoutId = 0
+          } else {
+            popover.className = `${BASE_CLASS} ${this.placement}`
+            let container = document.querySelector(this.appendTo)
+            container.appendChild(popover)
+            utils.setTooltipPosition(popover, this.triggerEl, this.placement, this.autoPlacement, this.appendTo)
+            popover.offsetHeight
+          }
+          utils.addClass(popover, SHOW_CLASS)
+          this.$emit('input', true)
+          this.$emit('show')
         }
-        if (this.timeoutId > 0) {
-          clearTimeout(this.timeoutId)
-          this.timeoutId = 0
-        } else {
-          popover.className = `${BASE_CLASS} ${this.placement}`
-          let container = document.querySelector(this.appendTo)
-          container.appendChild(popover)
-          utils.setTooltipPosition(popover, this.triggerEl, this.placement, this.autoPlacement, this.appendTo)
-          popover.offsetHeight
-        }
-        utils.addClass(popover, SHOW_CLASS)
-        this.$emit('input', true)
-        this.$emit('show')
       },
       hide () {
         if (this.isShown()) {

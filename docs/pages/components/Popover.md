@@ -4,11 +4,13 @@
 
 ## Example
 
+**Note**: Popovers whose both title and content are zero-length are never displayed.
+
 Click the button below to toggle popover:
 
 ```html
-<button type="button" class="btn btn-primary" id="popover-trigger">Popover</button>
-<popover title="Title" target="#popover-trigger">
+<button type="button" class="btn btn-primary" id="btn">Popover</button>
+<popover title="Title" target="#btn">
   <div slot="popover">
     <h1>Hello world!</h1>
   </div>
@@ -123,7 +125,7 @@ Set `enable` prop to `false` to disable a popover.
 
 ```html
 <popover title="Title" :enable="false">
-  <button type="button" class="btn btn-primary" id="disabled-trigger">Disabled Popover</button>
+  <button type="button" class="btn btn-primary">Disabled Popover</button>
   <div slot="popover">
     <h1>Hello world!</h1>
   </div>

@@ -1,4 +1,4 @@
-### Browser and uiv version
+### Version & browser
 
 
 ### Which component
@@ -11,6 +11,3 @@
 
 
 ### Actual behavior
-
-
-
