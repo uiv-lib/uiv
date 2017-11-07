@@ -107,6 +107,36 @@ This is a scoped slot, use `slot-scope="props"` in Vue 2.5+, otherwise `scope="p
 <!-- carousel-override-indicators.vue -->
 ```
 
+## Custom icons
+
+```html
+<template>
+  <carousel icon-control-left="glyphicon glyphicon-triangle-left" icon-control-right="glyphicon glyphicon-triangle-right">
+    <slide v-for="(slide, index) in slides" :key="index">
+      <div style="width: 100%;height: 400px;" :style="{background:index % 2 === 0 ? '#99a9bf' : '#d3dce6'}"></div>
+      <div class="carousel-caption">
+        <h3>This is {{slide.title}}</h3>
+      </div>
+    </slide>
+  </carousel>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        slides: [
+          {title: 'Slide 1'},
+          {title: 'Slide 2'},
+          {title: 'Slide 3'},
+          {title: 'Slide 4'}
+        ]
+      }
+    }
+  }
+</script>
+<!-- carousel-icons.vue -->
+```
+
 # API Reference
 
 ## [Carousel.vue](https://github.com/wxsms/uiv/tree/master/src/components/carousel/Carousel.vue)
