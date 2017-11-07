@@ -23,7 +23,7 @@ Use `v-model` to indicate the dropdown status.
     <li><a role="button">Separated link</a></li>
   </template>
 </dropdown>
-<dropdown class="btn-group">
+<dropdown>
   <btn type="info">Split Button</btn>
   <btn type="info" class="dropdown-toggle"><span class="caret"></span></btn>
   <template slot="dropdown">

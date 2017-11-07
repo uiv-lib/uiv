@@ -9,13 +9,10 @@
         this.tag,
         {
           class: {
+            'btn-group': this.tag === DEFAULT_TAG,
             dropdown: !this.dropup,
             dropup: this.dropup,
             open: this.show
-          },
-          style: {
-            'display': this.tag === DEFAULT_TAG ? 'inline-block' : null,
-            'vertical-align': this.tag === DEFAULT_TAG ? 'middle' : null
           }
         },
         [
