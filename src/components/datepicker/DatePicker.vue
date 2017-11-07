@@ -27,12 +27,8 @@
     <div v-if="todayBtn||clearBtn">
       <br/>
       <div class="text-center">
-        <button type="button" data-action="select" class="btn btn-info btn-sm" v-if="todayBtn" @click="selectToday">
-          {{t('uiv.datePicker.today')}}
-        </button>
-        <button type="button" data-action="select" class="btn btn-default btn-sm" v-if="clearBtn" @click="clearSelect">
-          {{t('uiv.datePicker.clear')}}
-        </button>
+        <btn data-action="select" type="info" size="sm" v-if="todayBtn" @click="selectToday">{{t('uiv.datePicker.today')}}</btn>
+        <btn data-action="select" size="sm" v-if="clearBtn" @click="clearSelect">{{t('uiv.datePicker.clear')}}</btn>
       </div>
     </div>
   </div>
@@ -43,45 +39,46 @@
   import DateView from './DateView.vue'
   import MonthView from './MonthView.vue'
   import YearView from './YearView.vue'
+  import Btn from './../button/Btn.vue'
   import dateUtils from '../../utils/dateUtils'
 
   export default {
     mixins: [Locale],
-    components: {DateView, MonthView, YearView},
+    components: {DateView, MonthView, YearView, Btn},
     props: {
       value: {},
       width: {
-        'default': 270
+        default: 270
       },
       todayBtn: {
         type: Boolean,
-        'default': true
+        default: true
       },
       clearBtn: {
         type: Boolean,
-        'default': true
+        default: true
       },
       closeOnSelected: {
         type: Boolean,
-        'default': true
+        default: true
       },
       limitFrom: {},
       limitTo: {},
       format: {
         type: String,
-        'default': 'yyyy-MM-dd'
+        default: 'yyyy-MM-dd'
       },
       initialView: {
         type: String,
-        'default': 'd'
+        default: 'd'
       },
       dateParser: {
         type: Function,
-        'default': Date.parse
+        default: Date.parse
       },
       weekStartsWith: {
         type: Number,
-        'default': 0,
+        default: 0,
         validator (value) {
           return value >= 0 && value <= 6
         }

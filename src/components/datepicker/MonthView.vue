@@ -3,30 +3,33 @@
     <thead>
     <tr>
       <td>
-        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none" @click="goPrevYear">
+        <btn block size="sm" style="border: none" @click="goPrevYear">
           <i class="glyphicon glyphicon-chevron-left"></i>
-        </button>
+        </btn>
       </td>
       <td colspan="4">
-        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none" @click="changeView()">
+        <btn block size="sm" style="border: none" @click="changeView()">
           <b>{{year}}</b>
-        </button>
+        </btn>
       </td>
       <td>
-        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none" @click="goNextYear">
+        <btn block size="sm" style="border: none" @click="goNextYear">
           <i class="glyphicon glyphicon-chevron-right"></i>
-        </button>
+        </btn>
       </td>
     </tr>
     </thead>
     <tbody>
-    <tr v-for="(row,i) in rows">
-      <td colspan="2" v-for="(month,j) in row" width="33.333333%">
-        <button type="button" class="btn btn-sm btn-block" style="border: none"
-                :class="getBtnClass(i*3+j)"
-                @click="changeView(i*3+j)">
-          <span>{{ tCell(month) }}</span>
-        </button>
+    <tr v-for="(row, i) in rows">
+      <td colspan="2" v-for="(month, j) in row" width="33.333333%">
+        <btn
+          block
+          size="sm"
+          style="border: none"
+          :type="getBtnClass(i*3+j)"
+          @click="changeView(i*3+j)">
+          <span>{{tCell(month)}}</span>
+        </btn>
       </td>
     </tr>
     </tbody>
@@ -35,8 +38,10 @@
 
 <script>
   import Locale from '../../mixins/locale'
+  import Btn from './../button/Btn.vue'
 
   export default {
+    components: {Btn},
     mixins: [Locale],
     props: ['month', 'year'],
     data () {
@@ -58,9 +63,9 @@
       },
       getBtnClass (month) {
         if (month === this.month) {
-          return {'btn-primary': true}
+          return 'primary'
         } else {
-          return {'btn-default': true}
+          return 'default'
         }
       },
       goPrevYear () {

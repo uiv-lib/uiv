@@ -3,19 +3,19 @@
     <thead>
     <tr>
       <td>
-        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none" @click="goPrevMonth">
+        <btn block size="sm" style="border: none" @click="goPrevMonth">
           <i class="glyphicon glyphicon-chevron-left"></i>
-        </button>
+        </btn>
       </td>
       <td colspan="5">
-        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none" @click="changeView">
+        <btn block size="sm" style="border: none" @click="changeView">
           <b>{{yearMonthStr}}</b>
-        </button>
+        </btn>
       </td>
       <td>
-        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none" @click="goNextMonth">
+        <btn block size="sm" style="border: none" @click="goNextMonth">
           <i class="glyphicon glyphicon-chevron-right"></i>
-        </button>
+        </btn>
       </td>
     </tr>
     <tr align="center">
@@ -27,15 +27,16 @@
     <tbody>
     <tr v-for="row in monthDayRows">
       <td v-for="date in row">
-        <button type="button"
-                class="btn btn-sm btn-block"
-                style="border: none"
-                data-action="select"
-                :class="getBtnClass(date)"
-                :disabled="date.disabled"
-                @click="select(date)">
+        <btn
+          block
+          size="sm"
+          style="border: none"
+          data-action="select"
+          :type="getBtnClass(date)"
+          :disabled="date.disabled"
+          @click="select(date)">
           <span data-action="select" :class="{'text-muted':month!==date.month}">{{date.date}}</span>
-        </button>
+        </btn>
       </td>
     </tr>
     </tbody>
@@ -45,10 +46,12 @@
 <script>
   import Locale from '../../mixins/locale'
   import util from '../../utils/dateUtils'
+  import Btn from './../button/Btn.vue'
 
   export default {
     mixins: [Locale],
     props: ['month', 'year', 'date', 'today', 'limit', 'weekStartsWith'],
+    components: {Btn},
     computed: {
       weekDays () {
         let days = []
@@ -130,13 +133,13 @@
           date.date === this.date.getDate() &&
           date.month === this.date.getMonth() &&
           date.year === this.date.getFullYear()) {
-          return {'btn-primary': true}
+          return 'primary'
         } else if (date.date === this.today.getDate() &&
           date.month === this.today.getMonth() &&
           date.year === this.today.getFullYear()) {
-          return {'btn-info': true}
+          return 'info'
         } else {
-          return {'btn-default': true}
+          return 'default'
         }
       },
       select (date) {

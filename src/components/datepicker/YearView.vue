@@ -3,31 +3,33 @@
     <thead>
     <tr>
       <td>
-        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none" @click="goPrevYear">
+        <btn block size="sm" style="border: none" @click="goPrevYear">
           <i class="glyphicon glyphicon-chevron-left"></i>
-        </button>
+        </btn>
       </td>
       <td colspan="3">
-        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none">
+        <btn block size="sm" style="border: none">
           <b>{{yearStr}}</b>
-        </button>
+        </btn>
       </td>
       <td>
-        <button type="button" class="btn btn-default btn-sm btn-block" style="border: none" @click="goNextYear">
+        <btn block size="sm" style="border: none" @click="goNextYear">
           <i class="glyphicon glyphicon-chevron-right"></i>
-        </button>
+        </btn>
       </td>
     </tr>
     </thead>
     <tbody>
     <tr v-for="row in rows">
       <td v-for="year in row" width="20%">
-        <button type="button"
-                class="btn btn-default btn-sm btn-block" style="border: none"
-                :class="getBtnClass(year)"
-                @click="changeView(year)">
+        <btn
+          block
+          size="sm"
+          style="border: none"
+          :type="getBtnClass(year)"
+          @click="changeView(year)">
           <span>{{year}}</span>
-        </button>
+        </btn>
       </td>
     </tr>
     </tbody>
@@ -35,7 +37,10 @@
 </template>
 
 <script>
+  import Btn from './../button/Btn.vue'
+
   export default {
+    components: {Btn},
     props: ['year'],
     computed: {
       rows () {
@@ -57,9 +62,9 @@
     methods: {
       getBtnClass (year) {
         if (year === this.year) {
-          return {'btn-primary': true}
+          return 'primary'
         } else {
-          return {'btn-default': true}
+          return 'default'
         }
       },
       goPrevYear () {
