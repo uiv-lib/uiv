@@ -24,12 +24,12 @@
           </div>
           <div class="modal-footer" v-if="footer">
             <slot name="footer">
-              <button type="button" class="btn btn-default" @click="toggle(false,'cancel')">
+              <btn @click="toggle(false,'cancel')">
                 <span>{{cancelText || t('uiv.modal.cancel')}}</span>
-              </button>
-              <button type="button" class="btn btn-primary" @click="toggle(false,'ok')" data-action="auto-focus">
+              </btn>
+              <btn type="primary" @click="toggle(false,'ok')" data-action="auto-focus">
                 <span>{{okText || t('uiv.modal.ok')}}</span>
-              </button>
+              </btn>
             </slot>
           </div>
         </div>
@@ -41,16 +41,18 @@
 <script>
   import Local from './../../mixins/locale'
   import utils from './../../utils/domUtils'
+  import Btn from './../button/Btn.vue'
 
   const MODAL_OPEN = 'modal-open'
   const IN = 'in'
 
   export default {
     mixins: [Local],
+    components: {Btn},
     props: {
       value: {
         type: Boolean,
-        'default': false
+        default: false
       },
       title: {
         type: String
@@ -60,15 +62,15 @@
       },
       backdrop: {
         type: Boolean,
-        'default': true
+        default: true
       },
       footer: {
         type: Boolean,
-        'default': true
+        default: true
       },
       header: {
         type: Boolean,
-        'default': true
+        default: true
       },
       cancelText: {
         type: String
@@ -78,15 +80,15 @@
       },
       transitionDuration: {
         type: Number,
-        'default': 150
+        default: 150
       },
       autoFocus: {
         type: Boolean,
-        'default': false
+        default: false
       },
       keyboard: {
         type: Boolean,
-        'default': true
+        default: true
       }
     },
     data () {

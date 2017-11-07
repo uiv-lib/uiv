@@ -4,15 +4,15 @@
       <tbody>
       <tr class="text-center">
         <td>
-          <button class="btn btn-link btn-sm" type="button" @click="changeTime(1,1)" :disabled="readonly">
+          <btn type="link" size="sm" @click="changeTime(1,1)" :disabled="readonly">
             <i class="glyphicon glyphicon-chevron-up"></i>
-          </button>
+          </btn>
         </td>
         <td>&nbsp;</td>
         <td>
-          <button class="btn btn-link btn-sm" type="button" @click="changeTime(0,1)" :disabled="readonly">
+          <btn type="link" size="sm" @click="changeTime(0,1)" :disabled="readonly">
             <i class="glyphicon glyphicon-chevron-up"></i>
-          </button>
+          </btn>
         </td>
         <td v-if="showMeridian">
         </td>
@@ -39,22 +39,24 @@
         </td>
         <td v-if="showMeridian">
           &nbsp;
-          <button type="button" class="btn btn-default" data-action="toggleMeridian" :disabled="readonly"
-                  v-text="meridian?t('uiv.timePicker.am'):t('uiv.timePicker.pm')"
-                  @click="toggleMeridian"></button>
+          <btn
+            data-action="toggleMeridian"
+            :disabled="readonly"
+            v-text="meridian?t('uiv.timePicker.am'):t('uiv.timePicker.pm')"
+            @click="toggleMeridian"></btn>
         </td>
       </tr>
       <tr class="text-center">
         <td>
-          <button class="btn btn-link btn-sm" type="button" @click="changeTime(1,0)" :disabled="readonly">
+          <btn type="link" size="sm" @click="changeTime(1,0)" :disabled="readonly">
             <i class="glyphicon glyphicon-chevron-down"></i>
-          </button>
+          </btn>
         </td>
         <td>&nbsp;</td>
         <td>
-          <button class="btn btn-link btn-sm" type="button" @click="changeTime(0,0)" :disabled="readonly">
+          <btn type="link" size="sm" @click="changeTime(0,0)" :disabled="readonly">
             <i class="glyphicon glyphicon-chevron-down"></i>
-          </button>
+          </btn>
         </td>
         <td v-if="showMeridian">
         </td>
@@ -67,6 +69,7 @@
 <script>
   import Local from './../../mixins/locale'
   import utils from './../../utils/stringUtils'
+  import Btn from './../button/Btn.vue'
 
   const maxHours = 23
   const zero = 0
@@ -74,6 +77,7 @@
   const cutUpAmAndPm = 12
 
   export default {
+    components: {Btn},
     mixins: [Local],
     props: {
       value: {
@@ -82,7 +86,7 @@
       },
       showMeridian: {
         type: Boolean,
-        'default': true
+        default: true
       },
       min: {
         type: Date
@@ -92,15 +96,15 @@
       },
       hourStep: {
         type: Number,
-        'default': 1
+        default: 1
       },
       minStep: {
         type: Number,
-        'default': 1
+        default: 1
       },
       readonly: {
         type: Boolean,
-        'default': false
+        default: false
       }
     },
     data () {
