@@ -7,6 +7,8 @@
                :today="now"
                :limit="limit"
                :week-starts-with="weekStartsWith"
+               :icon-control-left="iconControlLeft"
+               :icon-control-right="iconControlRight"
                @month-change="onMonthChange"
                @year-change="onYearChange"
                @date-change="onDateChange"
@@ -15,12 +17,16 @@
     <month-view v-show="view==='m'"
                 :month="currentMonth"
                 :year="currentYear"
+                :icon-control-left="iconControlLeft"
+                :icon-control-right="iconControlRight"
                 @month-change="onMonthChange"
                 @year-change="onYearChange"
                 @view-change="onViewChange">
     </month-view>
     <year-view v-show="view==='y'"
                :year="currentYear"
+               :icon-control-left="iconControlLeft"
+               :icon-control-right="iconControlRight"
                @year-change="onYearChange"
                @view-change="onViewChange">
     </year-view>
@@ -82,6 +88,14 @@
         validator (value) {
           return value >= 0 && value <= 6
         }
+      },
+      iconControlLeft: {
+        type: String,
+        default: 'glyphicon glyphicon-chevron-left'
+      },
+      iconControlRight: {
+        type: String,
+        default: 'glyphicon glyphicon-chevron-right'
       }
     },
     data () {

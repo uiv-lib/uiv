@@ -4,7 +4,7 @@
     <tr>
       <td>
         <btn block size="sm" style="border: none" @click="goPrevYear">
-          <i class="glyphicon glyphicon-chevron-left"></i>
+          <i :class="iconControlLeft"></i>
         </btn>
       </td>
       <td colspan="4">
@@ -14,7 +14,7 @@
       </td>
       <td>
         <btn block size="sm" style="border: none" @click="goNextYear">
-          <i class="glyphicon glyphicon-chevron-right"></i>
+          <i :class="iconControlRight"></i>
         </btn>
       </td>
     </tr>
@@ -43,7 +43,20 @@
   export default {
     components: {Btn},
     mixins: [Locale],
-    props: ['month', 'year'],
+    props: {
+      month: {
+      },
+      year: {
+      },
+      iconControlLeft: {
+        type: String,
+        default: 'glyphicon glyphicon-chevron-left'
+      },
+      iconControlRight: {
+        type: String,
+        default: 'glyphicon glyphicon-chevron-right'
+      }
+    },
     data () {
       return {
         rows: []

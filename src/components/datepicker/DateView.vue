@@ -4,7 +4,7 @@
     <tr>
       <td>
         <btn block size="sm" style="border: none" @click="goPrevMonth">
-          <i class="glyphicon glyphicon-chevron-left"></i>
+          <i :class="iconControlLeft"></i>
         </btn>
       </td>
       <td colspan="5">
@@ -14,7 +14,7 @@
       </td>
       <td>
         <btn block size="sm" style="border: none" @click="goNextMonth">
-          <i class="glyphicon glyphicon-chevron-right"></i>
+          <i :class="iconControlRight"></i>
         </btn>
       </td>
     </tr>
@@ -50,7 +50,28 @@
 
   export default {
     mixins: [Locale],
-    props: ['month', 'year', 'date', 'today', 'limit', 'weekStartsWith'],
+    props: {
+      month: {
+      },
+      year: {
+      },
+      date: {
+      },
+      today: {
+      },
+      limit: {
+      },
+      weekStartsWith: {
+      },
+      iconControlLeft: {
+        type: String,
+        default: 'glyphicon glyphicon-chevron-left'
+      },
+      iconControlRight: {
+        type: String,
+        default: 'glyphicon glyphicon-chevron-right'
+      }
+    },
     components: {Btn},
     computed: {
       weekDays () {

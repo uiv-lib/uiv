@@ -5,13 +5,13 @@
       <tr class="text-center">
         <td>
           <btn type="link" size="sm" @click="changeTime(1,1)" :disabled="readonly">
-            <i class="glyphicon glyphicon-chevron-up"></i>
+            <i :class="iconControlUp"></i>
           </btn>
         </td>
         <td>&nbsp;</td>
         <td>
           <btn type="link" size="sm" @click="changeTime(0,1)" :disabled="readonly">
-            <i class="glyphicon glyphicon-chevron-up"></i>
+            <i :class="iconControlUp"></i>
           </btn>
         </td>
         <td v-if="showMeridian">
@@ -49,13 +49,13 @@
       <tr class="text-center">
         <td>
           <btn type="link" size="sm" @click="changeTime(1,0)" :disabled="readonly">
-            <i class="glyphicon glyphicon-chevron-down"></i>
+            <i :class="iconControlDown"></i>
           </btn>
         </td>
         <td>&nbsp;</td>
         <td>
           <btn type="link" size="sm" @click="changeTime(0,0)" :disabled="readonly">
-            <i class="glyphicon glyphicon-chevron-down"></i>
+            <i :class="iconControlDown"></i>
           </btn>
         </td>
         <td v-if="showMeridian">
@@ -105,6 +105,14 @@
       readonly: {
         type: Boolean,
         default: false
+      },
+      iconControlUp: {
+        type: String,
+        'default': 'glyphicon glyphicon-chevron-up'
+      },
+      iconControlDown: {
+        type: String,
+        'default': 'glyphicon glyphicon-chevron-down'
       }
     },
     data () {
