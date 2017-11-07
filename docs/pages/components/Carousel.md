@@ -17,9 +17,9 @@
     </carousel>
     <br/>
     <form class="form-inline">
-      <button type="button" class="btn btn-default" @click="indicators=!indicators">Toggle Indicators</button>
-      <button type="button" class="btn btn-default" @click="controls=!controls">Toggle Controls</button>
-      <button type="button" class="btn btn-default" @click="pushSlide">Push Slide</button>
+      <btn @click="indicators=!indicators">Toggle Indicators</btn>
+      <btn @click="controls=!controls">Toggle Controls</btn>
+      <btn @click="pushSlide">Push Slide</btn>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon">Interval</span>

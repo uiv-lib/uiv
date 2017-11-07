@@ -99,7 +99,7 @@ All input methods are all disabled in readonly mode.
       <div class="input-group">
         <input class="form-control" type="text" :value="this.time.toTimeString()" readonly="readonly">
         <div class="input-group-btn">
-          <button class="btn btn-default dropdown-toggle" type="button"><i class="glyphicon glyphicon-time"></i></button>
+          <btn class="dropdown-toggle"><i class="glyphicon glyphicon-time"></i></btn>
         </div>
       </div>
       <template slot="dropdown">

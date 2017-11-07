@@ -28,7 +28,7 @@ Use `dismissible` to allow user to dismiss alerts.
       <b>Heads up!</b> This alert needs your attention, but it's not super important.
     </alert>
     <hr/>
-    <button type="button" class="btn btn-primary" @click="addDismissibleAlert()">Add Dismissible Alert</button>
+    <btn type="primary" @click="addDismissibleAlert()">Add Dismissible Alert</btn>
   </section>
 </template>
 <script>
@@ -60,7 +60,7 @@ Use `duration` in milliseconds to auto dismiss alert. It can be used together wi
       This alert <b>will dismiss after {{duration}}ms</b>.
     </alert>
     <hr/>
-    <button type="button" class="btn btn-primary" @click="addAutoDismissAlert()">Add Auto Dismiss Alert</button>
+    <btn type="primary" @click="addAutoDismissAlert()">Add Auto Dismiss Alert</btn>
   </section>
 </template>
 <script>
@@ -86,7 +86,7 @@ Use `duration` in milliseconds to auto dismiss alert. It can be used together wi
 ```html
 <template>
   <section>
-    <button type="button" class="btn btn-primary" @click="show = !show">Toggle Collapsing Alert</button>
+    <btn type="primary" @click="show = !show">Toggle Collapsing Alert</btn>
     <hr/>
     <collapse v-model="show">
       <alert type="warning" :dismissible="true" @dismissed="show = false">This alert <b>will collapse on open / close</b>.</alert>

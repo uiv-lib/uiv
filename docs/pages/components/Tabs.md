@@ -132,7 +132,7 @@ Add `justified` to `<tabs>` to use justified style.
       <option>option3</option>
       <option>option4</option>
     </select>
-    <button type="button" class="btn btn-success">Button</button>
+    <btn type="success">Button</btn>
   </form>
 </tabs>
 <!-- tabs-with-nav-right-slot.vue -->

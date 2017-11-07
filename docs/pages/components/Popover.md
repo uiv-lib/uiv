@@ -9,7 +9,7 @@
 Click the button below to toggle popover:
 
 ```html
-<button type="button" class="btn btn-primary" id="btn">Popover</button>
+<btn type="primary" id="btn">Popover</btn>
 <popover title="Title" target="#btn">
   <div slot="popover">
     <h1>Hello world!</h1>
@@ -37,7 +37,7 @@ A `target` can be:
 You can also simply use popovers via `v-popover` directive:
 
 ```html
-<button v-popover="{title:'Title', content:'Popover content'}" type="button" class="btn btn-primary">Popover</button>
+<btn v-popover="{title:'Title', content:'Popover content'}" type="primary">Popover</btn>
 <!-- popover-directive.vue -->
 ```
 
@@ -46,7 +46,7 @@ You can also simply use popovers via `v-popover` directive:
 If you don't want the title of popover, just leave the `title` prop unset or blank.
 
 ```html
-<button v-popover="{content:'Popover without a title'}" type="button" class="btn btn-primary">Popover</button>
+<btn v-popover="{content:'Popover without a title'}" type="primary">Popover</btn>
 <!-- popover-with-empty-title.vue -->
 ```
 
@@ -60,10 +60,10 @@ Supported placements:
 * **left**
 
 ```html
-<button v-popover.left="{title:'Title', content:'Popover on left'}" type="button" class="btn btn-primary">Left</button>
-<button v-popover.top="{title:'Title', content:'Popover on top'}" type="button" class="btn btn-primary">Top</button>
-<button v-popover.bottom="{title:'Title', content:'Popover on bottom'}" type="button" class="btn btn-primary">Bottom</button>
-<button v-popover.right="{title:'Title', content:'Popover on right'}" type="button" class="btn btn-primary">Right</button>
+<btn v-popover.left="{title:'Title', content:'Popover on left'}" type="primary">Left</btn>
+<btn v-popover.top="{title:'Title', content:'Popover on top'}" type="primary">Top</btn>
+<btn v-popover.bottom="{title:'Title', content:'Popover on bottom'}" type="primary">Bottom</btn>
+<btn v-popover.right="{title:'Title', content:'Popover on right'}" type="primary">Right</btn>
 <!-- popover-placements.vue -->
 ```
 
@@ -84,11 +84,11 @@ Supported triggers:
 * `outside-click` (Default) same as click, but not close on popover click and close on outside click.
 
 ```html
-<button v-popover="{title:'Title', content:'Popover content'}" type="button" class="btn btn-primary">Outside-Click (Default)</button>
-<button v-popover.hover="{title:'Title', content:'Popover content'}" type="button" class="btn btn-primary">Hover</button>
-<button v-popover.focus="{title:'Title', content:'Popover content'}" type="button" class="btn btn-primary">Focus</button>
-<button v-popover.hover-focus="{title:'Title', content:'Popover content'}" type="button" class="btn btn-primary">Hover-Focus</button>
-<button v-popover.click="{title:'Title', content:'Popover content'}" type="button" class="btn btn-primary">Click</button>
+<btn v-popover="{title:'Title', content:'Popover content'}" type="primary">Outside-Click (Default)</btn>
+<btn v-popover.hover="{title:'Title', content:'Popover content'}" type="primary">Hover</btn>
+<btn v-popover.focus="{title:'Title', content:'Popover content'}" type="primary">Focus</btn>
+<btn v-popover.hover-focus="{title:'Title', content:'Popover content'}" type="primary">Hover-Focus</btn>
+<btn v-popover.click="{title:'Title', content:'Popover content'}" type="primary">Click</btn>
 <!-- popover-triggers.vue -->
 ```
 
@@ -99,13 +99,13 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
 ```html
 <template>
   <popover title="Title" trigger="manual" v-model="show">
-    <button type="button" class="btn btn-default">You Can't Trigger Popover Here...</button>
+    <btn>You Can't Trigger Popover Here...</btn>
     <div slot="popover">
       <p>Popover content</p>
     </div>
   </popover>
   <hr/>
-  <button type="button" class="btn btn-primary" @click="show = !show">Toggle Popover</button>
+  <btn type="primary" @click="show = !show">Toggle Popover</btn>
 </template>
 <script>
   export default {
@@ -125,7 +125,7 @@ Set `enable` prop to `false` to disable a popover.
 
 ```html
 <popover title="Title" :enable="false">
-  <button type="button" class="btn btn-primary">Disabled Popover</button>
+  <btn type="primary">Disabled Popover</btn>
   <div slot="popover">
     <h1>Hello world!</h1>
   </div>

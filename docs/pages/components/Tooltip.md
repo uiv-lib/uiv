@@ -9,7 +9,7 @@ The first element appear in `<tooltip>` node will be the trigger element. You ca
 Hover over the button below to toggle tooltips:
 
 ```html
-<button type="button" class="btn btn-primary" id="btn">Hover me!</button>
+<btn type="primary" id="btn">Hover me!</btn>
 <tooltip text="Static tooltip content goes here" target="#btn"/>
 <!-- tooltip-example.vue -->
 ```
@@ -32,7 +32,7 @@ A `target` can be:
 You can also simply use tooltips via `v-tooltip` directive:
 
 ```html
-<button v-tooltip="'Static tooltip content goes here'" type="button" class="btn btn-primary">Hover me!</button>
+<btn v-tooltip="'Static tooltip content goes here'" type="primary">Hover me!</btn>
 <!-- tooltip-directive.vue -->
 ```
 
@@ -46,10 +46,10 @@ Supported placements:
 * **left**
 
 ```html
-<button v-tooltip.left="'Tooltip content on left'" type="button" class="btn btn-primary">Left</button>
-<button v-tooltip.top="'Tooltip content on top'" type="button" class="btn btn-primary">Top</button>
-<button v-tooltip.bottom="'Tooltip content on bottom'" type="button" class="btn btn-primary">Bottom</button>
-<button v-tooltip.right="'Tooltip content on right'" type="button" class="btn btn-primary">Right</button>
+<btn v-tooltip.left="'Tooltip content on left'" type="primary">Left</btn>
+<btn v-tooltip.top="'Tooltip content on top'" type="primary">Top</btn>
+<btn v-tooltip.bottom="'Tooltip content on bottom'" type="primary">Bottom</btn>
+<btn v-tooltip.right="'Tooltip content on right'" type="primary">Right</btn>
 <!-- tooltip-placements.vue -->
 ```
 
@@ -70,11 +70,11 @@ Supported triggers:
 * `outside-click` same as click, but not close on tooltip click and close on outside click.
 
 ```html
-<button v-tooltip="'Static tooltip content'" type="button" class="btn btn-primary">Hover-Focus (Default)</button>
-<button v-tooltip.hover="'Static tooltip content'" type="button" class="btn btn-primary">Hover</button>
-<button v-tooltip.focus="'Static tooltip content'" type="button" class="btn btn-primary">Focus</button>
-<button v-tooltip.click="'Static tooltip content'" type="button" class="btn btn-primary">Click</button>
-<button v-tooltip.outside-click="'Static tooltip content'" type="button" class="btn btn-primary">Outside-Click</button>
+<btn v-tooltip="'Static tooltip content'" type="primary">Hover-Focus (Default)</btn>
+<btn v-tooltip.hover="'Static tooltip content'" type="primary">Hover</btn>
+<btn v-tooltip.focus="'Static tooltip content'" type="primary">Focus</btn>
+<btn v-tooltip.click="'Static tooltip content'" type="primary">Click</btn>
+<btn v-tooltip.outside-click="'Static tooltip content'" type="primary">Outside-Click</btn>
 <!-- tooltip-triggers.vue -->
 ```
 
@@ -86,10 +86,10 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
 <template>
   <section>
     <tooltip text="Static tooltip content goes here" trigger="manual" v-model="show">
-      <button type="button" class="btn btn-default">You Can't Trigger Tooltip Here...</button>
+      <btn>You Can't Trigger Tooltip Here...</btn>
     </tooltip>
     <hr/>
-    <button type="button" class="btn btn-primary" @click="show = !show">Toggle Tooltip</button>
+    <btn type="primary" @click="show = !show">Toggle Tooltip</btn>
   </section>
 </template>
 <script>
@@ -110,7 +110,7 @@ Set `enable` prop to `false` to disable a tooltip.
 
 ```html
 <tooltip text="Static tooltip content goes here" :enable="false">
-  <button type="button" class="btn btn-primary">Disabled Tooltip</button>
+  <btn type="primary">Disabled Tooltip</btn>
 </tooltip>
 <!-- tooltip-disable.vue -->
 ```

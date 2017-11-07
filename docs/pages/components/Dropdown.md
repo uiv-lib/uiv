@@ -14,7 +14,7 @@ Use `v-model` to indicate the dropdown status.
 
 ```html
 <dropdown ref="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button">Dropdown <span class="caret"></span></button>
+  <btn type="primary" class="dropdown-toggle">Dropdown <span class="caret"></span></btn>
   <template slot="dropdown">
     <li><a role="button">Action</a></li>
     <li><a role="button">Another action</a></li>
@@ -24,8 +24,8 @@ Use `v-model` to indicate the dropdown status.
   </template>
 </dropdown>
 <dropdown class="btn-group">
-  <button type="button" class="btn btn-info">Split Button</button>
-  <button type="button" class="btn btn-info dropdown-toggle"><span class="caret"></span></button>
+  <btn type="info">Split Button</btn>
+  <btn type="info" class="dropdown-toggle"><span class="caret"></span></btn>
   <template slot="dropdown">
     <li><a role="button">Action</a></li>
     <li><a role="button">Another action</a></li>
@@ -43,7 +43,7 @@ By default, a dropdown menu is automatically positioned 100% from the top and al
 
 ```html
 <dropdown menu-right>
-  <button class="btn btn-default dropdown-toggle" type="button">Menu-Right <span class="caret"></span></button>
+  <btn class="dropdown-toggle">Menu-Right <span class="caret"></span></btn>
   <template slot="dropdown">
     <li><a role="button">Action</a></li>
     <li><a role="button">Another action</a></li>
@@ -61,7 +61,7 @@ Dropdown menus can be changed to expand upwards (instead of downwards) by adding
 
 ```html
 <dropdown dropup>
-  <button class="btn btn-default dropdown-toggle" type="button">Dropup <span class="caret"></span></button>
+  <btn class="dropdown-toggle">Dropup <span class="caret"></span></btn>
   <template slot="dropdown">
     <li><a role="button">Action</a></li>
     <li><a role="button">Another action</a></li>
@@ -80,7 +80,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
 ```html
 <!-- dropdown with append-to-body -->
 <dropdown append-to-body>
-  <button class="btn btn-default dropdown-toggle" type="button">Dropdown <span class="caret"></span></button>
+  <btn class="dropdown-toggle">Dropdown <span class="caret"></span></btn>
   <template slot="dropdown">
     <li><a role="button">Action</a></li>
     <li><a role="button">Another action</a></li>
@@ -91,7 +91,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
 </dropdown>
 <!-- dropdown with append-to-body + menu-right -->
 <dropdown append-to-body menu-right>
-  <button class="btn btn-default dropdown-toggle" type="button">Menu-Right <span class="caret"></span></button>
+  <btn class="dropdown-toggle">Menu-Right <span class="caret"></span></btn>
   <template slot="dropdown">
     <li><a role="button">Action</a></li>
     <li><a role="button">Another action</a></li>
@@ -102,7 +102,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
 </dropdown>
 <!-- dropdown with append-to-body + dropup -->
 <dropdown append-to-body dropup>
-  <button class="btn btn-default dropdown-toggle" type="button">Dropup <span class="caret"></span></button>
+  <btn class="dropdown-toggle">Dropup <span class="caret"></span></btn>
   <template slot="dropdown">
     <li><a role="button">Action</a></li>
     <li><a role="button">Another action</a></li>

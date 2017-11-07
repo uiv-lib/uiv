@@ -10,7 +10,7 @@ Click the button below to show and hide another element.
 <template>
   <section>
     <div>
-      <button type="button" class="btn btn-primary" @click="show=!show">Click me!</button>
+      <btn type="primary" @click="show=!show">Click me!</btn>
     </div>
     <br/>
     <collapse v-model="show">
@@ -122,7 +122,7 @@ Extend the default collapse behavior to create an accordion with the panel compo
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Search">
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
+          <btn native-type="submit">Submit</btn>
         </form>
         <ul class="nav navbar-nav navbar-right">
           <li><a role="button">Link</a></li>
