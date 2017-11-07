@@ -81,10 +81,10 @@ Add `disabled` to make buttons unclickable.
 
 ```html
 <h4>Buttons</h4>
-<btn disabled type="primary" @click="alert(1)">Primary button</btn>
+<btn disabled type="primary">Primary button</btn>
 <btn disabled>Button</btn>
 <h4>Links</h4>
-<btn disabled href="#" type="primary" @click="alert(1)">Primary button</btn>
+<btn disabled href="#" type="primary">Primary button</btn>
 <btn disabled to="/">Button</btn>
 <!-- btn-disabled.vue -->
 ```

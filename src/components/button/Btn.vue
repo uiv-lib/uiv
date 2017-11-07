@@ -29,7 +29,7 @@
   </button>
 </template>
 
-<script type="text/jsx">
+<script>
   export default {
     props: {
       type: {
@@ -94,6 +94,7 @@
       onClick (event) {
         if (this.disabled) {
           event.preventDefault()
+          event.stopPropagation()
         } else {
           this.$emit('click')
         }

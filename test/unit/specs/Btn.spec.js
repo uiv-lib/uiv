@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import $ from 'jquery'
+import utils from './../utils'
 import BtnDoc from '@docs/pages/components/Btn.md'
+import Btn from '@src/components/button/Btn.vue'
 
 describe('Btn', () => {
   let vm
@@ -79,5 +81,77 @@ describe('Btn', () => {
     expect(_$el.find('.btn').length).to.equal(4)
     expect(_$el.find('.btn[disabled]').length).to.equal(2)
     expect(_$el.find('.btn.disabled').length).to.equal(2)
+  })
+
+  it('should emit click event', async () => {
+    let res = Vue.compile('<btn @click="onClick">{{ msg }}</btn>')
+    let vm = new Vue({
+      data () {
+        return {
+          msg: 'test'
+        }
+      },
+      methods: {
+        onClick () {
+          this.msg = 'clicked'
+        }
+      },
+      components: {Btn},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    expect(vm.msg).to.equal('test')
+    utils.triggerEvent(vm.$el, 'click')
+    await vm.$nextTick()
+    expect(vm.msg).to.equal('clicked')
+  })
+
+  it('should not emit click event while disabled', async () => {
+    let res = Vue.compile('<btn disabled @click="onClick">{{ msg }}</btn>')
+    let vm = new Vue({
+      data () {
+        return {
+          msg: 'test'
+        }
+      },
+      methods: {
+        onClick () {
+          this.msg = 'clicked'
+        }
+      },
+      components: {Btn},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    expect(vm.msg).to.equal('test')
+    utils.triggerEvent(vm.$el, 'click')
+    await vm.$nextTick()
+    expect(vm.msg).to.equal('test')
+  })
+
+  it('should not emit click event while disabled & is link', async () => {
+    let res = Vue.compile('<btn href="#" disabled @click="onClick">{{ msg }}</btn>')
+    let vm = new Vue({
+      data () {
+        return {
+          msg: 'test'
+        }
+      },
+      methods: {
+        onClick () {
+          this.msg = 'clicked'
+        }
+      },
+      components: {Btn},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    expect(vm.msg).to.equal('test')
+    utils.triggerEvent(vm.$el, 'click')
+    await vm.$nextTick()
+    expect(vm.msg).to.equal('test')
   })
 })
