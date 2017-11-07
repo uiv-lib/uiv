@@ -135,6 +135,7 @@
               background: @side-nav-item-active-bg;
               color: @highlight-color;
               box-shadow: -6px 0 0 @highlight-color inset;
+              font-weight: bold;
             }
 
             &:hover {

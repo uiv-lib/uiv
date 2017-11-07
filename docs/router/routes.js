@@ -37,6 +37,11 @@ const routes = [
     component: () => import('./../pages/components/Btn.md')
   },
   {
+    path: '/button-group',
+    meta: {type: 'component', label: 'Button Group'},
+    component: () => import('./../pages/components/BtnGroup.md')
+  },
+  {
     path: '/carousel',
     meta: {type: 'component', label: 'Carousel'},
     component: () => import('./../pages/components/Carousel.md')

@@ -19,6 +19,15 @@
     @click.native="onClick">
     <slot></slot>
   </router-link>
+  <btn-group v-else-if="isInJustifiedGroup">
+    <button
+      :class="classes"
+      :type="nativeType"
+      :disabled="disabled"
+      @click="onClick">
+      <slot></slot>
+    </button>
+  </btn-group>
   <button
     v-else
     :class="classes"
@@ -30,7 +39,11 @@
 </template>
 
 <script>
+  import BtnGroup from './BtnGroup.vue'
+  import domUtils from './../../utils/domUtils'
+
   export default {
+    components: {BtnGroup},
     props: {
       type: {
         type: String,
@@ -78,6 +91,11 @@
         default: false
       }
     },
+    data () {
+      return {
+        isInJustifiedGroup: false
+      }
+    },
     computed: {
       classes () {
         return {
@@ -89,6 +107,9 @@
           [`btn-${this.size}`]: this.size
         }
       }
+    },
+    mounted () {
+      this.isInJustifiedGroup = domUtils.hasClass(this.$el.parentNode, 'btn-group-justified')
     },
     methods: {
       onClick (event) {
