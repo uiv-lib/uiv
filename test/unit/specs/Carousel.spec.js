@@ -143,6 +143,26 @@ describe('Carousel', () => {
     expect(_$el.find('.carousel-indicators').length).to.equal(0)
   })
 
+  it('should be able to use custom icons', async () => {
+    let res = Vue.compile('<carousel :icon-control-left="customLeftIcon" icon-control-right="custom-css-class"></carousel>')
+    let leftControlClass = 'my-custom-left-class'
+    let vm = new Vue({
+      data () {
+        return {
+          customLeftIcon: leftControlClass
+        }
+      },
+      components: {Carousel, Slide},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    let $el = $(vm.$el)
+    expect($el.find('.left.carousel-control > span').get(0).className).to.contain(leftControlClass)
+    expect($el.find('.right.carousel-control > span').get(0).className).to.contain('custom-css-class')
+    $el.remove()
+    vm.$destroy()
+  })
+
   it('should be able to hide controls', async () => {
     let _$el = $(vm.$refs['carousel-example'].$refs.carousel.$el)
     await vm.$nextTick()
