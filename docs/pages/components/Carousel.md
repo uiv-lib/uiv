@@ -109,9 +109,16 @@ This is a scoped slot, use `slot-scope="props"` in Vue 2.5+, otherwise `scope="p
 
 ## Custom Icons
 
+**Note**: Bootstrap 3 has only 2 sets of icon supported for carousel at present:
+
+* `glyphicon glyphicon-chevron-left` and `glyphicon glyphicon-chevron-right` (default)
+* `icon-prev` and `icon-next`
+
+Additional CSS may needed if you prefer other icon fonts.
+
 ```html
 <template>
-  <carousel icon-control-left="glyphicon glyphicon-triangle-left" icon-control-right="glyphicon glyphicon-triangle-right">
+  <carousel icon-control-left="icon-prev" icon-control-right="icon-next">
     <slide v-for="(slide, index) in slides" :key="index">
       <div style="width: 100%;height: 400px;" :style="{background:index % 2 === 0 ? '#99a9bf' : '#d3dce6'}"></div>
       <div class="carousel-caption">

@@ -9,11 +9,11 @@
       <slot></slot>
     </div>
     <a class="left carousel-control" href="javascript:void(0)" role="button" v-if="controls" @click="prev()">
-      <span :class="iconControlLeftClasses" aria-hidden="true"></span>
+      <span :class="iconControlLeft" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
     <a class="right carousel-control" href="javascript:void(0)" role="button" v-if="controls" @click="next()">
-      <span :class="iconControlRightClasses" aria-hidden="true"></span>
+      <span :class="iconControlRight" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
   </div>
@@ -27,23 +27,23 @@
       },
       indicators: {
         type: Boolean,
-        'default': true
+        default: true
       },
       controls: {
         type: Boolean,
-        'default': true
+        default: true
       },
       interval: {
         type: Number,
-        'default': 2000
+        default: 2000
       },
       iconControlLeft: {
         type: String,
-        'default': 'glyphicon glyphicon-chevron-left'
+        default: 'glyphicon glyphicon-chevron-left'
       },
       iconControlRight: {
         type: String,
-        'default': 'glyphicon glyphicon-chevron-right'
+        default: 'glyphicon glyphicon-chevron-right'
       }
     },
     data () {
@@ -52,14 +52,6 @@
         activeIndex: 0, // Make v-model not required
         timeoutId: 0,
         intervalId: 0
-      }
-    },
-    computed: {
-      iconControlLeftClasses () {
-        return 'icon-prev ' + this.iconControlLeft
-      },
-      iconControlRightClasses () {
-        return `icon-next ${this.iconControlRight}`
       }
     },
     watch: {
