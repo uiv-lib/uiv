@@ -19,22 +19,32 @@
       </tr>
       <tr>
         <td class="form-group">
-          <input class="form-control text-center"
+          <input type="number"
+                 min="0"
+                 :max="showMeridian?12:23"
+                 pattern="\d{2}"
+                 class="form-control text-center uiv-timepicker__input--number"
                  style="width: 50px"
                  @wheel="hoursWheel"
                  placeholder="HH"
                  v-model="hoursText"
                  :readonly="readonly"
+                 maxlength="2"
                  size="2">
         </td>
         <td>&nbsp;<b>:</b>&nbsp;</td>
         <td class="form-group">
-          <input class="form-control text-center"
+          <input type="number"
+                 min="0"
+                 max="59"
+                 pattern="\d{2}"
+                 class="form-control text-center uiv-timepicker__input--number"
                  style="width: 50px"
                  @wheel="minutesWheel"
                  placeholder="MM"
                  v-model="minutesText"
                  :readonly="readonly"
+                 maxlength="2"
                  size="2">
         </td>
         <td v-if="showMeridian">
@@ -260,3 +270,13 @@
     }
   }
 </script>
+<style>
+.uiv-timepicker__input--number {
+    -moz-appearance: textfield;
+}
+.uiv-timepicker__input--number::-webkit-outer-spin-button,
+.uiv-timepicker__input--number::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+</style>
