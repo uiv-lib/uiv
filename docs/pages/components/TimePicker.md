@@ -16,7 +16,7 @@ e.g. `time = new Date(time)`
 
 ```html
 <template>
-  <time-picker v-model="time"></time-picker>
+  <time-picker v-model="time"/>
 </template>
 <script>
   export default {
@@ -34,7 +34,7 @@ e.g. `time = new Date(time)`
 
 ```html
 <template>
-  <time-picker v-model="time" :show-meridian="false"></time-picker>
+  <time-picker v-model="time" :show-meridian="false"/>
 </template>
 <script>
   export default {
@@ -54,7 +54,7 @@ Example that limit time range from **8:00 AM** to **8:00 PM**:
 
 ```html
 <template>
-  <time-picker v-model="time" :max="max" :min="min"></time-picker>
+  <time-picker v-model="time" :max="max" :min="min"/>
 </template>
 <script>
   export default {
@@ -76,7 +76,7 @@ All input methods are all disabled in readonly mode.
 
 ```html
 <template>
-  <time-picker v-model="time" readonly></time-picker>
+  <time-picker v-model="time" readonly/>
 </template>
 <script>
   export default {
@@ -104,7 +104,7 @@ All input methods are all disabled in readonly mode.
       </div>
       <template slot="dropdown">
         <li style="padding: 10px">
-          <time-picker v-model="time"></time-picker>
+          <time-picker v-model="time"/>
         </li>
       </template>
     </dropdown>
@@ -122,11 +122,11 @@ All input methods are all disabled in readonly mode.
 <!-- time-picker-with-dropdown.vue -->
 ```
 
-## Custom icons
+## Custom Icons
 
 ```html
 <template>
-  <time-picker v-model="time" :show-meridian="false" icon-control-up="glyphicon glyphicon-plus" icon-control-down="glyphicon glyphicon-minus"></time-picker>
+  <time-picker v-model="time" icon-control-up="glyphicon glyphicon-plus" icon-control-down="glyphicon glyphicon-minus"/>
 </template>
 <script>
   export default {

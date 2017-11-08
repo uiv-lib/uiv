@@ -43,14 +43,13 @@
     components: {Btn},
     props: {
       year: {
+        type: Number
       },
       iconControlLeft: {
-        type: String,
-        default: 'glyphicon glyphicon-chevron-left'
+        type: String
       },
       iconControlRight: {
-        type: String,
-        default: 'glyphicon glyphicon-chevron-right'
+        type: String
       }
     },
     computed: {

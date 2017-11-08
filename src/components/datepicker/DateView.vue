@@ -52,24 +52,28 @@
     mixins: [Locale],
     props: {
       month: {
+        type: Number
       },
       year: {
+        type: Number
       },
       date: {
+        type: Date
       },
       today: {
+        type: Date
       },
       limit: {
+        type: Object
       },
       weekStartsWith: {
+        type: Number
       },
       iconControlLeft: {
-        type: String,
-        default: 'glyphicon glyphicon-chevron-left'
+        type: String
       },
       iconControlRight: {
-        type: String,
-        default: 'glyphicon glyphicon-chevron-right'
+        type: String
       }
     },
     components: {Btn},

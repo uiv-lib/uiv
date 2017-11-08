@@ -107,7 +107,7 @@ This is a scoped slot, use `slot-scope="props"` in Vue 2.5+, otherwise `scope="p
 <!-- carousel-override-indicators.vue -->
 ```
 
-## Custom icons
+## Custom Icons
 
 ```html
 <template>

@@ -9,7 +9,7 @@ Use `v-model` to bind the selected date.
 ```html
 <template>
   <section>
-    <date-picker v-model="date"></date-picker>
+    <date-picker v-model="date"/>
     <br/>
     <alert type="info" v-show="date">You selected <b>{{date}}</b>.</alert>
   </section>
@@ -46,7 +46,7 @@ If you need a special format that not supported by `Date.parse`, consider using 
 ```html
 <template>
   <section>
-    <date-picker v-model="date" format="yyyy/MMMM/dd"></date-picker>
+    <date-picker v-model="date" format="yyyy/MMMM/dd"/>
     <br/>
     <alert type="info" v-show="date">You selected <b>{{date}}</b>.</alert>
   </section>
@@ -69,7 +69,7 @@ Use `today-btn` and `clear-btn` to toggle visible of them.
 
 ```html
 <template>
-  <date-picker v-model="date" :today-btn="false" :clear-btn="false"></date-picker>
+  <date-picker v-model="date" :today-btn="false" :clear-btn="false"/>
 </template>
 <script>
   export default {
@@ -89,7 +89,7 @@ Example that limit date range from **2017-01-01** to **2018-01-01**:
 
 ```html
 <template>
-  <date-picker v-model="date" limit-from="2017-01-01" limit-to="2018-01-01"></date-picker>
+  <date-picker v-model="date" limit-from="2017-01-01" limit-to="2018-01-01"/>
 </template>
 <script>
   export default {
@@ -109,7 +109,7 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 
 ```html
 <template>
-  <date-picker v-model="date" :week-starts-with="1"></date-picker>
+  <date-picker v-model="date" :week-starts-with="1"/>
 </template>
 <script>
   export default {
@@ -137,7 +137,7 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
       </div>
       <template slot="dropdown">
         <li>
-          <date-picker v-model="date"></date-picker>
+          <date-picker v-model="date"/>
         </li>
       </template>
     </dropdown>
@@ -155,12 +155,12 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 <!-- date-picker-dropdown-example.vue -->
 ```
 
-## Custom icons
+## Custom Icons
 
 ```html
 <template>
   <section>
-    <date-picker icon-control-left="glyphicon glyphicon-triangle-left" icon-control-right="glyphicon glyphicon-triangle-right"></date-picker>
+    <date-picker icon-control-left="glyphicon glyphicon-triangle-left" icon-control-right="glyphicon glyphicon-triangle-right"/>
   </section>
 </template>
 <!-- date-picker-icons-example.vue -->

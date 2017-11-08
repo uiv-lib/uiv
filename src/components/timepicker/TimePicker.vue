@@ -108,11 +108,11 @@
       },
       iconControlUp: {
         type: String,
-        'default': 'glyphicon glyphicon-chevron-up'
+        default: 'glyphicon glyphicon-chevron-up'
       },
       iconControlDown: {
         type: String,
-        'default': 'glyphicon glyphicon-chevron-down'
+        default: 'glyphicon glyphicon-chevron-down'
       }
     },
     data () {
