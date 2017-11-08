@@ -114,11 +114,13 @@ This is a scoped slot, use `slot-scope="props"` in Vue 2.5+, otherwise `scope="p
 * `glyphicon glyphicon-chevron-left` and `glyphicon glyphicon-chevron-right` (default)
 * `icon-prev` and `icon-next`
 
-Additional CSS may needed if you prefer other icon fonts.
+Additional CSS may needed if you prefer other icons or font... 
+
+Here is an example using `glyphicon-arrow-left` and `glyphicon-arrow-right`.
 
 ```html
 <template>
-  <carousel icon-control-left="icon-prev" icon-control-right="icon-next">
+  <carousel icon-control-left="my-icon glyphicon glyphicon-arrow-left" icon-control-right="my-icon glyphicon glyphicon-arrow-right">
     <slide v-for="(slide, index) in slides" :key="index">
       <div style="width: 100%;height: 400px;" :style="{background:index % 2 === 0 ? '#99a9bf' : '#d3dce6'}"></div>
       <div class="carousel-caption">
@@ -141,6 +143,14 @@ Additional CSS may needed if you prefer other icon fonts.
     }
   }
 </script>
+<style>
+/* Using custom icons may require some additional CSS declarations */
+.carousel-control .my-icon {
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+}
+</style>
 <!-- carousel-icons.vue -->
 ```
 
