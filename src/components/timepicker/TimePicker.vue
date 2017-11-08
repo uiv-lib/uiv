@@ -19,22 +19,28 @@
       </tr>
       <tr>
         <td class="form-group">
-          <input class="form-control text-center"
+          <input type="phone"
+                 pattern="\d*"
+                 class="form-control text-center"
                  style="width: 50px"
                  @wheel="hoursWheel"
                  placeholder="HH"
                  v-model="hoursText"
                  :readonly="readonly"
+                 maxlength="2"
                  size="2">
         </td>
         <td>&nbsp;<b>:</b>&nbsp;</td>
         <td class="form-group">
-          <input class="form-control text-center"
+          <input type="phone"
+                 pattern="\d*"
+                 class="form-control text-center"
                  style="width: 50px"
                  @wheel="minutesWheel"
                  placeholder="MM"
                  v-model="minutesText"
                  :readonly="readonly"
+                 maxlength="2"
                  size="2">
         </td>
         <td v-if="showMeridian">
