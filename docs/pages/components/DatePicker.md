@@ -155,6 +155,18 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 <!-- date-picker-dropdown-example.vue -->
 ```
 
+## Custom icons
+
+```html
+<template>
+  <section>
+    <date-picker icon-control-left="glyphicon glyphicon-triangle-left" icon-control-right="glyphicon glyphicon-triangle-right"></date-picker>
+  </section>
+</template>
+<!-- date-picker-icons-example.vue -->
+```
+
+
 # API Reference
 
 ## [DatePicker.vue](https://github.com/wxsms/uiv/tree/master/src/components/datepicker/DatePicker.vue)

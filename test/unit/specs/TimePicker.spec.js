@@ -257,4 +257,11 @@ describe('TimePicker', () => {
     expect(hourText.value).to.equal('08')
     expect(minutesText.value).to.equal('00')
   })
+
+  it('should be able to use custom icons', async () => {
+    let _vm = vm.$refs['time-picker-icons-example']
+    let $el = $(_vm.$el)
+    expect($el.find('tr:first-child .btn > i').get(0).className).to.contain('glyphicon-plus')
+    expect($el.find('tr:last-child .btn > i').get(0).className).to.contain('glyphicon-minus')
+  })
 })

@@ -122,6 +122,24 @@ All input methods are all disabled in readonly mode.
 <!-- time-picker-with-dropdown.vue -->
 ```
 
+## Custom icons
+
+```html
+<template>
+  <time-picker v-model="time" :show-meridian="false" icon-control-up="glyphicon glyphicon-plus" icon-control-down="glyphicon glyphicon-minus"></time-picker>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        time: new Date()
+      }
+    }
+  }
+</script>
+<!-- time-picker-icons-example.vue -->
+```
+
 
 # API Reference
 

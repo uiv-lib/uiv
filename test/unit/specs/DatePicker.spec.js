@@ -335,4 +335,12 @@ describe('DatePicker', () => {
     await vm.$nextTick()
     expect(_vm.$el.querySelector('.dropdown').className).not.contain('open')
   })
+
+  it('should be able to use custom icons', async () => {
+    let _vm = vm.$refs['date-picker-icons-example']
+    let $el = $(_vm.$el)
+    let $tr = $el.find('table:first-child tr:first-child')
+    expect($tr.find('td:first-child > .btn > i').get(0).className).to.contain('glyphicon-triangle-left')
+    expect($tr.find('td:last-child > .btn > i').get(0).className).to.contain('glyphicon-triangle-right')
+  })
 })
