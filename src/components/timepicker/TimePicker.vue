@@ -19,7 +19,7 @@
       </tr>
       <tr>
         <td class="form-group">
-          <input type="phone"
+          <input type="tel"
                  pattern="\d*"
                  class="form-control text-center"
                  style="width: 50px"
@@ -32,7 +32,7 @@
         </td>
         <td>&nbsp;<b>:</b>&nbsp;</td>
         <td class="form-group">
-          <input type="phone"
+          <input type="tel"
                  pattern="\d*"
                  class="form-control text-center"
                  style="width: 50px"
