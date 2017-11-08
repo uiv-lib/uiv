@@ -9,11 +9,11 @@
       <slot></slot>
     </div>
     <a class="left carousel-control" href="javascript:void(0)" role="button" v-if="controls" @click="prev()">
-      <span :class="iconControlLeft" aria-hidden="true"></span>
+      <span :class="iconControlLeftClasses" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
     <a class="right carousel-control" href="javascript:void(0)" role="button" v-if="controls" @click="next()">
-      <span :class="iconControlRight" aria-hidden="true"></span>
+      <span :class="iconControlRightClasses" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
   </div>
@@ -52,6 +52,14 @@
         activeIndex: 0, // Make v-model not required
         timeoutId: 0,
         intervalId: 0
+      }
+    },
+    computed: {
+      iconControlLeftClasses () {
+        return 'icon-prev ' + this.iconControlLeft
+      },
+      iconControlRightClasses () {
+        return `icon-next ${this.iconControlRight}`
       }
     },
     watch: {
