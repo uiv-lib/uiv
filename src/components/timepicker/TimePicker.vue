@@ -19,26 +19,32 @@
       </tr>
       <tr>
         <td class="form-group">
-          <input type="phone"
+          <input type="tel"
                  pattern="\d*"
                  class="form-control text-center"
                  style="width: 50px"
+                 @focus="selectInputValue"
+                 @keyup.up="keyupArrow(1, 1)"
+                 @keyup.down="keyupArrow(1, 0)"
                  @wheel="hoursWheel"
                  placeholder="HH"
-                 v-model="hoursText"
+                 v-model.lazy="hoursText"
                  :readonly="readonly"
                  maxlength="2"
                  size="2">
         </td>
         <td>&nbsp;<b>:</b>&nbsp;</td>
         <td class="form-group">
-          <input type="phone"
+          <input type="tel"
                  pattern="\d*"
                  class="form-control text-center"
                  style="width: 50px"
+                 @focus="selectInputValue"
+                 @keyup.up="keyupArrow(0, 1)"
+                 @keyup.down="keyupArrow(0, 0)"
                  @wheel="minutesWheel"
                  placeholder="MM"
-                 v-model="minutesText"
+                 v-model.lazy="minutesText"
                  :readonly="readonly"
                  maxlength="2"
                  size="2">
@@ -262,6 +268,17 @@
           time = time < min ? min : time
         }
         this.$emit('input', new Date(time))
+      },
+      selectInputValue (e) {
+        setTimeout(function () {
+          e.target.setSelectionRange(0, e.target.value.length)
+        }, 0)
+      },
+      keyupArrow (isHour, isPlus) {
+        if (!this.readonly) {
+          // e.preventDefault()
+          this.changeTime(isHour, isPlus)
+        }
       }
     }
   }
