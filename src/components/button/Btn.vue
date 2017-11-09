@@ -4,7 +4,11 @@
     :class="classes"
     role="button"
     :href="href"
-    @click="onClick">
+    @touchstart="onEvent"
+    @touchend="onEvent"
+    @mousedown="onEvent"
+    @mouseup="onEvent"
+    @click="onEvent">
     <slot></slot>
   </a>
   <router-link
@@ -16,13 +20,21 @@
     :replace="replace"
     :append="append"
     :exact="exact"
-    @click.native="onClick">
+    @touchstart.native="onEvent"
+    @touchend.native="onEvent"
+    @mousedown.native="onEvent"
+    @mouseup.native="onEvent"
+    @click.native="onEvent">
     <slot></slot>
   </router-link>
   <label
     v-else-if="inputType"
     :class="classes"
-    @click="onClick">
+    @touchstart="onEvent"
+    @touchend="onEvent"
+    @mousedown="onEvent"
+    @mouseup="onEvent"
+    @click="onEvent">
     <input
       autocomplete="off"
       :type="inputType"
@@ -36,7 +48,11 @@
       :class="classes"
       :type="nativeType"
       :disabled="disabled"
-      @click="onClick">
+      @touchstart="onEvent"
+      @touchend="onEvent"
+      @mousedown="onEvent"
+      @mouseup="onEvent"
+      @click="onEvent">
       <slot></slot>
     </button>
   </btn-group>
@@ -45,7 +61,11 @@
     :class="classes"
     :type="nativeType"
     :disabled="disabled"
-    @click="onClick">
+    @touchstart="onEvent"
+    @touchend="onEvent"
+    @mousedown="onEvent"
+    @mouseup="onEvent"
+    @click="onEvent">
     <slot></slot>
   </button>
 </template>
@@ -139,12 +159,12 @@
       this.isInJustifiedGroup = domUtils.hasClass(this.$el.parentNode, 'btn-group-justified')
     },
     methods: {
-      onClick (event) {
+      onEvent (event) {
         if (this.disabled) {
           event.preventDefault()
           event.stopPropagation()
         } else {
-          this.$emit('click')
+          this.$emit(event.type, event)
         }
       },
       onChange () {
