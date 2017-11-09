@@ -1,11 +1,19 @@
-<template>
-  <div class="btn-toolbar" role="toolbar">
-    <slot></slot>
-  </div>
-</template>
-
 <script>
   export default {
-    // TODO
+    functional: true,
+    render (h, ctx) {
+      return h(
+        'div',
+        {
+          class: {
+            'btn-toolbar': true
+          },
+          attrs: {
+            role: 'toolbar'
+          }
+        },
+        ctx.children
+      )
+    }
   }
 </script>
