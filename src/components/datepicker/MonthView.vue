@@ -38,7 +38,7 @@
 
 <script>
   import Locale from '../../mixins/locale'
-  import Btn from './../button/Btn.vue'
+  import Btn from './../button/Btn'
 
   export default {
     components: {Btn},

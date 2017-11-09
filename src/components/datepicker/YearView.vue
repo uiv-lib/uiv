@@ -37,7 +37,7 @@
 </template>
 
 <script>
-  import Btn from './../button/Btn.vue'
+  import Btn from './../button/Btn'
 
   export default {
     components: {Btn},

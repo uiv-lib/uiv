@@ -41,7 +41,7 @@
 <script>
   import Local from './../../mixins/locale'
   import utils from './../../utils/domUtils'
-  import Btn from './../button/Btn.vue'
+  import Btn from './../button/Btn'
 
   const MODAL_OPEN = 'modal-open'
   const IN = 'in'

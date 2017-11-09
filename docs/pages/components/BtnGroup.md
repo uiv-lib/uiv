@@ -129,16 +129,18 @@ Make a set of buttons appear vertically stacked rather than horizontally by addi
 
 Make a group of buttons stretch at equal sizes to span the entire width of its parent by adding `justified`. Also works with button dropdowns within the button group.
 
+**Note: Due to Bootstrap limitation, `justified` prop on `<btn>` is needed while it is render as `button`.**
+
 ```html
 <btn-group justified>
-  <btn>Left</btn>
-  <btn>Middle</btn>
-  <btn>Right</btn>
+  <btn justified>Left</btn>
+  <btn justified>Middle</btn>
+  <btn justified>Right</btn>
 </btn-group>
 <br/>
 <btn-group justified>
-  <btn>Left</btn>
-  <btn>Middle</btn>
+  <btn justified>Left</btn>
+  <btn justified>Middle</btn>
   <dropdown>
     <btn class="dropdown-toggle">Dropdown <span class="caret"></span></btn>
     <template slot="dropdown">
@@ -155,7 +157,7 @@ Make a group of buttons stretch at equal sizes to span the entire width of its p
 
 # API Reference
 
-## [BtnGroup.vue](https://github.com/wxsms/uiv/tree/master/src/components/button/BtnGroup.vue)
+## [BtnGroup.js](https://github.com/wxsms/uiv/tree/master/src/components/button/BtnGroup.js)
 
 ### Props
 

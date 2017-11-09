@@ -147,7 +147,7 @@ Add `input-type` to render `<btn>` as `checkbox` or `radio` input.
 
 # API Reference
 
-## [Btn.vue](https://github.com/wxsms/uiv/tree/master/src/components/button/Btn.vue)
+## [Btn.js](https://github.com/wxsms/uiv/tree/master/src/components/button/Btn.js)
 
 ### Props
 
@@ -168,6 +168,7 @@ Name             | Type             | Default  | Required | Description
 `input-type`     | String           |          |          | Use this prop to turn btn to checkbox or radio input. Supported types: `checkbox` / `radio`
 `input-value`    |                  |          |          | The value of input.
 `v-model`        |                  |          |          | The model of input.
+`justified`      | Boolean          | false    |          | Due to Bootstrap limitation, this prop is needed while using `<btn>` in `<btn-group justified>`. Otherwise it can be ignored.
 
 ### Slots
 

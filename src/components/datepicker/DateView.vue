@@ -46,7 +46,7 @@
 <script>
   import Locale from '../../mixins/locale'
   import util from '../../utils/dateUtils'
-  import Btn from './../button/Btn.vue'
+  import Btn from './../button/Btn'
 
   export default {
     mixins: [Locale],

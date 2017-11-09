@@ -45,7 +45,7 @@
   import DateView from './DateView.vue'
   import MonthView from './MonthView.vue'
   import YearView from './YearView.vue'
-  import Btn from './../button/Btn.vue'
+  import Btn from './../button/Btn'
   import dateUtils from '../../utils/dateUtils'
 
   export default {

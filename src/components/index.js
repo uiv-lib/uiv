@@ -17,9 +17,9 @@ import ProgressBar from './progressbar/ProgressBar.vue'
 import ProgressBarStack from './progressbar/ProgressBarStack.vue'
 import Breadcrumbs from './breadcrumbs/Breadcrumbs.vue'
 import BreadcrumbItem from './breadcrumbs/BreadcrumbItem.vue'
-import Btn from './button/Btn.vue'
-import BtnGroup from './button/BtnGroup.vue'
-import BtnToolbar from './button/BtnToolbar.vue'
+import Btn from './button/Btn'
+import BtnGroup from './button/BtnGroup'
+import BtnToolbar from './button/BtnToolbar'
 
 export {
   Affix,

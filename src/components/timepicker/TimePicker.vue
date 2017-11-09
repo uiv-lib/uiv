@@ -81,7 +81,7 @@
 <script>
   import Local from './../../mixins/locale'
   import utils from './../../utils/stringUtils'
-  import Btn from './../button/Btn.vue'
+  import Btn from './../button/Btn'
 
   const maxHours = 23
   const zero = 0
