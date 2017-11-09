@@ -8,7 +8,7 @@ Default progress bar.
 
 ```html
 <template>
-  <progress-bar v-model="progress"></progress-bar>
+  <progress-bar v-model="progress"/>
 </template>
 <script>
   export default {
@@ -30,11 +30,11 @@ To ensure that the label text remains legible even for low percentages, consider
 <template>
   <section>
     <h4>Default Label</h4>
-    <progress-bar v-model="progress" :label="true"></progress-bar>
+    <progress-bar v-model="progress" label/>
     <h4>Custom Label</h4>
-    <progress-bar v-model="progress" :label="true" label-text="Loading......Please wait."></progress-bar>
+    <progress-bar v-model="progress" label label-text="Loading......Please wait."/>
     <h4>Minimum Width</h4>
-    <progress-bar v-model="progress1" :min-width="true" :label="true"></progress-bar>
+    <progress-bar v-model="progress1" min-width label/>
   </section>
 </template>
 <script>
@@ -57,10 +57,10 @@ Progress bars use some of the same button and alert classes for consistent style
 ```html
 <template>
   <section>
-    <progress-bar v-model="progress40" type="success"></progress-bar>
-    <progress-bar v-model="progress20" type="info"></progress-bar>
-    <progress-bar v-model="progress60" type="warning"></progress-bar>
-    <progress-bar v-model="progress80" type="danger"></progress-bar>
+    <progress-bar v-model="progress40" type="success"/>
+    <progress-bar v-model="progress20" type="info"/>
+    <progress-bar v-model="progress60" type="warning"/>
+    <progress-bar v-model="progress80" type="danger"/>
   </section>
 </template>
 <script>
@@ -85,10 +85,10 @@ Uses a gradient to create a striped effect. Not available in IE9 and below.
 ```html
 <template>
   <section>
-    <progress-bar v-model="progress40" type="success" :striped="true"></progress-bar>
-    <progress-bar v-model="progress20" type="info" :striped="true"></progress-bar>
-    <progress-bar v-model="progress60" type="warning" :striped="true"></progress-bar>
-    <progress-bar v-model="progress80" type="danger" :striped="true"></progress-bar>
+    <progress-bar v-model="progress40" type="success" striped/>
+    <progress-bar v-model="progress20" type="info" striped/>
+    <progress-bar v-model="progress60" type="warning" striped/>
+    <progress-bar v-model="progress80" type="danger" striped/>
   </section>
 </template>
 <script>
@@ -112,7 +112,7 @@ Animate the stripes right to left. Not available in IE9 and below.
 
 ```html
 <template>
-  <progress-bar v-model="progress" :striped="true" :active="true"></progress-bar>
+  <progress-bar v-model="progress" striped active/>
 </template>
 <script>
   export default {
@@ -133,9 +133,9 @@ Place multiple `<progress-bar-stack>` into the same `<progress-bar>` to stack th
 ```html
 <template>
   <progress-bar>
-    <progress-bar-stack v-model="progress35" type="success"></progress-bar-stack>
-    <progress-bar-stack v-model="progress20" type="warning" :striped="true"></progress-bar-stack>
-    <progress-bar-stack v-model="progress10" type="danger"></progress-bar-stack>
+    <progress-bar-stack v-model="progress35" type="success"/>
+    <progress-bar-stack v-model="progress20" type="warning" striped/>
+    <progress-bar-stack v-model="progress10" type="danger"/>
   </progress-bar>
 </template>
 <script>

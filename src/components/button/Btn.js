@@ -6,7 +6,6 @@ const INPUT_TYPE_RADIO = 'radio'
 
 export default {
   functional: true,
-  components: {BtnGroup},
   render (h, {children, props, data}) {
     // event listeners
     const listeners = data.on
@@ -43,7 +42,8 @@ export default {
         class: classes,
         attrs: {
           role: 'button',
-          href: props.href
+          href: props.href,
+          target: props.target
         }
       })
     } else if (props.to) {
@@ -103,7 +103,7 @@ export default {
       ]
     } else if (props.justified) {
       // is in justified btn-group
-      tag = 'btn-group'
+      tag = BtnGroup
       options = {}
       slot = [
         h('button', mergeData(data, {
