@@ -24,9 +24,9 @@
                  class="form-control text-center"
                  style="width: 50px"
                  @focus="selectInputValue"
-                 @keyup.up="keyupArrow(1, 1)"
-                 @keyup.down="keyupArrow(1, 0)"
-                 @wheel="hoursWheel"
+                 @keyup.up="changeTime(1, 1)"
+                 @keyup.down="changeTime(1, 0)"
+                 @wheel="onWheel($event, true)"
                  placeholder="HH"
                  v-model.lazy="hoursText"
                  :readonly="readonly"
@@ -40,9 +40,9 @@
                  class="form-control text-center"
                  style="width: 50px"
                  @focus="selectInputValue"
-                 @keyup.up="keyupArrow(0, 1)"
-                 @keyup.down="keyupArrow(0, 0)"
-                 @wheel="minutesWheel"
+                 @keyup.up="changeTime(0, 1)"
+                 @keyup.down="changeTime(0, 0)"
+                 @wheel="onWheel($event, false)"
                  placeholder="MM"
                  v-model.lazy="minutesText"
                  :readonly="readonly"
@@ -219,16 +219,18 @@
         }
       },
       changeTime (isHour, isPlus) {
-        if (isHour && isPlus) {
-          this.addHour()
-        } else if (isHour && !isPlus) {
-          this.reduceHour()
-        } else if (!isHour && isPlus) {
-          this.addMinute()
-        } else {
-          this.reduceMinute()
+        if (!this.readonly) {
+          if (isHour && isPlus) {
+            this.addHour()
+          } else if (isHour && !isPlus) {
+            this.reduceHour()
+          } else if (!isHour && isPlus) {
+            this.addMinute()
+          } else {
+            this.reduceMinute()
+          }
+          this.setTime()
         }
-        this.setTime()
       },
       toggleMeridian () {
         this.meridian = !this.meridian
@@ -239,16 +241,10 @@
         }
         this.setTime()
       },
-      minutesWheel (e) {
+      onWheel (e, isHour) {
         if (!this.readonly) {
           e.preventDefault()
-          this.changeTime(false, e.deltaY < 0)
-        }
-      },
-      hoursWheel (e) {
-        if (!this.readonly) {
-          e.preventDefault()
-          this.changeTime(true, e.deltaY < 0)
+          this.changeTime(isHour, e.deltaY < 0)
         }
       },
       setTime () {
@@ -270,15 +266,9 @@
         this.$emit('input', new Date(time))
       },
       selectInputValue (e) {
-        setTimeout(function () {
-          e.target.setSelectionRange(0, e.target.value.length)
-        }, 0)
-      },
-      keyupArrow (isHour, isPlus) {
-        if (!this.readonly) {
-          // e.preventDefault()
-          this.changeTime(isHour, isPlus)
-        }
+        this.$nextTick(() => {
+          e.target.setSelectionRange(0, 2)
+        })
       }
     }
   }

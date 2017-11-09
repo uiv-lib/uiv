@@ -7,6 +7,7 @@
 To change the time input, you can:
 
 * Click on the add / minus button.
+* Use up / down key of keyboard.
 * Use mouse wheel.
 * Input directly.
 
