@@ -133,9 +133,9 @@ Make a group of buttons stretch at equal sizes to span the entire width of its p
 
 ```html
 <btn-group justified>
-  <btn justified>Left</btn>
-  <btn justified>Middle</btn>
-  <btn justified>Right</btn>
+  <btn href="javascript:;">Left</btn>
+  <btn href="javascript:;">Middle</btn>
+  <btn href="javascript:;">Right</btn>
 </btn-group>
 <br/>
 <btn-group justified>
