@@ -22,9 +22,7 @@
 <script>
   export default {
     props: {
-      value: {
-        type: Number
-      },
+      value: Number,
       indicators: {
         type: Boolean,
         default: true
@@ -35,7 +33,7 @@
       },
       interval: {
         type: Number,
-        default: 2000
+        default: 5000
       },
       iconControlLeft: {
         type: String,

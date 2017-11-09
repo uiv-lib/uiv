@@ -34,7 +34,7 @@
   export default {
     data () {
       return {
-        interval: 2000,
+        interval: 5000,
         indicators: true,
         controls: true,
         slides: [
@@ -165,7 +165,7 @@ Name                 | Type       | Default                           | Required
 `v-model`            | Number     |                                   |          | The current slide index, use this to manual change slide index.
 `indicators`         | Boolean    | true                              |          | Show / hide the indicators.
 `controls`           | Boolean    | true                              |          | Show / hide the controls.
-`interval`           | Number     | 2000                              |          | Slides running interval time.
+`interval`           | Number     | 5000                              |          | Slides running interval time in ms. Use `0` to stop interval.
 `icon-control-left`  | String     | glyphicon glyphicon-chevron-left  |          | The left control icon font class.
 `icon-control-right` | String     | glyphicon glyphicon-chevron-right |          | The right control icon font class.
 
