@@ -154,9 +154,9 @@ Place multiple `<progress-bar-stack>` into the same `<progress-bar>` to stack th
 
 # API Reference
 
-## [ProgressBar.vue](https://github.com/wxsms/uiv/tree/master/src/components/progressbar/ProgressBar.vue)
+## [ProgressBar.js](https://github.com/wxsms/uiv/tree/master/src/components/progressbar/ProgressBar.js)
 
-`ProgressBar.vue` and `ProgressBarStack.vue` share same prop attributes.
+`ProgressBar` and `ProgressBarStack` share same prop attributes.
 
 ### Props
 
