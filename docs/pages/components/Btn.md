@@ -89,6 +89,62 @@ Add `disabled` to make buttons unclickable.
 <!-- btn-disabled.vue -->
 ```
 
+## Checkbox / Radio
+
+Add `input-type` to render `<btn>` as `checkbox` or `radio` input.
+
+**Note**: This needed to work with `<btn-group>` for correct styles.
+
+### Checkbox Example
+
+```html
+<template>
+  <btn-group>
+    <btn input-type="checkbox" input-value="1" v-model="model">Checkbox 1</btn>
+    <btn input-type="checkbox" input-value="2" v-model="model">Checkbox 2</btn>
+    <btn input-type="checkbox" input-value="3" v-model="model">Checkbox 3</btn>
+    <btn input-type="checkbox" input-value="4" v-model="model" disabled>Checkbox 4 (Disabled)</btn>
+  </btn-group>
+  <hr/>
+  <alert>Selected: {{model}}</alert>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        model: ['1']
+      }
+    }
+  }
+</script>
+<!-- btn-input-checkbox.vue -->
+```
+
+### Radio Example
+
+```html
+<template>
+  <btn-group>
+    <btn input-type="radio" input-value="1" v-model="model">Radio 1</btn>
+    <btn input-type="radio" input-value="2" v-model="model">Radio 2</btn>
+    <btn input-type="radio" input-value="3" v-model="model">Radio 3</btn>
+    <btn input-type="radio" input-value="4" v-model="model" disabled>Radio 4 (Disabled)</btn>
+  </btn-group>
+  <hr/>
+  <alert>Selected: {{model}}</alert>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        model: '1'
+      }
+    }
+  }
+</script>
+<!-- btn-input-radio.vue -->
+```
+
 # API Reference
 
 ## [Btn.vue](https://github.com/wxsms/uiv/tree/master/src/components/button/Btn.vue)
@@ -109,6 +165,9 @@ Name             | Type             | Default  | Required | Description
 `replace`        | Boolean          | false    |          | Vue-Router link prop.
 `append`         | Boolean          | false    |          | Vue-Router link prop.
 `exact`          | Boolean          | false    |          | Vue-Router link prop.
+`input-type`     | String           |          |          | Use this prop to turn btn to checkbox or radio input. Supported types: `checkbox` / `radio`
+`input-value`    |                  |          |          | The value of input.
+`v-model`        |                  |          |          | The model of input.
 
 ### Slots
 

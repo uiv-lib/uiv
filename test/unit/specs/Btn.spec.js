@@ -79,8 +79,8 @@ describe('Btn', () => {
   it('should be able to render disabled btn', () => {
     let _$el = $(vm.$refs['btn-disabled'].$el)
     expect(_$el.find('.btn').length).to.equal(4)
+    expect(_$el.find('.btn.disabled').length).to.equal(4)
     expect(_$el.find('.btn[disabled]').length).to.equal(2)
-    expect(_$el.find('.btn.disabled').length).to.equal(2)
   })
 
   it('should emit click event', async () => {
@@ -153,5 +153,100 @@ describe('Btn', () => {
     utils.triggerEvent(vm.$el, 'click')
     await vm.$nextTick()
     expect(vm.msg).to.equal('test')
+  })
+
+  it('should be able to render checkbox btn', async () => {
+    let _$el = $(vm.$refs['btn-input-checkbox'].$el)
+    await vm.$nextTick()
+    expect(_$el.find('label.btn').length).to.equal(4)
+    expect(_$el.find('label.btn > input[type=checkbox]').length).to.equal(4)
+    // active first one
+    expect(_$el.find('label.btn.active').length).to.equal(1)
+    expect(_$el.find('label.btn > input[type=checkbox]').get(0).checked).to.be.true
+    expect(_$el.find('label.btn').get(0).className).to.contain('active')
+    // disabled last one
+    expect(_$el.find('label.btn.disabled').length).to.equal(1)
+    expect(_$el.find('label.btn.disabled > input[disabled]').length).to.equal(1)
+    expect(_$el.find('label.btn').get(3).className).to.contain('disabled')
+  })
+
+  it('should be able to select checkbox btn', async () => {
+    let _vm = vm.$refs['btn-input-checkbox']
+    let _$el = $(_vm.$el)
+    await vm.$nextTick()
+    // phantomjs won't response on label click
+    utils.triggerEvent(_$el.find('label.btn > input').get(1), 'change')
+    await vm.$nextTick()
+    // active second one
+    expect(_$el.find('label.btn.active').length).to.equal(2)
+    expect(_$el.find('label.btn > input[type=checkbox]').get(0).checked).to.be.true
+    expect(_$el.find('label.btn > input[type=checkbox]').get(1).checked).to.be.true
+    expect(_$el.find('label.btn > input[type=checkbox]').get(3).checked).to.be.false
+    expect(_$el.find('label.btn').get(1).className).to.contain('active')
+    // model change
+    expect(_vm.model.length).to.equal(2)
+    expect(_vm.model.indexOf('1')).to.be.at.least(0)
+    expect(_vm.model.indexOf('2')).to.be.at.least(0)
+  })
+
+  it('should be able to un-select checkbox btn', async () => {
+    let _vm = vm.$refs['btn-input-checkbox']
+    let _$el = $(_vm.$el)
+    await vm.$nextTick()
+    // phantomjs won't response on label click
+    utils.triggerEvent(_$el.find('label.btn > input').get(0), 'change')
+    await vm.$nextTick()
+    expect(_$el.find('label.btn.active').length).to.equal(0)
+    // model change
+    expect(_vm.model.length).to.equal(0)
+  })
+
+  it('should be able to render radio btn', async () => {
+    let _$el = $(vm.$refs['btn-input-radio'].$el)
+    await vm.$nextTick()
+    expect(_$el.find('label.btn').length).to.equal(4)
+    expect(_$el.find('label.btn > input[type=radio]').length).to.equal(4)
+    // active first one
+    expect(_$el.find('label.btn.active').length).to.equal(1)
+    expect(_$el.find('label.btn > input[type=radio]').get(0).checked).to.be.true
+    expect(_$el.find('label.btn').get(0).className).to.contain('active')
+    // disabled last one
+    expect(_$el.find('label.btn.disabled').length).to.equal(1)
+    expect(_$el.find('label.btn.disabled > input[disabled]').length).to.equal(1)
+    expect(_$el.find('label.btn').get(3).className).to.contain('disabled')
+  })
+
+  it('should be able to select radio btn', async () => {
+    let _vm = vm.$refs['btn-input-radio']
+    let _$el = $(_vm.$el)
+    await vm.$nextTick()
+    // phantomjs won't response on label click
+    utils.triggerEvent(_$el.find('label.btn > input').get(1), 'change')
+    await vm.$nextTick()
+    // active second one
+    expect(_$el.find('label.btn.active').length).to.equal(1)
+    expect(_$el.find('label.btn > input[type=radio]').get(0).checked).to.be.false
+    expect(_$el.find('label.btn > input[type=radio]').get(1).checked).to.be.true
+    expect(_$el.find('label.btn > input[type=radio]').get(3).checked).to.be.false
+    expect(_$el.find('label.btn').get(1).className).to.contain('active')
+    // model change
+    expect(_vm.model).to.equal('2')
+  })
+
+  it('should not be able to un-select radio btn', async () => {
+    let _vm = vm.$refs['btn-input-radio']
+    let _$el = $(_vm.$el)
+    await vm.$nextTick()
+    // phantomjs won't response on label click
+    utils.triggerEvent(_$el.find('label.btn > input').get(0), 'change')
+    await vm.$nextTick()
+    // active second one
+    expect(_$el.find('label.btn.active').length).to.equal(1)
+    expect(_$el.find('label.btn > input[type=radio]').get(0).checked).to.be.true
+    expect(_$el.find('label.btn > input[type=radio]').get(1).checked).to.be.false
+    expect(_$el.find('label.btn > input[type=radio]').get(3).checked).to.be.false
+    expect(_$el.find('label.btn').get(0).className).to.contain('active')
+    // model change
+    expect(_vm.model).to.equal('1')
   })
 })

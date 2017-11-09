@@ -19,6 +19,18 @@
     @click.native="onClick">
     <slot></slot>
   </router-link>
+  <label
+    v-else-if="inputType"
+    :class="classes"
+    @click="onClick">
+    <input
+      autocomplete="off"
+      :type="inputType"
+      :checked="isInputActive"
+      :disabled="disabled"
+      @change="onChange"/>
+    <slot></slot>
+  </label>
   <btn-group v-else-if="isInJustifiedGroup">
     <button
       :class="classes"
@@ -42,6 +54,9 @@
   import BtnGroup from './BtnGroup.vue'
   import domUtils from './../../utils/domUtils'
 
+  const INPUT_TYPE_CHECKBOX = 'checkbox'
+  const INPUT_TYPE_RADIO = 'radio'
+
   export default {
     components: {BtnGroup},
     props: {
@@ -53,9 +68,7 @@
         type: String,
         default: 'button'
       },
-      size: {
-        type: String
-      },
+      size: String,
       block: {
         type: Boolean,
         default: false
@@ -69,15 +82,13 @@
         default: false
       },
       // <a> props
-      href: {
-        type: String
-      },
+      href: String,
       target: {
         type: String,
         default: '_self'
       },
       // <router-link> props
-      to: {},
+      to: null,
       replace: {
         type: Boolean,
         default: false
@@ -89,6 +100,15 @@
       exact: {
         type: Boolean,
         default: false
+      },
+      // <input> props
+      value: null,
+      inputValue: null,
+      inputType: {
+        type: String,
+        validator (value) {
+          return value === INPUT_TYPE_CHECKBOX || value === INPUT_TYPE_RADIO
+        }
       }
     },
     data () {
@@ -100,11 +120,18 @@
       classes () {
         return {
           btn: true,
-          active: this.active,
-          disabled: this.disabled && (this.href || this.to),
+          active: this.inputType ? this.isInputActive : this.active,
+          disabled: this.disabled,
           'btn-block': this.block,
           [`btn-${this.type}`]: this.type,
           [`btn-${this.size}`]: this.size
+        }
+      },
+      isInputActive () {
+        if (this.inputType === INPUT_TYPE_CHECKBOX) {
+          return this.value.indexOf(this.inputValue) >= 0
+        } else {
+          return this.value === this.inputValue
         }
       }
     },
@@ -118,6 +145,17 @@
           event.stopPropagation()
         } else {
           this.$emit('click')
+        }
+      },
+      onChange () {
+        if (this.inputType === INPUT_TYPE_CHECKBOX) {
+          if (this.isInputActive) {
+            this.value.splice(this.value.indexOf(this.inputValue), 1)
+          } else {
+            this.value.push(this.inputValue)
+          }
+        } else {
+          this.$emit('input', this.inputValue)
         }
       }
     }
