@@ -14,7 +14,7 @@
 
 **uiv** is a Bootstrap 3 component lib implemented by Vue 2.
 
-* **Lightweight**: ~16KB Gziped, Dependencies only Vue & Bootstrap CSS
+* **Lightweight**: ~17KB Gziped, Dependencies only Vue & Bootstrap CSS
 * **SSR** (server-side rendering) supported.
 * ES6 / CommonJS / AMD / Browser supported.
 
@@ -51,6 +51,21 @@ Vue.use(uiv)
 ```
 
 That's it. Happy coding!
+
+### No Conflict
+
+All components & directives will be installed with no prefix by default, you can add any prefix to them to avoid conflicts with other libs if needed.
+
+For example:
+
+```javascript
+Vue.use(uiv, {prefix: 'uiv'})
+```
+
+Results in:
+
+* Components such as `<alert>` becomes `<uiv-alert>`
+* Directives such as `v-tooltip` becomes `v-uiv-tooltip`
 
 ## Import Individually
 
