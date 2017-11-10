@@ -133,6 +133,8 @@ Detailed changes for each release are documented in the [release notes](https://
 
 ## Contribute
 
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+
 Welcome and thanks to use and contribute to this project. Your support is very important.
 
 If you found any problem / bug during the use of uiv, or have any suggustion that can make this lib better, please [create an issue](https://github.com/wxsms/uiv/issues/new). 
