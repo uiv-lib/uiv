@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import $ from 'jquery'
+import utils from './../utils'
 import TimePickerDoc from '@docs/pages/components/TimePicker.md'
 
 describe('TimePicker', () => {
   let vm
   let $el
+  const stepDelay = 100
 
   beforeEach(() => {
-    let Constructor = Vue.extend(TimePickerDoc)
+    const Constructor = Vue.extend(TimePickerDoc)
     vm = new Constructor().$mount()
     $el = $(vm.$el)
   })
@@ -18,31 +20,60 @@ describe('TimePicker', () => {
   })
 
   it('should be able to toggle meridian', async () => {
-    let _vm = vm.$refs['time-picker-example']
+    const _vm = vm.$refs['time-picker-example']
     _vm.time.setHours(9)
     _vm.time = new Date(_vm.time)
     await vm.$nextTick()
-    let toggleBtn = _vm.$el.querySelector('[data-action="toggleMeridian"]')
-    let meridianText = toggleBtn.textContent
+    const toggleBtn = _vm.$el.querySelector('[data-action="toggleMeridian"]')
+    const meridianText = toggleBtn.textContent
     expect(meridianText).to.equal('AM')
-    toggleBtn.click()
+    utils.triggerEvent(toggleBtn, 'click')
     await vm.$nextTick()
-    let meridianTextAfterClick = toggleBtn.textContent
+    const meridianTextAfterClick = toggleBtn.textContent
     expect(meridianTextAfterClick).to.equal('PM')
-    toggleBtn.click()
+    utils.triggerEvent(toggleBtn, 'click')
     await vm.$nextTick()
-    let meridianTextAfterTwoClick = toggleBtn.textContent
+    const meridianTextAfterTwoClick = toggleBtn.textContent
     expect(meridianTextAfterTwoClick).to.equal('AM')
   })
 
-  it('should be able to add 1 hours', async () => {
-    let _vm = vm.$refs['time-picker-example']
+  it('should be able to add hours', async () => {
+    const _vm = vm.$refs['time-picker-example']
     await vm.$nextTick()
-    let beforeText = _vm.$el.querySelectorAll('input')[0].value
-    let hourPlus = _vm.$el.querySelectorAll('td')[0].querySelector('button')
-    hourPlus.click()
+    const hourInput = _vm.$el.querySelectorAll('input')[0]
+    const beforeText = hourInput.value
+    const hourPlus = _vm.$el.querySelectorAll('td')[0].querySelector('button')
+
+    // Due to the order in which the events are triggered by the browsers,
+    // safegards are used to prevented unwanted multiple increases, this is why
+    // tests should be in this order: click > mouseup > mousedown > touchend > touchstart > key > wheel
+
+    const testHourForSingleEvent = async (el, evtType) => {
+      _vm.time.setHours(2)
+      _vm.time = new Date(_vm.time)
+      await vm.$nextTick()
+      utils.triggerEvent(el, evtType)
+      await vm.$nextTick()
+      afterText = hourInput.value
+      expect(parseInt(afterText)).to.equal(3)
+    }
+
+    const testHourForQueuedEvents = async (el, firstEvtType, ticks, secondEvtType) => {
+      _vm.time.setHours(2)
+      _vm.time = new Date(_vm.time)
+      await vm.$nextTick()
+      utils.triggerEvent(el, firstEvtType)
+      await utils.sleep(ticks * stepDelay)
+      utils.triggerEvent(el, secondEvtType)
+      await vm.$nextTick()
+      afterText = hourInput.value
+      expect(parseInt(afterText)).to.equal(2 + ticks)
+    }
+
+    // click hourPlus
+    utils.triggerEvent(hourPlus, 'click')
     await vm.$nextTick()
-    let afterText = _vm.$el.querySelectorAll('input')[0].value
+    let afterText = hourInput.value
     if (parseInt(beforeText) !== 12) {
       expect(parseInt(afterText)).to.equal(parseInt(beforeText) + 1)
     } else {
@@ -51,10 +82,48 @@ describe('TimePicker', () => {
     _vm.time.setHours(23)
     _vm.time = new Date(_vm.time)
     await vm.$nextTick()
-    hourPlus.click()
+    utils.triggerEvent(hourPlus, 'click')
     await vm.$nextTick()
-    afterText = _vm.$el.querySelectorAll('input')[0].value
+    afterText = hourInput.value
     expect(parseInt(afterText)).to.equal(12)
+
+    // mouseup hourPlus
+    await testHourForSingleEvent(hourPlus, 'mouseup')
+
+    // mousedown/up hourPlus
+    await testHourForQueuedEvents(hourPlus, 'mousedown', 1, 'mouseup')
+
+    // Long mousedown/up hourPlus
+    await testHourForQueuedEvents(hourPlus, 'mousedown', 2, 'mouseup')
+
+    // touchend hourPlus
+    await testHourForSingleEvent(hourPlus, 'touchend')
+
+    // touchstart/end hourPlus
+    await testHourForQueuedEvents(hourPlus, 'touchstart', 1, 'touchend')
+
+    // Long touchstart/end hourPlus
+    await testHourForQueuedEvents(hourPlus, 'touchstart', 2, 'touchend')
+
+    // Keypress up arrow
+    _vm.time.setHours(2)
+    _vm.time = new Date(_vm.time)
+    await vm.$nextTick()
+    utils.triggerKey(hourInput, 38, 'down')
+    await utils.sleep(stepDelay)
+    utils.triggerKey(hourInput, 38, 'up')
+    await vm.$nextTick()
+    afterText = hourInput.value
+    expect(parseInt(afterText)).to.equal(3)
+
+    // Wheel
+    _vm.time.setHours(2)
+    _vm.time = new Date(_vm.time)
+    await vm.$nextTick()
+    utils.triggerWheel(hourInput, 'wheel', -1)
+    await vm.$nextTick()
+    afterText = hourInput.value
+    expect(parseInt(afterText)).to.equal(3)
   })
 
   it('should be able to add 1 minutes', async () => {

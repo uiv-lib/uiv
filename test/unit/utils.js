@@ -30,6 +30,15 @@ export default {
       el.dispatchEvent(eventObj)
     }
   },
+  triggerWheel (elm, name, deltaY) {
+    const evt = document.createEvent('MouseEvents')
+    evt.initEvent(name)
+    evt.deltaY = deltaY
+    elm.dispatchEvent
+      ? elm.dispatchEvent(evt)
+      : elm.fireEvent('on' + name, evt)
+    return elm
+  },
   sleep (time) {
     return new Promise(resolve => {
       setTimeout(resolve, time)
