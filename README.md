@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/wxsms/wxsms-img-holder/master/uiv-logo.png" alt="uiv-logo.png">
+<img src="https://raw.githubusercontent.com/wxsms/uiv/master/static/logo.png" alt="uiv-logo.png" style="height: 150px; width: 195px;">
 </p>
 
 <p align="center">
