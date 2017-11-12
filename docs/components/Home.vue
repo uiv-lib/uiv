@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="jumbotron">
-      <logo :scale="1.5"></logo>
+      <logo></logo>
       <br/>
       <br/>
       <p>

@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/wxsms/wxsms-img-holder/master/uiv-logo.png" alt="uiv-logo.png">
+<img src="https://raw.githubusercontent.com/wxsms/uiv/master/static/logo.png" alt="uiv-logo.png">
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
 
 **uiv** is a Bootstrap 3 component lib implemented by Vue 2.
 
-* **Lightweight**: ~16KB Gziped, Dependencies only Vue & Bootstrap CSS
+* **Lightweight**: ~17KB Gziped, Dependencies only Vue & Bootstrap CSS
 * **SSR** (server-side rendering) supported.
 * ES6 / CommonJS / AMD / Browser supported.
 
@@ -51,6 +51,21 @@ Vue.use(uiv)
 ```
 
 That's it. Happy coding!
+
+### No Conflict
+
+All components & directives will be installed with no prefix by default, you can add any prefix to them to avoid conflicts with other libs if needed.
+
+For example:
+
+```javascript
+Vue.use(uiv, {prefix: 'uiv'})
+```
+
+Results in:
+
+* Components such as `<alert>` becomes `<uiv-alert>`
+* Directives such as `v-tooltip` becomes `v-uiv-tooltip`
 
 ## Import Individually
 
@@ -117,6 +132,8 @@ All browsers supported by [Vue 2](https://github.com/vuejs/vue) and [Bootstrap 3
 Detailed changes for each release are documented in the [release notes](https://github.com/wxsms/uiv/releases).
 
 ## Contribute
+
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
 Welcome and thanks to use and contribute to this project. Your support is very important.
 
