@@ -11,6 +11,7 @@
             @touchend="stopStepping(1, 1, $event)" 
             @mousedown="startStepping(1, 1, $event)" 
             @mouseup="stopStepping(1, 1, $event)"
+            @mouseleave="stopStepping(1, 1, $event)"
             @click="stopStepping(1, 1, $event)" 
             :disabled="readonly">
             <i :class="iconControlUp"></i>
@@ -25,6 +26,7 @@
             @touchend="stopStepping(0, 1, $event)" 
             @mousedown="startStepping(0, 1, $event)" 
             @mouseup="stopStepping(0, 1, $event)"
+            @mouseleave="stopStepping(0, 1, $event)"
             @click="stopStepping(0, 1, $event)" 
             :disabled="readonly">
             <i :class="iconControlUp"></i>
@@ -87,6 +89,7 @@
             @touchend="stopStepping(1, 0, $event)" 
             @mousedown="startStepping(1, 0, $event)" 
             @mouseup="stopStepping(1, 0, $event)"
+            @mouseleave="stopStepping(1, 0, $event)"
             @click="stopStepping(1, 0, $event)" 
             :disabled="readonly">
             <i :class="iconControlDown"></i>
@@ -101,6 +104,7 @@
             @touchend="stopStepping(0, 0, $event)" 
             @mousedown="startStepping(0, 0, $event)" 
             @mouseup="stopStepping(0, 0, $event)"
+            @mouseleave="stopStepping(0, 0, $event)"
             @click="stopStepping(0, 0, $event)" 
             :disabled="readonly">
             <i :class="iconControlDown"></i>
