@@ -37,7 +37,7 @@ Note that `active` state will not automatically set if using this mode.
 <breadcrumbs>
   <breadcrumb-item href="#"><b>Home</b></breadcrumb-item>
   <breadcrumb-item href="#">Library</breadcrumb-item>
-  <breadcrumb-item :active="true">Data</breadcrumb-item>
+  <breadcrumb-item active>Data</breadcrumb-item>
 </breadcrumbs>
 <!-- breadcrumbs-item.vue -->
 ```

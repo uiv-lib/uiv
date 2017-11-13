@@ -172,7 +172,7 @@ Auto focus on footer button with `data-action="auto-focus"` attribute after moda
 <template>
   <section>
     <btn type="primary" @click="open=true">Auto Focus</btn>
-    <modal v-model="open" title="Modal Title" :auto-focus="true">
+    <modal v-model="open" title="Modal Title" auto-focus>
       <p>Check this out! The OK button is focused now.</p>
     </modal>
   </section>

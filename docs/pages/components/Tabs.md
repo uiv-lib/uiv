@@ -96,7 +96,7 @@ Add `justified` to `<tabs>` to use justified style.
     <tab title="Profile">
       <p>Profile tab.</p>
     </tab>
-    <tab title="<i class='glyphicon glyphicon-bell'></i> Alert!" :html-title="true">
+    <tab title="<i class='glyphicon glyphicon-bell'></i> Alert!" html-title>
       <p>This tab has HTML title and callback function!</p>
     </tab>
   </tabs>
