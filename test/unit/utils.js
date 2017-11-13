@@ -1,6 +1,17 @@
 export default {
   transitionDuration: 300,
-  triggerEvent (elm, name, ...opts) {
+  keyCodes: {
+    esc: 27,
+    tab: 9,
+    enter: 13,
+    space: 32,
+    up: 38,
+    left: 37,
+    right: 39,
+    down: 40,
+    'delete': [8, 46]
+  },
+  triggerEvent (elm, name, evtProps = {}, ...opts) {
     let eventName
     if (/^mouse|click/.test(name)) {
       eventName = 'MouseEvents'
@@ -11,6 +22,9 @@ export default {
     }
     const evt = document.createEvent(eventName)
     evt.initEvent(name, ...opts)
+    for (let k in evtProps) {
+      evt[k] = evtProps[k]
+    }
     elm.dispatchEvent
       ? elm.dispatchEvent(evt)
       : elm.fireEvent('on' + name, evt)
@@ -29,15 +43,6 @@ export default {
       eventObj.keyCode = key
       el.dispatchEvent(eventObj)
     }
-  },
-  triggerWheel (elm, name, deltaY) {
-    const evt = document.createEvent('MouseEvents')
-    evt.initEvent(name)
-    evt.deltaY = deltaY
-    elm.dispatchEvent
-      ? elm.dispatchEvent(evt)
-      : elm.fireEvent('on' + name, evt)
-    return elm
   },
   sleep (time) {
     return new Promise(resolve => {

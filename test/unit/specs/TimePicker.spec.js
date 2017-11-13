@@ -109,9 +109,9 @@ describe('TimePicker', () => {
     _vm.time.setHours(2)
     _vm.time = new Date(_vm.time)
     await vm.$nextTick()
-    utils.triggerKey(hourInput, 38, 'down')
+    utils.triggerKey(hourInput, utils.keyCodes.up, 'down')
     await utils.sleep(stepDelay)
-    utils.triggerKey(hourInput, 38, 'up')
+    utils.triggerKey(hourInput, utils.keyCodes.up, 'up')
     await vm.$nextTick()
     afterText = hourInput.value
     expect(parseInt(afterText)).to.equal(3)
@@ -120,7 +120,7 @@ describe('TimePicker', () => {
     _vm.time.setHours(2)
     _vm.time = new Date(_vm.time)
     await vm.$nextTick()
-    utils.triggerWheel(hourInput, 'wheel', -1)
+    utils.triggerEvent(hourInput, 'wheel', {deltaY: -1})
     await vm.$nextTick()
     afterText = hourInput.value
     expect(parseInt(afterText)).to.equal(3)
