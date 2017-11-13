@@ -138,6 +138,50 @@ Add `justified` to `<tabs>` to use justified style.
 <!-- tabs-with-nav-right-slot.vue -->
 ```
 
+## Dynamic Example
+
+Generate tabs using `v-for`.
+
+```html
+<template>
+  <section>
+    <btn type="primary" @click="push">Push</btn>
+    <btn type="warning" @click="pop">Pop</btn>
+    <hr/>
+    <tabs v-model="index">
+      <tab v-for="tab in tabs" :title="tab" :key="tab">
+        <p>Dynamic {{tab}}</p>
+      </tab>
+    </tabs>
+  </section>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        tabs: ['Tab 0'],
+        index: 0
+      }
+    },
+    methods: {
+      push () {
+        this.tabs.push(`Tab ${this.tabs.length}`)
+        this.$nextTick(() => {
+          this.index = this.tabs.length - 1
+        })
+      },
+      pop () {
+        this.tabs.pop()
+        if (this.index === this.tabs.length) {
+          --this.index
+        }
+      }
+    }
+  }
+</script>
+<!-- tabs-dynamic-example.vue -->
+```
+
 # API Reference
 
 ## [Tabs.vue](https://github.com/wxsms/uiv/tree/master/src/components/tabs/Tabs.vue)

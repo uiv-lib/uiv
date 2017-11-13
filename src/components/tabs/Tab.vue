@@ -61,6 +61,15 @@
         throw new Error('<tab> parent must be <tabs>.')
       }
     },
+    beforeDestroy () {
+      let tabs = this.$parent && this.$parent.tabs
+      if (tabs && tabs.length) {
+        let index = tabs.indexOf(this)
+        if (index >= 0) {
+          tabs.splice(index, 1)
+        }
+      }
+    },
     methods: {
       show () {
         this.$nextTick(() => {

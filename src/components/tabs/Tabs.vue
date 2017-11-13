@@ -37,7 +37,10 @@
     },
     props: {
       value: {
-        type: Number
+        type: Number,
+        validator (value) {
+          return value >= 0
+        }
       },
       justified: {
         type: Boolean,
@@ -55,19 +58,19 @@
       }
     },
     watch: {
-      value (v) {
-        this.activeIndex = v
-        this.selectCurrent()
-      }
-    },
-    mounted () {
-      if (typeof this.value === 'number') {
-        this.activeIndex = this.value
-      }
-      if (this.tabs.length) {
-        this.tabs.forEach((tab, i) => {
+      value: {
+        immediate: true,
+        handler (value) {
+          if (typeof value === 'number') {
+            this.activeIndex = value
+            this.selectCurrent()
+          }
+        }
+      },
+      tabs (tabs) {
+        tabs.forEach((tab, index) => {
           tab.transition = this.transitionDuration
-          if (i === this.activeIndex) {
+          if (index === this.activeIndex) {
             tab.show()
           }
         })
@@ -104,10 +107,18 @@
     },
     methods: {
       selectCurrent () {
+        let found = false
         this.tabs.forEach((tab, index) => {
-          tab.active = index === this.activeIndex
+          if (index === this.activeIndex) {
+            found = !tab.active
+            tab.active = true
+          } else {
+            tab.active = false
+          }
         })
-        this.$emit('change', this.activeIndex)
+        if (found) {
+          this.$emit('change', this.activeIndex)
+        }
       },
       select (index) {
         if (!this.tabs[index].disabled) {

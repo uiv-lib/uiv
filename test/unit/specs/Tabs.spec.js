@@ -78,6 +78,7 @@ describe('Tabs', () => {
     }).$mount()
     let $el = $(vm.$el)
     await vm.$nextTick()
+    await vm.$nextTick()
     let nav = $el.find('.nav-tabs').get(0)
     let content = $el.find('.tab-content').get(0)
     let activeTab = nav.querySelectorAll('.active')
@@ -100,6 +101,7 @@ describe('Tabs', () => {
   })
 
   it('should be able to render first tab on open', async () => {
+    await vm.$nextTick()
     await vm.$nextTick()
     let nav = $el.find('.nav-tabs').get(0)
     let content = $el.find('.tab-content').get(0)
