@@ -353,7 +353,7 @@
         if (this.eventShouldBePrevented(e)) {
           return
         }
-        if (!this.stepperIntervalRan) {
+        if (!this.stepperIntervalRan && e.type !== 'mouseleave') {
           this.changeTime(isHour, isPlus)
         }
         this.clearStepperInterval()
