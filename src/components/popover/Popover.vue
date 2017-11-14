@@ -1,5 +1,18 @@
 <script>
-  import utils from './../../utils/domUtils'
+  import {
+    PLACEMENTS,
+    TRIGGERS,
+    EVENTS,
+    on,
+    off,
+    ensureElementMatchesFunction,
+    removeFromDom,
+    removeClass,
+    addClass,
+    hasClass,
+    isElement,
+    setTooltipPosition
+  } from '@src/utils/domUtils'
 
   const SHOW_CLASS = 'in'
   const BASE_CLASS = 'popover fade'
@@ -53,11 +66,11 @@
       },
       trigger: {
         type: String,
-        default: utils.triggers.OUTSIDE_CLICK
+        default: TRIGGERS.OUTSIDE_CLICK
       },
       placement: {
         type: String,
-        default: utils.placements.TOP
+        default: PLACEMENTS.TOP
       },
       autoPlacement: {
         type: Boolean,
@@ -84,8 +97,8 @@
       }
     },
     mounted () {
-      utils.ensureElementMatchesFunction()
-      utils.removeFromDom(this.$refs.popover)
+      ensureElementMatchesFunction()
+      removeFromDom(this.$refs.popover)
       this.$nextTick(() => {
         this.initTriggerElByTarget(this.target)
         this.initListeners()
@@ -96,7 +109,7 @@
     },
     beforeDestroy () {
       this.clearListeners()
-      utils.removeFromDom(this.$refs.popover)
+      removeFromDom(this.$refs.popover)
     },
     watch: {
       value (v) {
@@ -118,9 +131,9 @@
           // target exist
           if (typeof target === 'string') { // is selector
             this.triggerEl = document.querySelector(target)
-          } else if (utils.isElement(target)) { // is element
+          } else if (isElement(target)) { // is element
             this.triggerEl = target
-          } else if (utils.isElement(target.$el)) { // is component
+          } else if (isElement(target.$el)) { // is component
             this.triggerEl = target.$el
           }
         } else {
@@ -137,36 +150,36 @@
       },
       initListeners () {
         if (this.triggerEl) {
-          if (this.trigger === utils.triggers.HOVER) {
-            utils.on(this.triggerEl, utils.events.MOUSE_ENTER, this.show)
-            utils.on(this.triggerEl, utils.events.MOUSE_LEAVE, this.hide)
-          } else if (this.trigger === utils.triggers.FOCUS) {
-            utils.on(this.triggerEl, utils.events.FOCUS, this.show)
-            utils.on(this.triggerEl, utils.events.BLUR, this.hide)
-          } else if (this.trigger === utils.triggers.HOVER_FOCUS) {
-            utils.on(this.triggerEl, utils.events.MOUSE_ENTER, this.handleAuto)
-            utils.on(this.triggerEl, utils.events.MOUSE_LEAVE, this.handleAuto)
-            utils.on(this.triggerEl, utils.events.FOCUS, this.handleAuto)
-            utils.on(this.triggerEl, utils.events.BLUR, this.handleAuto)
-          } else if (this.trigger === utils.triggers.CLICK || this.trigger === utils.triggers.OUTSIDE_CLICK) {
-            utils.on(this.triggerEl, utils.events.CLICK, this.toggle)
+          if (this.trigger === TRIGGERS.HOVER) {
+            on(this.triggerEl, EVENTS.MOUSE_ENTER, this.show)
+            on(this.triggerEl, EVENTS.MOUSE_LEAVE, this.hide)
+          } else if (this.trigger === TRIGGERS.FOCUS) {
+            on(this.triggerEl, EVENTS.FOCUS, this.show)
+            on(this.triggerEl, EVENTS.BLUR, this.hide)
+          } else if (this.trigger === TRIGGERS.HOVER_FOCUS) {
+            on(this.triggerEl, EVENTS.MOUSE_ENTER, this.handleAuto)
+            on(this.triggerEl, EVENTS.MOUSE_LEAVE, this.handleAuto)
+            on(this.triggerEl, EVENTS.FOCUS, this.handleAuto)
+            on(this.triggerEl, EVENTS.BLUR, this.handleAuto)
+          } else if (this.trigger === TRIGGERS.CLICK || this.trigger === TRIGGERS.OUTSIDE_CLICK) {
+            on(this.triggerEl, EVENTS.CLICK, this.toggle)
           }
         }
-        utils.on(window, utils.events.CLICK, this.windowClicked)
+        on(window, EVENTS.CLICK, this.windowClicked)
       },
       clearListeners () {
         if (this.triggerEl) {
-          utils.off(this.triggerEl, utils.events.FOCUS, this.show)
-          utils.off(this.triggerEl, utils.events.BLUR, this.hide)
-          utils.off(this.triggerEl, utils.events.MOUSE_ENTER, this.show)
-          utils.off(this.triggerEl, utils.events.MOUSE_LEAVE, this.hide)
-          utils.off(this.triggerEl, utils.events.CLICK, this.toggle)
-          utils.off(this.triggerEl, utils.events.MOUSE_ENTER, this.handleAuto)
-          utils.off(this.triggerEl, utils.events.MOUSE_LEAVE, this.handleAuto)
-          utils.off(this.triggerEl, utils.events.FOCUS, this.handleAuto)
-          utils.off(this.triggerEl, utils.events.BLUR, this.handleAuto)
+          off(this.triggerEl, EVENTS.FOCUS, this.show)
+          off(this.triggerEl, EVENTS.BLUR, this.hide)
+          off(this.triggerEl, EVENTS.MOUSE_ENTER, this.show)
+          off(this.triggerEl, EVENTS.MOUSE_LEAVE, this.hide)
+          off(this.triggerEl, EVENTS.CLICK, this.toggle)
+          off(this.triggerEl, EVENTS.MOUSE_ENTER, this.handleAuto)
+          off(this.triggerEl, EVENTS.MOUSE_LEAVE, this.handleAuto)
+          off(this.triggerEl, EVENTS.FOCUS, this.handleAuto)
+          off(this.triggerEl, EVENTS.BLUR, this.handleAuto)
         }
-        utils.off(window, utils.events.CLICK, this.windowClicked)
+        off(window, EVENTS.CLICK, this.windowClicked)
       },
       show () {
         if (this.enable && this.triggerEl && (this.title || this.content || this.$slots.popover) && !this.isShown()) {
@@ -178,10 +191,10 @@
             popover.className = `${BASE_CLASS} ${this.placement}`
             let container = document.querySelector(this.appendTo)
             container.appendChild(popover)
-            utils.setTooltipPosition(popover, this.triggerEl, this.placement, this.autoPlacement, this.appendTo)
+            setTooltipPosition(popover, this.triggerEl, this.placement, this.autoPlacement, this.appendTo)
             popover.offsetHeight
           }
-          utils.addClass(popover, SHOW_CLASS)
+          addClass(popover, SHOW_CLASS)
           this.$emit('input', true)
           this.$emit('show')
         }
@@ -189,9 +202,9 @@
       hide () {
         if (this.isShown()) {
           clearTimeout(this.timeoutId)
-          utils.removeClass(this.$refs.popover, SHOW_CLASS)
+          removeClass(this.$refs.popover, SHOW_CLASS)
           this.timeoutId = setTimeout(() => {
-            utils.removeFromDom(this.$refs.popover)
+            removeFromDom(this.$refs.popover)
             this.timeoutId = 0
             this.$emit('input', false)
             this.$emit('hide')
@@ -206,15 +219,15 @@
         }
       },
       isShown () {
-        return utils.hasClass(this.$refs.popover, SHOW_CLASS)
+        return hasClass(this.$refs.popover, SHOW_CLASS)
       },
       showOnHover () {
-        if (this.trigger === utils.triggers.HOVER || this.trigger === utils.triggers.HOVER_FOCUS) {
+        if (this.trigger === TRIGGERS.HOVER || this.trigger === TRIGGERS.HOVER_FOCUS) {
           this.show()
         }
       },
       hideOnLeave () {
-        if (this.trigger === utils.triggers.HOVER || (this.trigger === utils.triggers.HOVER_FOCUS && !this.triggerEl.matches(':focus'))) {
+        if (this.trigger === TRIGGERS.HOVER || (this.trigger === TRIGGERS.HOVER_FOCUS && !this.triggerEl.matches(':focus'))) {
           this.hide()
         }
       },
@@ -229,7 +242,7 @@
       },
       windowClicked (event) {
         if (this.triggerEl && !this.triggerEl.contains(event.target) &&
-          this.trigger === utils.triggers.OUTSIDE_CLICK && !this.$refs.popover.contains(event.target) &&
+          this.trigger === TRIGGERS.OUTSIDE_CLICK && !this.$refs.popover.contains(event.target) &&
           this.isShown()) {
           this.hide()
         }

@@ -1,7 +1,7 @@
-import domUtils from './../utils/domUtils'
+import {EVENTS, on, off} from '@src/utils/domUtils'
 
 const HANDLER = '_uiv_scroll_handler'
-const events = [domUtils.events.RESIZE, domUtils.events.SCROLL]
+const events = [EVENTS.RESIZE, EVENTS.SCROLL]
 
 const bind = (el, binding) => {
   let callback = binding.value
@@ -11,13 +11,13 @@ const bind = (el, binding) => {
   unbind(el)
   el[HANDLER] = callback
   events.forEach(event => {
-    domUtils.on(window, event, el[HANDLER])
+    on(window, event, el[HANDLER])
   })
 }
 
 const unbind = (el) => {
   events.forEach(event => {
-    domUtils.off(window, event, el[HANDLER])
+    off(window, event, el[HANDLER])
   })
   delete el[HANDLER]
 }

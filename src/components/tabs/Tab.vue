@@ -5,7 +5,8 @@
 </template>
 
 <script>
-  import domUtils from '../../utils/domUtils'
+  import {spliceIfExist} from '@src/utils/arrayUtils'
+  import {addClass, removeClass} from '@src/utils/domUtils'
 
   const ACTIVE_CLASS = 'active'
   const IN_CLASS = 'in'
@@ -42,14 +43,14 @@
       active (active) {
         if (active) {
           setTimeout(() => {
-            domUtils.addClass(this.$el, ACTIVE_CLASS)
+            addClass(this.$el, ACTIVE_CLASS)
             this.$el.offsetHeight
-            domUtils.addClass(this.$el, IN_CLASS)
+            addClass(this.$el, IN_CLASS)
           }, this.transition)
         } else {
-          domUtils.removeClass(this.$el, IN_CLASS)
+          removeClass(this.$el, IN_CLASS)
           setTimeout(() => {
-            domUtils.removeClass(this.$el, ACTIVE_CLASS)
+            removeClass(this.$el, ACTIVE_CLASS)
           }, this.transition)
         }
       }
@@ -61,11 +62,15 @@
         throw new Error('<tab> parent must be <tabs>.')
       }
     },
+    beforeDestroy () {
+      let tabs = this.$parent && this.$parent.tabs
+      spliceIfExist(tabs, this)
+    },
     methods: {
       show () {
         this.$nextTick(() => {
-          domUtils.addClass(this.$el, ACTIVE_CLASS)
-          domUtils.addClass(this.$el, IN_CLASS)
+          addClass(this.$el, ACTIVE_CLASS)
+          addClass(this.$el, IN_CLASS)
         })
       }
     }

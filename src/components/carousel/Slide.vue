@@ -5,6 +5,8 @@
 </template>
 
 <script>
+  import {spliceIfExist} from '@src/utils/arrayUtils'
+
   export default {
     data () {
       return {
@@ -23,6 +25,10 @@
       } catch (e) {
         throw new Error('Slide parent must be Carousel.')
       }
+    },
+    beforeDestroy () {
+      let slides = this.$parent && this.$parent.slides
+      spliceIfExist(slides, this)
     }
   }
 </script>

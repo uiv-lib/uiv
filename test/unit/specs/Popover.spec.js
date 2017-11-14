@@ -49,6 +49,78 @@ describe('Popover', () => {
     vm.$destroy()
   })
 
+  it('should be able to use popover directive', async () => {
+    let res = Vue.compile('<btn v-popover="msg"></btn>')
+    let vm = new Vue({
+      data () {
+        return {
+          msg: {title: 'title', content: 'content'}
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    let trigger = vm.$el
+    trigger.click()
+    await utils.sleep(200)
+    let popover = document.querySelector('.popover')
+    expect(popover).to.exist
+    expect(popover.querySelector('.popover-title').innerText).to.equal('title')
+    expect(popover.querySelector('.popover-content').innerText).to.equal('content')
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    // this should work
+    vm.msg = {title: 'title2', content: 'content2'}
+    await vm.$nextTick()
+    trigger.click()
+    await utils.sleep(200)
+    popover = document.querySelector('.popover')
+    expect(popover).to.exist
+    expect(popover.querySelector('.popover-title').innerText).to.equal('title2')
+    expect(popover.querySelector('.popover-content').innerText).to.equal('content2')
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    // this should not work
+    vm.$set(vm.msg, 'title', 'title3')
+    await vm.$nextTick()
+    trigger.click()
+    await utils.sleep(200)
+    popover = document.querySelector('.popover')
+    expect(popover).to.exist
+    expect(popover.querySelector('.popover-title').innerText).to.equal('title2')
+    expect(popover.querySelector('.popover-content').innerText).to.equal('content2')
+    vm.$destroy()
+  })
+
+  it('directive with invalid modifiers should be ok', async () => {
+    // invalid modifier should be ok
+    let res = Vue.compile('<btn v-popover.test1.test2="msg"></btn>')
+    let vm = new Vue({
+      data () {
+        return {
+          msg: {title: 'title', content: 'content'}
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    let trigger = vm.$el
+    trigger.click()
+    await utils.sleep(200)
+    let popover = document.querySelector('.popover')
+    expect(popover).to.exist
+    expect(popover.querySelector('.popover-title').innerText).to.equal('title')
+    expect(popover.querySelector('.popover-content').innerText).to.equal('content')
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    vm.$destroy()
+  })
+
   it('should not show popover with no title and content', async () => {
     let res = Vue.compile('<popover v-model="show"><button data-role="trigger"></button></popover>')
     let vm = new Vue({

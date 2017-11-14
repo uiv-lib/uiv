@@ -8,13 +8,13 @@ export default {
     if (children && children.length) {
       slot = children
     } else if (props.items) {
-      props.items.forEach((item, index) => {
-        slot.push(h(
+      slot = props.items.map((item, index) => {
+        return h(
           BreadcrumbItem,
           {
-            key: item.key ? item.key : index,
+            key: item.hasOwnProperty('key') ? item.key : index,
             props: {
-              active: typeof item.active === 'boolean' ? item.active : index === props.items.length - 1,
+              active: item.hasOwnProperty('active') ? item.active : index === props.items.length - 1,
               href: item.href,
               target: item.target,
               to: item.to,
@@ -24,7 +24,7 @@ export default {
             }
           },
           item.text
-        ))
+        )
       })
     }
     return h('ol', mergeData(data, {class: 'breadcrumb'}), slot)

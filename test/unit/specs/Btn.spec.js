@@ -83,6 +83,14 @@ describe('Btn', () => {
     expect(_$el.find('.btn[disabled]').length).to.equal(2)
   })
 
+  it('should not response on disabled link btn click', async () => {
+    let _$el = $(vm.$refs['btn-disabled'].$el)
+    expect(window.location.hash).to.equal('')
+    _$el.find('a.btn').get(0).click()
+    await vm.$nextTick()
+    expect(window.location.hash).to.equal('')
+  })
+
   it('should emit click event', async () => {
     let res = Vue.compile('<btn @click="onClick">{{ msg }}</btn>')
     let vm = new Vue({
@@ -224,5 +232,19 @@ describe('Btn', () => {
     expect(_$el.find('label.btn').get(0).className).to.contain('active')
     // model change
     expect(_vm.model).to.equal('1')
+  })
+
+  it('should be able to render as justified', async () => {
+    let res = Vue.compile('<btn justified>test</btn>')
+    let vm = new Vue({
+      components: {Btn},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    expect(vm.$el.className).to.contain('btn-group')
+    let btn = vm.$el.querySelector('.btn')
+    expect(btn).to.exist
+    expect(btn.innerText).to.equal('test')
   })
 })

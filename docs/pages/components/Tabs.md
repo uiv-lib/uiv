@@ -96,7 +96,7 @@ Add `justified` to `<tabs>` to use justified style.
     <tab title="Profile">
       <p>Profile tab.</p>
     </tab>
-    <tab title="<i class='glyphicon glyphicon-bell'></i> Alert!" :html-title="true">
+    <tab title="<i class='glyphicon glyphicon-bell'></i> Alert!" html-title>
       <p>This tab has HTML title and callback function!</p>
     </tab>
   </tabs>
@@ -136,6 +136,50 @@ Add `justified` to `<tabs>` to use justified style.
   </form>
 </tabs>
 <!-- tabs-with-nav-right-slot.vue -->
+```
+
+## Dynamic Example
+
+Generate tabs using `v-for`.
+
+```html
+<template>
+  <section>
+    <btn type="primary" @click="push">Push</btn>
+    <btn type="warning" @click="pop">Pop</btn>
+    <hr/>
+    <tabs v-model="index">
+      <tab v-for="tab in tabs" :title="tab" :key="tab">
+        <p>Dynamic {{tab}}</p>
+      </tab>
+    </tabs>
+  </section>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        tabs: ['Tab 0'],
+        index: 0
+      }
+    },
+    methods: {
+      push () {
+        this.tabs.push(`Tab ${this.tabs.length}`)
+        this.$nextTick(() => {
+          this.index = this.tabs.length - 1
+        })
+      },
+      pop () {
+        this.tabs.pop()
+        if (this.index === this.tabs.length) {
+          --this.index
+        }
+      }
+    }
+  }
+</script>
+<!-- tabs-dynamic-example.vue -->
 ```
 
 # API Reference

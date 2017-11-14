@@ -133,6 +133,75 @@ describe('Tooltip', () => {
     vm.$destroy()
   })
 
+  it('should be able to use tooltip directive', async () => {
+    let res = Vue.compile('<btn v-tooltip.click="msg">{{test}}</btn>')
+    let vm = new Vue({
+      data () {
+        return {
+          msg: 'title',
+          test: 'test'
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    let trigger = vm.$el
+    trigger.click()
+    await utils.sleep(200)
+    let tooltip = document.querySelector('.tooltip')
+    expect(tooltip).to.exist
+    expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title')
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+    // this should work
+    vm.msg = 'title2'
+    await vm.$nextTick()
+    trigger.click()
+    await utils.sleep(200)
+    tooltip = document.querySelector('.tooltip')
+    expect(tooltip).to.exist
+    expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title2')
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+    // this should not work
+    vm.test = 'test2'
+    await vm.$nextTick()
+    trigger.click()
+    await utils.sleep(200)
+    tooltip = document.querySelector('.tooltip')
+    expect(tooltip).to.exist
+    expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title2')
+    vm.$destroy()
+  })
+
+  it('directive with invalid modifiers should be ok', async () => {
+    // invalid modifier should be ok
+    let res = Vue.compile('<btn v-tooltip.test1.test2.click="msg"></btn>')
+    let vm = new Vue({
+      data () {
+        return {
+          msg: 'title'
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    let trigger = vm.$el
+    trigger.click()
+    await utils.sleep(200)
+    let tooltip = document.querySelector('.tooltip')
+    expect(tooltip).to.exist
+    expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title')
+    trigger.click()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+    vm.$destroy()
+  })
+
   it('should be able to show tooltip', async () => {
     let _vm = vm.$refs['tooltip-example']
     await vm.$nextTick()

@@ -40,8 +40,16 @@
 
 <script>
   import Local from './../../mixins/locale'
-  import utils from './../../utils/domUtils'
   import Btn from './../button/Btn'
+  import {
+    EVENTS,
+    on,
+    off,
+    removeFromDom,
+    toggleBodyOverflow,
+    addClass,
+    removeClass
+  } from '@src/utils/domUtils'
 
   const MODAL_OPEN = 'modal-open'
   const IN = 'in'
@@ -111,16 +119,16 @@
       }
     },
     mounted () {
-      utils.removeFromDom(this.$refs.backdrop)
-      utils.on(window, utils.events.KEY_UP, this.onKeyPress)
+      removeFromDom(this.$refs.backdrop)
+      on(window, EVENTS.KEY_UP, this.onKeyPress)
       if (this.value) {
         this.$toggle(true)
       }
     },
     beforeDestroy () {
       clearTimeout(this.timeoutId)
-      utils.removeFromDom(this.$refs.backdrop)
-      utils.off(window, utils.events.KEY_UP, this.onKeyPress)
+      removeFromDom(this.$refs.backdrop)
+      off(window, EVENTS.KEY_UP, this.onKeyPress)
     },
     methods: {
       onKeyPress (event) {
@@ -141,10 +149,10 @@
           modal.style.display = 'block'
           modal.scrollTop = 0
           backdrop.offsetHeight // force repaint
-          utils.toggleBodyOverflow(false)
-          utils.addClass(backdrop, IN)
-          utils.addClass(modal, IN)
-          utils.addClass(document.body, MODAL_OPEN)
+          toggleBodyOverflow(false)
+          addClass(backdrop, IN)
+          addClass(modal, IN)
+          addClass(document.body, MODAL_OPEN)
           this.timeoutId = setTimeout(() => {
             if (this.autoFocus) {
               let btn = this.$el.querySelector('[data-action="auto-focus"]')
@@ -156,13 +164,13 @@
             this.timeoutId = 0
           }, this.transitionDuration)
         } else {
-          utils.removeClass(backdrop, IN)
-          utils.removeClass(modal, IN)
+          removeClass(backdrop, IN)
+          removeClass(modal, IN)
           this.timeoutId = setTimeout(() => {
             modal.style.display = 'none'
-            utils.removeFromDom(backdrop)
-            utils.removeClass(document.body, MODAL_OPEN)
-            utils.toggleBodyOverflow(true)
+            removeFromDom(backdrop)
+            removeClass(document.body, MODAL_OPEN)
+            toggleBodyOverflow(true)
             this.$emit('hide', this.msg || 'dismiss')
             this.msg = ''
             this.timeoutId = 0

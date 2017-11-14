@@ -46,7 +46,7 @@
   import MonthView from './MonthView.vue'
   import YearView from './YearView.vue'
   import Btn from './../button/Btn'
-  import dateUtils from '../../utils/dateUtils'
+  import {stringify} from '@src/utils/dateUtils'
 
   export default {
     mixins: [Locale],
@@ -189,7 +189,7 @@
           typeof date.month === 'number' &&
           typeof date.year === 'number') {
           let _date = new Date(date.year, date.month, date.date)
-          this.$emit('input', dateUtils.stringify(_date, this.format))
+          this.$emit('input', stringify(_date, this.format))
         } else {
           this.$emit('input', '')
         }

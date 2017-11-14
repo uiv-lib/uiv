@@ -15,6 +15,7 @@
     "SSR",
     "Web",
     "Components",
+    "Directives",
     "Vue",
     "VueJS",
     "Vue2",
@@ -23,6 +24,9 @@
     "vuestrap",
     "CSS",
     "Alert",
+    "Button",
+    "Button group",
+    "Breadcrumbs",
     "Carousel",
     "Slider",
     "Collapse",
@@ -34,7 +38,9 @@
     "Popover",
     "Progress",
     "Tab",
-    "Tooltip"
+    "Tooltip",
+    "Typeahead",
+    "Auto complete"
   ],
   "license": "MIT",
   "bugs": {
@@ -98,7 +104,7 @@
     "inject-loader": "^2.0.1",
     "jquery": "^3.2.1",
     "karma": "^1.4.1",
-    "karma-coverage": "^1.1.1",
+    "karma-coverage-istanbul-reporter": "^1.3.0",
     "karma-mocha": "^1.3.0",
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-sinon-chai": "^1.2.4",

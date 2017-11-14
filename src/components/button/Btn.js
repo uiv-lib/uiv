@@ -8,7 +8,7 @@ export default {
   functional: true,
   render (h, {children, props, data}) {
     // event listeners
-    const listeners = data.on
+    const listeners = data.on || {}
     // checkbox: model contain inputValue
     // radio: model === inputValue
     const isInputActive = props.inputType === INPUT_TYPE_CHECKBOX ? props.value.indexOf(props.inputValue) >= 0 : props.value === props.inputValue
@@ -90,11 +90,8 @@ export default {
                 } else {
                   props.value.push(props.inputValue)
                 }
-              } else if (listeners) {
-                let fn = listeners['input']
-                if (typeof fn === 'function') {
-                  fn(props.inputValue)
-                }
+              } else {
+                listeners['input'](props.inputValue)
               }
             }
           }

@@ -1,5 +1,5 @@
 <script>
-  import utils from './../../utils/domUtils'
+  import {setDropdownPosition, on, off, EVENTS} from '@src/utils/domUtils'
 
   const DEFAULT_TAG = 'div'
 
@@ -73,9 +73,9 @@
       // 1. trigger exist
       // 2. not the dropdown menu
       if (this.triggerEl && this.triggerEl !== this.$refs.dropdown) {
-        utils.on(this.triggerEl, utils.events.CLICK, this.toggle)
+        on(this.triggerEl, EVENTS.CLICK, this.toggle)
       }
-      utils.on(window, utils.events.CLICK, this.windowClicked)
+      on(window, EVENTS.CLICK, this.windowClicked)
       if (this.value) {
         this.toggle(true)
       }
@@ -83,9 +83,9 @@
     beforeDestroy () {
       this.removeDropdownFromBody()
       if (this.triggerEl) {
-        utils.off(this.triggerEl, utils.events.CLICK, this.toggle)
+        off(this.triggerEl, EVENTS.CLICK, this.toggle)
       }
-      utils.off(window, utils.events.CLICK, this.windowClicked)
+      off(window, EVENTS.CLICK, this.windowClicked)
     },
     methods: {
       toggle (show) {
@@ -124,7 +124,7 @@
           el.style.display = 'block'
           document.body.appendChild(el)
           let positionElement = this.positionElement || this.$el
-          utils.setDropdownPosition(el, positionElement, this)
+          setDropdownPosition(el, positionElement, this)
         } catch (e) {
           // Silent
         }

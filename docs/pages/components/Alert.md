@@ -21,10 +21,10 @@ Use `dismissible` to allow user to dismiss alerts.
 ```html
 <template>
   <section>
-    <alert type="warning" v-if="show" :dismissible="true" @dismissed="show = false">
+    <alert type="warning" v-if="show" dismissible @dismissed="show = false">
       <b>Warning!</b> Better check yourself, you're not looking too good.
     </alert>
-    <alert v-for="(item, index) in alerts" :dismissible="true" :key="item.key" @dismissed="alerts.splice(index, 1)">
+    <alert v-for="(item, index) in alerts" dismissible :key="item.key" @dismissed="alerts.splice(index, 1)">
       <b>Heads up!</b> This alert needs your attention, but it's not super important.
     </alert>
     <hr/>
@@ -89,7 +89,7 @@ Use `duration` in milliseconds to auto dismiss alert. It can be used together wi
     <btn type="primary" @click="show = !show">Toggle Collapsing Alert</btn>
     <hr/>
     <collapse v-model="show">
-      <alert type="warning" :dismissible="true" @dismissed="show = false">This alert <b>will collapse on open / close</b>.</alert>
+      <alert type="warning" dismissible @dismissed="show = false">This alert <b>will collapse on open / close</b>.</alert>
     </collapse>
   </section>
 </template>
