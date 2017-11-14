@@ -26,8 +26,8 @@ describe('Alert', () => {
   }
 
   it('should be able to add alert with no type', () => {
-    let res = Vue.compile('<alert>{{ msg }}</alert>')
-    let vm = new Vue({
+    const res = Vue.compile('<alert>{{ msg }}</alert>')
+    const localVm = new Vue({
       data () {
         return {
           msg: 'This is a alert!'
@@ -37,47 +37,47 @@ describe('Alert', () => {
       render: res.render,
       staticRenderFns: res.staticRenderFns
     })
-    vm.$mount()
-    let $el = $(vm.$el)
-    expect($el.hasClass('alert')).to.be.true
-    expect($el.hasClass(DEFAULT_ALERT_CLASS)).to.be.true
-    $el.remove()
-    vm.$destroy()
+    localVm.$mount()
+    const $alert = $(localVm.$el)
+    expect($alert.hasClass('alert')).to.be.true
+    expect($alert.hasClass(DEFAULT_ALERT_CLASS)).to.be.true
+    $alert.remove()
+    localVm.$destroy()
   })
 
   it('should be able to dismiss alerts', async () => {
-    let _$el = $(vm.$refs['alert-dismissible'].$el)
-    let alert = _$el.find('.alert')
-    expect(alert.length).to.equal(1)
-    let closedBtn = alert.find('button.close')
-    closedBtn.click()
+    const _$el = $(vm.$refs['alert-dismissible'].$el)
+    const $alert = _$el.find('.alert')
+    expect($alert.length).to.equal(1)
+    const closeBtn = $alert.find('button.close').get(0)
+    utils.triggerEvent(closeBtn, 'click')
     await vm.$nextTick()
     expect(_$el.find('.alert').length).to.equal(0)
   })
 
   it('should be able to add dismissible alerts', async () => {
-    let _$el = $(vm.$refs['alert-dismissible'].$el)
-    let before = getDefaultAlertLength()
-    let addAlertBtn = _$el.find('.btn-primary')
-    addAlertBtn.click()
+    const _$el = $(vm.$refs['alert-dismissible'].$el)
+    const alertInstancesBefore = getDefaultAlertLength()
+    const addAlertBtn = _$el.find('.btn-primary').get(0)
+    utils.triggerEvent(addAlertBtn, 'click')
     await vm.$nextTick()
-    let after = getDefaultAlertLength()
-    expect(after).to.equal(before + 1)
+    const alertInstancesAfter = getDefaultAlertLength()
+    expect(alertInstancesAfter).to.equal(alertInstancesBefore + 1)
   })
 
   it('should be able to add auto dismiss alerts', async () => {
-    let _vm = vm.$refs['alert-auto-dismissing']
-    let _$el = $(_vm.$el)
+    const _vm = vm.$refs['alert-auto-dismissing']
+    const _$el = $(_vm.$el)
     _vm.duration = 1000
     await vm.$nextTick()
-    let before = getDefaultAlertLength()
-    let addAlertBtn = _$el.find('.btn-primary')
-    addAlertBtn.click()
+    const alertInstancesBefore = getDefaultAlertLength()
+    const addAlertBtn = _$el.find('.btn-primary').get(0)
+    utils.triggerEvent(addAlertBtn, 'click')
     await vm.$nextTick()
-    let after = getDefaultAlertLength()
-    expect(after).to.equal(before + 1)
+    const alertInstancesAfter = getDefaultAlertLength()
+    expect(alertInstancesAfter).to.equal(alertInstancesBefore + 1)
     await utils.sleep(_vm.duration + 200)
-    let _after = getDefaultAlertLength()
-    expect(_after).to.equal(before)
+    const alertInstancesAfterDelay = getDefaultAlertLength()
+    expect(alertInstancesAfterDelay).to.equal(alertInstancesBefore)
   })
 })
