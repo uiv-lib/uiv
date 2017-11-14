@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import $ from 'jquery'
-// import Typeahead from '@src/components/typeahead/Typeahead.vue'
 import TypeaheadDoc from '@docs/pages/components/Typeahead.md'
-import utills from './../utils'
+import utils from './../utils'
 
 describe('Typeahead', () => {
   let xhr, requests, server
@@ -41,7 +40,7 @@ describe('Typeahead', () => {
     let dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utills.triggerEvent(input, 'input')
+    utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
@@ -56,7 +55,7 @@ describe('Typeahead', () => {
     let dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utills.triggerEvent(input, 'focus')
+    utils.triggerEvent(input, 'focus')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
@@ -71,10 +70,10 @@ describe('Typeahead', () => {
     let dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utills.triggerEvent(input, 'input')
+    utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
-    utills.triggerEvent(input, 'blur')
+    utils.triggerEvent(input, 'blur')
     await vm.$nextTick()
     expect(dropdown.className).not.contain('open')
   })
@@ -86,10 +85,10 @@ describe('Typeahead', () => {
     let dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utills.triggerEvent(input, 'input')
+    utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
-    utills.triggerEvent(input, 'click')
+    utils.triggerEvent(input, 'click')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
   })
@@ -101,11 +100,11 @@ describe('Typeahead', () => {
     let dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utills.triggerEvent(input, 'input')
+    utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     input.value = ''
-    utills.triggerEvent(input, 'input')
+    utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
   })
@@ -117,7 +116,7 @@ describe('Typeahead', () => {
     let dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'a'
-    utills.triggerEvent(input, 'input')
+    utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(10)
@@ -132,7 +131,7 @@ describe('Typeahead', () => {
     let dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'asdasdasdasd'
-    utills.triggerEvent(input, 'input')
+    utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
   })
@@ -144,7 +143,7 @@ describe('Typeahead', () => {
     let dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utills.triggerEvent(input, 'input')
+    utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
@@ -165,7 +164,7 @@ describe('Typeahead', () => {
     let dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utills.triggerEvent(input, 'input')
+    utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(_vm.model).not.exist
     expect(dropdown.className).to.contain('open')
@@ -185,7 +184,7 @@ describe('Typeahead', () => {
     let input = _vm.$el.querySelector('input')
     let dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
-    utills.triggerEvent(input, 'keydown', {keyCode: 13})
+    utils.triggerEvent(input, 'keydown', {keyCode: 13})
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
     expect(input.value).to.equal('')
@@ -198,13 +197,13 @@ describe('Typeahead', () => {
     let dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utills.triggerEvent(input, 'input')
+    utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
     let selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
-    utills.triggerKey(input, 13)
+    utils.triggerKey(input, 13)
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
     expect(input.value).to.equal('Alabama')
@@ -218,19 +217,19 @@ describe('Typeahead', () => {
     let dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utills.triggerEvent(input, 'input')
+    utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
     let selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
-    utills.triggerKey(input, 40)
+    utils.triggerKey(input, 40)
     await vm.$nextTick()
     selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alaska')
-    utills.triggerKey(input, 40)
+    utils.triggerKey(input, 40)
     await vm.$nextTick()
-    utills.triggerKey(input, 40)
+    utils.triggerKey(input, 40)
     await vm.$nextTick()
     selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Palau')
@@ -243,27 +242,27 @@ describe('Typeahead', () => {
     let dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utills.triggerEvent(input, 'input')
+    utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
     let selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
-    utills.triggerKey(input, 40)
+    utils.triggerKey(input, 40)
     await vm.$nextTick()
-    utills.triggerKey(input, 40)
+    utils.triggerKey(input, 40)
     await vm.$nextTick()
-    utills.triggerKey(input, 40)
+    utils.triggerKey(input, 40)
     await vm.$nextTick()
     selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Palau')
-    utills.triggerKey(input, 38)
+    utils.triggerKey(input, 38)
     await vm.$nextTick()
     selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alaska')
-    utills.triggerKey(input, 38)
+    utils.triggerKey(input, 38)
     await vm.$nextTick()
-    utills.triggerKey(input, 38)
+    utils.triggerKey(input, 38)
     await vm.$nextTick()
     selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
@@ -277,7 +276,7 @@ describe('Typeahead', () => {
     let dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utills.triggerEvent(input, 'input')
+    utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(2)
@@ -293,8 +292,8 @@ describe('Typeahead', () => {
     let savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     input.value = 'wxsm'
-    utills.triggerEvent(input, 'input')
-    await utills.sleep(600)
+    utils.triggerEvent(input, 'input')
+    await utils.sleep(600)
     server.requests[0].respond(
       200,
       {'Content-Type': 'application/json'},
