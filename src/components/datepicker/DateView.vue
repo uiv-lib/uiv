@@ -45,8 +45,8 @@
 
 <script>
   import Locale from '../../mixins/locale'
-  import util from '../../utils/dateUtils'
   import Btn from './../button/Btn'
+  import {daysInMonth} from '@src/utils/dateUtils'
 
   export default {
     mixins: [Locale],
@@ -98,7 +98,7 @@
         let prevMonthLastDate = new Date(this.year, this.month, 0).getDate()
         let startIndex = firstDay.getDay()
         // console.log(startIndex)
-        let daysNum = util.daysInMonth(this.month, this.year)
+        let daysNum = daysInMonth(this.month, this.year)
         let weekOffset = 0
         if (this.weekStartsWith > startIndex) {
           weekOffset = 7 - this.weekStartsWith

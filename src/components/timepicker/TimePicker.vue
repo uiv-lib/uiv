@@ -80,8 +80,8 @@
 
 <script>
   import Local from './../../mixins/locale'
-  import utils from './../../utils/stringUtils'
   import Btn from './../button/Btn'
+  import {pad} from '@src/utils/stringUtils'
 
   const maxHours = 23
   const zero = 0
@@ -173,26 +173,26 @@
       updateByValue (value) {
         this.hours = value.getHours()
         if (!this.showMeridian) {
-          this.hoursText = utils.pad(this.hours, 2)
+          this.hoursText = pad(this.hours, 2)
         } else {
           if (this.hours >= cutUpAmAndPm) {
             if (this.hours === cutUpAmAndPm) {
               this.hoursText = this.hours + ''
             } else {
-              this.hoursText = utils.pad(this.hours - cutUpAmAndPm, 2)
+              this.hoursText = pad(this.hours - cutUpAmAndPm, 2)
             }
             this.meridian = false
           } else {
             if (this.hours === zero) {
               this.hoursText = cutUpAmAndPm.toString()
             } else {
-              this.hoursText = utils.pad(this.hours, 2)
+              this.hoursText = pad(this.hours, 2)
             }
             this.meridian = true
           }
         }
         this.minutes = value.getMinutes()
-        this.minutesText = utils.pad(this.minutes, 2)
+        this.minutesText = pad(this.minutes, 2)
       },
       addHour (step) {
         step = step || this.hourStep

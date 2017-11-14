@@ -1,4 +1,4 @@
-import utils from '@src/utils/httpUtils.js'
+import * as utils from '@src/utils/httpUtils'
 
 describe('httpUtils', () => {
   let xhr, requests, server
@@ -20,7 +20,7 @@ describe('httpUtils', () => {
   it('should be able to get with success callback', () => {
     let then = sinon.spy()
     let always = sinon.spy()
-    utils.get('/some/path')
+    utils.getRequest('/some/path')
       .then(then)
       .always(always)
     server.requests[0].respond(
@@ -36,7 +36,7 @@ describe('httpUtils', () => {
     let then = sinon.spy()
     let err = sinon.spy()
     let always = sinon.spy()
-    utils.get('/some/path')
+    utils.getRequest('/some/path')
       .then(then)
       .catch(err)
       .always(always)

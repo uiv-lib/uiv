@@ -17,8 +17,14 @@
 </template>
 
 <script>
-  import httpUtils from './../../utils/httpUtils'
-  import domUtils from './../../utils/domUtils'
+  import {getRequest} from '@src/utils/httpUtils'
+  import {
+    isElement,
+    on,
+    off,
+    ensureElementMatchesFunction,
+    EVENTS
+  } from '@src/utils/domUtils'
   import Dropdown from './../dropdown/Dropdown.vue'
 
   export default {
@@ -99,7 +105,7 @@
       }
     },
     mounted () {
-      domUtils.ensureElementMatchesFunction()
+      ensureElementMatchesFunction()
       this.$nextTick(() => {
         this.initInputElByTarget(this.target)
         this.initListeners()
@@ -115,13 +121,13 @@
         this.initInputElByTarget(el)
         this.initListeners()
       },
-      value (newValue, oldValue) {
-        if (typeof newValue === 'string') {
+      value (value) {
+        if (typeof value === 'string') {
           // direct
-          this.inputEl.value = newValue
-        } else if (newValue) {
+          this.inputEl.value = value
+        } else if (value) {
           // is object
-          this.inputEl.value = this.itemKey ? newValue[this.itemKey] : newValue
+          this.inputEl.value = this.itemKey ? value[this.itemKey] : value
         } else {
           // is null or undefined or something else not valid
           this.inputEl.value = ''
@@ -135,28 +141,28 @@
         }
         if (typeof target === 'string') { // is selector
           this.inputEl = document.querySelector(target)
-        } else if (domUtils.isElement(target)) { // is element
+        } else if (isElement(target)) { // is element
           this.inputEl = target
-        } else if (domUtils.isElement(target.$el)) { // is component
+        } else if (isElement(target.$el)) { // is component
           this.inputEl = target.$el
         }
       },
       initListeners () {
         if (this.inputEl) {
           this.elements = [this.inputEl]
-          domUtils.on(this.inputEl, domUtils.events.FOCUS, this.inputFocused)
-          domUtils.on(this.inputEl, domUtils.events.BLUR, this.inputBlured)
-          domUtils.on(this.inputEl, domUtils.events.INPUT, this.inputChanged)
-          domUtils.on(this.inputEl, domUtils.events.KEY_DOWN, this.inputKeyPressed)
+          on(this.inputEl, EVENTS.FOCUS, this.inputFocused)
+          on(this.inputEl, EVENTS.BLUR, this.inputBlured)
+          on(this.inputEl, EVENTS.INPUT, this.inputChanged)
+          on(this.inputEl, EVENTS.KEY_DOWN, this.inputKeyPressed)
         }
       },
       removeListeners () {
         this.elements = []
         if (this.inputEl) {
-          domUtils.off(this.inputEl, domUtils.events.FOCUS, this.inputFocused)
-          domUtils.off(this.inputEl, domUtils.events.BLUR, this.inputBlured)
-          domUtils.off(this.inputEl, domUtils.events.INPUT, this.inputChanged)
-          domUtils.off(this.inputEl, domUtils.events.KEY_DOWN, this.inputKeyPressed)
+          off(this.inputEl, EVENTS.FOCUS, this.inputFocused)
+          off(this.inputEl, EVENTS.BLUR, this.inputBlured)
+          off(this.inputEl, EVENTS.INPUT, this.inputChanged)
+          off(this.inputEl, EVENTS.KEY_DOWN, this.inputKeyPressed)
         }
       },
       prepareItems (data, disableFilters = false) {
@@ -194,7 +200,7 @@
         } else if (this.asyncSrc) {
           this.timeoutID = setTimeout(() => {
             this.$emit('loading')
-            httpUtils.get(this.asyncSrc + value)
+            getRequest(this.asyncSrc + value)
               .then(data => {
                 if (this.inputEl.matches(':focus')) {
                   this.prepareItems(this.asyncKey ? data[this.asyncKey] : data, true)

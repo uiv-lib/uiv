@@ -1,4 +1,4 @@
-import utils from '@src/utils/domUtils.js'
+import * as utils from '@src/utils/domUtils'
 import $ from 'jquery'
 
 describe('domUtils', () => {
