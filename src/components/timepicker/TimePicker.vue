@@ -4,13 +4,31 @@
       <tbody>
       <tr class="text-center">
         <td>
-          <btn type="link" size="sm" @click="changeTime(1,1)" :disabled="readonly">
+          <btn 
+            type="link" 
+            size="sm" 
+            @touchstart="startStepping(1, 1, $event)" 
+            @touchend="stopStepping(1, 1, $event)" 
+            @mousedown="startStepping(1, 1, $event)" 
+            @mouseup="stopStepping(1, 1, $event)"
+            @mouseleave="stopStepping(1, 1, $event)"
+            @click="stopStepping(1, 1, $event)" 
+            :disabled="readonly">
             <i :class="iconControlUp"></i>
           </btn>
         </td>
         <td>&nbsp;</td>
         <td>
-          <btn type="link" size="sm" @click="changeTime(0,1)" :disabled="readonly">
+          <btn 
+            type="link" 
+            size="sm" 
+            @touchstart="startStepping(0, 1, $event)" 
+            @touchend="stopStepping(0, 1, $event)" 
+            @mousedown="startStepping(0, 1, $event)" 
+            @mouseup="stopStepping(0, 1, $event)"
+            @mouseleave="stopStepping(0, 1, $event)"
+            @click="stopStepping(0, 1, $event)" 
+            :disabled="readonly">
             <i :class="iconControlUp"></i>
           </btn>
         </td>
@@ -24,8 +42,10 @@
                  class="form-control text-center"
                  style="width: 50px"
                  @focus="selectInputValue"
-                 @keyup.up="changeTime(1, 1)"
-                 @keyup.down="changeTime(1, 0)"
+                 @keydown.prevent.up="startStepping(1, 1, $event)" 
+                 @keydown.prevent.down="startStepping(1, 0, $event)" 
+                 @keyup.up="stopStepping(1, 1, $event)" 
+                 @keyup.down="stopStepping(1, 0, $event)" 
                  @wheel="onWheel($event, true)"
                  placeholder="HH"
                  v-model.lazy="hoursText"
@@ -40,8 +60,10 @@
                  class="form-control text-center"
                  style="width: 50px"
                  @focus="selectInputValue"
-                 @keyup.up="changeTime(0, 1)"
-                 @keyup.down="changeTime(0, 0)"
+                 @keydown.prevent.up="startStepping(0, 1, $event)" 
+                 @keydown.prevent.down="startStepping(0, 0, $event)" 
+                 @keyup.up="stopStepping(0, 1, $event)" 
+                 @keyup.down="stopStepping(0, 0, $event)" 
                  @wheel="onWheel($event, false)"
                  placeholder="MM"
                  v-model.lazy="minutesText"
@@ -60,13 +82,31 @@
       </tr>
       <tr class="text-center">
         <td>
-          <btn type="link" size="sm" @click="changeTime(1,0)" :disabled="readonly">
+          <btn 
+            type="link" 
+            size="sm" 
+            @touchstart="startStepping(1, 0, $event)" 
+            @touchend="stopStepping(1, 0, $event)" 
+            @mousedown="startStepping(1, 0, $event)" 
+            @mouseup="stopStepping(1, 0, $event)"
+            @mouseleave="stopStepping(1, 0, $event)"
+            @click="stopStepping(1, 0, $event)" 
+            :disabled="readonly">
             <i :class="iconControlDown"></i>
           </btn>
         </td>
         <td>&nbsp;</td>
         <td>
-          <btn type="link" size="sm" @click="changeTime(0,0)" :disabled="readonly">
+          <btn 
+            type="link" 
+            size="sm" 
+            @touchstart="startStepping(0, 0, $event)" 
+            @touchend="stopStepping(0, 0, $event)" 
+            @mousedown="startStepping(0, 0, $event)" 
+            @mouseup="stopStepping(0, 0, $event)"
+            @mouseleave="stopStepping(0, 0, $event)"
+            @click="stopStepping(0, 0, $event)" 
+            :disabled="readonly">
             <i :class="iconControlDown"></i>
           </btn>
         </td>
@@ -133,7 +173,11 @@
         minutes: 0,
         meridian: true,
         hoursText: '',
-        minutesText: ''
+        minutesText: '',
+        stepperInterval: null,
+        stepperIntervalRan: false,
+        touchstartEventRan: false,
+        mousedownEventRan: false
       }
     },
     mounted () {
@@ -269,6 +313,50 @@
         this.$nextTick(() => {
           e.target.setSelectionRange(0, 2)
         })
+      },
+      eventShouldBePrevented (e) {
+        if (e.type === 'touchstart') {
+          this.touchstartEventRan = true
+        }
+        if (e.type === 'mousedown') {
+          this.mousedownEventRan = true
+        }
+        switch (e.type) {
+          case 'mousedown':
+          case 'mouseup':
+            return this.touchstartEventRan
+          case 'click':
+            return this.mousedownEventRan
+          default:
+            return false
+        }
+      },
+      clearStepperInterval () {
+        if (this.stepperInterval != null) {
+          clearInterval(this.stepperInterval)
+          this.stepperInterval = null
+          this.stepperIntervalRan = false
+        }
+      },
+      startStepping (isHour, isPlus, e) {
+        if (this.eventShouldBePrevented(e)) {
+          return
+        }
+        this.clearStepperInterval()
+        let ref = this
+        this.stepperInterval = setInterval(function () {
+          ref.changeTime(isHour, isPlus)
+          ref.stepperIntervalRan = true
+        }, 80)
+      },
+      stopStepping (isHour, isPlus, e) {
+        if (this.eventShouldBePrevented(e)) {
+          return
+        }
+        if (!this.stepperIntervalRan && e.type !== 'mouseleave') {
+          this.changeTime(isHour, isPlus)
+        }
+        this.clearStepperInterval()
       }
     }
   }
