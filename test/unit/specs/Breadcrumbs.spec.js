@@ -63,7 +63,7 @@ describe('Breadcrumbs', () => {
     let vm = new Vue({
       data () {
         return {
-          items: [{text: 'test', href: '#', active: false}]
+          items: [{text: 'test', href: '#', active: false, key: 0}]
         }
       },
       render: res.render,
@@ -76,7 +76,18 @@ describe('Breadcrumbs', () => {
     expect(nav1.getAttribute('target')).to.equal('_self')
     expect(nav1.textContent).to.equal('test')
     expect($el.find('.active').length).to.equal(0)
-    $el.remove()
+    vm.$destroy()
+  })
+
+  it('should render nothing if no children and items', async () => {
+    let res = Vue.compile('<breadcrumbs></breadcrumbs>')
+    let vm = new Vue({
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    let $el = $(vm.$el)
+    await vm.$nextTick()
+    expect($el.children().length).to.equal(0)
     vm.$destroy()
   })
 })

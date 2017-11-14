@@ -138,10 +138,13 @@ describe('Tabs', () => {
       // Silent to remove out logs in terminal
     }
     let spy = sinon.spy(window, 'alert')
-    utils.triggerEvent(nav.querySelectorAll('li')[2].querySelector('a'), 'click')
+    utils.triggerEvent(nav.querySelectorAll('li > a')[1], 'click')
     await vm.$nextTick()
     await utils.sleep(350)
-    sinon.assert.called(spy)
+    utils.triggerEvent(nav.querySelectorAll('li > a')[2], 'click')
+    await vm.$nextTick()
+    await utils.sleep(350)
+    sinon.assert.calledOnce(spy)
     window.alert = _savedAlert
   })
 
@@ -232,5 +235,61 @@ describe('Tabs', () => {
     let activeContent = content.querySelectorAll('.tab-pane.active')
     expect(activeContent.length).to.equal(1)
     expect(activeContent[0].textContent).to.contain('Tab 0')
+  })
+
+  it('should be able to select dynamic tab', async () => {
+    let _vm = vm.$refs['tabs-dynamic-example']
+    let $el = $(_vm.$el)
+    let nav = $el.find('.nav-tabs').get(0)
+    let content = $el.find('.tab-content').get(0)
+    let pushBtn = $el.find('.btn').get(0)
+    let popBtn = $el.find('.btn').get(1)
+    await vm.$nextTick()
+    await vm.$nextTick()
+    // Add a tab
+    pushBtn.click()
+    await vm.$nextTick()
+    pushBtn.click()
+    await vm.$nextTick()
+    pushBtn.click()
+    await vm.$nextTick()
+    await utils.sleep(350)
+    expect(nav.querySelectorAll('li').length).to.equal(4)
+    _vm.index = 1
+    await vm.$nextTick()
+    await utils.sleep(350)
+    // check active tab
+    let activeTab = nav.querySelectorAll('.active')
+    expect(activeTab.length).to.equal(1)
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 1')
+    // check active content
+    let activeContent = content.querySelectorAll('.tab-pane.active')
+    expect(activeContent.length).to.equal(1)
+    expect(activeContent[0].textContent).to.contain('Tab 1')
+    popBtn.click()
+    await vm.$nextTick()
+    await utils.sleep(350)
+    expect(nav.querySelectorAll('li').length).to.equal(3)
+    // check active tab
+    activeTab = nav.querySelectorAll('.active')
+    expect(activeTab.length).to.equal(1)
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 1')
+    // check active content
+    activeContent = content.querySelectorAll('.tab-pane.active')
+    expect(activeContent.length).to.equal(1)
+    expect(activeContent[0].textContent).to.contain('Tab 1')
+    // switch tab
+    let tab2 = nav.querySelectorAll('li')[2]
+    utils.triggerEvent(tab2.querySelector('a'), 'click')
+    await vm.$nextTick()
+    await utils.sleep(350)
+    // check active tab
+    activeTab = nav.querySelectorAll('.active')
+    expect(activeTab.length).to.equal(1)
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 2')
+    // check active content
+    activeContent = content.querySelectorAll('.tab-pane.active')
+    expect(activeContent.length).to.equal(1)
+    expect(activeContent[0].textContent).to.contain('Tab 2')
   })
 })
