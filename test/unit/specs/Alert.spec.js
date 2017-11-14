@@ -2,7 +2,7 @@ import Vue from 'vue'
 import $ from 'jquery'
 import Alert from '@src/components/alert/Alert.vue'
 import AlertDoc from '@docs/pages/components/Alert.md'
-import utils from './../utils'
+import utils from '../utils'
 
 const DEFAULT_ALERT_CLASS = 'alert-info'
 
@@ -27,7 +27,7 @@ describe('Alert', () => {
 
   it('should be able to add alert with no type', () => {
     const res = Vue.compile('<alert>{{ msg }}</alert>')
-    const localVm = new Vue({
+    const _vm = new Vue({
       data () {
         return {
           msg: 'This is a alert!'
@@ -37,12 +37,12 @@ describe('Alert', () => {
       render: res.render,
       staticRenderFns: res.staticRenderFns
     })
-    localVm.$mount()
-    const $alert = $(localVm.$el)
+    _vm.$mount()
+    const $alert = $(_vm.$el)
     expect($alert.hasClass('alert')).to.be.true
     expect($alert.hasClass(DEFAULT_ALERT_CLASS)).to.be.true
     $alert.remove()
-    localVm.$destroy()
+    _vm.$destroy()
   })
 
   it('should be able to dismiss alerts', async () => {

@@ -7,7 +7,7 @@ describe('BtnGroup', () => {
   let $el
 
   beforeEach(() => {
-    let Constructor = Vue.extend(BtnGroup)
+    const Constructor = Vue.extend(BtnGroup)
     vm = new Constructor().$mount()
     $el = $(vm.$el)
   })

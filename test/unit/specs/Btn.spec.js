@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import $ from 'jquery'
-import utils from './../utils'
+import utils from '../utils'
 import BtnDoc from '@docs/pages/components/Btn.md'
 import Btn from '@src/components/button/Btn'
 
@@ -103,7 +103,7 @@ describe('Btn', () => {
 
   it('should emit click event', async () => {
     const res = Vue.compile('<btn @click="onClick">{{ msg }}</btn>')
-    const localVm = new Vue({
+    const _vm = new Vue({
       data () {
         return {
           msg: 'test'
@@ -118,16 +118,16 @@ describe('Btn', () => {
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    await localVm.$nextTick()
-    expect(localVm.msg).to.equal('test')
-    utils.triggerEvent(localVm.$el, 'click')
-    await localVm.$nextTick()
-    expect(localVm.msg).to.equal('clicked')
+    await _vm.$nextTick()
+    expect(_vm.msg).to.equal('test')
+    utils.triggerEvent(_vm.$el, 'click')
+    await _vm.$nextTick()
+    expect(_vm.msg).to.equal('clicked')
   })
 
   it('should not emit click event while disabled', async () => {
     const res = Vue.compile('<btn disabled @click="onClick">{{ msg }}</btn>')
-    const localVm = new Vue({
+    const _vm = new Vue({
       data () {
         return {
           msg: 'test'
@@ -142,11 +142,11 @@ describe('Btn', () => {
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    await localVm.$nextTick()
-    expect(localVm.msg).to.equal('test')
-    utils.triggerEvent(localVm.$el, 'click')
-    await localVm.$nextTick()
-    expect(localVm.msg).to.equal('test')
+    await _vm.$nextTick()
+    expect(_vm.msg).to.equal('test')
+    utils.triggerEvent(_vm.$el, 'click')
+    await _vm.$nextTick()
+    expect(_vm.msg).to.equal('test')
   })
 
   it('should be able to render checkbox btn', async () => {
@@ -246,14 +246,14 @@ describe('Btn', () => {
 
   it('should be able to render as justified', async () => {
     const res = Vue.compile('<btn justified>test</btn>')
-    const localVm = new Vue({
+    const _vm = new Vue({
       components: {Btn},
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    await localVm.$nextTick()
-    expect(localVm.$el.className).to.contain('btn-group')
-    const btn = localVm.$el.querySelector('.btn')
+    await _vm.$nextTick()
+    expect(_vm.$el.className).to.contain('btn-group')
+    const btn = _vm.$el.querySelector('.btn')
     expect(btn).to.exist
     expect(btn.innerText).to.equal('test')
   })

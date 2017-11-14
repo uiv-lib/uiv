@@ -2,7 +2,7 @@ import Vue from 'vue'
 import $ from 'jquery'
 // import Typeahead from '@src/components/typeahead/Typeahead.vue'
 import TypeaheadDoc from '@docs/pages/components/Typeahead.md'
-import utils from './../utils'
+import utils from '../utils'
 
 describe('Typeahead', () => {
   let xhr, requests, server
@@ -10,7 +10,7 @@ describe('Typeahead', () => {
   let $el
 
   beforeEach(() => {
-    let Constructor = Vue.extend(TypeaheadDoc)
+    const Constructor = Vue.extend(TypeaheadDoc)
     vm = new Constructor().$mount()
     $el = $(vm.$el).appendTo('body')
   })
@@ -35,40 +35,40 @@ describe('Typeahead', () => {
   })
 
   it('should be able to open typeahead when input change', async () => {
-    let _vm = vm.$refs['typeahead-example']
+    const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
     utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
-    let selected = dropdown.querySelector('li.active a')
+    const selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
   })
 
   it('should be able to open typeahead on input focus', async () => {
-    let _vm = vm.$refs['typeahead-example']
+    const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
     utils.triggerEvent(input, 'focus')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
-    let selected = dropdown.querySelector('li.active a')
+    const selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
   })
 
   it('should be able to close typeahead on input blur', async () => {
-    let _vm = vm.$refs['typeahead-example']
+    const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
     utils.triggerEvent(input, 'input')
@@ -80,10 +80,10 @@ describe('Typeahead', () => {
   })
 
   it('should not close typeahead on input click', async () => {
-    let _vm = vm.$refs['typeahead-example']
+    const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
     utils.triggerEvent(input, 'input')
@@ -95,10 +95,10 @@ describe('Typeahead', () => {
   })
 
   it('should be able to close typeahead when input changed to empty', async () => {
-    let _vm = vm.$refs['typeahead-example']
+    const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
     utils.triggerEvent(input, 'input')
@@ -111,25 +111,25 @@ describe('Typeahead', () => {
   })
 
   it('should be able to slice item length', async () => {
-    let _vm = vm.$refs['typeahead-example']
+    const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'a'
     utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(10)
-    let selected = dropdown.querySelector('li.active a')
+    const selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
   })
 
   it('should not open dropdown if nothing match', async () => {
-    let _vm = vm.$refs['typeahead-example']
+    const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'asdasdasdasd'
     utils.triggerEvent(input, 'input')
@@ -138,19 +138,19 @@ describe('Typeahead', () => {
   })
 
   it('should be able to select item', async () => {
-    let _vm = vm.$refs['typeahead-example']
+    const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
     utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
-    let selected = dropdown.querySelector('li.active a')
+    const selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
-    selected.click()
+    utils.triggerEvent(selected, 'click')
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
     expect(input.value).to.equal('Alabama')
@@ -158,11 +158,11 @@ describe('Typeahead', () => {
   })
 
   it('should be able to use force select', async () => {
-    let _vm = vm.$refs['typeahead-force-select']
+    const _vm = vm.$refs['typeahead-force-select']
     _vm.forceSelect = true
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
     utils.triggerEvent(input, 'input')
@@ -170,9 +170,9 @@ describe('Typeahead', () => {
     expect(_vm.model).not.exist
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
-    let selected = dropdown.querySelector('li.active a')
+    const selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
-    selected.click()
+    utils.triggerEvent(selected, 'click')
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
     expect(input.value).to.equal('Alabama')
@@ -180,10 +180,10 @@ describe('Typeahead', () => {
   })
 
   it('should not be able to select item using keyboard while dropdown not open', async () => {
-    let _vm = vm.$refs['typeahead-example']
+    const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     utils.triggerKey(input, utils.keyCodes.enter, 'down')
     await vm.$nextTick()
@@ -192,17 +192,17 @@ describe('Typeahead', () => {
   })
 
   it('should be able to select item using keyboard', async () => {
-    let _vm = vm.$refs['typeahead-example']
+    const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
     utils.triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
-    let selected = dropdown.querySelector('li.active a')
+    const selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
     utils.triggerKey(input, 13)
     await vm.$nextTick()
@@ -212,10 +212,10 @@ describe('Typeahead', () => {
   })
 
   it('should be able use keyboard nav to go next', async () => {
-    let _vm = vm.$refs['typeahead-example']
+    const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
     utils.triggerEvent(input, 'input')
@@ -237,10 +237,10 @@ describe('Typeahead', () => {
   })
 
   it('should be able use keyboard nav to go prev', async () => {
-    let _vm = vm.$refs['typeahead-example']
+    const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
     utils.triggerEvent(input, 'input')
@@ -270,11 +270,11 @@ describe('Typeahead', () => {
   })
 
   it('should be able to match start', async () => {
-    let _vm = vm.$refs['typeahead-match-start']
+    const _vm = vm.$refs['typeahead-match-start']
     _vm.matchStart = true
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
     utils.triggerEvent(input, 'input')
@@ -284,13 +284,13 @@ describe('Typeahead', () => {
   })
 
   it('should be able to use async typeahead', async () => {
-    let _vm = vm.$refs['typeahead-async-query']
+    const _vm = vm.$refs['typeahead-async-query']
     await vm.$nextTick()
-    let input = _vm.$el.querySelector('input')
-    let dropdown = _vm.$el.querySelector('.dropdown')
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     // matches don't work in here
-    let savedMatches = Element.prototype.matches
+    const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     input.value = 'wxsm'
     utils.triggerEvent(input, 'input')
@@ -303,7 +303,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(1)
-    let selected = dropdown.querySelector('li.active a span')
+    const selected = dropdown.querySelector('li.active a span')
     expect(selected.textContent).to.equal('wxsms')
     Element.prototype.matches = savedMatches
   })

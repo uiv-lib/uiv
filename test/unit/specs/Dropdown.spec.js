@@ -2,14 +2,14 @@ import Vue from 'vue'
 import $ from 'jquery'
 import Dropdown from '@src/components/dropdown/Dropdown.vue'
 import DropdownDoc from '@docs/pages/components/Dropdown.md'
-import utils from './../utils'
+import utils from '../utils'
 
 describe('Dropdown', () => {
   let vm
   let $el
 
   beforeEach(() => {
-    let Constructor = Vue.extend(DropdownDoc)
+    const Constructor = Vue.extend(DropdownDoc)
     vm = new Constructor().$mount()
     $el = $(vm.$el)
   })
@@ -20,9 +20,9 @@ describe('Dropdown', () => {
   })
 
   it('should be able to open dropdown on trigger click', async () => {
-    let _vm = vm.$refs['dropdown-examples']
-    let dropdown = _vm.$el.querySelector(`.dropdown`)
-    let trigger = dropdown.querySelector('button')
+    const _vm = vm.$refs['dropdown-examples']
+    const dropdown = _vm.$el.querySelector('.dropdown')
+    const trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
     expect(dropdown.className).to.not.contain('open')
     utils.triggerEvent(trigger, 'click')
@@ -31,9 +31,9 @@ describe('Dropdown', () => {
   })
 
   it('should be able to close dropdown on trigger click', async () => {
-    let _vm = vm.$refs['dropdown-examples']
-    let dropdown = _vm.$el.querySelector(`.dropdown`)
-    let trigger = dropdown.querySelector('button')
+    const _vm = vm.$refs['dropdown-examples']
+    const dropdown = _vm.$el.querySelector('.dropdown')
+    const trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
     expect(dropdown.className).to.not.contain('open')
     utils.triggerEvent(trigger, 'click')
@@ -45,9 +45,9 @@ describe('Dropdown', () => {
   })
 
   it('should be able to close dropdown on window click', async () => {
-    let _vm = vm.$refs['dropdown-examples']
-    let dropdown = _vm.$el.querySelector(`.dropdown`)
-    let trigger = dropdown.querySelector('button')
+    const _vm = vm.$refs['dropdown-examples']
+    const dropdown = _vm.$el.querySelector('.dropdown')
+    const trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
     expect(dropdown.className).to.not.contain('open')
     utils.triggerEvent(trigger, 'click')
@@ -60,9 +60,9 @@ describe('Dropdown', () => {
   })
 
   it('should be able to open dropdown append to body on trigger click', async () => {
-    let _vm = vm.$refs['dropdown-append-to-body']
-    let dropdown = _vm.$el.querySelector(`.dropdown`)
-    let trigger = dropdown.querySelector('button')
+    const _vm = vm.$refs['dropdown-append-to-body']
+    const dropdown = _vm.$el.querySelector('.dropdown')
+    const trigger = dropdown.querySelector('button')
     expect(dropdown.className).to.not.contain('open')
     expect(dropdown.querySelector('.dropdown-menu')).to.exist
     utils.triggerEvent(trigger, 'click')
@@ -76,24 +76,24 @@ describe('Dropdown', () => {
   })
 
   it('should be able to use dropup style', async () => {
-    let _vm = vm.$refs['dropdown-dropup']
+    const _vm = vm.$refs['dropdown-dropup']
     await vm.$nextTick()
-    let dropup = _vm.$el.querySelector(`.dropup`)
+    const dropup = _vm.$el.querySelector('.dropup')
     expect(dropup.className).to.not.contain('open')
     expect(dropup.querySelector('.dropdown-menu')).to.exist
   })
 
   it('should be able to use menu-right style', async () => {
-    let _vm = vm.$refs['dropdown-menu-right']
+    const _vm = vm.$refs['dropdown-menu-right']
     await vm.$nextTick()
-    let menuRight = _vm.$el.querySelector(`.dropdown`)
+    const menuRight = _vm.$el.querySelector('.dropdown')
     expect(menuRight.querySelector('.dropdown-menu').className).to.contain('dropdown-menu-right')
   })
 
   it('should be able to open dropdown append to body & menu-right on trigger click', async () => {
-    let _vm = vm.$refs['dropdown-append-to-body']
-    let dropdown = _vm.$el.querySelectorAll(`.dropdown`)[1]
-    let trigger = dropdown.querySelector('button')
+    const _vm = vm.$refs['dropdown-append-to-body']
+    const dropdown = _vm.$el.querySelectorAll(`.dropdown`)[1]
+    const trigger = dropdown.querySelector('button')
     expect(dropdown.className).to.not.contain('open')
     expect(dropdown.querySelector('.dropdown-menu-right')).to.exist
     utils.triggerEvent(trigger, 'click')
@@ -107,9 +107,9 @@ describe('Dropdown', () => {
   })
 
   it('should be able to open dropdown append to body & dropup on trigger click', async () => {
-    let _vm = vm.$refs['dropdown-append-to-body']
-    let dropdown = _vm.$el.querySelector(`.dropup`)
-    let trigger = dropdown.querySelector('button')
+    const _vm = vm.$refs['dropdown-append-to-body']
+    const dropdown = _vm.$el.querySelector('.dropup')
+    const trigger = dropdown.querySelector('button')
     expect(dropdown.className).to.not.contain('open')
     expect(dropdown.querySelector('.dropdown-menu')).to.exist
     utils.triggerEvent(trigger, 'click')
@@ -123,8 +123,8 @@ describe('Dropdown', () => {
   })
 
   it('should be able to open dropdown on init', async () => {
-    let res = Vue.compile('<dropdown v-model="show"><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template slot="dropdown"><li><a href="#">Action</a></li></template></dropdown>')
-    let vm = new Vue({
+    const res = Vue.compile('<dropdown v-model="show"><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template slot="dropdown"><li><a href="#">Action</a></li></template></dropdown>')
+    const vm = new Vue({
       data () {
         return {
           show: true
@@ -135,9 +135,9 @@ describe('Dropdown', () => {
       staticRenderFns: res.staticRenderFns
     }).$mount()
     await vm.$nextTick()
-    let dropdown = vm.$el
+    const dropdown = vm.$el
     expect(dropdown.className).to.contain('open')
-    let $el = $(vm.$el)
+    $el = $(vm.$el)
     vm.$destroy()
     $el.remove()
   })

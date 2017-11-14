@@ -63,7 +63,7 @@ describe('Breadcrumbs', () => {
 
   it('should not auto active last item if using active prop', () => {
     const res = Vue.compile('<breadcrumbs :items="items"></breadcrumbs>')
-    const localVm = new Vue({
+    const _vm = new Vue({
       data () {
         return {
           items: [{text: 'test', href: '#', active: false, key: 0}]
@@ -72,7 +72,7 @@ describe('Breadcrumbs', () => {
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    const $breadcrumb = $(localVm.$el)
+    const $breadcrumb = $(_vm.$el)
     const $li = $('li', $breadcrumb)
     expect($li.length).to.equal(1)
     const $link1 = $('a', $li)
@@ -80,18 +80,18 @@ describe('Breadcrumbs', () => {
     expect($link1.attr('target')).to.equal('_self')
     expect($link1.text()).to.equal('test')
     expect($breadcrumb.find('.active').length).to.equal(0)
-    localVm.$destroy()
+    _vm.$destroy()
   })
 
   it('should render nothing if no children and items', async () => {
     const res = Vue.compile('<breadcrumbs></breadcrumbs>')
-    const localVm = new Vue({
+    const _vm = new Vue({
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    const $breadcrumb = $(localVm.$el)
-    await localVm.$nextTick()
+    const $breadcrumb = $(_vm.$el)
+    await _vm.$nextTick()
     expect($breadcrumb.children().length).to.equal(0)
-    localVm.$destroy()
+    _vm.$destroy()
   })
 })

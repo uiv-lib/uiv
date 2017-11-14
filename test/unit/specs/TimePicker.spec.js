@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import $ from 'jquery'
-import utils from './../utils'
+import utils from '../utils'
 import TimePickerDoc from '@docs/pages/components/TimePicker.md'
 
 describe('TimePicker', () => {
