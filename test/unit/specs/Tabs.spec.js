@@ -64,42 +64,6 @@ describe('Tabs', () => {
     vm.$destroy()
   })
 
-  it('should be able to use with v-model', async () => {
-    let res = Vue.compile('<tabs v-model="index"><tab title="tab0">tab0</tab><tab title="tab1">tab1</tab></tabs>')
-    let vm = new Vue({
-      data () {
-        return {
-          index: 1
-        }
-      },
-      components: {Tab, Tabs},
-      render: res.render,
-      staticRenderFns: res.staticRenderFns
-    }).$mount()
-    let $el = $(vm.$el)
-    await vm.$nextTick()
-    await vm.$nextTick()
-    let nav = $el.find('.nav-tabs').get(0)
-    let content = $el.find('.tab-content').get(0)
-    let activeTab = nav.querySelectorAll('.active')
-    expect(activeTab.length).to.equal(1)
-    expect(activeTab[0].querySelector('a').textContent).to.equal('tab1')
-    let activeContent = content.querySelectorAll('.tab-pane.active')
-    expect(activeContent.length).to.equal(1)
-    expect(activeContent[0].textContent).to.contain('tab1')
-    utils.triggerEvent(nav.querySelectorAll('li')[0].querySelector('a'), 'click')
-    await vm.$nextTick()
-    await utils.sleep(350)
-    activeTab = nav.querySelectorAll('.active')
-    expect(activeTab.length).to.equal(1)
-    expect(activeTab[0].querySelector('a').textContent).to.equal('tab0')
-    activeContent = content.querySelectorAll('.tab-pane.active')
-    expect(activeContent.length).to.equal(1)
-    expect(activeContent[0].textContent).to.contain('tab0')
-    vm.$destroy()
-    $el.remove()
-  })
-
   it('should be able to render first tab on open', async () => {
     await vm.$nextTick()
     await vm.$nextTick()
@@ -199,5 +163,74 @@ describe('Tabs', () => {
     let activeContent = content.querySelectorAll('.tab-pane.active')
     expect(activeContent.length).to.equal(1)
     expect(activeContent[0].querySelector('p').textContent).to.contain('Etsy mixtape wayfarers')
+  })
+
+  it('should be able to use with v-model', async () => {
+    let _vm = vm.$refs['tabs-dynamic-example']
+    let $el = $(_vm.$el)
+    await vm.$nextTick()
+    await vm.$nextTick()
+    let nav = $el.find('.nav-tabs').get(0)
+    let content = $el.find('.tab-content').get(0)
+    expect(nav.querySelectorAll('li').length).to.equal(1)
+    // check active tab
+    let activeTab = nav.querySelectorAll('.active')
+    expect(activeTab.length).to.equal(1)
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 0')
+    // check active content
+    let activeContent = content.querySelectorAll('.tab-pane.active')
+    expect(activeContent.length).to.equal(1)
+    expect(activeContent[0].textContent).to.contain('Tab 0')
+  })
+
+  it('should be able to push tab', async () => {
+    let _vm = vm.$refs['tabs-dynamic-example']
+    let $el = $(_vm.$el)
+    let nav = $el.find('.nav-tabs').get(0)
+    let content = $el.find('.tab-content').get(0)
+    let pushBtn = $el.find('.btn').get(0)
+    await vm.$nextTick()
+    await vm.$nextTick()
+    // Add a tab
+    pushBtn.click()
+    await vm.$nextTick()
+    await utils.sleep(350)
+    expect(nav.querySelectorAll('li').length).to.equal(2)
+    // check active tab
+    let activeTab = nav.querySelectorAll('.active')
+    expect(activeTab.length).to.equal(1)
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 1')
+    // check active content
+    let activeContent = content.querySelectorAll('.tab-pane.active')
+    expect(activeContent.length).to.equal(1)
+    expect(activeContent[0].textContent).to.contain('Tab 1')
+  })
+
+  it('should be able to pop tab', async () => {
+    let _vm = vm.$refs['tabs-dynamic-example']
+    let $el = $(_vm.$el)
+    let nav = $el.find('.nav-tabs').get(0)
+    let content = $el.find('.tab-content').get(0)
+    let pushBtn = $el.find('.btn').get(0)
+    let popBtn = $el.find('.btn').get(1)
+    await vm.$nextTick()
+    await vm.$nextTick()
+    // Add a tab
+    pushBtn.click()
+    await vm.$nextTick()
+    await utils.sleep(350)
+    // Delete a tab
+    popBtn.click()
+    await vm.$nextTick()
+    await utils.sleep(350)
+    expect(nav.querySelectorAll('li').length).to.equal(1)
+    // check active tab
+    let activeTab = nav.querySelectorAll('.active')
+    expect(activeTab.length).to.equal(1)
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 0')
+    // check active content
+    let activeContent = content.querySelectorAll('.tab-pane.active')
+    expect(activeContent.length).to.equal(1)
+    expect(activeContent[0].textContent).to.contain('Tab 0')
   })
 })

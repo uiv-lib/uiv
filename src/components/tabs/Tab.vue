@@ -5,6 +5,7 @@
 </template>
 
 <script>
+  import {spliceIfExist} from '@src/utils/arrayUtils'
   import domUtils from '../../utils/domUtils'
 
   const ACTIVE_CLASS = 'active'
@@ -63,12 +64,7 @@
     },
     beforeDestroy () {
       let tabs = this.$parent && this.$parent.tabs
-      if (tabs && tabs.length) {
-        let index = tabs.indexOf(this)
-        if (index >= 0) {
-          tabs.splice(index, 1)
-        }
-      }
+      spliceIfExist(tabs, this)
     },
     methods: {
       show () {

@@ -15,6 +15,7 @@
     "SSR",
     "Web",
     "Components",
+    "Directives",
     "Vue",
     "VueJS",
     "Vue2",
@@ -23,6 +24,9 @@
     "vuestrap",
     "CSS",
     "Alert",
+    "Button",
+    "Button group",
+    "Breadcrumbs",
     "Carousel",
     "Slider",
     "Collapse",
@@ -34,7 +38,9 @@
     "Popover",
     "Progress",
     "Tab",
-    "Tooltip"
+    "Tooltip",
+    "Typeahead",
+    "Auto complete"
   ],
   "license": "MIT",
   "bugs": {
