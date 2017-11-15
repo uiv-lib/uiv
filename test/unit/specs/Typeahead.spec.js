@@ -149,7 +149,7 @@ describe('Typeahead', () => {
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
     const selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
-    utils.triggerEvent(selected, 'click')
+    selected.click()  // utils.triggerEvent() doesn't work here...
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
     expect(input.value).to.equal('Alabama')
@@ -171,7 +171,7 @@ describe('Typeahead', () => {
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
     const selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
-    utils.triggerEvent(selected, 'click')
+    selected.click()  // utils.triggerEvent() doesn't work here...
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
     expect(input.value).to.equal('Alabama')
