@@ -2,14 +2,14 @@ import Vue from 'vue'
 import $ from 'jquery'
 import Tooltip from '@src/components/tooltip/Tooltip.vue'
 import TooltipDoc from '@docs/pages/components/Tooltip.md'
-import utils from './../utils'
+import utils from '../utils'
 
 describe('Tooltip', () => {
   let vm
   let $el
 
   beforeEach(() => {
-    let Constructor = Vue.extend(TooltipDoc)
+    const Constructor = Vue.extend(TooltipDoc)
     vm = new Constructor().$mount()
     $('body').css('text-align', 'center').css('padding-top', '200px')
     $el = $(vm.$el).appendTo('body')
@@ -23,11 +23,11 @@ describe('Tooltip', () => {
   })
 
   it('should be able to append to custom tags', async () => {
-    let tag = document.createElement('div')
+    const tag = document.createElement('div')
     tag.id = 'tag'
     document.body.appendChild(tag)
-    let res = Vue.compile('<tooltip trigger="focus" text="test" append-to="#tag"><button type="button">{{msg}}</button></tooltip>')
-    let vm = new Vue({
+    const res = Vue.compile('<tooltip trigger="focus" text="test" append-to="#tag"><button type="button">{{msg}}</button></tooltip>')
+    const vm = new Vue({
       data () {
         return {
           msg: 'hello'
@@ -37,10 +37,10 @@ describe('Tooltip', () => {
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    let $el = $(vm.$el)
+    const $el = $(vm.$el)
     $el.appendTo('body')
     await vm.$nextTick()
-    vm.$el.querySelector('button').focus()
+    utils.triggerEvent(vm.$el.querySelector('button'), 'focus')
     await utils.sleep(200)
     expect(tag.querySelector('.tooltip')).to.exist
     $el.remove()
@@ -49,8 +49,8 @@ describe('Tooltip', () => {
   })
 
   it('should be able to render with no content', async () => {
-    let res = Vue.compile('<tooltip text="test"></tooltip>')
-    let vm = new Vue({
+    const res = Vue.compile('<tooltip text="test"></tooltip>')
+    const vm = new Vue({
       data () {
         return {
           msg: 'hello'
@@ -60,7 +60,7 @@ describe('Tooltip', () => {
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    let $el = $(vm.$el)
+    const $el = $(vm.$el)
     $el.appendTo('body')
     await vm.$nextTick()
     $el.remove()
@@ -68,8 +68,8 @@ describe('Tooltip', () => {
   })
 
   it('should be able to show tooltip on init', async () => {
-    let res = Vue.compile('<tooltip text="test" v-model="show"><button></button></tooltip>')
-    let vm = new Vue({
+    const res = Vue.compile('<tooltip text="test" v-model="show"><button></button></tooltip>')
+    const vm = new Vue({
       data () {
         return {
           show: true
@@ -79,7 +79,7 @@ describe('Tooltip', () => {
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    let $el = $(vm.$el)
+    const $el = $(vm.$el)
     $el.appendTo('body')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
@@ -88,8 +88,8 @@ describe('Tooltip', () => {
   })
 
   it('should not show tooltip with empty text', async () => {
-    let res = Vue.compile('<tooltip v-model="show"><button></button></tooltip>')
-    let vm = new Vue({
+    const res = Vue.compile('<tooltip v-model="show"><button></button></tooltip>')
+    const vm = new Vue({
       data () {
         return {
           show: true
@@ -99,7 +99,7 @@ describe('Tooltip', () => {
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    let $el = $(vm.$el)
+    const $el = $(vm.$el)
     $el.appendTo('body')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
@@ -108,8 +108,8 @@ describe('Tooltip', () => {
   })
 
   it('should be able to use custom target', async () => {
-    let res = Vue.compile('<div><button ref="btn" type="button">btn</button><tooltip text="test" :target="btn" trigger="focus"></tooltip></div>')
-    let vm = new Vue({
+    const res = Vue.compile('<div><button ref="btn" type="button">btn</button><tooltip text="test" :target="btn" trigger="focus"></tooltip></div>')
+    const vm = new Vue({
       data () {
         return {
           btn: null
@@ -122,11 +122,11 @@ describe('Tooltip', () => {
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    let $el = $(vm.$el)
+    const $el = $(vm.$el)
     $el.appendTo('body')
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    vm.btn.focus()
+    utils.triggerEvent(vm.btn, 'focus')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
     $el.remove()
@@ -134,8 +134,8 @@ describe('Tooltip', () => {
   })
 
   it('should be able to use tooltip directive', async () => {
-    let res = Vue.compile('<btn v-tooltip.click="msg">{{test}}</btn>')
-    let vm = new Vue({
+    const res = Vue.compile('<btn v-tooltip.click="msg">{{test}}</btn>')
+    const vm = new Vue({
       data () {
         return {
           msg: 'title',
@@ -146,30 +146,30 @@ describe('Tooltip', () => {
       staticRenderFns: res.staticRenderFns
     }).$mount()
     await vm.$nextTick()
-    let trigger = vm.$el
-    trigger.click()
+    const trigger = vm.$el
+    utils.triggerEvent(trigger, 'click')
     await utils.sleep(200)
     let tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title')
-    trigger.click()
+    utils.triggerEvent(trigger, 'click')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     // this should work
     vm.msg = 'title2'
     await vm.$nextTick()
-    trigger.click()
+    utils.triggerEvent(trigger, 'click')
     await utils.sleep(200)
     tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title2')
-    trigger.click()
+    utils.triggerEvent(trigger, 'click')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     // this should not work
     vm.test = 'test2'
     await vm.$nextTick()
-    trigger.click()
+    utils.triggerEvent(trigger, 'click')
     await utils.sleep(200)
     tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
@@ -179,8 +179,8 @@ describe('Tooltip', () => {
 
   it('directive with invalid modifiers should be ok', async () => {
     // invalid modifier should be ok
-    let res = Vue.compile('<btn v-tooltip.test1.test2.click="msg"></btn>')
-    let vm = new Vue({
+    const res = Vue.compile('<btn v-tooltip.test1.test2.click="msg"></btn>')
+    const vm = new Vue({
       data () {
         return {
           msg: 'title'
@@ -190,37 +190,37 @@ describe('Tooltip', () => {
       staticRenderFns: res.staticRenderFns
     }).$mount()
     await vm.$nextTick()
-    let trigger = vm.$el
-    trigger.click()
+    const trigger = vm.$el
+    utils.triggerEvent(trigger, 'click')
     await utils.sleep(200)
-    let tooltip = document.querySelector('.tooltip')
+    const tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title')
-    trigger.click()
+    utils.triggerEvent(trigger, 'click')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     vm.$destroy()
   })
 
   it('should be able to show tooltip', async () => {
-    let _vm = vm.$refs['tooltip-example']
+    const _vm = vm.$refs['tooltip-example']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    let trigger = _vm.$el.querySelector('button')
+    const trigger = _vm.$el.querySelector('button')
     // matches don't work in here
-    let savedMatches = Element.prototype.matches
+    const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
-    trigger.focus()
+    utils.triggerEvent(trigger, 'focus')
     await utils.sleep(200)
     Element.prototype.matches = savedMatches
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
-    trigger.blur()
+    utils.triggerEvent(trigger, 'blur')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
   it('should be able to change trigger to manual', async () => {
-    let _vm = vm.$refs['tooltip-manual-trigger']
+    const _vm = vm.$refs['tooltip-manual-trigger']
     _vm.show = true
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
@@ -230,10 +230,10 @@ describe('Tooltip', () => {
   })
 
   it('should be able to keep tooltip show on hover if using hover trigger', async () => {
-    let _vm = vm.$refs['tooltip-triggers']
+    const _vm = vm.$refs['tooltip-triggers']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    let trigger = _vm.$el.querySelectorAll('button')[1]
+    const trigger = _vm.$el.querySelectorAll('button')[1]
     utils.triggerEvent(trigger, 'mouseenter')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
@@ -247,134 +247,134 @@ describe('Tooltip', () => {
   })
 
   it('should be able to toggle correctly on fast click', async () => {
-    let _vm = vm.$refs['tooltip-triggers']
-    let button = _vm.$el.querySelectorAll('button')[3]
+    const _vm = vm.$refs['tooltip-triggers']
+    const button = _vm.$el.querySelectorAll('button')[3]
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    button.click()
-    button.click()
-    button.click()
+    utils.triggerEvent(button, 'click')
+    utils.triggerEvent(button, 'click')
+    utils.triggerEvent(button, 'click')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
-    button.click()
-    button.click()
-    button.click()
+    utils.triggerEvent(button, 'click')
+    utils.triggerEvent(button, 'click')
+    utils.triggerEvent(button, 'click')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
   it('should be able to change trigger to click', async () => {
-    let _vm = vm.$refs['tooltip-triggers']
+    const _vm = vm.$refs['tooltip-triggers']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    _vm.$el.querySelectorAll('button')[3].click()
+    utils.triggerEvent(_vm.$el.querySelectorAll('button')[3], 'click')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
-    _vm.$el.querySelectorAll('button')[3].click()
+    utils.triggerEvent(_vm.$el.querySelectorAll('button')[3], 'click')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
   it('should be able to change trigger to outside-click', async () => {
-    let _vm = vm.$refs['tooltip-triggers']
-    let button = _vm.$el.querySelectorAll('button')[4]
+    const _vm = vm.$refs['tooltip-triggers']
+    const button = _vm.$el.querySelectorAll('button')[4]
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    button.click()
+    utils.triggerEvent(button, 'click')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
-    document.body.click()
+    document.body.click() // utils.triggerEvent() doesn't work here...
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
   it('should be able to disable', async () => {
-    let _vm = vm.$refs['tooltip-disable']
+    const _vm = vm.$refs['tooltip-disable']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    let savedMatches = Element.prototype.matches
+    const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
-    _vm.$el.querySelector('button').focus()
+    utils.triggerEvent(_vm.$el.querySelector('button'), 'focus')
     await utils.sleep(200)
     Element.prototype.matches = savedMatches
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
   it('should be able to change placement to top', async () => {
-    let _vm = vm.$refs['tooltip-placements']
+    const _vm = vm.$refs['tooltip-placements']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    let trigger = _vm.$el.querySelectorAll('button')[1]
-    let savedMatches = Element.prototype.matches
+    const trigger = _vm.$el.querySelectorAll('button')[1]
+    const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
-    trigger.focus()
+    utils.triggerEvent(trigger, 'focus')
     await utils.sleep(200)
     Element.prototype.matches = savedMatches
-    let tooltip = document.querySelector('.tooltip')
+    const tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.className).to.contain('top')
-    trigger.blur()
+    utils.triggerEvent(trigger, 'blur')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
   it('should be able to change placement to bottom', async () => {
-    let _vm = vm.$refs['tooltip-placements']
+    const _vm = vm.$refs['tooltip-placements']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    let trigger = _vm.$el.querySelectorAll('button')[2]
-    let savedMatches = Element.prototype.matches
+    const trigger = _vm.$el.querySelectorAll('button')[2]
+    const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
-    trigger.focus()
+    utils.triggerEvent(trigger, 'focus')
     await utils.sleep(200)
     Element.prototype.matches = savedMatches
-    let tooltip = document.querySelector('.tooltip')
+    const tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.className).to.contain('bottom')
-    trigger.blur()
+    utils.triggerEvent(trigger, 'blur')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
   it('should be able to change placement to left', async () => {
-    let _vm = vm.$refs['tooltip-placements']
+    const _vm = vm.$refs['tooltip-placements']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    let trigger = _vm.$el.querySelectorAll('button')[0]
-    let savedMatches = Element.prototype.matches
+    const trigger = _vm.$el.querySelectorAll('button')[0]
+    const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
-    trigger.focus()
+    utils.triggerEvent(trigger, 'focus')
     await utils.sleep(200)
     Element.prototype.matches = savedMatches
-    let tooltip = document.querySelector('.tooltip')
+    const tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.className).to.contain('left')
-    trigger.blur()
+    utils.triggerEvent(trigger, 'blur')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
   it('should be able to change placement to right', async () => {
-    let _vm = vm.$refs['tooltip-placements']
+    const _vm = vm.$refs['tooltip-placements']
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    let trigger = _vm.$el.querySelectorAll('button')[3]
-    let savedMatches = Element.prototype.matches
+    const trigger = _vm.$el.querySelectorAll('button')[3]
+    const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
-    trigger.focus()
+    utils.triggerEvent(trigger, 'focus')
     await utils.sleep(200)
     Element.prototype.matches = savedMatches
-    let tooltip = document.querySelector('.tooltip')
+    const tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.className).to.contain('right')
-    trigger.blur()
+    utils.triggerEvent(trigger, 'blur')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
   it('should be able to change trigger in runtime', async () => {
-    let res = Vue.compile('<tooltip text="test" :trigger="trigger"><button></button></tooltip>')
-    let vm = new Vue({
+    const res = Vue.compile('<tooltip text="test" :trigger="trigger"><button></button></tooltip>')
+    const vm = new Vue({
       data () {
         return {
           trigger: 'focus'
@@ -384,19 +384,19 @@ describe('Tooltip', () => {
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    let $el = $(vm.$el).appendTo('body')
+    const $el = $(vm.$el).appendTo('body')
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     await vm.$nextTick()
-    let trigger = vm.$el.querySelector('button')
-    trigger.focus()
+    const trigger = vm.$el.querySelector('button')
+    utils.triggerEvent(trigger, 'focus')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
     vm.trigger = 'click'
     await vm.$nextTick()
-    trigger.blur()
+    utils.triggerEvent(trigger, 'blur')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
-    trigger.click()
+    utils.triggerEvent(trigger, 'click')
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     $el.remove()

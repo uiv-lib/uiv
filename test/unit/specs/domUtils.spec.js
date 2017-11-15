@@ -24,7 +24,7 @@ describe('domUtils', () => {
   })
 
   it('should be able to use `toggleBodyOverflow` with `enable = false`', () => {
-    let $body = $('html, body')
+    const $body = $('html, body')
     $body.css('height', '9999px')
     utils.toggleBodyOverflow(false)
     expect(document.body.style.paddingRight).to.contain(`px`)
@@ -33,12 +33,12 @@ describe('domUtils', () => {
   })
 
   it('should be able to use `getScrollbarWidth` with `recalculate = false`', () => {
-    let width = utils.getScrollbarWidth(false)
+    const width = utils.getScrollbarWidth(false)
     expect(width).to.above(0)
   })
 
   it('should be able to use `getScrollbarWidth` with `recalculate = true`', () => {
-    let width = utils.getScrollbarWidth(true)
+    const width = utils.getScrollbarWidth(true)
     expect(width).to.above(0)
   })
 })

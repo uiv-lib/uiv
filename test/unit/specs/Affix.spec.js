@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import $ from 'jquery'
 import Affix from '@src/components/affix/Affix.vue'
-import utils from './../utils'
+import utils from '../utils'
 
 describe('Affix', () => {
   let vm
@@ -51,7 +51,7 @@ describe('Affix', () => {
   })
 
   it('should not toggle affix class if element is hidden', async () => {
-    let $body = $('html, body')
+    const $body = $('html, body')
     $body.css('height', '9999px')
     $el.css('display', 'none')
     await vm.$nextTick()
