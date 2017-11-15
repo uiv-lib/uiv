@@ -1,3 +1,5 @@
+import {isExist} from './objectUtils'
+
 export const EVENTS = {
   MOUSE_ENTER: 'mouseenter',
   MOUSE_LEAVE: 'mouseleave',
@@ -197,7 +199,7 @@ export function setTooltipPosition (tooltip, trigger, placement, auto, appendToS
   let container
   let containerScrollTop
   let containerScrollLeft
-  if (typeof appendToSelector === 'undefined' || appendToSelector === 'body') {
+  if (!isExist(appendToSelector) || appendToSelector === 'body') {
     container = document.body
     let doc = document.documentElement
     containerScrollLeft = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0)

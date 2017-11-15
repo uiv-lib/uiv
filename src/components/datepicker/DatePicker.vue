@@ -47,6 +47,7 @@
   import YearView from './YearView.vue'
   import Btn from './../button/Btn'
   import {stringify} from '@src/utils/dateUtils'
+  import {isNumber} from '@src/utils/objectUtils'
 
   export default {
     mixins: [Locale],
@@ -184,10 +185,7 @@
         this.currentMonth = undefined
       },
       onDateChange (date) {
-        if (date &&
-          typeof date.date === 'number' &&
-          typeof date.month === 'number' &&
-          typeof date.year === 'number') {
+        if (date && isNumber(date.date) && isNumber(date.month) && isNumber(date.year)) {
           let _date = new Date(date.year, date.month, date.date)
           this.$emit('input', stringify(_date, this.format))
         } else {

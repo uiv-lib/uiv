@@ -172,3 +172,7 @@ Name             | Type       | Default  | Required | Description
 Name      | Description
 --------- | -----------------------
 `default` | The button group body.
+
+## [BtnToolbar.js](https://github.com/wxsms/uiv/tree/master/src/components/button/BtnToolbar.js)
+
+This component has no props.

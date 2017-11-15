@@ -13,6 +13,7 @@
     isElement,
     setTooltipPosition
   } from '@src/utils/domUtils'
+  import {isString} from '@src/utils/objectUtils'
 
   const SHOW_CLASS = 'in'
   const BASE_CLASS = 'popover fade'
@@ -129,7 +130,7 @@
       initTriggerElByTarget (target) {
         if (target) {
           // target exist
-          if (typeof target === 'string') { // is selector
+          if (isString(target)) { // is selector
             this.triggerEl = document.querySelector(target)
           } else if (isElement(target)) { // is element
             this.triggerEl = target

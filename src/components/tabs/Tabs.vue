@@ -30,6 +30,7 @@
 
 <script>
   import Dropdown from '../dropdown/Dropdown.vue'
+  import {isNumber} from '@src/utils/objectUtils'
 
   export default {
     components: {
@@ -61,7 +62,7 @@
       value: {
         immediate: true,
         handler (value) {
-          if (typeof value === 'number') {
+          if (isNumber(value)) {
             this.activeIndex = value
             this.selectCurrent()
           }
@@ -122,7 +123,7 @@
       },
       select (index) {
         if (!this.tabs[index].disabled) {
-          if (typeof this.value === 'number') {
+          if (isNumber(this.value)) {
             this.$emit('input', index)
           } else {
             this.activeIndex = index

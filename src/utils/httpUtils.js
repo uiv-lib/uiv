@@ -1,3 +1,5 @@
+import {isFunction, isExist} from './objectUtils'
+
 export function getRequest (url) {
   let request = new window.XMLHttpRequest()
   let data = {}
@@ -21,9 +23,9 @@ export function getRequest (url) {
       if (request.status === 200) {
         let response = request.responseText
         for (let i in data.done) {
-          if (data.done.hasOwnProperty(i) && typeof data.done[i] === 'function') {
+          if (data.done.hasOwnProperty(i) && isFunction(data.done[i])) {
             let value = data.done[i](response)
-            if (typeof value !== 'undefined') {
+            if (isExist(value)) {
               response = value
             }
           }
