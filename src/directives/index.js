@@ -1,7 +1,2 @@
-import tooltip from './tooltip/tooltip'
-import popover from './popover/popover'
-
-export {
-  tooltip,
-  popover
-}
+export {default as tooltip} from './tooltip/tooltip'
+export {default as popover} from './popover/popover'

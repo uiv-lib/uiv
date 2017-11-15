@@ -7,15 +7,15 @@ const install = (Vue, options = {}) => {
   locale.use(options.locale)
   locale.i18n(options.i18n)
   // Register components
-  for (let key in components) {
+  Object.keys(components).forEach(key => {
     let _key = options.prefix ? options.prefix + key : key
     Vue.component(_key, components[key])
-  }
+  })
   // Register directives
-  for (let key in directives) {
+  Object.keys(directives).forEach(key => {
     let _key = options.prefix ? options.prefix + '-' + key : key
     Vue.directive(_key, directives[key])
-  }
+  })
 }
 
 // auto install
