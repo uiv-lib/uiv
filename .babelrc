@@ -11,7 +11,12 @@
     "stage-2"
   ],
   "plugins": [
-    "transform-runtime",
+    [
+      "transform-runtime",
+      {
+        "polyfill": false
+      }
+    ],
     "transform-object-assign",
     "syntax-dynamic-import"
   ],
