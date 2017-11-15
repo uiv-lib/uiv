@@ -1,6 +1,7 @@
 import * as components from './components'
 import * as directives from './directives'
 import locale from './locale'
+import {isExist} from '@src/utils/objectUtils'
 
 const install = (Vue, options = {}) => {
   // Setup language, en-US for default
@@ -19,7 +20,7 @@ const install = (Vue, options = {}) => {
 }
 
 // auto install
-if (typeof window !== 'undefined' && window.Vue) {
+if (isExist(window) && window.Vue) {
   install(window.Vue)
 }
 
