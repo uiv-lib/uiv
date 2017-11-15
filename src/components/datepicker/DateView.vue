@@ -47,6 +47,7 @@
   import Locale from '../../mixins/locale'
   import Btn from './../button/Btn'
   import {daysInMonth} from '@src/utils/dateUtils'
+  import {isExist} from '@src/utils/objectUtils'
 
   export default {
     mixins: [Locale],
@@ -90,7 +91,7 @@
         return days
       },
       yearMonthStr () {
-        return typeof this.month !== 'undefined' ? `${this.year} ${this.t(`uiv.datePicker.month${this.month + 1}`)}` : this.year
+        return isExist(this.month) ? `${this.year} ${this.t(`uiv.datePicker.month${this.month + 1}`)}` : this.year
       },
       monthDayRows () {
         let rows = []

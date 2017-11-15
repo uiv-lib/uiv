@@ -1,5 +1,6 @@
 <script>
   import {setDropdownPosition, on, off, EVENTS} from '@src/utils/domUtils'
+  import {isBoolean} from '@src/utils/objectUtils'
 
   const DEFAULT_TAG = 'div'
 
@@ -89,7 +90,7 @@
     },
     methods: {
       toggle (show) {
-        if (typeof show === 'boolean') {
+        if (isBoolean(show)) {
           this.show = show
         } else {
           this.show = !this.show

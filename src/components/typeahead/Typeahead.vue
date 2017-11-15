@@ -18,6 +18,7 @@
 
 <script>
   import {getRequest} from '@src/utils/httpUtils'
+  import {isString} from '@src/utils/objectUtils'
   import {
     isElement,
     on,
@@ -122,7 +123,7 @@
         this.initListeners()
       },
       value (value) {
-        if (typeof value === 'string') {
+        if (isString(value)) {
           // direct
           this.inputEl.value = value
         } else if (value) {
@@ -139,7 +140,7 @@
         if (!target) {
           return
         }
-        if (typeof target === 'string') { // is selector
+        if (isString(target)) { // is selector
           this.inputEl = document.querySelector(target)
         } else if (isElement(target)) { // is element
           this.inputEl = target

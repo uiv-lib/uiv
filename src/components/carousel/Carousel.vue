@@ -20,6 +20,8 @@
 </template>
 
 <script>
+  import {isExist} from '@src/utils/objectUtils'
+
   export default {
     props: {
       value: Number,
@@ -62,7 +64,7 @@
       }
     },
     mounted () {
-      if (typeof this.value !== 'undefined') {
+      if (isExist(this.value)) {
         this.activeIndex = this.value
       }
       if (this.slides.length > 0) {
@@ -129,7 +131,7 @@
         if (this.timeoutId !== 0 || index === this.activeIndex) {
           return
         }
-        if (typeof this.value !== 'undefined') {
+        if (isExist(this.value)) {
           this.$emit('input', index)
         } else {
           this.run(index, this.activeIndex)

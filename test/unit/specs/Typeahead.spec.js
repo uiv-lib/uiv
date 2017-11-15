@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import $ from 'jquery'
-// import Typeahead from '@src/components/typeahead/Typeahead.vue'
 import TypeaheadDoc from '@docs/pages/components/Typeahead.md'
 import utils from '../utils'
 

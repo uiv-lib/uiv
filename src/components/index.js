@@ -1,47 +1,22 @@
-import Carousel from './carousel/Carousel.vue'
-import Slide from './carousel/Slide.vue'
-import Collapse from './collapse/Collapse.vue'
-import Dropdown from './dropdown/Dropdown.vue'
-import Modal from './modal/Modal.vue'
-import Tab from './tabs/Tab.vue'
-import Tabs from './tabs/Tabs.vue'
-import DatePicker from './datepicker/DatePicker.vue'
-import Affix from './affix/Affix.vue'
-import Alert from './alert/Alert.vue'
-import Pagination from './pagination/Pagination.vue'
-import Tooltip from './tooltip/Tooltip.vue'
-import Popover from './popover/Popover.vue'
-import TimePicker from './timepicker/TimePicker.vue'
-import Typeahead from './typeahead/Typeahead.vue'
-import ProgressBar from './progressbar/ProgressBar'
-import ProgressBarStack from './progressbar/ProgressBarStack'
-import Breadcrumbs from './breadcrumbs/Breadcrumbs'
-import BreadcrumbItem from './breadcrumbs/BreadcrumbItem'
-import Btn from './button/Btn'
-import BtnGroup from './button/BtnGroup'
-import BtnToolbar from './button/BtnToolbar'
-
-export {
-  Affix,
-  Tooltip,
-  Carousel,
-  Slide,
-  Collapse,
-  Dropdown,
-  Modal,
-  Tab,
-  Tabs,
-  DatePicker,
-  Alert,
-  Pagination,
-  Popover,
-  TimePicker,
-  Typeahead,
-  ProgressBar,
-  ProgressBarStack,
-  Breadcrumbs,
-  BreadcrumbItem,
-  Btn,
-  BtnGroup,
-  BtnToolbar
-}
+export {default as Carousel} from './carousel/Carousel.vue'
+export {default as Slide} from './carousel/Slide.vue'
+export {default as Collapse} from './collapse/Collapse.vue'
+export {default as Dropdown} from './dropdown/Dropdown.vue'
+export {default as Modal} from './modal/Modal.vue'
+export {default as Tab} from './tabs/Tab.vue'
+export {default as Tabs} from './tabs/Tabs.vue'
+export {default as DatePicker} from './datepicker/DatePicker.vue'
+export {default as Affix} from './affix/Affix.vue'
+export {default as Alert} from './alert/Alert.vue'
+export {default as Pagination} from './pagination/Pagination.vue'
+export {default as Tooltip} from './tooltip/Tooltip.vue'
+export {default as Popover} from './popover/Popover.vue'
+export {default as TimePicker} from './timepicker/TimePicker.vue'
+export {default as Typeahead} from './typeahead/Typeahead.vue'
+export {default as ProgressBar} from './progressbar/ProgressBar'
+export {default as ProgressBarStack} from './progressbar/ProgressBarStack'
+export {default as Breadcrumbs} from './breadcrumbs/Breadcrumbs'
+export {default as BreadcrumbItem} from './breadcrumbs/BreadcrumbItem'
+export {default as Btn} from './button/Btn'
+export {default as BtnGroup} from './button/BtnGroup'
+export {default as BtnToolbar} from './button/BtnToolbar'

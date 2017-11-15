@@ -1,18 +1,19 @@
 // https://github.com/ElemeFE/element/blob/dev/src/locale/index.js
-
+import {isFunction, isExist} from '@src/utils/objectUtils'
 import defaultLang from './lang/en-US'
+
 let lang = defaultLang
 
 let i18nHandler = function () {
   const vuei18n = Object.getPrototypeOf(this).$t
-  if (typeof vuei18n === 'function') {
+  if (isFunction(vuei18n)) {
     return vuei18n.apply(this, arguments)
   }
 }
 
 export const t = function (path, options) {
   let value = i18nHandler.apply(this, arguments)
-  if (value !== null && typeof value !== 'undefined') {
+  if (isExist(value)) {
     return value
   }
   const array = path.split('.')

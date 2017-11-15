@@ -39,6 +39,7 @@
 <script>
   import Locale from '../../mixins/locale'
   import Btn from './../button/Btn'
+  import {isExist} from '@src/utils/objectUtils'
 
   export default {
     components: {Btn},
@@ -88,11 +89,11 @@
         this.$emit('year-change', this.year + 1)
       },
       changeView (monthIndex) {
-        if (typeof monthIndex === 'undefined') {
-          this.$emit('view-change', 'y')
-        } else {
+        if (isExist(monthIndex)) {
           this.$emit('month-change', monthIndex)
           this.$emit('view-change', 'd')
+        } else {
+          this.$emit('view-change', 'y')
         }
       }
     }

@@ -1,11 +1,12 @@
 import {EVENTS, on, off} from '@src/utils/domUtils'
+import {isFunction} from '@src/utils/objectUtils'
 
 const HANDLER = '_uiv_scroll_handler'
 const events = [EVENTS.RESIZE, EVENTS.SCROLL]
 
 const bind = (el, binding) => {
   let callback = binding.value
-  if (typeof callback !== 'function') {
+  if (!isFunction(callback)) {
     return
   }
   unbind(el)
