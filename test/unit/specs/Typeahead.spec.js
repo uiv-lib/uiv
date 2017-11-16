@@ -306,4 +306,181 @@ describe('Typeahead', () => {
     expect(selected.textContent).to.equal('wxsms')
     Element.prototype.matches = savedMatches
   })
+
+  it('should be able to use component target', async () => {
+    const res = Vue.compile('<div>' +
+      '<collapse ref="input"/>' +
+      '<typeahead ref="typeahead" :target="ele" v-model="model"></typeahead>' +
+      '</div>')
+    const vm = new Vue({
+      data () {
+        return {
+          ele: null,
+          model: null
+        }
+      },
+      mounted () {
+        this.ele = this.$refs.input
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    })
+    vm.$mount()
+    await vm.$nextTick()
+    expect(vm.$refs.typeahead.inputEl).to.equal(vm.ele.$el)
+    vm.$destroy()
+  })
+
+  it('should be ok if target invalid', async () => {
+    const res = Vue.compile('<div>' +
+      '<typeahead ref="typeahead" :target="ele" v-model="model"></typeahead>' +
+      '</div>')
+    const vm = new Vue({
+      data () {
+        return {
+          ele: {a: 1},
+          model: null
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    })
+    vm.$mount()
+    await vm.$nextTick()
+    expect(vm.$refs.typeahead.inputEl).to.be.null
+    vm.$destroy()
+  })
+
+  it('should be able to use string arr async returns', async () => {
+    const res = Vue.compile('<div>' +
+      '<input ref="input">' +
+      '<typeahead :target="ele" v-model="model" async-src="https://api.github.com/search/users?q="></typeahead>' +
+      '</div>')
+    const vm = new Vue({
+      data () {
+        return {
+          ele: null,
+          model: null
+        }
+      },
+      mounted () {
+        this.ele = this.$refs.input
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    })
+    vm.$mount()
+    await vm.$nextTick()
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
+    expect(dropdown.className).to.not.contain('open')
+    // matches don't work in here
+    const savedMatches = Element.prototype.matches
+    Element.prototype.matches = () => true
+    input.value = 'a'
+    utils.triggerEvent(input, 'input')
+    await utils.sleep(600)
+    server.requests[1].respond(
+      200,
+      {'Content-Type': 'application/json'},
+      JSON.stringify(['aa', 'ab', 'ac'])
+    )
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    expect(dropdown.querySelectorAll('li').length).to.equal(3)
+    const selected = dropdown.querySelector('li.active a span')
+    expect(selected.textContent).to.equal('aa')
+    Element.prototype.matches = savedMatches
+    vm.$destroy()
+  })
+
+  it('should be able to handel async typeahead error', async () => {
+    const res = Vue.compile('<div>' +
+      '<input ref="input">' +
+      '<typeahead @loaded-error="onErr" :target="ele" v-model="model" async-src="https://api.github.com/search/users?q="></typeahead>' +
+      '</div>')
+    const vm = new Vue({
+      data () {
+        return {
+          ele: null,
+          model: null,
+          err: null
+        }
+      },
+      mounted () {
+        this.ele = this.$refs.input
+      },
+      methods: {
+        onErr () {
+          this.err = 'error'
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    })
+    vm.$mount()
+    await vm.$nextTick()
+    expect(vm.err).not.exist
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
+    expect(dropdown.className).to.not.contain('open')
+    // matches don't work in here
+    const savedMatches = Element.prototype.matches
+    Element.prototype.matches = () => true
+    input.value = 'wxsm'
+    utils.triggerEvent(input, 'input')
+    await utils.sleep(600)
+    server.requests[2].respond(
+      500,
+      {'Content-Type': 'application/json'},
+      JSON.stringify([{id: 1, text: 'Provide examples', done: true}])
+    )
+    await vm.$nextTick()
+    expect(dropdown.className).to.not.contain('open')
+    expect(vm.err).to.exist
+    Element.prototype.matches = savedMatches
+    vm.$destroy()
+  })
+
+  it('should be able bind string data', async () => {
+    const res = Vue.compile('<div>' +
+      '<input ref="input">' +
+      '<typeahead :ignore-case="false" :target="ele" :data="data" v-model="model"></typeahead>' +
+      '</div>')
+    const vm = new Vue({
+      data () {
+        return {
+          data: ['aa', 'ab', 'bb'],
+          ele: null,
+          model: null
+        }
+      },
+      mounted () {
+        this.ele = this.$refs.input
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    })
+    vm.$mount()
+    await vm.$nextTick()
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
+    expect(dropdown.className).to.not.contain('open')
+    input.value = 'a'
+    utils.triggerEvent(input, 'input')
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    expect(dropdown.querySelectorAll('li').length).to.equal(2)
+    const selected = dropdown.querySelector('li.active a')
+    expect(selected.textContent).to.equal('aa')
+    selected.click()
+    await vm.$nextTick()
+    expect(vm.model).to.equal('aa')
+    expect(input.value).to.equal('aa')
+    vm.model = 'bb'
+    await vm.$nextTick()
+    expect(vm.model).to.equal('bb')
+    expect(input.value).to.equal('bb')
+    vm.$destroy()
+  })
 })
