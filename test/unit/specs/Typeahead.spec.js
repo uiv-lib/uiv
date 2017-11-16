@@ -149,7 +149,14 @@ describe('Typeahead', () => {
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
     const selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
-    selected.click()  // utils.triggerEvent() doesn't work here...
+    // selected.click()  // utils.triggerEvent() doesn't work here...
+    // TEST
+    // Just wondering if we could get through coveralls using the utils...
+    utils.triggerEvent(selected, 'click')
+    utils.triggerEvent(selected, 'click', {}, false, false)
+    utils.triggerEvent(selected, 'click', {}, true, true)
+    utils.triggerEvent(selected, 'click', {}, true, false)
+    utils.triggerEvent(selected, 'click', {}, false, true)
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
     expect(input.value).to.equal('Alabama')
@@ -171,7 +178,14 @@ describe('Typeahead', () => {
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
     const selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
-    selected.click()  // utils.triggerEvent() doesn't work here...
+    // selected.click()  // utils.triggerEvent() doesn't work here...
+    // TEST
+    // Just wondering if we could get through coveralls using the utils...
+    utils.triggerEvent(selected, 'click')
+    utils.triggerEvent(selected, 'click', {}, false, false)
+    utils.triggerEvent(selected, 'click', {}, true, true)
+    utils.triggerEvent(selected, 'click', {}, true, false)
+    utils.triggerEvent(selected, 'click', {}, false, true)
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
     expect(input.value).to.equal('Alabama')
@@ -473,7 +487,14 @@ describe('Typeahead', () => {
     expect(dropdown.querySelectorAll('li').length).to.equal(2)
     const selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('aa')
-    selected.click()
+    // selected.click() // utils.triggerEvent() doesn't work here...
+    // TEST
+    // Just wondering if we could get through coveralls using the utils...
+    utils.triggerEvent(selected, 'click')
+    utils.triggerEvent(selected, 'click', {}, false, false)
+    utils.triggerEvent(selected, 'click', {}, true, true)
+    utils.triggerEvent(selected, 'click', {}, true, false)
+    utils.triggerEvent(selected, 'click', {}, false, true)
     await vm.$nextTick()
     expect(vm.model).to.equal('aa')
     expect(input.value).to.equal('aa')
