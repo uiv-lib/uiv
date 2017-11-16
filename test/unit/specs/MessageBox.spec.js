@@ -10,19 +10,11 @@ describe('MessageBox', () => {
   let spy
   let savedLog
 
-  before(() => {
+  beforeEach(() => {
     savedLog = console.log
     console.log = function () {
       return true
     }
-  })
-
-  after(() => {
-    console.log = savedLog
-    // console.log(123)
-  })
-
-  beforeEach(() => {
     const Constructor = Vue.extend(MessageBoxDoc)
     vm = new Constructor().$mount()
     $el = $(vm.$el)
@@ -30,10 +22,11 @@ describe('MessageBox', () => {
   })
 
   afterEach(() => {
+    console.log.restore()
+    console.log = savedLog
     vm.$destroy()
     $el.remove()
     $('.modal-backdrop, .modal').remove()
-    console.log.restore()
   })
 
   it('should be able to open alert box', async () => {
