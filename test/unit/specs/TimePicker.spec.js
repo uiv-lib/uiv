@@ -60,8 +60,6 @@ describe('TimePicker', () => {
 
   it('should be able to add 1 minute', async () => {
     const _vm = vm.$refs['time-picker-example']
-    _vm.minStep = 1
-    _vm.isReadOnly = false
     await vm.$nextTick()
     const beforeText = _vm.$el.querySelectorAll('input')[1].value
     const minutesPlus = _vm.$el.querySelectorAll('tr td button')[1]
@@ -77,8 +75,6 @@ describe('TimePicker', () => {
 
   it('should be able to minus 1 hour', async () => {
     const _vm = vm.$refs['time-picker-example']
-    _vm.hourStep = 1
-    _vm.isReadOnly = false
     await vm.$nextTick()
     const beforeText = _vm.$el.querySelectorAll('input')[0].value
     const hourMinus = _vm.$el.querySelectorAll('tr')[2].querySelector('td button')
@@ -101,8 +97,6 @@ describe('TimePicker', () => {
 
   it('should be able to minus 1 minute', async () => {
     const _vm = vm.$refs['time-picker-example']
-    _vm.minStep = 1
-    _vm.isReadOnly = false
     await vm.$nextTick()
     const beforeText = _vm.$el.querySelectorAll('input')[1].value
     const minutesMinus = _vm.$el.querySelectorAll('tr')[2].querySelectorAll('td button')[1]
@@ -264,5 +258,143 @@ describe('TimePicker', () => {
     const $el = $(_vm.$el)
     expect($el.find('tr:first-child .btn > i').get(0).className).to.contain('glyphicon-plus')
     expect($el.find('tr:last-child .btn > i').get(0).className).to.contain('glyphicon-minus')
+  })
+
+  it('should be able to toggle meridian in runtime', async () => {
+    const res = Vue.compile('<time-picker v-model="time" :show-meridian="meridian"/>')
+    const vm = new Vue({
+      data () {
+        return {
+          time: new Date(),
+          meridian: true
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    const $el = $(vm.$el)
+    await vm.$nextTick()
+    expect($el.find('[data-action="toggleMeridian"]').length).to.equal(1)
+    const timeBefore = new Date(vm.time)
+    // toggle meridian
+    vm.meridian = false
+    await vm.$nextTick()
+    expect($el.find('[data-action="toggleMeridian"]').length).to.equal(0)
+    const timeAfter = new Date(vm.time)
+    expect(timeAfter.getTime()).to.equal(timeBefore.getTime())
+    // toggle meridian
+    vm.meridian = true
+    await vm.$nextTick()
+    expect($el.find('[data-action="toggleMeridian"]').length).to.equal(1)
+    const timeAfterAgain = new Date(vm.time)
+    expect(timeAfterAgain.getTime()).to.equal(timeBefore.getTime())
+    vm.$destroy()
+  })
+
+  it('should not be able to change time while readonly', async () => {
+    const res = Vue.compile('<time-picker ref="timepicker" v-model="time" readonly/>')
+    const vm = new Vue({
+      data () {
+        return {
+          time: new Date()
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    const timeBefore = new Date(vm.time)
+    // on click & keydown
+    vm.$refs.timepicker.changeTime(1, 1)
+    await vm.$nextTick()
+    const timeAfter = new Date(vm.time)
+    expect(timeAfter.getTime()).to.equal(timeBefore.getTime())
+    // on wheel
+    vm.$refs.timepicker.onWheel({deltaY: -1, preventDefault: () => null}, true)
+    await vm.$nextTick()
+    const timeAfterAgain = new Date(vm.time)
+    expect(timeAfterAgain.getTime()).to.equal(timeBefore.getTime())
+    vm.$destroy()
+  })
+
+  it('should be able to change hour use wheel', async () => {
+    const res = Vue.compile('<time-picker ref="timepicker" v-model="time"/>')
+    const vm = new Vue({
+      data () {
+        return {
+          time: new Date()
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    const timeBefore = new Date(vm.time)
+    // add hour
+    vm.$refs.timepicker.onWheel({deltaY: -1, preventDefault: () => null}, true)
+    await vm.$nextTick()
+    const timeAfter = new Date(vm.time)
+    expect(timeAfter.getTime()).to.equal(timeBefore.getTime() + 60 * 60 * 1000)
+    // minus hour
+    vm.$refs.timepicker.onWheel({deltaY: 1, preventDefault: () => null}, true)
+    await vm.$nextTick()
+    const timeAfterAgain = new Date(vm.time)
+    expect(timeAfterAgain.getTime()).to.equal(timeBefore.getTime())
+    vm.$destroy()
+  })
+
+  it('should be able to change minute use wheel', async () => {
+    const res = Vue.compile('<time-picker ref="timepicker" v-model="time"/>')
+    const vm = new Vue({
+      data () {
+        return {
+          time: new Date()
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    const timeBefore = new Date(vm.time)
+    // add hour
+    vm.$refs.timepicker.onWheel({deltaY: -1, preventDefault: () => null}, false)
+    await vm.$nextTick()
+    const timeAfter = new Date(vm.time)
+    expect(timeAfter.getTime()).to.equal(timeBefore.getTime() + 60 * 1000)
+    // minus hour
+    vm.$refs.timepicker.onWheel({deltaY: 1, preventDefault: () => null}, false)
+    await vm.$nextTick()
+    const timeAfterAgain = new Date(vm.time)
+    expect(timeAfterAgain.getTime()).to.equal(timeBefore.getTime())
+    vm.$destroy()
+  })
+
+  it('should be able to select input while focus', async () => {
+    const res = Vue.compile('<time-picker v-model="time"/>')
+    const $div = $('<div>').appendTo('body')
+    const vm = new Vue({
+      data () {
+        return {
+          time: new Date()
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount($div.get(0))
+    await vm.$nextTick()
+    const hourInput = vm.$el.querySelectorAll('input')[0]
+    const hourInputSpy = sinon.spy(hourInput, 'setSelectionRange')
+    hourInput.focus()
+    await vm.$nextTick()
+    sinon.assert.calledOnce(hourInputSpy)
+    hourInput.setSelectionRange.restore()
+    const minuteInput = vm.$el.querySelectorAll('input')[1]
+    const minuteInputSpy = sinon.spy(minuteInput, 'setSelectionRange')
+    minuteInput.focus()
+    await vm.$nextTick()
+    sinon.assert.calledOnce(minuteInputSpy)
+    minuteInput.setSelectionRange.restore()
+    vm.$destroy()
+    $div.remove()
   })
 })
