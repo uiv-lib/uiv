@@ -138,20 +138,23 @@ Add `justified` to `<tabs>` to use justified style.
 <!-- tabs-with-nav-right-slot.vue -->
 ```
 
-## Dynamic Example
+## Dynamic Tabs
 
-Generate tabs using `v-for`.
+An example that generate closable tabs using `v-for`:
 
 ```html
 <template>
   <section>
-    <btn type="primary" @click="push">Push</btn>
-    <btn type="warning" @click="pop">Pop</btn>
-    <hr/>
     <tabs v-model="index">
       <tab v-for="tab in tabs" :title="tab" :key="tab">
         <p>Dynamic {{tab}}</p>
+        <btn type="danger" @click="close">Close this tab</btn>
       </tab>
+      <template slot="nav-right">
+        <btn size="sm" @click="push">
+          <i class="glyphicon glyphicon-plus"></i> Add
+        </btn>
+      </template>
     </tabs>
   </section>
 </template>
@@ -159,19 +162,20 @@ Generate tabs using `v-for`.
   export default {
     data () {
       return {
-        tabs: ['Tab 0'],
+        tabs: ['Tab 1'],
+        count: 1,
         index: 0
       }
     },
     methods: {
       push () {
-        this.tabs.push(`Tab ${this.tabs.length}`)
+        this.tabs.push(`Tab ${++this.count}`)
         this.$nextTick(() => {
           this.index = this.tabs.length - 1
         })
       },
-      pop () {
-        this.tabs.pop()
+      close () {
+        this.tabs.splice(this.index, 1)
         if (this.index === this.tabs.length) {
           --this.index
         }

@@ -175,15 +175,16 @@ describe('Tabs', () => {
     await vm.$nextTick()
     const nav = $el.find('.nav-tabs').get(0)
     const content = $el.find('.tab-content').get(0)
-    expect(nav.querySelectorAll('li').length).to.equal(1)
+    // 1 tab + 1 btn
+    expect(nav.querySelectorAll('li').length).to.equal(1 + 1)
     // check active tab
     const activeTab = nav.querySelectorAll('.active')
     expect(activeTab.length).to.equal(1)
-    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 0')
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 1')
     // check active content
     const activeContent = content.querySelectorAll('.tab-pane.active')
     expect(activeContent.length).to.equal(1)
-    expect(activeContent[0].textContent).to.contain('Tab 0')
+    expect(activeContent[0].textContent).to.contain('Tab 1')
   })
 
   it('should be able to push tab', async () => {
@@ -191,31 +192,30 @@ describe('Tabs', () => {
     const $el = $(_vm.$el)
     const nav = $el.find('.nav-tabs').get(0)
     const content = $el.find('.tab-content').get(0)
-    const pushBtn = $el.find('.btn').get(0)
+    const pushBtn = nav.querySelector('.btn')
     await vm.$nextTick()
     await vm.$nextTick()
     // Add a tab
     utils.triggerEvent(pushBtn, 'click')
     await vm.$nextTick()
     await utils.sleep(350)
-    expect(nav.querySelectorAll('li').length).to.equal(2)
+    expect(nav.querySelectorAll('li').length).to.equal(2 + 1)
     // check active tab
     const activeTab = nav.querySelectorAll('.active')
     expect(activeTab.length).to.equal(1)
-    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 1')
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 2')
     // check active content
     const activeContent = content.querySelectorAll('.tab-pane.active')
     expect(activeContent.length).to.equal(1)
-    expect(activeContent[0].textContent).to.contain('Tab 1')
+    expect(activeContent[0].textContent).to.contain('Tab 2')
   })
 
-  it('should be able to pop tab', async () => {
+  it('should be able to close tab', async () => {
     const _vm = vm.$refs['tabs-dynamic-example']
     const $el = $(_vm.$el)
     const nav = $el.find('.nav-tabs').get(0)
     const content = $el.find('.tab-content').get(0)
-    const pushBtn = $el.find('.btn').get(0)
-    const popBtn = $el.find('.btn').get(1)
+    const pushBtn = nav.querySelector('.btn')
     await vm.$nextTick()
     await vm.$nextTick()
     // Add a tab
@@ -223,18 +223,18 @@ describe('Tabs', () => {
     await vm.$nextTick()
     await utils.sleep(350)
     // Delete a tab
-    utils.triggerEvent(popBtn, 'click')
+    utils.triggerEvent(content.querySelector('.tab-pane.active .btn'), 'click')
     await vm.$nextTick()
     await utils.sleep(350)
-    expect(nav.querySelectorAll('li').length).to.equal(1)
+    expect(nav.querySelectorAll('li').length).to.equal(1 + 1)
     // check active tab
     const activeTab = nav.querySelectorAll('.active')
     expect(activeTab.length).to.equal(1)
-    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 0')
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 1')
     // check active content
     const activeContent = content.querySelectorAll('.tab-pane.active')
     expect(activeContent.length).to.equal(1)
-    expect(activeContent[0].textContent).to.contain('Tab 0')
+    expect(activeContent[0].textContent).to.contain('Tab 1')
   })
 
   it('should be able to select dynamic tab', async () => {
@@ -242,8 +242,7 @@ describe('Tabs', () => {
     const $el = $(_vm.$el)
     const nav = $el.find('.nav-tabs').get(0)
     const content = $el.find('.tab-content').get(0)
-    const pushBtn = $el.find('.btn').get(0)
-    const popBtn = $el.find('.btn').get(1)
+    const pushBtn = nav.querySelector('.btn')
     await vm.$nextTick()
     await vm.$nextTick()
     // Add a tab
@@ -254,30 +253,30 @@ describe('Tabs', () => {
     utils.triggerEvent(pushBtn, 'click')
     await vm.$nextTick()
     await utils.sleep(350)
-    expect(nav.querySelectorAll('li').length).to.equal(4)
+    expect(nav.querySelectorAll('li').length).to.equal(4 + 1)
     _vm.index = 1
     await vm.$nextTick()
     await utils.sleep(350)
     // check active tab
     let activeTab = nav.querySelectorAll('.active')
     expect(activeTab.length).to.equal(1)
-    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 1')
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 2')
     // check active content
     let activeContent = content.querySelectorAll('.tab-pane.active')
     expect(activeContent.length).to.equal(1)
-    expect(activeContent[0].textContent).to.contain('Tab 1')
-    utils.triggerEvent(popBtn, 'click')
+    expect(activeContent[0].textContent).to.contain('Tab 2')
+    utils.triggerEvent(content.querySelector('.tab-pane.active .btn'), 'click')
     await vm.$nextTick()
     await utils.sleep(350)
-    expect(nav.querySelectorAll('li').length).to.equal(3)
+    expect(nav.querySelectorAll('li').length).to.equal(3 + 1)
     // check active tab
     activeTab = nav.querySelectorAll('.active')
     expect(activeTab.length).to.equal(1)
-    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 1')
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 3')
     // check active content
     activeContent = content.querySelectorAll('.tab-pane.active')
     expect(activeContent.length).to.equal(1)
-    expect(activeContent[0].textContent).to.contain('Tab 1')
+    expect(activeContent[0].textContent).to.contain('Tab 3')
     // switch tab
     const tab2 = nav.querySelectorAll('li')[2]
     utils.triggerEvent(tab2.querySelector('a'), 'click')
@@ -286,10 +285,10 @@ describe('Tabs', () => {
     // check active tab
     activeTab = nav.querySelectorAll('.active')
     expect(activeTab.length).to.equal(1)
-    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 2')
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Tab 4')
     // check active content
     activeContent = content.querySelectorAll('.tab-pane.active')
     expect(activeContent.length).to.equal(1)
-    expect(activeContent[0].textContent).to.contain('Tab 2')
+    expect(activeContent[0].textContent).to.contain('Tab 4')
   })
 })
