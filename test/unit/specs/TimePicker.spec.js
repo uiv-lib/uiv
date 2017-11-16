@@ -384,13 +384,13 @@ describe('TimePicker', () => {
     await vm.$nextTick()
     const hoursInput = vm.$el.querySelectorAll('input')[0]
     const hoursInputSpy = sinon.spy(hoursInput, 'setSelectionRange')
-    utils.triggerEvent(hoursInput, 'focus', {}, true, false)
+    utils.triggerEvent(hoursInput, 'focus', {}, true, true)
     await vm.$nextTick()
     sinon.assert.calledOnce(hoursInputSpy)
     hoursInput.setSelectionRange.restore()
     const minutesInput = vm.$el.querySelectorAll('input')[1]
     const minutesInputSpy = sinon.spy(minutesInput, 'setSelectionRange')
-    utils.triggerEvent(minutesInput, 'focus', {}, true, false)
+    utils.triggerEvent(minutesInput, 'focus', {}, true, true)
     await vm.$nextTick()
     sinon.assert.calledOnce(minutesInputSpy)
     minutesInput.setSelectionRange.restore()
