@@ -24,7 +24,7 @@
                  class="form-control text-center"
                  style="width: 50px"
                  @focus="selectInputValue"
-                 @mouseup.prevent="nope"
+                 @mouseup.prevent
                  @keydown.prevent.up="changeTime(1, 1)"
                  @keydown.prevent.down="changeTime(1, 0)"
                  @wheel="onWheel($event, true)"
@@ -41,7 +41,7 @@
                  class="form-control text-center"
                  style="width: 50px"
                  @focus="selectInputValue"
-                 @mouseup.prevent="nope"
+                 @mouseup.prevent
                  @keydown.prevent.up="changeTime(0, 1)"
                  @keydown.prevent.down="changeTime(0, 0)"
                  @wheel="onWheel($event, false)"
@@ -268,11 +268,9 @@
         this.$emit('input', new Date(time))
       },
       selectInputValue (e) {
-        e.target.setSelectionRange(0, 2)
-      },
-      nope (e) {
-        // Does nothing but we need to prevent the mouseup event or else we loose the selection made onfocus on Safari (Desktop & iOS)
+        // mouseup should be prevented!
         // See various comments in https://stackoverflow.com/questions/3272089/programmatically-selecting-text-in-an-input-field-on-ios-devices-mobile-safari
+        e.target.setSelectionRange(0, 2)
       }
     }
   }
