@@ -96,7 +96,7 @@
       validate () {
         this.dirty = true
         if (!isExist(this.inputError)) {
-          this.toggle(false, this.input)
+          this.toggle(false, {value: this.input})
         }
       }
     }

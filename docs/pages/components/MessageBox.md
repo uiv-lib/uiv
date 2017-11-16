@@ -4,11 +4,6 @@
 
 By design MessageBox provides simulations of browsers' `alert`, `confirm` and `prompt`. Use Modal instead if needed more complicated contents.
 
-**Note**: 
-
-* Prototype methods such as `$alert` required lib to be installed firstly.
-* Each of these methods will return a `Promise` object while the box is closed (if supported by browser or with es6 promise polyfill), you can also use callbacks.
-
 ## Alert
 
 Displays an alert modal with the optional specified content and an OK (auto-focused) button. By default it can not be closed on backdrop click.
@@ -105,3 +100,51 @@ Displays a dialog with an optional message prompting the user to input some text
 </script>
 <!-- message-box-prompt.vue -->
 ```
+
+## Global Methods
+
+Following global methods for `Vue.prototype` will be added **if uiv is installed**:
+ 
+* `$alert(options, callback)`
+* `$confirm(options, callback)`
+* `$prompt(options, callback)`
+
+Note that callbacks are both optional, with 2 params:
+
+* `err` as user cancel the box, otherwise it will be null.
+* `msg` as the user input while using prompt.
+
+Each of these methods will return a `Promise` object that resolve / reject while the box is closed (if supported by browser or with es6 promise polyfill).
+
+## Import Individually
+
+If you prefer importing `MessageBox` individually:
+
+```javascript
+import { MessageBox } from 'uiv'
+```
+
+The corresponding methods are: `MessageBox.alert`, `MessageBox.confirm` and `MessageBox.prompt`, with same parameters as above.
+
+# API Reference
+
+## [MessageBox.vue](https://github.com/wxsms/uiv/tree/master/src/services/messagebox/MessageBox.vue)
+
+These props are used as `options` in the methods above.
+
+### Props
+
+Name           | Type       | Default  | Required | Description
+----------     | ---------- | -------- | -------- | -----------------------
+`size`         | String     | sm       |          | The alternative modal sizes. Support: `lg` / `md` / `sm`.
+`title`        | String     |          |          | The modal title.
+`content`      | String     |          |          | The modal content.
+`ok-text`      | String     |          |          | Override the default text of ok button.
+`cancel-text`  | String     |          |          | Override the default text of cancel button.
+`backdrop`     | Boolean    | `false` if type is alert, otherwise `true` |          | Dismiss the modal by backdrop click.
+`cb`           | Function   |          |          | Modal callback function on closed.
+`validator`    | Function   |          |          | Custom validator function for prompt. Accepts the input value as param, returns the err msg (not valid) or null (valid)
+
+## [MessageBox.js](https://github.com/wxsms/uiv/tree/master/src/services/messagebox/MessageBox.js)
+
+This file has no props.

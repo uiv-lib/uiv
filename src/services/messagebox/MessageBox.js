@@ -1,6 +1,6 @@
 import TYPES from './types'
 import {removeFromDom} from '@src/utils/domUtils'
-import {isFunction, isExist} from '@src/utils/objectUtils'
+import {isFunction, isExist, isString} from '@src/utils/objectUtils'
 import MessageBox from './MessageBox.vue'
 import Vue from 'vue'
 
@@ -18,6 +18,16 @@ const destroyModal = () => {
   }
 }
 
+const shallResolve = (type, msg) => {
+  if (type === TYPES.CONFIRM) {
+    return msg === 'ok'
+  } else if (type === TYPES.PROMPT) {
+    return isExist(msg) && isString(msg.value)
+  } else {
+    return true
+  }
+}
+
 const init = (type, options, cb, resolve = null, reject = null) => {
   destroyModal()
   const Constructor = Vue.extend(MessageBox)
@@ -28,10 +38,18 @@ const init = (type, options, cb, resolve = null, reject = null) => {
       cb (msg) {
         destroyModal()
         if (isFunction(cb)) {
-          cb(msg)
+          if (type === TYPES.CONFIRM) {
+            shallResolve(type, msg) ? cb(null, msg) : cb(msg)
+          } else if (type === TYPES.PROMPT) {
+            shallResolve(type, msg) ? cb(null, msg.value) : cb(msg)
+          } else {
+            cb(null, msg)
+          }
         } else if (resolve && reject) {
-          if (type === 1) {
-            msg === 'ok' ? resolve(msg) : reject(msg)
+          if (type === TYPES.CONFIRM) {
+            shallResolve(type, msg) ? resolve(msg) : reject(msg)
+          } else if (type === TYPES.PROMPT) {
+            shallResolve(type, msg) ? resolve(msg.value) : reject(msg)
           } else {
             resolve(msg)
           }
