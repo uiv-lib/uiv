@@ -18,8 +18,8 @@ describe('httpUtils', () => {
   })
 
   it('should be able to get with success callback', () => {
-    let then = sinon.spy()
-    let always = sinon.spy()
+    const then = sinon.spy()
+    const always = sinon.spy()
     utils.getRequest('/some/path')
       .then(then)
       .always(always)
@@ -33,9 +33,9 @@ describe('httpUtils', () => {
   })
 
   it('should be able to get with fail callback', () => {
-    let then = sinon.spy()
-    let err = sinon.spy()
-    let always = sinon.spy()
+    const then = sinon.spy()
+    const err = sinon.spy()
+    const always = sinon.spy()
     utils.getRequest('/some/path')
       .then(then)
       .catch(err)

@@ -1,6 +1,7 @@
 <template>
   <dropdown ref="dropdown"
             v-model="open"
+            tag="section"
             :append-to-body="appendToBody"
             :not-close-elements="elements"
             :position-element="inputEl">

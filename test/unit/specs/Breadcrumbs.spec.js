@@ -7,7 +7,7 @@ describe('Breadcrumbs', () => {
   let $el
 
   beforeEach(() => {
-    let Constructor = Vue.extend(BreadcrumbsDoc)
+    const Constructor = Vue.extend(BreadcrumbsDoc)
     vm = new Constructor().$mount()
     $el = $(vm.$el)
   })
@@ -17,50 +17,53 @@ describe('Breadcrumbs', () => {
     $el.remove()
   })
 
-  it('should be able to render with items data', () => {
-    let b = $el.find('.breadcrumb').get(0)
-    expect(b.querySelectorAll('li').length).to.equal(3)
-    let nav1 = b.querySelectorAll('li a')[0]
-    expect(nav1.getAttribute('href')).to.equal('#')
-    expect(nav1.getAttribute('target')).to.equal('_self')
-    expect(nav1.textContent).to.equal('Home')
-    let nav2 = b.querySelectorAll('li a')[1]
-    expect(nav2.getAttribute('href')).to.equal('#')
-    expect(nav2.getAttribute('target')).to.equal('_self')
-    expect(nav2.textContent).to.equal('Library')
-    let nav3 = b.querySelectorAll('li')[2]
-    expect(nav3.className).to.contain('active')
-    expect(nav3.querySelector('a')).not.exist
-    expect(nav3.textContent).to.equal('Data')
+  it('should be able to render with item data', () => {
+    const $breadcrumb = $($el.find('.breadcrumb').get(0))
+    const $li = $('li', $breadcrumb)
+    expect($li.length).to.equal(3)
+    const $link1 = $('a', $li.first())
+    expect($link1.attr('href')).to.equal('#')
+    expect($link1.attr('target')).to.equal('_self')
+    expect($link1.text()).to.equal('Home')
+    const $link2 = $('a', $li.get(1))
+    expect($link2.attr('href')).to.equal('#')
+    expect($link2.attr('target')).to.equal('_self')
+    expect($link2.text()).to.equal('Library')
+    const $nav3 = $li.last()
+    expect($nav3.attr('class')).to.contain('active')
+    expect($nav3.find('a').length).to.equal(0)
+    expect($nav3.text()).to.equal('Data')
   })
 
   it('should be able to render with <breadcrumb-item>', () => {
-    let b = $el.find('.breadcrumb').get(1)
-    expect(b.querySelectorAll('li').length).to.equal(3)
-    let nav1 = b.querySelectorAll('li a')[0]
-    expect(nav1.getAttribute('href')).to.equal('#')
-    expect(nav1.getAttribute('target')).to.equal('_self')
-    expect(nav1.querySelector('b')).to.exist
-    expect(nav1.querySelector('b').textContent).to.equal('Home')
-    let nav2 = b.querySelectorAll('li a')[1]
-    expect(nav2.getAttribute('href')).to.equal('#')
-    expect(nav2.getAttribute('target')).to.equal('_self')
-    expect(nav2.textContent).to.equal('Library')
-    let nav3 = b.querySelectorAll('li')[2]
-    expect(nav3.className).to.contain('active')
-    expect(nav3.querySelector('a')).not.exist
-    expect(nav3.textContent).to.equal('Data')
+    const $breadcrumb = $($el.find('.breadcrumb').get(1))
+    const $li = $('li', $breadcrumb)
+    expect($li.length).to.equal(3)
+    const $link1 = $('a', $li.first())
+    expect($link1.attr('href')).to.equal('#')
+    expect($link1.attr('target')).to.equal('_self')
+    const $b = $link1.find('b')
+    expect($b.length).to.equal(1)
+    expect($b.text()).to.equal('Home')
+    const $link2 = $('a', $li.get(1))
+    expect($link2.attr('href')).to.equal('#')
+    expect($link2.attr('target')).to.equal('_self')
+    expect($link2.text()).to.equal('Library')
+    const $nav3 = $li.last()
+    expect($nav3.attr('class')).to.contain('active')
+    expect($nav3.find('a').length).to.equal(0)
+    expect($nav3.text()).to.equal('Data')
   })
 
   it('should be able to render router-link', () => {
-    let b = $el.find('.breadcrumb').get(2)
-    let nav1 = b.querySelectorAll('li a')[0]
-    expect(nav1.getAttribute('href')).to.equal('#router-link') // router-link mock
+    const $breadcrumb = $($el.find('.breadcrumb').get(2))
+    const $nav1 = $breadcrumb.find('li a').first()
+    expect($nav1.attr('href')).to.equal('#router-link') // router-link mock
   })
 
   it('should not auto active last item if using active prop', () => {
-    let res = Vue.compile('<breadcrumbs :items="items"></breadcrumbs>')
-    let vm = new Vue({
+    const res = Vue.compile('<breadcrumbs :items="items"></breadcrumbs>')
+    const _vm = new Vue({
       data () {
         return {
           items: [{text: 'test', href: '#', active: false, key: 0}]
@@ -69,25 +72,26 @@ describe('Breadcrumbs', () => {
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    let $el = $(vm.$el)
-    expect(vm.$el.querySelectorAll('li').length).to.equal(1)
-    let nav1 = vm.$el.querySelectorAll('li a')[0]
-    expect(nav1.getAttribute('href')).to.equal('#')
-    expect(nav1.getAttribute('target')).to.equal('_self')
-    expect(nav1.textContent).to.equal('test')
-    expect($el.find('.active').length).to.equal(0)
-    vm.$destroy()
+    const $breadcrumb = $(_vm.$el)
+    const $li = $('li', $breadcrumb)
+    expect($li.length).to.equal(1)
+    const $link1 = $('a', $li)
+    expect($link1.attr('href')).to.equal('#')
+    expect($link1.attr('target')).to.equal('_self')
+    expect($link1.text()).to.equal('test')
+    expect($breadcrumb.find('.active').length).to.equal(0)
+    _vm.$destroy()
   })
 
   it('should render nothing if no children and items', async () => {
-    let res = Vue.compile('<breadcrumbs></breadcrumbs>')
-    let vm = new Vue({
+    const res = Vue.compile('<breadcrumbs></breadcrumbs>')
+    const _vm = new Vue({
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    let $el = $(vm.$el)
-    await vm.$nextTick()
-    expect($el.children().length).to.equal(0)
-    vm.$destroy()
+    const $breadcrumb = $(_vm.$el)
+    await _vm.$nextTick()
+    expect($breadcrumb.children().length).to.equal(0)
+    _vm.$destroy()
   })
 })
