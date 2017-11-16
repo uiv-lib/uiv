@@ -4,8 +4,6 @@ import {isFunction, isExist, isString} from '@src/utils/objectUtils'
 import MessageBox from './MessageBox.vue'
 import Vue from 'vue'
 
-const PROMISE_SUPPORTED = isExist(window.Promise)
-
 let instance
 let body = document.body
 
@@ -18,13 +16,14 @@ const destroyModal = () => {
   }
 }
 
+// handel cancel or ok for confirm & prompt
 const shallResolve = (type, msg) => {
   if (type === TYPES.CONFIRM) {
+    // is confirm
     return msg === 'ok'
-  } else if (type === TYPES.PROMPT) {
-    return isExist(msg) && isString(msg.value)
   } else {
-    return true
+    // is prompt
+    return isExist(msg) && isString(msg.value)
   }
 }
 
@@ -63,7 +62,7 @@ const init = (type, options, cb, resolve = null, reject = null) => {
 }
 
 const initModal = (type, options = {}, cb) => {
-  if (PROMISE_SUPPORTED) {
+  if (isExist(window.Promise)) {
     return new Promise((resolve, reject) => {
       init(type, options, cb, resolve, reject)
     })
