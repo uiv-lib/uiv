@@ -23,8 +23,7 @@
                  pattern="\d*"
                  class="form-control text-center"
                  style="width: 50px"
-                 @focus="selectInputValue"
-                 @mouseup.prevent
+                 @mouseup="selectInputValue"
                  @keydown.prevent.up="changeTime(1, 1)"
                  @keydown.prevent.down="changeTime(1, 0)"
                  @wheel="onWheel($event, true)"
@@ -40,8 +39,7 @@
                  pattern="\d*"
                  class="form-control text-center"
                  style="width: 50px"
-                 @focus="selectInputValue"
-                 @mouseup.prevent
+                 @mouseup="selectInputValue"
                  @keydown.prevent.up="changeTime(0, 1)"
                  @keydown.prevent.down="changeTime(0, 0)"
                  @wheel="onWheel($event, false)"

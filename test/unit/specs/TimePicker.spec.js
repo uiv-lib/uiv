@@ -369,7 +369,7 @@ describe('TimePicker', () => {
     vm.$destroy()
   })
 
-  it('should be able to select input while focus', async () => {
+  it('should be able to select input content on mouseup', async () => {
     const res = Vue.compile('<time-picker v-model="time"/>')
     const $div = $('<div>').appendTo('body')
     const vm = new Vue({
@@ -384,13 +384,13 @@ describe('TimePicker', () => {
     await vm.$nextTick()
     const hoursInput = vm.$el.querySelectorAll('input')[0]
     const hoursInputSpy = sinon.spy(hoursInput, 'setSelectionRange')
-    hoursInput.focus() // utils.triggerEvent() doesn't work here
+    utils.triggerEvent(hoursInput, 'mouseup')
     await vm.$nextTick()
     sinon.assert.calledOnce(hoursInputSpy)
     hoursInput.setSelectionRange.restore()
     const minutesInput = vm.$el.querySelectorAll('input')[1]
     const minutesInputSpy = sinon.spy(minutesInput, 'setSelectionRange')
-    minutesInput.focus() // utils.triggerEvent() doesn't work here
+    utils.triggerEvent(minutesInput, 'mouseup')
     await vm.$nextTick()
     sinon.assert.calledOnce(minutesInputSpy)
     minutesInput.setSelectionRange.restore()
