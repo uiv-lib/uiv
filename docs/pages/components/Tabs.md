@@ -170,13 +170,15 @@ An example that generate closable tabs using `v-for`:
     methods: {
       push () {
         this.tabs.push(`Tab ${++this.count}`)
+        // open the new tab after created
         this.$nextTick(() => {
           this.index = this.tabs.length - 1
         })
       },
       close () {
         this.tabs.splice(this.index, 1)
-        if (this.index === this.tabs.length) {
+        // select prev tab if the closed tab is the last one
+        if (this.index === this.tabs.length && this.index > 0) {
           --this.index
         }
       }
