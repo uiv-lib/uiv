@@ -8,11 +8,11 @@
     <div class="carousel-inner" role="listbox">
       <slot></slot>
     </div>
-    <a class="left carousel-control" href="javascript:void(0)" role="button" v-if="controls" @click="prev()">
+    <a class="left carousel-control" href="#" role="button" v-if="controls" @click.prevent="prev()">
       <span :class="iconControlLeft" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="right carousel-control" href="javascript:void(0)" role="button" v-if="controls" @click="next()">
+    <a class="right carousel-control" href="#" role="button" v-if="controls" @click.prevent="next()">
       <span :class="iconControlRight" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>

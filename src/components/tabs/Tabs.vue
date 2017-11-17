@@ -2,20 +2,19 @@
   <section>
     <ul class="nav nav-tabs" role="tablist" :class="{'nav-justified': justified}">
       <template v-for="(tab, index) in groupedTabs">
-        <dropdown v-if="tab.tabs" role="presentation" tag="li"
-                  :class="{active: tab.active, disabled: tab.disabled, 'pull-right': tab.pullRight}">
-          <a class="dropdown-toggle" role="tab" href="javascript:void(0)">{{tab.group}} <span class="caret"></span></a>
+        <dropdown v-if="tab.tabs" role="presentation" tag="li" :class="getTabClasses(tab)">
+          <a class="dropdown-toggle" role="tab" href="#" @click.prevent>{{tab.group}} <span class="caret"></span></a>
           <template slot="dropdown">
-            <li v-for="subTab in tab.tabs" :class="{active: subTab.active, disabled: subTab.disabled}">
-              <a href="javascript:void(0)" @click="select(tabs.indexOf(subTab))">{{subTab.title}}</a>
+            <li v-for="subTab in tab.tabs" :class="getTabClasses(subTab,true)">
+              <a href="#" @click.prevent="select(tabs.indexOf(subTab))">{{subTab.title}}</a>
             </li>
           </template>
         </dropdown>
-        <li v-else role="presentation"
-            :class="{active: tab.active, disabled: tab.disabled, 'pull-right': tab.pullRight}">
-          <a v-if="tab.htmlTitle" v-html="tab.title" role="tab" href="javascript:void(0);"
-             @click="select(tabs.indexOf(tab))"></a>
-          <a v-else role="tab" href="javascript:void(0);" @click="select(tabs.indexOf(tab))">{{tab.title}}</a>
+        <li v-else role="presentation" :class="getTabClasses(tab)">
+          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))">
+            <span v-if="tab.htmlTitle" v-html="tab.title"></span>
+            <template v-else>{{tab.title}}</template>
+          </a>
         </li>
       </template>
       <li class="pull-right" v-if="!justified && $slots['nav-right']">
@@ -107,6 +106,13 @@
       }
     },
     methods: {
+      getTabClasses (tab, isSubTab = false) {
+        return {
+          active: tab.active,
+          disabled: tab.disabled,
+          'pull-right': tab.pullRight && !isSubTab
+        }
+      },
       selectCurrent () {
         let found = false
         this.tabs.forEach((tab, index) => {

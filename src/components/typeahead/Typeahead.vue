@@ -8,7 +8,7 @@
     <template slot="dropdown">
       <slot name="item" :items="items" :active-index="activeIndex" :select="selectItem" :highlight="highlight">
         <li v-for="(item,index) in items" :class="{active:activeIndex===index}">
-          <a href="javascript:void(0)" @click="selectItem(item)">
+          <a href="#" @click.prevent="selectItem(item)">
             <span v-html="highlight(item)"></span>
           </a>
         </li>
