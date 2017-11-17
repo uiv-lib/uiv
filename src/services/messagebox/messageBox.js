@@ -1,4 +1,4 @@
-import TYPES from './types'
+import {TYPES} from './constants'
 import {removeFromDom} from '@src/utils/domUtils'
 import {isFunction, isExist, isString} from '@src/utils/objectUtils'
 import MessageBox from './MessageBox.vue'
