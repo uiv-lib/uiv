@@ -141,8 +141,9 @@
       },
       toggle (show, msg) {
         this.msg = msg
-        if(!show && this.beforeClose && !this.beforeClose())
+        if (!show && this.beforeClose && !this.beforeClose()) {
           return
+        }
         this.$emit('input', show)
       },
       $toggle (show) {
