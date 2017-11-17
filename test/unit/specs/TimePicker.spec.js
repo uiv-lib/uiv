@@ -369,7 +369,7 @@ describe('TimePicker', () => {
     vm.$destroy()
   })
 
-  it('should be able to select input while focus', async () => {
+  it('should be able to select input content on mouseup', async () => {
     const res = Vue.compile('<time-picker v-model="time"/>')
     const $div = $('<div>').appendTo('body')
     const vm = new Vue({
@@ -382,18 +382,18 @@ describe('TimePicker', () => {
       staticRenderFns: res.staticRenderFns
     }).$mount($div.get(0))
     await vm.$nextTick()
-    const hourInput = vm.$el.querySelectorAll('input')[0]
-    const hourInputSpy = sinon.spy(hourInput, 'setSelectionRange')
-    hourInput.focus()
+    const hoursInput = vm.$el.querySelectorAll('input')[0]
+    const hoursInputSpy = sinon.spy(hoursInput, 'setSelectionRange')
+    utils.triggerEvent(hoursInput, 'mouseup')
     await vm.$nextTick()
-    sinon.assert.calledOnce(hourInputSpy)
-    hourInput.setSelectionRange.restore()
-    const minuteInput = vm.$el.querySelectorAll('input')[1]
-    const minuteInputSpy = sinon.spy(minuteInput, 'setSelectionRange')
-    minuteInput.focus()
+    sinon.assert.calledOnce(hoursInputSpy)
+    hoursInput.setSelectionRange.restore()
+    const minutesInput = vm.$el.querySelectorAll('input')[1]
+    const minutesInputSpy = sinon.spy(minutesInput, 'setSelectionRange')
+    utils.triggerEvent(minutesInput, 'mouseup')
     await vm.$nextTick()
-    sinon.assert.calledOnce(minuteInputSpy)
-    minuteInput.setSelectionRange.restore()
+    sinon.assert.calledOnce(minutesInputSpy)
+    minutesInput.setSelectionRange.restore()
     vm.$destroy()
     $div.remove()
   })
