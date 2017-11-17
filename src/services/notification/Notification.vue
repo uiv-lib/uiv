@@ -20,6 +20,7 @@
 
 <script>
   import {addClass, removeClass} from '@src/utils/domUtils'
+  import {isString} from '@src/utils/objectUtils'
   import Alert from '@src/components/alert/Alert.vue'
   import {TYPES, PLACEMENTS} from './constants'
 
@@ -96,7 +97,7 @@
         }
       },
       icons () {
-        if (this.icon) {
+        if (isString(this.icon)) {
           return this.icon
         }
         switch (this.type) {
