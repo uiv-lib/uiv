@@ -36,7 +36,7 @@
 </template>
 
 <script>
-  import TYPES from './types'
+  import {TYPES} from './constants'
   import Local from '@src/mixins/locale'
   import Modal from '@src/components/modal/Modal.vue'
   import Btn from '@src/components/button/Btn'
