@@ -142,9 +142,8 @@ Name           | Type       | Default  | Required | Description
 `ok-text`      | String     |          |          | Override the default text of ok button.
 `cancel-text`  | String     |          |          | Override the default text of cancel button.
 `backdrop`     | Boolean    | `false` if type is alert, otherwise `true` |          | Dismiss the modal by backdrop click.
-`cb`           | Function   |          |          | Modal callback function on closed.
 `validator`    | Function   |          |          | Custom validator function for prompt. Accepts the input value as param, returns the err msg (not valid) or null (valid)
 
-## [MessageBox.js](https://github.com/wxsms/uiv/tree/master/src/services/messagebox/MessageBox.js)
+## [messageBox.js](https://github.com/wxsms/uiv/tree/master/src/services/messagebox/messageBox.js)
 
 This file has no props.
