@@ -72,6 +72,11 @@ const routes = [
     component: () => import('./../pages/components/Modal.md')
   },
   {
+    path: '/notification',
+    meta: {type: 'component', label: 'Notification'},
+    component: () => import('./../pages/components/Notification.md')
+  },
+  {
     path: '/pagination',
     meta: {type: 'component', label: 'Pagination'},
     component: () => import('./../pages/components/Pagination.md')
