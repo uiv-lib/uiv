@@ -53,11 +53,11 @@ A confirm example using `Promise`:
           .then(() => {
             this.$notify({
               type: 'success',
-              content: 'Deleted completed.'
+              content: 'Delete completed.'
             })
           })
           .catch(() => {
-            this.$notify('Deleted canceled.')
+            this.$notify('Delete canceled.')
           })
       }
     }

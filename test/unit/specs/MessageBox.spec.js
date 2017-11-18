@@ -66,7 +66,7 @@ describe('MessageBox', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
     expect(document.querySelector('.alert')).to.exist
-    expect(document.querySelector('.alert .media-body > div').textContent).to.equal('Deleted canceled.')
+    expect(document.querySelector('.alert .media-body > div').textContent).to.equal('Delete canceled.')
   })
 
   it('should be able to open confirm box and ok', async () => {
@@ -85,7 +85,7 @@ describe('MessageBox', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
     expect(document.querySelector('.alert')).to.exist
-    expect(document.querySelector('.alert .media-body > div').textContent).to.equal('Deleted completed.')
+    expect(document.querySelector('.alert .media-body > div').textContent).to.equal('Delete completed.')
   })
 
   it('should be able to open prompt box and cancel', async () => {

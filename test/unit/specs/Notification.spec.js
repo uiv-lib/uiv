@@ -67,7 +67,7 @@ describe('Notification', () => {
     expect(alert.className).to.contain('fade')
     expect(alert.className).to.contain('in')
     expect(alert.querySelector('.media-heading').textContent).to.equal('Title')
-    expect(alert.querySelector('.media-body > div').textContent).to.equal('This notification will not dismiss automatically.')
+    expect(alert.querySelectorAll('.media-body > div')[1].textContent).to.equal('This notification will not dismiss automatically.')
     await utils.sleep(5200)
     expect(document.querySelector('.alert')).to.exist
     alert.querySelector('button.close').click()

@@ -11,7 +11,7 @@
         <span :class="icons" style="font-size: 1.5em"></span>
       </div>
       <div class="media-body">
-        <h4 class="media-heading" v-if="title">{{title}}</h4>
+        <div class="media-heading" v-if="title"><b>{{title}}</b></div>
         <div>{{content}}</div>
       </div>
     </div>
