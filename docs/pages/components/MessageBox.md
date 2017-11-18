@@ -21,9 +21,9 @@ An alert example using callback:
         this.$alert({
           title: 'Title',
           content: 'This is an alert message.'
-        }, () => {
+        }, (msg) => {
           // callback after modal dismissed
-          console.log('ok')
+          this.$notify(`You selected ${msg}.`)
         })
       }
     }
@@ -51,12 +51,13 @@ A confirm example using `Promise`:
           content: 'This item will be permanently deleted. Continue?'
         })
           .then(() => {
-            // confirm
-            console.log('ok')
+            this.$notify({
+              type: 'success',
+              content: 'Deleted completed.'
+            })
           })
           .catch(() => {
-            // cancel
-            console.log('cancel')
+            this.$notify('Deleted canceled.')
           })
       }
     }
@@ -87,12 +88,13 @@ Displays a dialog with an optional message prompting the user to input some text
           }
         })
           .then((value) => {
-            // confirm with user input as value
-            console.log(value)
+            this.$notify({
+              type: 'success',
+              content: `You email address is ${value}`
+            })
           })
           .catch(() => {
-            // cancel
-            console.log('cancel')
+            this.$notify('Input canceled.')
           })
       }
     }
@@ -105,13 +107,13 @@ Displays a dialog with an optional message prompting the user to input some text
 
 Following global methods for `Vue.prototype` will be added **if uiv is installed**:
  
-* `$alert(options, callback)`
-* `$confirm(options, callback)`
-* `$prompt(options, callback)`
+* `$alert(options, callback(msg))`
+* `$confirm(options, callback(err, msg))`
+* `$prompt(options, callback(err, msg))`
 
-Note that callbacks are both optional, with 2 params:
+Callback params:
 
-* `err` as user cancel the box, otherwise it will be null.
+* `err` as user dismiss or cancel the box, otherwise it will be `null`. Note that there is no err in `$alert` callback.
 * `msg` as the user input while using prompt.
 
 Each of these methods will return a `Promise` object that resolve / reject while the box is closed (if supported by browser or with es6 promise polyfill).

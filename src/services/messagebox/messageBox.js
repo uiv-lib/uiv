@@ -42,7 +42,7 @@ const init = (type, options, cb, resolve = null, reject = null) => {
           } else if (type === TYPES.PROMPT) {
             shallResolve(type, msg) ? cb(null, msg.value) : cb(msg)
           } else {
-            cb(null, msg)
+            cb(msg)
           }
         } else if (resolve && reject) {
           if (type === TYPES.CONFIRM) {

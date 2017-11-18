@@ -1,6 +1,6 @@
 import {removeFromDom} from '@src/utils/domUtils'
 import {spliceIfExist} from '@src/utils/arrayUtils'
-import {isFunction, isExist} from '@src/utils/objectUtils'
+import {isFunction, isExist, isString} from '@src/utils/objectUtils'
 import Notification from './Notification.vue'
 import {PLACEMENTS} from './constants'
 import Vue from 'vue'
@@ -50,6 +50,12 @@ const init = (options, cb, resolve = null, reject = null) => {
 }
 
 const notify = (options = {}, cb) => {
+  // simplify usage: pass string as option.content
+  if (isString(options)) {
+    options = {
+      content: options
+    }
+  }
   // set default placement as top-right
   if (!isExist(options.placement)) {
     options.placement = PLACEMENTS.TOP_RIGHT

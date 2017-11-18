@@ -44,8 +44,8 @@ describe('Notification', () => {
     expect(alert.className).to.contain('alert-dismissible')
     expect(alert.className).to.contain('fade')
     expect(alert.className).to.contain('in')
-    expect(alert.querySelector('.media-heading').textContent).to.equal('Title')
-    expect(alert.querySelector('.media-body > div').textContent).to.equal('This is a notify message.')
+    expect(alert.querySelector('.media-heading')).not.exist
+    expect(alert.querySelector('.media-body > div').textContent).to.equal('This is a simple notify msg.')
     alert.querySelector('button.close').click()
     await utils.sleep(utils.transitionDuration)
     await vm.$nextTick()

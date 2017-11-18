@@ -27,6 +27,7 @@ describe('MessageBox', () => {
     vm.$destroy()
     $el.remove()
     $('.modal-backdrop, .modal').remove()
+    $('.alert').remove()
   })
 
   it('should be able to open alert box', async () => {
@@ -45,7 +46,8 @@ describe('MessageBox', () => {
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
-    sinon.assert.calledWith(spy, 'ok')
+    expect(document.querySelector('.alert')).to.exist
+    expect(document.querySelector('.alert .media-body > div').textContent).to.equal('You selected ok.')
   })
 
   it('should be able to open confirm box and cancel', async () => {
@@ -63,7 +65,8 @@ describe('MessageBox', () => {
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
-    sinon.assert.calledWith(spy, 'cancel')
+    expect(document.querySelector('.alert')).to.exist
+    expect(document.querySelector('.alert .media-body > div').textContent).to.equal('Deleted canceled.')
   })
 
   it('should be able to open confirm box and ok', async () => {
@@ -81,7 +84,8 @@ describe('MessageBox', () => {
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
-    sinon.assert.calledWith(spy, 'ok')
+    expect(document.querySelector('.alert')).to.exist
+    expect(document.querySelector('.alert .media-body > div').textContent).to.equal('Deleted completed.')
   })
 
   it('should be able to open prompt box and cancel', async () => {
@@ -99,7 +103,8 @@ describe('MessageBox', () => {
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
-    sinon.assert.calledWith(spy, 'cancel')
+    expect(document.querySelector('.alert')).to.exist
+    expect(document.querySelector('.alert .media-body > div').textContent).to.equal('Input canceled.')
   })
 
   it('should be able to open prompt box and ok', async () => {
@@ -124,7 +129,8 @@ describe('MessageBox', () => {
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
-    sinon.assert.calledWith(spy, 'wxsms@foxmail.com')
+    expect(document.querySelector('.alert')).to.exist
+    expect(document.querySelector('.alert .media-body > div').textContent).to.equal('You email address is wxsms@foxmail.com')
   })
 
   it('should be able to validate prompt input', async () => {
@@ -155,16 +161,15 @@ describe('MessageBox', () => {
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
-    sinon.assert.calledWith(spy, 'cancel')
+    expect(document.querySelector('.alert')).to.exist
+    expect(document.querySelector('.alert .media-body > div').textContent).to.equal('Input canceled.')
   })
 
   it('should be able to use prompt without validator', async () => {
     MessageBox.prompt({
       title: 'Title',
       content: 'This is an alert message.'
-    }, (err, value) => {
-      console.log(err, value)
-    })
+    }, console.log)
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')

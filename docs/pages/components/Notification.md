@@ -9,7 +9,7 @@ Click on the button below to show a notification. By default, it is dismissible 
 ```html
 <template>
   <section>
-    <btn @click="notify" type="primary">Default Notification</btn>
+    <btn @click="notify" type="primary">Simplest Notification</btn>
     <btn @click="notify2" type="primary">No Auto-dismiss Notification</btn>
   </section>
 </template>
@@ -17,16 +17,14 @@ Click on the button below to show a notification. By default, it is dismissible 
   export default {
     methods: {
       // example with callback
+      // pass a String as the notification content
       notify () {
-        this.$notify({
-          title: 'Title',
-          content: 'This is a notify message.'
-        }, () => {
+        this.$notify('This is a simple notify msg.', () => {
           // callback after dismissed
           console.log('dismissed')
         })
       },
-      // example with Promise
+      // example with Promise and options
       notify2 () {
         this.$notify({
           title: 'Title',
