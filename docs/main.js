@@ -17,7 +17,7 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(uiv)
 Vue.use(VueAnalytics, {
-  id: 'UA-109876095-1',
+  id: 'UA-102731925-2',
   router
 })
 
