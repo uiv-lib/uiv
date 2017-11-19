@@ -9,6 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const PrerenderSpaPlugin = require('prerender-spa-plugin')
+const SitemapPlugin = require('sitemap-webpack-plugin').default
 
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -108,6 +109,13 @@ let webpackConfig = merge(baseWebpackConfig, {
           console.log(`[PRE-RENDER] (${++processProgress} / ${staticPaths.length}) ${context.route}`)
           return context.html
         }
+      }
+    ),
+    new SitemapPlugin(
+      'https://uiv.wxsm.space',
+      staticPaths.map(path => path === '/' ? path : path + '/'),
+      {
+        changeFreq: 'weekly'
       }
     )
   ]

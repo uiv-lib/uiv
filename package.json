@@ -130,6 +130,7 @@
     "semver": "^5.3.0",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
+    "sitemap-webpack-plugin": "^0.5.1",
     "url-loader": "^0.5.7",
     "vue": "^2.5.2",
     "vue-analytics": "^5.3.2",
