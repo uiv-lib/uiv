@@ -16,10 +16,14 @@ Vue.config.productionTip = false
 
 Vue.use(VueRouter)
 Vue.use(uiv)
-Vue.use(VueAnalytics, {
-  id: 'UA-102731925-2',
-  router
-})
+
+// apply google analytics only on production mode
+if (process.env && process.env.NODE_ENV === 'production') {
+  Vue.use(VueAnalytics, {
+    id: 'UA-102731925-2',
+    router
+  })
+}
 
 Vue.component('MarkdownWrapper', MarkdownWrapper)
 
