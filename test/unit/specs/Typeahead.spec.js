@@ -33,6 +33,23 @@ describe('Typeahead', () => {
     server.restore()
   })
 
+  it('should be able to set and clear typeahead model manually', async () => {
+    const _vm = vm.$refs['typeahead-example']
+    await vm.$nextTick()
+    const setBtn = _vm.$el.querySelectorAll('.btn')[0]
+    const clearBtn = _vm.$el.querySelectorAll('.btn')[1]
+    const input = _vm.$el.querySelector('input')
+    setBtn.click()
+    await vm.$nextTick()
+    expect(input.value).to.equal('Alabama')
+    expect(_vm.model.name).to.equal('Alabama')
+    expect(_vm.model.abbreviation).to.equal('AL')
+    clearBtn.click()
+    await vm.$nextTick()
+    expect(input.value).to.equal('')
+    expect(_vm.model).not.exist
+  })
+
   it('should be able to open typeahead when input change', async () => {
     const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()

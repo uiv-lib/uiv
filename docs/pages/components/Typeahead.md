@@ -6,9 +6,14 @@
 
 Use `v-model` to bind the input value, and `target` to point to the ideal input element.
 
+If you want to clear the `v-model` of typeahead, simply set it to `null`, the corresponding input value will also be cleared.
+
 ```html
 <template>
   <section>
+    <btn @click="model=states[0]" type="primary">Set to Alabama</btn>
+    <btn @click="model=null">Clear</btn>
+    <hr/>
     <label for="input">States of America:</label>
     <input id="input" class="form-control" type="text" placeholder="Type to search...">
     <typeahead v-model="model" target="#input" :data="states" item-key="name"/>
@@ -102,8 +107,6 @@ Match from the head of item.
 ## Force Select
 
 Force user to select from the options or the model will be empty.
-
-**Note**: Only work in local data query mode.
 
 ```html
 <template>

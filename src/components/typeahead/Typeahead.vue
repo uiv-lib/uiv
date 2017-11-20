@@ -130,7 +130,7 @@
         } else if (value) {
           // is object
           this.inputEl.value = this.itemKey ? value[this.itemKey] : value
-        } else {
+        } else if (value === null) {
           // is null or undefined or something else not valid
           this.inputEl.value = ''
         }
@@ -220,7 +220,7 @@
       inputChanged () {
         let value = this.inputEl.value
         this.fetchItems(value, this.debounce)
-        this.$emit('input', this.forceSelect ? null : value)
+        this.$emit('input', this.forceSelect ? undefined : value)
       },
       inputFocused () {
         if (this.openOnFocus) {
