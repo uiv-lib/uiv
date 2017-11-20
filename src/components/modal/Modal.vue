@@ -11,7 +11,13 @@
         <div class="modal-content">
           <div class="modal-header" v-if="header">
             <slot name="header">
-              <button type="button" class="close" aria-label="Close" @click="toggle(false)">
+              <button
+                type="button"
+                class="close"
+                aria-label="Close"
+                @click="toggle(false)"
+                style="position: relative;z-index: 1060">
+                <!-- 1060 is bigger than dialog z-index 1050 because it got cover by title sometimes -->
                 <span aria-hidden="true">×</span>
               </button>
               <h4 class="modal-title">

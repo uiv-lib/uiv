@@ -17,6 +17,7 @@ describe('Modal', () => {
   afterEach(() => {
     vm.$destroy()
     $el.remove()
+    $('.alert').remove()
   })
 
   it('should be able to open modal 1', async () => {
@@ -63,7 +64,8 @@ describe('Modal', () => {
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(_$el.find('.modal').get(0).className).not.contain('in')
-    expect(_$el.find('#modal-msg').get(0).textContent).to.contain('Modal dismiss with msg \'dismiss\'')
+    expect(document.querySelector('.alert')).to.exist
+    expect(document.querySelector('.alert .media-body > div').textContent).to.contain('dismiss')
   })
 
   it('should be able to close modal 1 with ok option and fire callback', async () => {
@@ -80,7 +82,8 @@ describe('Modal', () => {
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(_$el.find('.modal').get(0).className).not.contain('in')
-    expect(_$el.find('#modal-msg').get(0).textContent).to.contain('Modal dismiss with msg \'ok\'')
+    expect(document.querySelector('.alert')).to.exist
+    expect(document.querySelector('.alert .media-body > div').textContent).to.contain('ok')
   })
 
   it('should be able to render large modal', async () => {

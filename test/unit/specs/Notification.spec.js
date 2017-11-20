@@ -68,14 +68,14 @@ describe('Notification', () => {
     expect(alert.className).to.contain('in')
     expect(alert.querySelector('.media-heading').textContent).to.equal('Title')
     expect(alert.querySelectorAll('.media-body > div')[1].textContent).to.equal('This notification will not dismiss automatically.')
-    await utils.sleep(5200)
+    await utils.sleep(5000 + 1000)
     expect(document.querySelector('.alert')).to.exist
     alert.querySelector('button.close').click()
     await utils.sleep(utils.transitionDuration)
     await vm.$nextTick()
     expect(document.querySelector('.alert')).not.exist
     sinon.assert.calledWith(spy, 'dismissed')
-  }).timeout(5000 + 2000)
+  }).timeout(5000 + 3000)
 
   it('should be able to use `type=info` notification', async () => {
     const _vm = vm.$refs['notification-types']
@@ -238,10 +238,10 @@ describe('Notification', () => {
     expect(alert.length).to.equal(2)
     expect(alert[0].querySelector('button.close')).not.exist
     expect(alert[1].querySelector('button.close')).not.exist
-    await utils.sleep(5200)
+    await utils.sleep(5000 + 1000)
     await vm.$nextTick()
     expect(document.querySelector('.alert')).not.exist
-  }).timeout(5000 + 2000)
+  }).timeout(5000 + 3000)
 
   it('should be able to use without options and callback', async () => {
     Notification.notify(undefined)

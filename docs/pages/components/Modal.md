@@ -6,12 +6,13 @@
 
 Toggle a modal by clicking the button below. It will slide down and fade in from the top of the page.
 
+A simple modal example with callback:
+
 ```html
 <template>
   <section>
     <btn type="primary" @click="open=true">Launch Demo Modal</btn>
-    <span id="modal-msg" style="margin-left: 10px">{{msg || 'A simple modal example with callback.'}}</span>
-    <modal v-model="open" title="Modal 1" @hide="dismissCallback" ref="modal" id="modal-demo">
+    <modal v-model="open" title="Modal 1" @hide="callback" ref="modal" id="modal-demo">
       <h4>Text in a modal</h4>
       <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
       <h4>Popover in a modal</h4>
@@ -51,13 +52,12 @@ Toggle a modal by clicking the button below. It will slide down and fade in from
   export default {
     data () {
       return {
-        msg: '',
         open: false
       }
     },
     methods: {
-      dismissCallback (msg) {
-        this.msg = `Modal dismiss with msg '${msg}'.`
+      callback (msg) {
+        this.$notify(`Modal dismissed with msg '${msg}'.`)
       }
     }
   }
