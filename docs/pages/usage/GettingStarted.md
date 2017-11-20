@@ -50,6 +50,7 @@ Results in:
 
 * Components such as `<alert>` becomes `<uiv-alert>`
 * Directives such as `v-tooltip` becomes `v-uiv-tooltip`
+* Vue prototype methods such as `$alert` becomes `$uiv_alert`
 
 ## Import Individually
 

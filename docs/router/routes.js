@@ -62,9 +62,19 @@ const routes = [
     component: () => import('./../pages/components/Dropdown.md')
   },
   {
+    path: '/message-box',
+    meta: {type: 'component', label: 'Message Box'},
+    component: () => import('./../pages/components/MessageBox.md')
+  },
+  {
     path: '/modal',
     meta: {type: 'component', label: 'Modal'},
     component: () => import('./../pages/components/Modal.md')
+  },
+  {
+    path: '/notification',
+    meta: {type: 'component', label: 'Notification'},
+    component: () => import('./../pages/components/Notification.md')
   },
   {
     path: '/pagination',

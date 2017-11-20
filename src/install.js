@@ -1,5 +1,6 @@
 import * as components from './components'
 import * as directives from './directives'
+import * as services from './services'
 import locale from './locale'
 import {isExist} from '@src/utils/objectUtils'
 
@@ -16,6 +17,14 @@ const install = (Vue, options = {}) => {
   Object.keys(directives).forEach(key => {
     let _key = options.prefix ? options.prefix + '-' + key : key
     Vue.directive(_key, directives[key])
+  })
+  // Register services
+  Object.keys(services).forEach(key => {
+    const service = services[key]
+    Object.keys(service).forEach(serviceKey => {
+      let _key = options.prefix ? options.prefix + '_' + serviceKey : serviceKey
+      Vue.prototype['$' + _key] = service[serviceKey]
+    })
   })
 }
 
