@@ -56,6 +56,7 @@
     addClass,
     removeClass
   } from '@src/utils/domUtils'
+  import {isFunction} from '@src/utils/objectUtils'
 
   const MODAL_OPEN = 'modal-open'
   const IN = 'in'
@@ -68,12 +69,8 @@
         type: Boolean,
         default: false
       },
-      title: {
-        type: String
-      },
-      size: {
-        type: String
-      },
+      title: String,
+      size: String,
       backdrop: {
         type: Boolean,
         default: true
@@ -86,12 +83,8 @@
         type: Boolean,
         default: true
       },
-      cancelText: {
-        type: String
-      },
-      okText: {
-        type: String
-      },
+      cancelText: String,
+      okText: String,
       transitionDuration: {
         type: Number,
         default: 150
@@ -104,9 +97,7 @@
         type: Boolean,
         default: true
       },
-      beforeClose: {
-        type: Function
-      }
+      beforeClose: Function
     },
     data () {
       return {
@@ -146,10 +137,11 @@
         }
       },
       toggle (show, msg) {
-        this.msg = msg
-        if (!show && this.beforeClose && !this.beforeClose()) {
+        // skip the hiding while show===false & beforeClose returning falsely value
+        if (!show && isFunction(this.beforeClose) && !this.beforeClose()) {
           return
         }
+        this.msg = msg
         this.$emit('input', show)
       },
       $toggle (show) {

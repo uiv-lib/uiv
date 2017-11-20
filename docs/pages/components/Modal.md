@@ -260,6 +260,7 @@ Name                  | Type       | Default  | Required | Description
 `transition-duration` | Number     | 150      |          | Transition time of the modal, set to 0 to disable animation.
 `auto-focus`          | Boolean    | false    |          | Focus on the action button that has `data-action="auto-focus"` attribute after modal open, by default it is the OK button.
 `keyboard`            | Boolean    | true     |          | Close the modal after `esc` key pressed.
+`before-close`        | Function   |          |          | Return `false` in this function to interrupt the modal hiding process, otherwise return `true` to act as normal.
 
 ### Slots
 

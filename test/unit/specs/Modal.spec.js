@@ -242,4 +242,69 @@ describe('Modal', () => {
     $(vm.$el).remove()
     vm.$destroy()
   })
+
+  it('should be able to use `beforeClose`', async () => {
+    const res = Vue.compile('<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>')
+    const vm = new Vue({
+      data () {
+        return {
+          open: true,
+          msg: 'ok'
+        }
+      },
+      components: {Modal},
+      methods: {
+        beforeClose () {
+          this.msg = 'test'
+          return true
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(vm.msg).to.equal('ok')
+    vm.$el.querySelector('button.close').click()
+    await utils.sleep(utils.transitionDuration)
+    await vm.$nextTick()
+    expect(document.querySelector('.modal-backdrop')).not.exist
+    expect(vm.msg).to.equal('test')
+    vm.$destroy()
+  })
+
+  it('should be able to interrupt hide with `beforeClose`', async () => {
+    const res = Vue.compile('<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>')
+    const vm = new Vue({
+      data () {
+        return {
+          open: true,
+          msg: 'ok',
+          dismissible: false
+        }
+      },
+      components: {Modal},
+      methods: {
+        beforeClose () {
+          return this.dismissible
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(vm.msg).to.equal('ok')
+    vm.$el.querySelector('button.close').click()
+    await utils.sleep(utils.transitionDuration)
+    await vm.$nextTick()
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    vm.dismissible = true
+    await vm.$nextTick()
+    vm.$el.querySelector('button.close').click()
+    await utils.sleep(utils.transitionDuration)
+    await vm.$nextTick()
+    expect(document.querySelector('.modal-backdrop')).not.exist
+    vm.$destroy()
+  })
 })
