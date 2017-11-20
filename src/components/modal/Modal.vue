@@ -103,6 +103,9 @@
       keyboard: {
         type: Boolean,
         default: true
+      },
+      beforeClose: {
+        type: Function
       }
     },
     data () {
@@ -144,6 +147,9 @@
       },
       toggle (show, msg) {
         this.msg = msg
+        if (!show && this.beforeClose && !this.beforeClose()) {
+          return
+        }
         this.$emit('input', show)
       },
       $toggle (show) {
