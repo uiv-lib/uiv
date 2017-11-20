@@ -1,4 +1,4 @@
-# Date Picker
+# DatePicker
 
 > A lightweight & configurable date picker.
 

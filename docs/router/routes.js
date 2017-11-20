@@ -38,7 +38,7 @@ const routes = [
   },
   {
     path: '/button-group',
-    meta: {type: 'component', label: 'Button Group'},
+    meta: {type: 'component', label: 'ButtonGroup'},
     component: () => import('./../pages/components/BtnGroup.md')
   },
   {
@@ -53,7 +53,7 @@ const routes = [
   },
   {
     path: '/date-picker',
-    meta: {type: 'component', label: 'Date Picker'},
+    meta: {type: 'component', label: 'DatePicker'},
     component: () => import('./../pages/components/DatePicker.md')
   },
   {
@@ -63,7 +63,7 @@ const routes = [
   },
   {
     path: '/message-box',
-    meta: {type: 'component', label: 'Message Box'},
+    meta: {type: 'component', label: 'MessageBox'},
     component: () => import('./../pages/components/MessageBox.md')
   },
   {
@@ -88,7 +88,7 @@ const routes = [
   },
   {
     path: '/progress-bar',
-    meta: {type: 'component', label: 'Progress Bar'},
+    meta: {type: 'component', label: 'ProgressBar'},
     component: () => import('./../pages/components/ProgressBar.md')
   },
   {
@@ -98,7 +98,7 @@ const routes = [
   },
   {
     path: '/time-picker',
-    meta: {type: 'component', label: 'Time Picker'},
+    meta: {type: 'component', label: 'TimePicker'},
     component: () => import('./../pages/components/TimePicker.md')
   },
   {

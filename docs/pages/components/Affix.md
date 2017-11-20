@@ -2,7 +2,7 @@
 
 > The affix component toggles `position: fixed` on and off, emulating the effect found with `position: sticky`.
 
-The navigation **on the right** is a live demo of the affix component.
+The navigation **on the right** is a live demo of the affix component (hidden on mobile devices).
 
 **Note**:
 
