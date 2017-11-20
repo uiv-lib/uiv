@@ -103,8 +103,6 @@ Match from the head of item.
 
 Force user to select from the options or the model will be empty.
 
-**Note**: Only work in local data query mode.
-
 ```html
 <template>
   <section>
