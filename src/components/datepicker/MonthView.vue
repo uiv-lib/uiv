@@ -45,18 +45,10 @@
     components: {Btn},
     mixins: [Locale],
     props: {
-      month: {
-        type: Number
-      },
-      year: {
-        type: Number
-      },
-      iconControlLeft: {
-        type: String
-      },
-      iconControlRight: {
-        type: String
-      }
+      month: Number,
+      year: Number,
+      iconControlLeft: String,
+      iconControlRight: String
     },
     data () {
       return {

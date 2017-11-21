@@ -21,7 +21,7 @@
           h(
             'ul',
             {
-              'class': {
+              class: {
                 'dropdown-menu': true,
                 'dropdown-menu-right': this.menuRight
               },
@@ -41,9 +41,7 @@
         type: Boolean,
         default: false
       },
-      value: {
-        type: Boolean
-      },
+      value: Boolean,
       dropup: {
         type: Boolean,
         default: false
@@ -52,10 +50,8 @@
         type: Boolean,
         default: false
       },
-      notCloseElements: {
-        type: Array
-      },
-      positionElement: {}
+      notCloseElements: Array,
+      positionElement: null
     },
     data () {
       return {

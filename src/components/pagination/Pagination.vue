@@ -53,9 +53,7 @@
         type: Boolean,
         default: true
       },
-      size: {
-        type: String
-      },
+      size: String,
       totalPage: {
         type: Number,
         required: true

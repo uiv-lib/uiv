@@ -53,8 +53,9 @@
     mixins: [Locale],
     components: {DateView, MonthView, YearView, Btn},
     props: {
-      value: {},
+      value: null,
       width: {
+        type: Number,
         default: 270
       },
       todayBtn: {
@@ -69,8 +70,8 @@
         type: Boolean,
         default: true
       },
-      limitFrom: {},
-      limitTo: {},
+      limitFrom: null,
+      limitTo: null,
       format: {
         type: String,
         default: 'yyyy-MM-dd'

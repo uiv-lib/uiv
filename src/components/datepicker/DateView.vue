@@ -52,30 +52,14 @@
   export default {
     mixins: [Locale],
     props: {
-      month: {
-        type: Number
-      },
-      year: {
-        type: Number
-      },
-      date: {
-        type: Date
-      },
-      today: {
-        type: Date
-      },
-      limit: {
-        type: Object
-      },
-      weekStartsWith: {
-        type: Number
-      },
-      iconControlLeft: {
-        type: String
-      },
-      iconControlRight: {
-        type: String
-      }
+      month: Number,
+      year: Number,
+      date: Date,
+      today: Date,
+      limit: Object,
+      weekStartsWith: Number,
+      iconControlLeft: String,
+      iconControlRight: String
     },
     components: {Btn},
     computed: {

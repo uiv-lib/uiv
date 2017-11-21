@@ -12,15 +12,15 @@
     props: {
       dismissible: {
         type: Boolean,
-        'default': false
+        default: false
       },
       duration: {
         type: Number,
-        'default': 0
+        default: 0
       },
       type: {
         type: String,
-        'default': 'info'
+        default: 'info'
       }
     },
     data () {
@@ -32,7 +32,7 @@
       alertClass () {
         return {
           'alert': true,
-          [`alert-${this.type}`]: !!this.type,
+          [`alert-${this.type}`]: Boolean(this.type),
           'alert-dismissible': this.dismissible
         }
       }
