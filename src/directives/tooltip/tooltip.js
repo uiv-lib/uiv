@@ -7,8 +7,12 @@ const bind = (el, binding) => {
   // console.log('bind')
   unbind(el)
   let Constructor = Vue.extend(Tooltip)
-  let vm = new Constructor()
-  vm.target = el
+  let vm = new Constructor({
+    propsData: {
+      target: el,
+      text: binding.value && binding.value.toString()
+    }
+  })
   let options = []
   for (let key in binding.modifiers) {
     if (binding.modifiers.hasOwnProperty(key) && binding.modifiers[key]) {
@@ -22,7 +26,6 @@ const bind = (el, binding) => {
       vm.trigger = option
     }
   })
-  vm.text = binding.value && binding.value.toString()
   vm.$mount()
   el[INSTANCE] = vm
 }

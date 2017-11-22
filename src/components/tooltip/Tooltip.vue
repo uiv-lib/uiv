@@ -118,9 +118,25 @@
         this.clearListeners()
         this.initTriggerElByTarget(value)
         this.initListeners()
+      },
+      text (value, oldValue) {
+        // reset tooltip position while text changed & is shown
+        // nextTick is required since user might change the text and v-model in the same time
+        if (value && value !== oldValue) {
+          this.$nextTick(() => {
+            if (this.isShown()) {
+              this.resetPosition()
+            }
+          })
+        }
       }
     },
     methods: {
+      resetPosition () {
+        const tooltip = this.$refs.tooltip
+        setTooltipPosition(tooltip, this.triggerEl, this.placement, this.autoPlacement, this.appendTo)
+        tooltip.offsetHeight
+      },
       initTriggerElByTarget (target) {
         if (target) {
           // target exist
@@ -180,8 +196,7 @@
             tooltip.className = `${BASE_CLASS} ${this.placement}`
             let container = document.querySelector(this.appendTo)
             container.appendChild(tooltip)
-            setTooltipPosition(tooltip, this.triggerEl, this.placement, this.autoPlacement, this.appendTo)
-            tooltip.offsetHeight
+            this.resetPosition()
           }
           addClass(tooltip, SHOW_CLASS)
           this.$emit('input', true)
