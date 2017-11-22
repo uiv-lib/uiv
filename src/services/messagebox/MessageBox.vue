@@ -40,7 +40,7 @@
 
 <script>
   import {TYPES} from './constants'
-  import Local from '@src/mixins/locale'
+  import Local from '@src/mixins/localeMixin'
   import Modal from '@src/components/modal/Modal.vue'
   import Btn from '@src/components/button/Btn'
   import {isExist} from '@src/utils/objectUtils'

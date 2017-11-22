@@ -74,6 +74,7 @@ describe('Popover', () => {
     // this should work
     _vm.msg = {title: 'title2', content: 'content2'}
     await _vm.$nextTick()
+    await _vm.$nextTick()
     utils.triggerEvent(trigger, 'click')
     await utils.sleep(200)
     popover = document.querySelector('.popover')

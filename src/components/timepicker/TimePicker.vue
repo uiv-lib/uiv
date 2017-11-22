@@ -79,7 +79,7 @@
 </template>
 
 <script>
-  import Local from './../../mixins/locale'
+  import Local from '../../mixins/localeMixin'
   import Btn from './../button/Btn'
   import {pad} from '@src/utils/stringUtils'
 

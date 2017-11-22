@@ -7,8 +7,13 @@ const bind = (el, binding) => {
   // console.log('bind')
   unbind(el)
   let Constructor = Vue.extend(Popover)
-  let vm = new Constructor()
-  vm.target = el
+  let vm = new Constructor({
+    propsData: {
+      target: el,
+      title: binding.value && binding.value.title && binding.value.title.toString(),
+      content: binding.value && binding.value.content && binding.value.content.toString()
+    }
+  })
   let options = []
   for (let key in binding.modifiers) {
     if (binding.modifiers.hasOwnProperty(key) && binding.modifiers[key]) {
@@ -22,8 +27,6 @@ const bind = (el, binding) => {
       vm.trigger = option
     }
   })
-  vm.title = binding.value && binding.value.title && binding.value.title.toString()
-  vm.content = binding.value && binding.value.content && binding.value.content.toString()
   vm.$mount()
   el[INSTANCE] = vm
 }

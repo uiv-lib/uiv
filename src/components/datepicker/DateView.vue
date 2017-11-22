@@ -44,7 +44,7 @@
 </template>
 
 <script>
-  import Locale from '../../mixins/locale'
+  import Locale from '../../mixins/localeMixin'
   import Btn from './../button/Btn'
   import {daysInMonth} from '@src/utils/dateUtils'
   import {isExist} from '@src/utils/objectUtils'

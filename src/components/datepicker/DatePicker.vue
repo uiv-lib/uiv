@@ -41,7 +41,7 @@
 </template>
 
 <script>
-  import Locale from '../../mixins/locale'
+  import Locale from '../../mixins/localeMixin'
   import DateView from './DateView.vue'
   import MonthView from './MonthView.vue'
   import YearView from './YearView.vue'
