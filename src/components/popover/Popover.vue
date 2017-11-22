@@ -52,6 +52,24 @@
         default: TRIGGERS.OUTSIDE_CLICK
       }
     },
+    computed: {
+      allContent () {
+        return this.title + this.content
+      }
+    },
+    watch: {
+      allContent (value, oldValue) {
+        // reset position while content changed & is shown
+        // nextTick is required
+        if (value && value !== oldValue) {
+          this.$nextTick(() => {
+            if (this.isShown()) {
+              this.resetPosition()
+            }
+          })
+        }
+      }
+    },
     methods: {
       isNotEmpty () {
         return this.title || this.content || this.$slots.popover

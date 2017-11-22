@@ -48,8 +48,8 @@
     },
     watch: {
       text (value, oldValue) {
-        // reset tooltip position while text changed & is shown
-        // nextTick is required since user might change the text and v-model in the same time
+        // reset position while text changed & is shown
+        // nextTick is required
         if (value && value !== oldValue) {
           this.$nextTick(() => {
             if (this.isShown()) {

@@ -380,4 +380,43 @@ describe('Popover', () => {
     $el.remove()
     _vm.$destroy()
   })
+
+  it('should be able to change content in runtime', async () => {
+    const res = Vue.compile('<popover :content="msg" trigger="click"><btn>123</btn></popover>')
+    const vm = new Vue({
+      data () {
+        return {
+          msg: 'text'
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    const $el = $(vm.$el).appendTo('body')
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    await vm.$nextTick()
+    vm.msg = 'text2'
+    await vm.$nextTick()
+    await vm.$nextTick()
+    const trigger = vm.$el.querySelector('button')
+    utils.triggerEvent(trigger, 'click')
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelector('.popover-content').innerText).to.equal('text2')
+    const topBefore = document.querySelector('.popover').style.top
+    vm.msg = 'This is a very very long text. This is a very very long text. This is a very very long text'
+    await vm.$nextTick()
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelector('.popover-content').innerText).to.contain('This is a very very long text')
+    await vm.$nextTick()
+    const topAfter = document.querySelector('.popover').style.top
+    expect(topAfter).not.equal(topBefore)
+    utils.triggerEvent(trigger, 'click')
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    vm.msg = ''
+    await vm.$nextTick()
+    $el.remove()
+    vm.$destroy()
+  })
 })
