@@ -73,6 +73,10 @@
       },
       target: {
         required: true
+      },
+      preselect: {
+        type: Boolean,
+        default: true
       }
     },
     data () {
@@ -165,7 +169,7 @@
           return
         }
         this.items = []
-        this.activeIndex = 0
+        this.activeIndex = this.preselect ? 0 : -1
         for (let i = 0, l = data.length; i < l; i++) {
           let item = data[i]
           let key = this.itemKey ? item[this.itemKey] : item
@@ -230,6 +234,9 @@
           switch (event.keyCode) {
             case 13:
               this.selectItem(this.items[this.activeIndex])
+              break
+            case 27:
+              this.open = false
               break
             case 38:
               this.activeIndex = this.activeIndex > 0 ? this.activeIndex - 1 : 0
