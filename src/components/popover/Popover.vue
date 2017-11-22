@@ -1,17 +1,14 @@
 <script>
-  import {
-    TRIGGERS,
-    addClass,
-    isElement
-  } from '@src/utils/domUtils'
-  import {isString} from '@src/utils/objectUtils'
+  import {TRIGGERS} from '@src/utils/domUtils'
   import popupMixin from '@src/mixins/popupMixin'
-
-  const SHOW_CLASS = 'in'
-  const BASE_CLASS = 'popover fade'
 
   export default {
     mixins: [popupMixin],
+    data () {
+      return {
+        name: 'popover'
+      }
+    },
     render (h) {
       return h(this.tag,
         [
@@ -56,44 +53,8 @@
       }
     },
     methods: {
-      initTriggerElByTarget (target) {
-        if (target) {
-          // target exist
-          if (isString(target)) { // is selector
-            this.triggerEl = document.querySelector(target)
-          } else if (isElement(target)) { // is element
-            this.triggerEl = target
-          } else if (isElement(target.$el)) { // is component
-            this.triggerEl = target.$el
-          }
-        } else {
-          // find special element
-          let trigger = this.$el.querySelector('[data-role="trigger"]')
-          if (trigger) {
-            this.triggerEl = trigger
-          } else {
-            // use the first child
-            let firstChild = this.$el.firstChild
-            this.triggerEl = firstChild === this.$refs.popup ? null : firstChild
-          }
-        }
-      },
-      show () {
-        if (this.enable && this.triggerEl && (this.title || this.content || this.$slots.popover) && !this.isShown()) {
-          let popover = this.$refs.popup
-          if (this.timeoutId > 0) {
-            clearTimeout(this.timeoutId)
-            this.timeoutId = 0
-          } else {
-            popover.className = `${BASE_CLASS} ${this.placement}`
-            let container = document.querySelector(this.appendTo)
-            container.appendChild(popover)
-            this.resetPosition()
-          }
-          addClass(popover, SHOW_CLASS)
-          this.$emit('input', true)
-          this.$emit('show')
-        }
+      isNotEmpty () {
+        return this.title || this.content || this.$slots.popover
       }
     }
   }

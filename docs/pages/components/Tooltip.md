@@ -19,6 +19,7 @@ Hover over the button below to toggle tooltips:
 Order to decide the tooltip trigger:
 
 1. Use `target` if exist.
+2. Use element in default slot with `data-role="trigger"` attribute if exist.
 3. Use the first element present in default slot.
 
 A `target` can be:

@@ -8,8 +8,11 @@ import {
   removeFromDom,
   removeClass,
   hasClass,
-  setTooltipPosition
+  setTooltipPosition,
+  isElement,
+  addClass
 } from '@src/utils/domUtils'
+import {isString} from '@src/utils/objectUtils'
 
 const SHOW_CLASS = 'in'
 
@@ -81,6 +84,28 @@ export default {
     removeFromDom(this.$refs.popup)
   },
   methods: {
+    initTriggerElByTarget (target) {
+      if (target) {
+        // target exist
+        if (isString(target)) { // is selector
+          this.triggerEl = document.querySelector(target)
+        } else if (isElement(target)) { // is element
+          this.triggerEl = target
+        } else if (isElement(target.$el)) { // is component
+          this.triggerEl = target.$el
+        }
+      } else {
+        // find special element
+        let trigger = this.$el.querySelector('[data-role="trigger"]')
+        if (trigger) {
+          this.triggerEl = trigger
+        } else {
+          // use the first child
+          let firstChild = this.$el.firstChild
+          this.triggerEl = firstChild === this.$refs.popup ? null : firstChild
+        }
+      }
+    },
     initListeners () {
       if (this.triggerEl) {
         if (this.trigger === TRIGGERS.HOVER) {
@@ -134,6 +159,23 @@ export default {
         this.hide()
       } else {
         this.show()
+      }
+    },
+    show () {
+      if (this.enable && this.triggerEl && this.isNotEmpty() && !this.isShown()) {
+        let popup = this.$refs.popup
+        if (this.timeoutId > 0) {
+          clearTimeout(this.timeoutId)
+          this.timeoutId = 0
+        } else {
+          popup.className = `${this.name} ${this.placement} fade`
+          let container = document.querySelector(this.appendTo)
+          container.appendChild(popup)
+          this.resetPosition()
+        }
+        addClass(popup, SHOW_CLASS)
+        this.$emit('input', true)
+        this.$emit('show')
       }
     },
     hide () {

@@ -1,17 +1,14 @@
 <script>
-  import {
-    TRIGGERS,
-    addClass,
-    isElement
-  } from '@src/utils/domUtils'
-  import {isString} from '@src/utils/objectUtils'
+  import {TRIGGERS} from '@src/utils/domUtils'
   import popupMixin from '@src/mixins/popupMixin'
-
-  const SHOW_CLASS = 'in'
-  const BASE_CLASS = 'tooltip fade'
 
   export default {
     mixins: [popupMixin],
+    data () {
+      return {
+        name: 'tooltip'
+      }
+    },
     render (h) {
       return h(
         this.tag,
@@ -63,38 +60,8 @@
       }
     },
     methods: {
-      initTriggerElByTarget (target) {
-        if (target) {
-          // target exist
-          if (isString(target)) { // is selector
-            this.triggerEl = document.querySelector(target)
-          } else if (isElement(target)) { // is element
-            this.triggerEl = target
-          } else if (isElement(target.$el)) { // is component
-            this.triggerEl = target.$el
-          }
-        } else {
-          // use the first child
-          let firstChild = this.$el.firstChild
-          this.triggerEl = firstChild === this.$refs.popup ? null : firstChild
-        }
-      },
-      show () {
-        let tooltip = this.$refs.popup
-        if (this.enable && this.triggerEl && this.text && !this.isShown()) {
-          if (this.timeoutId > 0) {
-            clearTimeout(this.timeoutId)
-            this.timeoutId = 0
-          } else {
-            tooltip.className = `${BASE_CLASS} ${this.placement}`
-            let container = document.querySelector(this.appendTo)
-            container.appendChild(tooltip)
-            this.resetPosition()
-          }
-          addClass(tooltip, SHOW_CLASS)
-          this.$emit('input', true)
-          this.$emit('show')
-        }
+      isNotEmpty () {
+        return this.text
       }
     }
   }
