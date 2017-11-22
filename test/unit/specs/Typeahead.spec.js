@@ -526,7 +526,7 @@ describe('Typeahead', () => {
         return {
           data: ['aa', 'ab', 'bb'],
           ele: null,
-          model: null
+          model: ''
         }
       },
       mounted () {
@@ -546,6 +546,13 @@ describe('Typeahead', () => {
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(2)
     expect(dropdown.querySelector('li.active a')).not.exist
+    utils.triggerKey(input, utils.keyCodes.enter)
+    await vm.$nextTick()
+    expect(dropdown.className).to.not.contain('open')
+    expect(vm.model).to.equal('a')
+    expect(input.value).to.equal('a')
+    utils.triggerEvent(input, 'input')
+    await vm.$nextTick()
     utils.triggerKey(input, utils.keyCodes.down)
     await vm.$nextTick()
     expect(dropdown.querySelector('li.active a')).to.exist
