@@ -42,15 +42,9 @@
   export default {
     components: {Btn},
     props: {
-      year: {
-        type: Number
-      },
-      iconControlLeft: {
-        type: String
-      },
-      iconControlRight: {
-        type: String
-      }
+      year: Number,
+      iconControlLeft: String,
+      iconControlRight: String
     },
     computed: {
       rows () {

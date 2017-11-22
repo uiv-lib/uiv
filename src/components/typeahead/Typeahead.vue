@@ -35,12 +35,8 @@
       value: {
         required: true
       },
-      data: {
-        type: Array
-      },
-      itemKey: {
-        type: String
-      },
+      data: Array,
+      itemKey: String,
       appendToBody: {
         type: Boolean,
         default: false
@@ -61,12 +57,8 @@
         type: Number,
         default: 10
       },
-      asyncSrc: {
-        type: String
-      },
-      asyncKey: {
-        type: String
-      },
+      asyncSrc: String,
+      asyncKey: String,
       debounce: {
         type: Number,
         default: 200
@@ -202,7 +194,7 @@
           this.open = false
         } else if (this.data) {
           this.prepareItems(this.data)
-          this.open = !!this.items.length
+          this.open = Boolean(this.items.length)
         } else if (this.asyncSrc) {
           this.timeoutID = setTimeout(() => {
             this.$emit('loading')
@@ -210,7 +202,7 @@
               .then(data => {
                 if (this.inputEl.matches(':focus')) {
                   this.prepareItems(this.asyncKey ? data[this.asyncKey] : data, true)
-                  this.open = !!this.items.length
+                  this.open = Boolean(this.items.length)
                 }
                 this.$emit('loaded')
               })

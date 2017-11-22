@@ -12,15 +12,15 @@
     props: {
       tag: {
         type: String,
-        'default': 'div'
+        default: 'div'
       },
       value: {
         type: Boolean,
-        'default': false
+        default: false
       },
       transitionDuration: {
         type: Number,
-        'default': 350
+        default: 350
       }
     },
     data () {

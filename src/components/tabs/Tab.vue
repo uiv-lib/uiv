@@ -25,9 +25,7 @@
         type: Boolean,
         default: false
       },
-      group: {
-        type: String
-      },
+      group: String,
       pullRight: {
         type: Boolean,
         default: false

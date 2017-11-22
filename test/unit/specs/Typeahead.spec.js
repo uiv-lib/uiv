@@ -95,6 +95,21 @@ describe('Typeahead', () => {
     expect(dropdown.className).not.contain('open')
   })
 
+  it('should be able to close typeahead on input esc key', async () => {
+    const _vm = vm.$refs['typeahead-example']
+    await vm.$nextTick()
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
+    expect(dropdown.className).to.not.contain('open')
+    input.value = 'ala'
+    utils.triggerEvent(input, 'input')
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    utils.triggerKey(input, utils.keyCodes.esc)
+    await vm.$nextTick()
+    expect(dropdown.className).not.contain('open')
+  })
+
   it('should not close typeahead on input click', async () => {
     const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()
@@ -459,7 +474,7 @@ describe('Typeahead', () => {
     vm.$destroy()
   })
 
-  it('should be able bind string data', async () => {
+  it('should be able to bind string data', async () => {
     const res = Vue.compile('<div>' +
       '<input ref="input">' +
       '<typeahead :ignore-case="false" :target="ele" :data="data" v-model="model"></typeahead>' +
@@ -498,6 +513,48 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     expect(vm.model).to.equal('bb')
     expect(input.value).to.equal('bb')
+    vm.$destroy()
+  })
+
+  it('should be able to disable preselect', async () => {
+    const res = Vue.compile('<div>' +
+      '<input ref="input">' +
+      '<typeahead :preselect="false" :target="ele" :data="data" v-model="model"></typeahead>' +
+      '</div>')
+    const vm = new Vue({
+      data () {
+        return {
+          data: ['aa', 'ab', 'bb'],
+          ele: null,
+          model: null
+        }
+      },
+      mounted () {
+        this.ele = this.$refs.input
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    })
+    vm.$mount()
+    await vm.$nextTick()
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
+    expect(dropdown.className).to.not.contain('open')
+    input.value = 'a'
+    utils.triggerEvent(input, 'input')
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    expect(dropdown.querySelectorAll('li').length).to.equal(2)
+    expect(dropdown.querySelector('li.active a')).not.exist
+    utils.triggerKey(input, utils.keyCodes.down)
+    await vm.$nextTick()
+    expect(dropdown.querySelector('li.active a')).to.exist
+    expect(dropdown.querySelector('li.active a').textContent).to.equal('aa')
+    dropdown.querySelector('li.active a').click()
+    await vm.$nextTick()
+    expect(vm.model).to.equal('aa')
+    expect(input.value).to.equal('aa')
+    expect(dropdown.className).to.not.contain('open')
     vm.$destroy()
   })
 })

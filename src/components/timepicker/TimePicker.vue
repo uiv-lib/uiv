@@ -100,12 +100,8 @@
         type: Boolean,
         default: true
       },
-      min: {
-        type: Date
-      },
-      max: {
-        type: Date
-      },
+      min: Date,
+      max: Date,
       hourStep: {
         type: Number,
         default: 1

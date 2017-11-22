@@ -83,7 +83,7 @@
         type: Boolean,
         default: true
       },
-      target: {}
+      target: null
     },
     data () {
       return {
