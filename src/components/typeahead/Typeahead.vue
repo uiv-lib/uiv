@@ -233,7 +233,11 @@
         if (this.open) {
           switch (event.keyCode) {
             case 13:
-              this.selectItem(this.items[this.activeIndex])
+              if (this.activeIndex >= 0) {
+                this.selectItem(this.items[this.activeIndex])
+              } else {
+                this.open = false
+              }
               break
             case 27:
               this.open = false
