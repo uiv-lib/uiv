@@ -216,6 +216,7 @@ Name             | Type       | Default  | Required | Description
 `force-select`   | Boolean    | false    |          | Force user to select from the options or the model will be empty.
 `open-on-focus`  | Boolean    | true     |          | Open the typeahead dropdown on input focus.
 `open-on-empty`  | Boolean    | false    |          | Open the typeahead dropdown to show suggestions even if input is empty.
+`preselect`      | Boolean    | true     |          | Select the first item that matches the query automatically.
 `limit`          | Number     | 10       |          | Limit the options size.
 `async-src`      | String     |          |          | The ajax url to fetch data using GET method, query string will be append to the end of this prop value, should return JSON object or array.
 `async-key`      | String     |          |          | The async JSON key to render, leave blank to use the original json object (should be Array).
