@@ -5,7 +5,6 @@ import MessageBox from './MessageBox.vue'
 import Vue from 'vue'
 
 let instance
-let body = document.body
 
 const destroyModal = () => {
   if (instance) {
@@ -57,7 +56,7 @@ const init = (type, options, cb, resolve = null, reject = null) => {
     }
   })
   instance.$mount()
-  body.appendChild(instance.$el)
+  document.body.appendChild(instance.$el)
   instance.show = true
 }
 

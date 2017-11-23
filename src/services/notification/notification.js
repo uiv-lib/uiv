@@ -12,8 +12,6 @@ const queues = {
   [PLACEMENTS.BOTTOM_RIGHT]: []
 }
 
-const body = document.body
-
 const destroy = (queue, instance) => {
   // console.log('destroyNotification')
   removeFromDom(instance.$el)
@@ -45,7 +43,7 @@ const init = (options, cb, resolve = null, reject = null) => {
     }
   })
   instance.$mount()
-  body.appendChild(instance.$el)
+  document.body.appendChild(instance.$el)
   queue.push(instance)
 }
 
