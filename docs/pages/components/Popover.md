@@ -11,9 +11,9 @@ Click the button below to toggle popover:
 ```html
 <btn type="primary" id="btn">Popover</btn>
 <popover title="Title" target="#btn">
-  <div slot="popover">
+  <template slot="popover">
     <h1>Hello world!</h1>
-  </div>
+  </template>
 </popover>
 <!-- popover-example.vue -->
 ```
@@ -100,9 +100,9 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
 <template>
   <popover title="Title" trigger="manual" v-model="show">
     <btn>You Can't Trigger Popover Here...</btn>
-    <div slot="popover">
+    <template slot="popover">
       <p>Popover content</p>
-    </div>
+    </template>
   </popover>
   <hr/>
   <btn type="primary" @click="show = !show">Toggle Popover</btn>
@@ -126,9 +126,9 @@ Set `enable` prop to `false` to disable a popover.
 ```html
 <popover title="Title" :enable="false">
   <btn type="primary">Disabled Popover</btn>
-  <div slot="popover">
+  <template slot="popover">
     <h1>Hello world!</h1>
-  </div>
+  </template>
 </popover>
 <!-- popover-disable.vue -->
 ```

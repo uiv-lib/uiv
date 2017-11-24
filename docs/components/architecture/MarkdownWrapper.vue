@@ -1,5 +1,6 @@
 <template>
   <section style="overflow: hidden">
+    <github-corner></github-corner>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-10">
         <div class="container container-markdown">
@@ -20,6 +21,7 @@
 </template>
 
 <script>
+  import GithubCorner from './../architecture/GithubCorner.vue'
   import Toc from './Toc.vue'
 
   const getAnchors = (element) => {
@@ -49,7 +51,7 @@
   }
 
   export default {
-    components: {Toc},
+    components: {Toc, GithubCorner},
     data () {
       return {
         anchors: []
