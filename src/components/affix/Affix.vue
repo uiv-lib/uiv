@@ -32,7 +32,7 @@
       },
       styles () {
         return {
-          marginTop: this.offset > 0 ? this.offset + 'px' : null
+          top: this.affixed ? this.offset + 'px' : null
         }
       }
     },
@@ -40,7 +40,9 @@
       // from https://github.com/ant-design/ant-design/blob/master/components/affix/index.jsx#L20
       onScroll () {
         // if is hidden don't calculate anything
-        if (!(this.$el.offsetWidth || this.$el.offsetHeight || this.$el.getClientRects().length)) { return }
+        if (!(this.$el.offsetWidth || this.$el.offsetHeight || this.$el.getClientRects().length)) {
+          return
+        }
         // get window scroll and element position to detect if have to be normal or affixed
         let scroll = {}
         let element = {}

@@ -70,6 +70,6 @@ describe('Affix', () => {
     await vm.$nextTick()
     window.scrollTo(0, 500)
     await utils.sleep(200)
-    expect($el.find('.affix').css('margin-top')).to.equal('50px')
+    expect($el.find('.affix').get(0).style.top).to.equal('50px')
   })
 })
