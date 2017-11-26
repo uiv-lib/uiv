@@ -211,7 +211,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
 
 # API Reference
 
-## [Dropdown.vue](https://github.com/wxsms/uiv/tree/master/src/components/dropdown/Dropdown.vue)
+## [Dropdown.vue](https://github.com/wxsms/uiv/blob/release/src/components/dropdown/Dropdown.vue)
 
 ### Props
 

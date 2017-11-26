@@ -122,7 +122,7 @@ Use `max-size` to define the maximum chunk size of pagers (default is 5). And if
 
 # API Reference
 
-## [Pagination.vue](https://github.com/wxsms/uiv/tree/master/src/components/pagination/Pagination.vue)
+## [Pagination.vue](https://github.com/wxsms/uiv/blob/release/src/components/pagination/Pagination.vue)
 
 ### Props
 

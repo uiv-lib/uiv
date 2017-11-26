@@ -168,7 +168,7 @@ The corresponding method is `Notification.notify`, with same parameters as above
 
 # API Reference
 
-## [Notification.vue](https://github.com/wxsms/uiv/tree/master/src/services/notification/Notification.vue)
+## [Notification.vue](https://github.com/wxsms/uiv/blob/release/src/services/notification/Notification.vue)
 
 These props are used as `options` in the methods above.
 
@@ -184,6 +184,6 @@ Name           | Type       | Default   | Required | Description
 `placement`    | String     | top-right |          | Support: `top-right` / `top-left` / `bottom-right` / `bottom-left`.
 `icon`         | String     |           |          | Custom icon class, use an empty string to disable icon.
 
-## [notification.js](https://github.com/wxsms/uiv/tree/master/src/services/notification/notification.js)
+## [notification.js](https://github.com/wxsms/uiv/blob/release/src/services/notification/notification.js)
 
 This file has no props.

@@ -200,7 +200,7 @@ Use the `item` scoped slot to override the typeahead item's template.
 
 # API Reference
 
-## [Typeahead.vue](https://github.com/wxsms/uiv/tree/master/src/components/typeahead/Typeahead.vue)
+## [Typeahead.vue](https://github.com/wxsms/uiv/blob/release/src/components/typeahead/Typeahead.vue)
 
 ### Props
 

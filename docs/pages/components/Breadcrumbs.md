@@ -67,7 +67,7 @@ Parse `to` (String or Object) instead of `href` will create a `router-link` for 
 
 # API Reference
 
-## [Breadcrumbs.js](https://github.com/wxsms/uiv/tree/master/src/components/breadcrumbs/Breadcrumbs.js)
+## [Breadcrumbs.js](https://github.com/wxsms/uiv/blob/release/src/components/breadcrumbs/Breadcrumbs.js)
 
 ### Props
 
@@ -81,7 +81,7 @@ Name      | Description
 --------- | -----------------------
 `default` | The breadcrumbs body.
 
-## [BreadcrumbItem.js](https://github.com/wxsms/uiv/tree/master/src/components/breadcrumbs/BreadcrumbItem.js)
+## [BreadcrumbItem.js](https://github.com/wxsms/uiv/blob/release/src/components/breadcrumbs/BreadcrumbItem.js)
 
 ### Props
 

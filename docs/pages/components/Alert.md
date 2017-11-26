@@ -107,7 +107,7 @@ Use `duration` in milliseconds to auto dismiss alert. It can be used together wi
 
 # API Reference
 
-## [Alert.vue](https://github.com/wxsms/uiv/tree/master/src/components/alert/Alert.vue)
+## [Alert.vue](https://github.com/wxsms/uiv/blob/release/src/components/alert/Alert.vue)
 
 ### Props
 

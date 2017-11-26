@@ -156,7 +156,7 @@ Here is an example using `glyphicon-arrow-left` and `glyphicon-arrow-right`.
 
 # API Reference
 
-## [Carousel.vue](https://github.com/wxsms/uiv/tree/master/src/components/carousel/Carousel.vue)
+## [Carousel.vue](https://github.com/wxsms/uiv/blob/release/src/components/carousel/Carousel.vue)
 
 ### Props
 

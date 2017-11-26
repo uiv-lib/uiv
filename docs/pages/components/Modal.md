@@ -243,7 +243,7 @@ Set `transition-duration` to `0` to disable modal animations.
 
 # API Reference
 
-## [Modal.vue](https://github.com/wxsms/uiv/tree/master/src/components/modal/Modal.vue)
+## [Modal.vue](https://github.com/wxsms/uiv/blob/release/src/components/modal/Modal.vue)
 
 ### Props
 
