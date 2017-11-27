@@ -13,7 +13,7 @@
       </div>
       <div class="col-md-2 hidden-xs hidden-sm" style="margin-top: 80px">
         <affix :offset="80">
-          <toc :anchors="anchors"></toc>
+          <toc :anchors="anchors" v-if="anchors && anchors.length"></toc>
         </affix>
       </div>
     </div>

@@ -10,7 +10,6 @@ import {
   getParents
 } from '@src/utils/domUtils'
 import {isString} from '@src/utils/objectUtils'
-import Vue from 'vue'
 
 function ScrollSpy (element, options = {}) {
   this.el = element
@@ -54,7 +53,7 @@ ScrollSpy.prototype.refresh = function () {
       if (/^#./.test(href)) {
         const doc = document.documentElement
         const rootEl = isWindow ? document : this.scrollElement
-        const hrefEl = rootEl.querySelector(href)
+        const hrefEl = rootEl.querySelector(`[id='${href.slice(1)}']`)
         const windowScrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
         const offset = isWindow ? hrefEl.getBoundingClientRect().top + windowScrollTop : hrefEl.offsetTop + this.scrollElement.scrollTop
         return [offset, href]
@@ -132,16 +131,14 @@ const events = [EVENTS.RESIZE, EVENTS.SCROLL]
 const bind = (el, binding) => {
   // console.log('bind')
   unbind(el)
-  Vue.nextTick(() => {
-    const scrollSpy = new ScrollSpy(el, binding.value)
-    scrollSpy.handler = () => {
-      scrollSpy.process()
-    }
-    events.forEach(event => {
-      on(window, event, scrollSpy.handler)
-    })
-    el[INSTANCE] = scrollSpy
+  const scrollSpy = new ScrollSpy(el, binding.value)
+  scrollSpy.handler = () => {
+    scrollSpy.process()
+  }
+  events.forEach(event => {
+    on(window, event, scrollSpy.handler)
   })
+  el[INSTANCE] = scrollSpy
 }
 
 const unbind = (el) => {
