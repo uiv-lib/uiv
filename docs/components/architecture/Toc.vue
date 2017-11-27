@@ -1,5 +1,5 @@
 <template>
-  <ul class="toc">
+  <ul class="toc" v-scrollspy="{target: 'body'}">
     <li v-for="h1 in anchors">
       <a :href="h1.href"><b>{{h1.label}}</b></a>
       <ul v-if="h1.items && h1.items.length">
@@ -35,6 +35,12 @@
 
     li {
       margin: 5px 0;
+
+      &.active {
+        > a {
+          color: @highlight-color !important;
+        }
+      }
     }
 
     a {
