@@ -81,8 +81,8 @@ v-scrollspy:arg="option"
 
 Where:
 
-* `arg` is the ID (without prefix `#`) of the element to scrollspy on.
-* `options` is an object of configuration. (Optional)
+* `arg` is the ID (without prefix `#`) of the element to scrollspy on (optional), leave it empty to spy on `<body>`.
+* `options` is an object of configuration (optional).
 
 ### Bootstrap nav required
 
