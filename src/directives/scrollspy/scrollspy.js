@@ -4,23 +4,19 @@ import {
   EVENTS,
   on,
   off,
-  isElement,
   getViewportSize,
   getClosest,
   getParents
 } from '@src/utils/domUtils'
-import {isString} from '@src/utils/objectUtils'
 
-function ScrollSpy (element, options = {}) {
+function ScrollSpy (element, target = 'body', options = {}) {
   this.el = element
   this.opts = Object.assign({}, ScrollSpy.DEFAULTS, options)
-  const target = this.opts.target
-  if (target === 'body' || target === document.body) {
+  this.opts.target = target
+  if (target === 'body') {
     this.scrollElement = window
-  } else if (isElement(target)) {
-    this.scrollElement = target
-  } else if (isString(target)) {
-    this.scrollElement = document.querySelector(target)
+  } else {
+    this.scrollElement = document.querySelector(`[id=${target}]`)
   }
   this.selector = 'li > a'
   this.offsets = []
@@ -67,7 +63,7 @@ ScrollSpy.prototype.refresh = function () {
       this.offsets.push(item[0])
       this.targets.push(item[1])
     })
-  console.log(this.offsets, this.targets)
+  // console.log(this.offsets, this.targets)
 }
 
 ScrollSpy.prototype.process = function () {
@@ -131,12 +127,15 @@ const events = [EVENTS.RESIZE, EVENTS.SCROLL]
 const bind = (el, binding) => {
   // console.log('bind')
   unbind(el)
-  const scrollSpy = new ScrollSpy(el, binding.value)
+}
+
+const inserted = (el, binding) => {
+  const scrollSpy = new ScrollSpy(el, binding.arg, binding.value)
   scrollSpy.handler = () => {
     scrollSpy.process()
   }
   events.forEach(event => {
-    on(window, event, scrollSpy.handler)
+    on(scrollSpy.scrollElement, event, scrollSpy.handler)
   })
   el[INSTANCE] = scrollSpy
 }
@@ -146,7 +145,7 @@ const unbind = (el) => {
   let instance = el[INSTANCE]
   if (instance) {
     events.forEach(event => {
-      off(window, event, instance.handler)
+      off(instance.scrollElement, event, instance.handler)
     })
     delete el[INSTANCE]
   }
@@ -156,7 +155,8 @@ const update = (el, binding) => {
   // console.log('update')
   if (binding.value !== binding.oldValue) {
     bind(el, binding)
+    inserted(el, binding)
   }
 }
 
-export default {bind, unbind, update}
+export default {bind, unbind, update, inserted}

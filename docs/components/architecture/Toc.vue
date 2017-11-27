@@ -1,5 +1,5 @@
 <template>
-  <ul class="toc" v-scrollspy="{target: 'body'}">
+  <ul class="toc" v-scrollspy>
     <li v-for="h1 in anchors">
       <a :href="h1.href"><b>{{h1.label}}</b></a>
       <ul v-if="h1.items && h1.items.length">
