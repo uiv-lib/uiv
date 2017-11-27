@@ -81,6 +81,14 @@ describe('Pagination', () => {
     expect(_vm.$el.querySelectorAll('.pagination')[2].className).to.equal('pagination pagination-sm')
   })
 
+  it('should be able to change alignment', async () => {
+    const _vm = vm.$refs['pagination-alignment']
+    await vm.$nextTick()
+    expect(_vm.$el.querySelectorAll('nav')[0].className).to.equal('')
+    expect(_vm.$el.querySelectorAll('nav')[1].className).to.equal('text-center')
+    expect(_vm.$el.querySelectorAll('nav')[2].className).to.equal('text-right')
+  })
+
   it('should be able to change total page', async () => {
     const _vm = vm.$refs['pagination-boundary-links']
     _vm.totalPage = 18

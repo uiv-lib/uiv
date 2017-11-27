@@ -1,5 +1,5 @@
 <template>
-  <nav aria-label="Page navigation">
+  <nav aria-label="Page navigation" :class="navClasses">
     <ul class="pagination" :class="classes">
       <li :class="{disabled: value <= 1}" v-if="boundaryLinks">
         <a href="#" role="button" aria-label="First" @click.prevent="onPageChange(1)">
@@ -57,6 +57,7 @@
         default: true
       },
       size: String,
+      align: String,
       totalPage: {
         type: Number,
         required: true,
@@ -74,6 +75,11 @@
       }
     },
     computed: {
+      navClasses () {
+        return {
+          [`text-${this.align}`]: Boolean(this.align)
+        }
+      },
       classes () {
         return {
           [`pagination-${this.size}`]: Boolean(this.size)

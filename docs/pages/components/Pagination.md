@@ -50,6 +50,31 @@ Fancy larger or smaller pagination? Add `size="lg"` or `size="sm"` for additiona
 <!-- pagination-sizing.vue -->
 ```
 
+## Alignment
+
+By default the pagination component is left aligned. Change the alignment to center or right by setting `align` to the appropriate value.
+
+```html
+<template>
+  <section>
+    <pagination v-model="currentPage" :total-page="totalPage"/>
+    <pagination v-model="currentPage" :total-page="totalPage" align="center"/>
+    <pagination v-model="currentPage" :total-page="totalPage" align="right"/>
+  </section>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        totalPage: 18,
+        currentPage: 1
+      }
+    }
+  }
+</script> 
+<!-- pagination-alignment.vue -->
+```
+
 ## Direction Links
 
 By default `direction-links` are enabled, which allows users to nav to previous or next page.
@@ -134,6 +159,7 @@ Name              | Type       | Default  | Required | Description
 `boundary-links`  | Boolean    | false    |          | Display First / Last buttons.
 `direction-links` | Boolean    | true     |          | Display Previous / Next buttons.
 `size`            | String     |          |          | Optional pagination sizes, support: `sm` / `lg`
+`align`           | String     |          |          | Optional pagination alignment, support: `left` / `center` / `right`
 
 ### Events
 
