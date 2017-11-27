@@ -209,6 +209,64 @@ Use this option to avoid influence from the parent node by appending dropdown li
 <!-- dropdown-within-pills.vue -->
 ```
 
+## Advanced
+
+You can place anything you wish inside a dropdown, for example, a simple form with checkboxes:
+
+Note: use `not-close-elements` to prevent dropdown close on menu body click if needed.
+
+```html
+<template>
+  <section>
+    <alert>You selected: {{selected}}</alert>
+    <dropdown ref="dropdown" :not-close-elements="ele" v-model="show" class="dropdown-form">
+      <btn type="primary" class="dropdown-toggle">Dropdown Form <span class="caret"></span></btn>
+      <template slot="dropdown">
+        <li class="checkbox">
+          <label>
+            <input type="checkbox" value="Vue" v-model="selected"> Vue
+          </label>
+        </li>
+        <li class="checkbox">
+          <label>
+            <input type="checkbox" value="Bootstrap" v-model="selected"> Bootstrap
+          </label>
+        </li>
+        <li class="checkbox">
+          <label>
+            <input type="checkbox" value="JavaScript" v-model="selected"> JavaScript
+          </label>
+        </li>
+        <li>
+          <btn block type="primary" @click="show=false">Apply</btn>
+        </li>
+      </template>
+    </dropdown>
+  </section>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        show: false,
+        ele: [],
+        selected: []
+      }
+    },
+    mounted () {
+      this.ele.push(this.$refs.dropdown.$el)
+    }
+  }
+</script>
+<style>
+  .dropdown-form .dropdown-menu {
+    padding: 10px
+  }
+</style>
+<!-- dropdown-advanced.vue -->
+```
+
+
 # API Reference
 
 ## [Dropdown.vue](https://github.com/wxsms/uiv/blob/release/src/components/dropdown/Dropdown.vue)
