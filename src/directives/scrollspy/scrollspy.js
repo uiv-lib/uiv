@@ -131,19 +131,21 @@ const bind = (el, binding) => {
 
 const inserted = (el, binding) => {
   const scrollSpy = new ScrollSpy(el, binding.arg, binding.value)
-  scrollSpy.handler = () => {
-    scrollSpy.process()
+  if (scrollSpy.scrollElement) {
+    scrollSpy.handler = () => {
+      scrollSpy.process()
+    }
+    events.forEach(event => {
+      on(scrollSpy.scrollElement, event, scrollSpy.handler)
+    })
   }
-  events.forEach(event => {
-    on(scrollSpy.scrollElement, event, scrollSpy.handler)
-  })
   el[INSTANCE] = scrollSpy
 }
 
 const unbind = (el) => {
   // console.log('unbind')
   let instance = el[INSTANCE]
-  if (instance) {
+  if (instance && instance.scrollElement) {
     events.forEach(event => {
       off(instance.scrollElement, event, instance.handler)
     })
