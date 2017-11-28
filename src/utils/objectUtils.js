@@ -17,3 +17,7 @@ export function isString (obj) {
 export function isBoolean (obj) {
   return typeof obj === 'boolean'
 }
+
+export function isPromiseSupported () {
+  return typeof window !== 'undefined' && isExist(window.Promise)
+}

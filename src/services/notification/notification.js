@@ -1,6 +1,6 @@
 import {removeFromDom} from '@src/utils/domUtils'
 import {spliceIfExist} from '@src/utils/arrayUtils'
-import {isFunction, isExist, isString} from '@src/utils/objectUtils'
+import {isFunction, isExist, isString, isPromiseSupported} from '@src/utils/objectUtils'
 import Notification from './Notification.vue'
 import {PLACEMENTS} from './constants'
 import Vue from 'vue'
@@ -58,7 +58,7 @@ const notify = (options = {}, cb) => {
   if (!isExist(options.placement)) {
     options.placement = PLACEMENTS.TOP_RIGHT
   }
-  if (isExist(window.Promise)) {
+  if (isPromiseSupported()) {
     return new Promise((resolve, reject) => {
       init(options, cb, resolve, reject)
     })

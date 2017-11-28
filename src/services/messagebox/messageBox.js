@@ -1,6 +1,6 @@
 import {TYPES} from './constants'
 import {removeFromDom} from '@src/utils/domUtils'
-import {isFunction, isExist, isString} from '@src/utils/objectUtils'
+import {isFunction, isExist, isString, isPromiseSupported} from '@src/utils/objectUtils'
 import MessageBox from './MessageBox.vue'
 import Vue from 'vue'
 
@@ -61,7 +61,7 @@ const init = (type, options, cb, resolve = null, reject = null) => {
 }
 
 const initModal = (type, options = {}, cb) => {
-  if (isExist(window.Promise)) {
+  if (isPromiseSupported()) {
     return new Promise((resolve, reject) => {
       init(type, options, cb, resolve, reject)
     })
