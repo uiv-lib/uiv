@@ -2,6 +2,8 @@
 
 > Update nav targets based on scroll position automatically.
 
+(0.14.2+)
+
 ## Example
 
 The navigation on the right is a live demo of the scrollspy directive (hidden on mobile devices).

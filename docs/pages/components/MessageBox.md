@@ -2,6 +2,8 @@
 
 > A set of modal boxes simulating system message box, mainly for alerting information, confirm operations and prompting messages.
 
+(0.14.1+)
+
 By design MessageBox provides simulations of browsers' `alert`, `confirm` and `prompt`. Use Modal instead if needed more complicated contents.
 
 ## Alert
