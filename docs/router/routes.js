@@ -92,6 +92,11 @@ const routes = [
     component: () => import('./../pages/components/ProgressBar.md')
   },
   {
+    path: '/scroll-spy',
+    meta: {type: 'component', label: 'ScrollSpy'},
+    component: () => import('./../pages/components/ScrollSpy.md')
+  },
+  {
     path: '/tabs',
     meta: {type: 'component', label: 'Tabs'},
     component: () => import('./../pages/components/Tabs.md')

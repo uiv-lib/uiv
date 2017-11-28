@@ -267,3 +267,31 @@ export function toggleBodyOverflow (enable) {
     }
   }
 }
+
+export function getClosest (el, selector) {
+  ensureElementMatchesFunction()
+  let parent
+  while (el) {
+    parent = el.parentElement
+    if (parent && parent.matches(selector)) {
+      return parent
+    }
+    el = parent
+  }
+  return null
+}
+
+export function getParents (el, selector, until = null) {
+  ensureElementMatchesFunction()
+  let parents = []
+  let parent = el.parentElement
+  while (parent) {
+    if (parent.matches(selector)) {
+      parents.push(parent)
+    } else if (until && (until === parent || parent.matches(until))) {
+      break
+    }
+    parent = parent.parentElement
+  }
+  return parents
+}
