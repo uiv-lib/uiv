@@ -57,6 +57,14 @@
             }
           })
         }
+      },
+      enable (v) {
+        if (v && this.triggerEl.matches(':hover, :focus')) {
+          this.show()
+        }
+        if (!v) {
+          this.hide()
+        }
       }
     },
     methods: {
