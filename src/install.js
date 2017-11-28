@@ -29,8 +29,12 @@ const install = (Vue, options = {}) => {
 }
 
 // auto install
-if (isExist(window) && window.Vue) {
-  install(window.Vue)
+try {
+  if (isExist(window) && window.Vue) {
+    install(window.Vue)
+  }
+} catch (err) {
+  // ignore
 }
 
 export {install}
