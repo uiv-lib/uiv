@@ -77,14 +77,18 @@ new Vue({
 
 You can load & install uiv package directly in browsers.
 
-### Example
-
 ```html
 <!-- Remember to import Vue and Bootstrap CSS file before this! -->
+<!-- load uiv via unpkg -->
 <script src="//unpkg.com/uiv/dist/uiv.min.js"></script>
+<!-- or jsDelivr -->
+<script src="//cdn.jsdelivr.net/npm/uiv/dist/uiv.min.js"></script>
 ```
 
-This will simply load the latest `uiv.min.js` into your page. For detail usages, you can visit [https://unpkg.com](https://unpkg.com).
+These will simply load the latest `uiv.min.js` into your page. For detail usages (e.g. load specify version, IMPORTANT in production mode), you can visit:
+
+* [https://unpkg.com](https://unpkg.com)
+* [https://www.jsdelivr.com](https://www.jsdelivr.com/)
 
 ### Complete Usage Example
 
