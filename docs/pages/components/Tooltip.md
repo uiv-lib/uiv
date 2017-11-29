@@ -166,9 +166,17 @@ v-tooltip.hover="'tooltip content'"
 v-tooltip.click="'tooltip content'"
 ```
 
+**Custom append-to**
+
+```
+v-tooltip:arg="'tooltip content'"
+```
+
+`arg` is the ID (without prefix `#`) of the element to append to, leave it empty to use default value `body`.
+
 **Combination**
 
 ```
 v-tooltip.left.hover="'tooltip content'"
-v-tooltip.right.click="'tooltip content'"
+v-tooltip:some-id.right.click="'tooltip content'"
 ```

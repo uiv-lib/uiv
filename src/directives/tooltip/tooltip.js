@@ -10,6 +10,7 @@ const bind = (el, binding) => {
   let vm = new Constructor({
     propsData: {
       target: el,
+      appendTo: binding.arg && '#' + binding.arg,
       text: binding.value && binding.value.toString()
     }
   })

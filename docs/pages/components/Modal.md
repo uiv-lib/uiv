@@ -16,22 +16,16 @@ A simple modal example with callback:
       <h4>Text in a modal</h4>
       <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
       <h4>Popover in a modal</h4>
-      <popover title="A Title" placement="right" append-to="#modal-demo">
-        <p>
-          This
-          <a role="button" class="btn btn-default" data-role="trigger">button</a> should trigger a popover on click.
-        </p>
-        <div slot="popover">And here's some amazing content. It's very engaging. right?</div>
-      </popover>
+      <p>
+        This
+        <btn v-popover:modal-demo="{title:'Title',content:'Some popover content...'}">button</btn>
+        should trigger a popover on click.
+      </p>
       <h4>Tooltips in a modal</h4>
       <p>
-        <tooltip text="Tooltip" append-to="#modal-demo">
-          <a role="button" class="tooltip-test">This link</a>
-        </tooltip>
+        <a role="button" v-tooltip:modal-demo="'Tooltip'">This link</a>
         <span>and</span>
-        <tooltip text="Tooltip" append-to="#modal-demo">
-          <a role="button" class="tooltip-test">that link</a>
-        </tooltip>
+        <a role="button" v-tooltip:modal-demo="'Tooltip'">that link</a>
         <span>should have tooltips on hover.</span>
       </p>
       <hr>

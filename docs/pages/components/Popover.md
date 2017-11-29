@@ -191,9 +191,17 @@ v-popover.hover="{title:'Title', content:'Popover content'}"
 v-popover.click="{title:'Title', content:'Popover content'}"
 ```
 
+**Custom append-to**
+
+```
+v-popover:arg="{title:'Title', content:'Popover content'}"
+```
+
+`arg` is the ID (without prefix `#`) of the element to append to, leave it empty to use default value `body`.
+
 **Combination**
 
 ```
 v-popover.left.hover="{title:'Title', content:'Popover content'}"
-v-popover.right.click="{title:'Title', content:'Popover content'}"
+v-popover:some-id.right.click="{title:'Title', content:'Popover content'}"
 ```
