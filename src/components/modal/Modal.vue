@@ -1,46 +1,44 @@
 <template>
-  <div>
-    <div ref="backdrop" class="modal-backdrop" :class="{fade:transitionDuration>0}"></div>
-    <div ref="modal"
-         class="modal"
-         :class="{fade:transitionDuration>0}"
-         tabindex="-1"
-         role="dialog"
-         @click="backdropClicked">
-      <div ref="dialog" class="modal-dialog" :class="modalSizeClass" role="document">
-        <div class="modal-content">
-          <div class="modal-header" v-if="header">
-            <slot name="header">
-              <button
-                type="button"
-                class="close"
-                aria-label="Close"
-                @click="toggle(false)"
-                style="position: relative;z-index: 1060">
-                <!-- 1060 is bigger than dialog z-index 1050 because it got cover by title sometimes -->
-                <span aria-hidden="true">×</span>
-              </button>
-              <h4 class="modal-title">
-                <slot name="title">{{title}}</slot>
-              </h4>
-            </slot>
-          </div>
-          <div class="modal-body">
-            <slot></slot>
-          </div>
-          <div class="modal-footer" v-if="footer">
-            <slot name="footer">
-              <btn @click="toggle(false,'cancel')">
-                <span>{{cancelText || t('uiv.modal.cancel')}}</span>
-              </btn>
-              <btn type="primary" @click="toggle(false,'ok')" data-action="auto-focus">
-                <span>{{okText || t('uiv.modal.ok')}}</span>
-              </btn>
-            </slot>
-          </div>
+  <div ref="modal"
+       class="modal"
+       :class="{fade:transitionDuration>0}"
+       tabindex="-1"
+       role="dialog"
+       @click="backdropClicked">
+    <div ref="dialog" class="modal-dialog" :class="modalSizeClass" role="document">
+      <div class="modal-content">
+        <div class="modal-header" v-if="header">
+          <slot name="header">
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              @click="toggle(false)"
+              style="position: relative;z-index: 1060">
+              <!-- 1060 is bigger than dialog z-index 1050 because it got cover by title sometimes -->
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title">
+              <slot name="title">{{title}}</slot>
+            </h4>
+          </slot>
+        </div>
+        <div class="modal-body">
+          <slot></slot>
+        </div>
+        <div class="modal-footer" v-if="footer">
+          <slot name="footer">
+            <btn @click="toggle(false,'cancel')">
+              <span>{{cancelText || t('uiv.modal.cancel')}}</span>
+            </btn>
+            <btn type="primary" @click="toggle(false,'ok')" data-action="auto-focus">
+              <span>{{okText || t('uiv.modal.ok')}}</span>
+            </btn>
+          </slot>
         </div>
       </div>
     </div>
+    <div ref="backdrop" class="modal-backdrop" :class="{fade:transitionDuration>0}"></div>
   </div>
 </template>
 
@@ -108,8 +106,7 @@
     computed: {
       modalSizeClass () {
         return {
-          'modal-lg': this.size === 'lg',
-          'modal-sm': this.size === 'sm'
+          [`modal-${this.size}`]: Boolean(this.size)
         }
       }
     },

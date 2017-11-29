@@ -16,7 +16,7 @@ A simple modal example with callback:
       <h4>Text in a modal</h4>
       <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
       <h4>Popover in a modal</h4>
-      <popover title="A Title" placement="right" append-to="#modal-demo [role=dialog]">
+      <popover title="A Title" placement="right" append-to="#modal-demo">
         <p>
           This
           <a role="button" class="btn btn-default" data-role="trigger">button</a> should trigger a popover on click.
@@ -25,11 +25,11 @@ A simple modal example with callback:
       </popover>
       <h4>Tooltips in a modal</h4>
       <p>
-        <tooltip text="Tooltip" append-to="#modal-demo [role=dialog]">
+        <tooltip text="Tooltip" append-to="#modal-demo">
           <a role="button" class="tooltip-test">This link</a>
         </tooltip>
         <span>and</span>
-        <tooltip text="Tooltip" append-to="#modal-demo [role=dialog]">
+        <tooltip text="Tooltip" append-to="#modal-demo">
           <a role="button" class="tooltip-test">that link</a>
         </tooltip>
         <span>should have tooltips on hover.</span>

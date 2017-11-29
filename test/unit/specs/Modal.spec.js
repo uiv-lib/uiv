@@ -238,7 +238,7 @@ describe('Modal', () => {
     }).$mount()
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(vm.$el.querySelector('.modal').className).to.contain('in')
+    expect(vm.$el.className).to.contain('in')
     $(vm.$el).remove()
     vm.$destroy()
   })
