@@ -46,25 +46,9 @@
         default: TRIGGERS.HOVER_FOCUS
       }
     },
-    watch: {
-      text (value, oldValue) {
-        // reset position while text changed & is shown
-        // nextTick is required
-        if (value && value !== oldValue) {
-          this.$nextTick(() => {
-            if (this.isShown()) {
-              this.resetPosition()
-            }
-          })
-        }
-      },
-      enable (v) {
-        if (v && this.triggerEl.matches(':hover, :focus')) {
-          this.show()
-        } else
-        if (!v) {
-          this.hide()
-        }
+    computed: {
+      allContent () {
+        return this.text
       }
     },
     methods: {

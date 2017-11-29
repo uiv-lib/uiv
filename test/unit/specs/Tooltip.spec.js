@@ -435,10 +435,44 @@ describe('Tooltip', () => {
     await vm.$nextTick()
     const topAfter = document.querySelector('.tooltip').style.top
     expect(topAfter).not.equal(topBefore)
-    utils.triggerEvent(trigger, 'click')
+    vm.msg = ''
+    await vm.$nextTick()
     await utils.sleep(200)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    vm.msg = ''
+    await vm.$nextTick()
+    $el.remove()
+    vm.$destroy()
+  })
+
+  it('should be able to change enable in runtime', async () => {
+    const res = Vue.compile('<tooltip :text="msg" trigger="click" :enable="enable"><btn>123</btn></tooltip>')
+    const vm = new Vue({
+      data () {
+        return {
+          msg: 'text',
+          enable: true
+        }
+      },
+      components: {Tooltip},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    const $el = $(vm.$el).appendTo('body')
+    expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+    await vm.$nextTick()
+    const trigger = vm.$el.querySelector('button')
+    utils.triggerEvent(trigger, 'click')
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.tooltip').length).to.equal(1)
+    vm.enable = false
+    await vm.$nextTick()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+    await vm.$nextTick()
+    vm.enable = true
+    await vm.$nextTick()
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     await vm.$nextTick()
     $el.remove()
     vm.$destroy()

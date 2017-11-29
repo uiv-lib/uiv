@@ -66,6 +66,26 @@ export default {
       this.clearListeners()
       this.initTriggerElByTarget(value)
       this.initListeners()
+    },
+    allContent (value) {
+      // can not use value because it can not detect slot changes
+      if (this.isNotEmpty()) {
+        // reset position while content changed & is shown
+        // nextTick is required
+        this.$nextTick(() => {
+          if (this.isShown()) {
+            this.resetPosition()
+          }
+        })
+      } else {
+        this.hide()
+      }
+    },
+    enable (value) {
+      // hide if enable changed to false
+      if (!value) {
+        this.hide()
+      }
     }
   },
   mounted () {
