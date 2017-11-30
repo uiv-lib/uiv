@@ -271,12 +271,13 @@ export function toggleBodyOverflow (enable) {
 export function getClosest (el, selector) {
   ensureElementMatchesFunction()
   let parent
-  while (el) {
-    parent = el.parentElement
+  let _el = el
+  while (_el) {
+    parent = _el.parentElement
     if (parent && parent.matches(selector)) {
       return parent
     }
-    el = parent
+    _el = parent
   }
   return null
 }

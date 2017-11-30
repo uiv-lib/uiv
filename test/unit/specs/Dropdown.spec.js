@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import $ from 'jquery'
-import Dropdown from '@src/components/dropdown/Dropdown.vue'
 import DropdownDoc from '@docs/pages/components/Dropdown.md'
 import utils from '../utils'
 
@@ -130,15 +129,22 @@ describe('Dropdown', () => {
           show: true
         }
       },
-      components: {Dropdown},
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
     await vm.$nextTick()
     const dropdown = vm.$el
     expect(dropdown.className).to.contain('open')
-    $el = $(vm.$el)
     vm.$destroy()
-    $el.remove()
+  })
+
+  it('should be able to init with no trigger', async () => {
+    const res = Vue.compile('<dropdown/>')
+    const vm = new Vue({
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    vm.$destroy()
   })
 })

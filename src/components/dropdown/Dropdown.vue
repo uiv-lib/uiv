@@ -65,11 +65,8 @@
       }
     },
     mounted () {
-      this.triggerEl = this.$el.querySelector('[data-role="trigger"]') || this.$el.querySelector('.dropdown-toggle') || this.$el.firstChild
-      // attach trigger events if:
-      // 1. trigger exist
-      // 2. not the dropdown menu
-      if (this.triggerEl && this.triggerEl !== this.$refs.dropdown) {
+      this.initTrigger()
+      if (this.triggerEl) {
         on(this.triggerEl, EVENTS.CLICK, this.toggle)
       }
       on(window, EVENTS.CLICK, this.windowClicked)
@@ -85,6 +82,10 @@
       off(window, EVENTS.CLICK, this.windowClicked)
     },
     methods: {
+      initTrigger () {
+        const trigger = this.$el.querySelector('[data-role="trigger"]') || this.$el.querySelector('.dropdown-toggle') || this.$el.firstChild
+        this.triggerEl = trigger && trigger !== this.$refs.dropdown ? trigger : null
+      },
       toggle (show) {
         if (isBoolean(show)) {
           this.show = show
