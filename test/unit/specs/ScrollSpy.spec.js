@@ -65,6 +65,20 @@ describe('ScrollSpy', () => {
     expectDropdownActive(nav, '#three')
   })
 
+  it('should be able to refresh on target height changed', async () => {
+    await vm.$nextTick()
+    const _vm = vm.$refs['scrollspy-example-in-navbar']
+    const _$el = $(_vm.$el)
+    const nav = _$el.find('nav')
+    const scrollEl = _$el.find('#scrollspy-example').get(0)
+    _$el.find('#one').css('height', 200)
+    await vm.$nextTick()
+    await utils.sleep(100)
+    scrollEl.scrollTop = _$el.find('#two').get(0).offsetTop
+    await utils.sleep(100)
+    expectDropdownActive(nav, '#two')
+  })
+
   it('should be able to append to body', async () => {
     const $app = $('<div>').prependTo('body')
     const res = Vue.compile(`

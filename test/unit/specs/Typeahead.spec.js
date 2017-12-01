@@ -80,6 +80,21 @@ describe('Typeahead', () => {
     expect(selected.textContent).to.equal('Alabama')
   })
 
+  it('should be able to keep open on input click', async () => {
+    const _vm = vm.$refs['typeahead-example']
+    await vm.$nextTick()
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
+    expect(dropdown.className).to.not.contain('open')
+    input.value = 'ala'
+    utils.triggerEvent(input, 'focus')
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    input.click()
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+  })
+
   it('should be able to close typeahead on input blur', async () => {
     const _vm = vm.$refs['typeahead-example']
     await vm.$nextTick()
