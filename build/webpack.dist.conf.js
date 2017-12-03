@@ -35,7 +35,8 @@ let webpackConfig = {
     path: config.dist.assetsRoot,
     filename: 'uiv.min.js',
     library: 'uiv',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   resolve: baseWebpackConfig.resolve,
   module: {
