@@ -89,7 +89,7 @@ Name             | Type             | Default  | Required | Description
 ---------------- | ----------       | -------- | -------- | -----------------------
 `acive`          | Boolean          | false    |          | Set item to active state.
 `href`           | String           |          |          | An native link will be created if this prop present.
-`target`         | String           | _self    |          | Native link prop.
+`target`         | String           |          |          | Native link prop.
 `to`             | String or Object |          |          | An Vue-Router link will be created if this prop present.
 `replace`        | Boolean          | false    |          | Vue-Router link prop.
 `append`         | Boolean          | false    |          | Vue-Router link prop.

@@ -1,4 +1,5 @@
 import mergeData from 'vue-functional-data-merge'
+import linkMixin from '@src/mixins/linkMixin'
 import BtnGroup from './BtnGroup'
 
 const INPUT_TYPE_CHECKBOX = 'checkbox'
@@ -6,6 +7,7 @@ const INPUT_TYPE_RADIO = 'radio'
 
 export default {
   functional: true,
+  mixins: [linkMixin],
   render (h, {children, props, data}) {
     // event listeners
     const listeners = data.on || {}
@@ -151,26 +153,6 @@ export default {
       default: false
     },
     disabled: {
-      type: Boolean,
-      default: false
-    },
-    // <a> props
-    href: String,
-    target: {
-      type: String,
-      default: '_self'
-    },
-    // <router-link> props
-    to: null,
-    replace: {
-      type: Boolean,
-      default: false
-    },
-    append: {
-      type: Boolean,
-      default: false
-    },
-    exact: {
       type: Boolean,
       default: false
     },

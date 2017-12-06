@@ -1,7 +1,9 @@
 import mergeData from 'vue-functional-data-merge'
+import linkMixin from '@src/mixins/linkMixin'
 
 export default {
   functional: true,
+  mixins: [linkMixin],
   render (h, {props, data, children}) {
     let slot
     if (props.active) {
@@ -31,26 +33,6 @@ export default {
   },
   props: {
     active: {
-      type: Boolean,
-      default: false
-    },
-    // <a> props
-    href: String,
-    target: {
-      type: String,
-      default: '_self'
-    },
-    // <router-link> props
-    to: null,
-    replace: {
-      type: Boolean,
-      default: false
-    },
-    append: {
-      type: Boolean,
-      default: false
-    },
-    exact: {
       type: Boolean,
       default: false
     }
