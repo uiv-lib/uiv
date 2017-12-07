@@ -255,14 +255,17 @@ export function setTooltipPosition (tooltip, trigger, placement, auto, appendToS
 }
 
 export function hasScrollbar (el) {
-  return el.scrollHeight > el.clientHeight
+  const SCROLL = 'scroll'
+  const hasVScroll = el.scrollHeight > el.clientHeight
+  const style = window.getComputedStyle(el)
+  return hasVScroll || style.overflow === SCROLL || style.overflowY === SCROLL
 }
 
 export function toggleBodyOverflow (enable) {
   if (enable) {
     document.body.style.paddingRight = null
   } else {
-    if (hasScrollbar(document.documentElement)) {
+    if (hasScrollbar(document.documentElement) || hasScrollbar(document.body)) {
       document.body.style.paddingRight = `${getScrollbarWidth()}px`
     }
   }
