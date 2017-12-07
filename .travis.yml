@@ -19,7 +19,12 @@ deploy:
     api_key: $NPM_TOKEN
     on:
       tags: true
-      branch: release
+  - provider: releases
+    api_key: $GITHUB_TOKEN
+    file: dist/uiv.min.js
+    skip_cleanup: true
+    on:
+      tags: true
   - provider: pages
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
