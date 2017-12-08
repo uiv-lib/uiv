@@ -26,10 +26,12 @@ const shallResolve = (type, msg) => {
   }
 }
 
-const init = (type, options, cb, resolve = null, reject = null) => {
+const init = function (type, options, cb, resolve = null, reject = null) {
   destroyModal()
-  const Constructor = Vue.extend(MessageBox)
-  instance = new Constructor({
+  const i18n = this.$i18n
+  instance = new Vue({
+    extends: MessageBox,
+    i18n,
     propsData: {
       type,
       ...options,
@@ -60,26 +62,26 @@ const init = (type, options, cb, resolve = null, reject = null) => {
   instance.show = true
 }
 
-const initModal = (type, options = {}, cb) => {
+const initModal = function (type, options = {}, cb) {
   if (isPromiseSupported()) {
     return new Promise((resolve, reject) => {
-      init(type, options, cb, resolve, reject)
+      init.apply(this, [type, options, cb, resolve, reject])
     })
   } else {
-    init(type, options, cb)
+    init.apply(this, [type, options, cb])
   }
 }
 
-const alert = (options, cb) => {
-  return initModal(TYPES.ALERT, options, cb)
+const alert = function (options, cb) {
+  return initModal.apply(this, [TYPES.ALERT, options, cb])
 }
 
-const confirm = (options, cb) => {
-  return initModal(TYPES.CONFIRM, options, cb)
+const confirm = function (options, cb) {
+  return initModal.apply(this, [TYPES.CONFIRM, options, cb])
 }
 
-const prompt = (options, cb) => {
-  return initModal(TYPES.PROMPT, options, cb)
+const prompt = function (options, cb) {
+  return initModal.apply(this, [TYPES.PROMPT, options, cb])
 }
 
 export default {alert, confirm, prompt}
