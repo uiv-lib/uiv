@@ -130,6 +130,16 @@ import { MessageBox } from 'uiv'
 
 The corresponding methods are: `MessageBox.alert`, `MessageBox.confirm` and `MessageBox.prompt`, with same parameters as above.
 
+**Note:** You CAN NOT use MessageBox individually if you're also using `vue-i18n` in the root instance if Vue (because it will not be able to access the correct language pack), a workaround is to register them manually:
+
+```javascript
+import Vue from 'vue'
+import { MessageBox } from 'uiv'
+
+Vue.prototype.$alert = MessageBox.alert
+// ...
+```
+
 # API Reference
 
 ## [MessageBox.vue](https://github.com/wxsms/uiv/blob/release/src/services/messagebox/MessageBox.vue)
