@@ -1,4 +1,4 @@
-import mergeData from 'vue-functional-data-merge'
+import {mergeData} from 'vue-functional-data-merge'
 import linkMixin from '@src/mixins/linkMixin'
 import BtnGroup from './BtnGroup'
 

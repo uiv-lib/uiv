@@ -1,4 +1,4 @@
-import mergeData from 'vue-functional-data-merge'
+import {mergeData} from 'vue-functional-data-merge'
 import ProgressBarStack from './ProgressBarStack'
 
 export default {

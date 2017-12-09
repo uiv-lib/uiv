@@ -1,4 +1,4 @@
-import mergeData from 'vue-functional-data-merge'
+import {mergeData} from 'vue-functional-data-merge'
 
 export default {
   functional: true,

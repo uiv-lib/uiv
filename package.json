@@ -62,7 +62,7 @@
     "coveralls": "cat test/unit/coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "dependencies": {
-    "vue-functional-data-merge": "^1.0.6"
+    "vue-functional-data-merge": "^2.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

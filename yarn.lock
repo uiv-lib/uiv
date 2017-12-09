@@ -6414,9 +6414,9 @@ vue-analytics@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.5.0.tgz#076364c64861039aba3f26d7cc11a41572f2e2dd"
 
-vue-functional-data-merge@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/vue-functional-data-merge/-/vue-functional-data-merge-1.0.6.tgz#cde4f0cf3f251f7f0196341156d2c936cca63d40"
+vue-functional-data-merge@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/vue-functional-data-merge/-/vue-functional-data-merge-2.0.2.tgz#3099cf933dcbba457841fd852f919eeec9d9e0db"
 
 vue-hot-reload-api@^2.0.11:
   version "2.2.0"
