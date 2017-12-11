@@ -301,4 +301,18 @@ describe('MessageBox', () => {
     expect(document.querySelector('.modal')).not.exist
     sinon.assert.calledWith(spy, 'cancel')
   })
+
+  it('should be able to work with `custom-class`', async () => {
+    MessageBox.alert({
+      customClass: 'test-class'
+    })
+    await utils.sleep(utils.transitionDuration)
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal').className).to.contain('test-class')
+    expect(document.querySelector('.modal').className).to.contain('in')
+    document.querySelector('.modal .btn').click()
+    await utils.sleep(utils.transitionDuration)
+    expect(document.querySelector('.modal-backdrop')).not.exist
+    expect(document.querySelector('.modal')).not.exist
+  })
 })
