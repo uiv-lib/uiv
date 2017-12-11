@@ -9,6 +9,7 @@
     :backdrop="closeOnBackdropClick"
     :cancel-text="cancelText"
     :ok-text="okText"
+    :class="customClass"
     @hide="cb">
     <p>{{content}}</p>
     <div v-if="type===TYPES.PROMPT">
@@ -77,7 +78,8 @@
       validator: {
         type: Function,
         default: () => null
-      }
+      },
+      customClass: null
     },
     data () {
       return {

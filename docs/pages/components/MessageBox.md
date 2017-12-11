@@ -148,17 +148,18 @@ These props are used as `options` in the methods above.
 
 ### Props
 
-Name           | Type       | Default  | Required | Description
-----------     | ---------- | -------- | -------- | -----------------------
-`size`         | String     | sm       |          | The alternative modal sizes. Support: `lg` / `md` / `sm`.
-`title`        | String     |          |          | The modal title.
-`content`      | String     |          |          | The modal content.
-`ok-text`      | String     |          |          | Text of ok button.
-`ok-type`      | String     | primary  |          | Button type of ok button.
-`cancel-text`  | String     |          |          | Text of cancel button.
-`cancel-type`  | String     | default  |          | Button type of cancel button.
-`backdrop`     | Boolean    | `false` if type is alert, otherwise `true` |          | Dismiss the modal by backdrop click.
-`validator`    | Function   |          |          | Custom validator function for prompt. Accepts the input value as param, returns the err msg (not valid) or null (valid)
+Name             | Type       | Default  | Required | Description
+----------       | ---------- | -------- | -------- | -----------------------
+`size`           | String     | sm       |          | The alternative modal sizes. Support: `lg` / `md` / `sm`.
+`title`          | String     |          |          | The modal title.
+`content`        | String     |          |          | The modal content.
+`ok-text`        | String     |          |          | Text of ok button.
+`ok-type`        | String     | primary  |          | Button type of ok button.
+`cancel-text`    | String     |          |          | Text of cancel button.
+`cancel-type`    | String     | default  |          | Button type of cancel button.
+`custom-class`   | String     |          |          | Custom classes to modal.
+`backdrop`       | Boolean    | `false` if type is alert, otherwise `true` |          | Dismiss the modal by backdrop click.
+`validator`      | Function   |          |          | Custom validator function for prompt. Accepts the input value as param, returns the err msg (not valid) or null (valid)
 
 ## [messageBox.js](https://github.com/wxsms/uiv/blob/release/src/services/messagebox/messageBox.js)
 
