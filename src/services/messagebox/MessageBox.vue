@@ -9,7 +9,7 @@
     :backdrop="closeOnBackdropClick"
     :cancel-text="cancelText"
     :ok-text="okText"
-    :class="customClasses"
+    :class="customClass"
     @hide="cb">
     <p>{{content}}</p>
     <div v-if="type===TYPES.PROMPT">
@@ -79,10 +79,9 @@
         type: Function,
         default: () => null
       },
-      customClasses: {
-        type: Array,
-        required: false,
-        default: () => []
+      customClass: {
+        type: String,
+        required: false
       }
     },
     data () {

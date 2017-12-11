@@ -157,7 +157,7 @@ Name             | Type       | Default  | Required | Description
 `ok-type`        | String     | primary  |          | Button type of ok button.
 `cancel-text`    | String     |          |          | Text of cancel button.
 `cancel-type`    | String     | default  |          | Button type of cancel button.
-`custom-classes` | Array      | []       |          | Custom classes to modal.
+`custom-class`   | String     |          |          | Custom classes to modal.
 `backdrop`       | Boolean    | `false` if type is alert, otherwise `true` |          | Dismiss the modal by backdrop click.
 `validator`      | Function   |          |          | Custom validator function for prompt. Accepts the input value as param, returns the err msg (not valid) or null (valid)
 
