@@ -79,9 +79,7 @@
         type: Function,
         default: () => null
       },
-      customClass: {
-        required: false
-      }
+      customClass: null
     },
     data () {
       return {
