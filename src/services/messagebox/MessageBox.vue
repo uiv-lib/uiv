@@ -80,7 +80,6 @@
         default: () => null
       },
       customClass: {
-        type: String,
         required: false
       }
     },
