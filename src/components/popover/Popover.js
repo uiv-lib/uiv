@@ -9,32 +9,21 @@ export default {
     }
   },
   render (h) {
-    return h(this.tag,
-      [
-        this.$slots.default,
-        h('div',
-          {
-            style: {
-              display: 'block'
-            },
-            ref: 'popup',
-            on: {
-              mouseenter: this.showOnHover,
-              mouseleave: this.hideOnLeave
-            }
-          },
-          [
-            h('div', {'class': 'arrow'}),
-            h('h3', {
-              'class': 'popover-title',
-              directives: [
-                {name: 'show', value: this.title}
-              ]
-            }, this.title),
-            h('div', {'class': 'popover-content'}, [this.content || this.$slots.popover])
-          ]
-        )
-      ]
+    /* eslint-disable no-unused-vars */
+    const Tag = this.tag
+    return (
+      <Tag>
+        {this.$slots.default}
+        <div ref={'popup'} style={{display: 'block'}} onMouseEnter={this.showOnHover} onMouseLeave={this.hideOnLeave}>
+          <div class={'arrow'}/>
+          <h3 class={'popover-title'} v-show={this.title}>
+            {this.title}
+          </h3>
+          <div class={'popover-content'}>
+            {this.content || this.$slots.popover}
+          </div>
+        </div>
+      </Tag>
     )
   },
   props: {

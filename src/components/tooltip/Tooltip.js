@@ -9,30 +9,18 @@ export default {
     }
   },
   render (h) {
-    return h(
-      this.tag,
-      [
-        this.$slots.default,
-        h('div',
-          {
-            ref: 'popup',
-            attrs: {
-              role: 'tooltip'
-            },
-            on: {
-              mouseenter: this.showOnHover,
-              mouseleave: this.hideOnLeave
-            }
-          },
-          [
-            h('div', {'class': 'tooltip-arrow'}),
-            h('div', {
-              'class': 'tooltip-inner',
-              domProps: {innerHTML: this.text}
-            })
-          ]
-        )
-      ]
+    /* eslint-disable no-unused-vars */
+    const Tag = this.tag
+    return (
+      <Tag>
+        {this.$slots.default}
+        <div ref={'popup'} role={'tooltip'} onMouseEnter={this.showOnHover} onMouseLeave={this.hideOnLeave}>
+          <div class={'tooltip-arrow'}/>
+          <div class={'tooltip-inner'}>
+            {this.text}
+          </div>
+        </div>
+      </Tag>
     )
   },
   props: {
