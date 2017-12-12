@@ -27,7 +27,7 @@
     ensureElementMatchesFunction,
     EVENTS
   } from '@src/utils/domUtils'
-  import Dropdown from '../dropdown/Dropdown'
+  import Dropdown from '@src/components/dropdown/Dropdown'
 
   export default {
     components: {Dropdown},

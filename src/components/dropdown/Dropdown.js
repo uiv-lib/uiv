@@ -5,7 +5,8 @@ const DEFAULT_TAG = 'div'
 
 export default {
   render (h) {
-    const Tag = `${this.tag}`
+    /* eslint-disable no-unused-vars */
+    const Tag = this.tag
     const classes = {
       'btn-group': this.tag === DEFAULT_TAG,
       dropdown: !this.dropup,

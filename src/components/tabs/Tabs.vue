@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import Dropdown from '../dropdown/Dropdown'
+  import Dropdown from '@src/components/dropdown/Dropdown'
   import {isNumber} from '@src/utils/objectUtils'
 
   export default {

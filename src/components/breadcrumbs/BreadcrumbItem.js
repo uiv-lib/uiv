@@ -10,23 +10,15 @@ export default {
       slot = children
     } else if (props.to) {
       slot = [
-        h('router-link', {
-          props: {
-            to: props.to,
-            replace: props.replace,
-            append: props.append,
-            exact: props.exact
-          }
-        }, children)
+        <router-link to={props.to} replace={props.replace} append={props.append} exact={props.exact}>
+          {children}
+        </router-link>
       ]
     } else {
       slot = [
-        h('a', {
-          attrs: {
-            href: props.href,
-            target: props.target
-          }
-        }, children)
+        <a href={props.href} target={props.target}>
+          {children}
+        </a>
       ]
     }
     return h('li', mergeData(data, {class: {active: props.active}}), slot)
