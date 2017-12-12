@@ -1,4 +1,4 @@
-import Popover from '@src/components/popover/Popover.vue'
+import Popover from '@src/components/popover/Popover'
 import Vue from 'vue'
 
 const INSTANCE = '_uiv_popover_instance'

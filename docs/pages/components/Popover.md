@@ -135,7 +135,7 @@ Set `enable` prop to `false` to disable a popover.
 
 # API Reference
 
-## [Popover.vue](https://github.com/wxsms/uiv/blob/release/src/components/popover/Popover.vue)
+## [Popover.js](https://github.com/wxsms/uiv/blob/release/src/components/popover/Popover.js)
 
 ### Props
 
@@ -169,7 +169,7 @@ Name        | Params | Description
 
 ## [popover.js](https://github.com/wxsms/uiv/blob/release/src/directives/popover/popover.js)
 
-This is the directive for `Popover.vue`. The binding value will be the title and text content of corresponding popover.
+This is the directive for Popover. The binding value will be the title and text content of corresponding popover.
 
 **Simplest Usage**
 
