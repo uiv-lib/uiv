@@ -14,7 +14,7 @@ export default {
     return (
       <Tag>
         {this.$slots.default}
-        <div ref={'popup'} style={{display: 'block'}} onMouseEnter={this.showOnHover} onMouseLeave={this.hideOnLeave}>
+        <div ref={'popup'} style={{display: 'block'}} onMouseenter={this.showOnHover} onMouseleave={this.hideOnLeave}>
           <div class={'arrow'}/>
           <h3 class={'popover-title'} v-show={this.title}>
             {this.title}

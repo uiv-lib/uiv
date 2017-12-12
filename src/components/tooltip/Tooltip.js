@@ -14,7 +14,7 @@ export default {
     return (
       <Tag>
         {this.$slots.default}
-        <div ref={'popup'} role={'tooltip'} onMouseEnter={this.showOnHover} onMouseLeave={this.hideOnLeave}>
+        <div ref={'popup'} role={'tooltip'} onMouseenter={this.showOnHover} onMouseleave={this.hideOnLeave}>
           <div class={'tooltip-arrow'}/>
           <div class={'tooltip-inner'}>
             {this.text}
