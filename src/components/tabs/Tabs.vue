@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import Dropdown from '../dropdown/Dropdown.vue'
+  import Dropdown from '../dropdown/Dropdown'
   import {isNumber} from '@src/utils/objectUtils'
 
   export default {

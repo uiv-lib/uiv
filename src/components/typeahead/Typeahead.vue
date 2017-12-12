@@ -27,7 +27,7 @@
     ensureElementMatchesFunction,
     EVENTS
   } from '@src/utils/domUtils'
-  import Dropdown from './../dropdown/Dropdown.vue'
+  import Dropdown from '../dropdown/Dropdown'
 
   export default {
     components: {Dropdown},
