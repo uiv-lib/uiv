@@ -8,6 +8,7 @@ import {
   getClosest,
   getParents
 } from '../../utils/domUtils'
+import {nodeListToArray} from '../../utils/arrayUtils'
 
 function ScrollSpy (element, target = 'body', options = {}) {
   this.el = element
@@ -41,7 +42,7 @@ ScrollSpy.prototype.refresh = function () {
   this.offsets = []
   this.targets = []
   this.scrollHeight = this.getScrollHeight()
-  let list = [...this.el.querySelectorAll(this.selector)]
+  let list = nodeListToArray(this.el.querySelectorAll(this.selector))
   const isWindow = this.scrollElement === window
   list
     .map(ele => {
@@ -100,7 +101,7 @@ ScrollSpy.prototype.activate = function (target) {
   const selector = this.selector +
     '[data-target="' + target + '"],' +
     this.selector + '[href="' + target + '"]'
-  let active = [...this.el.querySelectorAll(selector)]
+  let active = nodeListToArray(this.el.querySelectorAll(selector))
   active.forEach(ele => {
     getParents(ele, 'li')
       .forEach(item => {
@@ -113,7 +114,7 @@ ScrollSpy.prototype.activate = function (target) {
 }
 
 ScrollSpy.prototype.clear = function () {
-  let list = [...this.el.querySelectorAll(this.selector)]
+  let list = nodeListToArray(this.el.querySelectorAll(this.selector))
   list.forEach(ele => {
     getParents(ele, '.active', this.opts.target).forEach(item => {
       removeClass(item, 'active')

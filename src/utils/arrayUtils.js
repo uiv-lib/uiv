@@ -14,3 +14,7 @@ export function range (end, start = 0, step = 1) {
   }
   return arr
 }
+
+export function nodeListToArray (nodeList) {
+  return Array.prototype.slice.call(nodeList || [])
+}
