@@ -4,6 +4,7 @@
   "description": "Bootstrap 3 components implemented by Vue 2.",
   "author": "wxsm",
   "main": "dist/uiv.min.js",
+  "module": "dist/uiv.esm.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wxsms/uiv.git"
@@ -53,7 +54,8 @@
   "homepage": "https://github.com/wxsms/uiv",
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "node build/build.js",
+    "build": "node build/build.js && npm run build-esm",
+    "build-esm": "rollup -c build/rollup.conf.js",
     "build-docs": "node build/build-docs.js && node build/build-dist-config.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
@@ -69,6 +71,7 @@
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-istanbul": "^3.1.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-object-assign": "^6.22.0",
@@ -130,6 +133,10 @@
     "phantomjs-prebuilt": "^2.1.14",
     "prerender-spa-plugin": "^2.0.1",
     "rimraf": "^2.6.0",
+    "rollup": "^0.52.1",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-vue": "^3.0.0",
     "selenium-server": "^3.0.1",
     "semver": "^5.3.0",
     "sinon": "^1.17.7",
