@@ -19,9 +19,9 @@
 </template>
 
 <script>
-  import {addClass, removeClass} from '@src/utils/domUtils'
-  import {isString} from '@src/utils/objectUtils'
-  import Alert from '@src/components/alert/Alert.vue'
+  import {addClass, removeClass} from '../../utils/domUtils'
+  import {isString} from '../../utils/objectUtils'
+  import Alert from '../../components/alert/Alert.vue'
   import {TYPES, PLACEMENTS} from './constants'
 
   const IN_CLASS = 'in'

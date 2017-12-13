@@ -1,5 +1,5 @@
 import {mergeData} from 'vue-functional-data-merge'
-import linkMixin from '@src/mixins/linkMixin'
+import linkMixin from '../../mixins/linkMixin'
 import BtnGroup from './BtnGroup'
 
 const INPUT_TYPE_CHECKBOX = 'checkbox'

@@ -29,7 +29,7 @@
 
 <script>
   import Dropdown from '../dropdown/Dropdown.vue'
-  import {isNumber} from '@src/utils/objectUtils'
+  import {isNumber} from '../../utils/objectUtils'
 
   export default {
     components: {

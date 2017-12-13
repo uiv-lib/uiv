@@ -1,5 +1,5 @@
 <script>
-  import {addClass, removeClass} from '@src/utils/domUtils'
+  import {addClass, removeClass} from '../../utils/domUtils'
 
   const COLLAPSE = 'collapse'
   const IN = 'in'

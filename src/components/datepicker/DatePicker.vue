@@ -46,8 +46,8 @@
   import MonthView from './MonthView.vue'
   import YearView from './YearView.vue'
   import Btn from './../button/Btn'
-  import {stringify} from '@src/utils/dateUtils'
-  import {isNumber} from '@src/utils/objectUtils'
+  import {stringify} from '../../utils/dateUtils'
+  import {isNumber} from '../../utils/objectUtils'
 
   export default {
     mixins: [Locale],

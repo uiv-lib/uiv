@@ -53,8 +53,8 @@
     toggleBodyOverflow,
     addClass,
     removeClass
-  } from '@src/utils/domUtils'
-  import {isFunction} from '@src/utils/objectUtils'
+  } from '../../utils/domUtils'
+  import {isFunction} from '../../utils/objectUtils'
 
   const MODAL_OPEN = 'modal-open'
   const IN = 'in'

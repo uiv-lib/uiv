@@ -46,8 +46,8 @@
 <script>
   import Locale from '../../mixins/localeMixin'
   import Btn from './../button/Btn'
-  import {daysInMonth} from '@src/utils/dateUtils'
-  import {isExist} from '@src/utils/objectUtils'
+  import {daysInMonth} from '../../utils/dateUtils'
+  import {isExist} from '../../utils/objectUtils'
 
   export default {
     mixins: [Locale],

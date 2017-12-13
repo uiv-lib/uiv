@@ -1,6 +1,6 @@
 import {TYPES} from './constants'
-import {removeFromDom} from '@src/utils/domUtils'
-import {isFunction, isExist, isString, isPromiseSupported} from '@src/utils/objectUtils'
+import {removeFromDom} from '../../utils/domUtils'
+import {isFunction, isExist, isString, isPromiseSupported} from '../../utils/objectUtils'
 import MessageBox from './MessageBox.vue'
 import Vue from 'vue'
 

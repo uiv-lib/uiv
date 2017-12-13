@@ -1,6 +1,6 @@
 <script>
-  import {setDropdownPosition, on, off, EVENTS} from '@src/utils/domUtils'
-  import {isBoolean} from '@src/utils/objectUtils'
+  import {setDropdownPosition, on, off, EVENTS} from '../../utils/domUtils'
+  import {isBoolean} from '../../utils/objectUtils'
 
   const DEFAULT_TAG = 'div'
 

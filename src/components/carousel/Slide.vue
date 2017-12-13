@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import {spliceIfExist} from '@src/utils/arrayUtils'
+  import {spliceIfExist} from '../../utils/arrayUtils'
 
   export default {
     data () {

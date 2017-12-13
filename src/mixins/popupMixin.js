@@ -11,8 +11,8 @@ import {
   setTooltipPosition,
   isElement,
   addClass
-} from '@src/utils/domUtils'
-import {isString} from '@src/utils/objectUtils'
+} from '../utils/domUtils'
+import {isString} from '../utils/objectUtils'
 
 const SHOW_CLASS = 'in'
 

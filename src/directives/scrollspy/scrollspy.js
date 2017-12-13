@@ -7,7 +7,7 @@ import {
   getViewportSize,
   getClosest,
   getParents
-} from '@src/utils/domUtils'
+} from '../../utils/domUtils'
 
 function ScrollSpy (element, target = 'body', options = {}) {
   this.el = element

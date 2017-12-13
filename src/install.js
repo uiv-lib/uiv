@@ -2,7 +2,7 @@ import * as components from './components'
 import * as directives from './directives'
 import * as services from './services'
 import locale from './locale'
-import {isExist} from '@src/utils/objectUtils'
+import {isExist} from './utils/objectUtils'
 
 const install = (Vue, options = {}) => {
   // Setup language, en-US for default

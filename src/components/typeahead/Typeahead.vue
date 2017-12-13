@@ -18,15 +18,15 @@
 </template>
 
 <script>
-  import {getRequest} from '@src/utils/httpUtils'
-  import {isString} from '@src/utils/objectUtils'
+  import {getRequest} from '../../utils/httpUtils'
+  import {isString} from '../../utils/objectUtils'
   import {
     isElement,
     on,
     off,
     ensureElementMatchesFunction,
     EVENTS
-  } from '@src/utils/domUtils'
+  } from '../../utils/domUtils'
   import Dropdown from './../dropdown/Dropdown.vue'
 
   export default {

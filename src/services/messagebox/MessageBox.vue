@@ -41,10 +41,10 @@
 
 <script>
   import {TYPES} from './constants'
-  import Local from '@src/mixins/localeMixin'
-  import Modal from '@src/components/modal/Modal.vue'
-  import Btn from '@src/components/button/Btn'
-  import {isExist} from '@src/utils/objectUtils'
+  import Local from '../../mixins/localeMixin'
+  import Modal from '../../components/modal/Modal.vue'
+  import Btn from '../../components/button/Btn'
+  import {isExist} from '../../utils/objectUtils'
 
   export default {
     mixins: [Local],

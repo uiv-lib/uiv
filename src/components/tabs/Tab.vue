@@ -5,8 +5,8 @@
 </template>
 
 <script>
-  import {spliceIfExist} from '@src/utils/arrayUtils'
-  import {addClass, removeClass} from '@src/utils/domUtils'
+  import {spliceIfExist} from '../../utils/arrayUtils'
+  import {addClass, removeClass} from '../../utils/domUtils'
 
   const ACTIVE_CLASS = 'active'
   const IN_CLASS = 'in'
