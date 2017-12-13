@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import $ from 'jquery'
-import Tooltip from '@src/components/tooltip/Tooltip'
+import Tooltip from '@src/components/tooltip/Tooltip.vue'
 import TooltipDoc from '@docs/pages/components/Tooltip.md'
 import utils from '../utils'
 

@@ -269,7 +269,7 @@ Note: use `not-close-elements` to prevent dropdown close on menu body click if n
 
 # API Reference
 
-## [Dropdown.js](https://github.com/wxsms/uiv/blob/release/src/components/dropdown/Dropdown.js)
+## [Dropdown.vue](https://github.com/wxsms/uiv/blob/release/src/components/dropdown/Dropdown.vue)
 
 ### Props
 
