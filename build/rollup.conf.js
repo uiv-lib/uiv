@@ -7,6 +7,7 @@ const resolve = require('rollup-plugin-node-resolve')
 const base = path.resolve(__dirname, '..')
 const src = path.resolve(base, 'src')
 const dist = path.resolve(base, 'dist')
+const {name} = require('../package.json')
 
 // Ensure dist directory exists
 if (!fs.existsSync(dist)) {
@@ -40,8 +41,13 @@ module.exports = {
   ],
   output: [
     {
+      format: 'cjs',
+      file: path.resolve(dist, `${name}.common.js`),
+      sourcemap: true
+    },
+    {
       format: 'es',
-      file: path.resolve(dist, 'uiv.esm.js'),
+      file: path.resolve(dist, `${name}.esm.js`),
       sourcemap: true
     }
   ]
