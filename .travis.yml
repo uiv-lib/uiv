@@ -23,7 +23,10 @@ deploy:
       tags: true
   - provider: releases
     api_key: $GITHUB_TOKEN
-    file: dist/uiv.min.js
+    file:
+      - "dist/uiv.min.js"
+      - "dist/uiv.esm.js"
+      - "dist/uiv.common.js"
     skip_cleanup: true
     on:
       tags: true
