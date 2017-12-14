@@ -21,7 +21,10 @@
   * Individually import supported.
 * IE 9+ & modern browsers supported.
 * **SSR** (server-side rendering) supported.
-* ES6 / CommonJS / AMD / Browser supported.
+* All env supported:
+  * UMD build `uiv.min.js` can be used in all environments (including browser)
+  * ES Module build `uiv.esm.js` is for modern bundlers like [webpack 2](https://webpack.js.org) or [rollup](https://rollupjs.org)
+  * CommonJS build `uiv.common.js` is for older bundlers like [browserify](http://browserify.org) or [webpack 1](https://webpack.github.io).
 
 ## Documentation
 
