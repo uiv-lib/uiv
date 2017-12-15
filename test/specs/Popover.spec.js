@@ -262,7 +262,7 @@ describe('Popover', () => {
     utils.triggerEvent(button, 'click')
     await utils.sleep(200)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
-    document.body.click() // utils.triggerEvent() doesn't work here...
+    document.body.click()
     await utils.sleep(200)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
