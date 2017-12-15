@@ -1,10 +1,15 @@
 {
   "presets": [
     [
-      "latest",
+      "env",
       {
-        "es2015": {
-          "modules": false
+        "modules": false,
+        "targets": {
+          "browsers": [
+            "> 1%",
+            "last 2 versions",
+            "not ie <= 8"
+          ]
         }
       }
     ],
@@ -17,14 +22,13 @@
         "polyfill": false
       }
     ],
-    "transform-object-assign",
-    "syntax-dynamic-import"
+    "transform-object-assign"
   ],
   "comments": false,
   "env": {
     "test": {
       "presets": [
-        "latest",
+        "env",
         "stage-2"
       ],
       "plugins": [

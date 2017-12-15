@@ -24,10 +24,15 @@ module.exports = {
       babelrc: false,
       "presets": [
         [
-          "latest",
+          "env",
           {
-            "es2015": {
-              "modules": false
+            "modules": false,
+            "targets": {
+              "browsers": [
+                "> 1%",
+                "last 2 versions",
+                "not ie <= 8"
+              ]
             }
           }
         ],
