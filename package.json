@@ -22,11 +22,10 @@
     "build:dist": "node build/build.js",
     "build:esm": "rollup -c build/rollup.conf.js",
     "build-docs": "node build/build-docs.js && node build/build-dist-config.js",
-    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
-    "test": "npm run unit",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "coveralls": "cat test/unit/coverage/lcov.info | ./node_modules/.bin/coveralls"
+    "test": "cross-env BABEL_ENV=test karma start test/karma.conf.js --single-run",
+    "lint": "eslint --ext .js,.vue src test/specs",
+    "coveralls": "cat test/coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "dependencies": {
     "vue-functional-data-merge": "^2.0.3"
