@@ -2,6 +2,7 @@ const utils = require('./utils')
 const webpack = require('webpack')
 const config = require('../config')
 const baseWebpackConfig = require('./webpack.base.conf')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 let env = process.env.NODE_ENV === 'testing' ? require('../config/test.env') : config.dist.env
 
@@ -48,12 +49,17 @@ let webpackConfig = {
     new webpack.DefinePlugin({
       'process.env': env
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          warnings: false
+        }
       },
-      sourceMap: true
-    })
+      sourceMap: true,
+      parallel: true
+    }),
+    // enable scope hoisting
+    new webpack.optimize.ModuleConcatenationPlugin()
   ]
 }
 

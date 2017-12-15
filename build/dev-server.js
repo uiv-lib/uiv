@@ -25,7 +25,7 @@ let compiler = webpack(webpackConfig)
 
 let devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
-  quiet: true
+  logLevel: 'warn'
 })
 
 let hotMiddleware = require('webpack-hot-middleware')(compiler, {
@@ -35,7 +35,8 @@ let hotMiddleware = require('webpack-hot-middleware')(compiler, {
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', function (compilation) {
   compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
-    hotMiddleware.publish({action: 'reload'})
+    // this is causing reload on every change
+    // hotMiddleware.publish({action: 'reload'})
     cb()
   })
 })
@@ -67,16 +68,14 @@ let uri = 'http://localhost:' + port
 
 devMiddleware.waitUntilValid(function () {
   console.log('> Listening at ' + uri + '\n')
+  // when env is testing, don't need open it
+  if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
+    opn(uri)
+  }
 })
 
 module.exports = app.listen(port, function (err) {
   if (err) {
     console.log(err)
-    return
-  }
-
-  // when env is testing, don't need open it
-  if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
-    opn(uri)
   }
 })

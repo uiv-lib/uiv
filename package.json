@@ -107,6 +107,7 @@
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
     "sitemap-webpack-plugin": "^0.5.1",
+    "uglifyjs-webpack-plugin": "^1.1.4",
     "url-loader": "^0.5.7",
     "vue": "^2.5.2",
     "vue-analytics": "^5.5.0",
@@ -116,11 +117,10 @@
     "vue-router": "^2.3.1",
     "vue-style-loader": "^2.0.0",
     "vue-template-compiler": "^2.5.2",
-    "webpack": "^2.2.1",
-    "webpack-bundle-analyzer": "^2.2.1",
-    "webpack-dev-middleware": "^1.10.0",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^2.0.1",
     "webpack-hot-middleware": "^2.16.1",
-    "webpack-merge": "^2.6.1"
+    "webpack-merge": "^4.1.1"
   },
   "engines": {
     "node": ">= 4.0.0",
