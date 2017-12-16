@@ -18,11 +18,10 @@
   "homepage": "https://github.com/wxsms/uiv",
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "npm run build:dist && npm run build:esm",
-    "build:dist": "node build/build.js",
-    "build:esm": "rollup -c build/rollup.conf.js",
-    "build-docs": "node build/build-docs.js && node build/build-dist-config.js",
-    "e2e": "node test/e2e/runner.js",
+    "dist": "npm run dist:umd && npm run dist:esm",
+    "dist:umd": "node build/build.js",
+    "dist:esm": "rollup -c build/rollup.conf.js",
+    "build": "node build/build-docs.js && node build/build-dist-config.js",
     "test": "cross-env BABEL_ENV=test karma start test/karma.conf.js --single-run",
     "lint": "eslint --ext .js,.vue src test/specs",
     "coveralls": "cat test/coverage/lcov.info | ./node_modules/.bin/coveralls"

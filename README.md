@@ -163,11 +163,11 @@ npm install
 # serve demos & docs with hot reload at localhost:8080
 npm run dev
 
-# build uiv lib
-npm run build
+# build dist
+npm run dist
 
 # build document
-npm run build-docs
+npm run build
 
 # run all tests
 npm test

@@ -10,8 +10,8 @@ node_js:
 script:
   - npm run lint
   - npm run test
+  - npm run dist
   - npm run build
-  - npm run build-docs
 after_success: 'npm run coveralls'
 
 deploy:
