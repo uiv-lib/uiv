@@ -25,7 +25,10 @@
               </li>
             </template>
             <li v-else-if="item.href" role="presentation" @click="toggleAside(false)">
-              <a :href="item.href" target="_blank"><b>{{item.label}}</b></a>
+              <a :href="item.href" target="_blank">
+                <b>{{item.label}}</b>
+                <span class="glyphicon glyphicon-new-window"></span>
+              </a>
             </li>
             <li v-else role="presentation" @click="toggleAside(false)">
               <router-link :to="item.path" role="button">{{item.label}}</router-link>
