@@ -9,6 +9,16 @@
               <slot></slot>
             </div>
           </div>
+          <div class="row" v-if="this.docUrl">
+            <div class="col-xs-12">
+              <div class="edit-this-page">
+                <p>
+                  Caught a mistake or want to contribute to the documentation?
+                  <a :href="docUrlFull">Edit this page on Github!</a>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-md-2 hidden-xs hidden-sm" style="margin-top: 80px">
@@ -57,6 +67,14 @@
         anchors: []
       }
     },
+    computed: {
+      docUrl () {
+        return this.$route.meta && this.$route.meta.url
+      },
+      docUrlFull () {
+        return `https://github.com/wxsms/uiv/blob/master/docs/pages/${this.docUrl}`
+      }
+    },
     mounted () {
       this.$nextTick(() => {
         this.anchors = getAnchors(this.$refs.markdown)
@@ -66,5 +84,11 @@
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-
+  .edit-this-page {
+    color: #7f8c8d;
+    margin-top: 4em;
+    padding-top: 2em;
+    border-top: 1px solid #e5e5e5;
+    font-size: 0.9em;
+  }
 </style>
