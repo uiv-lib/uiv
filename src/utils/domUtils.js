@@ -262,11 +262,15 @@ export function hasScrollbar (el) {
 }
 
 export function toggleBodyOverflow (enable) {
+  const MODAL_OPEN = 'modal-open'
+  const body = document.body
   if (enable) {
-    document.body.style.paddingRight = null
+    removeClass(body, MODAL_OPEN)
+    body.style.paddingRight = null
   } else {
+    addClass(body, MODAL_OPEN)
     if (hasScrollbar(document.documentElement) || hasScrollbar(document.body)) {
-      document.body.style.paddingRight = `${getScrollbarWidth()}px`
+      body.style.paddingRight = `${getScrollbarWidth()}px`
     }
   }
 }

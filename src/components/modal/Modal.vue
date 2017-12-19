@@ -56,8 +56,9 @@
   } from '../../utils/domUtils'
   import {isFunction} from '../../utils/objectUtils'
 
-  const MODAL_OPEN = 'modal-open'
+  const MODAL_BACKDROP = 'modal-backdrop'
   const IN = 'in'
+  const getOpenModalNum = () => document.querySelectorAll(`.${MODAL_BACKDROP}`).length
 
   export default {
     mixins: [Local],
@@ -153,7 +154,6 @@
           toggleBodyOverflow(false)
           addClass(backdrop, IN)
           addClass(modal, IN)
-          addClass(document.body, MODAL_OPEN)
           this.timeoutId = setTimeout(() => {
             if (this.autoFocus) {
               let btn = this.$el.querySelector('[data-action="auto-focus"]')
@@ -170,8 +170,9 @@
           this.timeoutId = setTimeout(() => {
             modal.style.display = 'none'
             removeFromDom(backdrop)
-            removeClass(document.body, MODAL_OPEN)
-            toggleBodyOverflow(true)
+            if (getOpenModalNum() === 0) {
+              toggleBodyOverflow(true)
+            }
             this.$emit('hide', this.msg || 'dismiss')
             this.msg = ''
             this.timeoutId = 0

@@ -235,6 +235,36 @@ Set `transition-duration` to `0` to disable modal animations.
 <!-- modal-disable-animation.vue -->
 ```
 
+## Nested Modals
+
+```html
+<template>
+  <section>
+    <btn type="primary" @click="open1=true">Open Modal 1</btn>
+    <modal v-model="open1" title="Modal 1" size="lg">
+      <p>This is a simple large modal.</p>
+      <p>Click on the button below to open a nested modal.</p>
+      <btn type="info" @click="open2=true">Open Modal 2</btn>
+    </modal>
+    <modal v-model="open2" title="Modal 2" size="sm">
+      <p>This is a nested small modal.</p>
+    </modal>
+  </section>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        open1: false,
+        open2: false
+      }
+    }
+  }
+</script>
+<!-- modal-nested.vue -->
+```
+
+
 # API Reference
 
 ## [Modal.vue](https://github.com/wxsms/uiv/blob/release/src/components/modal/Modal.vue)
