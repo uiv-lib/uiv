@@ -237,6 +237,10 @@ Set `transition-duration` to `0` to disable modal animations.
 
 ## Nested Modals
 
+Modals can be **nested** since 0.15.
+
+Click on the button below to open the entry of a set of nested modals.
+
 ```html
 <template>
   <section>
