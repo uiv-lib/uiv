@@ -30,6 +30,10 @@ export const PLACEMENTS = {
   LEFT: 'left'
 }
 
+export function getComputedStyle (el) {
+  return window.getComputedStyle(el)
+}
+
 export function getViewportSize () {
   let width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
   let height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
@@ -257,7 +261,7 @@ export function setTooltipPosition (tooltip, trigger, placement, auto, appendToS
 export function hasScrollbar (el) {
   const SCROLL = 'scroll'
   const hasVScroll = el.scrollHeight > el.clientHeight
-  const style = window.getComputedStyle(el)
+  const style = getComputedStyle(el)
   return hasVScroll || style.overflow === SCROLL || style.overflowY === SCROLL
 }
 

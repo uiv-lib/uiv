@@ -1,10 +1,5 @@
 <template>
-  <div ref="modal"
-       class="modal"
-       :class="{fade:transitionDuration>0}"
-       tabindex="-1"
-       role="dialog"
-       @click="backdropClicked">
+  <div tabindex="-1" role="dialog" class="modal" :class="{fade:transitionDuration>0}" @click.self="backdropClicked">
     <div ref="dialog" class="modal-dialog" :class="modalSizeClass" role="document">
       <div class="modal-content">
         <div class="modal-header" v-if="header">
@@ -52,7 +47,8 @@
     removeFromDom,
     toggleBodyOverflow,
     addClass,
-    removeClass
+    removeClass,
+    getComputedStyle
   } from '../../utils/domUtils'
   import {isFunction} from '../../utils/objectUtils'
 
@@ -96,7 +92,11 @@
         type: Boolean,
         default: true
       },
-      beforeClose: Function
+      beforeClose: Function,
+      zOffset: {
+        type: Number,
+        default: 20
+      }
     },
     data () {
       return {
@@ -143,10 +143,11 @@
         this.$emit('input', show)
       },
       $toggle (show) {
-        let backdrop = this.$refs.backdrop
-        let modal = this.$refs.modal
+        const modal = this.$el
+        const backdrop = this.$refs.backdrop
         clearTimeout(this.timeoutId)
         if (show) {
+          const alreadyOpenModalNum = getOpenModalNum()
           document.body.appendChild(backdrop)
           modal.style.display = 'block'
           modal.scrollTop = 0
@@ -154,6 +155,16 @@
           toggleBodyOverflow(false)
           addClass(backdrop, IN)
           addClass(modal, IN)
+          // fix z-index for nested modals
+          // no need to calculate if no modal is already open
+          if (alreadyOpenModalNum > 0) {
+            const modalBaseZ = parseInt(getComputedStyle(modal).zIndex) || 1050 // 1050 is default modal z-Index
+            const backdropBaseZ = parseInt(getComputedStyle(backdrop).zIndex) || 1040 // 1040 is default backdrop z-Index
+            const offset = alreadyOpenModalNum * this.zOffset
+            modal.style.zIndex = `${modalBaseZ + offset}`
+            backdrop.style.zIndex = `${backdropBaseZ + offset}`
+          }
+          // z-index fix end
           this.timeoutId = setTimeout(() => {
             if (this.autoFocus) {
               let btn = this.$el.querySelector('[data-action="auto-focus"]')
@@ -176,11 +187,15 @@
             this.$emit('hide', this.msg || 'dismiss')
             this.msg = ''
             this.timeoutId = 0
+            // restore z-index for nested modals
+            modal.style.zIndex = ''
+            backdrop.style.zIndex = ''
+            // z-index fix end
           }, this.transitionDuration)
         }
       },
       backdropClicked (event) {
-        if (this.backdrop && this.$refs.modal === event.target) {
+        if (this.backdrop) {
           this.toggle(false)
         }
       }

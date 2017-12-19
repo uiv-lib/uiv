@@ -246,8 +246,12 @@ Set `transition-duration` to `0` to disable modal animations.
       <p>Click on the button below to open a nested modal.</p>
       <btn type="info" @click="open2=true">Open Modal 2</btn>
     </modal>
-    <modal v-model="open2" title="Modal 2" size="sm">
-      <p>This is a nested small modal.</p>
+    <modal v-model="open2" title="Modal 2">
+      <p>This is a nested modal.</p>
+      <btn type="info" @click="open3=true">Open Modal 3</btn>
+    </modal>
+    <modal v-model="open3" title="Modal 3" size="sm">
+      <p>This is another nested modal.</p>
     </modal>
   </section>
 </template>
@@ -256,7 +260,8 @@ Set `transition-duration` to `0` to disable modal animations.
     data () {
       return {
         open1: false,
-        open2: false
+        open2: false,
+        open3: false
       }
     }
   }
