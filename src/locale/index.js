@@ -7,7 +7,12 @@ let lang = defaultLang
 let i18nHandler = function () {
   const vuei18n = Object.getPrototypeOf(this).$t
   if (isFunction(vuei18n)) {
-    return vuei18n.apply(this, arguments)
+    try {
+      return vuei18n.apply(this, arguments)
+    } catch (err) {
+      //  vuei18n.apply doesn't work with 7.3.3 of vue-i18n
+      return this.$t(...arguments)
+    }
   }
 }
 
