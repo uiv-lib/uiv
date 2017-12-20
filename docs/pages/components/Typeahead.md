@@ -133,7 +133,7 @@ Force user to select from the options or the model will be empty.
 
 ## Async Query
 
-You can use simply use `async-src` to perform an AJAX query with built-in query function, or `async-function` for a custom one if you need more than that.
+You can simply use `async-src` to perform an AJAX query with built-in query function, or `async-function` for a custom one if you need more than that.
 
 **Note**: `ignore-case` and `match-start` won't work in async query mode.
 
