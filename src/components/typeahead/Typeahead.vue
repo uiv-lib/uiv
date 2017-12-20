@@ -59,6 +59,7 @@
       },
       asyncSrc: String,
       asyncKey: String,
+      asyncFunction: Function,
       debounce: {
         type: Number,
         default: 200
@@ -210,6 +211,18 @@
                 console.error(err)
                 this.$emit('loaded-error')
               })
+          }, debounce)
+        } else if (this.asyncFunction) {
+          const cb = (data) => {
+            if (this.inputEl.matches(':focus')) {
+              this.prepareItems(data, true)
+              this.open = Boolean(this.items.length)
+            }
+            this.$emit('loaded')
+          }
+          this.timeoutID = setTimeout(() => {
+            this.$emit('loading')
+            this.asyncFunction(value, cb)
           }, debounce)
         }
       },

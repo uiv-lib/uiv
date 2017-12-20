@@ -579,4 +579,29 @@ describe('Typeahead', () => {
     expect(dropdown.className).to.not.contain('open')
     vm.$destroy()
   })
+
+  it('should be able to use async-function and custom template', async () => {
+    const _vm = vm.$refs['typeahead-custom-template']
+    await vm.$nextTick()
+    const input = _vm.$el.querySelector('input')
+    const dropdown = _vm.$el.querySelector('.dropdown')
+    expect(dropdown.className).to.not.contain('open')
+    // matches don't work in here
+    const savedMatches = Element.prototype.matches
+    Element.prototype.matches = () => true
+    input.value = 'wxsm'
+    utils.triggerEvent(input, 'input')
+    await utils.sleep(600)
+    server.requests[3].respond(
+      200,
+      {'Content-Type': 'application/json'},
+      JSON.stringify({items: [{login: 'wxsms'}]})
+    )
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    expect(dropdown.querySelectorAll('li').length).to.equal(1)
+    const selected = dropdown.querySelector('li.active a span')
+    expect(selected.textContent).to.equal('wxsms')
+    Element.prototype.matches = savedMatches
+  })
 })
