@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^7.2.3",
+    "axios": "^0.17.1",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.0.3",
     "babel-loader": "^7.1.2",

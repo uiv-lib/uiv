@@ -133,7 +133,11 @@ Force user to select from the options or the model will be empty.
 
 ## Async Query
 
+You can use simply use `async-src` to perform an AJAX query with built-in query function, or `async-function` for a custom one if you need more than that.
+
 **Note**: `ignore-case` and `match-start` won't work in async query mode.
+
+An example using `async-src`:
 
 ```html
 <template>
@@ -167,12 +171,14 @@ Use the `item` scoped slot to override the typeahead item's template.
 * Use `props.select(item)` to select item.
 * (Optional) Use `props.highlight(item)` to highlight search keywords in item.
 
+An example with custom template and `async-function`:
+
 ```html
 <template>
   <section>
     <label for="input-5">Users of Github:</label>
     <input id="input-5" class="form-control" type="text" placeholder="Type to search...">
-    <typeahead v-model="model" target="#input-5" async-src="https://api.github.com/search/users?q=" async-key="items" item-key="login">
+    <typeahead v-model="model" target="#input-5" :async-function="queryFunction" item-key="login">
       <template slot="item" slot-scope="props">
         <li v-for="(item, index) in props.items" :class="{active:props.activeIndex===index}">
           <a role="button" @click="props.select(item)">
@@ -187,10 +193,23 @@ Use the `item` scoped slot to override the typeahead item's template.
   </section>
 </template>
 <script>
+  import axios from 'axios' // https://github.com/axios/axios
+
   export default {
     data () {
       return {
         model: ''
+      }
+    },
+    methods: {
+      queryFunction (query, done) {
+        axios.get('https://api.github.com/search/users?q=' + query)
+          .then(res => {
+            done(res.data.items)
+          })
+          .catch(err => {
+            // any error handler
+          })
       }
     }
   }
@@ -220,6 +239,7 @@ Name             | Type       | Default  | Required | Description
 `limit`          | Number     | 10       |          | Limit the options size.
 `async-src`      | String     |          |          | The ajax url to fetch data using GET method, query string will be append to the end of this prop value, should return JSON object or array.
 `async-key`      | String     |          |          | The async JSON key to render, leave blank to use the original json object (should be Array).
+`async-function` | Function   |          |          | The custom async query function with 2 params: `query` as the user input, and `done` as the callback function with array data (note that `async-key` won't work with this). See the example in Custom Template section for details.
 `debounce`       | Number     | 200      |          | Debounce the input for specify milliseconds while in async mode.
 
 ### Slots
