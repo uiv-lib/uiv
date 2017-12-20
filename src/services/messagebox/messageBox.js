@@ -1,18 +1,17 @@
 import {TYPES} from './constants'
 import {removeFromDom} from '../../utils/domUtils'
+import {spliceIfExist} from '../../utils/arrayUtils'
 import {isFunction, isExist, isString, isPromiseSupported} from '../../utils/objectUtils'
 import MessageBox from './MessageBox.vue'
 import Vue from 'vue'
 
-let instance
+const queue = []
 
-const destroyModal = () => {
-  if (instance) {
-    // console.log('destroyModal')
-    removeFromDom(instance.$el)
-    instance.$destroy()
-    instance = null
-  }
+const destroy = (instance) => {
+  // console.log('destroyModal')
+  removeFromDom(instance.$el)
+  instance.$destroy()
+  spliceIfExist(queue, instance)
 }
 
 // handel cancel or ok for confirm & prompt
@@ -27,16 +26,15 @@ const shallResolve = (type, msg) => {
 }
 
 const init = function (type, options, cb, resolve = null, reject = null) {
-  destroyModal()
   const i18n = this.$i18n
-  instance = new Vue({
+  const instance = new Vue({
     extends: MessageBox,
     i18n,
     propsData: {
       type,
       ...options,
       cb (msg) {
-        destroyModal()
+        destroy(instance)
         if (isFunction(cb)) {
           if (type === TYPES.CONFIRM) {
             shallResolve(type, msg) ? cb(null, msg) : cb(msg)
@@ -60,6 +58,7 @@ const init = function (type, options, cb, resolve = null, reject = null) {
   instance.$mount()
   document.body.appendChild(instance.$el)
   instance.show = true
+  queue.push(instance)
 }
 
 const initModal = function (type, options = {}, cb) {

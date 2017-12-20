@@ -18,6 +18,92 @@ describe('Modal', () => {
     vm.$destroy()
     $el.remove()
     $('.alert').remove()
+    $('.modal-backdrop').remove()
+  })
+
+  const getBackdropsNum = () => $('.modal-backdrop').length
+  const expectBodyOverflow = (enable) => {
+    if (enable) {
+      expect(document.body.style.paddingRight).to.equal('')
+      expect(document.body.className).not.contain('modal-open')
+    } else {
+      expect(document.body.style.paddingRight).to.contain(`px`)
+      expect(document.body.className).to.contain('modal-open')
+    }
+  }
+
+  it('should be able to use nested modals', async () => {
+    // enable body with overflow-y
+    document.body.style.height = '9999px'
+    const _vm = vm.$refs['modal-nested']
+    await vm.$nextTick()
+    const _$el = $(_vm.$el)
+    const modal1 = _$el.find('.modal').get(0)
+    const modal2 = _$el.find('.modal').get(1)
+    const modal3 = _$el.find('.modal').get(2)
+    const trigger = _$el.find('.btn').get(0)
+    const trigger2 = _$el.find('.modal .modal-body .btn').get(0)
+    const trigger3 = _$el.find('.modal .modal-body .btn').get(1)
+    expect(getBackdropsNum()).to.equal(0)
+    // open modal 1
+    trigger.click()
+    await utils.sleep(utils.transitionDuration)
+    expect(modal1.className).to.contain('in')
+    expect(modal2.className).not.contain('in')
+    expect(modal3.className).not.contain('in')
+    expect(getBackdropsNum()).to.equal(1)
+    expect(modal1.style.zIndex).to.equal('')
+    expect($('.modal-backdrop').get(0).style.zIndex).to.equal('')
+    expectBodyOverflow(false)
+    // open modal 2
+    trigger2.click()
+    await utils.sleep(utils.transitionDuration)
+    expect(modal1.className).to.contain('in')
+    expect(modal2.className).to.contain('in')
+    expect(modal3.className).not.contain('in')
+    expect(getBackdropsNum()).to.equal(2)
+    expect(modal2.style.zIndex).to.equal('1070')
+    expect($('.modal-backdrop').get(1).style.zIndex).to.equal('1060')
+    expectBodyOverflow(false)
+    // open modal 3
+    trigger3.click()
+    await utils.sleep(utils.transitionDuration)
+    expect(modal1.className).to.contain('in')
+    expect(modal2.className).to.contain('in')
+    expect(modal3.className).to.contain('in')
+    expect(getBackdropsNum()).to.equal(3)
+    expect(modal3.style.zIndex).to.equal('1090')
+    expect($('.modal-backdrop').get(2).style.zIndex).to.equal('1080')
+    expectBodyOverflow(false)
+    // dismiss modal 3
+    modal3.querySelector('.btn-primary').click()
+    await utils.sleep(utils.transitionDuration)
+    expect(modal1.className).to.contain('in')
+    expect(modal2.className).to.contain('in')
+    expect(modal3.className).not.contain('in')
+    expect(getBackdropsNum()).to.equal(2)
+    // body overflow should be still disabled, because modal 1 & 2 is still open
+    expectBodyOverflow(false)
+    // dismiss modal 2
+    modal2.querySelector('.btn-primary').click()
+    await utils.sleep(utils.transitionDuration)
+    expect(modal1.className).to.contain('in')
+    expect(modal2.className).not.contain('in')
+    expect(modal3.className).not.contain('in')
+    expect(getBackdropsNum()).to.equal(1)
+    // body overflow should be still disabled, because modal 1 is still open
+    expectBodyOverflow(false)
+    // dismiss modal 1
+    modal1.querySelector('.btn-primary').click()
+    await utils.sleep(utils.transitionDuration)
+    expect(modal1.className).not.contain('in')
+    expect(modal2.className).not.contain('in')
+    expect(modal3.className).not.contain('in')
+    expect(getBackdropsNum()).to.equal(0)
+    // body overflow should be enable now
+    expectBodyOverflow(true)
+    // reset body height
+    document.body.style.height = ''
   })
 
   it('should be able to open modal 1', async () => {
