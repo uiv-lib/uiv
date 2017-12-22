@@ -31,7 +31,7 @@ const install = (Vue, options = {}) => {
 // auto install
 try {
   if (isExist(window) && window.Vue) {
-    install(window.Vue)
+    install(window.Vue, window.__uiv_options || {})
   }
 } catch (err) {
   // ignore

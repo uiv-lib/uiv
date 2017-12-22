@@ -112,6 +112,7 @@ These will simply load the latest `uiv.min.js` into your page. For detail usages
 </div>
 <script>
   // No need to install uiv, we already do this for you after script loaded.
+  // Define `window.__uiv_options` before script loaded if you need install options.
   new Vue().$mount('#app')
 </script>
 </body>
