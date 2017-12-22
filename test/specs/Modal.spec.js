@@ -318,13 +318,32 @@ describe('Modal', () => {
           open: true
         }
       },
-      components: {Modal},
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(vm.$el.className).to.contain('in')
+    expect(vm.$el.querySelector('.close')).to.exist
+    $(vm.$el).remove()
+    vm.$destroy()
+  })
+
+  it('should be able to hide dismiss btn', async () => {
+    const res = Vue.compile('<modal v-model="open" title="Modal 1" :dismiss-btn="false"><p>This is a simple modal.</p></modal>')
+    const vm = new Vue({
+      data () {
+        return {
+          open: true
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(vm.$el.className).to.contain('in')
+    expect(vm.$el.querySelector('.close')).not.exist
     $(vm.$el).remove()
     vm.$destroy()
   })

@@ -288,6 +288,7 @@ Name                  | Type       | Default  | Required | Description
 `backdrop`            | Boolean    | true     |          | Dismiss the modal by backdrop click.
 `footer`              | Boolean    | true     |          | Show modal footer.
 `header`              | Boolean    | true     |          | Show modal header.
+`dismiss-btn`         | Boolean    | true     |          | Display the dismiss button in header.
 `cancel-text`         | String     |          |          | Override the text of cancel button.
 `ok-text`             | String     |          |          | Override the text of ok button.
 `transition-duration` | Number     | 150      |          | Transition time of the modal, set to 0 to disable animation.

@@ -9,7 +9,8 @@
               class="close"
               aria-label="Close"
               @click="toggle(false)"
-              style="position: relative;z-index: 1060">
+              style="position: relative;z-index: 1060"
+              v-if="dismissBtn">
               <!-- 1060 is bigger than dialog z-index 1050 because it got cover by title sometimes -->
               <span aria-hidden="true">×</span>
             </button>
@@ -80,6 +81,10 @@
       },
       cancelText: String,
       okText: String,
+      dismissBtn: {
+        type: Boolean,
+        default: true
+      },
       transitionDuration: {
         type: Number,
         default: 150
