@@ -17,6 +17,9 @@
         <a href="https://www.npmjs.com/package/uiv">
           <img src="https://img.shields.io/npm/v/uiv.svg" alt="NPM Version">
         </a>
+        <a href="https://cdnjs.com/libraries/uiv">
+          <img src="https://img.shields.io/cdnjs/v/uiv.svg" alt="CDNJS Version">
+        </a>
         <a href="https://github.com/wxsms/uiv">
           <img src="https://img.shields.io/github/license/wxsms/uiv.svg" alt="License">
         </a>
