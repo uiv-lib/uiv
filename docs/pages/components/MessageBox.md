@@ -2,8 +2,6 @@
 
 > A set of modal boxes simulating system message box, mainly for alerting information, confirm operations and prompting messages.
 
-(0.14.1+)
-
 By design MessageBox provides simulations of browsers' `alert`, `confirm` and `prompt`. Use Modal instead if needed more complicated contents.
 
 ## Alert
@@ -14,7 +12,7 @@ An alert example using callback:
 
 ```html
 <template>
-  <btn @click="alert">Click to open an alert modal</btn>
+  <btn @click="alert" type="primary">Click to open an alert modal</btn>
 </template>
 <script>
   export default {
@@ -42,7 +40,7 @@ A confirm example using `Promise`:
 
 ```html
 <template>
-  <btn @click="confirm">Click to open a confirm modal</btn>
+  <btn @click="confirm" type="primary">Click to open a confirm modal</btn>
 </template>
 <script>
   export default {
@@ -74,7 +72,7 @@ Displays a dialog with an optional message prompting the user to input some text
 
 ```html
 <template>
-  <btn @click="confirm">Click to open a prompt modal</btn>
+  <btn @click="confirm" type="primary">Click to open a prompt modal</btn>
 </template>
 <script>
   export default {

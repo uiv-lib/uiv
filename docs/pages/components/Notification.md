@@ -2,8 +2,6 @@
 
 > Displays a global notification message at a corner of the page.
 
-(0.14.1+)
-
 ## Example
 
 Click on the button below to show a notification. By default, it is dismissible with a close button, and will dismiss automatically after 5000ms (both are configurable).
