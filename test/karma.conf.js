@@ -24,7 +24,7 @@ module.exports = function (config) {
       }
     },
     frameworks: ['mocha', 'sinon-chai'],
-    reporters: ['spec', 'coverage'],
+    reporters: ['spec', 'coverage-istanbul'],
     files: ['./index.js'],
     singleRun: true,
     preprocessors: {
@@ -34,12 +34,16 @@ module.exports = function (config) {
     webpackMiddleware: {
       noInfo: true
     },
-    coverageReporter: {
-      dir: './coverage',
-      reporters: [
-        {type: 'lcovonly', subdir: '.'},
-        {type: 'text-summary'}
-      ]
+    coverageIstanbulReporter: {
+      reports: ['lcov', 'text-summary'],
+      dir: path.join(__dirname, 'coverage'),
+      fixWebpackSourcePaths: true,
+      skipFilesWithNoCoverage: true,
+      'report-config': {
+        lcov: {
+          subdir: '.'
+        }
+      }
     },
     client: {
       useIframe: false // Page scroll not working without this!!!
