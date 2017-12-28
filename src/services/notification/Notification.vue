@@ -1,6 +1,7 @@
 <template>
   <alert
     class="fade"
+    :class="customClass"
     :style="styles"
     :type="type"
     :duration="duration"
@@ -54,6 +55,7 @@
       type: String,
       placement: String,
       icon: String,
+      customClass: null,
       cb: {
         type: Function,
         required: true

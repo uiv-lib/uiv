@@ -297,4 +297,16 @@ describe('Notification', () => {
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.alert')).not.exist
   })
+
+  it('should be able to work with `custom-class`', async () => {
+    Notification.notify({title: 'test', type: 'danger', customClass: 'test-class'})
+    await utils.sleep(utils.transitionDuration)
+    const alert = document.querySelector('.alert')
+    expect(alert).to.exist
+    expect(alert.className).to.contain('test-class')
+    expect(alert.className).to.contain('alert-danger')
+    alert.querySelector('button.close').click()
+    await utils.sleep(utils.transitionDuration)
+    expect(document.querySelector('.alert')).not.exist
+  })
 })

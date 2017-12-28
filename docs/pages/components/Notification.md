@@ -183,6 +183,7 @@ Name           | Type       | Default   | Required | Description
 `dismissible`  | Boolean    | true      |          | Show dismiss button.
 `placement`    | String     | top-right |          | Support: `top-right` / `top-left` / `bottom-right` / `bottom-left`.
 `icon`         | String     |           |          | Custom icon class, use an empty string to disable icon.
+`custom-class` |            |           |          | Custom classes to alert, anything that can work with `v-bind:class` or `:class`.
 
 ## [notification.js](https://github.com/wxsms/uiv/blob/release/src/services/notification/notification.js)
 

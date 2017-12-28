@@ -26,8 +26,8 @@ const init = (options, cb, resolve = null, reject = null) => {
   if (!isExist(queue)) {
     return
   }
-  const Constructor = Vue.extend(Notification)
-  let instance = new Constructor({
+  let instance = new Vue({
+    extends: Notification,
     propsData: {
       queue,
       placement,
