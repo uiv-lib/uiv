@@ -11,7 +11,8 @@
     :ok-text="okText"
     :class="customClass"
     @hide="cb">
-    <p>{{content}}</p>
+    <div v-if="html" v-html="content"></div>
+    <p v-else>{{content}}</p>
     <div v-if="type===TYPES.PROMPT">
       <div class="form-group" :class="{'has-error':inputNotValid}">
         <input
@@ -53,6 +54,10 @@
       backdrop: null,
       title: String,
       content: String,
+      html: {
+        type: Boolean,
+        default: false
+      },
       okText: String,
       okType: {
         type: String,

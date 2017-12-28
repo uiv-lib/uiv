@@ -315,4 +315,33 @@ describe('MessageBox', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
   })
+
+  it('should not be able to use HTML content if html=false', async () => {
+    MessageBox.alert({
+      content: '<a href="#" id="test-a">test</a>'
+    })
+    await utils.sleep(utils.transitionDuration)
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal').className).to.contain('in')
+    expect(document.querySelector('.modal #test-a')).not.exist
+    document.querySelector('.modal .btn').click()
+    await utils.sleep(utils.transitionDuration)
+    expect(document.querySelector('.modal-backdrop')).not.exist
+    expect(document.querySelector('.modal')).not.exist
+  })
+
+  it('should be able to use HTML content', async () => {
+    MessageBox.alert({
+      html: true,
+      content: '<a href="#" id="test-a">test</a>'
+    })
+    await utils.sleep(utils.transitionDuration)
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal').className).to.contain('in')
+    expect(document.querySelector('.modal #test-a')).to.exist
+    document.querySelector('.modal .btn').click()
+    await utils.sleep(utils.transitionDuration)
+    expect(document.querySelector('.modal-backdrop')).not.exist
+    expect(document.querySelector('.modal')).not.exist
+  })
 })

@@ -178,6 +178,7 @@ Name           | Type       | Default   | Required | Description
 ----------     | ---------- | --------  | -------- | -----------------------
 `title`        | String     |           |          | The notification title.
 `content`      | String     |           |          | The notification content.
+`html`         | Boolean    | `false`   |          | Allow HTML in content.
 `type`         | String     |           |          | Support: `info` / `success` / `warning` / `danger`.
 `duration`     | Number     | 5000      |          | Dismiss after milliseconds, use 0 to prevent self-closing.
 `dismissible`  | Boolean    | true      |          | Show dismiss button.

@@ -13,7 +13,8 @@
       </div>
       <div class="media-body">
         <div class="media-heading" v-if="title"><b>{{title}}</b></div>
-        <div>{{content}}</div>
+        <div v-if="html" v-html="content"></div>
+        <div v-else>{{content}}</div>
       </div>
     </div>
   </alert>
@@ -44,6 +45,10 @@
     props: {
       title: String,
       content: String,
+      html: {
+        type: Boolean,
+        default: false
+      },
       duration: {
         type: Number,
         default: 5000

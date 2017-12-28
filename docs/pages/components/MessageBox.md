@@ -151,6 +151,7 @@ Name             | Type       | Default  | Required | Description
 `size`           | String     | sm       |          | The alternative modal sizes. Support: `lg` / `md` / `sm`.
 `title`          | String     |          |          | The modal title.
 `content`        | String     |          |          | The modal content.
+`html`           | Boolean    | `false`  |          | Allow HTML in content.
 `ok-text`        | String     |          |          | Text of ok button.
 `ok-type`        | String     | primary  |          | Button type of ok button.
 `cancel-text`    | String     |          |          | Text of cancel button.

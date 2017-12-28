@@ -309,4 +309,33 @@ describe('Notification', () => {
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.alert')).not.exist
   })
+
+  it('should not be able to use HTML content if html=false', async () => {
+    Notification.notify({
+      title: 'test',
+      content: '<a href="#" id="test-a">test</a>'
+    })
+    await utils.sleep(utils.transitionDuration)
+    const alert = document.querySelector('.alert')
+    expect(alert).to.exist
+    expect(alert.querySelector('#test-a')).not.exist
+    alert.querySelector('button.close').click()
+    await utils.sleep(utils.transitionDuration)
+    expect(document.querySelector('.alert')).not.exist
+  })
+
+  it('should be able to use HTML content', async () => {
+    Notification.notify({
+      title: 'test',
+      html: true,
+      content: '<a href="#" id="test-a">test</a>'
+    })
+    await utils.sleep(utils.transitionDuration)
+    const alert = document.querySelector('.alert')
+    expect(alert).to.exist
+    expect(alert.querySelector('#test-a')).to.exist
+    alert.querySelector('button.close').click()
+    await utils.sleep(utils.transitionDuration)
+    expect(document.querySelector('.alert')).not.exist
+  })
 })
