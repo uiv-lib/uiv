@@ -271,9 +271,11 @@ export function toggleBodyOverflow (enable) {
   if (enable) {
     removeClass(body, MODAL_OPEN)
     body.style.paddingRight = null
-  } else if (hasScrollbar(document.documentElement) || hasScrollbar(document.body)) {
-    addClass(body, MODAL_OPEN)
-    body.style.paddingRight = `${getScrollbarWidth()}px`
+  } else {
+    addClass(body, MODAL_OPEN);
+    if (hasScrollbar(document.documentElement) || hasScrollbar(document.body)) {
+      body.style.paddingRight = `${getScrollbarWidth()}px`;
+    }
   }
 }
 
