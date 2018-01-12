@@ -141,6 +141,24 @@ All input methods are all disabled in readonly mode.
 <!-- time-picker-icons-example.vue -->
 ```
 
+## Empty fields
+
+```html
+<template>
+  <time-picker v-model="time"/>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        time: new Date('')
+      }
+    }
+  }
+</script>
+<!-- time-picker-empty-fields-example.vue -->
+```
+
 
 # API Reference
 
