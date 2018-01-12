@@ -141,7 +141,7 @@
       },
       toggle (show, msg) {
         // skip the hiding while show===false & beforeClose returning falsely value
-        if (!show && isFunction(this.beforeClose) && !this.beforeClose()) {
+        if (!show && isFunction(this.beforeClose) && !this.beforeClose(msg)) {
           return
         }
         this.msg = msg
