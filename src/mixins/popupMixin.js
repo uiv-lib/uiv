@@ -46,6 +46,10 @@ export default {
       type: Boolean,
       default: true
     },
+    enterable: {
+      type: Boolean,
+      default: true
+    },
     target: null
   },
   data () {
@@ -164,14 +168,9 @@ export default {
       setTooltipPosition(popup, this.triggerEl, this.placement, this.autoPlacement, this.appendTo)
       popup.offsetHeight
     },
-    showOnHover () {
-      if (this.trigger === TRIGGERS.HOVER || this.trigger === TRIGGERS.HOVER_FOCUS) {
-        this.show()
-      }
-    },
     hideOnLeave () {
       if (this.trigger === TRIGGERS.HOVER || (this.trigger === TRIGGERS.HOVER_FOCUS && !this.triggerEl.matches(':focus'))) {
-        this.hide()
+        this.$hide()
       }
     },
     toggle () {
@@ -199,6 +198,20 @@ export default {
       }
     },
     hide () {
+      if (!this.isShown()) {
+        return
+      }
+      if (this.enterable && (this.trigger === TRIGGERS.HOVER || this.trigger === TRIGGERS.HOVER_FOCUS)) {
+        setTimeout(() => {
+          if (!this.$refs.popup.matches(':hover')) {
+            this.$hide()
+          }
+        }, 100)
+      } else {
+        this.$hide()
+      }
+    },
+    $hide () {
       if (this.isShown()) {
         clearTimeout(this.timeoutId)
         removeClass(this.$refs.popup, SHOW_CLASS)

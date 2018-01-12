@@ -21,7 +21,6 @@
                 role: 'tooltip'
               },
               on: {
-                mouseenter: this.showOnHover,
                 mouseleave: this.hideOnLeave
               }
             },

@@ -129,6 +129,7 @@ Name                  | Type       | Default       | Required | Description
 `tag`                 | String     | span          |          | The HTML tag that render the component.
 `text`                | String     |               |          | The tooltip text.
 `enable`              | Boolean    | true          |          | Enable the tooltip.
+`enterable`           | Boolean    | true          |          | Whether mouse can enter the tooltip.
 `placement`           | String     | top           |          | The tooltip placement, support `top` / `bottom` / `left` / `right`.
 `auto-placement`      | Boolean    | true          |          | Try to auto adjust the placement if the set one does not have enough space to show.
 `trigger`             | String     | hover-focus   |          | The tooltip trigger event, support `hover` / `focus` / `hover-focus` / `click` / `outside-click` / `manual`

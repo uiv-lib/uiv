@@ -147,6 +147,7 @@ Name                  | Type       | Default       | Required | Description
 `title`               | String     |               |          | The popover title.
 `content`             | String     |               |          | The popover content text. Use `popover` slot instead if you need full control.
 `enable`              | Boolean    | true          |          | Enable the popover.
+`enterable`           | Boolean    | true          |          | Whether mouse can enter the popover.
 `placement`           | String     | top           |          | The popover placement, support `top` / `bottom` / `left` / `right`.
 `auto-placement`      | Boolean    | true          |          | Try to auto adjust the placement if the set one does not have enough space to show.
 `trigger`             | String     | outside-click |          | The popover trigger event, support `hover` / `focus` / `hover-focus` / `click` / `outside-click` / `manual`

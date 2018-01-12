@@ -42,7 +42,7 @@ describe('Popover', () => {
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     $(_vm.$el).remove()
     $('.popover').remove()
@@ -63,32 +63,32 @@ describe('Popover', () => {
     await _vm.$nextTick()
     const trigger = _vm.$el
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     let popover = document.querySelector('.popover')
     expect(popover).to.exist
     expect(popover.querySelector('.popover-title').innerText).to.equal('title')
     expect(popover.querySelector('.popover-content').innerText).to.equal('content')
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     // this should work
     _vm.msg = {title: 'title2', content: 'content2'}
     await _vm.$nextTick()
     await _vm.$nextTick()
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     popover = document.querySelector('.popover')
     expect(popover).to.exist
     expect(popover.querySelector('.popover-title').innerText).to.equal('title2')
     expect(popover.querySelector('.popover-content').innerText).to.equal('content2')
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     // this should not work
     _vm.$set(_vm.msg, 'title', 'title3')
     await _vm.$nextTick()
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     popover = document.querySelector('.popover')
     expect(popover).to.exist
     expect(popover.querySelector('.popover-title').innerText).to.equal('title2')
@@ -111,13 +111,13 @@ describe('Popover', () => {
     await _vm.$nextTick()
     const trigger = _vm.$el
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     const popover = document.querySelector('.popover')
     expect(popover).to.exist
     expect(popover.querySelector('.popover-title').innerText).to.equal('title')
     expect(popover.querySelector('.popover-content').innerText).to.equal('content')
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     _vm.$destroy()
   })
@@ -134,7 +134,7 @@ describe('Popover', () => {
       render: res.render,
       staticRenderFns: res.staticRenderFns
     }).$mount()
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     $(_vm.$el).remove()
     $('.popover').remove()
@@ -160,7 +160,7 @@ describe('Popover', () => {
     await _vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     utils.triggerEvent(_vm.btn, 'focus')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     $el.remove()
     $('.popover').remove()
@@ -172,10 +172,10 @@ describe('Popover', () => {
     await vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     utils.triggerEvent(_vm.$el.querySelector('button'), 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     utils.triggerEvent(_vm.$el.querySelector('button'), 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
@@ -183,10 +183,10 @@ describe('Popover', () => {
     const _vm = vm.$refs['popover-manual-trigger']
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     _vm.show = true
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     _vm.show = false
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
@@ -199,11 +199,11 @@ describe('Popover', () => {
     Element.prototype.matches = () => true
     const trigger = _vm.$el.querySelectorAll('button')[3]
     utils.triggerEvent(trigger, 'focus')
-    await utils.sleep(200)
+    await utils.sleep(300)
     Element.prototype.matches = savedMatches
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     utils.triggerEvent(trigger, 'blur')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
@@ -213,10 +213,10 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     const trigger = _vm.$el.querySelectorAll('button')[4]
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
@@ -226,14 +226,10 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     const trigger = _vm.$el.querySelectorAll('button')[1]
     utils.triggerEvent(trigger, 'mouseenter')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     utils.triggerEvent(trigger, 'mouseleave')
-    utils.triggerEvent(document.querySelector('.popover'), 'mouseenter')
-    await utils.sleep(200)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
-    utils.triggerEvent(document.querySelector('.popover'), 'mouseleave')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
@@ -245,12 +241,12 @@ describe('Popover', () => {
     utils.triggerEvent(button, 'click')
     utils.triggerEvent(button, 'click')
     utils.triggerEvent(button, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     utils.triggerEvent(button, 'click')
     utils.triggerEvent(button, 'click')
     utils.triggerEvent(button, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
@@ -260,10 +256,10 @@ describe('Popover', () => {
     await vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     utils.triggerEvent(button, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     document.body.click()
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
@@ -272,7 +268,7 @@ describe('Popover', () => {
     await vm.$nextTick()
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     utils.triggerEvent(_vm.$el.querySelector('button'), 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
@@ -282,11 +278,11 @@ describe('Popover', () => {
     const trigger = _vm.$el.querySelector('button')
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     expect(document.querySelector('.popover .popover-title').style.display).to.equal('none')
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
@@ -296,12 +292,12 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     const trigger = _vm.$el.querySelectorAll('button')[1]
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     const popover = document.querySelector('.popover')
     expect(popover).to.exist
     expect(popover.className).to.contain('top')
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
@@ -311,12 +307,12 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     const trigger = _vm.$el.querySelectorAll('button')[2]
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     const popover = document.querySelector('.popover')
     expect(popover).to.exist
     expect(popover.className).to.contain('bottom')
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
@@ -326,12 +322,12 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     const trigger = _vm.$el.querySelectorAll('button')[0]
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     const popover = document.querySelector('.popover')
     expect(popover).to.exist
     expect(popover.className).to.contain('left')
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
@@ -341,12 +337,12 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     const trigger = _vm.$el.querySelectorAll('button')[3]
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     const popover = document.querySelector('.popover')
     expect(popover).to.exist
     expect(popover.className).to.contain('right')
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
@@ -367,15 +363,15 @@ describe('Popover', () => {
     await _vm.$nextTick()
     const trigger = _vm.$el.querySelector('button')
     utils.triggerEvent(trigger, 'focus')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     _vm.trigger = 'click'
     await _vm.$nextTick()
     utils.triggerEvent(trigger, 'blur')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     $el.remove()
     _vm.$destroy()
@@ -400,7 +396,7 @@ describe('Popover', () => {
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('button')
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     expect(document.querySelector('.popover-content').innerText).to.equal('text2')
     const topBefore = document.querySelector('.popover').style.top
@@ -412,7 +408,7 @@ describe('Popover', () => {
     const topAfter = document.querySelector('.popover').style.top
     expect(topAfter).not.equal(topBefore)
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     vm.msg = ''
     await vm.$nextTick()

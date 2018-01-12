@@ -41,7 +41,7 @@ describe('Tooltip', () => {
     $el.appendTo('body')
     await vm.$nextTick()
     utils.triggerEvent(vm.$el.querySelector('button'), 'focus')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(tag.querySelector('.tooltip')).to.exist
     $el.remove()
     vm.$destroy()
@@ -81,7 +81,7 @@ describe('Tooltip', () => {
     }).$mount()
     const $el = $(vm.$el)
     $el.appendTo('body')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
     $el.remove()
     vm.$destroy()
@@ -101,7 +101,7 @@ describe('Tooltip', () => {
     }).$mount()
     const $el = $(vm.$el)
     $el.appendTo('body')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     $el.remove()
     vm.$destroy()
@@ -127,7 +127,7 @@ describe('Tooltip', () => {
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     utils.triggerEvent(vm.btn, 'focus')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
     $el.remove()
     vm.$destroy()
@@ -148,30 +148,30 @@ describe('Tooltip', () => {
     await vm.$nextTick()
     const trigger = vm.$el
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     let tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title')
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     // this should work
     vm.msg = 'title2'
     await vm.$nextTick()
     await vm.$nextTick()
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title2')
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     // this should not work
     vm.test = 'test2'
     await vm.$nextTick()
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title2')
@@ -193,12 +193,12 @@ describe('Tooltip', () => {
     await vm.$nextTick()
     const trigger = vm.$el
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     const tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title')
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     vm.$destroy()
   })
@@ -212,38 +212,21 @@ describe('Tooltip', () => {
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     utils.triggerEvent(trigger, 'focus')
-    await utils.sleep(200)
+    await utils.sleep(300)
     Element.prototype.matches = savedMatches
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
     utils.triggerEvent(trigger, 'blur')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
   it('should be able to change trigger to manual', async () => {
     const _vm = vm.$refs['tooltip-manual-trigger']
     _vm.show = true
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
     _vm.show = false
-    await utils.sleep(200)
-    expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-  })
-
-  it('should be able to keep tooltip show on hover if using hover trigger', async () => {
-    const _vm = vm.$refs['tooltip-triggers']
-    await vm.$nextTick()
-    expect(document.querySelectorAll('.tooltip').length).to.equal(0)
-    const trigger = _vm.$el.querySelectorAll('button')[1]
-    utils.triggerEvent(trigger, 'mouseenter')
-    await utils.sleep(200)
-    expect(document.querySelectorAll('.tooltip').length).to.equal(1)
-    utils.triggerEvent(trigger, 'mouseleave')
-    utils.triggerEvent(document.querySelector('.tooltip'), 'mouseenter')
-    await utils.sleep(200)
-    expect(document.querySelectorAll('.tooltip').length).to.equal(1)
-    utils.triggerEvent(document.querySelector('.tooltip'), 'mouseleave')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
@@ -255,12 +238,12 @@ describe('Tooltip', () => {
     utils.triggerEvent(button, 'click')
     utils.triggerEvent(button, 'click')
     utils.triggerEvent(button, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
     utils.triggerEvent(button, 'click')
     utils.triggerEvent(button, 'click')
     utils.triggerEvent(button, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
@@ -269,10 +252,10 @@ describe('Tooltip', () => {
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     utils.triggerEvent(_vm.$el.querySelectorAll('button')[3], 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
     utils.triggerEvent(_vm.$el.querySelectorAll('button')[3], 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
@@ -282,10 +265,10 @@ describe('Tooltip', () => {
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     utils.triggerEvent(button, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
     document.body.click()
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
@@ -296,7 +279,7 @@ describe('Tooltip', () => {
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     utils.triggerEvent(_vm.$el.querySelector('button'), 'focus')
-    await utils.sleep(200)
+    await utils.sleep(300)
     Element.prototype.matches = savedMatches
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
@@ -309,13 +292,13 @@ describe('Tooltip', () => {
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     utils.triggerEvent(trigger, 'focus')
-    await utils.sleep(200)
+    await utils.sleep(300)
     Element.prototype.matches = savedMatches
     const tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.className).to.contain('top')
     utils.triggerEvent(trigger, 'blur')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
@@ -327,13 +310,13 @@ describe('Tooltip', () => {
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     utils.triggerEvent(trigger, 'focus')
-    await utils.sleep(200)
+    await utils.sleep(300)
     Element.prototype.matches = savedMatches
     const tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.className).to.contain('bottom')
     utils.triggerEvent(trigger, 'blur')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
@@ -345,13 +328,13 @@ describe('Tooltip', () => {
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     utils.triggerEvent(trigger, 'focus')
-    await utils.sleep(200)
+    await utils.sleep(300)
     Element.prototype.matches = savedMatches
     const tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.className).to.contain('left')
     utils.triggerEvent(trigger, 'blur')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
@@ -363,13 +346,13 @@ describe('Tooltip', () => {
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     utils.triggerEvent(trigger, 'focus')
-    await utils.sleep(200)
+    await utils.sleep(300)
     Element.prototype.matches = savedMatches
     const tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.className).to.contain('right')
     utils.triggerEvent(trigger, 'blur')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
@@ -390,15 +373,15 @@ describe('Tooltip', () => {
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('button')
     utils.triggerEvent(trigger, 'focus')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
     vm.trigger = 'click'
     await vm.$nextTick()
     utils.triggerEvent(trigger, 'blur')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     $el.remove()
     vm.$destroy()
@@ -424,7 +407,7 @@ describe('Tooltip', () => {
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('button')
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
     expect(document.querySelector('.tooltip-inner').innerText).to.equal('text2')
     const topBefore = document.querySelector('.tooltip').style.top
@@ -437,7 +420,7 @@ describe('Tooltip', () => {
     expect(topAfter).not.equal(topBefore)
     vm.msg = ''
     await vm.$nextTick()
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     await vm.$nextTick()
     $el.remove()
@@ -462,16 +445,16 @@ describe('Tooltip', () => {
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('button')
     utils.triggerEvent(trigger, 'click')
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
     vm.enable = false
     await vm.$nextTick()
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     await vm.$nextTick()
     vm.enable = true
     await vm.$nextTick()
-    await utils.sleep(200)
+    await utils.sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     await vm.$nextTick()
     $el.remove()
