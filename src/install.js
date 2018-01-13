@@ -2,7 +2,6 @@ import * as components from './components'
 import * as directives from './directives'
 import * as services from './services'
 import locale from './locale'
-import {isExist} from './utils/objectUtils'
 
 const install = (Vue, options = {}) => {
   // Setup language, en-US for default
@@ -26,15 +25,6 @@ const install = (Vue, options = {}) => {
       Vue.prototype['$' + _key] = service[serviceKey]
     })
   })
-}
-
-// auto install
-try {
-  if (isExist(window) && window.Vue) {
-    install(window.Vue, window.__uiv_options || {})
-  }
-} catch (err) {
-  // ignore
 }
 
 export {install}

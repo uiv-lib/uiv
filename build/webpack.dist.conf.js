@@ -22,7 +22,7 @@ for (let i = 0; i < rules.length; i++) {
 
 let webpackConfig = {
   entry: {
-    app: './src/index.js'
+    app: './src/index-browser.js'
   },
   externals: {
     vue: {
