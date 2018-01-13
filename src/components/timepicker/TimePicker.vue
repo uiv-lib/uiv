@@ -167,7 +167,13 @@
     },
     methods: {
       updateByValue (value) {
+        let hoursWillBeEmpty = false
+        let minutesWillBeEmpty = false
         this.hours = value.getHours()
+        if (isNaN(this.hours)) {
+          hoursWillBeEmpty = true
+          this.hours = 0
+        }
         if (!this.showMeridian) {
           this.hoursText = pad(this.hours, 2)
         } else {
@@ -188,7 +194,15 @@
           }
         }
         this.minutes = value.getMinutes()
+        if (isNaN(this.minutes)) {
+          minutesWillBeEmpty = true
+          this.minutes = 0
+        }
         this.minutesText = pad(this.minutes, 2)
+        if (hoursWillBeEmpty && minutesWillBeEmpty) {
+          this.hoursText = ''
+          this.minutesText = ''
+        }
       },
       addHour (step) {
         step = step || this.hourStep
@@ -245,6 +259,11 @@
       },
       setTime () {
         let time = this.value
+        if (isNaN(this.value.getTime())) {
+          time = new Date()
+          time.setHours(0)
+          time.setMinutes(0)
+        }
         time.setHours(this.hours)
         time.setMinutes(this.minutes)
         if (this.max) {

@@ -397,4 +397,63 @@ describe('TimePicker', () => {
     vm.$destroy()
     $div.remove()
   })
+
+  it('should display empty fields when date provided is invalid', async () => {
+    const _vm = vm.$refs['time-picker-empty-fields-example']
+    await vm.$nextTick()
+    const hourText = _vm.$el.querySelectorAll('input')[0]
+    const minutesText = _vm.$el.querySelectorAll('input')[1]
+    const toggleBtn = _vm.$el.querySelector('[data-action="toggleMeridian"]')
+    expect(hourText.value).to.equal('')
+    expect(minutesText.value).to.equal('')
+    expect(toggleBtn.textContent).to.equal('AM')
+
+    utils.triggerEvent(toggleBtn, 'click')
+    await vm.$nextTick()
+
+    expect(hourText.value).to.equal('12')
+    expect(minutesText.value).to.equal('00')
+    expect(toggleBtn.textContent).to.equal('PM')
+  })
+
+  it('should display empty fields when date provided is invalid and minutes button still work', async () => {
+    const _vm = vm.$refs['time-picker-empty-fields-example']
+    await vm.$nextTick()
+    const hourText = _vm.$el.querySelectorAll('input')[0]
+    const minutesText = _vm.$el.querySelectorAll('input')[1]
+    const toggleBtn = _vm.$el.querySelector('[data-action="toggleMeridian"]')
+    expect(hourText.value).to.equal('')
+    expect(minutesText.value).to.equal('')
+    expect(toggleBtn.textContent).to.equal('AM')
+
+    await vm.$nextTick()
+
+    const minutesPlus = _vm.$el.querySelectorAll('tr td button')[1]
+    utils.triggerEvent(minutesPlus, 'click')
+    await vm.$nextTick()
+
+    expect(hourText.value).to.equal('12')
+    expect(minutesText.value).to.equal('01')
+    expect(toggleBtn.textContent).to.equal('AM')
+  })
+
+  it('should display empty fields when date provided is invalid and hour button still work', async () => {
+    const _vm = vm.$refs['time-picker-empty-fields-example']
+    await vm.$nextTick()
+    const hourText = _vm.$el.querySelectorAll('input')[0]
+    const minutesText = _vm.$el.querySelectorAll('input')[1]
+    const toggleBtn = _vm.$el.querySelector('[data-action="toggleMeridian"]')
+    const hourPlus = _vm.$el.querySelectorAll('tr td button')[0]
+
+    expect(hourText.value).to.equal('')
+    expect(minutesText.value).to.equal('')
+    expect(toggleBtn.textContent).to.equal('AM')
+
+    utils.triggerEvent(hourPlus, 'click')
+
+    await vm.$nextTick()
+    expect(hourText.value).to.equal('01')
+    expect(minutesText.value).to.equal('00')
+    expect(toggleBtn.textContent).to.equal('AM')
+  })
 })
