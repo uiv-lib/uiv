@@ -398,6 +398,21 @@ describe('TimePicker', () => {
     $div.remove()
   })
 
+  it('should show controls by default', async () => {
+    const _vm = vm.$refs['time-picker-example']
+    const $el = $(_vm.$el)
+    expect($el.find('tr:first-child .btn').length).to.equal(2)
+    expect($el.find('tr:last-child .btn').length).to.equal(2)
+  })
+
+  it('should be able to hide controls', async () => {
+    const _vm = vm.$refs['time-picker-no-controls-example']
+    const $el = $(_vm.$el)
+    // We could still have a button for the AM/PM toggle
+    expect($el.find('tr:first-child .btn').length).not.to.equal(2)
+    expect($el.find('tr:last-child .btn').length).not.to.equal(2)
+  })
+
   it('should display empty fields when date provided is invalid', async () => {
     const _vm = vm.$refs['time-picker-empty-fields-example']
     await vm.$nextTick()
