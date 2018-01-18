@@ -1,3 +1,8 @@
+<!-- 
+If you're reporting a bug, pls fill below sections. 
+Otherwise, feel free to remove them as wish.
+-->
+
 ### Version & browser
 
 
