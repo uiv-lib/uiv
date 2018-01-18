@@ -141,6 +141,24 @@ All input methods are all disabled in readonly mode.
 <!-- time-picker-icons-example.vue -->
 ```
 
+## Without controls
+
+```html
+<template>
+  <time-picker v-model="time" :controls="false"/>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        time: new Date()
+      }
+    }
+  }
+</script>
+<!-- time-picker-no-controls-example.vue -->
+```
+
 ## Empty fields
 
 ```html
@@ -177,3 +195,4 @@ Name                | Type       | Default                          | Required |
 `min`               | Date       |                                  |          | The minimum time that user can select or input.
 `icon-control-up`   | String     | glyphicon glyphicon-chevron-up   |          | The arrow icon shown inside the `increase` button.
 `icon-control-down` | String     | glyphicon glyphicon-chevron-down |          | The arrow icon shown inside the `decrease` button.
+`controls`          | Boolean    | true                             |          | Hide the up/down `controls` if set to `false`.

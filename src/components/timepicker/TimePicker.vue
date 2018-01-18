@@ -2,7 +2,7 @@
   <section @click.stop>
     <table>
       <tbody>
-      <tr class="text-center">
+      <tr v-if="controls" class="text-center">
         <td>
           <btn type="link" size="sm" @click="changeTime(1,1)" :disabled="readonly">
             <i :class="iconControlUp"></i>
@@ -62,7 +62,7 @@
             @click="toggleMeridian"></btn>
         </td>
       </tr>
-      <tr class="text-center">
+      <tr v-if="controls" class="text-center">
         <td>
           <btn type="link" size="sm" @click="changeTime(1,0)" :disabled="readonly">
             <i :class="iconControlDown"></i>
@@ -117,6 +117,10 @@
       readonly: {
         type: Boolean,
         default: false
+      },
+      controls: {
+        type: Boolean,
+        default: true
       },
       iconControlUp: {
         type: String,
