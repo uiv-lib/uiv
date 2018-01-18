@@ -19,35 +19,39 @@
       </tr>
       <tr>
         <td class="form-group">
-          <input type="tel"
-                 pattern="\d*"
-                 class="form-control text-center"
-                 style="width: 50px"
-                 @mouseup="selectInputValue"
-                 @keydown.prevent.up="changeTime(1, 1)"
-                 @keydown.prevent.down="changeTime(1, 0)"
-                 @wheel="onWheel($event, true)"
-                 placeholder="HH"
-                 v-model.lazy="hoursText"
-                 :readonly="readonly"
-                 maxlength="2"
-                 size="2">
+          <input
+            ref="hoursInput"
+            type="tel"
+            pattern="\d*"
+            class="form-control text-center"
+            style="width: 50px"
+            @mouseup="selectInputValue"
+            @keydown.prevent.up="changeTime(1, 1)"
+            @keydown.prevent.down="changeTime(1, 0)"
+            @wheel="onWheel($event, true)"
+            placeholder="HH"
+            v-model.lazy="hoursText"
+            :readonly="readonly"
+            maxlength="2"
+            size="2">
         </td>
         <td>&nbsp;<b>:</b>&nbsp;</td>
         <td class="form-group">
-          <input type="tel"
-                 pattern="\d*"
-                 class="form-control text-center"
-                 style="width: 50px"
-                 @mouseup="selectInputValue"
-                 @keydown.prevent.up="changeTime(0, 1)"
-                 @keydown.prevent.down="changeTime(0, 0)"
-                 @wheel="onWheel($event, false)"
-                 placeholder="MM"
-                 v-model.lazy="minutesText"
-                 :readonly="readonly"
-                 maxlength="2"
-                 size="2">
+          <input
+            ref="minutesInput"
+            type="tel"
+            pattern="\d*"
+            class="form-control text-center"
+            style="width: 50px"
+            @mouseup="selectInputValue"
+            @keydown.prevent.up="changeTime(0, 1)"
+            @keydown.prevent.down="changeTime(0, 0)"
+            @wheel="onWheel($event, false)"
+            placeholder="MM"
+            v-model.lazy="minutesText"
+            :readonly="readonly"
+            maxlength="2"
+            size="2">
         </td>
         <td v-if="showMeridian">
           &nbsp;
@@ -197,6 +201,9 @@
           }
         }
         this.minutesText = pad(this.minutes, 2)
+        // lazy model won't update when using keyboard up/down
+        this.$refs.hoursInput.value = this.hoursText
+        this.$refs.minutesInput.value = this.minutesText
       },
       addHour (step) {
         step = step || this.hourStep
