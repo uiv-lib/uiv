@@ -44,7 +44,7 @@ Vue.use(uiv)
 
 That's it. Happy coding!
 
-### No Conflict
+### No conflict
 
 All components & directives will be installed with no prefix by default, you can add any prefix to them to avoid conflicts with other libs if needed.
 
@@ -60,7 +60,7 @@ Results in:
 * Directives such as `v-tooltip` becomes `v-uiv-tooltip`
 * Global methods such as `$alert` becomes `$uiv_alert`
 
-## Import Individually
+## Import individually
 
 If you don't want all of the components for some reason (e.g. to save the bundle size), you can also import them individually.
 
@@ -91,7 +91,7 @@ This will simply load the latest version of `uiv.min.js` into your page. For det
 * [https://www.jsdelivr.com](https://www.jsdelivr.com/)
 * [https://cdnjs.com/libraries/uiv](https://cdnjs.com/libraries/uiv)
 
-### Complete Usage Example
+### Complete usage example
 
 ```html
 <!-- index.html -->
@@ -119,6 +119,6 @@ This will simply load the latest version of `uiv.min.js` into your page. For det
 
 This will create a working **Tabs** component on your page.
 
-## Browser Compatibility
+## Browser compatibility
 
 All browsers supported by [Vue 2](https://github.com/vuejs/vue) and [Bootstrap 3 CSS](https://github.com/twbs/bootstrap) are suppose to be also supported by this lib  (IE8 and below are not supported).

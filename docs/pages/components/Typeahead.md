@@ -75,7 +75,7 @@ An example using element reference target:
 <!-- typeahead-target.vue -->
 ```
 
-## Match Start
+## Match start
 
 Match from the head of item.
 
@@ -104,7 +104,7 @@ Match from the head of item.
 <!-- typeahead-match-start.vue -->
 ```
 
-## Force Select
+## Force select
 
 Force user to select from the options or the model will be empty.
 
@@ -131,7 +131,7 @@ Force user to select from the options or the model will be empty.
 <!-- typeahead-force-select.vue -->
 ```
 
-## Async Query
+## Async query
 
 You can simply use `async-src` to perform an AJAX query with built-in query function, or `async-function` for a custom one if you need more than that.
 
@@ -161,7 +161,7 @@ An example using `async-src`:
 <!-- typeahead-async-query.vue -->
 ```
 
-## Custom Template
+## Custom template
 
 Use the `item` scoped slot to override the typeahead item's template.
 

@@ -31,7 +31,7 @@ e.g. `time = new Date(time)`
 <!-- time-picker-example.vue -->
 ```
 
-## 24-Hour
+## 24-hour
 
 ```html
 <template>
@@ -49,7 +49,7 @@ e.g. `time = new Date(time)`
 <!-- time-picker-24-example.vue -->
 ```
 
-## Range Limit
+## Range limit
 
 Example that limit time range from **8:00 AM** to **8:00 PM**:
 
@@ -91,7 +91,7 @@ All input methods are all disabled in readonly mode.
 <!-- time-picker-readonly-example.vue -->
 ```
 
-## With Dropdown
+## With dropdown
 
 ```html
 <template>
@@ -123,7 +123,7 @@ All input methods are all disabled in readonly mode.
 <!-- time-picker-with-dropdown.vue -->
 ```
 
-## Custom Icons
+## Custom icons
 
 ```html
 <template>

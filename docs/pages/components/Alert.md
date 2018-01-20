@@ -49,7 +49,7 @@ Use `dismissible` to allow user to dismiss alerts.
 <!-- alert-dismissible.vue -->
 ```
 
-## Auto Dismissing
+## Auto dismissing
 
 Use `duration` in milliseconds to auto dismiss alert. It can be used together with `dismissible`.
 
@@ -81,7 +81,7 @@ Use `duration` in milliseconds to auto dismiss alert. It can be used together wi
 <!-- alert-auto-dismissing.vue -->
 ```
 
-## Use with Collapse
+## Use with collapse
 
 ```html
 <template>

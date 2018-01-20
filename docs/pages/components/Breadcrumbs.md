@@ -27,7 +27,7 @@ Use `items` array to create a breadcrumbs nav. `active` state of last element is
 ```
 
 
-## Breadcrumb Item
+## Breadcrumb item
 
 You can also use `<breadcrumb-item>` in breadcrumbs directly. This is useful while full control of item text is need (e.g. HTML tags).
 
@@ -42,7 +42,7 @@ Note that `active` state will not automatically set if using this mode.
 <!-- breadcrumbs-item.vue -->
 ```
 
-## Router Link
+## Router link
 
 Parse `to` (String or Object) instead of `href` will create a `router-link` for the breadcrumb item, which you can use with [Vue-Router](https://router.vuejs.org/).
 

@@ -75,7 +75,7 @@ By default the pagination component is left aligned. Change the alignment to cen
 <!-- pagination-alignment.vue -->
 ```
 
-## Direction Links
+## Direction links
 
 By default `direction-links` are enabled, which allows users to nav to previous or next page.
 
@@ -99,7 +99,7 @@ By default `direction-links` are enabled, which allows users to nav to previous 
 <!-- pagination-direction-links.vue -->
 ```
 
-## Boundary Links
+## Boundary links
 
 Add `boundary-links` to allow fast nav to the first or last page.
 

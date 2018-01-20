@@ -83,7 +83,7 @@ Use `today-btn` and `clear-btn` to toggle visible of them.
 <!-- date-picker-without-buttons.vue -->
 ```
 
-## Range Limit
+## Range limit
 
 Example that limit date range from **2017-01-01** to **2018-01-01**:
 
@@ -103,7 +103,7 @@ Example that limit date range from **2017-01-01** to **2018-01-01**:
 <!-- date-picker-range-limit.vue -->
 ```
 
-## Week Starts
+## Week starts
 
 Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 
@@ -123,7 +123,7 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 <!-- date-picker-week-starts.vue -->
 ```
 
-## With Dropdown
+## With dropdown
 
 ```html
 <template>
@@ -155,7 +155,7 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 <!-- date-picker-dropdown-example.vue -->
 ```
 
-## Custom Icons
+## Custom icons
 
 ```html
 <template>

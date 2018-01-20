@@ -18,7 +18,7 @@ Click the button below to toggle popover:
 <!-- popover-example.vue -->
 ```
 
-### Trigger Target
+### Trigger target
 
 Order to decide the popover trigger:
 
@@ -41,7 +41,7 @@ You can also simply use popovers via `v-popover` directive:
 <!-- popover-directive.vue -->
 ```
 
-## With Empty Title
+## With empty title
 
 If you don't want the title of popover, just leave the `title` prop unset or blank.
 
@@ -67,7 +67,7 @@ Supported placements:
 <!-- popover-placements.vue -->
 ```
 
-## Auto Placement
+## Auto placement
 
 Popover will try to find the best placement for displaying while `auto-placement` is set to `true` (by default) base on the default placement setting. Useful while there does not have enough space to show the entire popover content.
 
@@ -92,7 +92,7 @@ Supported triggers:
 <!-- popover-triggers.vue -->
 ```
 
-## Manual Trigger
+## Manual trigger
 
 Set `trigger` prop to `manual` to disable all the event listeners, and controls popover show / hide only by `v-model` change.
 
@@ -119,7 +119,7 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
 <!-- popover-manual-trigger.vue -->
 ```
 
-## Disable Popover
+## Disable popover
 
 Set `enable` prop to `false` to disable a popover.
 

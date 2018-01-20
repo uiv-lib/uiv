@@ -17,7 +17,7 @@ Wrap a series of `<btn>` in `<btn-group>`.
 <!-- btn-group-example.vue -->
 ```
 
-## Button Toolbar
+## Button toolbar
 
 Combine sets of `<btn-group>` into a `<btn-toolbar>` for more complex components.
 

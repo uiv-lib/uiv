@@ -59,7 +59,7 @@ A simple modal example with callback:
 <!-- modal-example.vue -->
 ```
 
-## Optional Sizes
+## Optional sizes
 
 Modals have two optional sizes: `lg` and `sm`.
 
@@ -89,7 +89,7 @@ Modals have two optional sizes: `lg` and `sm`.
 <!-- modal-optional-sizes.vue -->
 ```
 
-## Custom Header
+## Custom header
 
 * Use `title` slot to customize the modal title.
 * Set `header` prop to `false` to hide the modal header.
@@ -122,7 +122,7 @@ Modals have two optional sizes: `lg` and `sm`.
 <!-- modal-custom-header.vue -->
 ```
 
-## Custom Footer
+## Custom footer
 
 * Use `footer` slot to customize the modal footer.
 * Set `footer` prop to `false` to hide the modal footer.
@@ -158,7 +158,7 @@ Modals have two optional sizes: `lg` and `sm`.
 <!-- modal-custom-footer.vue -->
 ```
 
-## Auto Focus
+## Auto focus
 
 Auto focus on footer button with `data-action="auto-focus"` attribute after modal open. By default it is the OK button.
 
@@ -183,7 +183,7 @@ Auto focus on footer button with `data-action="auto-focus"` attribute after moda
 <!-- modal-auto-focus.vue -->
 ```
 
-## Disable Backdrop
+## Disable backdrop
 
 Set `backdrop` prop to `false` to disable the modal dismiss action on backdrop click.
 
@@ -209,7 +209,7 @@ Set `backdrop` prop to `false` to disable the modal dismiss action on backdrop c
 <!-- modal-disable-backdrop.vue -->
 ```
 
-## Disable Animation
+## Disable animation
 
 Set `transition-duration` to `0` to disable modal animations.
 
@@ -235,7 +235,7 @@ Set `transition-duration` to `0` to disable modal animations.
 <!-- modal-disable-animation.vue -->
 ```
 
-## Nested Modals
+## Nested modals
 
 Modals can be **nested** since 0.15.
 

@@ -14,7 +14,7 @@ Hover over the button below to toggle tooltips:
 <!-- tooltip-example.vue -->
 ```
 
-### Trigger Target
+### Trigger target
 
 Order to decide the tooltip trigger:
 
@@ -54,7 +54,7 @@ Supported placements:
 <!-- tooltip-placements.vue -->
 ```
 
-## Auto Placement
+## Auto placement
 
 Tooltips will try to find the best placement for displaying while `auto-placement` is set to `true` (by default) base on the default placement setting. Useful while there does not have enough space to show the entire tooltip content.
 
@@ -79,7 +79,7 @@ Supported triggers:
 <!-- tooltip-triggers.vue -->
 ```
 
-## Manual Trigger
+## Manual trigger
 
 Set `trigger` prop to `manual` to disable all the event listeners, and controls tooltips show / hide only by `v-model` change.
 
@@ -105,7 +105,7 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
 <!-- tooltip-manual-trigger.vue -->
 ```
 
-## Disable Tooltip
+## Disable tooltip
 
 Set `enable` prop to `false` to disable a tooltip.
 

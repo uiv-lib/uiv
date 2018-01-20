@@ -103,7 +103,7 @@ Displays a dialog with an optional message prompting the user to input some text
 <!-- message-box-prompt.vue -->
 ```
 
-## Global Methods
+## Global methods
 
 Following global methods for `Vue.prototype` will be added **if uiv is installed**:
  
@@ -118,7 +118,7 @@ Callback params:
 
 Each of these methods will return a `Promise` object that resolve / reject while the box is closed (if supported by browser or with es6 promise polyfill).
 
-## Import Individually
+## Import individually
 
 If you prefer importing `MessageBox` individually:
 

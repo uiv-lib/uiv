@@ -148,7 +148,7 @@ By default a notification is dismissible with a close button, you can hide it by
 <!-- notification-without-dismiss-btn.vue -->
 ```
 
-## Global Method
+## Global method
 
 `$notify(options, callback)` global method for `Vue.prototype` will be added **if uiv is installed**.
 
@@ -156,7 +156,7 @@ Note that the dismissed callback is optional.
 
 The method will return a `Promise` object that resolve while the notification is dismissed (if supported by browser or with es6 promise polyfill).
 
-## Import Individually
+## Import individually
 
 If you prefer importing `Notification` individually:
 

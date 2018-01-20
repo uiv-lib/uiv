@@ -61,7 +61,7 @@ Create block level buttons—those that span the full width of a parent — by a
 <!-- btn-block.vue -->
 ```
 
-## Active State
+## Active state
 
 Add `active` to make buttons appear pressed (with a darker background, darker border, and inset shadow).
 
@@ -75,7 +75,7 @@ Add `active` to make buttons appear pressed (with a darker background, darker bo
 <!-- btn-active.vue -->
 ```
 
-## Disabled State
+## Disabled state
 
 Add `disabled` to make buttons unclickable.
 
@@ -95,7 +95,7 @@ Add `input-type` to render `<btn>` as `checkbox` or `radio` input.
 
 **Note**: This needed to work with `<btn-group>` for correct styles.
 
-### Checkbox Example
+### Checkbox example
 
 ```html
 <template>
@@ -120,7 +120,7 @@ Add `input-type` to render `<btn>` as `checkbox` or `radio` input.
 <!-- btn-input-checkbox.vue -->
 ```
 
-### Radio Example
+### Radio example
 
 ```html
 <template>

@@ -22,7 +22,7 @@ Default progress bar.
 <!-- progress-bar-example.vue -->
 ```
 
-## With Label
+## With label
 
 To ensure that the label text remains legible even for low percentages, consider use `min-width` prop.
 
@@ -50,7 +50,7 @@ To ensure that the label text remains legible even for low percentages, consider
 <!-- progress-bar-with-label.vue -->
 ```
 
-## Contextual Alternatives
+## Contextual alternatives
 
 Progress bars use some of the same button and alert classes for consistent styles.
 

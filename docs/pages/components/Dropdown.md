@@ -73,7 +73,7 @@ Dropdown menus can be changed to expand upwards (instead of downwards) by adding
 <!-- dropdown-dropup.vue -->
 ```
 
-## Append To Body
+## Append to body
 
 Use this option to avoid influence from the parent node by appending dropdown list to `<body>`.
 
@@ -114,7 +114,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
 <!-- dropdown-append-to-body.vue -->
 ```
 
-## Within Navbar
+## Within navbar
 
 ```html
 <template>
@@ -180,7 +180,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
 <!-- dropdown-within-navbar.vue -->
 ```
 
-## Within Pills
+## Within pills
 
 ```html
 <ul class="nav nav-pills" role="tablist">

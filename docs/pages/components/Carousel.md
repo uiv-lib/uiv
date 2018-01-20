@@ -55,7 +55,7 @@
 <!-- carousel-example.vue -->
 ```
 
-## Override Indicators
+## Override indicators
 
 Use the `indicators` slot to override default Bootstrap indicators. 
 
@@ -107,7 +107,7 @@ This is a scoped slot, use `slot-scope="props"` in Vue 2.5+, otherwise `scope="p
 <!-- carousel-override-indicators.vue -->
 ```
 
-## Custom Icons
+## Custom icons
 
 **Note**: Bootstrap 3 has only 2 sets of icon supported for carousel at present:
 

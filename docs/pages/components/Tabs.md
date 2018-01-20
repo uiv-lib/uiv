@@ -22,7 +22,7 @@
 <!-- tabs-example.vue -->
 ```
 
-## Disable Tabs
+## Disable tabs
 
 Add `disabled` to `<tab>` to disable it.
 
@@ -44,7 +44,7 @@ Add `disabled` to `<tab>` to disable it.
 <!-- tabs-disable.vue -->
 ```
 
-## Pull Right
+## Pull right
 
 Add `pull-right` to `<tab>` to pull it right. A grouped tab will be pulled to right if one of its sub-tabs has this prop set to `true`.
 
@@ -66,7 +66,7 @@ Add `pull-right` to `<tab>` to pull it right. A grouped tab will be pulled to ri
 <!-- tabs-pull-right.vue -->
 ```
 
-## Justified Style
+## Justified style
 
 Add `justified` to `<tabs>` to use justified style.
 
@@ -85,7 +85,7 @@ Add `justified` to `<tabs>` to use justified style.
 <!-- tabs-justified-style.vue -->
 ```
 
-## With Callbacks
+## With callbacks
 
 ```html
 <template>
@@ -115,7 +115,7 @@ Add `justified` to `<tabs>` to use justified style.
 <!-- tabs-with-callbacks.vue -->
 ```
 
-## With `nav-right` Slot
+## With `nav-right` slot
 
 ```html
 <tabs>
@@ -138,7 +138,7 @@ Add `justified` to `<tabs>` to use justified style.
 <!-- tabs-with-nav-right-slot.vue -->
 ```
 
-## Dynamic Tabs
+## Dynamic tabs
 
 An example that generate closable tabs using `v-for`:
 
