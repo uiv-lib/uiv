@@ -28,17 +28,8 @@
 
   const IN_CLASS = 'in'
   const ICON = 'glyphicon'
-  const OFFSET = 15
   const WIDTH = 300
   const TRANSITION_DURATION = 300
-
-  const getTotalHeightOfQueue = (queue, lastIndex = queue.length) => {
-    let totalHeight = OFFSET
-    for (let i = 0; i < lastIndex; i++) {
-      totalHeight += queue[i].height + OFFSET
-    }
-    return totalHeight
-  }
 
   export default {
     components: {Alert},
@@ -68,6 +59,18 @@
       queue: {
         type: Array,
         required: true
+      },
+      offsetY: {
+        type: Number,
+        default: 15
+      },
+      offsetX: {
+        type: Number,
+        default: 15
+      },
+      offset: {
+        type: Number,
+        default: 15
       }
     },
     data () {
@@ -80,7 +83,7 @@
     },
     created () {
       // get prev notifications total height in the queue
-      this.top = getTotalHeightOfQueue(this.queue)
+      this.top = this.getTotalHeightOfQueue(this.queue)
     },
     mounted () {
       const el = this.$el
@@ -88,7 +91,7 @@
       this.$nextTick(() => {
         el.style[this.horizontal] = `-${WIDTH}px`
         this.height = el.offsetHeight
-        el.style[this.horizontal] = `${OFFSET}px`
+        el.style[this.horizontal] = `${this.offsetX}px`
         addClass(el, IN_CLASS)
       })
     },
@@ -98,7 +101,7 @@
         let thisIndex = queue.indexOf(this)
         return {
           position: 'fixed',
-          [this.vertical]: `${getTotalHeightOfQueue(queue, thisIndex)}px`,
+          [this.vertical]: `${this.getTotalHeightOfQueue(queue, thisIndex)}px`,
           width: `${WIDTH}px`,
           transition: `all ${TRANSITION_DURATION / 1000}s ease-in-out`
         }
@@ -121,6 +124,13 @@
       }
     },
     methods: {
+      getTotalHeightOfQueue (queue, lastIndex = queue.length) {
+        let totalHeight = this.offsetY
+        for (let i = 0; i < lastIndex; i++) {
+          totalHeight += queue[i].height + this.offset
+        }
+        return totalHeight
+      },
       onDismissed () {
         removeClass(this.$el, IN_CLASS)
         setTimeout(this.cb, TRANSITION_DURATION)
