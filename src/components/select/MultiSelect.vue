@@ -77,7 +77,7 @@
         type: Boolean,
         default: false
       },
-      filter: Function,
+      filterFunction: Function,
       filterPlaceholder: {
         type: String,
         default: 'Search...'
@@ -100,8 +100,8 @@
     computed: {
       filteredOptions () {
         if (this.filterable) {
-          if (this.filter) {
-            return this.filter(this.filterInput)
+          if (this.filterFunction) {
+            return this.filterFunction(this.filterInput)
           } else {
             const filterInput = this.filterInput.toLowerCase()
             return this.options.filter(v => (

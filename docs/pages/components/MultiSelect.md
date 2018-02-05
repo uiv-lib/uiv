@@ -176,7 +176,7 @@ Collapse multiple selected items into a text by using `collapse-selected` prop.
 
 Add `filterable` to append filter input before options.
 
-By default, options are filtered by item value and label (case ignored), use a custom `filter` function to override it if needed.
+By default, options are filtered by item value and label (case ignored), use a custom `filter-function` to override it if needed.
 
 ```html
 <template>
@@ -219,7 +219,7 @@ Name                  | Type       | Default                | Required | Descrip
 `split`               | String     | ,                      |          | The options display spliter.
 `filterable`          | Boolean    | false                  |          | Append filter input before options (default is filter by item value and label, case ignored).
 `filter-placeholder`  | String     | Search...              |          | The default text displayed in filter input.
-`filter`              | Function   |                        |          | Custom filter function, with on param as input string, and returns the filtered array.
+`filter-function`     | Function   |                        |          | Custom filter function, with one param as input string, and returns the filtered array.
 `disabled`            | Boolean    | false                  |          | Disable the select component.
 `collapse-selected`   | Boolean    | false                  |          | Collapse multiple selected items into a text.
 `selected-icon`       | String     | glyphicon glyphicon-ok |          | Icon displayed in option while selected.
