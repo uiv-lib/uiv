@@ -9,7 +9,11 @@
         v-for="item in options"
         :class="itemClasses(item)"
         @click="toggle(item)">
-        <a role="button">
+        <a role="button" v-if="isItemSelected(item)">
+          <b :class="selectedClass">{{item.label}}</b>
+          <span v-if="selectedIcon" :class="selectedIconClasses"></span>
+        </a>
+        <a role="button" v-else>
           <span>{{item.label}}</span>
         </a>
       </li>
@@ -26,7 +30,7 @@
       },
       options: {
         type: Array,
-        default: () => []
+        required: true
       },
       placeholder: {
         type: String,
@@ -43,6 +47,14 @@
       collapseSelected: {
         type: Boolean,
         default: false
+      },
+      selectedIcon: {
+        type: String,
+        default: 'glyphicon glyphicon-ok'
+      },
+      selectedClass: {
+        type: String,
+        default: 'text-primary'
       }
     },
     data () {
@@ -51,6 +63,13 @@
       }
     },
     computed: {
+      selectedIconClasses () {
+        return {
+          [this.selectedClass]: true,
+          [this.selectedIcon]: true,
+          'pull-right': true
+        }
+      },
       selectTextClasses () {
         return {
           'text-muted': this.value.length === 0
@@ -87,6 +106,9 @@
           disabled: item.disabled
         }
       },
+      isItemSelected (item) {
+        return this.value.indexOf(item.value) >= 0
+      },
       toggle (item) {
         if (item.disabled) {
           return
@@ -102,7 +124,3 @@
     }
   }
 </script>
-
-<style scoped lang="less">
-
-</style>
