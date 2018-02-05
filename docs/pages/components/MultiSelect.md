@@ -228,3 +228,12 @@ Name                  | Type       | Default                | Required | Descrip
 `disabled`            | Boolean    | false                  |          | Disable the select component.
 `collapse-selected`   | Boolean    | false                  |          | Collapse multiple selected items into a text.
 `selected-icon`       | String     | glyphicon glyphicon-ok |          | Icon displayed in option while selected.
+
+### Events
+
+Name             | Params                            | Description
+-----------      | ------                            | ---------------
+`change`         | value                             | Triggers when the selected value changes.
+`visible-change` | the visible status (true / false) | Triggers when the dropdown toggles.
+`focus`          | event                             | Triggers when input focuses.
+`blur`           | event                             | Triggers when input blurs

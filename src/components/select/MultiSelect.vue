@@ -12,6 +12,8 @@
       :disabled="disabled"
       tabindex="0"
       @click="showDropdown=true"
+      @focus="$emit('focus', $event)"
+      @blur="$emit('blur', $event)"
       @keydown.prevent.down="goNextOption"
       @keydown.prevent.up="goPrevOption"
       @keydown.prevent.enter="selectOption">
@@ -183,6 +185,7 @@
         // clear filter input when dropdown toggles
         this.filterInput = ''
         this.currentActive = -1
+        this.$emit('visible-change', v)
       }
     },
     mounted () {
@@ -227,8 +230,10 @@
         const index = this.value.indexOf(value)
         if (index >= 0) {
           this.value.splice(index, 1)
+          this.$emit('change', this.value)
         } else if (this.limit === 0 || this.value.length < this.limit) {
           this.value.push(value)
+          this.$emit('change', this.value)
         }
       }
     }
