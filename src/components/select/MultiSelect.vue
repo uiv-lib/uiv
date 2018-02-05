@@ -1,12 +1,23 @@
 <template>
-  <dropdown ref="dropdown" :not-close-elements="els" :disabled="disabled">
-    <div class="form-control dropdown-toggle" :disabled="disabled">
+  <dropdown
+    ref="dropdown"
+    :not-close-elements="els"
+    :disabled="disabled"
+    @keydown.native.esc="closeDropdown">
+    <div
+      class="form-control dropdown-toggle"
+      :disabled="disabled"
+      tabindex="0"
+      @keydown.enter="showDropdown">
       <span :class="selectTextClasses">{{selectedText}}</span>
       <span class="caret"></span>
     </div>
     <template slot="dropdown">
+      <li v-if="filterable" style="padding: 4px 8px">
+        <input class="form-control input-sm" :placeholder="filterPlaceholder" v-model="filterInput"/>
+      </li>
       <li
-        v-for="item in options"
+        v-for="item in filteredOptions"
         :class="itemClasses(item)"
         @click="toggle(item)">
         <a role="button" v-if="isItemSelected(item)">
@@ -60,6 +71,15 @@
         type: Boolean,
         default: false
       },
+      filterable: {
+        type: Boolean,
+        default: false
+      },
+      filter: Function,
+      filterPlaceholder: {
+        type: String,
+        default: 'Search...'
+      },
       selectedIcon: {
         type: String,
         default: 'glyphicon glyphicon-ok'
@@ -71,10 +91,26 @@
     },
     data () {
       return {
-        els: []
+        els: [],
+        filterInput: ''
       }
     },
     computed: {
+      filteredOptions () {
+        if (this.filterable) {
+          if (this.filter) {
+            return this.filter(this.filterInput)
+          } else {
+            const filterInput = this.filterInput.toLowerCase()
+            return this.options.filter(v => (
+              v[this.valueKey].toString().toLowerCase().indexOf(filterInput) >= 0 ||
+              v[this.labelKey].toString().toLowerCase().indexOf(filterInput) >= 0
+            ))
+          }
+        } else {
+          return this.options
+        }
+      },
       selectedIconClasses () {
         return {
           [this.selectedClass]: true,
@@ -113,6 +149,12 @@
       this.els = [this.$el]
     },
     methods: {
+      showDropdown () {
+        this.$refs.dropdown.toggle(true)
+      },
+      closeDropdown () {
+        this.$refs.dropdown.toggle(false)
+      },
       itemClasses (item) {
         return {
           disabled: item.disabled
