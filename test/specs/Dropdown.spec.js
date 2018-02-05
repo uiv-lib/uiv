@@ -138,6 +138,23 @@ describe('Dropdown', () => {
     vm.$destroy()
   })
 
+  it('should be able to disable dropdown', async () => {
+    const res = Vue.compile('<dropdown v-model="show" disabled><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template slot="dropdown"><li><a href="#">Action</a></li></template></dropdown>')
+    const vm = new Vue({
+      data () {
+        return {
+          show: true
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    const dropdown = vm.$el
+    expect(dropdown.className).not.contain('open')
+    vm.$destroy()
+  })
+
   it('should be able to init with no trigger', async () => {
     const res = Vue.compile('<dropdown/>')
     const vm = new Vue({

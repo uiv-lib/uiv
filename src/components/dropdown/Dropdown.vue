@@ -50,6 +50,10 @@
         type: Boolean,
         default: false
       },
+      disabled: {
+        type: Boolean,
+        default: false
+      },
       notCloseElements: Array,
       positionElement: null
     },
@@ -87,6 +91,9 @@
         this.triggerEl = trigger && trigger !== this.$refs.dropdown ? trigger : null
       },
       toggle (show) {
+        if (this.disabled) {
+          return
+        }
         if (isBoolean(show)) {
           this.show = show
         } else {

@@ -280,6 +280,7 @@ Name                 | Type       | Default  | Required | Description
 `append-to-body`     | Boolean    | false    |          | Append the dropdown slot to body.
 `dropup`             | Boolean    | false    |          | Use dropup style.
 `menu-right`         | Boolean    | false    |          | Use dropdown-menu-right style.
+`disabled`           | Boolean    | false    |          | Disable the dropdown.
 `not-close-elements` | Array      |          |          | Pass an array of element which the dropdown will not close on click.
 `position-element`   | Element    | this.$el |          | Pass an HTML element which the dropdown will be positioned by (in append-to-body mode).
 
