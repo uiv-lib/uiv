@@ -10,11 +10,11 @@
         :class="itemClasses(item)"
         @click="toggle(item)">
         <a role="button" v-if="isItemSelected(item)">
-          <b :class="selectedClass">{{item.label}}</b>
+          <b :class="selectedClass">{{item[labelKey]}}</b>
           <span v-if="selectedIcon" :class="selectedIconClasses"></span>
         </a>
         <a role="button" v-else>
-          <span>{{item.label}}</span>
+          <span>{{item[labelKey]}}</span>
         </a>
       </li>
     </template>
@@ -31,6 +31,18 @@
       options: {
         type: Array,
         required: true
+      },
+      labelKey: {
+        type: String,
+        default: 'label'
+      },
+      valueKey: {
+        type: String,
+        default: 'value'
+      },
+      limit: {
+        type: Number,
+        default: 0
       },
       placeholder: {
         type: String,
@@ -76,10 +88,10 @@
         }
       },
       labelValue () {
-        const optionsByValue = this.options.map(v => v.value)
+        const optionsByValue = this.options.map(v => v[this.valueKey])
         return this.value.map(v => {
           const index = optionsByValue.indexOf(v)
-          return index >= 0 ? this.options[index].label : v
+          return index >= 0 ? this.options[index][this.labelKey] : v
         })
       },
       selectedText () {
@@ -107,17 +119,17 @@
         }
       },
       isItemSelected (item) {
-        return this.value.indexOf(item.value) >= 0
+        return this.value.indexOf(item[this.valueKey]) >= 0
       },
       toggle (item) {
         if (item.disabled) {
           return
         }
-        const value = item.value
+        const value = item[this.valueKey]
         const index = this.value.indexOf(value)
         if (index >= 0) {
           this.value.splice(index, 1)
-        } else {
+        } else if (this.limit === 0 || this.value.length < this.limit) {
           this.value.push(value)
         }
       }
