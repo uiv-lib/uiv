@@ -1,16 +1,20 @@
 <template>
   <dropdown
+    v-model="showDropdown"
     ref="dropdown"
     :not-close-elements="els"
     :disabled="disabled"
     :style="containerStyles"
-    @keydown.native.esc="closeDropdown">
+    @keydown.native.esc="showDropdown=false">
     <div
       class="form-control dropdown-toggle clearfix"
       :class="selectClasses"
       :disabled="disabled"
       tabindex="0"
-      @keydown.enter="showDropdown">
+      @click="showDropdown=true"
+      @keydown.prevent.down="goNextOption"
+      @keydown.prevent.up="goPrevOption"
+      @keydown.prevent.enter="selectOption">
       <div
         :class="selectTextClasses"
         style="display: inline-block;vertical-align: middle;">
@@ -26,11 +30,11 @@
         <input class="form-control input-sm" :placeholder="filterPlaceholder" v-model="filterInput"/>
       </li>
       <li
-        v-for="item in filteredOptions"
-        :class="itemClasses(item)"
+        v-for="(item,index) in filteredOptions"
+        :class="itemClasses(item,index)"
         @click="toggle(item)">
         <a role="button" v-if="isItemSelected(item)">
-          <b :class="selectedClass">{{item[labelKey]}}</b>
+          <b>{{item[labelKey]}}</b>
           <span v-if="selectedIcon" :class="selectedIconClasses"></span>
         </a>
         <a role="button" v-else>
@@ -97,16 +101,14 @@
       selectedIcon: {
         type: String,
         default: 'glyphicon glyphicon-ok'
-      },
-      selectedClass: {
-        type: String,
-        default: 'text-primary'
       }
     },
     data () {
       return {
+        showDropdown: false,
         els: [],
-        filterInput: ''
+        filterInput: '',
+        currentActive: -1
       }
     },
     computed: {
@@ -137,7 +139,6 @@
       },
       selectedIconClasses () {
         return {
-          [this.selectedClass]: true,
           [this.selectedIcon]: true,
           'pull-right': true
         }
@@ -169,19 +170,34 @@
         }
       }
     },
+    watch: {
+      showDropdown (v) {
+        // clear filter input when dropdown toggles
+        this.filterInput = ''
+        this.currentActive = -1
+      }
+    },
     mounted () {
       this.els = [this.$el]
     },
     methods: {
-      showDropdown () {
-        this.$refs.dropdown.toggle(true)
+      goPrevOption () {
+        this.currentActive > 0 && this.currentActive--
       },
-      closeDropdown () {
-        this.$refs.dropdown.toggle(false)
+      goNextOption () {
+        this.currentActive < this.options.length - 1 && this.currentActive++
       },
-      itemClasses (item) {
+      selectOption () {
+        if (!this.showDropdown) {
+          this.showDropdown = true
+        } else if (this.currentActive >= 0) {
+          this.toggle(this.options[this.currentActive])
+        }
+      },
+      itemClasses (item, index) {
         return {
-          disabled: item.disabled
+          disabled: item.disabled,
+          active: this.currentActive === index
         }
       },
       isItemSelected (item) {
