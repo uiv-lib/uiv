@@ -3,15 +3,23 @@
     ref="dropdown"
     :not-close-elements="els"
     :disabled="disabled"
+    :style="containerStyles"
     @keydown.native.esc="closeDropdown">
     <div
-      class="form-control dropdown-toggle"
+      class="form-control dropdown-toggle clearfix"
       :class="selectClasses"
       :disabled="disabled"
       tabindex="0"
       @keydown.enter="showDropdown">
-      <span :class="selectTextClasses">{{selectedText}}</span>
-      <span class="caret"></span>
+      <div
+        :class="selectTextClasses"
+        style="display: inline-block;vertical-align: middle;">
+        {{selectedText}}
+      </div>
+      <div class="pull-right" style="display: inline-block;vertical-align: middle">
+        <span>&nbsp;</span>
+        <span class="caret"></span>
+      </div>
     </div>
     <template slot="dropdown">
       <li v-if="filterable" style="padding: 4px 8px">
@@ -69,6 +77,10 @@
         type: Boolean,
         default: false
       },
+      block: {
+        type: Boolean,
+        default: false
+      },
       collapseSelected: {
         type: Boolean,
         default: false
@@ -98,6 +110,11 @@
       }
     },
     computed: {
+      containerStyles () {
+        return {
+          width: this.block ? '100%' : ''
+        }
+      },
       filteredOptions () {
         if (this.filterable) {
           if (this.filterFunction) {

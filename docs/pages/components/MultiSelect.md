@@ -54,9 +54,9 @@ Use `limit` to restrict the maximum number of options user can select, no limit 
 <!-- multi-select-limit.vue -->
 ```
 
-## Sizes
+## Optional Sizes
 
-Supported optional sizes `sm` and `lg`.
+Optional sizes `sm` and `lg` are supported. You can also add `block` prop to quickly apply `width: 100%` style to the component.
 
 ```html
 <template>
@@ -71,6 +71,10 @@ Supported optional sizes `sm` and `lg`.
     <br/>
     <div>
       <multi-select v-model="selected" :options="options" size="lg"/>
+    </div>
+    <br/>
+    <div>
+      <multi-select v-model="selected" :options="options" size="lg" block/>
     </div>
   </section>
 </template>
@@ -215,6 +219,7 @@ Name                  | Type       | Default                | Required | Descrip
 `value-key`           | String     | value                  |          | Identity key name for value.
 `limit`               | Boolean    | 0                      |          | Maximum number of options user can select, no limit when set to `0`.
 `size`                | String     |                        |          | Optional sizes, supported: `sm` / `lg`.
+`block`               | Boolean    | false                  |          | Apply block level style.
 `placeholder`         | String     | Select...              |          | The default text displayed when no options are selected.
 `split`               | String     | ,                      |          | The options display spliter.
 `filterable`          | Boolean    | false                  |          | Append filter input before options (default is filter by item value and label, case ignored).
