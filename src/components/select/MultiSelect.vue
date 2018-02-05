@@ -6,6 +6,7 @@
     @keydown.native.esc="closeDropdown">
     <div
       class="form-control dropdown-toggle"
+      :class="selectClasses"
       :disabled="disabled"
       tabindex="0"
       @keydown.enter="showDropdown">
@@ -55,6 +56,7 @@
         type: Number,
         default: 0
       },
+      size: String,
       placeholder: {
         type: String,
         default: 'Select...'
@@ -109,6 +111,11 @@
           }
         } else {
           return this.options
+        }
+      },
+      selectClasses () {
+        return {
+          [`input-${this.size}`]: this.size
         }
       },
       selectedIconClasses () {
