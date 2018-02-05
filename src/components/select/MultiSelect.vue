@@ -27,12 +27,20 @@
     </div>
     <template slot="dropdown">
       <li v-if="filterable" style="padding: 4px 8px">
-        <input class="form-control input-sm" :placeholder="filterPlaceholder" v-model="filterInput"/>
+        <input
+          class="form-control input-sm"
+          :placeholder="filterPlaceholder"
+          v-model="filterInput"
+          @keydown.prevent.down="goNextOption"
+          @keydown.prevent.up="goPrevOption"
+          @keydown.prevent.enter="selectOption"
+        />
       </li>
       <li
         v-for="(item,index) in filteredOptions"
         :class="itemClasses(item,index)"
-        @click="toggle(item)">
+        @click="toggle(item)"
+        @mouseenter="currentActive=-1">
         <a role="button" v-if="isItemSelected(item)">
           <b>{{item[labelKey]}}</b>
           <span v-if="selectedIcon" :class="selectedIconClasses"></span>
@@ -182,16 +190,24 @@
     },
     methods: {
       goPrevOption () {
-        this.currentActive > 0 && this.currentActive--
+        if (!this.showDropdown) {
+          return
+        }
+        this.currentActive > 0 ? this.currentActive-- : this.currentActive = this.options.length - 1
       },
       goNextOption () {
-        this.currentActive < this.options.length - 1 && this.currentActive++
+        if (!this.showDropdown) {
+          return
+        }
+        this.currentActive < this.options.length - 1 ? this.currentActive++ : this.currentActive = 0
       },
       selectOption () {
+        const index = this.currentActive
+        const options = this.filteredOptions
         if (!this.showDropdown) {
           this.showDropdown = true
-        } else if (this.currentActive >= 0) {
-          this.toggle(this.options[this.currentActive])
+        } else if (index >= 0 && index < options.length) {
+          this.toggle(options[index])
         }
       },
       itemClasses (item, index) {
