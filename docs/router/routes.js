@@ -72,6 +72,11 @@ const routes = [
     component: () => import('./../pages/components/Modal.md')
   },
   {
+    path: '/multi-select',
+    meta: {type: 'component', label: 'MultiSelect', url: 'components/MultiSelect.md'},
+    component: () => import('./../pages/components/MultiSelect.md')
+  },
+  {
     path: '/notification',
     meta: {type: 'component', label: 'Notification', url: 'components/Notification.md'},
     component: () => import('./../pages/components/Notification.md')
