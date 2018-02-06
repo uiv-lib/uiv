@@ -103,7 +103,8 @@ const routes = [
       type: 'component',
       label: 'MultiSelect',
       url: 'components/MultiSelect.md',
-      group: 'Form'
+      group: 'Form',
+      new: true
     },
     component: () => import('./../pages/components/MultiSelect.md')
   },

@@ -24,6 +24,7 @@
                   <li v-for="__item in _item.items" role="presentation" @click="toggleAside(false)">
                     <router-link :to="__item.path" role="button" class="sub-list">
                       {{__item.meta.label}}
+                      <span class="label label-success" v-if="__item.meta.new">New</span>
                     </router-link>
                   </li>
                 </template>
@@ -151,6 +152,7 @@
             margin-top: 15px;
             padding: 10px 15px 10px 30px;
             font-size: .9em;
+            opacity: .8;
           }
 
           a {
