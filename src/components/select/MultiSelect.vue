@@ -28,6 +28,7 @@
       <li v-if="filterable" style="padding: 4px 8px">
         <input
           class="form-control input-sm"
+          type="text"
           :placeholder="filterPlaceholder"
           v-model="filterInput"
           @keydown.prevent.down="goNextOption"
@@ -129,7 +130,7 @@
         }
       },
       filteredOptions () {
-        if (this.filterable) {
+        if (this.filterable && this.filterInput) {
           if (this.filterFunction) {
             return this.filterFunction(this.filterInput)
           } else {
