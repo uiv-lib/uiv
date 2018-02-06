@@ -1,8 +1,10 @@
 # Navbar
 
-> Navbars are responsive meta components that serve as navigation headers for your application or site. They begin collapsed (and are toggleable) in mobile views and become horizontal as the available viewport width increases.
+> Navbars are responsive meta components that serve as navigation headers for your application or site.
 
 ## Example
+
+Contents in `collapse` slot can be collapsed (and are toggleable) in mobile views and become horizontal as the available viewport width increases.
 
 ```html
 <navbar>
@@ -151,3 +153,54 @@ Modify the look of the navbar by adding `inverse` prop.
 </navbar>
 <!-- navbar-inverse.vue -->
 ```
+
+# API Reference
+
+## [Navbar](https://github.com/wxsms/uiv/blob/release/src/components/navbar/Navbar.vue)
+
+### Props
+
+Name         | Type       | Default  | Required | Description
+------------ | ---------- | -------- | -------- | -----------------------
+v-model      | Boolean    |          |          | Indicate the collapse status of navbar.
+fluid        | Boolean    | true     |          | Use `.container-fluid` class in navbar container, `.container` otherwise.
+fixed-top    | Boolean    | false    |          | Apply fixed top style.
+fixed-bottom | Boolean    | false    |          | Apply fixed bottom style.
+static-top   | Boolean    | false    |          | Apply static top style.
+inverse      | Boolean    | false    |          | Apply inverse style.
+
+### Slots
+
+Name             | Description
+---------        | -----------------------
+`default`        | The navbar body (non-collapsable part).
+`collapse`       | The navbar body (collapsable part).
+`brand`          | The navbar brand.
+`collapse-btn`   | Use this slot to override the default collapse button.
+
+## [NavbarNav](https://github.com/wxsms/uiv/blob/release/src/components/navbar/NavbarNav.js)
+
+### Props
+
+Name         | Type       | Default  | Required | Description
+------------ | ---------- | -------- | -------- | -----------------------
+left         | Boolean    | false    |          | Pull content to left.
+right        | Boolean    | false    |          | Pull content to right.
+
+## [NavbarForm](https://github.com/wxsms/uiv/blob/release/src/components/navbar/NavbarForm.js)
+
+### Props
+
+Name         | Type       | Default  | Required | Description
+------------ | ---------- | -------- | -------- | -----------------------
+left         | Boolean    | false    |          | Pull content to left.
+right        | Boolean    | false    |          | Pull content to right.
+
+## [NavbarText](https://github.com/wxsms/uiv/blob/release/src/components/navbar/NavbarText.js)
+
+### Props
+
+Name         | Type       | Default  | Required | Description
+------------ | ---------- | -------- | -------- | -----------------------
+left         | Boolean    | false    |          | Pull content to left.
+right        | Boolean    | false    |          | Pull content to right.
