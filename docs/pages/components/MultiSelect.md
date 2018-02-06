@@ -235,5 +235,6 @@ Name             | Params                            | Description
 -----------      | ------                            | ---------------
 `change`         | value                             | Triggers when the selected value changes.
 `visible-change` | the visible status (true / false) | Triggers when the dropdown toggles.
+`limit-exceed`   |                                   | Triggers when the selected value length exceeded limit.
 `focus`          | event                             | Triggers when input focuses.
-`blur`           | event                             | Triggers when input blurs
+`blur`           | event                             | Triggers when input blurs.

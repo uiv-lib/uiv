@@ -234,6 +234,8 @@
         } else if (this.limit === 0 || this.value.length < this.limit) {
           this.value.push(value)
           this.$emit('change', this.value)
+        } else {
+          this.$emit('limit-exceed')
         }
       }
     }
