@@ -177,10 +177,9 @@ All input methods are all disabled in readonly mode.
 <!-- time-picker-empty-fields-example.vue -->
 ```
 
-
 # API Reference
 
-## [TimePicker.vue](https://github.com/wxsms/uiv/blob/release/src/components/timepicker/TimePicker.vue)
+## [TimePicker](https://github.com/wxsms/uiv/blob/release/src/components/timepicker/TimePicker.vue)
 
 ### Props
 

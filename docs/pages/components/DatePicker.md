@@ -169,7 +169,7 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 
 # API Reference
 
-## [DatePicker.vue](https://github.com/wxsms/uiv/blob/release/src/components/datepicker/DatePicker.vue)
+## [DatePicker](https://github.com/wxsms/uiv/blob/release/src/components/datepicker/DatePicker.vue)
 
 ### Props
 

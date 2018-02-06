@@ -276,7 +276,7 @@ Click on the button below to open the entry of a set of nested modals.
 
 # API Reference
 
-## [Modal.vue](https://github.com/wxsms/uiv/blob/release/src/components/modal/Modal.vue)
+## [Modal](https://github.com/wxsms/uiv/blob/release/src/components/modal/Modal.vue)
 
 ### Props
 

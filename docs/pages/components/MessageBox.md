@@ -140,7 +140,7 @@ Vue.prototype.$alert = MessageBox.alert
 
 # API Reference
 
-## [MessageBox.vue](https://github.com/wxsms/uiv/blob/release/src/services/messagebox/MessageBox.vue)
+## [MessageBox](https://github.com/wxsms/uiv/blob/release/src/services/messagebox/MessageBox.vue)
 
 These props are used as `options` in the methods above.
 
@@ -159,7 +159,3 @@ Name             | Type       | Default  | Required | Description
 `custom-class`   |            |          |          | Custom classes to modal, anything that can work with `v-bind:class` or `:class`.
 `backdrop`       | Boolean    | `false` if type is alert, otherwise `true` |          | Dismiss the modal by backdrop click.
 `validator`      | Function   |          |          | Custom validator function for prompt. Accepts the input value as param, returns the err msg (not valid) or null (valid)
-
-## [messageBox.js](https://github.com/wxsms/uiv/blob/release/src/services/messagebox/messageBox.js)
-
-This file has no props.

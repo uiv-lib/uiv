@@ -168,7 +168,7 @@ The corresponding method is `Notification.notify`, with same parameters as above
 
 # API Reference
 
-## [Notification.vue](https://github.com/wxsms/uiv/blob/release/src/services/notification/Notification.vue)
+## [Notification](https://github.com/wxsms/uiv/blob/release/src/services/notification/Notification.vue)
 
 These props are used as `options` in the methods above.
 
@@ -188,7 +188,3 @@ Name           | Type       | Default   | Required | Description
 `offset`       | Number     | 15        |          | The space in px between notifications.
 `offset-x`     | Number     | 15        |          | The horizontal offset in px while displaying notification.
 `offset-y`     | Number     | 15        |          | The vertical offset in px while displaying notification.
-
-## [notification.js](https://github.com/wxsms/uiv/blob/release/src/services/notification/notification.js)
-
-This file has no props.

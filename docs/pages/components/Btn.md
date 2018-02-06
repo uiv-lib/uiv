@@ -147,7 +147,7 @@ Add `input-type` to render `<btn>` as `checkbox` or `radio` input.
 
 # API Reference
 
-## [Btn.js](https://github.com/wxsms/uiv/blob/release/src/components/button/Btn.js)
+## [Btn](https://github.com/wxsms/uiv/blob/release/src/components/button/Btn.js)
 
 ### Props
 
