@@ -3,6 +3,7 @@
     v-model="showDropdown"
     ref="dropdown"
     :not-close-elements="els"
+    :append-to-body="appendToBody"
     :disabled="disabled"
     :style="containerStyles"
     @keydown.native.esc="showDropdown=false">
@@ -17,11 +18,7 @@
       @keydown.prevent.down="goNextOption"
       @keydown.prevent.up="goPrevOption"
       @keydown.prevent.enter="selectOption">
-      <div
-        :class="selectTextClasses"
-        style="display: inline-block;vertical-align: middle;">
-        {{selectedText}}
-      </div>
+      <div :class="selectTextClasses" style="display: inline-block;vertical-align: middle;">{{selectedText}}</div>
       <div class="pull-right" style="display: inline-block;vertical-align: middle">
         <span>&nbsp;</span>
         <span class="caret"></span>
@@ -88,6 +85,10 @@
         default: ', '
       },
       disabled: {
+        type: Boolean,
+        default: false
+      },
+      appendToBody: {
         type: Boolean,
         default: false
       },

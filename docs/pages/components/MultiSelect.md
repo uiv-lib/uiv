@@ -227,6 +227,7 @@ Name                  | Type       | Default                | Required | Descrip
 `filter-function`     | Function   |                        |          | Custom filter function, with one param as input string, and returns the filtered array.
 `disabled`            | Boolean    | false                  |          | Disable the select component.
 `collapse-selected`   | Boolean    | false                  |          | Collapse multiple selected items into a text.
+`append-to-body`      | Boolean    | false                  |          | Append the dropdown to `body`.
 `selected-icon`       | String     | glyphicon glyphicon-ok |          | Icon displayed in option while selected.
 
 ### Events

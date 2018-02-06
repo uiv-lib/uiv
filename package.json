@@ -82,6 +82,7 @@
     "karma-webpack": "^2.0.9",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
+    "lodash": "^4.17.5",
     "markdown-it-anchor": "^4.0.0",
     "mocha": "^4.0.1",
     "mocha-lcov-reporter": "^1.3.0",
