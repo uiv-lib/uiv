@@ -117,66 +117,45 @@ Use this option to avoid influence from the parent node by appending dropdown li
 ## Within navbar
 
 ```html
-<template>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" @click="showNavbar=!showNavbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" role="button">Brand</a>
-      </div>
-      <collapse class="navbar-collapse" v-model="showNavbar">
-        <ul class="nav navbar-nav">
-          <dropdown tag="li">
-            <a class="dropdown-toggle" role="button">Dropdown 1<span class="caret"></span></a>
-            <template slot="dropdown">
-              <li><a role="button">Action</a></li>
-              <li><a role="button">Another action</a></li>
-              <li><a role="button">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a role="button">Separated link</a></li>
-            </template>
-          </dropdown>
-          <dropdown tag="li">
-            <a class="dropdown-toggle" role="button">Dropdown 2<span class="caret"></span></a>
-            <template slot="dropdown">
-              <li><a role="button">Action</a></li>
-              <li><a role="button">Another action</a></li>
-              <li><a role="button">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a role="button">Separated link</a></li>
-            </template>
-          </dropdown>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <dropdown tag="li">
-            <a class="dropdown-toggle" role="button">Dropdown 3<span class="caret"></span></a>
-            <template slot="dropdown">
-              <li><a role="button">Action</a></li>
-              <li><a role="button">Another action</a></li>
-              <li><a role="button">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a role="button">Separated link</a></li>
-            </template>
-          </dropdown>
-        </ul>
-      </collapse>
-    </div>
-  </nav>
-</template>
-<script>
-  export default {
-    data () {
-      return {
-        showNavbar: false
-      }
-    }
-  }
-</script>
+<navbar>
+  <a slot="brand" class="navbar-brand" role="button">Brand</a>
+  <template slot="collapse">
+    <navbar-nav>
+      <dropdown tag="li">
+        <a class="dropdown-toggle" role="button">Dropdown 1<span class="caret"></span></a>
+        <template slot="dropdown">
+          <li><a role="button">Action</a></li>
+          <li><a role="button">Another action</a></li>
+          <li><a role="button">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a role="button">Separated link</a></li>
+        </template>
+      </dropdown>
+      <dropdown tag="li">
+        <a class="dropdown-toggle" role="button">Dropdown 2<span class="caret"></span></a>
+        <template slot="dropdown">
+          <li><a role="button">Action</a></li>
+          <li><a role="button">Another action</a></li>
+          <li><a role="button">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a role="button">Separated link</a></li>
+        </template>
+      </dropdown>
+    </navbar-nav>
+    <navbar-nav right>
+      <dropdown tag="li">
+        <a class="dropdown-toggle" role="button">Dropdown 3<span class="caret"></span></a>
+        <template slot="dropdown">
+          <li><a role="button">Action</a></li>
+          <li><a role="button">Another action</a></li>
+          <li><a role="button">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a role="button">Separated link</a></li>
+        </template>
+      </dropdown>
+    </navbar-nav>
+  </template>
+</navbar>
 <!-- dropdown-within-navbar.vue -->
 ```
 
