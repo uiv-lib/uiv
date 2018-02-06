@@ -161,6 +161,7 @@
     "Tab",
     "Tooltip",
     "Typeahead",
-    "Auto complete"
+    "Auto complete",
+    "Multi select"
   ]
 }
