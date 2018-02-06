@@ -18,11 +18,21 @@
               <li role="presentation" class="no-link">
                 <a role="button"><b>{{item.label}}</b></a>
               </li>
-              <li role="presentation" v-for="_item in item.items" @click="toggleAside(false)">
-                <router-link :to="_item.path" role="button" class="sub-list">
-                  {{_item.meta.label}}
-                </router-link>
-              </li>
+              <template v-for="_item in item.items">
+                <template v-if="_item.isGroup">
+                  <li class="group-title text-muted">{{_item.name}}</li>
+                  <li v-for="__item in _item.items" role="presentation" @click="toggleAside(false)">
+                    <router-link :to="__item.path" role="button" class="sub-list">
+                      {{__item.meta.label}}
+                    </router-link>
+                  </li>
+                </template>
+                <li v-else role="presentation" @click="toggleAside(false)">
+                  <router-link :to="_item.path" role="button" class="sub-list">
+                    {{_item.meta.label}}
+                  </router-link>
+                </li>
+              </template>
             </template>
             <li v-else-if="item.href" role="presentation" @click="toggleAside(false)">
               <a :href="item.href" target="_blank">
@@ -44,16 +54,26 @@
   import {bus, events} from '../../bus'
   import Logo from './Logo.vue'
   import routes from '../../router/routes'
+  import uniq from 'lodash/uniq'
 
   export default {
     components: {Logo},
     props: ['isAsideShow'],
     data () {
+      const components = routes.filter(v => v.meta && v.meta.type === 'component')
+      const groups = uniq(components.map(v => v.meta.group))
+        .map(v => {
+          return {
+            name: v,
+            isGroup: true,
+            items: components.filter(_v => _v.meta && _v.meta.group === v)
+          }
+        })
       return {
         asideItems: [
-          {label: 'Usage', items: routes.filter(v => v.meta && v.meta.type === 'usage')},
           {label: 'Changelog', href: 'https://github.com/wxsms/uiv/releases'},
-          {label: 'Components', items: routes.filter(v => v.meta && v.meta.type === 'component')}
+          {label: 'Usage', items: routes.filter(v => v.meta && v.meta.type === 'usage')},
+          {label: 'Components', items: groups}
         ]
       }
     },
@@ -119,8 +139,19 @@
       }
 
       .nav {
+
+        .no-link + .group-title {
+          margin-top: 0
+        }
+
         li {
           margin: 0;
+
+          &.group-title {
+            margin-top: 15px;
+            padding: 10px 15px 10px 30px;
+            font-size: .9em;
+          }
 
           a {
             color: #333;

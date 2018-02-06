@@ -1,12 +1,12 @@
 <template>
   <section style="overflow: hidden">
-    <github-corner></github-corner>
+    <github-corner/>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-10">
         <div class="container container-markdown">
           <div class="row">
             <div class="col-xs-12" ref="markdown">
-              <slot></slot>
+              <slot/>
             </div>
           </div>
           <div class="row" v-if="this.docUrl">
@@ -23,7 +23,7 @@
       </div>
       <div class="col-md-2 hidden-xs hidden-sm" style="margin-top: 80px">
         <affix :offset="80">
-          <toc :anchors="anchors" v-if="anchors && anchors.length"></toc>
+          <toc :anchors="anchors" v-if="anchors && anchors.length"/>
         </affix>
       </div>
     </div>
