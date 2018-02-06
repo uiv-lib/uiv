@@ -169,6 +169,17 @@ const routes = [
     component: () => import('./../pages/components/MessageBox.md')
   },
   {
+    path: '/navbar',
+    meta: {
+      type: 'component',
+      label: 'Navbar',
+      url: 'components/Navbar.md',
+      group: 'Navigation',
+      new: true
+    },
+    component: () => import('./../pages/components/Navbar.md')
+  },
+  {
     path: '/tabs',
     meta: {
       type: 'component',

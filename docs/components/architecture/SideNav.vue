@@ -3,7 +3,7 @@
     <div class="brand">
       <div @click="toggleAside(false)" class="logo">
         <router-link to="/" exact>
-          <logo :scale="0.666"></logo>
+          <logo :scale="0.666"/>
         </router-link>
       </div>
       <a href="https://www.npmjs.com/package/uiv">
