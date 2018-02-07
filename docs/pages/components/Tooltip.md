@@ -167,6 +167,12 @@ v-tooltip.hover="'tooltip content'"
 v-tooltip.click="'tooltip content'"
 ```
 
+**Unenterable**
+
+```
+v-tooltip.unenterable="'tooltip content'"
+```
+
 **Custom append-to**
 
 ```

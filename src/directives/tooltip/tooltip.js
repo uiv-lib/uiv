@@ -25,6 +25,8 @@ const bind = (el, binding) => {
       vm.placement = option
     } else if (/(hover)|(focus)|(click)/.test(option)) {
       vm.trigger = option
+    } else if (/unenterable/.test(option)) {
+      vm.enterable = false
     }
   })
   vm.$mount()

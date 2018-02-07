@@ -192,6 +192,12 @@ v-popover.hover="{title:'Title', content:'Popover content'}"
 v-popover.click="{title:'Title', content:'Popover content'}"
 ```
 
+**Unenterable**
+
+```
+v-popover.unenterable="{title:'Title', content:'Popover content'}"
+```
+
 **Custom append-to**
 
 ```
