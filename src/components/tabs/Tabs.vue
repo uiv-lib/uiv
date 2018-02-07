@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ul class="nav nav-tabs" role="tablist" :class="{'nav-justified': justified}">
+    <ul :class="navClasses" role="tablist">
       <template v-for="(tab, index) in groupedTabs">
         <dropdown v-if="tab.tabs" role="presentation" tag="li" :class="getTabClasses(tab)">
           <a class="dropdown-toggle" role="tab" href="#" @click.prevent>{{tab.group}} <span class="caret"></span></a>
@@ -18,11 +18,11 @@
         </li>
       </template>
       <li class="pull-right" v-if="!justified && $slots['nav-right']">
-        <slot name="nav-right"></slot>
+        <slot name="nav-right"/>
       </li>
     </ul>
     <div class="tab-content">
-      <slot></slot>
+      <slot/>
     </div>
   </section>
 </template>
@@ -32,24 +32,19 @@
   import {isNumber} from '../../utils/objectUtils'
 
   export default {
-    components: {
-      Dropdown
-    },
+    components: {Dropdown},
     props: {
       value: {
         type: Number,
-        validator (value) {
-          return value >= 0
-        }
-      },
-      justified: {
-        type: Boolean,
-        default: false
+        validator: v => v >= 0
       },
       transitionDuration: {
         type: Number,
         default: 150
-      }
+      },
+      justified: Boolean,
+      pills: Boolean,
+      stacked: Boolean
     },
     data () {
       return {
@@ -78,6 +73,15 @@
       }
     },
     computed: {
+      navClasses () {
+        return {
+          nav: true,
+          'nav-justified': this.justified,
+          'nav-tabs': !this.pills,
+          'nav-pills': this.pills,
+          'nav-stacked': this.stacked && this.pills
+        }
+      },
       groupedTabs () {
         let tabs = []
         let hash = {}

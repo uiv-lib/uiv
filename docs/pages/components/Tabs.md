@@ -68,7 +68,7 @@ Add `pull-right` to `<tab>` to pull it right. A grouped tab will be pulled to ri
 
 ## Justified style
 
-Add `justified` to `<tabs>` to use justified style.
+Add `justified` to `<tabs>` to apply justified style.
 
 ```html
 <tabs justified>
@@ -83,6 +83,27 @@ Add `justified` to `<tabs>` to use justified style.
   </tab>
 </tabs>
 <!-- tabs-justified-style.vue -->
+```
+
+## Pills style
+
+Add `pills` to `<tabs>` to apply pills style.
+
+Pills are also vertically stackable by adding `stacked`, but if you want the nav and content parts to have layout such as 2 column, you may need some custom CSS apply to them.
+
+```html
+<tabs pills>
+  <tab title="Home">
+    <p>Home tab.</p>
+  </tab>
+  <tab title="Profile">
+    <p>Profile tab.</p>
+  </tab>
+  <tab title="Others">
+    <p>Others tab.</p>
+  </tab>
+</tabs>
+<!-- tabs-pills-style.vue -->
 ```
 
 ## With callbacks
@@ -198,6 +219,8 @@ Name                  | Type       | Default  | Required | Description
 ----------------      | ---------- | -------- | -------- | -----------------------
 `v-model`             | Number     |          |          | The current tab index, use this to manual change tab index.
 `justified`           | Boolean    | false    |          | Use justified style.
+`pills`               | Boolean    | false    |          | Use pills style.
+`stacked`             | Boolean    | false    |          | Use stacked style, note that this have to work with `pills`.
 `transition-duration` | Number     | 150      |          | The tabs show / hide transition time in ms. Use 0 to disable transitions.
 
 ### Slots
