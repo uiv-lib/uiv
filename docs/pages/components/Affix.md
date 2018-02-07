@@ -23,7 +23,7 @@ The navigation **on the right** is a live demo of the affix component (hidden on
 
 # API Reference
 
-## [Affix](https://github.com/wxsms/uiv/blob/release/src/components/affix/Affix.vue)
+## [Affix](https://github.com/wxsms/uiv/blob/master/src/components/affix/Affix.vue)
 
 ### Props
 

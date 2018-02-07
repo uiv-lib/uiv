@@ -118,7 +118,7 @@ Set `enable` prop to `false` to disable a tooltip.
 
 # API Reference
 
-## [Tooltip](https://github.com/wxsms/uiv/blob/release/src/components/tooltip/Tooltip.vue)
+## [Tooltip](https://github.com/wxsms/uiv/blob/master/src/components/tooltip/Tooltip.vue)
 
 ### Props
 
@@ -143,7 +143,7 @@ Name        | Params | Description
 `show`      |        | Fire after tooltip show.
 `hide`      |        | Fire after tooltip hide.
 
-### [Directive](https://github.com/wxsms/uiv/blob/release/src/directives/tooltip/tooltip.js)
+### [Directive](https://github.com/wxsms/uiv/blob/master/src/directives/tooltip/tooltip.js)
 
 The binding value will be the text content of corresponding tooltip.
 

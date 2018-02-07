@@ -98,7 +98,7 @@ No matter the implementation method, scrollspy requires the use of `position: re
 
 # API Reference
 
-## [scrollspy](https://github.com/wxsms/uiv/blob/release/src/directives/scrollspy/scrollspy.js)
+## [scrollspy](https://github.com/wxsms/uiv/blob/master/src/directives/scrollspy/scrollspy.js)
 
 ### Options
 

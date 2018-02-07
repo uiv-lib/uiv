@@ -211,7 +211,7 @@ An example that generate closable tabs using `v-for`:
 
 # API Reference
 
-## [Tabs](https://github.com/wxsms/uiv/blob/release/src/components/tabs/Tabs.vue)
+## [Tabs](https://github.com/wxsms/uiv/blob/master/src/components/tabs/Tabs.vue)
 
 ### Props
 
@@ -236,7 +236,7 @@ Name        | Params | Description
 ----------- | ------ | ---------------
 `change`    | index  | Fire after active tab changed, with the active index.
 
-## [Tab](https://github.com/wxsms/uiv/blob/release/src/components/tabs/Tab.vue)
+## [Tab](https://github.com/wxsms/uiv/blob/master/src/components/tabs/Tab.vue)
 
 ### Props
 

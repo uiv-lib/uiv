@@ -207,7 +207,7 @@ By default, options are filtered by item value and label (case ignored), use a c
 
 # API Reference
 
-## [MultiSelect](https://github.com/wxsms/uiv/blob/release/src/components/select/MultiSelect.vue)
+## [MultiSelect](https://github.com/wxsms/uiv/blob/master/src/components/select/MultiSelect.vue)
 
 ### Props
 

@@ -154,7 +154,7 @@ Place multiple `<progress-bar-stack>` into the same `<progress-bar>` to stack th
 
 # API Reference
 
-## [ProgressBar](https://github.com/wxsms/uiv/blob/release/src/components/progressbar/ProgressBar.js)
+## [ProgressBar](https://github.com/wxsms/uiv/blob/master/src/components/progressbar/ProgressBar.js)
 
 ### Props
 
@@ -174,6 +174,6 @@ Name      | Description
 --------- | -----------------------
 `default` | Use this slot if need stacked progress bar, see example in the code panel above.
 
-## [ProgressBarStack](https://github.com/wxsms/uiv/blob/release/src/components/progressbar/ProgressBarStack.js)
+## [ProgressBarStack](https://github.com/wxsms/uiv/blob/master/src/components/progressbar/ProgressBarStack.js)
 
 `ProgressBar` and `ProgressBarStack` shared same props.

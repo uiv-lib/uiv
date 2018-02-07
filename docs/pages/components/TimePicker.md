@@ -179,7 +179,7 @@ All input methods are all disabled in readonly mode.
 
 # API Reference
 
-## [TimePicker](https://github.com/wxsms/uiv/blob/release/src/components/timepicker/TimePicker.vue)
+## [TimePicker](https://github.com/wxsms/uiv/blob/master/src/components/timepicker/TimePicker.vue)
 
 ### Props
 
