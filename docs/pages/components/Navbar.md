@@ -160,14 +160,14 @@ Modify the look of the navbar by adding `inverse` prop.
 
 ### Props
 
-Name         | Type       | Default  | Required | Description
------------- | ---------- | -------- | -------- | -----------------------
-v-model      | Boolean    |          |          | Indicate the collapse status of navbar.
-fluid        | Boolean    | true     |          | Use `.container-fluid` class in navbar container, `.container` otherwise.
-fixed-top    | Boolean    | false    |          | Apply fixed top style.
-fixed-bottom | Boolean    | false    |          | Apply fixed bottom style.
-static-top   | Boolean    | false    |          | Apply static top style.
-inverse      | Boolean    | false    |          | Apply inverse style.
+Name           | Type       | Default  | Required | Description
+------------   | ---------- | -------- | -------- | -----------------------
+`v-model`      | Boolean    |          |          | Indicate the collapse status of navbar.
+`fluid`        | Boolean    | true     |          | Use `.container-fluid` class in navbar container, `.container` otherwise.
+`fixed-top`    | Boolean    | false    |          | Apply fixed top style.
+`fixed-bottom` | Boolean    | false    |          | Apply fixed bottom style.
+`static-top`   | Boolean    | false    |          | Apply static top style.
+`inverse`      | Boolean    | false    |          | Apply inverse style.
 
 ### Slots
 
@@ -182,25 +182,25 @@ Name             | Description
 
 ### Props
 
-Name         | Type       | Default  | Required | Description
------------- | ---------- | -------- | -------- | -----------------------
-left         | Boolean    | false    |          | Pull content to left.
-right        | Boolean    | false    |          | Pull content to right.
+Name           | Type       | Default  | Required | Description
+------------   | ---------- | -------- | -------- | -----------------------
+`left`         | Boolean    | false    |          | Pull content to left.
+`right`        | Boolean    | false    |          | Pull content to right.
 
 ## [NavbarForm](https://github.com/wxsms/uiv/blob/release/src/components/navbar/NavbarForm.js)
 
 ### Props
 
-Name         | Type       | Default  | Required | Description
------------- | ---------- | -------- | -------- | -----------------------
-left         | Boolean    | false    |          | Pull content to left.
-right        | Boolean    | false    |          | Pull content to right.
+Name           | Type       | Default  | Required | Description
+------------   | ---------- | -------- | -------- | -----------------------
+`left`         | Boolean    | false    |          | Pull content to left.
+`right`        | Boolean    | false    |          | Pull content to right.
 
 ## [NavbarText](https://github.com/wxsms/uiv/blob/release/src/components/navbar/NavbarText.js)
 
 ### Props
 
-Name         | Type       | Default  | Required | Description
------------- | ---------- | -------- | -------- | -----------------------
-left         | Boolean    | false    |          | Pull content to left.
-right        | Boolean    | false    |          | Pull content to right.
+Name           | Type       | Default  | Required | Description
+------------   | ---------- | -------- | -------- | -----------------------
+`left`         | Boolean    | false    |          | Pull content to left.
+`right`        | Boolean    | false    |          | Pull content to right.
