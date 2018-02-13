@@ -471,7 +471,7 @@ describe('TimePicker', () => {
     expect(minutesText.value).to.equal('00')
     expect(toggleBtn.textContent).to.equal('AM')
   })
-  it('should display empty fields when date gets resets at runtime', async () => {
+  it('should display empty fields when date is reset at runtime', async () => {
     const _vm = vm.$refs['time-picker-no-controls-example']
     await vm.$nextTick()
     // Set an invalid date at runtime (not via the initial config)
