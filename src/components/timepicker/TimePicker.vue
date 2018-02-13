@@ -154,33 +154,31 @@
         if (this.hours === 0 && value === '') {
           // Prevent a runtime reset from being overwritten
           return
-        } else {
-          let hour = parseInt(value)
-          if (this.showMeridian) {
-            if (hour >= 1 && hour <= cutUpAmAndPm) {
-              if (this.meridian) {
-                this.hours = hour === cutUpAmAndPm ? 0 : hour
-              } else {
-                this.hours = hour === cutUpAmAndPm ? cutUpAmAndPm : hour + cutUpAmAndPm
-              }
-            }
-          } else if (hour >= zero && hour <= maxHours) {
-            this.hours = hour
-          }
-          this.setTime()
         }
+        let hour = parseInt(value)
+        if (this.showMeridian) {
+          if (hour >= 1 && hour <= cutUpAmAndPm) {
+            if (this.meridian) {
+              this.hours = hour === cutUpAmAndPm ? 0 : hour
+            } else {
+              this.hours = hour === cutUpAmAndPm ? cutUpAmAndPm : hour + cutUpAmAndPm
+            }
+          }
+        } else if (hour >= zero && hour <= maxHours) {
+          this.hours = hour
+        }
+        this.setTime()
       },
       minutesText (value) {
         if (this.minutes === 0 && value === '') {
           // Prevent a runtime reset from being overwritten
           return
-        } else {
-          let minutesStr = parseInt(value)
-          if (minutesStr >= zero && minutesStr <= maxMinutes) {
-            this.minutes = minutesStr
-          }
-          this.setTime()
         }
+        let minutesStr = parseInt(value)
+        if (minutesStr >= zero && minutesStr <= maxMinutes) {
+          this.minutes = minutesStr
+        }
+        this.setTime()
       }
     },
     methods: {
