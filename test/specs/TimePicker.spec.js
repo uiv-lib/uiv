@@ -471,4 +471,15 @@ describe('TimePicker', () => {
     expect(minutesText.value).to.equal('00')
     expect(toggleBtn.textContent).to.equal('AM')
   })
+  it('should display empty fields when date is reset at runtime', async () => {
+    const _vm = vm.$refs['time-picker-no-controls-example']
+    await vm.$nextTick()
+    // Set an invalid date at runtime (not via the initial config)
+    _vm.time = new Date('')
+    await vm.$nextTick()
+    const hourText = _vm.$el.querySelectorAll('input')[0]
+    const minutesText = _vm.$el.querySelectorAll('input')[1]
+    expect(hourText.value).to.equal('')
+    expect(minutesText.value).to.equal('')
+  })
 })

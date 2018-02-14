@@ -151,6 +151,10 @@
         this.setTime()
       },
       hoursText (value) {
+        if (this.hours === 0 && value === '') {
+          // Prevent a runtime reset from being overwritten
+          return
+        }
         let hour = parseInt(value)
         if (this.showMeridian) {
           if (hour >= 1 && hour <= cutUpAmAndPm) {
@@ -166,6 +170,10 @@
         this.setTime()
       },
       minutesText (value) {
+        if (this.minutes === 0 && value === '') {
+          // Prevent a runtime reset from being overwritten
+          return
+        }
         let minutesStr = parseInt(value)
         if (minutesStr >= zero && minutesStr <= maxMinutes) {
           this.minutes = minutesStr
