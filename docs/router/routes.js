@@ -205,7 +205,7 @@ const routes = [
       type: 'component',
       label: 'Pagination',
       url: 'components/Pagination.md',
-      group: 'Data'
+      group: 'Indicator'
     },
     component: () => import('./../pages/components/Pagination.md')
   },
@@ -215,7 +215,7 @@ const routes = [
       type: 'component',
       label: 'ProgressBar',
       url: 'components/ProgressBar.md',
-      group: 'Data'
+      group: 'Indicator'
     },
     component: () => import('./../pages/components/ProgressBar.md')
   },
