@@ -103,8 +103,7 @@ const routes = [
       type: 'component',
       label: 'MultiSelect',
       url: 'components/MultiSelect.md',
-      group: 'Form',
-      new: true
+      group: 'Form'
     },
     component: () => import('./../pages/components/MultiSelect.md')
   },
@@ -174,8 +173,7 @@ const routes = [
       type: 'component',
       label: 'Navbar',
       url: 'components/Navbar.md',
-      group: 'Navigation',
-      new: true
+      group: 'Navigation'
     },
     component: () => import('./../pages/components/Navbar.md')
   },
