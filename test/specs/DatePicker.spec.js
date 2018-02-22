@@ -314,7 +314,7 @@ describe('DatePicker', () => {
     await vm.$nextTick()
     const picker = _$el.find('[data-role="date-picker"]').get(0)
     let btnDisabled = picker.querySelector('tbody').querySelectorAll('button:disabled')
-    expect(btnDisabled.length).to.equal(0)
+    expect(btnDisabled.length).to.equal(1)
     _vm.date = '2018-12-31'
     await vm.$nextTick()
     btnDisabled = picker.querySelector('tbody').querySelectorAll('button:disabled')
