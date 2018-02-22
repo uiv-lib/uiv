@@ -85,11 +85,11 @@ Use `today-btn` and `clear-btn` to toggle visible of them.
 
 ## Range limit
 
-Example that limit date range from **2017-01-01** to **2018-01-01**:
+Example that limit date range from **2018-01-01** to **2019-01-01**:
 
 ```html
 <template>
-  <date-picker v-model="date" limit-from="2017-01-01" limit-to="2018-01-01"/>
+  <date-picker v-model="date" limit-from="2018-01-01" limit-to="2019-01-01"/>
 </template>
 <script>
   export default {

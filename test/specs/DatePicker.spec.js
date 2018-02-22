@@ -310,20 +310,20 @@ describe('DatePicker', () => {
   it('should be able to limit date range and render correct date view', async () => {
     const _vm = vm.$refs['date-picker-range-limit']
     const _$el = $(_vm.$el)
-    _vm.date = '2017-01-01'
+    _vm.date = '2018-01-01'
     await vm.$nextTick()
     const picker = _$el.find('[data-role="date-picker"]').get(0)
     let btnDisabled = picker.querySelector('tbody').querySelectorAll('button:disabled')
     expect(btnDisabled.length).to.equal(0)
-    _vm.date = '2017-12-31'
+    _vm.date = '2018-12-31'
     await vm.$nextTick()
     btnDisabled = picker.querySelector('tbody').querySelectorAll('button:disabled')
-    expect(btnDisabled.length).to.equal(6)
+    expect(btnDisabled.length).to.equal(5)
   })
 
   it('should be able to limit date range and not able to set invalid date', async () => {
     const _vm = vm.$refs['date-picker-range-limit']
-    _vm.date = '2019-01-01'
+    _vm.date = '2020-01-01'
     await vm.$nextTick()
     expect(_vm.date).to.equal('')
   })
