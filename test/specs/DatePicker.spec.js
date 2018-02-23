@@ -354,8 +354,8 @@ describe('DatePicker', () => {
     expect(picker).to.exist
     const dateView = picker.querySelectorAll('table')[0]
     expect(dateView.style.display).to.equal('')
-    const yesterdayBtn = dateView.querySelector('.yesterday-class')
-    const tomorrowBtn = dateView.querySelector('.tomorrow-class')
+    const yesterdayBtn = dateView.querySelector('.btn-yesterday')
+    const tomorrowBtn = dateView.querySelector('.btn-tomorrow')
     expect(Boolean(yesterdayBtn || tomorrowBtn)).to.be.true
   })
 })

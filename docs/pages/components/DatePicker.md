@@ -177,16 +177,16 @@ See below example for detail usage:
       return {
         date: null,
         config: [
-          {date: yesterday, classes: 'yesterday-class'},
-          {date: tomorrow, classes: 'tomorrow-class'}
+          {date: yesterday, classes: 'btn-yesterday'},
+          {date: tomorrow, classes: 'btn-tomorrow'}
         ]
       }
     }
   }
 </script>
 <style>
- .yesterday-class {background-color: #ccc}
- .tomorrow-class {background-color: #28b684}
+ .btn-yesterday.btn-default {background-color: #ccc}
+ .btn-tomorrow.btn-default {background-color: #28b684}
 </style>
 <!-- date-picker-custom-date-classes.vue -->
 ```
