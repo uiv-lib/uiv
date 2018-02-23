@@ -7,6 +7,7 @@
       :date="valueDateObj"
       :today="now"
       :limit="limit"
+      :date-config="dateConfigs"
       :week-starts-with="weekStartsWith"
       :icon-control-left="iconControlLeft"
       :icon-control-right="iconControlRight"
@@ -98,6 +99,10 @@
       iconControlRight: {
         type: String,
         default: 'glyphicon glyphicon-chevron-right'
+      },
+      dateConfig: {
+        type: Array,
+        default: () => []
       }
     },
     data () {
@@ -146,6 +151,24 @@
           }
         }
         return limit
+      },
+      dateConfigs () {
+        return this.dateConfig
+          .map(v => {
+            let date = this.dateParser(v.date)
+            if (!isNaN(date)) {
+              date = new Date(date)
+              return {
+                date: date.getDate(),
+                month: date.getMonth(),
+                year: date.getFullYear(),
+                classes: v.classes
+              }
+            } else {
+              return null
+            }
+          })
+          .filter(v => !!v)
       }
     },
     mounted () {
