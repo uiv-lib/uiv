@@ -180,4 +180,20 @@ describe('Pagination', () => {
     startBtn = $(pagination).find('a:not([aria-label])').get(0)
     expect(Number(startBtn.text)).to.equal(1)
   })
+
+  it('should be able to disable component', async () => {
+    await vm.$nextTick()
+    const _vm = vm.$refs['pagination-disabled']
+    const pagination = _vm.$el.querySelector('ul.pagination')
+    // all btns has disabled class
+    expect(pagination.querySelectorAll('li').length).to.equal(pagination.querySelectorAll('.disabled').length)
+    expect(pagination.querySelector('.active > a').textContent).to.equal('1')
+    // all btns function are disabled
+    const btns = pagination.querySelectorAll('li > a')
+    for (let i = 0; i < btns.length; i++) {
+      btns[i].click()
+      await vm.$nextTick()
+      expect(pagination.querySelector('.active > a').textContent).to.equal('1')
+    }
+  })
 })

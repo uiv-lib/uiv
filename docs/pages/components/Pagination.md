@@ -145,6 +145,25 @@ Use `max-size` to define the maximum chunk size of pagers (default is 5). And if
 <!-- pagination-chunks.vue -->
 ```
 
+## Disabled
+
+```html
+<template>
+  <pagination v-model="currentPage" :total-page="totalPage" disabled/>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        totalPage: 18,
+        currentPage: 1
+      }
+    }
+  }
+</script> 
+<!-- pagination-disabled.vue -->
+```
+
 # API Reference
 
 ## [Pagination](https://github.com/wxsms/uiv/blob/master/src/components/pagination/Pagination.vue)
@@ -160,6 +179,7 @@ Name              | Type       | Default  | Required | Description
 `direction-links` | Boolean    | true     |          | Display Previous / Next buttons.
 `size`            | String     |          |          | Optional pagination sizes, support: `sm` / `lg`
 `align`           | String     |          |          | Optional pagination alignment, support: `left` / `center` / `right`
+`disabled`        | Boolean    | false    |          | Disable the pagination component.
 
 ### Events
 
