@@ -20,7 +20,7 @@
           </slot>
         </div>
         <div class="modal-body">
-          <slot></slot>
+          <slot/>
         </div>
         <div class="modal-footer" v-if="footer">
           <slot name="footer">
@@ -101,6 +101,10 @@
       zOffset: {
         type: Number,
         default: 20
+      },
+      appendToBody: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
@@ -131,6 +135,7 @@
     beforeDestroy () {
       clearTimeout(this.timeoutId)
       removeFromDom(this.$refs.backdrop)
+      removeFromDom(this.$el)
       off(window, EVENTS.KEY_UP, this.onKeyPress)
     },
     methods: {
@@ -154,6 +159,9 @@
         if (show) {
           const alreadyOpenModalNum = getOpenModalNum()
           document.body.appendChild(backdrop)
+          if (this.appendToBody) {
+            document.body.appendChild(modal)
+          }
           modal.style.display = 'block'
           modal.scrollTop = 0
           backdrop.offsetHeight // force repaint
@@ -186,6 +194,9 @@
           this.timeoutId = setTimeout(() => {
             modal.style.display = 'none'
             removeFromDom(backdrop)
+            if (this.appendToBody) {
+              removeFromDom(modal)
+            }
             if (getOpenModalNum() === 0) {
               toggleBodyOverflow(true)
             }

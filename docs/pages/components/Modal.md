@@ -237,14 +237,49 @@ Set `transition-duration` to `0` to disable modal animations.
 
 ## Nested modals
 
-Modals can be **nested** since 0.15.
-
-Click on the button below to open the entry of a set of nested modals.
+Note that if you want modals to be real nested to each other, you have to add `append-to-body` prop to them. For example:
 
 ```html
 <template>
   <section>
-    <btn type="primary" @click="open1=true">Open Modal 1</btn>
+    <btn type="primary" @click="open1=true">Open set of nested modals</btn>
+    <!-- `append-to-body` not required here -->
+    <modal v-model="open1" title="Modal 1" size="lg">
+      <p>This is a simple large modal.</p>
+      <p>Click on the button below to open a nested modal.</p>
+      <btn type="info" @click="open2=true">Open Modal 2</btn>
+      <!-- `append-to-body` required, because this is a nested modal -->
+      <modal v-model="open2" title="Modal 2" append-to-body>
+        <p>This is a nested modal.</p>
+        <btn type="info" @click="open3=true">Open Modal 3</btn>
+        <!-- `append-to-body` required, because this is a nested modal -->
+        <modal v-model="open3" title="Modal 3" size="sm" append-to-body>
+          <p>This is another nested modal.</p>
+        </modal>
+      </modal>
+    </modal>
+  </section>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        open1: false,
+        open2: false,
+        open3: false
+      }
+    }
+  }
+</script>
+<!-- modal-nested.vue -->
+```
+
+Otherwise, you can simply nest them logically, without any extra settings:
+
+```html
+<template>
+  <section>
+    <btn type="primary" @click="open1=true">Open set of nested modals (logically)</btn>
     <modal v-model="open1" title="Modal 1" size="lg">
       <p>This is a simple large modal.</p>
       <p>Click on the button below to open a nested modal.</p>
@@ -270,7 +305,7 @@ Click on the button below to open the entry of a set of nested modals.
     }
   }
 </script>
-<!-- modal-nested.vue -->
+<!-- modal-nested-logically.vue -->
 ```
 
 
@@ -294,6 +329,7 @@ Name                  | Type       | Default  | Required | Description
 `transition-duration` | Number     | 150      |          | Transition time of the modal, set to 0 to disable animation.
 `auto-focus`          | Boolean    | false    |          | Focus on the action button that has `data-action="auto-focus"` attribute after modal open, by default it is the OK button.
 `keyboard`            | Boolean    | true     |          | Close the modal after `esc` key pressed.
+`append-to-body`      | Boolean    | false    |          | Append the modal element to `<body>`.
 `before-close`        | Function   |          |          | Call with the `msg` param, return `false` to interrupt the modal hiding process.
 
 ### Slots
