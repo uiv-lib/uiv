@@ -34,7 +34,6 @@
           data-action="select"
           :type="getBtnClass(date)"
           :disabled="date.disabled"
-          :class="date.classes"
           @click="select(date)">
           <span data-action="select" :class="{'text-muted':month!==date.month}">{{date.date}}</span>
         </btn>
@@ -60,8 +59,7 @@
       limit: Object,
       weekStartsWith: Number,
       iconControlLeft: String,
-      iconControlRight: String,
-      dateConfig: Array
+      iconControlRight: String
     },
     components: {Btn},
     computed: {
@@ -130,14 +128,6 @@
               beforeTo = dateObj < this.limit.to
             }
             date.disabled = !afterFrom || !beforeTo
-            // process configs
-            for (let i = 0; i < this.dateConfig.length; i++) {
-              const config = this.dateConfig[i]
-              if (config.year === date.year && config.month === date.month && config.date === date.date) {
-                date.classes = config.classes
-                break
-              }
-            }
             rows[i].push(date)
           }
         }
