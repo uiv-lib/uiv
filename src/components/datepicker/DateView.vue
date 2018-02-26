@@ -32,7 +32,8 @@
           size="sm"
           style="border: none"
           data-action="select"
-          :type="getBtnClass(date)"
+          :class="date.classes"
+          :type="getBtnType(date)"
           :disabled="date.disabled"
           @click="select(date)">
           <span data-action="select" :class="{'text-muted':month!==date.month}">{{date.date}}</span>
@@ -47,7 +48,7 @@
   import Locale from '../../mixins/localeMixin'
   import Btn from './../button/Btn'
   import {daysInMonth} from '../../utils/dateUtils'
-  import {isExist} from '../../utils/objectUtils'
+  import {isExist, isFunction} from '../../utils/objectUtils'
 
   export default {
     mixins: [Locale],
@@ -59,7 +60,8 @@
       limit: Object,
       weekStartsWith: Number,
       iconControlLeft: String,
-      iconControlRight: String
+      iconControlRight: String,
+      dateClass: Function
     },
     components: {Btn},
     computed: {
@@ -128,6 +130,7 @@
               beforeTo = dateObj < this.limit.to
             }
             date.disabled = !afterFrom || !beforeTo
+            date.classes = isFunction(this.dateClass) ? this.dateClass(dateObj) : ''
             rows[i].push(date)
           }
         }
@@ -138,7 +141,7 @@
       tWeekName (index) {
         return this.t(`uiv.datePicker.week${index}`)
       },
-      getBtnClass (date) {
+      getBtnType (date) {
         if (this.date &&
           date.date === this.date.getDate() &&
           date.month === this.date.getMonth() &&

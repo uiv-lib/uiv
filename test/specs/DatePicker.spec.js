@@ -345,4 +345,16 @@ describe('DatePicker', () => {
     expect($tr.find('td:first-child > .btn > i').get(0).className).to.contain('glyphicon-triangle-left')
     expect($tr.find('td:last-child > .btn > i').get(0).className).to.contain('glyphicon-triangle-right')
   })
+
+  it('should be able to use custom date classes', async () => {
+    const _vm = vm.$refs['date-picker-custom-date-classes']
+    const _$el = $(_vm.$el)
+    await vm.$nextTick()
+    const picker = _$el.find('[data-role="date-picker"]').get(0)
+    expect(picker).to.exist
+    const dateView = picker.querySelectorAll('table')[0]
+    expect(dateView.style.display).to.equal('')
+    const sundayBtn = dateView.querySelectorAll('.btn-sunday')
+    expect(sundayBtn.length).to.equal(6)
+  })
 })

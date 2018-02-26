@@ -155,6 +155,39 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 <!-- date-picker-dropdown-example.vue -->
 ```
 
+## Custom date classes
+
+Use `date-class` to apply custom classes to each date button, which should be an function that:
+
+* takes the date of button as param.
+* returns the class(es).
+
+See below example for detail usage, which has all sunday highlighted:
+
+```html
+<template>
+  <date-picker v-model="date" :date-class="dateClass"/>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        date: null
+      }
+    },
+    methods: {
+      dateClass (date) {
+        return date.getDay() === 0 ? 'btn-sunday' : ''
+      }
+    }
+  }
+</script>
+<style>
+ .btn-sunday.btn-default {background-color: #ccc}
+</style>
+<!-- date-picker-custom-date-classes.vue -->
+```
+
 ## Custom icons
 
 ```html
@@ -186,5 +219,6 @@ Name                 | Type       | Default                           | Required
 `initial-view`       | String     | d                                 |          | Open the date-picker with specify view (one of `d` / `m` / `y`) on initial. Only works if the `v-model` is empty.
 `week-starts-with`   | Number     | 0                                 |          | Starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 `date-parser`        | Function   | Date.parse                        |          | Use this prop to replace the `Date.parse` call inside the component. Useful when The formatted String can not be correctly parsed to Date type by `Date.parse` (e.g. dd-MM-yyyy).
+`date-class`         | Function   |                                   |          | The custom class callback function for each date. See above example section for details.
 `icon-control-left`  | String     | glyphicon glyphicon-chevron-left  |          | The arrow icon shown inside the `previous` button.
 `icon-control-right` | String     | glyphicon glyphicon-chevron-right |          | The arrow icon shown inside the `next` button.

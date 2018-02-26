@@ -10,6 +10,7 @@
       :week-starts-with="weekStartsWith"
       :icon-control-left="iconControlLeft"
       :icon-control-right="iconControlRight"
+      :date-class="dateClass"
       @month-change="onMonthChange"
       @year-change="onYearChange"
       @date-change="onDateChange"
@@ -84,6 +85,7 @@
         type: Function,
         default: Date.parse
       },
+      dateClass: Function,
       weekStartsWith: {
         type: Number,
         default: 0,
