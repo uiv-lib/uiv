@@ -54,7 +54,10 @@
 </template>
 
 <script>
+  import Dropdown from '../dropdown/Dropdown.vue'
+
   export default {
+    components: {Dropdown},
     props: {
       value: {
         type: Array,
