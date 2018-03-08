@@ -27,6 +27,7 @@
     <template slot="dropdown">
       <li v-if="filterable" style="padding: 4px 8px">
         <input
+          ref="filterInput"
           class="form-control input-sm"
           type="text"
           :placeholder="filterPlaceholder"
@@ -107,6 +108,10 @@
       filterable: {
         type: Boolean,
         default: false
+      },
+      filterAutoFocus: {
+        type: Boolean,
+        default: true
       },
       filterFunction: Function,
       filterPlaceholder: {
@@ -191,6 +196,11 @@
         this.filterInput = ''
         this.currentActive = -1
         this.$emit('visible-change', v)
+        if (v && this.filterAutoFocus) {
+          this.$nextTick(() => {
+            this.$refs.filterInput.focus()
+          })
+        }
       }
     },
     mounted () {
