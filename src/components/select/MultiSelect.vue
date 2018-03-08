@@ -242,15 +242,21 @@
           return
         }
         const value = item[this.valueKey]
-        const index = this.value.indexOf(value)
-        if (index >= 0) {
-          this.value.splice(index, 1)
-          this.$emit('change', this.value)
-        } else if (this.limit === 0 || this.value.length < this.limit) {
-          this.value.push(value)
-          this.$emit('change', this.value)
+        if (this.limit === 1) {
+          const newValue = [value]
+          this.$emit('input', newValue)
+          this.$emit('change', newValue)
         } else {
-          this.$emit('limit-exceed')
+          const index = this.value.indexOf(value)
+          if (index >= 0) {
+            this.value.splice(index, 1)
+            this.$emit('change', this.value)
+          } else if (this.limit === 0 || this.value.length < this.limit) {
+            this.value.push(value)
+            this.$emit('change', this.value)
+          } else {
+            this.$emit('limit-exceed')
+          }
         }
       }
     }
