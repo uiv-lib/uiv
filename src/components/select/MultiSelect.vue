@@ -196,7 +196,7 @@
         this.filterInput = ''
         this.currentActive = -1
         this.$emit('visible-change', v)
-        if (v && this.filterAutoFocus) {
+        if (v && this.filterable && this.filterAutoFocus) {
           this.$nextTick(() => {
             this.$refs.filterInput.focus()
           })
