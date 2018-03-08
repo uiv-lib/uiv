@@ -530,6 +530,10 @@ describe('MultiSelect', () => {
     dropdown.querySelectorAll('li')[2].click()
     await vm.$nextTick()
     expect(_.isEqual(_vm.selected, [3])).to.be.true
+    // un-select option 3
+    dropdown.querySelectorAll('li')[2].click()
+    await vm.$nextTick()
+    expect(_.isEqual(_vm.selected, [])).to.be.true
     _vm.$destroy()
   })
 })

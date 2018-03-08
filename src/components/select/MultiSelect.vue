@@ -242,12 +242,12 @@
           return
         }
         const value = item[this.valueKey]
+        const index = this.value.indexOf(value)
         if (this.limit === 1) {
-          const newValue = [value]
+          const newValue = index >= 0 ? [] : [value]
           this.$emit('input', newValue)
           this.$emit('change', newValue)
         } else {
-          const index = this.value.indexOf(value)
           if (index >= 0) {
             this.value.splice(index, 1)
             this.$emit('change', this.value)
