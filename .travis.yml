@@ -15,8 +15,6 @@ script:
 after_success: 'npm run coveralls'
 
 deploy:
-  - edge:
-     branch: v1.8.47
   - provider: npm
     skip_cleanup: true
     email: "wxsms@foxmail.com"
@@ -31,6 +29,8 @@ deploy:
     on:
       tags: true
   - provider: pages
+    edge:
+      branch: v1.8.47
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
     local_dir: dist-docs
