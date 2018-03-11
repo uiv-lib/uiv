@@ -53,6 +53,10 @@
         type: Boolean,
         default: false
       },
+      forceClear: {
+        type: Boolean,
+        default: false
+      },
       limit: {
         type: Number,
         default: 10
@@ -240,6 +244,13 @@
       inputBlured () {
         if (!this.dropdownMenuEl.matches(':hover')) {
           this.open = false
+        }
+        if (this.inputEl && this.forceClear) {
+          this.$nextTick(() => {
+            if (typeof this.value === 'undefined') {
+              this.inputEl.value = ''
+            }
+          })
         }
       },
       inputKeyPressed (event) {
