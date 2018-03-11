@@ -17,17 +17,17 @@ export default {
       month11: 'November',
       month12: 'Dezember',
       year: 'Jahr',
-      week1: 'Mon',
-      week2: 'Din',
-      week3: 'Mit',
-      week4: 'Don',
-      week5: 'Fre',
-      week6: 'Sam',
-      week7: 'Son'
+      week1: 'Mo',
+      week2: 'Di',
+      week3: 'Mi',
+      week4: 'Do',
+      week5: 'Fr',
+      week6: 'Sa',
+      week7: 'So'
     },
     timePicker: {
-      am: 'AM',
-      pm: 'PM'
+      am: 'Vormittag',
+      pm: 'Nachmittag'
     },
     modal: {
       cancel: 'Abbrechen',
