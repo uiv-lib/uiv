@@ -112,7 +112,7 @@
         }
       },
       onPageChange (page) {
-        if (!this.disabled && page > 0 && page <= this.totalPage) {
+        if (!this.disabled && page > 0 && page <= this.totalPage && page !== this.value) {
           this.$emit('input', page)
           this.$emit('change', page)
         }
