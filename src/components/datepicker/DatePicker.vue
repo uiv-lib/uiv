@@ -132,19 +132,21 @@
       limit () {
         let limit = {}
         if (this.limitFrom) {
-          let from = this.dateParser(this.limitFrom)
-          if (!isNaN(from)) {
-            from = new Date(from)
-            from.setHours(0, 0, 0, 0)
-            limit.from = from
+          let limitFrom = this.dateParser(this.limitFrom)
+          if (!isNaN(limitFrom)) {
+            limitFrom = new Date(limitFrom)
+            limitFrom = new Date(limitFrom.getUTCFullYear(), limitFrom.getUTCMonth(), limitFrom.getUTCDate())
+            limitFrom.setHours(0, 0, 0, 0)
+            limit.from = limitFrom
           }
         }
         if (this.limitTo) {
-          let to = this.dateParser(this.limitTo)
-          if (!isNaN(to)) {
-            to = new Date(to)
-            to.setHours(0, 0, 0, 0)
-            limit.to = to
+          let limitTo = this.dateParser(this.limitTo)
+          if (!isNaN(limitTo)) {
+            limitTo = new Date(limitTo)
+            limitTo = new Date(limitTo.getUTCFullYear(), limitTo.getUTCMonth(), limitTo.getUTCDate())
+            limitTo.setHours(0, 0, 0, 0)
+            limit.to = limitTo
           }
         }
         return limit
