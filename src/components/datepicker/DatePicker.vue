@@ -47,7 +47,7 @@
   import MonthView from './MonthView.vue'
   import YearView from './YearView.vue'
   import Btn from './../button/Btn'
-  import {stringify} from '../../utils/dateUtils'
+  import {stringify, convertDateToUTC} from '../../utils/dateUtils'
   import {isNumber} from '../../utils/objectUtils'
 
   export default {
@@ -134,8 +134,7 @@
         if (this.limitFrom) {
           let limitFrom = this.dateParser(this.limitFrom)
           if (!isNaN(limitFrom)) {
-            limitFrom = new Date(limitFrom)
-            limitFrom = new Date(limitFrom.getUTCFullYear(), limitFrom.getUTCMonth(), limitFrom.getUTCDate())
+            limitFrom = convertDateToUTC(new Date(limitFrom))
             limitFrom.setHours(0, 0, 0, 0)
             limit.from = limitFrom
           }
@@ -143,8 +142,7 @@
         if (this.limitTo) {
           let limitTo = this.dateParser(this.limitTo)
           if (!isNaN(limitTo)) {
-            limitTo = new Date(limitTo)
-            limitTo = new Date(limitTo.getUTCFullYear(), limitTo.getUTCMonth(), limitTo.getUTCDate())
+            limitTo = convertDateToUTC(new Date(limitTo))
             limitTo.setHours(0, 0, 0, 0)
             limit.to = limitTo
           }
