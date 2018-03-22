@@ -237,8 +237,8 @@ An example how to prevent tab display when `before-change` callback return `fals
       }
     },
     methods: {
-      onBeforeChange (payload) {
-        (payload.index > 1) ? payload.allow(false) : payload.allow(true)
+      onBeforeChange (index, done) {
+        (index > 1) ? done(false) : done()
       }
     }
   }
@@ -269,10 +269,10 @@ Name        | Description
 
 ### Events
 
-Name            | Params  | Description
---------------- | ------- | ---------------
-`change`        | index   | Fire after active tab changed, with the active index.
-`before-change` | payload | Fire before active tab changed. Payload: { allow: function(Boolean), index: integer }. Index - the index of clicked tab. Call payload.allow(true) in your handler to allow tab display. Call payload.allow(false) to prevent tab display.
+Name            | Params      | Description
+--------------- | ----------- | ---------------
+`change`        | index       | Fire after active tab changed, with the active index.
+`before-change` | index, done | Fire before active tab changed, with the `index` of clicked tab and `done()` callback. Calling `done()` allow tab to display. Calling `done(err)`, where `err` is any value, prevent display of the tab.
 
 ## [Tab](https://github.com/wxsms/uiv/blob/master/src/components/tabs/Tab.vue)
 

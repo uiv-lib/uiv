@@ -58,6 +58,7 @@
         immediate: true,
         handler (value) {
           if (isNumber(value)) {
+            this.prevIndex = this.activeIndex
             this.activeIndex = value
             this.selectCurrent()
           }
@@ -71,9 +72,6 @@
           }
         })
         this.selectCurrent()
-      },
-      activeIndex (newIndex, oldIndex) {
-        this.prevIndex = oldIndex
       }
     },
     computed: {
@@ -133,13 +131,14 @@
         if (found) {
           const self = this
           if (typeof this.$listeners['before-change'] === 'function') {
-            this.beforeChange(this.activeIndex).then((result) => {
-              if (result) {
-                self.$emit('change', this.activeIndex)
-              } else {
+            this.$emit('before-change', this.activeIndex, (result) => {
+              let event = 'change'
+              if (typeof result !== 'undefined') {
                 self.activeIndex = self.prevIndex
+                event = 'input'
               }
               self.tabs[self.activeIndex].active = true
+              self.$emit(event, self.activeIndex)
             })
           } else {
             this.tabs[this.activeIndex].active = true
@@ -152,35 +151,11 @@
           if (isNumber(this.value)) {
             this.$emit('input', index)
           } else {
+            this.prevIndex = this.activeIndex
             this.activeIndex = index
             this.selectCurrent()
           }
         }
-      },
-      beforeChange (index) {
-        const self = this
-        let allowed = true
-        let callbackPromise = new Promise((resolve, reject) => {
-          self.$emit(
-            'before-change',
-            {
-              allow: (result) => {
-                if (typeof result === typeof true) {
-                  allowed = allowed && result
-                }
-                resolve(allowed)
-              },
-              index: index
-            }
-          )
-        })
-        let timeoutPromise = new Promise((resolve, reject) => {
-          let timeout = setTimeout(() => {
-            clearTimeout(timeout)
-            resolve(allowed)
-          }, 500)
-        })
-        return Promise.race([callbackPromise, timeoutPromise])
       }
     }
   }
