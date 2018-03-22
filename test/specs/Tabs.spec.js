@@ -291,4 +291,46 @@ describe('Tabs', () => {
     expect(activeContent.length).to.equal(1)
     expect(activeContent[0].textContent).to.contain('Tab 4')
   })
+
+  it('should not display tab if before-change callback return false', async () => {
+    const _vm = vm.$refs['tabs-before-change-example']
+    const $el = $(_vm.$el)
+    const nav = $el.find('.nav-tabs').get(0)
+    const content = $el.find('.tab-content').get(0)
+    await vm.$nextTick()
+    await vm.$nextTick()
+    expect(nav.querySelectorAll('li').length).to.equal(3)
+    // check active tab
+    let activeTab = nav.querySelectorAll('.active')
+    expect(activeTab.length).to.equal(1)
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Home (allowed)')
+    // check active content
+    let activeContent = content.querySelectorAll('.tab-pane.active')
+    expect(activeContent.length).to.equal(1)
+    expect(activeContent[0].textContent).to.contain('Home tab')
+    // click on allowed tab #2
+    utils.triggerEvent(nav.querySelectorAll('li > a')[1], 'click')
+    await vm.$nextTick()
+    await utils.sleep(350)
+    // check active tab
+    activeTab = nav.querySelectorAll('.active')
+    expect(activeTab.length).to.equal(1)
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Allowed')
+    // check active content
+    activeContent = content.querySelectorAll('.tab-pane.active')
+    expect(activeContent.length).to.equal(1)
+    expect(activeContent[0].textContent).to.contain('Allowed')
+    // click on denied tab #3
+    utils.triggerEvent(nav.querySelectorAll('li > a')[2], 'click')
+    await vm.$nextTick()
+    await utils.sleep(350)
+    // check active tab
+    activeTab = nav.querySelectorAll('.active')
+    expect(activeTab.length).to.equal(1)
+    expect(activeTab[0].querySelector('a').textContent).to.equal('Allowed')
+    // check active content
+    activeContent = content.querySelectorAll('.tab-pane.active')
+    expect(activeContent.length).to.equal(1)
+    expect(activeContent[0].textContent).to.contain('Allowed')
+  })
 })

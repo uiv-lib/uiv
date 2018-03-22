@@ -49,7 +49,8 @@
     data () {
       return {
         tabs: [],
-        activeIndex: 0 // Make v-model not required
+        activeIndex: 0, // Make v-model not required
+        prevIndex: 0
       }
     },
     watch: {
@@ -70,6 +71,9 @@
           }
         })
         this.selectCurrent()
+      },
+      activeIndex (newIndex, oldIndex) {
+        this.prevIndex = oldIndex
       }
     },
     computed: {
@@ -122,13 +126,25 @@
         this.tabs.forEach((tab, index) => {
           if (index === this.activeIndex) {
             found = !tab.active
-            tab.active = true
           } else {
             tab.active = false
           }
         })
         if (found) {
-          this.$emit('change', this.activeIndex)
+          const self = this
+          if (typeof this.$listeners['before-change'] === 'function') {
+            this.beforeChange(this.activeIndex).then((result) => {
+              if (result) {
+                self.$emit('change', this.activeIndex)
+              } else {
+                self.activeIndex = self.prevIndex
+              }
+              self.tabs[self.activeIndex].active = true
+            })
+          } else {
+            this.tabs[this.activeIndex].active = true
+            this.$emit('change', this.activeIndex)
+          }
         }
       },
       select (index) {
@@ -140,6 +156,31 @@
             this.selectCurrent()
           }
         }
+      },
+      beforeChange (index) {
+        const self = this
+        let allowed = true
+        let callbackPromise = new Promise((resolve, reject) => {
+          self.$emit(
+            'before-change',
+            {
+              allow: (result) => {
+                if (typeof result === typeof true) {
+                  allowed = allowed && result
+                }
+                resolve(allowed)
+              },
+              index: index
+            }
+          )
+        })
+        let timeoutPromise = new Promise((resolve, reject) => {
+          let timeout = setTimeout(() => {
+            clearTimeout(timeout)
+            resolve(allowed)
+          }, 500)
+        })
+        return Promise.race([callbackPromise, timeoutPromise])
       }
     }
   }
