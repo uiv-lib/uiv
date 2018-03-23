@@ -49,7 +49,8 @@
     data () {
       return {
         tabs: [],
-        activeIndex: 0 // Make v-model not required
+        activeIndex: 0, // Make v-model not required
+        prevIndex: 0
       }
     },
     watch: {
@@ -57,6 +58,7 @@
         immediate: true,
         handler (value) {
           if (isNumber(value)) {
+            this.prevIndex = this.activeIndex
             this.activeIndex = value
             this.selectCurrent()
           }
@@ -122,13 +124,26 @@
         this.tabs.forEach((tab, index) => {
           if (index === this.activeIndex) {
             found = !tab.active
-            tab.active = true
           } else {
             tab.active = false
           }
         })
         if (found) {
-          this.$emit('change', this.activeIndex)
+          const self = this
+          if (typeof this.$listeners['before-change'] === 'function') {
+            this.$emit('before-change', this.activeIndex, (result) => {
+              let event = 'change'
+              if (typeof result !== 'undefined') {
+                self.activeIndex = self.prevIndex
+                event = 'input'
+              }
+              self.tabs[self.activeIndex].active = true
+              self.$emit(event, self.activeIndex)
+            })
+          } else {
+            this.tabs[this.activeIndex].active = true
+            this.$emit('change', this.activeIndex)
+          }
         }
       },
       select (index) {
@@ -136,6 +151,7 @@
           if (isNumber(this.value)) {
             this.$emit('input', index)
           } else {
+            this.prevIndex = this.activeIndex
             this.activeIndex = index
             this.selectCurrent()
           }

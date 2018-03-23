@@ -209,6 +209,43 @@ An example that generate closable tabs using `v-for`:
 <!-- tabs-dynamic-example.vue -->
 ```
 
+## Callback on `before-change` event
+
+An example how to prevent tab display when `before-change` callback return `false`
+
+```html
+<template>
+  <section>
+    <tabs v-model="index" @before-change="onBeforeChange">
+      <tab title="Home (allowed)">
+        <p>Home tab.</p>
+      </tab>
+      <tab title="Allowed">
+        <p>Allowed</p>
+      </tab>
+      <tab title="Denied">
+        <p>Denied</p>
+      </tab>
+    </tabs>
+  </section>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        index: 0
+      }
+    },
+    methods: {
+      onBeforeChange (index, done) {
+        (index > 1) ? done(false) : done()
+      }
+    }
+  }
+</script>
+<!-- tabs-before-change-example.vue -->
+```
+
 # API Reference
 
 ## [Tabs](https://github.com/wxsms/uiv/blob/master/src/components/tabs/Tabs.vue)
@@ -232,9 +269,10 @@ Name        | Description
 
 ### Events
 
-Name        | Params | Description
------------ | ------ | ---------------
-`change`    | index  | Fire after active tab changed, with the active index.
+Name            | Params      | Description
+--------------- | ----------- | ---------------
+`change`        | index       | Fire after active tab changed, with the active index.
+`before-change` | index, done | Fire before active tab changed, with the `index` of clicked tab and `done()` callback. Calling `done()` allow tab to display. Calling `done(err)`, where `err` is any value, prevent display of the tab.
 
 ## [Tab](https://github.com/wxsms/uiv/blob/master/src/components/tabs/Tab.vue)
 
