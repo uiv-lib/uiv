@@ -209,22 +209,30 @@ An example that generate closable tabs using `v-for`:
 <!-- tabs-dynamic-example.vue -->
 ```
 
-## Callback on `before-change` event
+## Validate before change
 
-An example how to prevent tab display when `before-change` callback return `false`
+In case you need to validate something inside a tab before it being switch, a sample implementation using `before-change` event:
 
 ```html
 <template>
   <section>
     <tabs v-model="index" @before-change="onBeforeChange">
-      <tab title="Home (allowed)">
-        <p>Home tab.</p>
+      <tab title="Home">
+        <div>
+          <br/>
+          <form class="form-inline">
+            <div class="form-group">
+              <label for="exampleInputName">Name</label>
+              <input v-model="input" type="text" class="form-control" id="exampleInputName" placeholder="Please fill this section">
+            </div>
+          </form>
+        </div>
       </tab>
-      <tab title="Allowed">
-        <p>Allowed</p>
+      <tab title="Profile">
+        <p>Profile tab.</p>
       </tab>
-      <tab title="Denied">
-        <p>Denied</p>
+      <tab title="Others">
+        <p>Others tab.</p>
       </tab>
     </tabs>
   </section>
@@ -233,12 +241,18 @@ An example how to prevent tab display when `before-change` callback return `fals
   export default {
     data () {
       return {
-        index: 0
+        index: 0,
+        input: ''
       }
     },
     methods: {
-      onBeforeChange (index, done) {
-        (index > 1) ? done(false) : done()
+      onBeforeChange (indexFrom, indexTo, done) {
+        if (indexFrom === 0 && this.input === '') {
+          this.$notify('Please fill your name first.')
+          done(1)
+        } else {
+          done()
+        }
       }
     }
   }
@@ -269,10 +283,10 @@ Name        | Description
 
 ### Events
 
-Name            | Params      | Description
---------------- | ----------- | ---------------
-`change`        | index       | Fire after active tab changed, with the active index.
-`before-change` | index, done | Fire before active tab changed, with the `index` of clicked tab and `done()` callback. Calling `done()` allow tab to display. Calling `done(err)`, where `err` is any value, prevent display of the tab.
+Name            | Params                   | Description
+--------------- | -----------              | ---------------
+`change`        | index                    | Trigger after active tab changed, with the active index.
+`before-change` | indexFrom, indexTo, done | Trigger before active tab change. Calling `done()` will allow the change. Calling `done(err)`, where `err` is any value, will prevent it. Note that this callback will only trigger on tab clicking.
 
 ## [Tab](https://github.com/wxsms/uiv/blob/master/src/components/tabs/Tab.vue)
 

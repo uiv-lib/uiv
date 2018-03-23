@@ -29,7 +29,9 @@
 
 <script>
   import Dropdown from '../dropdown/Dropdown.vue'
-  import {isNumber} from '../../utils/objectUtils'
+  import {isNumber, isFunction, isExist} from '../../utils/objectUtils'
+
+  const BEFORE_CHANGE_EVENT = 'before-change'
 
   export default {
     components: {Dropdown},
@@ -49,8 +51,7 @@
     data () {
       return {
         tabs: [],
-        activeIndex: 0, // Make v-model not required
-        prevIndex: 0
+        activeIndex: 0 // Make v-model not required
       }
     },
     watch: {
@@ -58,7 +59,6 @@
         immediate: true,
         handler (value) {
           if (isNumber(value)) {
-            this.prevIndex = this.activeIndex
             this.activeIndex = value
             this.selectCurrent()
           }
@@ -124,37 +124,37 @@
         this.tabs.forEach((tab, index) => {
           if (index === this.activeIndex) {
             found = !tab.active
+            tab.active = true
           } else {
             tab.active = false
           }
         })
         if (found) {
-          const self = this
-          if (typeof this.$listeners['before-change'] === 'function') {
-            this.$emit('before-change', this.activeIndex, (result) => {
-              let event = 'change'
-              if (typeof result !== 'undefined') {
-                self.activeIndex = self.prevIndex
-                event = 'input'
-              }
-              self.tabs[self.activeIndex].active = true
-              self.$emit(event, self.activeIndex)
-            })
-          } else {
-            this.tabs[this.activeIndex].active = true
-            this.$emit('change', this.activeIndex)
-          }
+          this.$emit('change', this.activeIndex)
+        }
+      },
+      selectValidate (index) {
+        if (isFunction(this.$listeners[BEFORE_CHANGE_EVENT])) {
+          this.$emit(BEFORE_CHANGE_EVENT, this.activeIndex, index, (result) => {
+            if (!isExist(result)) {
+              this.$select(index)
+            }
+          })
+        } else {
+          this.$select(index)
         }
       },
       select (index) {
-        if (!this.tabs[index].disabled) {
-          if (isNumber(this.value)) {
-            this.$emit('input', index)
-          } else {
-            this.prevIndex = this.activeIndex
-            this.activeIndex = index
-            this.selectCurrent()
-          }
+        if (!this.tabs[index].disabled && index !== this.activeIndex) {
+          this.selectValidate(index)
+        }
+      },
+      $select (index) {
+        if (isNumber(this.value)) {
+          this.$emit('input', index)
+        } else {
+          this.activeIndex = index
+          this.selectCurrent()
         }
       }
     }
