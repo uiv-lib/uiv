@@ -31,7 +31,8 @@ function ScrollSpy (element, target = 'body', options = {}) {
 }
 
 ScrollSpy.DEFAULTS = {
-  offset: 10
+  offset: 10,
+  callback: (ele) => 0
 }
 
 ScrollSpy.prototype.getScrollHeight = function () {
@@ -101,11 +102,13 @@ ScrollSpy.prototype.activate = function (target) {
   const selector = this.selector +
     '[data-target="' + target + '"],' +
     this.selector + '[href="' + target + '"]'
+  const activeCallback = this.opts.callback
   let active = nodeListToArray(this.el.querySelectorAll(selector))
   active.forEach(ele => {
     getParents(ele, 'li')
       .forEach(item => {
         addClass(item, 'active')
+        activeCallback(item)
       })
     if (getParents(ele, '.dropdown-menu').length) {
       addClass(getClosest(ele, 'li.dropdown'), 'active')
