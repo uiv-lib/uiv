@@ -17,7 +17,7 @@ export default {
       month11: 'Novembro',
       month12: 'Dezembro',
       year: 'Ano',
-      week1: 'Mês',
+      week1: 'Seg',
       week2: 'Ter',
       week3: 'Qua',
       week4: 'Qui',
