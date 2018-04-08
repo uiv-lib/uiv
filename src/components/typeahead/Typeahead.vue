@@ -203,7 +203,7 @@
         } else if (this.asyncSrc) {
           this.timeoutID = setTimeout(() => {
             this.$emit('loading')
-            getRequest(this.asyncSrc + value)
+            getRequest(this.asyncSrc + encodeURIComponent(value))
               .then(data => {
                 if (this.inputEl.matches(':focus')) {
                   this.prepareItems(this.asyncKey ? data[this.asyncKey] : data, true)
