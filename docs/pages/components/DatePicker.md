@@ -240,6 +240,7 @@ Name                   | Type       | Default                           | Requir
 `limit-to`             |            |                                   |          | Same as `limit-from`.
 `initial-view`         | String     | d                                 |          | Open the date-picker with specify view (one of `d` / `m` / `y`) on initial. Only works if the `v-model` is empty.
 `week-starts-with`     | Number     | 0                                 |          | Starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
+`week-numbers`         | Boolean    | false                             |          | Show week numbers of year.
 `date-parser`          | Function   | Date.parse                        |          | Use this prop to replace the `Date.parse` call inside the component. Useful when The formatted String can not be correctly parsed to Date type by `Date.parse` (e.g. dd-MM-yyyy). For example: `dateParser (value) {return moment(value, 'DD-MM-YYYY').toDate().getTime()}`
 `date-class`           | Function   |                                   |          | The custom class callback function for each date. See above example section for details.
 `year-month-formatter` | Function   |                                   |          | The formatter function of year month label string on top of date view, with 2 params `year` and `month` (0-based), with the formatted string returned.
