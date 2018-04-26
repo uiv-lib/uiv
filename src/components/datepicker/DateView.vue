@@ -7,7 +7,7 @@
           <i :class="iconControlLeft"></i>
         </btn>
       </td>
-      <td colspan="5">
+      <td :colspan="weekNumbers?6:5">
         <btn block size="sm" style="border: none" @click="changeView">
           <b>{{yearMonthStr}}</b>
         </btn>
@@ -19,6 +19,7 @@
       </td>
     </tr>
     <tr align="center">
+      <td v-if="weekNumbers"></td>
       <td v-for="day in weekDays" width="14.2857142857%">
         <small>{{tWeekName(day === 0 ? 7 : day)}}</small>
       </td>
@@ -26,6 +27,9 @@
     </thead>
     <tbody>
     <tr v-for="row in monthDayRows">
+      <td v-if="weekNumbers" class="text-center" style="border-right: 1px solid #eee">
+        <small class="text-muted">{{getWeekNumber(row[weekStartsWith])}}</small>
+      </td>
       <td v-for="date in row">
         <btn
           block
@@ -47,7 +51,7 @@
 <script>
   import Locale from '../../mixins/localeMixin'
   import Btn from './../button/Btn'
-  import {daysInMonth} from '../../utils/dateUtils'
+  import {daysInMonth, getWeekNumber} from '../../utils/dateUtils'
   import {isExist, isFunction} from '../../utils/objectUtils'
 
   export default {
@@ -62,7 +66,8 @@
       iconControlLeft: String,
       iconControlRight: String,
       dateClass: Function,
-      yearMonthFormatter: Function
+      yearMonthFormatter: Function,
+      weekNumbers: Boolean
     },
     components: {Btn},
     computed: {
@@ -143,6 +148,7 @@
       }
     },
     methods: {
+      getWeekNumber,
       tWeekName (index) {
         return this.t(`uiv.datePicker.week${index}`)
       },

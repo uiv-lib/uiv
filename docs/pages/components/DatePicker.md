@@ -123,6 +123,28 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 <!-- date-picker-week-starts.vue -->
 ```
 
+## Week numbers
+
+```html
+<template>
+  <section>
+    <date-picker v-model="date" week-numbers/>
+    <br/>
+    <alert type="info" v-show="date">You selected <b>{{date}}</b>.</alert>
+  </section>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        date: null
+      }
+    }
+  }
+</script>
+<!-- date-picker-week-numbers.vue -->
+```
+
 ## With dropdown
 
 ```html

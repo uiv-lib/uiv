@@ -12,6 +12,7 @@
       :icon-control-right="iconControlRight"
       :date-class="dateClass"
       :year-month-formatter="yearMonthFormatter"
+      :week-numbers="weekNumbers"
       @month-change="onMonthChange"
       @year-change="onYearChange"
       @date-change="onDateChange"
@@ -108,6 +109,7 @@
           return value >= 0 && value <= 6
         }
       },
+      weekNumbers: Boolean,
       iconControlLeft: {
         type: String,
         default: 'glyphicon glyphicon-chevron-left'
