@@ -39,6 +39,31 @@ describe('DatePicker', () => {
     $el.remove()
   })
 
+  it('should be able to render custom year month str', async () => {
+    const res = Vue.compile('<date-picker v-model="date" :year-month-formatter="formatter"></date-picker>')
+    const _vm = new Vue({
+      data () {
+        return {
+          date: ''
+        }
+      },
+      methods: {
+        formatter (year, month) {
+          return year + ' ' + month
+        }
+      },
+      components: {DatePicker},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await _vm.$nextTick()
+    $el = $(_vm.$el)
+    const now = new Date()
+    expect($el.find('.btn').get(1).textContent).to.equal(now.getFullYear() + ' ' + now.getMonth())
+    _vm.$destroy()
+    $el.remove()
+  })
+
   it('should be able to render date view', async () => {
     const _vm = vm.$refs['date-picker-example']
     const _$el = $(_vm.$el)

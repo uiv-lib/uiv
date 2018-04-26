@@ -11,6 +11,7 @@
       :icon-control-left="iconControlLeft"
       :icon-control-right="iconControlRight"
       :date-class="dateClass"
+      :year-month-formatter="yearMonthFormatter"
       @month-change="onMonthChange"
       @year-change="onYearChange"
       @date-change="onDateChange"
@@ -34,8 +35,21 @@
     <div v-if="todayBtn||clearBtn">
       <br/>
       <div class="text-center">
-        <btn data-action="select" type="info" size="sm" v-if="todayBtn" @click="selectToday">{{t('uiv.datePicker.today')}}</btn>
-        <btn data-action="select" size="sm" v-if="clearBtn" @click="clearSelect">{{t('uiv.datePicker.clear')}}</btn>
+        <btn
+          data-action="select"
+          type="info"
+          size="sm"
+          v-if="todayBtn"
+          @click="selectToday"
+          v-text="t('uiv.datePicker.today')"
+        />
+        <btn
+          data-action="select"
+          size="sm"
+          v-if="clearBtn"
+          @click="clearSelect"
+          v-text="t('uiv.datePicker.clear')"
+        />
       </div>
     </div>
   </div>
@@ -86,6 +100,7 @@
         default: Date.parse
       },
       dateClass: Function,
+      yearMonthFormatter: Function,
       weekStartsWith: {
         type: Number,
         default: 0,

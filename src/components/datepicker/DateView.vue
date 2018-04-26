@@ -61,7 +61,8 @@
       weekStartsWith: Number,
       iconControlLeft: String,
       iconControlRight: String,
-      dateClass: Function
+      dateClass: Function,
+      yearMonthFormatter: Function
     },
     components: {Btn},
     computed: {
@@ -77,7 +78,11 @@
         return days
       },
       yearMonthStr () {
-        return isExist(this.month) ? `${this.year} ${this.t(`uiv.datePicker.month${this.month + 1}`)}` : this.year
+        if (this.yearMonthFormatter) {
+          return this.yearMonthFormatter(this.year, this.month)
+        } else {
+          return isExist(this.month) ? `${this.year} ${this.t(`uiv.datePicker.month${this.month + 1}`)}` : this.year
+        }
       },
       monthDayRows () {
         let rows = []
