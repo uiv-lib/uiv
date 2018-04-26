@@ -207,7 +207,9 @@
         })
       },
       clearSelect () {
-        this.view = 'd'
+        this.currentMonth = this.now.getMonth()
+        this.currentYear = this.now.getFullYear()
+        this.view = this.initialView
         this.onDateChange()
       },
       onPickerClick (event) {
