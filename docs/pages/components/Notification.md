@@ -148,6 +148,18 @@ By default a notification is dismissible with a close button, you can hide it by
 <!-- notification-without-dismiss-btn.vue -->
 ```
 
+## With modals
+
+By default, notifications will be covered by modal backdrops, you can fix this by adding below CSS into your project:
+
+```css
+body > .alert {
+  z-index: 2000;
+}
+```
+
+where `2000` can be any value that bigger than the modal z-index.
+
 ## Global method
 
 `$notify(options, callback)` global method for `Vue.prototype` will be added **if uiv is installed**.
