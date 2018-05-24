@@ -37,25 +37,31 @@
           @keydown.prevent.enter="selectOption"
         />
       </li>
-      <li
-        v-for="(item,index) in filteredOptions"
-        :class="itemClasses(item,index)"
-        @click="toggle(item)"
-        @mouseenter="currentActive=-1">
-        <a role="button" v-if="isItemSelected(item)">
-          <b>{{item[labelKey]}}</b>
-          <span v-if="selectedIcon" :class="selectedIconClasses"></span>
-        </a>
-        <a role="button" v-else>
-          <span>{{item[labelKey]}}</span>
-        </a>
-      </li>
+      <template v-for="item in groupedOptions">
+        <li v-if="item.$group" class="dropdown-header" v-text="item.$group"></li>
+        <template v-for="_item in item.options">
+          <li
+            :class="itemClasses(_item)"
+            @click="toggle(_item)"
+            @mouseenter="currentActive=-1">
+            <a role="button" v-if="isItemSelected(_item)">
+              <b>{{_item[labelKey]}}</b>
+              <span v-if="selectedIcon" :class="selectedIconClasses"></span>
+            </a>
+            <a role="button" v-else>
+              <span>{{_item[labelKey]}}</span>
+            </a>
+          </li>
+        </template>
+      </template>
     </template>
   </dropdown>
 </template>
 
 <script>
   import Dropdown from '../dropdown/Dropdown.vue'
+  import {onlyUnique} from '../../utils/arrayUtils'
+  // import {isExist} from '../../utils/objectUtils'
 
   export default {
     components: {Dropdown},
@@ -152,6 +158,26 @@
           return this.options
         }
       },
+      groupedOptions () {
+        return this.filteredOptions
+          .map(v => v.group)
+          .filter(onlyUnique)
+          .map(v => ({
+            options: this.filteredOptions.filter(option => option.group === v),
+            $group: v
+          }))
+      },
+      flatternGroupedOptions () {
+        if (this.groupedOptions && this.groupedOptions.length) {
+          let result = []
+          this.groupedOptions.forEach(v => {
+            result = result.concat(v.options)
+          })
+          return result
+        } else {
+          return []
+        }
+      },
       selectClasses () {
         return {
           [`input-${this.size}`]: this.size
@@ -211,27 +237,27 @@
         if (!this.showDropdown) {
           return
         }
-        this.currentActive > 0 ? this.currentActive-- : this.currentActive = this.options.length - 1
+        this.currentActive > 0 ? this.currentActive-- : this.currentActive = this.flatternGroupedOptions.length - 1
       },
       goNextOption () {
         if (!this.showDropdown) {
           return
         }
-        this.currentActive < this.options.length - 1 ? this.currentActive++ : this.currentActive = 0
+        this.currentActive < this.flatternGroupedOptions.length - 1 ? this.currentActive++ : this.currentActive = 0
       },
       selectOption () {
         const index = this.currentActive
-        const options = this.filteredOptions
+        const options = this.flatternGroupedOptions
         if (!this.showDropdown) {
           this.showDropdown = true
         } else if (index >= 0 && index < options.length) {
           this.toggle(options[index])
         }
       },
-      itemClasses (item, index) {
+      itemClasses (item) {
         return {
           disabled: item.disabled,
-          active: this.currentActive === index
+          active: this.currentActive === this.flatternGroupedOptions.indexOf(item)
         }
       },
       isItemSelected (item) {

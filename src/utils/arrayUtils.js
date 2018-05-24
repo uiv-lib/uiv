@@ -18,3 +18,7 @@ export function range (end, start = 0, step = 1) {
 export function nodeListToArray (nodeList) {
   return Array.prototype.slice.call(nodeList || [])
 }
+
+export function onlyUnique (value, index, self) {
+  return self.indexOf(value) === index
+}

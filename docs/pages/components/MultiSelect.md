@@ -176,6 +176,33 @@ Collapse multiple selected items into a text by using `collapse-selected` prop.
 <!-- multi-select-collapse-selected.vue -->
 ```
 
+## Option groups
+
+If you need grouped options, simply add `group` (String) as the name to them.
+
+```html
+<template>
+  <multi-select v-model="selected" :options="options"/>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        selected: [],
+        options: [
+          {value: 1, label:'Apple', group: 'Fruit'},
+          {value: 2, label:'Banana', group: 'Fruit'},
+          {value: 3, label:'Orange', group: 'Fruit'},
+          {value: 4, label:'Red', group: 'Color'},
+          {value: 5, label:'Green', group: 'Color'}
+        ]
+      }
+    }
+  }
+</script>
+<!-- multi-select-option-groups.vue -->
+```
+
 ## Filterable
 
 Add `filterable` to append filter input before options.

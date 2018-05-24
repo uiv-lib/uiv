@@ -536,4 +536,63 @@ describe('MultiSelect', () => {
     expect(_.isEqual(_vm.selected, [])).to.be.true
     _vm.$destroy()
   })
+
+  it('should be able to display grouped options', async () => {
+    const _vm = vm.$refs['multi-select-option-groups']
+    const dropdown = _vm.$el.querySelector('.dropdown')
+    const trigger = dropdown.querySelector('.dropdown-toggle')
+    const display = dropdown.querySelectorAll('.dropdown-toggle > div')[0]
+    expect(dropdown.className).not.contain('open')
+    expect(dropdown.querySelectorAll('.dropdown-header').length).to.equal(2)
+    expect(dropdown.querySelectorAll('.dropdown-header')[0].textContent).to.equal('Fruit')
+    expect(dropdown.querySelectorAll('.dropdown-header')[1].textContent).to.equal('Color')
+    // open dropdown
+    utils.triggerKey(trigger, utils.keyCodes.enter)
+    await vm.$nextTick()
+    // select option 1
+    utils.triggerKey(trigger, utils.keyCodes.down)
+    await vm.$nextTick()
+    expect(dropdown.querySelectorAll('li.active').length).to.equal(1)
+    expect(dropdown.querySelectorAll('li')[1].className).to.contain('active')
+    utils.triggerKey(trigger, utils.keyCodes.enter)
+    await vm.$nextTick()
+    expect(display.textContent).to.equal('Apple')
+    expect(_.isEqual(_vm.selected, [1])).to.be.true
+    // select option 2
+    utils.triggerKey(trigger, utils.keyCodes.down)
+    await vm.$nextTick()
+    expect(dropdown.querySelectorAll('li.active').length).to.equal(1)
+    expect(dropdown.querySelectorAll('li')[2].className).to.contain('active')
+    utils.triggerKey(trigger, utils.keyCodes.enter)
+    await vm.$nextTick()
+    expect(display.textContent).to.equal('Apple, Banana')
+    expect(_.isEqual(_vm.selected, [1, 2])).to.be.true
+    // select option 3
+    utils.triggerKey(trigger, utils.keyCodes.down)
+    await vm.$nextTick()
+    expect(dropdown.querySelectorAll('li.active').length).to.equal(1)
+    expect(dropdown.querySelectorAll('li')[3].className).to.contain('active')
+    utils.triggerKey(trigger, utils.keyCodes.enter)
+    await vm.$nextTick()
+    expect(display.textContent).to.equal('Apple, Banana, Orange')
+    expect(_.isEqual(_vm.selected, [1, 2, 3])).to.be.true
+    // select option 4
+    utils.triggerKey(trigger, utils.keyCodes.down)
+    await vm.$nextTick()
+    expect(dropdown.querySelectorAll('li.active').length).to.equal(1)
+    expect(dropdown.querySelectorAll('li')[5].className).to.contain('active')
+    utils.triggerKey(trigger, utils.keyCodes.enter)
+    await vm.$nextTick()
+    expect(display.textContent).to.equal('Apple, Banana, Orange, Red')
+    expect(_.isEqual(_vm.selected, [1, 2, 3, 4])).to.be.true
+    // select option 5
+    utils.triggerKey(trigger, utils.keyCodes.down)
+    await vm.$nextTick()
+    expect(dropdown.querySelectorAll('li.active').length).to.equal(1)
+    expect(dropdown.querySelectorAll('li')[6].className).to.contain('active')
+    utils.triggerKey(trigger, utils.keyCodes.enter)
+    await vm.$nextTick()
+    expect(display.textContent).to.equal('Apple, Banana, Orange, Red, Green')
+    expect(_.isEqual(_vm.selected, [1, 2, 3, 4, 5])).to.be.true
+  })
 })
