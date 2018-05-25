@@ -494,4 +494,46 @@ describe('MultiSelect', () => {
     expect(display.textContent).to.equal('Select...')
     expect(_.isEmpty(_vm.selected)).to.be.true
   })
+
+  it('should behave like single toggle while limit=1', async () => {
+    const res = Vue.compile('<multi-select v-model="selected" :options="options" :limit="1"/>')
+    const _vm = new Vue({
+      data () {
+        return {
+          selected: [],
+          options: [
+            {value: 1, label: 'Option1'},
+            {value: 2, label: 'Option2'},
+            {value: 3, label: 'Option3'},
+            {value: 4, label: 'Option4'},
+            {value: 5, label: 'Option5'}
+          ]
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    const dropdown = _vm.$el
+    const trigger = dropdown.querySelector('.dropdown-toggle')
+    trigger.click()
+    await _vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    // select option 1
+    dropdown.querySelectorAll('li')[0].click()
+    await vm.$nextTick()
+    expect(_.isEqual(_vm.selected, [1])).to.be.true
+    // select option 2
+    dropdown.querySelectorAll('li')[1].click()
+    await vm.$nextTick()
+    expect(_.isEqual(_vm.selected, [2])).to.be.true
+    // select option 3
+    dropdown.querySelectorAll('li')[2].click()
+    await vm.$nextTick()
+    expect(_.isEqual(_vm.selected, [3])).to.be.true
+    // un-select option 3
+    dropdown.querySelectorAll('li')[2].click()
+    await vm.$nextTick()
+    expect(_.isEqual(_vm.selected, [])).to.be.true
+    _vm.$destroy()
+  })
 })

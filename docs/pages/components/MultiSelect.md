@@ -224,6 +224,7 @@ Name                  | Type       | Default                | Required | Descrip
 `split`               | String     | ,                      |          | The options display spliter.
 `filterable`          | Boolean    | false                  |          | Append filter input before options (default is filter by item value and label, case ignored).
 `filter-placeholder`  | String     | Search...              |          | The default text displayed in filter input.
+`filter-auto-focus`   | Boolean    | true                   |          | Auto focus on filter input.
 `filter-function`     | Function   |                        |          | Custom filter function, with one param as input string, and returns the filtered array.
 `disabled`            | Boolean    | false                  |          | Disable the select component.
 `collapse-selected`   | Boolean    | false                  |          | Collapse multiple selected items into a text.

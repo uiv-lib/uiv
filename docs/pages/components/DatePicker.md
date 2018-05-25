@@ -123,6 +123,28 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 <!-- date-picker-week-starts.vue -->
 ```
 
+## Week numbers
+
+```html
+<template>
+  <section>
+    <date-picker v-model="date" week-numbers/>
+    <br/>
+    <alert type="info" v-show="date">You selected <b>{{date}}</b>.</alert>
+  </section>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        date: null
+      }
+    }
+  }
+</script>
+<!-- date-picker-week-numbers.vue -->
+```
+
 ## With dropdown
 
 ```html
@@ -206,19 +228,21 @@ See below example for detail usage, which has all sunday highlighted:
 
 ### Props
 
-Name                 | Type       | Default                           | Required | Description
--------------------- | ---------- | --------------------------------- | -------- | -----------------------
-`v-model`            |            |                                   | &#10004; | The selected date.
-`width`              | Number     | 270                               |          | The date-picker's width in px.
-`today-btn`          | Boolean    | true                              |          | Show / hide the today button.
-`clear-btn`          | Boolean    | true                              |          | Show / hide the clear button.
-`format`             | String     | yyyy-MM-dd                        |          | The date format.
-`close-on-selected`  | Boolean    | true                              |          | Close the date-picker dropdown after date selected.
-`limit-from`         |            |                                   |          | Anything that can convert to a valid Date object. E.g. `2017-01-01` or `new Date()`.
-`limit-to`           |            |                                   |          | Same as `limit-from`.
-`initial-view`       | String     | d                                 |          | Open the date-picker with specify view (one of `d` / `m` / `y`) on initial. Only works if the `v-model` is empty.
-`week-starts-with`   | Number     | 0                                 |          | Starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
-`date-parser`        | Function   | Date.parse                        |          | Use this prop to replace the `Date.parse` call inside the component. Useful when The formatted String can not be correctly parsed to Date type by `Date.parse` (e.g. dd-MM-yyyy).
-`date-class`         | Function   |                                   |          | The custom class callback function for each date. See above example section for details.
-`icon-control-left`  | String     | glyphicon glyphicon-chevron-left  |          | The arrow icon shown inside the `previous` button.
-`icon-control-right` | String     | glyphicon glyphicon-chevron-right |          | The arrow icon shown inside the `next` button.
+Name                   | Type       | Default                           | Required | Description
+--------------------   | ---------- | --------------------------------- | -------- | -----------------------
+`v-model`              |            |                                   | &#10004; | The selected date.
+`width`                | Number     | 270                               |          | The date-picker's width in px.
+`today-btn`            | Boolean    | true                              |          | Show / hide the today button.
+`clear-btn`            | Boolean    | true                              |          | Show / hide the clear button.
+`format`               | String     | yyyy-MM-dd                        |          | The date format.
+`close-on-selected`    | Boolean    | true                              |          | Close the date-picker dropdown after date selected.
+`limit-from`           |            |                                   |          | Anything that can convert to a valid Date object. E.g. `2017-01-01` or `new Date()`.
+`limit-to`             |            |                                   |          | Same as `limit-from`.
+`initial-view`         | String     | d                                 |          | Open the date-picker with specify view (one of `d` / `m` / `y`) on initial. Only works if the `v-model` is empty.
+`week-starts-with`     | Number     | 0                                 |          | Starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
+`week-numbers`         | Boolean    | false                             |          | Show week numbers of year.
+`date-parser`          | Function   | Date.parse                        |          | Use this prop to replace the `Date.parse` call inside the component. Useful when The formatted String can not be correctly parsed to Date type by `Date.parse` (e.g. dd-MM-yyyy). For example: `dateParser (value) {return moment(value, 'DD-MM-YYYY').toDate().getTime()}`
+`date-class`           | Function   |                                   |          | The custom class callback function for each date. See above example section for details.
+`year-month-formatter` | Function   |                                   |          | The formatter function of year month label string on top of date view, with 2 params `year` and `month` (0-based), with the formatted string returned.
+`icon-control-left`    | String     | glyphicon glyphicon-chevron-left  |          | The arrow icon shown inside the `previous` button.
+`icon-control-right`   | String     | glyphicon glyphicon-chevron-right |          | The arrow icon shown inside the `next` button.

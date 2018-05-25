@@ -30,6 +30,14 @@ export const PLACEMENTS = {
   LEFT: 'left'
 }
 
+export function isIE11 () {
+  return !!window.MSInputMethodContext && !!document.documentMode
+}
+
+export function isIE10 () {
+  return window.navigator.appVersion.indexOf('MSIE 10') !== -1
+}
+
 export function getComputedStyle (el) {
   return window.getComputedStyle(el)
 }
@@ -272,7 +280,9 @@ export function toggleBodyOverflow (enable) {
     removeClass(body, MODAL_OPEN)
     body.style.paddingRight = null
   } else {
-    if (hasScrollbar(document.documentElement) || hasScrollbar(document.body)) {
+    const browsersWithFloatingScrollbar = isIE10() || isIE11()
+    const documentHasScrollbar = hasScrollbar(document.documentElement) || hasScrollbar(document.body)
+    if (documentHasScrollbar && !browsersWithFloatingScrollbar) {
       body.style.paddingRight = `${getScrollbarWidth()}px`
     }
     addClass(body, MODAL_OPEN)

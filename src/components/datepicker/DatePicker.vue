@@ -11,6 +11,8 @@
       :icon-control-left="iconControlLeft"
       :icon-control-right="iconControlRight"
       :date-class="dateClass"
+      :year-month-formatter="yearMonthFormatter"
+      :week-numbers="weekNumbers"
       @month-change="onMonthChange"
       @year-change="onYearChange"
       @date-change="onDateChange"
@@ -34,8 +36,21 @@
     <div v-if="todayBtn||clearBtn">
       <br/>
       <div class="text-center">
-        <btn data-action="select" type="info" size="sm" v-if="todayBtn" @click="selectToday">{{t('uiv.datePicker.today')}}</btn>
-        <btn data-action="select" size="sm" v-if="clearBtn" @click="clearSelect">{{t('uiv.datePicker.clear')}}</btn>
+        <btn
+          data-action="select"
+          type="info"
+          size="sm"
+          v-if="todayBtn"
+          @click="selectToday"
+          v-text="t('uiv.datePicker.today')"
+        />
+        <btn
+          data-action="select"
+          size="sm"
+          v-if="clearBtn"
+          @click="clearSelect"
+          v-text="t('uiv.datePicker.clear')"
+        />
       </div>
     </div>
   </div>
@@ -47,7 +62,7 @@
   import MonthView from './MonthView.vue'
   import YearView from './YearView.vue'
   import Btn from './../button/Btn'
-  import {stringify} from '../../utils/dateUtils'
+  import {stringify, convertDateToUTC} from '../../utils/dateUtils'
   import {isNumber} from '../../utils/objectUtils'
 
   export default {
@@ -86,6 +101,7 @@
         default: Date.parse
       },
       dateClass: Function,
+      yearMonthFormatter: Function,
       weekStartsWith: {
         type: Number,
         default: 0,
@@ -93,6 +109,7 @@
           return value >= 0 && value <= 6
         }
       },
+      weekNumbers: Boolean,
       iconControlLeft: {
         type: String,
         default: 'glyphicon glyphicon-chevron-left'
@@ -132,19 +149,19 @@
       limit () {
         let limit = {}
         if (this.limitFrom) {
-          let from = this.dateParser(this.limitFrom)
-          if (!isNaN(from)) {
-            from = new Date(from)
-            from.setHours(0, 0, 0, 0)
-            limit.from = from
+          let limitFrom = this.dateParser(this.limitFrom)
+          if (!isNaN(limitFrom)) {
+            limitFrom = convertDateToUTC(new Date(limitFrom))
+            limitFrom.setHours(0, 0, 0, 0)
+            limit.from = limitFrom
           }
         }
         if (this.limitTo) {
-          let to = this.dateParser(this.limitTo)
-          if (!isNaN(to)) {
-            to = new Date(to)
-            to.setHours(0, 0, 0, 0)
-            limit.to = to
+          let limitTo = this.dateParser(this.limitTo)
+          if (!isNaN(limitTo)) {
+            limitTo = convertDateToUTC(new Date(limitTo))
+            limitTo.setHours(0, 0, 0, 0)
+            limit.to = limitTo
           }
         }
         return limit
@@ -207,7 +224,9 @@
         })
       },
       clearSelect () {
-        this.view = 'd'
+        this.currentMonth = this.now.getMonth()
+        this.currentYear = this.now.getFullYear()
+        this.view = this.initialView
         this.onDateChange()
       },
       onPickerClick (event) {

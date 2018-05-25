@@ -233,6 +233,7 @@ Name             | Type       | Default  | Required | Description
 `ignore-case`    | Boolean    | true     |          | Ignore input case while matching. Only work in local data mode.
 `match-start`    | Boolean    | false    |          | Match from the head of item. Only work in local data mode.
 `force-select`   | Boolean    | false    |          | Force user to select from the options or the model will be empty.
+`force-clear`    | Boolean    | false    |          | Clear the input if no valid options has selected in force-select mode.
 `open-on-focus`  | Boolean    | true     |          | Open the typeahead dropdown on input focus.
 `open-on-empty`  | Boolean    | false    |          | Open the typeahead dropdown to show suggestions even if input is empty.
 `preselect`      | Boolean    | true     |          | Select the first item that matches the query automatically.

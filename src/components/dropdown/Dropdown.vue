@@ -110,7 +110,14 @@
           let targetInNotCloseElements = false
           if (this.notCloseElements) {
             for (let i = 0, l = this.notCloseElements.length; i < l; i++) {
-              if (this.notCloseElements[i].contains(target)) {
+              const isTargetInElement = this.notCloseElements[i].contains(target)
+              let shouldBreak = isTargetInElement
+              if (this.appendToBody) {
+                const isTargetInDropdown = this.$refs.dropdown.contains(target)
+                const isElInElements = this.notCloseElements.indexOf(this.$el) >= 0
+                shouldBreak = isTargetInElement || (isTargetInDropdown && isElInElements)
+              }
+              if (shouldBreak) {
                 targetInNotCloseElements = true
                 break
               }

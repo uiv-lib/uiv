@@ -105,3 +105,4 @@ No matter the implementation method, scrollspy requires the use of `position: re
 Name             | Type       | Default      | Required | Description
 ---------------- | ---------- | ------------ | -------- | -----------------------
 `offset`         | Number     | 10           |          | Pixels to offset from top when calculating position of scroll.
+`callback`       | Function   |              |          | `callback(ele)` fires whenever a new item becomes activated by the scrollspy, with the element as param.

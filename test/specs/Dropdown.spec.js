@@ -58,6 +58,37 @@ describe('Dropdown', () => {
     expect(dropdown.className).to.not.contain('open')
   })
 
+  it('should not close dropdown on self click if not-close-elements contains component ref and with append-to-body', async () => {
+    const res = Vue.compile('<dropdown v-model="show" ref="test" append-to-body :not-close-elements="eles"><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template slot="dropdown"><li><a href="#">Action</a></li></template></dropdown>')
+    const vm = new Vue({
+      data () {
+        return {
+          show: true,
+          eles: []
+        }
+      },
+      mounted () {
+        this.eles.push(this.$el)
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    const dropdown = vm.$el
+    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.className).to.contain('open')
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    // Simulate a window click
+    vm.$refs.test.windowClicked({target: vm.$el})
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    // Simulate a window click
+    vm.$refs.test.windowClicked({target: document.body})
+    await vm.$nextTick()
+    expect(dropdown.className).to.not.contain('open')
+  })
+
   it('should be able to open dropdown append to body on trigger click', async () => {
     const _vm = vm.$refs['dropdown-append-to-body']
     const dropdown = _vm.$el.querySelector('.dropdown')

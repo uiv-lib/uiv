@@ -27,6 +27,7 @@
     <template slot="dropdown">
       <li v-if="filterable" style="padding: 4px 8px">
         <input
+          ref="filterInput"
           class="form-control input-sm"
           type="text"
           :placeholder="filterPlaceholder"
@@ -107,6 +108,10 @@
       filterable: {
         type: Boolean,
         default: false
+      },
+      filterAutoFocus: {
+        type: Boolean,
+        default: true
       },
       filterFunction: Function,
       filterPlaceholder: {
@@ -191,6 +196,11 @@
         this.filterInput = ''
         this.currentActive = -1
         this.$emit('visible-change', v)
+        if (v && this.filterable && this.filterAutoFocus) {
+          this.$nextTick(() => {
+            this.$refs.filterInput.focus()
+          })
+        }
       }
     },
     mounted () {
@@ -233,14 +243,20 @@
         }
         const value = item[this.valueKey]
         const index = this.value.indexOf(value)
-        if (index >= 0) {
-          this.value.splice(index, 1)
-          this.$emit('change', this.value)
-        } else if (this.limit === 0 || this.value.length < this.limit) {
-          this.value.push(value)
-          this.$emit('change', this.value)
+        if (this.limit === 1) {
+          const newValue = index >= 0 ? [] : [value]
+          this.$emit('input', newValue)
+          this.$emit('change', newValue)
         } else {
-          this.$emit('limit-exceed')
+          if (index >= 0) {
+            this.value.splice(index, 1)
+            this.$emit('change', this.value)
+          } else if (this.limit === 0 || this.value.length < this.limit) {
+            this.value.push(value)
+            this.$emit('change', this.value)
+          } else {
+            this.$emit('limit-exceed')
+          }
         }
       }
     }

@@ -29,6 +29,8 @@ deploy:
     on:
       tags: true
   - provider: pages
+    edge:
+      branch: v1.8.47
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
     local_dir: dist-docs

@@ -29,7 +29,9 @@
 
 <script>
   import Dropdown from '../dropdown/Dropdown.vue'
-  import {isNumber} from '../../utils/objectUtils'
+  import {isNumber, isFunction, isExist} from '../../utils/objectUtils'
+
+  const BEFORE_CHANGE_EVENT = 'before-change'
 
   export default {
     components: {Dropdown},
@@ -131,14 +133,28 @@
           this.$emit('change', this.activeIndex)
         }
       },
+      selectValidate (index) {
+        if (isFunction(this.$listeners[BEFORE_CHANGE_EVENT])) {
+          this.$emit(BEFORE_CHANGE_EVENT, this.activeIndex, index, (result) => {
+            if (!isExist(result)) {
+              this.$select(index)
+            }
+          })
+        } else {
+          this.$select(index)
+        }
+      },
       select (index) {
-        if (!this.tabs[index].disabled) {
-          if (isNumber(this.value)) {
-            this.$emit('input', index)
-          } else {
-            this.activeIndex = index
-            this.selectCurrent()
-          }
+        if (!this.tabs[index].disabled && index !== this.activeIndex) {
+          this.selectValidate(index)
+        }
+      },
+      $select (index) {
+        if (isNumber(this.value)) {
+          this.$emit('input', index)
+        } else {
+          this.activeIndex = index
+          this.selectCurrent()
         }
       }
     }
