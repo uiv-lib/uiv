@@ -136,6 +136,9 @@
       clearTimeout(this.timeoutId)
       removeFromDom(this.$refs.backdrop)
       removeFromDom(this.$el)
+      if (getOpenModalNum() === 0) {
+        toggleBodyOverflow(true)
+      }
       off(window, EVENTS.KEY_UP, this.onKeyPress)
     },
     methods: {
