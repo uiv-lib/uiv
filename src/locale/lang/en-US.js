@@ -32,6 +32,10 @@ export default {
     modal: {
       cancel: 'Cancel',
       ok: 'OK'
+    },
+    multiSelect: {
+      placeholder: 'Select...',
+      filterPlaceholder: 'Search...'
     }
   }
 }

@@ -32,6 +32,10 @@ export default {
     modal: {
       cancel: '取消',
       ok: '确认'
+    },
+    multiSelect: {
+      placeholder: '选择...',
+      filterPlaceholder: '搜索...'
     }
   }
 }

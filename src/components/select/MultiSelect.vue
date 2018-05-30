@@ -30,7 +30,7 @@
           ref="filterInput"
           class="form-control input-sm"
           type="text"
-          :placeholder="filterPlaceholder"
+          :placeholder="filterPlaceholder || t('uiv.multiSelect.filterPlaceholder')"
           v-model="filterInput"
           @keydown.prevent.down="goNextOption"
           @keydown.prevent.up="goPrevOption"
@@ -59,11 +59,12 @@
 </template>
 
 <script>
+  import Local from '../../mixins/localeMixin'
   import Dropdown from '../dropdown/Dropdown.vue'
   import {onlyUnique} from '../../utils/arrayUtils'
-  // import {isExist} from '../../utils/objectUtils'
 
   export default {
+    mixins: [Local],
     components: {Dropdown},
     props: {
       value: {
@@ -87,10 +88,7 @@
         default: 0
       },
       size: String,
-      placeholder: {
-        type: String,
-        default: 'Select...'
-      },
+      placeholder: String,
       split: {
         type: String,
         default: ', '
@@ -120,10 +118,7 @@
         default: true
       },
       filterFunction: Function,
-      filterPlaceholder: {
-        type: String,
-        default: 'Search...'
-      },
+      filterPlaceholder: String,
       selectedIcon: {
         type: String,
         default: 'glyphicon glyphicon-ok'
@@ -212,7 +207,7 @@
             return labelValue.join(this.split)
           }
         } else {
-          return this.placeholder
+          return this.placeholder || this.t('uiv.multiSelect.placeholder')
         }
       }
     },
