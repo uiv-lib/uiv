@@ -122,6 +122,10 @@
       selectedIcon: {
         type: String,
         default: 'glyphicon glyphicon-ok'
+      },
+      itemSelectedClass: {
+        type: String,
+        default: 'selected'
       }
     },
     data () {
@@ -250,10 +254,14 @@
         }
       },
       itemClasses (item) {
-        return {
+        var result = {
           disabled: item.disabled,
           active: this.currentActive === this.flatternGroupedOptions.indexOf(item)
         }
+        if (this.itemSelectedClass) {
+          result[this.itemSelectedClass] = this.isItemSelected(item)
+        }
+        return result
       },
       isItemSelected (item) {
         return this.value.indexOf(item[this.valueKey]) >= 0
