@@ -123,10 +123,7 @@
         type: String,
         default: 'glyphicon glyphicon-ok'
       },
-      itemSelectedClass: {
-        type: String,
-        default: 'selected'
-      }
+      itemSelectedClass: String
     },
     data () {
       return {
@@ -254,7 +251,7 @@
         }
       },
       itemClasses (item) {
-        var result = {
+        const result = {
           disabled: item.disabled,
           active: this.currentActive === this.flatternGroupedOptions.indexOf(item)
         }
