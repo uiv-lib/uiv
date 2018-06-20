@@ -221,6 +221,29 @@ See below example for detail usage, which has all sunday highlighted:
 <!-- date-picker-icons-example.vue -->
 ```
 
+## Custom locale
+
+Pass a locale object to `locale` for custom translations of month and weekday names, `clear-btn` and `today-btn` texts.
+
+```html
+<template>
+  <section>
+    <date-picker :locale="localeHU" />
+  </section>
+</template>
+<script>
+  import localeHU from '../../../src/locale/lang/hu-HU'
+  export default {
+    data () {
+      return {
+        localeHU
+      }
+    }
+  }
+</script>
+<!-- date-picker-locale.vue -->
+```
+
 
 # API Reference
 
@@ -246,3 +269,4 @@ Name                   | Type       | Default                           | Requir
 `year-month-formatter` | Function   |                                   |          | The formatter function of year month label string on top of date view, with 2 params `year` and `month` (0-based), with the formatted string returned.
 `icon-control-left`    | String     | glyphicon glyphicon-chevron-left  |          | The arrow icon shown inside the `previous` button.
 `icon-control-right`   | String     | glyphicon glyphicon-chevron-right |          | The arrow icon shown inside the `next` button.
+`locale`               | Object     |                                   |          | The locale used for translating month and weekday names, clear-btn and today-btn texts.

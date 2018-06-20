@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import DatePicker from '@src/components/datepicker/DatePicker.vue'
 import DatePickerDoc from '@docs/pages/components/DatePicker.md'
+import localeHU from '@src/locale/lang/hu-HU'
 import $ from 'jquery'
 import utils from '../utils'
 
@@ -381,5 +382,28 @@ describe('DatePicker', () => {
     expect(dateView.style.display).to.equal('')
     const sundayBtn = dateView.querySelectorAll('.btn-sunday')
     expect(sundayBtn.length).to.equal(6)
+  })
+
+  it('should be able to use locale for custom translations', async () => {
+    const _vm = vm.$refs['date-picker-locale']
+    const _$el = $(_vm.$el)
+    const locale = localeHU.uiv.datePicker
+    await vm.$nextTick()
+    const picker = _$el.find('[data-role="date-picker"]').get(0)
+    expect(picker).to.exist
+    const dateView = picker.querySelectorAll('table')[0]
+    const yearMonthBtn = dateView.querySelector('thead tr:first-child td:nth-child(2) button')
+    const now = new Date()
+    expect(yearMonthBtn.textContent).to.contain(locale[`month${now.getMonth() + 1}`])
+    const weekdays = dateView.querySelectorAll('thead tr:last-child td')
+    const weekdayNames = []
+    for (let i = 0; i < weekdays.length; i++) weekdayNames.push(weekdays[i].textContent)
+    const { week1, week2, week3, week4, week5, week6, week7 } = locale
+    expect(weekdayNames).to.eql([ week7, week1, week2, week3, week4, week5, week6 ])
+    const { today, clear } = locale
+    const todayBtn = picker.querySelector('.text-center .btn-info')
+    expect(todayBtn.textContent).to.equal(today)
+    const clearBtn = picker.querySelector('.text-center .btn-default')
+    expect(clearBtn.textContent).to.equal(clear)
   })
 })
