@@ -13,6 +13,7 @@
       :date-class="dateClass"
       :year-month-formatter="yearMonthFormatter"
       :week-numbers="weekNumbers"
+      :locale="locale"
       @month-change="onMonthChange"
       @year-change="onYearChange"
       @date-change="onDateChange"
@@ -23,6 +24,7 @@
       :year="currentYear"
       :icon-control-left="iconControlLeft"
       :icon-control-right="iconControlRight"
+      :locale="locale"
       @month-change="onMonthChange"
       @year-change="onYearChange"
       @view-change="onViewChange"/>
