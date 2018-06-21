@@ -20,11 +20,11 @@ export const t = function (path, options) {
   options = options || {}
 
   let value = i18nHandler.apply(this, arguments)
-  if (isExist(value) && !options.locale) {
+  if (isExist(value) && !options.$$locale) {
     return value
   }
   const array = path.split('.')
-  let current = options.locale || lang
+  let current = options.$$locale || lang
 
   for (let i = 0, j = array.length; i < j; i++) {
     const property = array[i]
