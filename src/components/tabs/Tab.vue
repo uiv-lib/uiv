@@ -25,6 +25,10 @@
         type: Boolean,
         default: false
       },
+      'tab-classes': {
+        type: Object,
+        default: () => { return {} }
+      },
       group: String,
       pullRight: {
         type: Boolean,
