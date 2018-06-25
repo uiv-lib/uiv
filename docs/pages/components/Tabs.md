@@ -296,6 +296,7 @@ Name             | Type       | Default  | Required | Description
 ---------------- | ---------- | -------- | -------- | -----------------------
 `title`          | String     |          |          | The tab title.
 `html-title`     | Boolean    | false    |          | Use HTML title.
+`tab-class`      | Object     | {}       |          | Object where keys represent class and value is interpreted as a boolean to indicate whether the class should be shown
 `disabled`       | Boolean    | false    |          | Disable the tab.
 `group`          | String     |          |          | Tabs nav with same group will in a dropdown list.
 `pull-right`     | Boolean    | false    |          | Add `pull-right` class to the tab nav. A grouped tab will be pull to right if one of its sub-tabs has this prop set to `true`.

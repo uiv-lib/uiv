@@ -113,11 +113,14 @@
     },
     methods: {
       getTabClasses (tab, isSubTab = false) {
-        return {
+        let defaultClasses = {
           active: tab.active,
           disabled: tab.disabled,
           'pull-right': tab.pullRight && !isSubTab
         }
+
+        // return with new classes added to tab
+        return Object.assign(defaultClasses, tab['tabClasses'])
       },
       selectCurrent () {
         let found = false
