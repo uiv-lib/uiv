@@ -13,6 +13,7 @@
           </a>
         </li>
       </slot>
+      <slot name="empty" v-if="!items || items.length === 0"/>
     </template>
   </dropdown>
 </template>
@@ -138,6 +139,9 @@
       }
     },
     methods: {
+      hasEmptySlot () {
+        return !!this.$slots['empty'] || !!this.$scopedSlots['empty']
+      },
       initInputElByTarget (target) {
         if (!target) {
           return
@@ -199,7 +203,7 @@
           this.open = false
         } else if (this.data) {
           this.prepareItems(this.data)
-          this.open = Boolean(this.items.length)
+          this.open = this.hasEmptySlot() || Boolean(this.items.length)
         } else if (this.asyncSrc) {
           this.timeoutID = setTimeout(() => {
             this.$emit('loading')
@@ -207,7 +211,7 @@
               .then(data => {
                 if (this.inputEl.matches(':focus')) {
                   this.prepareItems(this.asyncKey ? data[this.asyncKey] : data, true)
-                  this.open = Boolean(this.items.length)
+                  this.open = this.hasEmptySlot() || Boolean(this.items.length)
                 }
                 this.$emit('loaded')
               })
@@ -220,7 +224,7 @@
           const cb = (data) => {
             if (this.inputEl.matches(':focus')) {
               this.prepareItems(data, true)
-              this.open = Boolean(this.items.length)
+              this.open = this.hasEmptySlot() || Boolean(this.items.length)
             }
             this.$emit('loaded')
           }
