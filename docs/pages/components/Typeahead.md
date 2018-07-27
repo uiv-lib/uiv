@@ -257,3 +257,4 @@ Name           | Description
 `loading`      | Async loading.
 `loaded`       | Async load complete.
 `loaded-error` | Async load complete with error.
+`input`        | Item selected
