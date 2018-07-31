@@ -74,6 +74,7 @@
         on(this.triggerEl, EVENTS.CLICK, this.toggle)
       }
       on(window, EVENTS.CLICK, this.windowClicked)
+      on(window, EVENTS.TOUCH_END, this.windowClicked)
       if (this.value) {
         this.toggle(true)
       }
@@ -84,6 +85,7 @@
         off(this.triggerEl, EVENTS.CLICK, this.toggle)
       }
       off(window, EVENTS.CLICK, this.windowClicked)
+      off(window, EVENTS.TOUCH_END, this.windowClicked)
     },
     methods: {
       initTrigger () {

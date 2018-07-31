@@ -11,7 +11,9 @@ export const EVENTS = {
   KEY_UP: 'keyup',
   KEY_PRESS: 'keypress',
   RESIZE: 'resize',
-  SCROLL: 'scroll'
+  SCROLL: 'scroll',
+  TOUCH_START: 'touchstart',
+  TOUCH_END: 'touchend'
 }
 
 export const TRIGGERS = {
