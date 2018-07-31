@@ -114,6 +114,10 @@
         this.initInputElByTarget(this.target)
         this.initListeners()
         this.dropdownMenuEl = this.$refs.dropdown.$el.querySelector('.dropdown-menu')
+        // set input text if v-model not empty
+        if (this.value) {
+          this.setInputTextByValue(this.value)
+        }
       })
     },
     beforeDestroy () {
@@ -126,6 +130,11 @@
         this.initListeners()
       },
       value (value) {
+        this.setInputTextByValue(value)
+      }
+    },
+    methods: {
+      setInputTextByValue (value) {
         if (isString(value)) {
           // direct
           this.inputEl.value = value
@@ -136,9 +145,7 @@
           // is null or undefined or something else not valid
           this.inputEl.value = ''
         }
-      }
-    },
-    methods: {
+      },
       hasEmptySlot () {
         return !!this.$slots['empty'] || !!this.$scopedSlots['empty']
       },
