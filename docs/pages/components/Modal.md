@@ -158,6 +158,34 @@ Modals have two optional sizes: `lg` and `sm`.
 <!-- modal-custom-footer.vue -->
 ```
 
+## Custom button texts and types
+
+* Use `ok-text` and `cancel-text` to customize button texts
+* Use `ok-type` and `cancel-type` to customize button types
+
+```html
+<template>
+  <section>
+    <btn type="primary" @click="open=true">Custom Button Text and Type</btn>
+    <modal v-model="open" title="Are you sure?"
+           ok-text="Yes, please" cancel-text="No way!"
+           ok-type="danger" cancel-type="warning">
+      <p>Do you really want to destroy this item?</p>
+    </modal>
+  </section>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        open: false,
+      }
+    }
+  }
+</script>
+<!-- modal-custom-button-text-and-type.vue -->
+```
+
 ## Auto focus
 
 Auto focus on footer button with `data-action="auto-focus"` attribute after modal open. By default it is the OK button.
@@ -325,7 +353,9 @@ Name                  | Type       | Default  | Required | Description
 `header`              | Boolean    | true     |          | Show modal header.
 `dismiss-btn`         | Boolean    | true     |          | Display the dismiss button in header.
 `cancel-text`         | String     |          |          | Override the text of cancel button.
+`cancel-type`         | String     | default  |          | Button type of cancel button.
 `ok-text`             | String     |          |          | Override the text of ok button.
+`ok-type`             | String     | primary  |          | Button type of ok button.
 `transition-duration` | Number     | 150      |          | Transition time of the modal, set to 0 to disable animation.
 `auto-focus`          | Boolean    | false    |          | Focus on the action button that has `data-action="auto-focus"` attribute after modal open, by default it is the OK button.
 `keyboard`            | Boolean    | true     |          | Close the modal after `esc` key pressed.

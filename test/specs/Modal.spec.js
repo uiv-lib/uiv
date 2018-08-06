@@ -341,6 +341,22 @@ describe('Modal', () => {
     expect(modal.className).not.contain('in')
   })
 
+  it('should be able to customize button texts and types', async () => {
+    const _vm = vm.$refs['modal-custom-button-text-and-type']
+    const _$el = $(_vm.$el)
+    const trigger = _$el.find('.btn').get(0)
+    const modal = _$el.find('.modal').get(0)
+    utils.triggerEvent(trigger, 'click')
+    await utils.sleep(utils.transitionDuration)
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(modal.className).to.contain('in')
+    const [cancelBtn, okBtn] = modal.querySelectorAll('.modal-footer button')
+    expect(cancelBtn.textContent).to.equal('No way!')
+    expect(cancelBtn.className).to.contain('btn-warning')
+    expect(okBtn.textContent).to.equal('Yes, please')
+    expect(okBtn.className).to.contain('btn-danger')
+  })
+
   it('should be able to auto-focus on ok btn', async () => {
     const _vm = vm.$refs['modal-auto-focus']
     const _$el = $(_vm.$el)
@@ -372,7 +388,7 @@ describe('Modal', () => {
     const _vm = vm.$refs['modal-disable-backdrop']
     const _$el = $(_vm.$el)
     const trigger = _$el.find('.btn').get(0)
-    const modal = vm.$el.querySelectorAll('.modal')[8]
+    const modal = vm.$el.querySelectorAll('.modal')[9]
     expect(document.querySelector('.modal-backdrop')).not.exist
     utils.triggerEvent(trigger, 'click')
     await utils.sleep(utils.transitionDuration)

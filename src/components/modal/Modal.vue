@@ -24,10 +24,10 @@
         </div>
         <div class="modal-footer" v-if="footer">
           <slot name="footer">
-            <btn @click="toggle(false,'cancel')">
+            <btn :type="cancelType" @click="toggle(false,'cancel')">
               <span>{{cancelText || t('uiv.modal.cancel')}}</span>
             </btn>
-            <btn type="primary" @click="toggle(false,'ok')" data-action="auto-focus">
+            <btn :type="okType" @click="toggle(false,'ok')" data-action="auto-focus">
               <span>{{okText || t('uiv.modal.ok')}}</span>
             </btn>
           </slot>
@@ -80,7 +80,15 @@
         default: true
       },
       cancelText: String,
+      cancelType: {
+        type: String,
+        default: 'default'
+      },
       okText: String,
+      okType: {
+        type: String,
+        default: 'primary'
+      },
       dismissBtn: {
         type: Boolean,
         default: true
