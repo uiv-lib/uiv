@@ -125,9 +125,12 @@
               }
             }
           }
-          let targetInDropdownBody = this.$refs.dropdown.contains(target)
-          let targetInTrigger = this.$el.contains(target) && !targetInDropdownBody
-          if (!targetInTrigger && !targetInNotCloseElements) {
+          const targetInDropdownBody = this.$refs.dropdown.contains(target)
+          const targetInTrigger = this.$el.contains(target) && !targetInDropdownBody
+          // normally, a dropdown select event is handled by @click that trigger after @touchend
+          // then @touchend event have to be ignore in this case
+          const targetInDropdownAndIsTouchEvent = targetInDropdownBody && event.type === 'touchend'
+          if (!targetInTrigger && !targetInNotCloseElements && !targetInDropdownAndIsTouchEvent) {
             this.toggle(false)
           }
         }
