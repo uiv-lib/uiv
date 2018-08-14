@@ -48,6 +48,11 @@
             addClass(this.$el, ACTIVE_CLASS)
             this.$el.offsetHeight
             addClass(this.$el, IN_CLASS)
+            try {
+              this.$parent.$emit('after-change', this.$parent.activeIndex)
+            } catch (e) {
+              throw new Error('<tab> parent must be <tabs>.')
+            }
           }, this.transition)
         } else {
           removeClass(this.$el, IN_CLASS)

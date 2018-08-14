@@ -287,6 +287,7 @@ Name            | Params                   | Description
 --------------- | -----------              | ---------------
 `change`        | index                    | Trigger after active tab changed, with the active index.
 `before-change` | indexFrom, indexTo, done | Trigger before active tab change. Calling `done()` will allow the change. Calling `done(err)`, where `err` is any value, will prevent it. Note that this callback will only trigger on tab clicking.
+`after-change`  | index                    | Trigger after tab changed and transition finished, with the active index.
 
 ## [Tab](https://github.com/wxsms/uiv/blob/master/src/components/tabs/Tab.vue)
 
