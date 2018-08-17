@@ -92,6 +92,7 @@ export default {
                 } else {
                   props.value.push(props.inputValue)
                 }
+                data && data.on && data.on.input(props.value)
               } else {
                 listeners['input'](props.inputValue)
               }
