@@ -87,12 +87,13 @@ export default {
           on: {
             change () {
               if (props.inputType === INPUT_TYPE_CHECKBOX) {
+                const valueCopied = props.value.slice()
                 if (isInputActive) {
-                  props.value.splice(props.value.indexOf(props.inputValue), 1)
+                  valueCopied.splice(valueCopied.indexOf(props.inputValue), 1)
                 } else {
-                  props.value.push(props.inputValue)
+                  valueCopied.push(props.inputValue)
                 }
-                data && data.on && data.on.input(props.value)
+                listeners['input'](valueCopied)
               } else {
                 listeners['input'](props.inputValue)
               }
