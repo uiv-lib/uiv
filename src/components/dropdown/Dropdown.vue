@@ -1,5 +1,5 @@
 <script>
-  import {setDropdownPosition, on, off, EVENTS} from '../../utils/domUtils'
+  import {setDropdownPosition, on, off, EVENTS, focus} from '../../utils/domUtils'
   import {isBoolean} from '../../utils/objectUtils'
 
   const DEFAULT_TAG = 'div'
@@ -72,7 +72,9 @@
       this.initTrigger()
       if (this.triggerEl) {
         on(this.triggerEl, EVENTS.CLICK, this.toggle)
+        on(this.triggerEl, EVENTS.KEY_DOWN, this.onKeyPress)
       }
+      on(this.$refs.dropdown, EVENTS.KEY_DOWN, this.onKeyPress)
       on(window, EVENTS.CLICK, this.windowClicked)
       on(window, EVENTS.TOUCH_END, this.windowClicked)
       if (this.value) {
@@ -83,11 +85,45 @@
       this.removeDropdownFromBody()
       if (this.triggerEl) {
         off(this.triggerEl, EVENTS.CLICK, this.toggle)
+        off(this.triggerEl, EVENTS.KEY_DOWN, this.onKeyPress)
       }
+      off(this.$refs.dropdown, EVENTS.KEY_DOWN, this.onKeyPress)
       off(window, EVENTS.CLICK, this.windowClicked)
       off(window, EVENTS.TOUCH_END, this.windowClicked)
     },
     methods: {
+      onKeyPress (event) {
+        if (this.show) {
+          const dropdownEl = this.$refs.dropdown
+          const keyCode = event.keyCode || event.which
+          if (keyCode === 27) {
+            this.toggle(false)
+            this.triggerEl && this.triggerEl.focus()
+          } else if (keyCode === 13) {
+            const currentFocus = dropdownEl.querySelector('li > a:focus')
+            currentFocus && currentFocus.click()
+          } else if (keyCode === 38 || keyCode === 40) {
+            event.preventDefault()
+            event.stopPropagation()
+            const currentFocus = dropdownEl.querySelector('li > a:focus')
+            const items = dropdownEl.querySelectorAll('li:not(.disabled) > a')
+            if (!currentFocus) {
+              focus(items[0])
+            } else {
+              for (let i = 0; i < items.length; i++) {
+                if (currentFocus === items[i]) {
+                  if (keyCode === 38 && i < items.length > 0) {
+                    focus(items[i - 1])
+                  } else if (keyCode === 40 && i < items.length - 1) {
+                    focus(items[i + 1])
+                  }
+                  break
+                }
+              }
+            }
+          }
+        }
+      },
       initTrigger () {
         const trigger = this.$el.querySelector('[data-role="trigger"]') || this.$el.querySelector('.dropdown-toggle') || this.$el.firstChild
         this.triggerEl = trigger && trigger !== this.$refs.dropdown ? trigger : null

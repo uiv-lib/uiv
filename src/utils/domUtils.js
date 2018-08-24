@@ -319,3 +319,11 @@ export function getParents (el, selector, until = null) {
   }
   return parents
 }
+
+export function focus (el) {
+  if (!isElement(el)) {
+    return
+  }
+  el.getAttribute('tabindex') ? null : el.setAttribute('tabindex', '-1')
+  el.focus()
+}
