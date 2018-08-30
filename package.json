@@ -24,9 +24,11 @@
     "build": "node build/build-docs.js && node build/build-dist-config.js",
     "test": "cross-env BABEL_ENV=test karma start test/karma.conf.js --single-run",
     "lint": "eslint --ext .js,.vue src test/specs",
-    "coveralls": "cat test/coverage/lcov.info | ./node_modules/.bin/coveralls"
+    "coveralls": "cat test/coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "postinstall": "opencollective-postinstall"
   },
   "dependencies": {
+    "opencollective": "^1.0.3",
     "vue-functional-data-merge": "^2.0.3"
   },
   "devDependencies": {
@@ -163,5 +165,9 @@
     "Typeahead",
     "Auto complete",
     "Multi select"
-  ]
+  ],
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/uiv"
+  }
 }
