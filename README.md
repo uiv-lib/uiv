@@ -4,11 +4,13 @@
 
 <p align="center">
 <a href="https://travis-ci.org/wxsms/uiv"><img src="https://travis-ci.org/wxsms/uiv.svg?branch=master" alt="Build Status"></a>
-<a href="https://coveralls.io/github/wxsms/uiv?branch=master"><img src="https://coveralls.io/repos/github/wxsms/uiv/badge.svg?branch=master" alt="Coverage Status"></a>
+<a href="https://coveralls.io/github/wxsms/uiv?branch=master"> <img src="https://coveralls.io/repos/github/wxsms/uiv/badge.svg?branch=master" alt="Coverage Status"></a>
 <a href="https://www.npmjs.com/package/uiv"><img src="https://img.shields.io/npm/dm/uiv.svg" alt="NPM Downloads"></a>
 <a href="https://www.npmjs.com/package/uiv"><img src="https://img.shields.io/npm/v/uiv.svg" alt="NPM Version"></a>
 <a href="https://cdnjs.com/libraries/uiv"><img src="https://img.shields.io/cdnjs/v/uiv.svg" alt="CDNJS Version"></a>
 <a href="https://github.com/wxsms/uiv"><img src="https://img.shields.io/github/license/wxsms/uiv.svg" alt="License"></a>
+<a href="#backers" alt="sponsors on Open Collective"><img src="https://opencollective.com/uiv/backers/badge.svg" /></a> 
+<a href="#sponsors" alt="Sponsors on Open Collective"><img src="https://opencollective.com/uiv/sponsors/badge.svg" /></a>
 </p>
 
 ## Introduction
@@ -171,6 +173,36 @@ npm run build
 # run all tests
 npm test
 ```
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="graphs/contributors"><img src="https://opencollective.com/uiv/contributors.svg?width=890&button=false" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/uiv#backer)]
+
+<a href="https://opencollective.com/uiv#backers" target="_blank"><img src="https://opencollective.com/uiv/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/uiv#sponsor)]
+
+<a href="https://opencollective.com/uiv/sponsor/0/website" target="_blank"><img src="https://opencollective.com/uiv/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/uiv/sponsor/1/website" target="_blank"><img src="https://opencollective.com/uiv/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/uiv/sponsor/2/website" target="_blank"><img src="https://opencollective.com/uiv/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/uiv/sponsor/3/website" target="_blank"><img src="https://opencollective.com/uiv/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/uiv/sponsor/4/website" target="_blank"><img src="https://opencollective.com/uiv/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/uiv/sponsor/5/website" target="_blank"><img src="https://opencollective.com/uiv/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/uiv/sponsor/6/website" target="_blank"><img src="https://opencollective.com/uiv/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/uiv/sponsor/7/website" target="_blank"><img src="https://opencollective.com/uiv/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/uiv/sponsor/8/website" target="_blank"><img src="https://opencollective.com/uiv/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/uiv/sponsor/9/website" target="_blank"><img src="https://opencollective.com/uiv/sponsor/9/avatar.svg"></a>
+
+
 
 ## License
 

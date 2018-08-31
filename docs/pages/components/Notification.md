@@ -196,7 +196,7 @@ Name           | Type       | Default   | Required | Description
 `dismissible`  | Boolean    | true      |          | Show dismiss button.
 `placement`    | String     | top-right |          | Support: `top-right` / `top-left` / `bottom-right` / `bottom-left`.
 `icon`         | String     |           |          | Custom icon class, use an empty string to disable icon.
-`custom-class` |            |           |          | Custom classes to alert, anything that can work with `v-bind:class` or `:class`.
+`customClass`  |            |           |          | Custom classes to alert, anything that can work with `v-bind:class` or `:class`.
 `offset`       | Number     | 15        |          | The space in px between notifications.
-`offset-x`     | Number     | 15        |          | The horizontal offset in px while displaying notification.
-`offset-y`     | Number     | 15        |          | The vertical offset in px while displaying notification.
+`offsetX`      | Number     | 15        |          | The horizontal offset in px while displaying notification.
+`offsetY`      | Number     | 15        |          | The vertical offset in px while displaying notification.
