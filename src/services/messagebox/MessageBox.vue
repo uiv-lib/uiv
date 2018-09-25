@@ -84,7 +84,8 @@
         type: Function,
         default: () => null
       },
-      customClass: null
+      customClass: null,
+      defaultValue: String
     },
     data () {
       return {
@@ -92,6 +93,11 @@
         show: false,
         input: '',
         dirty: false
+      }
+    },
+    mounted () {
+      if (this.defaultValue) {
+        this.input = this.defaultValue
       }
     },
     computed: {

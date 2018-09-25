@@ -190,6 +190,26 @@ describe('MessageBox', () => {
     sinon.assert.calledWith(spy, null, 'test')
   })
 
+  it('should be able add default value to prompt box', async () => {
+    MessageBox.prompt({
+      title: 'Title',
+      content: 'This is an alert message.',
+      defaultValue: 'testtest'
+    })
+    await utils.sleep(utils.transitionDuration)
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal').className).to.contain('in')
+    expect(document.querySelector('.modal-title').textContent).to.equal('Title')
+    const input = document.querySelector('.modal input')
+    expect(input.value).to.equal('testtest')
+    await vm.$nextTick()
+    document.querySelectorAll('.modal .btn')[0].click()
+    await vm.$nextTick()
+    await utils.sleep(utils.transitionDuration)
+    expect(document.querySelector('.modal-backdrop')).not.exist
+    expect(document.querySelector('.modal')).not.exist
+  })
+
   it('should be able to work without browser Promise', async () => {
     // mute Promise
     const savedPromise = window.Promise

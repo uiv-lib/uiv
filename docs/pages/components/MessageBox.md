@@ -159,3 +159,4 @@ Name             | Type       | Default  | Required | Description
 `customClass`    |            |          |          | Custom classes to modal, anything that can work with `v-bind:class` or `:class`.
 `backdrop`       | Boolean    | `false` if type is alert, otherwise `true` |          | Dismiss the modal by backdrop click.
 `validator`      | Function   |          |          | Custom validator function for prompt. Accepts the input value as param, returns the err msg (not valid) or null (valid)
+`defaultValue`   | String     |          |          | The default value to fill in prompt box.
