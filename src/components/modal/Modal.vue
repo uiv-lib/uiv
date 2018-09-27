@@ -55,7 +55,8 @@
 
   const MODAL_BACKDROP = 'modal-backdrop'
   const IN = 'in'
-  const getOpenModalNum = () => document.querySelectorAll(`.${MODAL_BACKDROP}`).length
+  const getOpenModals = () => document.querySelectorAll(`.${MODAL_BACKDROP}`)
+  const getOpenModalNum = () => getOpenModals().length
 
   export default {
     mixins: [Local],
@@ -152,6 +153,22 @@
     methods: {
       onKeyPress (event) {
         if (this.keyboard && this.value && event.keyCode === 27) {
+          const thisModal = this.$refs.backdrop
+          let thisZIndex = thisModal.style.zIndex
+          thisZIndex = thisZIndex && thisZIndex !== 'auto' ? parseInt(thisZIndex) : 0
+          // Find out if this modal is the top most one.
+          const modals = getOpenModals()
+          const modalsLength = modals.length
+          for (let i = 0; i < modalsLength; i++) {
+            if (modals[i] !== thisModal) {
+              let zIndex = modals[i].style.zIndex
+              zIndex = zIndex && zIndex !== 'auto' ? parseInt(zIndex) : 0
+              // if any existing modal has higher zIndex, ignore
+              if (zIndex > thisZIndex) {
+                return
+              }
+            }
+          }
           this.toggle(false)
         }
       },
