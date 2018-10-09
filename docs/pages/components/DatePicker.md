@@ -269,4 +269,4 @@ Name                   | Type       | Default                           | Requir
 `year-month-formatter` | Function   |                                   |          | The formatter function of year month label string on top of date view, with 2 params `year` and `month` (0-based), with the formatted string returned.
 `icon-control-left`    | String     | glyphicon glyphicon-chevron-left  |          | The arrow icon shown inside the `previous` button.
 `icon-control-right`   | String     | glyphicon glyphicon-chevron-right |          | The arrow icon shown inside the `next` button.
-`locale`               | Object     |                                   |          | The locale used for translating month and weekday names, clear-btn and today-btn texts.
+`locale`               | Object     |                                   |          | (0.24.0+) The locale used for translating month and weekday names, clear-btn and today-btn texts.

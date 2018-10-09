@@ -257,7 +257,7 @@ Name                    | Type       | Default                | Required | Descr
 `collapse-selected`     | Boolean    | false                  |          | Collapse multiple selected items into a text.
 `append-to-body`        | Boolean    | false                  |          | Append the dropdown to `body`.
 `selected-icon`         | String     | glyphicon glyphicon-ok |          | Icon displayed in option while selected.
-`item-selected-class`   | String     |                        |          | The class applied to the selected list item.
+`item-selected-class`   | String     |                        |          | (0.24.0+) The class applied to the selected list item.
 
 ### Events
 

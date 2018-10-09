@@ -287,7 +287,7 @@ Name            | Params                   | Description
 --------------- | -----------              | ---------------
 `change`        | index                    | Trigger after active tab changed, with the active index.
 `before-change` | indexFrom, indexTo, done | Trigger before active tab change. Calling `done()` will allow the change. Calling `done(err)`, where `err` is any value, will prevent it. Note that this callback will only trigger on tab clicking.
-`after-change`  | index                    | Trigger after tab changed and transition finished, with the active index.
+`after-change`  | index                    | (0.26.0+) Trigger after tab changed and transition finished, with the active index.
 
 ## [Tab](https://github.com/wxsms/uiv/blob/master/src/components/tabs/Tab.vue)
 
@@ -297,7 +297,7 @@ Name             | Type       | Default  | Required | Description
 ---------------- | ---------- | -------- | -------- | -----------------------
 `title`          | String     |          |          | The tab title.
 `html-title`     | Boolean    | false    |          | Use HTML title.
-`tab-class`      | Object     | {}       |          | Object where keys represent class and value is interpreted as a boolean to indicate whether the class should be shown
+`tab-class`      | Object     | {}       |          | (0.25.0+) Object where keys represent class and value is interpreted as a boolean to indicate whether the class should be shown
 `disabled`       | Boolean    | false    |          | Disable the tab.
 `group`          | String     |          |          | Tabs nav with same group will in a dropdown list.
 `pull-right`     | Boolean    | false    |          | Add `pull-right` class to the tab nav. A grouped tab will be pull to right if one of its sub-tabs has this prop set to `true`.

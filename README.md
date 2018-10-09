@@ -7,10 +7,7 @@
 <a href="https://coveralls.io/github/wxsms/uiv?branch=master"> <img src="https://coveralls.io/repos/github/wxsms/uiv/badge.svg?branch=master" alt="Coverage Status"></a>
 <a href="https://www.npmjs.com/package/uiv"><img src="https://img.shields.io/npm/dm/uiv.svg" alt="NPM Downloads"></a>
 <a href="https://www.npmjs.com/package/uiv"><img src="https://img.shields.io/npm/v/uiv.svg" alt="NPM Version"></a>
-<a href="https://cdnjs.com/libraries/uiv"><img src="https://img.shields.io/cdnjs/v/uiv.svg" alt="CDNJS Version"></a>
 <a href="https://github.com/wxsms/uiv"><img src="https://img.shields.io/github/license/wxsms/uiv.svg" alt="License"></a>
-<a href="#backers" alt="sponsors on Open Collective"><img src="https://opencollective.com/uiv/backers/badge.svg" /></a> 
-<a href="#sponsors" alt="Sponsors on Open Collective"><img src="https://opencollective.com/uiv/sponsors/badge.svg" /></a>
 </p>
 
 ## Introduction

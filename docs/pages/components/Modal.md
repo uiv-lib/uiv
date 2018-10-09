@@ -353,9 +353,9 @@ Name                  | Type       | Default  | Required | Description
 `header`              | Boolean    | true     |          | Show modal header.
 `dismiss-btn`         | Boolean    | true     |          | Display the dismiss button in header.
 `cancel-text`         | String     |          |          | Override the text of cancel button.
-`cancel-type`         | String     | default  |          | Button type of cancel button.
+`cancel-type`         | String     | default  |          | (0.26.0+) Button type of cancel button.
 `ok-text`             | String     |          |          | Override the text of ok button.
-`ok-type`             | String     | primary  |          | Button type of ok button.
+`ok-type`             | String     | primary  |          | (0.26.0+) Button type of ok button.
 `transition-duration` | Number     | 150      |          | Transition time of the modal, set to 0 to disable animation.
 `auto-focus`          | Boolean    | false    |          | Focus on the action button that has `data-action="auto-focus"` attribute after modal open, by default it is the OK button.
 `keyboard`            | Boolean    | true     |          | Close the modal after `esc` key pressed.
