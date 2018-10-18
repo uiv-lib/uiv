@@ -114,6 +114,10 @@
       appendToBody: {
         type: Boolean,
         default: false
+      },
+      displayStyle: {
+        type: String,
+        default: 'block'
       }
     },
     data () {
@@ -190,7 +194,7 @@
           if (this.appendToBody) {
             document.body.appendChild(modal)
           }
-          modal.style.display = 'block'
+          modal.style.display = this.displayStyle
           modal.scrollTop = 0
           backdrop.offsetHeight // force repaint
           toggleBodyOverflow(false)
