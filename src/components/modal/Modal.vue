@@ -117,7 +117,7 @@
       },
       displayStyle: {
         type: String,
-        default: 'block',
+        default: 'block'
       }
     },
     data () {
