@@ -17,7 +17,7 @@
       <div class="form-group" :class="{'has-error':inputNotValid}">
         <input
           ref="input"
-          type="text"
+          :type="inputType"
           v-model="input"
           class="form-control"
           required
@@ -85,7 +85,11 @@
         default: () => null
       },
       customClass: null,
-      defaultValue: String
+      defaultValue: String,
+      inputType: {
+        type: String,
+        default: 'text'
+      }
     },
     data () {
       return {
