@@ -209,7 +209,7 @@
       onDateChange (date) {
         if (date && isNumber(date.date) && isNumber(date.month) && isNumber(date.year)) {
           let _date = new Date(date.year, date.month, date.date)
-          this.$emit('input', stringify(_date, this.format))
+          this.$emit('input', this.format ? stringify(_date, this.format) : _date)
           // if the input event trigger nothing (same value)
           // manually correct
           this.currentMonth = date.month

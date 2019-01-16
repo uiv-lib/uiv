@@ -257,7 +257,7 @@ Name                   | Type       | Default                           | Requir
 `width`                | Number     | 270                               |          | The date-picker's width in px.
 `today-btn`            | Boolean    | true                              |          | Show / hide the today button.
 `clear-btn`            | Boolean    | true                              |          | Show / hide the clear button.
-`format`               | String     | yyyy-MM-dd                        |          | The date format.
+`format`               | String     | yyyy-MM-dd                        |          | The date format, will emit Date object if provided as empty string.
 `close-on-selected`    | Boolean    | true                              |          | Close the date-picker dropdown after date selected.
 `limit-from`           |            |                                   |          | Anything that can convert to a valid Date object. E.g. `2017-01-01` or `new Date()`.
 `limit-to`             |            |                                   |          | Same as `limit-from`.
