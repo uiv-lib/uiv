@@ -38,7 +38,11 @@ export default {
       type: String,
       default: 'body'
     },
-    transitionDuration: {
+    hideTransitionDuration: {
+      type: Number,
+      default: 150
+    },
+    showTransitionDuration: {
       type: Number,
       default: 150
     },
@@ -55,7 +59,7 @@ export default {
   data () {
     return {
       triggerEl: null,
-      timeoutId: 0
+      hideTimeoutId: 0
     }
   },
   watch: {
@@ -183,21 +187,29 @@ export default {
     show () {
       if (this.enable && this.triggerEl && this.isNotEmpty() && !this.isShown()) {
         let popup = this.$refs.popup
-        if (this.timeoutId > 0) {
-          clearTimeout(this.timeoutId)
-          this.timeoutId = 0
+        if (this.hideTimeoutId > 0) {
+          clearTimeout(this.hideTimeoutId)
+          this.hideTimeoutId = 0
         } else {
           popup.className = `${this.name} ${this.placement} fade`
           let container = document.querySelector(this.appendTo)
           container.appendChild(popup)
           this.resetPosition()
         }
-        addClass(popup, SHOW_CLASS)
-        this.$emit('input', true)
-        this.$emit('show')
+
+        this.showTimeoutId = setTimeout(() => {
+          addClass(popup, SHOW_CLASS)
+          this.$emit('input', true)
+          this.$emit('show')
+        }, this.showTransitionDuration)
       }
     },
     hide () {
+      if (this.hideTimeoutId > 0) {
+        clearTimeout(this.showTimeoutId)
+        this.showTimeoutId = 0
+      }
+
       if (!this.isShown()) {
         return
       }
@@ -213,14 +225,14 @@ export default {
     },
     $hide () {
       if (this.isShown()) {
-        clearTimeout(this.timeoutId)
-        removeClass(this.$refs.popup, SHOW_CLASS)
-        this.timeoutId = setTimeout(() => {
+        clearTimeout(this.hideTimeoutId)
+        this.hideTimeoutId = setTimeout(() => {
+          removeClass(this.$refs.popup, SHOW_CLASS)
           removeFromDom(this.$refs.popup)
-          this.timeoutId = 0
+          this.hideTimeoutId = 0
           this.$emit('input', false)
           this.$emit('hide')
-        }, this.transitionDuration)
+        }, this.hideTransitionDuration)
       }
     },
     isShown () {

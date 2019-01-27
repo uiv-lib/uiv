@@ -135,6 +135,20 @@ Set `enable` prop to `false` to disable a popover.
 <!-- popover-disable.vue -->
 ```
 
+## Change duration
+
+Set `enable` prop to `false` to disable a popover.
+
+```html
+<popover title="Title" :hideTransitionDuration='1000' :showTransitionDuration='3000' trigger='hover'>
+  <btn type="primary">Hover</btn>
+  <template slot="popover">
+    <h1>Hello world!</h1>
+  </template>
+</popover>
+<!-- popover-duration.vue -->
+```
+
 # API Reference
 
 ## [Popover](https://github.com/wxsms/uiv/blob/master/src/components/popover/Popover.vue)
