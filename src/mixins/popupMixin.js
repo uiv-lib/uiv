@@ -205,7 +205,7 @@ export default {
       }
     },
     hide () {
-      if (this.hideTimeoutId > 0) {
+      if (this.showTimeoutId > 0) {
         clearTimeout(this.showTimeoutId)
         this.showTimeoutId = 0
       }
@@ -255,4 +255,4 @@ export default {
       }, 20) // 20ms make firefox happy
     }
   }
-}
+}1000
