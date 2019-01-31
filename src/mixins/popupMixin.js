@@ -44,11 +44,11 @@ export default {
     },
     hideDelay: {
       type: Number,
-      default: 150
+      default: 0
     },
     showDelay: {
       type: Number,
-      default: 150
+      default: 0
     },
     enable: {
       type: Boolean,
@@ -238,6 +238,7 @@ export default {
         clearTimeout(this.hideTimeoutId)
         this.hideTimeoutId = setTimeout(() => {
           removeClass(this.$refs.popup, SHOW_CLASS)
+          // gives fade out time
           setTimeout(() => {
             removeFromDom(this.$refs.popup)
             this.hideTimeoutId = 0

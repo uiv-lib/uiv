@@ -135,12 +135,12 @@ Set `enable` prop to `false` to disable a popover.
 <!-- popover-disable.vue -->
 ```
 
-## Change duration
+## Change the display duration
 
-Set `enable` prop to `false` to disable a popover.
+Set `show-delay`/`hide-delay` (ms), to delay the showing/hiding of the popover.
 
 ```html
-<popover title="Title" :hideDelay='1000' :showDelay='3000' trigger='hover'>
+<popover title="Title" :hideDelay='1000' :showDelay='2000' trigger='hover'>
   <btn type="primary">Hover</btn>
   <template slot="popover">
     <h1>Hello world!</h1>
@@ -169,6 +169,8 @@ Name                  | Type       | Default       | Required | Description
 `trigger`             | String     | outside-click |          | The popover trigger event, support `hover` / `focus` / `hover-focus` / `click` / `outside-click` / `manual`
 `append-to`           | String     | body          |          | Element selector that the popover append to.
 `transition-duration` | Number     | 150           |          | The popover show / hide transition time in ms.
+`show-delay`          | Number     | 0             |          | Delay showing the Popover (ms).
+`hide-delay`          | Number     | 0             |          | Delay hidding the Popover (ms).
 
 ### Slots
 

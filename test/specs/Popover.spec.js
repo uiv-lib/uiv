@@ -432,7 +432,7 @@ describe('Popover', () => {
     await utils.sleep(150)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     utils.triggerEvent(trigger, 'mouseleave')
-    await utils.sleep(200)
+    await utils.sleep(300)
     // not hidden yet
     expect(document.querySelectorAll('.popover').length).to.equal(1)
     await utils.sleep(400)
