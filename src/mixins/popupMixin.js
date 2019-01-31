@@ -192,13 +192,11 @@ export default {
     show () {
       if (this.enable && this.triggerEl && this.isNotEmpty() && !this.isShown()) {
         let popup = this.$refs.popup
-
         const popUpAppendedContainer = this.hideTimeoutId > 0 // weird condition
         if (popUpAppendedContainer) {
           clearTimeout(this.hideTimeoutId)
           this.hideTimeoutId = 0
         }
-
         this.showTimeoutId = setTimeout(() => {
           // add to dom
           if (!popUpAppendedContainer) {
@@ -207,7 +205,6 @@ export default {
             container.appendChild(popup)
             this.resetPosition()
           }
-
           addClass(popup, SHOW_CLASS)
           this.$emit('input', true)
           this.$emit('show')
