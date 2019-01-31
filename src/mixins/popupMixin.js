@@ -38,6 +38,10 @@ export default {
       type: String,
       default: 'body'
     },
+    transitionDuration: {
+      type: Number,
+      default: 150
+    },
     hideDelay: {
       type: Number,
       default: 150
@@ -234,10 +238,12 @@ export default {
         clearTimeout(this.hideTimeoutId)
         this.hideTimeoutId = setTimeout(() => {
           removeClass(this.$refs.popup, SHOW_CLASS)
-          removeFromDom(this.$refs.popup)
-          this.hideTimeoutId = 0
-          this.$emit('input', false)
-          this.$emit('hide')
+          setTimeout(() => {
+            removeFromDom(this.$refs.popup)
+            this.hideTimeoutId = 0
+            this.$emit('input', false)
+            this.$emit('hide')
+          }, this.transitionDuration)
         }, this.hideDelay)
       }
     },
