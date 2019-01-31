@@ -140,13 +140,13 @@ Set `enable` prop to `false` to disable a popover.
 Set `enable` prop to `false` to disable a popover.
 
 ```html
-<popover title="Title" :hideTransitionDuration='1000' :showTransitionDuration='3000' trigger='hover'>
+<popover title="Title" :hideDelay='1000' :showDelay='3000' trigger='hover'>
   <btn type="primary">Hover</btn>
   <template slot="popover">
     <h1>Hello world!</h1>
   </template>
 </popover>
-<!-- popover-duration.vue -->
+<!-- popover-delay.vue -->
 ```
 
 # API Reference

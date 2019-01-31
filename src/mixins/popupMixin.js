@@ -38,11 +38,11 @@ export default {
       type: String,
       default: 'body'
     },
-    hideTransitionDuration: {
+    hideDelay: {
       type: Number,
       default: 150
     },
-    showTransitionDuration: {
+    showDelay: {
       type: Number,
       default: 150
     },
@@ -59,7 +59,8 @@ export default {
   data () {
     return {
       triggerEl: null,
-      hideTimeoutId: 0
+      hideTimeoutId: 0,
+      showTimeoutId: 0
     }
   },
   watch: {
@@ -195,7 +196,6 @@ export default {
         }
 
         this.showTimeoutId = setTimeout(() => {
-
           // add to dom
           if (!popUpAppendedContainer) {
             popup.className = `${this.name} ${this.placement} fade`
@@ -207,7 +207,7 @@ export default {
           addClass(popup, SHOW_CLASS)
           this.$emit('input', true)
           this.$emit('show')
-        }, this.showTransitionDuration)
+        }, this.showDelay)
       }
     },
     hide () {
@@ -238,7 +238,7 @@ export default {
           this.hideTimeoutId = 0
           this.$emit('input', false)
           this.$emit('hide')
-        }, this.hideTransitionDuration)
+        }, this.hideDelay)
       }
     },
     isShown () {
