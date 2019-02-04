@@ -42,6 +42,14 @@ export default {
       type: Number,
       default: 150
     },
+    hideDelay: {
+      type: Number,
+      default: 0
+    },
+    showDelay: {
+      type: Number,
+      default: 0
+    },
     enable: {
       type: Boolean,
       default: true
@@ -55,7 +63,9 @@ export default {
   data () {
     return {
       triggerEl: null,
-      timeoutId: 0
+      hideTimeoutId: 0,
+      showTimeoutId: 0,
+      transitionTimeoutId: 0
     }
   },
   watch: {
@@ -183,21 +193,35 @@ export default {
     show () {
       if (this.enable && this.triggerEl && this.isNotEmpty() && !this.isShown()) {
         let popup = this.$refs.popup
-        if (this.timeoutId > 0) {
-          clearTimeout(this.timeoutId)
-          this.timeoutId = 0
-        } else {
-          popup.className = `${this.name} ${this.placement} fade`
-          let container = document.querySelector(this.appendTo)
-          container.appendChild(popup)
-          this.resetPosition()
+        const popUpAppendedContainer = this.hideTimeoutId > 0 // weird condition
+        if (popUpAppendedContainer) {
+          clearTimeout(this.hideTimeoutId)
+          this.hideTimeoutId = 0
         }
-        addClass(popup, SHOW_CLASS)
-        this.$emit('input', true)
-        this.$emit('show')
+        if (this.transitionTimeoutId > 0) {
+          clearTimeout(this.transitionTimeoutId)
+          this.transitionTimeoutId = 0
+        }
+        this.showTimeoutId = setTimeout(() => {
+          // add to dom
+          if (!popUpAppendedContainer) {
+            popup.className = `${this.name} ${this.placement} fade`
+            let container = document.querySelector(this.appendTo)
+            container.appendChild(popup)
+            this.resetPosition()
+          }
+          addClass(popup, SHOW_CLASS)
+          this.$emit('input', true)
+          this.$emit('show')
+        }, this.showDelay)
       }
     },
     hide () {
+      if (this.showTimeoutId > 0) {
+        clearTimeout(this.showTimeoutId)
+        this.showTimeoutId = 0
+      }
+
       if (!this.isShown()) {
         return
       }
@@ -213,14 +237,18 @@ export default {
     },
     $hide () {
       if (this.isShown()) {
-        clearTimeout(this.timeoutId)
-        removeClass(this.$refs.popup, SHOW_CLASS)
-        this.timeoutId = setTimeout(() => {
-          removeFromDom(this.$refs.popup)
-          this.timeoutId = 0
-          this.$emit('input', false)
-          this.$emit('hide')
-        }, this.transitionDuration)
+        clearTimeout(this.hideTimeoutId)
+        this.hideTimeoutId = setTimeout(() => {
+          this.hideTimeoutId = 0
+          removeClass(this.$refs.popup, SHOW_CLASS)
+          // gives fade out time
+          this.transitionTimeoutId = setTimeout(() => {
+            this.transitionTimeoutId = 0
+            removeFromDom(this.$refs.popup)
+            this.$emit('input', false)
+            this.$emit('hide')
+          }, this.transitionDuration)
+        }, this.hideDelay)
       }
     },
     isShown () {
