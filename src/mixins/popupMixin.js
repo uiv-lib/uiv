@@ -64,7 +64,8 @@ export default {
     return {
       triggerEl: null,
       hideTimeoutId: 0,
-      showTimeoutId: 0
+      showTimeoutId: 0,
+      transitionTimeoutId: 0
     }
   },
   watch: {
@@ -197,6 +198,10 @@ export default {
           clearTimeout(this.hideTimeoutId)
           this.hideTimeoutId = 0
         }
+        if (this.transitionTimeoutId > 0) {
+          clearTimeout(this.transitionTimeoutId)
+          this.transitionTimeoutId = 0
+        }
         this.showTimeoutId = setTimeout(() => {
           // add to dom
           if (!popUpAppendedContainer) {
@@ -234,11 +239,12 @@ export default {
       if (this.isShown()) {
         clearTimeout(this.hideTimeoutId)
         this.hideTimeoutId = setTimeout(() => {
+          this.hideTimeoutId = 0
           removeClass(this.$refs.popup, SHOW_CLASS)
           // gives fade out time
-          setTimeout(() => {
+          this.transitionTimeoutId = setTimeout(() => {
+            this.transitionTimeoutId = 0
             removeFromDom(this.$refs.popup)
-            this.hideTimeoutId = 0
             this.$emit('input', false)
             this.$emit('hide')
           }, this.transitionDuration)
