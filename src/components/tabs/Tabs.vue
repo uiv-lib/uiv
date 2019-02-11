@@ -29,7 +29,7 @@
 
 <script>
   import Dropdown from '../dropdown/Dropdown.vue'
-  import {isNumber, isFunction, isExist} from '../../utils/objectUtils'
+  import {isNumber, isFunction, isExist, isString} from '../../utils/objectUtils'
 
   const BEFORE_CHANGE_EVENT = 'before-change'
 
@@ -46,7 +46,8 @@
       },
       justified: Boolean,
       pills: Boolean,
-      stacked: Boolean
+      stacked: Boolean,
+      customNavClass: null
     },
     data () {
       return {
@@ -76,12 +77,28 @@
     },
     computed: {
       navClasses () {
-        return {
-          nav: true,
+        const tabClasses = {
+          'nav': true,
           'nav-justified': this.justified,
           'nav-tabs': !this.pills,
           'nav-pills': this.pills,
           'nav-stacked': this.stacked && this.pills
+        }
+        const customNavClass = this.customNavClass
+        if (isExist(customNavClass)) {
+          if (isString(customNavClass)) {
+            return {
+              ...tabClasses,
+              [customNavClass]: true
+            }
+          } else {
+            return {
+              ...tabClasses,
+              ...customNavClass
+            }
+          }
+        } else {
+          return tabClasses
         }
       },
       groupedTabs () {

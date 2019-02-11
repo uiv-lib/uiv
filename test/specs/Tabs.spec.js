@@ -47,6 +47,32 @@ describe('Tabs', () => {
     }
   })
 
+  it('should not be able add String `customNavClass`', () => {
+    const res = Vue.compile('<tabs custom-nav-class="custom-nav-class"><tab>123</tab></tabs>')
+    const vm = new Vue({
+      components: {Tab, Tabs},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    })
+    vm.$mount()
+    expect(vm.$el.querySelector('.nav.nav-tabs').className).to.contain('custom-nav-class')
+    $(vm.$el).remove()
+    vm.$destroy()
+  })
+
+  it('should not be able add Object `customNavClass`', () => {
+    const res = Vue.compile('<tabs :custom-nav-class="{\'custom-nav-class\':true}"><tab>123</tab></tabs>')
+    const vm = new Vue({
+      components: {Tab, Tabs},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    })
+    vm.$mount()
+    expect(vm.$el.querySelector('.nav.nav-tabs').className).to.contain('custom-nav-class')
+    $(vm.$el).remove()
+    vm.$destroy()
+  })
+
   it('should be ok if no <tab> present in <tabs>', () => {
     const res = Vue.compile('<tabs>{{msg}}</tabs>')
     const vm = new Vue({
