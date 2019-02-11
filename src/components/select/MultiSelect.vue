@@ -12,7 +12,7 @@
       :class="selectClasses"
       :disabled="disabled"
       tabindex="0"
-      @click="showDropdown=true"
+      data-role="trigger"
       @focus="$emit('focus', $event)"
       @blur="$emit('blur', $event)"
       @keydown.prevent.down="goNextOption"
