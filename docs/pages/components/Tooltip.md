@@ -135,6 +135,8 @@ Name                  | Type       | Default       | Required | Description
 `trigger`             | String     | hover-focus   |          | The tooltip trigger event, support `hover` / `focus` / `hover-focus` / `click` / `outside-click` / `manual`
 `append-to`           | String     | body          |          | Element selector that the tooltip append to.
 `transition-duration` | Number     | 150           |          | The tooltip show / hide transition time in ms.
+`show-delay`          | Number     | 0             |          | Delay showing the tooltip (ms).
+`hide-delay`          | Number     | 0             |          | Delay hidding the tooltip (ms).
 
 ### Events
 
