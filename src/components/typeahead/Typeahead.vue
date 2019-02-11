@@ -265,6 +265,7 @@
         }
       },
       inputKeyPressed (event) {
+        event.stopPropagation()
         if (this.open) {
           switch (event.keyCode) {
             case 13:
