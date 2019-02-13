@@ -47,7 +47,7 @@ describe('Tabs', () => {
     }
   })
 
-  it('should not be able add String `customNavClass`', () => {
+  it('should be able to add String `customNavClass`', () => {
     const res = Vue.compile('<tabs custom-nav-class="custom-nav-class"><tab>123</tab></tabs>')
     const vm = new Vue({
       components: {Tab, Tabs},
@@ -60,7 +60,7 @@ describe('Tabs', () => {
     vm.$destroy()
   })
 
-  it('should not be able add Object `customNavClass`', () => {
+  it('should be able to add Object `customNavClass`', () => {
     const res = Vue.compile('<tabs :custom-nav-class="{\'custom-nav-class\':true}"><tab>123</tab></tabs>')
     const vm = new Vue({
       components: {Tab, Tabs},
