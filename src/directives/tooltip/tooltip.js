@@ -11,7 +11,8 @@ const bind = (el, binding) => {
     propsData: {
       target: el,
       appendTo: binding.arg && '#' + binding.arg,
-      text: binding.value && binding.value.toString()
+      text: typeof binding.value === 'string' ? (binding.value && binding.value.toString()) : (binding.value && binding.value.text && binding.value.text.toString()),
+      viewport: binding.value && binding.value.viewport && binding.value.viewport.toString()
     }
   })
   let options = []

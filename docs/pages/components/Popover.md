@@ -73,6 +73,22 @@ Popover will try to find the best placement for displaying while `auto-placement
 
 `auto-placement` try order: right -> bottom -> left -> top, and use the set one if none of these matched.
 
+## Viewport
+
+Keeps the popover within the bounds of this element.
+
+```html
+<div id="popover-viewport" style="display: inline-block; padding: 20px; background-color: #eee">
+  <btn v-popover="{title:'Title', content:'Popover auto', viewport:'#popover-viewport'}" type="primary">Auto</btn>
+  <btn v-popover.left="{title:'Title', content:'Popover on left', viewport:'#popover-viewport'}" type="primary">Left</btn>
+  <btn v-popover.top="{title:'Title', content:'Popover on top', viewport:'#popover-viewport'}" type="primary">Top</btn>
+  <btn v-popover.bottom="{title:'Title', content:'Popover on bottom', viewport:'#popover-viewport'}" type="primary">Bottom</btn>
+  <btn v-popover.right="{title:'Title', content:'Popover on right', viewport:'#popover-viewport'}" type="primary">Right</btn>
+  <btn v-popover="{title:'Title', content:'Popover auto', viewport:'#popover-viewport'}" type="primary">Auto</btn>
+</div>
+<!-- popover-viewport.vue -->
+```
+
 ## Triggers
 
 Supported triggers:
@@ -171,6 +187,7 @@ Name                  | Type       | Default       | Required | Description
 `transition-duration` | Number     | 150           |          | The popover show / hide transition time in ms.
 `show-delay`          | Number     | 0             |          | (0.30.0+) Delay showing the Popover (ms).
 `hide-delay`          | Number     | 0             |          | (0.30.0+) Delay hidding the Popover (ms).
+`viewport`            | String or Function |       |          | (0.31.0+) Keeps the popover within the bounds of this element. Example: viewport: '#viewport'. If a function is given, it is called with the triggering element DOM node as its only argument.
 
 ### Slots
 

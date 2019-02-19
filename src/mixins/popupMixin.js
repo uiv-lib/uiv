@@ -58,7 +58,8 @@ export default {
       type: Boolean,
       default: true
     },
-    target: null
+    target: null,
+    viewport: null
   },
   data () {
     return {
@@ -175,7 +176,7 @@ export default {
     },
     resetPosition () {
       const popup = this.$refs.popup
-      setTooltipPosition(popup, this.triggerEl, this.placement, this.autoPlacement, this.appendTo)
+      setTooltipPosition(popup, this.triggerEl, this.placement, this.autoPlacement, this.appendTo, this.viewport)
       popup.offsetHeight
     },
     hideOnLeave () {
