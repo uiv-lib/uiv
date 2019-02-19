@@ -169,8 +169,8 @@ Name                  | Type       | Default       | Required | Description
 `trigger`             | String     | outside-click |          | The popover trigger event, support `hover` / `focus` / `hover-focus` / `click` / `outside-click` / `manual`
 `append-to`           | String     | body          |          | Element selector that the popover append to.
 `transition-duration` | Number     | 150           |          | The popover show / hide transition time in ms.
-`show-delay`          | Number     | 0             |          | Delay showing the Popover (ms).
-`hide-delay`          | Number     | 0             |          | Delay hidding the Popover (ms).
+`show-delay`          | Number     | 0             |          | (0.30.0+) Delay showing the Popover (ms).
+`hide-delay`          | Number     | 0             |          | (0.30.0+) Delay hidding the Popover (ms).
 
 ### Slots
 

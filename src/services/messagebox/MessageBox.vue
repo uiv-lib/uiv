@@ -28,14 +28,33 @@
       </div>
     </div>
     <template slot="footer" v-if="type===TYPES.ALERT">
-      <btn :type="okType" @click="toggle(false,'ok')" data-action="auto-focus">{{okBtnText}}</btn>
+      <btn
+        :type="okType"
+        @click="toggle(false,'ok')"
+        :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
+        v-text="okBtnText"
+      />
     </template>
     <template slot="footer" v-else>
-      <btn :type="cancelType" @click="toggle(false,'cancel')">{{cancelBtnText}}</btn>
-      <btn :type="okType" v-if="type===TYPES.CONFIRM" @click="toggle(false,'ok')" data-action="auto-focus">
-        <template>{{okBtnText}}</template>
-      </btn>
-      <btn :type="okType" v-else @click="validate">{{okBtnText}}</btn>
+      <btn
+        :type="cancelType"
+        @click="toggle(false,'cancel')"
+        :data-action="autoFocus === 'cancel' ? 'auto-focus' : ''"
+        v-text="cancelBtnText"
+      />
+      <btn
+        :type="okType"
+        v-if="type===TYPES.CONFIRM"
+        @click="toggle(false,'ok')"
+        :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
+        v-text="okBtnText"
+      />
+      <btn
+        :type="okType"
+        v-else
+        @click="validate"
+        v-text="okBtnText"
+      />
     </template>
   </modal>
 </template>
@@ -89,6 +108,10 @@
       inputType: {
         type: String,
         default: 'text'
+      },
+      autoFocus: {
+        type: String,
+        default: 'ok'
       }
     },
     data () {
