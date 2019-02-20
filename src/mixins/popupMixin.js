@@ -12,7 +12,7 @@ import {
   isElement,
   addClass
 } from '../utils/domUtils'
-import {isString} from '../utils/objectUtils'
+import {isString, isFunction} from '../utils/objectUtils'
 
 const SHOW_CLASS = 'in'
 
@@ -256,7 +256,7 @@ export default {
       return hasClass(this.$refs.popup, SHOW_CLASS)
     },
     windowClicked (event) {
-      if (this.triggerEl && !this.triggerEl.contains(event.target) &&
+      if (this.triggerEl && isFunction(this.triggerEl.contains) && !this.triggerEl.contains(event.target) &&
         this.trigger === TRIGGERS.OUTSIDE_CLICK && !this.$refs.popup.contains(event.target) &&
         this.isShown()) {
         this.hide()
