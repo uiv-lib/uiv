@@ -11,6 +11,8 @@
           </div>
           <div class="row">
             <div class="col-xs-12">
+              <br/>
+              <br/>
               <!-- row -->
               <ins class="adsbygoogle"
                    style="display:block"
