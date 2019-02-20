@@ -9,6 +9,17 @@
               <slot/>
             </div>
           </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <!-- row -->
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-client="ca-pub-4714899946256166"
+                   data-ad-slot="2940247473"
+                   data-ad-format="auto"
+                   data-full-width-responsive="true"></ins>
+            </div>
+          </div>
           <div class="row" v-if="this.docUrl">
             <div class="col-xs-12">
               <div class="edit-this-page">
@@ -78,6 +89,10 @@
     mounted () {
       this.$nextTick(() => {
         this.anchors = getAnchors(this.$refs.markdown)
+        setTimeout(() => {
+          window.adsbygoogle = window.adsbygoogle ? window.adsbygoogle : []
+          window.adsbygoogle.push({})
+        }, 2000)
       })
     }
   }
