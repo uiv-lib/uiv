@@ -37,6 +37,16 @@
       <div class="col-md-2 hidden-xs hidden-sm" style="margin-top: 80px">
         <affix :offset="80">
           <toc :anchors="anchors" v-if="anchors && anchors.length"/>
+          <br/>
+          <div style="width: 200px;">
+            <!-- sidenavAd -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-4714899946256166"
+                 data-ad-slot="5716075317"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+          </div>
         </affix>
       </div>
     </div>
@@ -93,6 +103,7 @@
         this.anchors = getAnchors(this.$refs.markdown)
         setTimeout(() => {
           window.adsbygoogle = window.adsbygoogle ? window.adsbygoogle : []
+          window.adsbygoogle.push({})
           window.adsbygoogle.push({})
         }, 2000)
       })
