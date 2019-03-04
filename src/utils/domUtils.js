@@ -262,7 +262,9 @@ export function setTooltipPosition (tooltip, trigger, placement, auto, appendToS
     left = containerScrollLeft + rect.left - tooltipRect.width
   } else if (placement === PLACEMENTS.RIGHT) {
     top = containerScrollTop + rect.top + rect.height / 2 - tooltipRect.height / 2
-    left = containerScrollLeft + rect.left + rect.width
+    // https://github.com/wxsms/uiv/issues/272
+    // add 1px to fix above issue
+    left = containerScrollLeft + rect.left + rect.width + 1
   } else {
     top = containerScrollTop + rect.top - tooltipRect.height
     left = containerScrollLeft + rect.left + rect.width / 2 - tooltipRect.width / 2
