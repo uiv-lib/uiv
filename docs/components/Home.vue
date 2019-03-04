@@ -28,6 +28,15 @@
         <btn to="/getting-started" size="lg">Getting Started</btn>
         <btn href="https://github.com/wxsms/uiv" size="lg">Github</btn>
       </div>
+      <br/>
+      <br/>
+      <div class="google-ad">
+        <!-- sidenav-200x200 -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:200px;height:200px"
+             data-ad-client="ca-pub-4714899946256166"
+             data-ad-slot="7250193427"></ins>
+      </div>
     </div>
   </section>
 </template>
@@ -36,12 +45,25 @@
   import Logo from './architecture/Logo.vue'
 
   export default {
-    components: {Logo}
+    components: {Logo},
+    mounted () {
+      setTimeout(() => {
+        window.adsbygoogle = window.adsbygoogle ? window.adsbygoogle : []
+        window.adsbygoogle.push({})
+      }, 500)
+    }
   }
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
   @import "../assets/css/variables";
+
+  .google-ad {
+    margin-top: auto;
+    // background-color: green;
+    overflow: hidden;
+    text-align: center;
+  }
 
   section {
     display: flex;
@@ -51,6 +73,7 @@
 
     .jumbotron {
       background: transparent;
+      margin-bottom: 0;
 
       .btn {
         background: transparent;

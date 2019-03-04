@@ -105,7 +105,7 @@
           window.adsbygoogle = window.adsbygoogle ? window.adsbygoogle : []
           window.adsbygoogle.push({})
           window.adsbygoogle.push({})
-        }, 2000)
+        }, 500)
       })
     }
   }
