@@ -11,8 +11,6 @@
           </div>
           <div class="row">
             <div class="col-xs-12">
-              <br/>
-              <br/>
               <!-- row -->
               <ins class="adsbygoogle"
                    style="display:block"
@@ -37,9 +35,9 @@
       <div class="col-md-2 hidden-xs hidden-sm" style="margin-top: 80px">
         <affix :offset="80">
           <toc :anchors="anchors" v-if="anchors && anchors.length"/>
+          <!--
           <br/>
           <div style="width: 200px;">
-            <!-- sidenavAd -->
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-4714899946256166"
@@ -47,6 +45,7 @@
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
           </div>
+          -->
         </affix>
       </div>
     </div>
