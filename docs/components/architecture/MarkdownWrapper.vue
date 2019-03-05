@@ -56,6 +56,7 @@
 <script>
   import GithubCorner from './../architecture/GithubCorner.vue'
   import Toc from './Toc.vue'
+  import {pushAd} from '../../utils/adUtils'
 
   const getAnchors = (element) => {
     let anchors = []
@@ -101,11 +102,7 @@
     mounted () {
       this.$nextTick(() => {
         this.anchors = getAnchors(this.$refs.markdown)
-        setTimeout(() => {
-          window.adsbygoogle = window.adsbygoogle ? window.adsbygoogle : []
-          window.adsbygoogle.push({})
-          window.adsbygoogle.push({})
-        }, 500)
+        pushAd(2)
       })
     }
   }

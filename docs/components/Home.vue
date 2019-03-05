@@ -43,14 +43,12 @@
 
 <script>
   import Logo from './architecture/Logo.vue'
+  import {pushAd} from '../utils/adUtils'
 
   export default {
     components: {Logo},
     mounted () {
-      setTimeout(() => {
-        window.adsbygoogle = window.adsbygoogle ? window.adsbygoogle : []
-        window.adsbygoogle.push({})
-      }, 500)
+      pushAd()
     }
   }
 </script>
