@@ -2,6 +2,13 @@
 
 > Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 Toggle a modal by clicking the button below. It will slide down and fade in from the top of the page.

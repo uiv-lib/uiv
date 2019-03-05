@@ -2,6 +2,13 @@
 
 > A basic, easily extended component for quickly creating elegant typeaheads with any form text input.
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 Use `v-model` to bind the input value, and `target` to point to the ideal input element.

@@ -2,6 +2,13 @@
 
 > Add dropdown menus to nearly anything, including the navbar, tabs, and pills.
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Examples
 
 Order to decide the dropdown trigger:

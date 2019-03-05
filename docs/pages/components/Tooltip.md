@@ -1,5 +1,12 @@
 # Tooltip
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 The first element appear in `<tooltip>` node will be the trigger element. You can also use `target` to reference it from outside the component.

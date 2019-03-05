@@ -1,5 +1,14 @@
 # Button
 
+> Use Bootstrap’s custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.
+
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Examples
 
 Use any of the available button types to quickly create a styled button.

@@ -2,6 +2,13 @@
 
 > Add small overlays of content, like those on the iPad, to any element for housing secondary information.
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 **Note**: Popovers whose both title and content are zero-length are never displayed.

@@ -4,6 +4,13 @@
 
 By design MessageBox provides simulations of browsers' `alert`, `confirm` and `prompt`. Use Modal instead if needed more complicated contents.
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Alert
 
 Displays an alert modal with the optional specified content and an OK (auto-focused) button. By default it can not be closed on backdrop click.

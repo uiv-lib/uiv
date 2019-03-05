@@ -2,6 +2,13 @@
 
 > Provide up-to-date feedback on the progress of a workflow or action with simple yet flexible progress bars.
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 Default progress bar.

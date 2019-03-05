@@ -2,6 +2,13 @@
 
 > Indicate the current page's location within a navigational hierarchy.
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 Use `items` array to create a breadcrumbs nav. `active` state of last element is automatically set if it is undefined.
