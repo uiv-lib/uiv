@@ -48,7 +48,7 @@
   export default {
     components: {Logo},
     mounted () {
-      pushAd()
+      pushAd(this.$el)
     }
   }
 </script>

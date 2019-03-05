@@ -102,7 +102,7 @@
     mounted () {
       this.$nextTick(() => {
         this.anchors = getAnchors(this.$refs.markdown)
-        pushAd(2)
+        pushAd(this.$el)
       })
     }
   }
