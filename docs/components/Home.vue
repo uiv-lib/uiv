@@ -43,13 +43,11 @@
 
 <script>
   import Logo from './architecture/Logo.vue'
-  import {pushAd} from '../utils/adUtils'
+  import googleAd from '../mixins/googleAd'
 
   export default {
     components: {Logo},
-    mounted () {
-      pushAd(this.$el)
-    }
+    mixins: [googleAd]
   }
 </script>
 

@@ -55,7 +55,7 @@
 <script>
   import GithubCorner from './../architecture/GithubCorner.vue'
   import Toc from './Toc.vue'
-  import {pushAd} from '../../utils/adUtils'
+  import googleAd from '../../mixins/googleAd'
 
   const getAnchors = (element) => {
     let anchors = []
@@ -85,6 +85,7 @@
 
   export default {
     components: {Toc, GithubCorner},
+    mixins: [googleAd],
     data () {
       return {
         anchors: []
@@ -101,7 +102,6 @@
     mounted () {
       this.$nextTick(() => {
         this.anchors = getAnchors(this.$refs.markdown)
-        pushAd(this.$el)
       })
     }
   }
