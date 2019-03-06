@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const babel = require('babel-core')
 const PrerenderSpaPlugin = require('prerender-spa-plugin')
 const SitemapPlugin = require('sitemap-webpack-plugin').default
-const _ = require('lodash')
+const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 
 exports.assetsPath = function (_path) {
   let assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -88,33 +88,22 @@ getDocumentRoutes = () => {
 
 exports.generateRenderPlugins = () => {
   let paths = getDocumentRoutes()
-  let total = paths.length
-  let chunks = _.chunk(paths, 5)
-  let plugins = []
-  let progress = 0
   let distPath = path.join(__dirname, './../dist-docs')
-  chunks.forEach(chunk => {
-    // console.log('static', chunk)
-    plugins.push(new PrerenderSpaPlugin(
-      distPath,
-      chunk,
-      {
-        maxAttempts: 5,
-        navigationLocked: true,
-        postProcessHtml (context) {
-          console.log(`[PRE-RENDER] (${++progress} / ${total}) ${context.route}`)
-          return context.html
-        }
+  return [
+    new PrerenderSpaPlugin({
+        staticDir: distPath,
+        routes: paths,
+        renderer: new Renderer({
+          maxConcurrentRoutes: 5
+        })
       }
-    ))
-  })
-  // site map plugin
-  plugins.push(new SitemapPlugin(
-    'https://uiv.wxsm.space',
-    paths.map(path => path === '/' ? path : path + '/'),
-    {
-      changeFreq: 'weekly'
-    }
-  ))
-  return plugins
+    ),
+    new SitemapPlugin(
+      'https://uiv.wxsm.space',
+      paths.map(path => path === '/' ? path : path + '/'),
+      {
+        changeFreq: 'weekly'
+      }
+    )
+  ]
 }
