@@ -7563,9 +7563,9 @@ vue-functional-data-merge@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/vue-functional-data-merge/-/vue-functional-data-merge-2.0.3.tgz#fe79c9f6fab13e047f1e6dcaa4a0fde63fe15587"
 
-vue-google-adsense-mixin@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/vue-google-adsense-mixin/-/vue-google-adsense-mixin-1.0.0.tgz#35406370f788dad352eb01d8eaf8512370a4bb95"
+vue-google-adsense-mixin@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vue-google-adsense-mixin/-/vue-google-adsense-mixin-1.0.1.tgz#128cb307c6f353d2b7796dffc9a4c4adeff35a6a"
 
 vue-hot-reload-api@^2.2.0:
   version "2.2.4"
