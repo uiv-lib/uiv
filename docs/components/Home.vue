@@ -47,7 +47,7 @@
 
   export default {
     components: {Logo},
-    mixins: [googleAd()]
+    mixins: [googleAd]
   }
 </script>
 

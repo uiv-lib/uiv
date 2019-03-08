@@ -85,7 +85,7 @@
 
   export default {
     components: {Toc, GithubCorner},
-    mixins: [googleAd()],
+    mixins: [googleAd],
     data () {
       return {
         anchors: []
