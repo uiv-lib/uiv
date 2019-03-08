@@ -55,7 +55,7 @@
 <script>
   import GithubCorner from './../architecture/GithubCorner.vue'
   import Toc from './Toc.vue'
-  import googleAd from 'vue-google-adsense-mixin'
+  import googleAd from '../../mixins/googleAd'
 
   const getAnchors = (element) => {
     let anchors = []

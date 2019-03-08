@@ -43,7 +43,7 @@
 
 <script>
   import Logo from './architecture/Logo.vue'
-  import googleAd from 'vue-google-adsense-mixin'
+  import googleAd from '../mixins/googleAd'
 
   export default {
     components: {Logo},
