@@ -47,7 +47,7 @@
 
   export default {
     components: {Logo},
-    mixins: [googleAd({timeout: 500})]
+    mixins: [googleAd()]
   }
 </script>
 
