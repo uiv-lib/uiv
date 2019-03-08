@@ -6,7 +6,7 @@ function appendScript () {
   }
   const script = document.createElement('script')
   script.async = true
-  script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+  script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
   document.head.appendChild(script)
   scriptLoaded = true
 }
