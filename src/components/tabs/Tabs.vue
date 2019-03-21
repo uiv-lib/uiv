@@ -11,10 +11,8 @@
           </template>
         </dropdown>
         <li v-else role="presentation" :class="getTabClasses(tab)">
-          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))">
-            <span v-if="tab.htmlTitle" v-html="tab.title"></span>
-            <template v-else>{{tab.title}}</template>
-          </a>
+          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-if="tab.htmlTitle" v-html="tab.title"></a>
+          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-else v-text="tab.title"></a>
         </li>
       </template>
       <li class="pull-right" v-if="!justified && $slots['nav-right']">
