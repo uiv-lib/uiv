@@ -27,6 +27,7 @@
     <template slot="dropdown">
       <li v-if="filterable" style="padding: 4px 8px">
         <input
+          aria-label="Filter..."
           ref="filterInput"
           class="form-control input-sm"
           type="text"
