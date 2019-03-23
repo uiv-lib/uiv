@@ -46,7 +46,7 @@
             @keydown.prevent.stop.up="goPrevOption"
             @keydown.prevent.stop.enter="selectOption"
             :class="itemClasses(_item)"
-            @click="toggle(_item)"
+            @click.stop="toggle(_item)"
             @mouseenter="currentActive=-1"
             style="outline: 0">
             <a role="button" v-if="isItemSelected(_item)" style="outline: 0">
