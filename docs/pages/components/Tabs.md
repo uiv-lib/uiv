@@ -281,6 +281,7 @@ Name                  | Type       | Default  | Required | Description
 `stacked`             | Boolean    | false    |          | Use stacked style, note that this have to work with `pills`.
 `transition-duration` | Number     | 150      |          | The tabs show / hide transition time in ms. Use 0 to disable transitions.
 `custom-nav-class`    |            |          |          | (0.30.0+) Apply custom classes to the tab nav, could be Object or String.
+`custom-content-class`|            |          |          | (0.32.0+) Apply custom classes to the tab content, could be Object or String.
 
 ### Slots
 

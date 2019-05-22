@@ -19,7 +19,7 @@
         <slot name="nav-right"/>
       </li>
     </ul>
-    <div class="tab-content">
+    <div :class="contentClasses">
       <slot/>
     </div>
   </section>
@@ -45,7 +45,8 @@
       justified: Boolean,
       pills: Boolean,
       stacked: Boolean,
-      customNavClass: null
+      customNavClass: null,
+      customContentClass: null
     },
     data () {
       return {
@@ -97,6 +98,27 @@
           }
         } else {
           return tabClasses
+        }
+      },
+      contentClasses () {
+        const contentClasses = {
+          'tab-content': true
+        }
+        const customContentClass = this.customContentClass
+        if (isExist(customContentClass)) {
+          if (isString(customContentClass)) {
+            return {
+              ...contentClasses,
+              [customContentClass]: true
+            }
+          } else {
+            return {
+              ...contentClasses,
+              ...customContentClass
+            }
+          }
+        } else {
+          return contentClasses
         }
       },
       groupedTabs () {
