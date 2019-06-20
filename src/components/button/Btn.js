@@ -85,6 +85,9 @@ export default {
             checked: isInputActive // required
           },
           on: {
+            input (evt) {
+              evt.stopPropagation()
+            },
             change () {
               if (props.inputType === INPUT_TYPE_CHECKBOX) {
                 const valueCopied = props.value.slice()
