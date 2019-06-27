@@ -50,6 +50,10 @@ export default {
       type: Boolean,
       default: true
     },
+    cssClass: {
+      type: String,
+      default: ''
+    },
     target: null
   },
   data () {
@@ -187,7 +191,7 @@ export default {
           clearTimeout(this.timeoutId)
           this.timeoutId = 0
         } else {
-          popup.className = `${this.name} ${this.placement} fade`
+          popup.className = `${this.name} ${this.placement} ${this.cssClass} fade`
           let container = document.querySelector(this.appendTo)
           container.appendChild(popup)
           this.resetPosition()

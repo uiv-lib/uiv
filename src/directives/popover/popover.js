@@ -11,6 +11,7 @@ const bind = (el, binding) => {
     propsData: {
       target: el,
       appendTo: binding.arg && '#' + binding.arg,
+      cssClass: binding.value.cssClass,
       title: binding.value && binding.value.title && binding.value.title.toString(),
       content: binding.value && binding.value.content && binding.value.content.toString()
     }

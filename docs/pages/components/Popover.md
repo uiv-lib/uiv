@@ -121,6 +121,46 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
 <!-- popover-manual-trigger.vue -->
 ```
 
+## Custom CSS Classes
+
+You can use a custom css class to target you specific popover with special customizations:
+
+```html
+<template>
+    <btn type="warning" id="btn2">Special Popover</btn>
+    <btn v-popover="{title:'Title', content:'Popover content',cssClass:'my-class'}" type="info">Using Directive</btn>
+    <popover title="Title" target="#btn2" css-class="my-class">
+      <template slot="popover">
+        <p>The contents of this popover has a green color by the help of custom css</p>
+      </template>
+    </popover>
+</template>
+<style>
+    .my-class{
+        background: #CC2F79;
+        color:#fff;
+    }
+    .my-class .popover-title{
+        background: #B43060;
+        color:#fff;
+        border-bottom-color: #a2204f;
+    }
+    .popover.top > .arrow:after {
+        border-top-color: #CC2F79;
+    }
+    .popover.bottom > .arrow:after {
+        border-bottom-color: #CC2F79;
+    }
+    .popover.left > .arrow:after {
+        border-left-color: #CC2F79;
+    }
+    .popover.right > .arrow:after {
+        border-right-color: #CC2F79;
+    }
+</style>
+<!-- popover-custom-css-class-example.vue -->
+```
+
 ## Disable popover
 
 Set `enable` prop to `false` to disable a popover.
