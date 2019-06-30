@@ -12,6 +12,7 @@ describe('Modal', () => {
     const Constructor = Vue.extend(ModalDoc)
     vm = new Constructor().$mount()
     $el = $(vm.$el)
+    $el.appendTo('body')
   })
 
   afterEach(() => {
@@ -341,6 +342,22 @@ describe('Modal', () => {
     expect(modal.className).not.contain('in')
   })
 
+  it('should be able to customize button texts and types', async () => {
+    const _vm = vm.$refs['modal-custom-button-text-and-type']
+    const _$el = $(_vm.$el)
+    const trigger = _$el.find('.btn').get(0)
+    const modal = _$el.find('.modal').get(0)
+    utils.triggerEvent(trigger, 'click')
+    await utils.sleep(utils.transitionDuration)
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(modal.className).to.contain('in')
+    const [cancelBtn, okBtn] = modal.querySelectorAll('.modal-footer button')
+    expect(cancelBtn.textContent).to.equal('No way!')
+    expect(cancelBtn.className).to.contain('btn-warning')
+    expect(okBtn.textContent).to.equal('Yes, please')
+    expect(okBtn.className).to.contain('btn-danger')
+  })
+
   it('should be able to auto-focus on ok btn', async () => {
     const _vm = vm.$refs['modal-auto-focus']
     const _$el = $(_vm.$el)
@@ -372,7 +389,7 @@ describe('Modal', () => {
     const _vm = vm.$refs['modal-disable-backdrop']
     const _$el = $(_vm.$el)
     const trigger = _$el.find('.btn').get(0)
-    const modal = vm.$el.querySelectorAll('.modal')[8]
+    const modal = vm.$el.querySelectorAll('.modal')[9]
     expect(document.querySelector('.modal-backdrop')).not.exist
     utils.triggerEvent(trigger, 'click')
     await utils.sleep(utils.transitionDuration)
@@ -485,5 +502,64 @@ describe('Modal', () => {
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
     vm.$destroy()
+  })
+
+  it('should close the top most modal only when ESC pressed', async () => {
+    // enable body with overflow-y
+    document.body.style.height = '9999px'
+    const _vm = vm.$refs['modal-nested']
+    await vm.$nextTick()
+    const _$el = $(_vm.$el)
+    const modal1 = _$el.find('.modal').get(0)
+    const modal2 = _$el.find('.modal').get(1)
+    const modal3 = _$el.find('.modal').get(2)
+    const trigger = _$el.find('.btn').get(0)
+    const trigger2 = _$el.find('.modal .modal-body .btn').get(0)
+    const trigger3 = _$el.find('.modal .modal-body .btn').get(1)
+    expect(getBackdropsNum()).to.equal(0)
+    // open modal 1
+    trigger.click()
+    await utils.sleep(utils.transitionDuration)
+    // open modal 2
+    trigger2.click()
+    await utils.sleep(utils.transitionDuration)
+    // open modal 3
+    trigger3.click()
+    await utils.sleep(utils.transitionDuration)
+    // dismiss modal 3
+    _vm.$refs.modal1.onKeyPress({keyCode: 27}) // esc key
+    _vm.$refs.modal2.onKeyPress({keyCode: 27}) // esc key
+    _vm.$refs.modal3.onKeyPress({keyCode: 27}) // esc key
+    await utils.sleep(utils.transitionDuration)
+    expect(modal1.className).to.contain('in')
+    expect(modal2.className).to.contain('in')
+    expect(modal3.className).not.contain('in')
+    expect(getBackdropsNum()).to.equal(2)
+    // body overflow should be still disabled, because modal 1 & 2 is still open
+    expectBodyOverflow(false)
+    // dismiss modal 2
+    _vm.$refs.modal1.onKeyPress({keyCode: 27}) // esc key
+    _vm.$refs.modal2.onKeyPress({keyCode: 27}) // esc key
+    _vm.$refs.modal3.onKeyPress({keyCode: 27}) // esc key
+    await utils.sleep(utils.transitionDuration)
+    expect(modal1.className).to.contain('in')
+    expect(modal2.className).not.contain('in')
+    expect(modal3.className).not.contain('in')
+    expect(getBackdropsNum()).to.equal(1)
+    // body overflow should be still disabled, because modal 1 is still open
+    expectBodyOverflow(false)
+    // dismiss modal 1
+    _vm.$refs.modal1.onKeyPress({keyCode: 27}) // esc key
+    _vm.$refs.modal2.onKeyPress({keyCode: 27}) // esc key
+    _vm.$refs.modal3.onKeyPress({keyCode: 27}) // esc key
+    await utils.sleep(utils.transitionDuration)
+    expect(modal1.className).not.contain('in')
+    expect(modal2.className).not.contain('in')
+    expect(modal3.className).not.contain('in')
+    expect(getBackdropsNum()).to.equal(0)
+    // body overflow should be enable now
+    expectBodyOverflow(true)
+    // reset body height
+    document.body.style.height = ''
   })
 })

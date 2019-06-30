@@ -2,6 +2,13 @@
 
 > Provide pagination links for your site or app with the multi-page pagination component.
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 Simple pagination, great for apps and search results.

@@ -1,4 +1,4 @@
-import {isExist} from './objectUtils'
+import {isExist, isString, isFunction} from './objectUtils'
 
 export const EVENTS = {
   MOUSE_ENTER: 'mouseenter',
@@ -11,7 +11,9 @@ export const EVENTS = {
   KEY_UP: 'keyup',
   KEY_PRESS: 'keypress',
   RESIZE: 'resize',
-  SCROLL: 'scroll'
+  SCROLL: 'scroll',
+  TOUCH_START: 'touchstart',
+  TOUCH_END: 'touchend'
 }
 
 export const TRIGGERS = {
@@ -207,17 +209,16 @@ export function isAvailableAtPosition (trigger, popup, placement) {
   return top && right && bottom && left
 }
 
-export function setTooltipPosition (tooltip, trigger, placement, auto, appendToSelector) {
-  let container
+export function setTooltipPosition (tooltip, trigger, placement, auto, appendToSelector, viewport) {
+  const isPopover = tooltip && tooltip.className && tooltip.className.indexOf('popover') >= 0
   let containerScrollTop
   let containerScrollLeft
   if (!isExist(appendToSelector) || appendToSelector === 'body') {
-    container = document.body
-    let doc = document.documentElement
+    const doc = document.documentElement
     containerScrollLeft = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0)
     containerScrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
   } else {
-    container = document.querySelector(appendToSelector)
+    const container = document.querySelector(appendToSelector)
     containerScrollLeft = container.scrollLeft
     containerScrollTop = container.scrollTop
   }
@@ -251,19 +252,63 @@ export function setTooltipPosition (tooltip, trigger, placement, auto, appendToS
   // fix left and top for tooltip
   let rect = trigger.getBoundingClientRect()
   let tooltipRect = tooltip.getBoundingClientRect()
+  let top
+  let left
   if (placement === PLACEMENTS.BOTTOM) {
-    tooltip.style.top = containerScrollTop + rect.top + rect.height + 'px'
-    tooltip.style.left = containerScrollLeft + rect.left + rect.width / 2 - tooltipRect.width / 2 + 'px'
+    top = containerScrollTop + rect.top + rect.height
+    left = containerScrollLeft + rect.left + rect.width / 2 - tooltipRect.width / 2
   } else if (placement === PLACEMENTS.LEFT) {
-    tooltip.style.top = containerScrollTop + rect.top + rect.height / 2 - tooltipRect.height / 2 + 'px'
-    tooltip.style.left = containerScrollLeft + rect.left - tooltipRect.width + 'px'
+    top = containerScrollTop + rect.top + rect.height / 2 - tooltipRect.height / 2
+    left = containerScrollLeft + rect.left - tooltipRect.width
   } else if (placement === PLACEMENTS.RIGHT) {
-    tooltip.style.top = containerScrollTop + rect.top + rect.height / 2 - tooltipRect.height / 2 + 'px'
-    tooltip.style.left = containerScrollLeft + rect.left + rect.width + 'px'
+    top = containerScrollTop + rect.top + rect.height / 2 - tooltipRect.height / 2
+    // https://github.com/wxsms/uiv/issues/272
+    // add 1px to fix above issue
+    left = containerScrollLeft + rect.left + rect.width + 1
   } else {
-    tooltip.style.top = containerScrollTop + rect.top - tooltipRect.height + 'px'
-    tooltip.style.left = containerScrollLeft + rect.left + rect.width / 2 - tooltipRect.width / 2 + 'px'
+    top = containerScrollTop + rect.top - tooltipRect.height
+    left = containerScrollLeft + rect.left + rect.width / 2 - tooltipRect.width / 2
   }
+  let viewportEl
+  // viewport option
+  if (isString(viewport)) {
+    viewportEl = document.querySelector(viewport)
+  } else if (isFunction(viewport)) {
+    viewportEl = viewport(trigger)
+  }
+  if (isElement(viewportEl)) {
+    const popoverFix = isPopover ? 11 : 0
+    const viewportReact = viewportEl.getBoundingClientRect()
+    const viewportTop = containerScrollTop + viewportReact.top
+    const viewportLeft = containerScrollLeft + viewportReact.left
+    const viewportBottom = viewportTop + viewportReact.height
+    const viewportRight = viewportLeft + viewportReact.width
+    // fix top
+    if (top < viewportTop) {
+      top = viewportTop
+    } else if (top + tooltipRect.height > viewportBottom) {
+      top = viewportBottom - tooltipRect.height
+    }
+    // fix left
+    if (left < viewportLeft) {
+      left = viewportLeft
+    } else if (left + tooltipRect.width > viewportRight) {
+      left = viewportRight - tooltipRect.width
+    }
+    // fix for popover pointer
+    if (placement === PLACEMENTS.BOTTOM) {
+      top -= popoverFix
+    } else if (placement === PLACEMENTS.LEFT) {
+      left += popoverFix
+    } else if (placement === PLACEMENTS.RIGHT) {
+      left -= popoverFix
+    } else {
+      top += popoverFix
+    }
+  }
+  // set position finally
+  tooltip.style.top = `${top}px`
+  tooltip.style.left = `${left}px`
 }
 
 export function hasScrollbar (el) {
@@ -316,4 +361,12 @@ export function getParents (el, selector, until = null) {
     parent = parent.parentElement
   }
   return parents
+}
+
+export function focus (el) {
+  if (!isElement(el)) {
+    return
+  }
+  el.getAttribute('tabindex') ? null : el.setAttribute('tabindex', '-1')
+  el.focus()
 }

@@ -9,6 +9,17 @@
               <slot/>
             </div>
           </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <!-- row -->
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-client="ca-pub-4714899946256166"
+                   data-ad-slot="2940247473"
+                   data-ad-format="auto"
+                   data-full-width-responsive="true"></ins>
+            </div>
+          </div>
           <div class="row" v-if="this.docUrl">
             <div class="col-xs-12">
               <div class="edit-this-page">
@@ -24,6 +35,17 @@
       <div class="col-md-2 hidden-xs hidden-sm" style="margin-top: 80px">
         <affix :offset="80">
           <toc :anchors="anchors" v-if="anchors && anchors.length"/>
+          <!--
+          <br/>
+          <div style="width: 200px;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-4714899946256166"
+                 data-ad-slot="5716075317"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+          </div>
+          -->
         </affix>
       </div>
     </div>
@@ -33,6 +55,7 @@
 <script>
   import GithubCorner from './../architecture/GithubCorner.vue'
   import Toc from './Toc.vue'
+  import googleAd from '../../mixins/googleAd'
 
   const getAnchors = (element) => {
     let anchors = []
@@ -62,6 +85,7 @@
 
   export default {
     components: {Toc, GithubCorner},
+    mixins: [googleAd],
     data () {
       return {
         anchors: []

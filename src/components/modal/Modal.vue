@@ -24,10 +24,10 @@
         </div>
         <div class="modal-footer" v-if="footer">
           <slot name="footer">
-            <btn @click="toggle(false,'cancel')">
+            <btn :type="cancelType" @click="toggle(false,'cancel')">
               <span>{{cancelText || t('uiv.modal.cancel')}}</span>
             </btn>
-            <btn type="primary" @click="toggle(false,'ok')" data-action="auto-focus">
+            <btn :type="okType" @click="toggle(false,'ok')" data-action="auto-focus">
               <span>{{okText || t('uiv.modal.ok')}}</span>
             </btn>
           </slot>
@@ -55,7 +55,8 @@
 
   const MODAL_BACKDROP = 'modal-backdrop'
   const IN = 'in'
-  const getOpenModalNum = () => document.querySelectorAll(`.${MODAL_BACKDROP}`).length
+  const getOpenModals = () => document.querySelectorAll(`.${MODAL_BACKDROP}`)
+  const getOpenModalNum = () => getOpenModals().length
 
   export default {
     mixins: [Local],
@@ -80,7 +81,15 @@
         default: true
       },
       cancelText: String,
+      cancelType: {
+        type: String,
+        default: 'default'
+      },
       okText: String,
+      okType: {
+        type: String,
+        default: 'primary'
+      },
       dismissBtn: {
         type: Boolean,
         default: true
@@ -105,6 +114,10 @@
       appendToBody: {
         type: Boolean,
         default: false
+      },
+      displayStyle: {
+        type: String,
+        default: 'block'
       }
     },
     data () {
@@ -144,6 +157,22 @@
     methods: {
       onKeyPress (event) {
         if (this.keyboard && this.value && event.keyCode === 27) {
+          const thisModal = this.$refs.backdrop
+          let thisZIndex = thisModal.style.zIndex
+          thisZIndex = thisZIndex && thisZIndex !== 'auto' ? parseInt(thisZIndex) : 0
+          // Find out if this modal is the top most one.
+          const modals = getOpenModals()
+          const modalsLength = modals.length
+          for (let i = 0; i < modalsLength; i++) {
+            if (modals[i] !== thisModal) {
+              let zIndex = modals[i].style.zIndex
+              zIndex = zIndex && zIndex !== 'auto' ? parseInt(zIndex) : 0
+              // if any existing modal has higher zIndex, ignore
+              if (zIndex > thisZIndex) {
+                return
+              }
+            }
+          }
           this.toggle(false)
         }
       },
@@ -165,7 +194,7 @@
           if (this.appendToBody) {
             document.body.appendChild(modal)
           }
-          modal.style.display = 'block'
+          modal.style.display = this.displayStyle
           modal.scrollTop = 0
           backdrop.offsetHeight // force repaint
           toggleBodyOverflow(false)

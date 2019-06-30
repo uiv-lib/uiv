@@ -2,6 +2,13 @@
 
 > Displays a global notification message at a corner of the page.
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 Click on the button below to show a notification. By default, it is dismissible with a close button, and will dismiss automatically after 5000ms (both are configurable).
@@ -196,7 +203,7 @@ Name           | Type       | Default   | Required | Description
 `dismissible`  | Boolean    | true      |          | Show dismiss button.
 `placement`    | String     | top-right |          | Support: `top-right` / `top-left` / `bottom-right` / `bottom-left`.
 `icon`         | String     |           |          | Custom icon class, use an empty string to disable icon.
-`custom-class` |            |           |          | Custom classes to alert, anything that can work with `v-bind:class` or `:class`.
+`customClass`  |            |           |          | Custom classes to alert, anything that can work with `v-bind:class` or `:class`.
 `offset`       | Number     | 15        |          | The space in px between notifications.
-`offset-x`     | Number     | 15        |          | The horizontal offset in px while displaying notification.
-`offset-y`     | Number     | 15        |          | The vertical offset in px while displaying notification.
+`offsetX`      | Number     | 15        |          | The horizontal offset in px while displaying notification.
+`offsetY`      | Number     | 15        |          | The vertical offset in px while displaying notification.

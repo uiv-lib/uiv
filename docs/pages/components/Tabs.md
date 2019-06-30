@@ -2,6 +2,13 @@
 
 > Add quick, dynamic tab functionality to transition through panes of local content, even via dropdown menus. **Nested tabs are not supported**.
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 ```html
@@ -273,6 +280,8 @@ Name                  | Type       | Default  | Required | Description
 `pills`               | Boolean    | false    |          | Use pills style.
 `stacked`             | Boolean    | false    |          | Use stacked style, note that this have to work with `pills`.
 `transition-duration` | Number     | 150      |          | The tabs show / hide transition time in ms. Use 0 to disable transitions.
+`custom-nav-class`    |            |          |          | (0.30.0+) Apply custom classes to the tab nav, could be Object or String.
+`custom-content-class`|            |          |          | (0.32.0+) Apply custom classes to the tab content, could be Object or String.
 
 ### Slots
 
@@ -287,6 +296,7 @@ Name            | Params                   | Description
 --------------- | -----------              | ---------------
 `change`        | index                    | Trigger after active tab changed, with the active index.
 `before-change` | indexFrom, indexTo, done | Trigger before active tab change. Calling `done()` will allow the change. Calling `done(err)`, where `err` is any value, will prevent it. Note that this callback will only trigger on tab clicking.
+`after-change`  | index                    | (0.26.0+) Trigger after tab changed and transition finished, with the active index.
 
 ## [Tab](https://github.com/wxsms/uiv/blob/master/src/components/tabs/Tab.vue)
 
@@ -296,7 +306,7 @@ Name             | Type       | Default  | Required | Description
 ---------------- | ---------- | -------- | -------- | -----------------------
 `title`          | String     |          |          | The tab title.
 `html-title`     | Boolean    | false    |          | Use HTML title.
-`tab-class`      | Object     | {}       |          | Object where keys represent class and value is interpreted as a boolean to indicate whether the class should be shown
+`tab-classes`    | Object     | {}       |          | (0.25.0+) Object where keys represent class and value is interpreted as a boolean to indicate whether the class should be shown
 `disabled`       | Boolean    | false    |          | Disable the tab.
 `group`          | String     |          |          | Tabs nav with same group will in a dropdown list.
 `pull-right`     | Boolean    | false    |          | Add `pull-right` class to the tab nav. A grouped tab will be pull to right if one of its sub-tabs has this prop set to `true`.

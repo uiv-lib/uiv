@@ -235,7 +235,7 @@
       },
       reduceMinute () {
         if (this.minutes <= zero) {
-          this.minutes = maxMinutes
+          this.minutes = maxMinutes + 1 - this.minStep
           this.reduceHour(1)
         } else {
           this.minutes -= this.minStep

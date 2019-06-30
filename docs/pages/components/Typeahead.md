@@ -2,6 +2,13 @@
 
 > A basic, easily extended component for quickly creating elegant typeaheads with any form text input.
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 Use `v-model` to bind the input value, and `target` to point to the ideal input element.
@@ -248,7 +255,7 @@ Name             | Type       | Default  | Required | Description
 Name      | Description
 --------- | -----------------------
 `item`    | Use this scoped slot to override the typeahead item's template.
-`empty`   | Slot content will be displayed while no results matched (if the slot exist).
+`empty`   | (0.25.0+) Slot content will be displayed while no results matched (if the slot exist).
 
 ### Events
 
@@ -257,3 +264,4 @@ Name           | Description
 `loading`      | Async loading.
 `loaded`       | Async load complete.
 `loaded-error` | Async load complete with error.
+`input`        | Item selected

@@ -9,6 +9,13 @@ The navigation **on the right** is a live demo of the affix component (hidden on
 * You must provide CSS for the positioning and width of your affixed content.
 * Do not use affix on an element contained in a relatively positioned element, such as a pulled or pushed column.
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 ```html

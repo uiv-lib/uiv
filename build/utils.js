@@ -2,6 +2,9 @@ const path = require('path')
 const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const babel = require('babel-core')
+const PrerenderSpaPlugin = require('prerender-spa-plugin')
+const SitemapPlugin = require('sitemap-webpack-plugin').default
+const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 
 exports.assetsPath = function (_path) {
   let assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -73,7 +76,7 @@ exports.styleLoaders = function (options) {
 }
 
 // Get routes array from /docs/router/routes.js
-exports.getDocumentRoutes = () => {
+getDocumentRoutes = () => {
   let routesCode = babel.transformFileSync(path.join(__dirname, '../docs/router/routes.js')).code
   routesCode = routesCode
     .replace(/import\('[\S\s].*?'\)/ig, 'null')
@@ -81,4 +84,26 @@ exports.getDocumentRoutes = () => {
   var routes = []
   eval(routesCode)
   return routes.map(v => v.path)
+}
+
+exports.generateRenderPlugins = () => {
+  let paths = getDocumentRoutes()
+  let distPath = path.join(__dirname, './../dist-docs')
+  return [
+    new PrerenderSpaPlugin({
+        staticDir: distPath,
+        routes: paths,
+        renderer: new Renderer({
+          maxConcurrentRoutes: 5
+        })
+      }
+    ),
+    new SitemapPlugin(
+      'https://uiv.wxsm.space',
+      paths.map(path => path === '/' ? path : path + '/'),
+      {
+        changeFreq: 'weekly'
+      }
+    )
+  ]
 }

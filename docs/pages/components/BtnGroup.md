@@ -4,6 +4,13 @@
 
 **Note**: When using tooltips or popovers on elements within a btn-group, make sure they're appended to body.
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 Wrap a series of `<btn>` in `<btn-group>`.

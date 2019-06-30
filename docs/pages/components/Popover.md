@@ -2,6 +2,13 @@
 
 > Add small overlays of content, like those on the iPad, to any element for housing secondary information.
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 **Note**: Popovers whose both title and content are zero-length are never displayed.
@@ -72,6 +79,22 @@ Supported placements:
 Popover will try to find the best placement for displaying while `auto-placement` is set to `true` (by default) base on the default placement setting. Useful while there does not have enough space to show the entire popover content.
 
 `auto-placement` try order: right -> bottom -> left -> top, and use the set one if none of these matched.
+
+## Viewport
+
+Keeps the popover within the bounds of this element.
+
+```html
+<div id="popover-viewport" style="display: inline-block; padding: 20px; background-color: #eee">
+  <btn v-popover="{title:'Title', content:'Popover auto', viewport:'#popover-viewport'}" type="primary">Auto</btn>
+  <btn v-popover.left="{title:'Title', content:'Popover on left', viewport:'#popover-viewport'}" type="primary">Left</btn>
+  <btn v-popover.top="{title:'Title', content:'Popover on top', viewport:'#popover-viewport'}" type="primary">Top</btn>
+  <btn v-popover.bottom="{title:'Title', content:'Popover on bottom', viewport:'#popover-viewport'}" type="primary">Bottom</btn>
+  <btn v-popover.right="{title:'Title', content:'Popover on right', viewport:'#popover-viewport'}" type="primary">Right</btn>
+  <btn v-popover="{title:'Title', content:'Popover auto', viewport:'#popover-viewport'}" type="primary">Auto</btn>
+</div>
+<!-- popover-viewport.vue -->
+```
 
 ## Triggers
 
@@ -175,6 +198,20 @@ Set `enable` prop to `false` to disable a popover.
 <!-- popover-disable.vue -->
 ```
 
+## Change the display duration
+
+Set `show-delay`/`hide-delay` (ms), to delay the showing/hiding of the popover.
+
+```html
+<popover title="Title" :hideDelay='1000' :showDelay='2000' trigger='hover'>
+  <btn type="primary">Hover</btn>
+  <template slot="popover">
+    <h1>Hello world!</h1>
+  </template>
+</popover>
+<!-- popover-delay.vue -->
+```
+
 # API Reference
 
 ## [Popover](https://github.com/wxsms/uiv/blob/master/src/components/popover/Popover.vue)
@@ -195,6 +232,9 @@ Name                  | Type       | Default       | Required | Description
 `trigger`             | String     | outside-click |          | The popover trigger event, support `hover` / `focus` / `hover-focus` / `click` / `outside-click` / `manual`
 `append-to`           | String     | body          |          | Element selector that the popover append to.
 `transition-duration` | Number     | 150           |          | The popover show / hide transition time in ms.
+`show-delay`          | Number     | 0             |          | (0.30.0+) Delay showing the Popover (ms).
+`hide-delay`          | Number     | 0             |          | (0.30.0+) Delay hidding the Popover (ms).
+`viewport`            | String or Function |       |          | (0.31.0+) Keeps the popover within the bounds of this element. Example: viewport: '#viewport'. If a function is given, it is called with the triggering element DOM node as its only argument.
 
 ### Slots
 

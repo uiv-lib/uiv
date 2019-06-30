@@ -1,5 +1,12 @@
 # Tooltip
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 The first element appear in `<tooltip>` node will be the trigger element. You can also use `target` to reference it from outside the component.
@@ -59,6 +66,22 @@ Supported placements:
 Tooltips will try to find the best placement for displaying while `auto-placement` is set to `true` (by default) base on the default placement setting. Useful while there does not have enough space to show the entire tooltip content.
 
 `auto-placement` try order: right -> bottom -> left -> top, and use the set one if none of these matched.
+
+## Viewport
+
+Keeps the tooltip within the bounds of this element.
+
+```html
+<div id="tooltip-viewport" style="display: inline-block; padding: 20px; background-color: #eee">
+  <btn v-tooltip="{text:'Tooltip content auto', viewport:'#tooltip-viewport'}" type="primary">Auto</btn>
+  <btn v-tooltip.left="{text:'Tooltip content on left', viewport:'#tooltip-viewport'}" type="primary">Left</btn>
+  <btn v-tooltip.top="{text:'Tooltip content on top', viewport:'#tooltip-viewport'}" type="primary">Top</btn>
+  <btn v-tooltip.bottom="{text:'Tooltip content on bottom', viewport:'#tooltip-viewport'}" type="primary">Bottom</btn>
+  <btn v-tooltip.right="{text:'Tooltip content on right', viewport:'#tooltip-viewport'}" type="primary">Right</btn>
+  <btn v-tooltip="{text:'Tooltip content auto', viewport:'#tooltip-viewport'}" type="primary">Auto</btn>
+</div>
+<!-- tooltip-viewport.vue -->
+```
 
 ## Triggers
 
@@ -135,6 +158,9 @@ Name                  | Type       | Default       | Required | Description
 `trigger`             | String     | hover-focus   |          | The tooltip trigger event, support `hover` / `focus` / `hover-focus` / `click` / `outside-click` / `manual`
 `append-to`           | String     | body          |          | Element selector that the tooltip append to.
 `transition-duration` | Number     | 150           |          | The tooltip show / hide transition time in ms.
+`show-delay`          | Number     | 0             |          | (0.30.0+) Delay showing the tooltip (ms).
+`hide-delay`          | Number     | 0             |          | (0.30.0+) Delay hidding the tooltip (ms).
+`viewport`            | String or Function |       |          | (0.31.0+) Keeps the tooltip within the bounds of this element. Example: viewport: '#viewport'. If a function is given, it is called with the triggering element DOM node as its only argument.
 
 ### Events
 

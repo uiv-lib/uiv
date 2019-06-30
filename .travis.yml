@@ -6,7 +6,7 @@ cache:
   directories:
   - node_modules
 node_js:
-  - "node"
+  - "lts/*"
 script:
   - npm run lint
   - npm run test
@@ -29,8 +29,7 @@ deploy:
     on:
       tags: true
   - provider: pages
-    edge:
-      branch: v1.8.47
+    verbose: true
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
     local_dir: dist-docs

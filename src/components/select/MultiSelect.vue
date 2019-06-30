@@ -12,12 +12,12 @@
       :class="selectClasses"
       :disabled="disabled"
       tabindex="0"
-      @click="showDropdown=true"
+      data-role="trigger"
       @focus="$emit('focus', $event)"
       @blur="$emit('blur', $event)"
-      @keydown.prevent.down="goNextOption"
-      @keydown.prevent.up="goPrevOption"
-      @keydown.prevent.enter="selectOption">
+      @keydown.prevent.stop.down="goNextOption"
+      @keydown.prevent.stop.up="goPrevOption"
+      @keydown.prevent.stop.enter="selectOption">
       <div :class="selectTextClasses" style="display: inline-block;vertical-align: middle;">{{selectedText}}</div>
       <div class="pull-right" style="display: inline-block;vertical-align: middle">
         <span>&nbsp;</span>
@@ -27,28 +27,33 @@
     <template slot="dropdown">
       <li v-if="filterable" style="padding: 4px 8px">
         <input
+          aria-label="Filter..."
           ref="filterInput"
           class="form-control input-sm"
           type="text"
           :placeholder="filterPlaceholder || t('uiv.multiSelect.filterPlaceholder')"
           v-model="filterInput"
-          @keydown.prevent.down="goNextOption"
-          @keydown.prevent.up="goPrevOption"
-          @keydown.prevent.enter="selectOption"
+          @keydown.prevent.stop.down="goNextOption"
+          @keydown.prevent.stop.up="goPrevOption"
+          @keydown.prevent.stop.enter="selectOption"
         />
       </li>
       <template v-for="item in groupedOptions">
         <li v-if="item.$group" class="dropdown-header" v-text="item.$group"></li>
         <template v-for="_item in item.options">
           <li
+            @keydown.prevent.stop.down="goNextOption"
+            @keydown.prevent.stop.up="goPrevOption"
+            @keydown.prevent.stop.enter="selectOption"
             :class="itemClasses(_item)"
-            @click="toggle(_item)"
-            @mouseenter="currentActive=-1">
-            <a role="button" v-if="isItemSelected(_item)">
+            @click.stop="toggle(_item)"
+            @mouseenter="currentActive=-1"
+            style="outline: 0">
+            <a role="button" v-if="isItemSelected(_item)" style="outline: 0">
               <b>{{_item[labelKey]}}</b>
               <span v-if="selectedIcon" :class="selectedIconClasses"></span>
             </a>
-            <a role="button" v-else>
+            <a role="button" v-else style="outline: 0">
               <span>{{_item[labelKey]}}</span>
             </a>
           </li>
@@ -275,11 +280,15 @@
           this.$emit('change', newValue)
         } else {
           if (index >= 0) {
-            this.value.splice(index, 1)
-            this.$emit('change', this.value)
+            const newVal = this.value.slice()
+            newVal.splice(index, 1)
+            this.$emit('input', newVal)
+            this.$emit('change', newVal)
           } else if (this.limit === 0 || this.value.length < this.limit) {
-            this.value.push(value)
-            this.$emit('change', this.value)
+            const newVal = this.value.slice()
+            newVal.push(value)
+            this.$emit('input', newVal)
+            this.$emit('change', newVal)
           } else {
             this.$emit('limit-exceed')
           }

@@ -415,4 +415,48 @@ describe('Popover', () => {
     $el.remove()
     vm.$destroy()
   })
+
+  it('should be able to show/hide on specified delay', async function () {
+    const res = Vue.compile('<popover :showDelay="300" :hideDelay="400" trigger="hover" title="123"><button></button></popover>')
+    const _vm = new Vue({
+      components: {Popover},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    const trigger = _vm.$el.querySelector('button')
+    utils.triggerEvent(trigger, 'mouseenter')
+    await utils.sleep(150)
+    // not shown yet
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    await utils.sleep(150)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    utils.triggerEvent(trigger, 'mouseleave')
+    await utils.sleep(300)
+    // not hidden yet
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    await utils.sleep(400)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    _vm.$destroy()
+  })
+
+  it('should be able to show even when hideDelay < showDelay < transitionDuration ', async function () {
+    const res = Vue.compile('<popover :hideDelay="1" :showDelay="100" :transitionDuration="500" trigger="hover" title="123"><button></button></popover>')
+    const _vm = new Vue({
+      components: {Popover},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    const trigger = _vm.$el.querySelector('button')
+    utils.triggerEvent(trigger, 'mouseenter')
+    await utils.sleep(200)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    utils.triggerEvent(trigger, 'mouseleave')
+    await utils.sleep(200)
+    utils.triggerEvent(trigger, 'mouseenter')
+    await utils.sleep(600)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    _vm.$destroy()
+  })
 })

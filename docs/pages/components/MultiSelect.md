@@ -1,5 +1,12 @@
 # MultiSelect
 
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4714899946256166"
+     data-ad-slot="4603582855"></ins>
+
 ## Example
 
 Use `v-model` to bind selected values, and `options` as select options.
@@ -257,7 +264,7 @@ Name                    | Type       | Default                | Required | Descr
 `collapse-selected`     | Boolean    | false                  |          | Collapse multiple selected items into a text.
 `append-to-body`        | Boolean    | false                  |          | Append the dropdown to `body`.
 `selected-icon`         | String     | glyphicon glyphicon-ok |          | Icon displayed in option while selected.
-`item-selected-class`   | String     |                        |          | The class applied to the selected list item.
+`item-selected-class`   | String     |                        |          | (0.24.0+) The class applied to the selected list item.
 
 ### Events
 
