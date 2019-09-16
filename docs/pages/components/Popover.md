@@ -195,6 +195,7 @@ Name                  | Type       | Default       | Required | Description
 `show-delay`          | Number     | 0             |          | (0.30.0+) Delay showing the Popover (ms).
 `hide-delay`          | Number     | 0             |          | (0.30.0+) Delay hidding the Popover (ms).
 `viewport`            | String or Function |       |          | (0.31.0+) Keeps the popover within the bounds of this element. Example: viewport: '#viewport'. If a function is given, it is called with the triggering element DOM node as its only argument.
+`custom-class`        | String     |               |          | (0.33.0+) Apply a custom css class to the popover.
 
 ### Slots
 

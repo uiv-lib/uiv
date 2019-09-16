@@ -59,7 +59,8 @@ export default {
       default: true
     },
     target: null,
-    viewport: null
+    viewport: null,
+    customClass: String
   },
   data () {
     return {
@@ -206,7 +207,7 @@ export default {
         this.showTimeoutId = setTimeout(() => {
           // add to dom
           if (!popUpAppendedContainer) {
-            popup.className = `${this.name} ${this.placement} fade`
+            popup.className = `${this.name} ${this.placement} ${this.customClass ? this.customClass : ''} fade`
             let container = document.querySelector(this.appendTo)
             container.appendChild(popup)
             this.resetPosition()

@@ -12,7 +12,8 @@ const bind = (el, binding) => {
       target: el,
       appendTo: binding.arg && '#' + binding.arg,
       text: typeof binding.value === 'string' ? (binding.value && binding.value.toString()) : (binding.value && binding.value.text && binding.value.text.toString()),
-      viewport: binding.value && binding.value.viewport && binding.value.viewport.toString()
+      viewport: binding.value && binding.value.viewport && binding.value.viewport.toString(),
+      customClass: binding.value && binding.value.customClass && binding.value.customClass.toString()
     }
   })
   let options = []

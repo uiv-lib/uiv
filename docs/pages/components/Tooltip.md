@@ -161,6 +161,7 @@ Name                  | Type       | Default       | Required | Description
 `show-delay`          | Number     | 0             |          | (0.30.0+) Delay showing the tooltip (ms).
 `hide-delay`          | Number     | 0             |          | (0.30.0+) Delay hidding the tooltip (ms).
 `viewport`            | String or Function |       |          | (0.31.0+) Keeps the tooltip within the bounds of this element. Example: viewport: '#viewport'. If a function is given, it is called with the triggering element DOM node as its only argument.
+`custom-class`        | String     |               |          | (0.33.0+) Apply a custom css class to the tooltip.
 
 ### Events
 
