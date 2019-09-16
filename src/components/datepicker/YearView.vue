@@ -3,17 +3,17 @@
     <thead>
     <tr>
       <td>
-        <btn block size="sm" style="border: none" @click="goPrevYear">
+        <btn class="uiv-datepicker-pager-prev" block size="sm" style="border: none" @click="goPrevYear">
           <i :class="iconControlLeft"></i>
         </btn>
       </td>
       <td colspan="3">
-        <btn block size="sm" style="border: none">
+        <btn class="uiv-datepicker-title" block size="sm" style="border: none">
           <b>{{yearStr}}</b>
         </btn>
       </td>
       <td>
-        <btn block size="sm" style="border: none" @click="goNextYear">
+        <btn class="uiv-datepicker-pager-next" block size="sm" style="border: none" @click="goNextYear">
           <i :class="iconControlRight"></i>
         </btn>
       </td>

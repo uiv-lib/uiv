@@ -1,5 +1,5 @@
 <template>
-  <div :style="pickerStyle" data-role="date-picker" @click="onPickerClick">
+  <div :class="pickerClass" :style="pickerStyle" data-role="date-picker" @click="onPickerClick">
     <date-view
       v-show="view==='d'"
       :month="currentMonth"
@@ -146,6 +146,14 @@
       pickerStyle () {
         return {
           width: this.width + 'px'
+        }
+      },
+      pickerClass () {
+        return {
+          'uiv-datepicker': true,
+          'uiv-datepicker-date': this.view === 'd',
+          'uiv-datepicker-month': this.view === 'm',
+          'uiv-datepicker-year': this.view === 'y'
         }
       },
       limit () {

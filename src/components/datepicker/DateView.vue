@@ -3,17 +3,17 @@
     <thead>
     <tr>
       <td>
-        <btn block size="sm" style="border: none" @click="goPrevMonth">
+        <btn class="uiv-datepicker-pager-prev" block size="sm" style="border: none" @click="goPrevMonth">
           <i :class="iconControlLeft"></i>
         </btn>
       </td>
       <td :colspan="weekNumbers?6:5">
-        <btn block size="sm" style="border: none" @click="changeView">
+        <btn class="uiv-datepicker-title" block size="sm" style="border: none" @click="changeView">
           <b>{{yearMonthStr}}</b>
         </btn>
       </td>
       <td>
-        <btn block size="sm" style="border: none" @click="goNextMonth">
+        <btn class="uiv-datepicker-pager-next" block size="sm" style="border: none" @click="goNextMonth">
           <i :class="iconControlRight"></i>
         </btn>
       </td>
@@ -21,7 +21,7 @@
     <tr align="center">
       <td v-if="weekNumbers"></td>
       <td v-for="day in weekDays" width="14.2857142857%">
-        <small>{{tWeekName(day === 0 ? 7 : day)}}</small>
+        <small  class="uiv-datepicker-week">{{tWeekName(day === 0 ? 7 : day)}}</small>
       </td>
     </tr>
     </thead>
