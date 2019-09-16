@@ -188,7 +188,8 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 
 Use `date-class` to apply custom classes to each date button, which should be an function that:
 
-* takes the date of button as param.
+* takes the date of button as the first param.
+* (0.33.0+) also with current month and year showing of the picker in the second param.
 * returns the class(es).
 
 See below example for detail usage, which has all sunday highlighted:

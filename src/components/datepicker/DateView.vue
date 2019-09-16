@@ -21,7 +21,7 @@
     <tr align="center">
       <td v-if="weekNumbers"></td>
       <td v-for="day in weekDays" width="14.2857142857%">
-        <small  class="uiv-datepicker-week">{{tWeekName(day === 0 ? 7 : day)}}</small>
+        <small class="uiv-datepicker-week">{{tWeekName(day === 0 ? 7 : day)}}</small>
       </td>
     </tr>
     </thead>
@@ -140,7 +140,10 @@
               beforeTo = dateObj < this.limit.to
             }
             date.disabled = !afterFrom || !beforeTo
-            date.classes = isFunction(this.dateClass) ? this.dateClass(dateObj) : ''
+            date.classes = isFunction(this.dateClass) ? this.dateClass(dateObj, {
+              currentMonth: this.month,
+              currentYear: this.year
+            }) : ''
             rows[i].push(date)
           }
         }
