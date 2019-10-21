@@ -221,4 +221,4 @@ Name                | Type       | Default                          | Required |
 `icon-control-up`   | String     | glyphicon glyphicon-chevron-up   |          | The arrow icon shown inside the `increase` button.
 `icon-control-down` | String     | glyphicon glyphicon-chevron-down |          | The arrow icon shown inside the `decrease` button.
 `controls`          | Boolean    | true                             |          | Hide the up/down `controls` if set to `false`.
-`input-width`       | Number     | 50                               |          | The width in pixels of the `hours` and `minutes` inputs.
+`input-width`       | Number     | 50                               |          | (0.34+) The width in pixels of the `hours` and `minutes` inputs.
