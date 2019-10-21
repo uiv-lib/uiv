@@ -24,7 +24,7 @@
             type="tel"
             pattern="\d*"
             class="form-control text-center"
-            :style="`width: ${inputWidth}px`"
+            :style="inputStyles"
             @mouseup="selectInputValue"
             @keydown.prevent.up="changeTime(1, 1)"
             @keydown.prevent.down="changeTime(1, 0)"
@@ -42,7 +42,7 @@
             type="tel"
             pattern="\d*"
             class="form-control text-center"
-            :style="`width: ${inputWidth}px`"
+            :style="inputStyles"
             @mouseup="selectInputValue"
             @keydown.prevent.up="changeTime(0, 1)"
             @keydown.prevent.down="changeTime(0, 0)"
@@ -146,6 +146,13 @@
     },
     mounted () {
       this.updateByValue(this.value)
+    },
+    computed: {
+      inputStyles () {
+        return {
+          width: `${this.inputWidth}px`
+        }
+      }
     },
     watch: {
       value (value) {
