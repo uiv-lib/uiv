@@ -24,7 +24,7 @@
             type="tel"
             pattern="\d*"
             class="form-control text-center"
-            style="width: 50px"
+            :style="`width: ${inputWidth}px`"
             @mouseup="selectInputValue"
             @keydown.prevent.up="changeTime(1, 1)"
             @keydown.prevent.down="changeTime(1, 0)"
@@ -42,7 +42,7 @@
             type="tel"
             pattern="\d*"
             class="form-control text-center"
-            style="width: 50px"
+            :style="`width: ${inputWidth}px`"
             @mouseup="selectInputValue"
             @keydown.prevent.up="changeTime(0, 1)"
             @keydown.prevent.down="changeTime(0, 0)"
@@ -129,6 +129,10 @@
       iconControlDown: {
         type: String,
         default: 'glyphicon glyphicon-chevron-down'
+      },
+      inputWidth: {
+        type: Number,
+        default: 50
       }
     },
     data () {

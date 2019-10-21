@@ -482,4 +482,21 @@ describe('TimePicker', () => {
     expect(hourText.value).to.equal('')
     expect(minutesText.value).to.equal('')
   })
+  it('should have a default input width to 50px', async () => {
+    const _vm = vm.$refs['time-picker-empty-fields-example']
+    const hoursInput = _vm.$el.querySelectorAll('input')[0]
+    expect(hoursInput.style.width).to.equal('50px')
+    const minutesInput = _vm.$el.querySelectorAll('input')[1]
+    expect(minutesInput.style.width).to.equal('50px')
+  })
+  it('should accept an input-width prop that sets the specified width to the hours and minutes input', async () => {
+    const _vm = vm.$refs['time-picker-input-width-example']
+    const inputWidth = _vm.inputWidth
+    // Check that the passed value is not the default value
+    expect(inputWidth).to.not.equal(50)
+    const hoursInput = _vm.$el.querySelectorAll('input')[0]
+    expect(hoursInput.style.width).to.equal(`${inputWidth}px`)
+    const minutesInput = _vm.$el.querySelectorAll('input')[1]
+    expect(minutesInput.style.width).to.equal(`${inputWidth}px`)
+  })
 })
