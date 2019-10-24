@@ -504,6 +504,70 @@ describe('Modal', () => {
     vm.$destroy()
   })
 
+  it('should be able to use `beforeClose` when result is promise', async () => {
+    const res = Vue.compile('<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>')
+    const vm = new Vue({
+      data () {
+        return {
+          open: true,
+          msg: 'ok'
+        }
+      },
+      components: {Modal},
+      methods: {
+        beforeClose () {
+          this.msg = 'test'
+          return new Promise((resolve) => {
+            resolve(true)
+          })
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(vm.msg).to.equal('ok')
+    vm.$el.querySelector('button.close').click()
+    await utils.sleep(utils.transitionDuration)
+    await vm.$nextTick()
+    expect(document.querySelector('.modal-backdrop')).not.exist
+    expect(vm.msg).to.equal('test')
+    vm.$destroy()
+  })
+
+  it('should be able to interrupt hide with `beforeClose` when result is promise', async () => {
+    const res = Vue.compile('<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>')
+    const vm = new Vue({
+      data () {
+        return {
+          open: true,
+          msg: 'ok'
+        }
+      },
+      components: {Modal},
+      methods: {
+        beforeClose () {
+          this.msg = 'test'
+          return new Promise((resolve) => {
+            resolve(false)
+          })
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(vm.msg).to.equal('ok')
+    vm.$el.querySelector('button.close').click()
+    await utils.sleep(utils.transitionDuration)
+    await vm.$nextTick()
+    expect(vm.msg).to.equal('test')
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    vm.$destroy()
+  })
+
   it('should close the top most modal only when ESC pressed', async () => {
     // enable body with overflow-y
     document.body.style.height = '9999px'

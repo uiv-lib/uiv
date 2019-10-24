@@ -177,12 +177,20 @@
         }
       },
       toggle (show, msg) {
-        // skip the hiding while show===false & beforeClose returning falsely value
-        if (!show && isFunction(this.beforeClose) && !this.beforeClose(msg)) {
-          return
+        let shouldClose = true
+        if (isFunction(this.beforeClose)) {
+          shouldClose = this.beforeClose(msg)
         }
-        this.msg = msg
-        this.$emit('input', show)
+
+        // Skip the hiding when beforeClose returning falsely value or returned Promise resolves to falsely value
+        // Use Promise.resolve to accept both Boolean values and Promises
+        Promise.resolve(shouldClose).then((shouldClose) => {
+          // Skip the hiding while show===false
+          if (!show && shouldClose) {
+            this.msg = msg
+            this.$emit('input', show)
+          }
+        })
       },
       $toggle (show) {
         const modal = this.$el
