@@ -367,7 +367,7 @@ Name                  | Type       | Default  | Required | Description
 `auto-focus`          | Boolean    | false    |          | Focus on the action button that has `data-action="auto-focus"` attribute after modal open, by default it is the OK button.
 `keyboard`            | Boolean    | true     |          | Close the modal after `esc` key pressed.
 `append-to-body`      | Boolean    | false    |          | Append the modal element to `<body>`.
-`before-close`        | Function   |          |          | Call with the `msg` param, return `false` to interrupt the modal hiding process.
+`before-close`        | Function   |          |          | Call with the `msg` param, return `false` to interrupt the modal hiding process. Promise supported since 0.34.1.
 
 ### Slots
 
