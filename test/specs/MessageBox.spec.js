@@ -279,6 +279,8 @@ describe('MessageBox', () => {
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
+    utils.triggerEvent(document.querySelector('.modal'), 'mousedown')
+    utils.triggerEvent(document.querySelector('.modal'), 'mouseup')
     utils.triggerEvent(document.querySelector('.modal'), 'click')
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).not.exist
