@@ -379,6 +379,8 @@ describe('Modal', () => {
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(modal.className).to.contain('in')
+    utils.triggerEvent(modal, 'mousedown')
+    utils.triggerEvent(modal, 'mouseup')
     utils.triggerEvent(modal, 'click')
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).not.exist
@@ -395,6 +397,8 @@ describe('Modal', () => {
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(modal.className).to.contain('in')
+    utils.triggerEvent(modal, 'mousedown')
+    utils.triggerEvent(modal, 'mouseup')
     utils.triggerEvent(modal, 'click')
     await utils.sleep(utils.transitionDuration)
     expect(document.querySelector('.modal-backdrop')).to.exist
