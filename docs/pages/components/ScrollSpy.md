@@ -18,7 +18,7 @@ Another example below, scroll the area below the navbar and watch the active cla
 ```html
 <template>
   <section>
-    <nav class="navbar navbar-default navbar-static"  v-scrollspy:[id]>
+    <nav class="navbar navbar-default navbar-static"  v-scrollspy:scrollspy-example>
       <div class="container-fluid">
         <div class="navbar-header">
           <button class="collapsed navbar-toggle" type="button" @click="show=!show">
@@ -27,7 +27,7 @@ Another example below, scroll the area below the navbar and watch the active cla
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a role="button" class="navbar-brand" @click="id=1">Project Name</a>
+          <a role="button" class="navbar-brand">Project Name</a>
         </div>
         <collapse class="navbar-collapse" v-model="show">
           <ul class="nav navbar-nav">
@@ -64,8 +64,7 @@ Another example below, scroll the area below the navbar and watch the active cla
   export default {
     data () {
       return {
-        show: false,
-        id: 'scrollspy-example'
+        show: false
       }
     }
   }
