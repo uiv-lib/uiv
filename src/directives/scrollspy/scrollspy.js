@@ -134,6 +134,7 @@ const bind = (el, binding) => {
 }
 
 const inserted = (el, binding) => {
+  // console.log('inserted')
   const scrollSpy = new ScrollSpy(el, binding.arg, binding.value)
   if (scrollSpy.scrollElement) {
     scrollSpy.handler = () => {
@@ -159,7 +160,9 @@ const unbind = (el) => {
 
 const update = (el, binding) => {
   // console.log('update')
-  if (binding.value !== binding.oldValue) {
+  const isArgUpdated = binding.arg !== binding.oldArg
+  const isValueUpdated = binding.value !== binding.oldValue
+  if (isArgUpdated || isValueUpdated) {
     bind(el, binding)
     inserted(el, binding)
   }
