@@ -210,6 +210,9 @@ export function isAvailableAtPosition (trigger, popup, placement) {
 }
 
 export function setTooltipPosition (tooltip, trigger, placement, auto, appendToSelector, viewport) {
+  if (!isElement(tooltip) || !isElement(trigger)) {
+    return
+  }
   const isPopover = tooltip && tooltip.className && tooltip.className.indexOf('popover') >= 0
   let containerScrollTop
   let containerScrollLeft
