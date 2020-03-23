@@ -203,6 +203,62 @@ describe('Tooltip', () => {
     vm.$destroy()
   })
 
+  it('directive should handle being updated while hiding', async () => {
+    const res = Vue.compile('<btn v-tooltip.hover="msg">{{test}}</btn>')
+    const vm = new Vue({
+      data () {
+        return {
+          msg: 'title',
+          test: 'test'
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    const trigger = vm.$el
+    utils.triggerEvent(trigger, 'mouseenter')
+    await utils.sleep(50)
+    vm.msg = 'title2'
+    utils.triggerEvent(trigger, 'mouseleave')
+    await utils.sleep(100)
+    utils.triggerEvent(trigger, 'mouseenter')
+    await utils.sleep(150)
+    let tooltip = document.querySelector('.tooltip')
+    expect(tooltip).to.exist
+    expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title2')
+    vm.$el.remove()
+    vm.$destroy()
+  })
+
+  it('directive should handle being updated while showing', async () => {
+    const res = Vue.compile('<btn v-tooltip.hover="{ text: msg, showDelay: 150 }">{{test}}</btn>')
+    const vm = new Vue({
+      data () {
+        return {
+          msg: 'title',
+          test: 'test'
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    const trigger = vm.$el
+    utils.triggerEvent(trigger, 'mouseenter')
+    await utils.sleep(50)
+    vm.msg = 'title2'
+    vm.test = 'test2'
+    await vm.$nextTick()
+    utils.triggerEvent(trigger, 'mouseenter')
+    await utils.sleep(150)
+    let tooltip = document.querySelector('.tooltip')
+    expect(tooltip).to.exist
+    expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title2')
+    vm.$el.remove()
+    vm.$destroy()
+  })
+
   it('should be able to show tooltip', async () => {
     const _vm = vm.$refs['tooltip-example']
     await vm.$nextTick()
