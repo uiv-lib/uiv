@@ -163,7 +163,6 @@ export default {
       on(window, EVENTS.CLICK, this.windowClicked)
     },
     clearListeners () {
-      this.clearTimeouts()
       if (this.triggerEl) {
         off(this.triggerEl, EVENTS.FOCUS, this.show)
         off(this.triggerEl, EVENTS.BLUR, this.hide)
@@ -176,11 +175,25 @@ export default {
         off(this.triggerEl, EVENTS.BLUR, this.handleAuto)
       }
       off(window, EVENTS.CLICK, this.windowClicked)
+      this.clearTimeouts()
     },
     clearTimeouts () {
-      [this.hideTimeoutId, this.showTimeoutId, this.transitionTimeoutId, this.autoTimeoutId].forEach((x) => {
-        if (x > 0) clearTimeout(x)
-      })
+      if (this.hideTimeoutId) {
+        clearTimeout(this.hideTimeoutId)
+        this.hideTimeoutId = 0
+      }
+      if (this.showTimeoutId) {
+        clearTimeout(this.showTimeoutId)
+        this.showTimeoutId = 0
+      }
+      if (this.transitionTimeoutId) {
+        clearTimeout(this.transitionTimeoutId)
+        this.transitionTimeoutId = 0
+      }
+      if (this.autoTimeoutId) {
+        clearTimeout(this.autoTimeoutId)
+        this.autoTimeoutId = 0
+      }
     },
     resetPosition () {
       const popup = this.$refs.popup

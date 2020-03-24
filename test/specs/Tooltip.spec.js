@@ -203,7 +203,7 @@ describe('Tooltip', () => {
     vm.$destroy()
   })
 
-  it('directive should handle being updated while hiding', async () => {
+  it('should handle being updated while hiding when directive', async () => {
     const res = Vue.compile('<btn v-tooltip.hover="msg">{{test}}</btn>')
     const vm = new Vue({
       data () {
@@ -227,11 +227,10 @@ describe('Tooltip', () => {
     let tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title2')
-    vm.$el.remove()
     vm.$destroy()
   })
 
-  it('directive should handle being updated while showing', async () => {
+  it('should handle being updated while showing when directive', async () => {
     const res = Vue.compile('<btn v-tooltip.hover="{ text: msg, showDelay: 150 }">{{test}}</btn>')
     const vm = new Vue({
       data () {
@@ -255,8 +254,66 @@ describe('Tooltip', () => {
     let tooltip = document.querySelector('.tooltip')
     expect(tooltip).to.exist
     expect(tooltip.querySelector('.tooltip-inner').innerText).to.equal('title2')
-    vm.$el.remove()
     vm.$destroy()
+  })
+
+  it('should support show and hide delay when directive', async () => {
+    const res = Vue.compile('<btn v-tooltip.hover="{ text: msg, showDelay: 300, hideDelay: 400 }">test</btn>')
+    const vm = new Vue({
+      data () {
+        return {
+          msg: 'title'
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    const trigger = vm.$el
+    utils.triggerEvent(trigger, 'mouseenter')
+    // not shown yet
+    await utils.sleep(150)
+    expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+    await utils.sleep(150)
+    expect(document.querySelectorAll('.tooltip').length).to.equal(1)
+    utils.triggerEvent(trigger, 'mouseleave')
+    await utils.sleep(300)
+    // not hidden yet
+    expect(document.querySelectorAll('.tooltip').length).to.equal(1)
+    await utils.sleep(400)
+    expect(document.querySelectorAll('.tooltip').length).to.equal(0)
+    vm.$destroy()
+  })
+
+  it('should clear timeouts correctly', async () => {
+    const res = Vue.compile("<tooltip ref='tooltip' :text='msg' trigger='hover'><btn>test</btn></tooltip>")
+    const vm = new Vue({
+      data () {
+        return {
+          msg: 'title'
+        }
+      },
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    }).$mount()
+    await vm.$nextTick()
+    const tooltip = vm.$refs.tooltip
+    // handles empty timeoutids correctly
+    tooltip.clearTimeouts()
+    expect(tooltip.hideTimeoutId).to.equal(0)
+    expect(tooltip.showTimeoutId).to.equal(0)
+    expect(tooltip.transitionTimeoutId).to.equal(0)
+    expect(tooltip.autoTimeoutId).to.equal(0)
+    // handles populated timeoutids correctly
+    tooltip.hideTimeoutId = setTimeout(() => 0, 500)
+    tooltip.showTimeoutId = setTimeout(() => 0, 500)
+    tooltip.transitionTimeoutId = setTimeout(() => 0, 500)
+    tooltip.autoTimeoutId = setTimeout(() => 0, 500)
+    tooltip.clearTimeouts()
+    expect(tooltip.hideTimeoutId).to.equal(0)
+    expect(tooltip.showTimeoutId).to.equal(0)
+    expect(tooltip.transitionTimeoutId).to.equal(0)
+    expect(tooltip.autoTimeoutId).to.equal(0)
   })
 
   it('should be able to show tooltip', async () => {
