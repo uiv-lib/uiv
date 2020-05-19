@@ -20,6 +20,39 @@ describe('Tabs', () => {
     $el.remove()
   })
 
+  it('should not be able hide tabs using `hidden` prop', async () => {
+    const res = Vue.compile(
+      `<tabs>
+    <tab hidden>1</tab>
+    <tab>2</tab>
+    <tab group="Dropdown" hidden>3</tab>
+    <tab group="Dropdown">4</tab>
+    <tab group="Dropdown2" hidden>5</tab>
+    <tab group="Dropdown2" hidden>6</tab>
+</tabs>`
+    )
+    const vm = new Vue({
+      components: {Tab, Tabs},
+      render: res.render,
+      staticRenderFns: res.staticRenderFns
+    })
+    vm.$mount()
+    await vm.$nextTick()
+    // 1,2
+    expect(vm.$el.querySelectorAll('.nav.nav-tabs > li')[0].style.display).to.equal('none')
+    expect(vm.$el.querySelectorAll('.nav.nav-tabs > li')[1].style.display).to.not.equal('none')
+    // 3,4
+    expect(vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[0].style.display).to.not.equal('none')
+    expect(vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[0].querySelectorAll('li')[0].style.display).to.equal('none')
+    expect(vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[0].querySelectorAll('li')[1].style.display).to.not.equal('none')
+    // 5,6
+    expect(vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[1].style.display).to.equal('none')
+    expect(vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[1].querySelectorAll('li')[0].style.display).to.equal('none')
+    expect(vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[1].querySelectorAll('li')[1].style.display).to.equal('none')
+    $(vm.$el).remove()
+    vm.$destroy()
+  })
+
   it('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {
     const _error = window.console.error
     window.console.error = () => {

@@ -33,6 +33,10 @@
       pullRight: {
         type: Boolean,
         default: false
+      },
+      hidden: {
+        type: Boolean,
+        default: false
       }
     },
     data () {

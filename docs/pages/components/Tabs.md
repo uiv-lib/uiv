@@ -310,3 +310,4 @@ Name             | Type       | Default  | Required | Description
 `disabled`       | Boolean    | false    |          | Disable the tab.
 `group`          | String     |          |          | Tabs nav with same group will in a dropdown list.
 `pull-right`     | Boolean    | false    |          | Add `pull-right` class to the tab nav. A grouped tab will be pull to right if one of its sub-tabs has this prop set to `true`.
+`hidden`         | Boolean    | false    |          | (0.35.0+) Hide the tab, use this prop because `v-show` doesn't work on Tab component.
