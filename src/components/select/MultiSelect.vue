@@ -18,11 +18,15 @@
       @keydown.prevent.stop.down="goNextOption"
       @keydown.prevent.stop.up="goPrevOption"
       @keydown.prevent.stop.enter="selectOption">
-      <div :class="selectTextClasses" style="display: inline-block;vertical-align: middle;">{{selectedText}}</div>
       <div class="pull-right" style="display: inline-block;vertical-align: middle">
         <span>&nbsp;</span>
         <span class="caret"></span>
       </div>
+      <div
+        :class="selectTextClasses"
+        style="overflow-x: hidden; text-overflow: ellipsis; white-space: nowrap;"
+        v-text="selectedText"
+      ></div>
     </div>
     <template slot="dropdown">
       <li v-if="filterable" style="padding: 4px 8px">
