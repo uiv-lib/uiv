@@ -23,7 +23,7 @@ describe('MultiSelect', () => {
     const _vm = vm.$refs['multi-select-example']
     const dropdown = _vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
-    const display = dropdown.querySelectorAll('.dropdown-toggle > div')[0]
+    const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
     expect(dropdown.className).not.contain('open')
     trigger.click()
     await vm.$nextTick()
@@ -91,7 +91,7 @@ describe('MultiSelect', () => {
     const _vm = vm.$refs['multi-select-limit']
     const dropdown = _vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
-    const display = dropdown.querySelectorAll('.dropdown-toggle > div')[0]
+    const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
     trigger.click()
     await vm.$nextTick()
     expect(_.isEmpty(_vm.selected)).to.be.true
@@ -170,7 +170,7 @@ describe('MultiSelect', () => {
     const _vm = vm.$refs['multi-select-disabled-options']
     const dropdown = _vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
-    const display = dropdown.querySelectorAll('.dropdown-toggle > div')[0]
+    const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
     trigger.click()
     await vm.$nextTick()
     expect(_.isEmpty(_vm.selected)).to.be.true
@@ -216,7 +216,7 @@ describe('MultiSelect', () => {
     const _vm = vm.$refs['multi-select-collapse-selected']
     const dropdown = _vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
-    const display = dropdown.querySelectorAll('.dropdown-toggle > div')[0]
+    const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
     expect(dropdown.className).not.contain('open')
     trigger.click()
     await vm.$nextTick()
@@ -365,7 +365,7 @@ describe('MultiSelect', () => {
     const _vm = vm.$refs['multi-select-example']
     const dropdown = _vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
-    const display = dropdown.querySelectorAll('.dropdown-toggle > div')[0]
+    const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
     expect(dropdown.className).not.contain('open')
     // nothing happens
     utils.triggerKey(trigger, utils.keyCodes.up)
@@ -541,7 +541,7 @@ describe('MultiSelect', () => {
     const _vm = vm.$refs['multi-select-option-groups']
     const dropdown = _vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
-    const display = dropdown.querySelectorAll('.dropdown-toggle > div')[0]
+    const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
     expect(dropdown.className).not.contain('open')
     expect(dropdown.querySelectorAll('.dropdown-header').length).to.equal(2)
     expect(dropdown.querySelectorAll('.dropdown-header')[0].textContent).to.equal('Fruit')
