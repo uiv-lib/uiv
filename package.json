@@ -27,6 +27,7 @@
     "coveralls": "cat test/coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "dependencies": {
+    "portal-vue": "^2.1.7",
     "vue-functional-data-merge": "^2.0.3"
   },
   "devDependencies": {

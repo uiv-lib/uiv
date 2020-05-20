@@ -11,8 +11,11 @@
           </template>
         </dropdown>
         <li v-else role="presentation" :class="getTabClasses(tab)" v-show="!tab.hidden">
-          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-if="tab.htmlTitle" v-html="tab.title"></a>
-          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-else v-text="tab.title"></a>
+          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-if="tab.$slots.title">
+            <portal-target :name="tab._uid.toString()"/>
+          </a>
+          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-else-if="tab.htmlTitle" v-html="tab.title"></a>
+          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-else-if="tab.title" v-text="tab.title"></a>
         </li>
       </template>
       <li class="pull-right" v-if="!justified && $slots['nav-right']">
@@ -27,12 +30,13 @@
 
 <script>
   import Dropdown from '../dropdown/Dropdown.vue'
+  import {PortalTarget} from 'portal-vue'
   import {isNumber, isFunction, isExist, isString} from '../../utils/objectUtils'
 
   const BEFORE_CHANGE_EVENT = 'before-change'
 
   export default {
-    components: {Dropdown},
+    components: {Dropdown, PortalTarget},
     props: {
       value: {
         type: Number,

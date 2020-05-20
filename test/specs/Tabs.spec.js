@@ -182,16 +182,23 @@ describe('Tabs', () => {
     expect(activeContent[0].querySelector('p').textContent).to.contain('Home tab')
   })
 
-  it('should be able to render HTML title', async () => {
+  it('should be able to render HTML title with prop', async () => {
     await vm.$nextTick()
     const nav = $el.find('.nav-tabs').get(4)
-    const tab = nav.querySelectorAll('li')[2]
+    const tab = nav.querySelectorAll('li')[0]
+    expect(tab.querySelector('i')).to.exist
+  })
+
+  it('should be able to render HTML title with slot', async () => {
+    await vm.$nextTick()
+    const nav = $el.find('.nav-tabs').get(4)
+    const tab = nav.querySelectorAll('li')[1]
     expect(tab.querySelector('i')).to.exist
   })
 
   it('should be able to run callback function', async () => {
     await vm.$nextTick()
-    const nav = $el.find('.nav-tabs').get(4)
+    const nav = $el.find('.nav-tabs').get(5)
     const _savedAlert = window.alert
     window.alert = () => {
       // Silent to remove out logs in terminal

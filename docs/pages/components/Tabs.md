@@ -113,6 +113,25 @@ Pills are also vertically stackable by adding `stacked`, but if you want the nav
 <!-- tabs-pills-style.vue -->
 ```
 
+## Custom titles
+
+With `html-title` prop or `title` slot you can place any content inside nav tabs.
+
+```html
+<tabs>
+  <tab title="<i class='glyphicon glyphicon-home'></i> Home" html-title>
+    <p>This tab has a <code>html-title</code>.</p>
+  </tab>
+  <tab>
+    <div slot="title">
+      <i class="glyphicon glyphicon-user"></i> Profile
+    </div>
+    <p>This tab has a <code>title</code> slot.</p>
+  </tab>
+</tabs>
+<!-- tabs-custom-titles.vue -->
+```
+
 ## With callbacks
 
 ```html
@@ -311,3 +330,9 @@ Name             | Type       | Default  | Required | Description
 `group`          | String     |          |          | Tabs nav with same group will in a dropdown list.
 `pull-right`     | Boolean    | false    |          | Add `pull-right` class to the tab nav. A grouped tab will be pull to right if one of its sub-tabs has this prop set to `true`.
 `hidden`         | Boolean    | false    |          | (0.35.0+) Hide the tab, use this prop because `v-show` doesn't work on Tab component.
+
+### Slots
+
+Name        | Description
+---------   | -----------------------
+`title`     | (0.35.0+) Title slot. This will override `title` or `html-title` prop if exist.
