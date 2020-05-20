@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import $ from 'jquery'
-import Notification from '@src/services/notification/notification'
+import Notification from '@src/services/notification/Notification'
 import NotificationDoc from '@docs/pages/components/Notification.md'
 import utils from '../utils'
 

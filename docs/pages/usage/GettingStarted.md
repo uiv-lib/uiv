@@ -76,6 +76,8 @@ If you don't want all of the components for some reason (e.g. to save the bundle
 
 ```javascript
 import { Alert } from 'uiv'
+// or
+// import Alert from 'uiv/dist/Alert'
 
 new Vue({
   components: {
