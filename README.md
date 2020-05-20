@@ -16,8 +16,7 @@
 
 * **Lightweight**
   * All components **~20KB** Gziped.
-  * Dependencies only **Vue & Bootstrap CSS**.
-  * No extra CSS.
+  * No extra CSS file.
   * Individually import supported.
 * IE 9+ & modern browsers supported.
 * **SSR** (server-side rendering) supported.
@@ -148,7 +147,7 @@ Detailed changes for each release are documented in the [release notes](https://
 
 Welcome and thanks to use and contribute to this project. Your support is very important.
 
-If you found any problem / bug during the use of uiv, or have any suggustion that can make this lib better, please [create an issue](https://github.com/wxsms/uiv/issues/new). 
+If you found any problem / bug during the use of uiv, or have any suggustion that can make this lib better, please [create an issue](https://github.com/wxsms/uiv/issues/new).
 
 Pull requests are also welcome! However, before you started working on a PR, it is highly recommend to **create an issue with your idea first**, so people can know what's going to happen and avoid duplicated work.
 

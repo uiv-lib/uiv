@@ -4,8 +4,7 @@
 
 * **Lightweight**
   * All components **~20KB** Gziped.
-  * Dependencies only **Vue & Bootstrap CSS**.
-  * No extra CSS.
+  * No extra CSS file.
   * Individually import supported.
 * IE 9+ & modern browsers supported.
 * **SSR** (server-side rendering) supported.
