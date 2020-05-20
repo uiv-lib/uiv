@@ -10,6 +10,9 @@
 <a href="https://github.com/wxsms/uiv"><img src="https://img.shields.io/github/license/wxsms/uiv.svg" alt="License"></a>
 </p>
 
+
+If this project has helped you out, please support it with a star :star2:.
+
 ## Introduction
 
 **uiv** is a Bootstrap 3 component lib implemented by Vue 2.
