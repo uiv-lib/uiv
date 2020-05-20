@@ -5512,6 +5512,11 @@ pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
 
+portal-vue@^2.1.7:
+  version "2.1.7"
+  resolved "https://registry.npm.taobao.org/portal-vue/download/portal-vue-2.1.7.tgz#ea08069b25b640ca08a5b86f67c612f15f4e4ad4"
+  integrity sha1-6ggGmyW2QMoIpbhvZ8YS8V9OStQ=
+
 portfinder@^1.0.13:
   version "1.0.20"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.20.tgz#bea68632e54b2e13ab7b0c4775e9b41bf270e44a"
