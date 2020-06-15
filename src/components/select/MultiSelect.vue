@@ -37,6 +37,7 @@
           type="text"
           :placeholder="filterPlaceholder || t('uiv.multiSelect.filterPlaceholder')"
           v-model="filterInput"
+          @keyup="searchClicked"
           @keydown.prevent.stop.down="goNextOption"
           @keydown.prevent.stop.up="goPrevOption"
           @keydown.prevent.stop.enter="selectOption"
@@ -51,9 +52,15 @@
             @keydown.prevent.stop.enter="selectOption"
             :class="itemClasses(_item)"
             @click.stop="toggle(_item)"
+            v-tooltip="generateTooltip(_item)"
             @mouseenter="currentActive=-1"
             style="outline: 0">
-            <a role="button" v-if="isItemSelected(_item)" style="outline: 0">
+            <a role="button" v-if="customOptionComponentKey" style="outline: 0">
+              <component :item="_item"
+                         :is="_item[customOptionComponentKey]"/>
+              <span v-if="selectedIcon && isItemSelected(_item)" :class="selectedIconClasses"></span>
+            </a>
+            <a role="button" v-else-if="isItemSelected(_item)" style="outline: 0">
               <b>{{_item[labelKey]}}</b>
               <span v-if="selectedIcon" :class="selectedIconClasses"></span>
             </a>
@@ -132,7 +139,23 @@
         type: String,
         default: 'glyphicon glyphicon-ok'
       },
-      itemSelectedClass: String
+      itemSelectedClass: String,
+      fireEvent: {
+        type: Boolean,
+        default: false
+      },
+      tooltipEnabled: {
+        type: Boolean,
+        default: false
+      },
+      tooltipKey: {
+        type: String,
+        default: null
+      },
+      customOptionComponentKey: {
+        type: String,
+        default: null
+      }
     },
     data () {
       return {
@@ -297,6 +320,21 @@
             this.$emit('limit-exceed')
           }
         }
+      },
+      searchClicked (event) {
+        if (!this.fireEvent) {
+          return
+        }
+        if (event.key === 'Enter') {
+          this.$emit('search', this.filterInput)
+        }
+      },
+      generateTooltip (_item) {
+        if (!this.tooltipEnabled) {
+          return null
+        }
+        const key = this.tooltipKey || this.labelKey
+        return _item[key] || null
       }
     }
   }

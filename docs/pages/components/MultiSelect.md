@@ -265,6 +265,10 @@ Name                    | Type       | Default                | Required | Descr
 `append-to-body`        | Boolean    | false                  |          | Append the dropdown to `body`.
 `selected-icon`         | String     | glyphicon glyphicon-ok |          | Icon displayed in option while selected.
 `item-selected-class`   | String     |                        |          | (0.24.0+) The class applied to the selected list item.
+`fire-event`            | Boolean    | false                  |          | Filter input publish search event if it is true.
+`tooltip-enabled`       | Boolean    | false                  |          | Tooltip enable for options.
+`tooltip-key`           | String     |                        |          | Identity key name for tooltip.
+`custom-option-component-key` | VueComponent     |                        |          | Identity key name for custom option component
 
 ### Events
 
@@ -275,3 +279,4 @@ Name             | Params                            | Description
 `limit-exceed`   |                                   | Triggers when the selected value length exceeded limit.
 `focus`          | event                             | Triggers when input focuses.
 `blur`           | event                             | Triggers when input blurs.
+`search`         | event                             | Triggers when input text changed. (It works if `fire-event` prop is true)
