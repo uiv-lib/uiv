@@ -1,5 +1,5 @@
 <template>
-  <div tabindex="-1" role="dialog" class="modal" :class="{fade:transitionDuration>0}" @mousedown.self="backdropClicked">
+  <div tabindex="-1" role="dialog" class="modal" :class="{fade:transitionDuration>0}" @click.self="backdropClicked">
     <div ref="dialog" class="modal-dialog" :class="modalSizeClass" role="document">
       <div class="modal-content">
         <div class="modal-header" v-if="header">
