@@ -3,6 +3,8 @@ import {isExist, isString, isFunction} from './objectUtils'
 export const EVENTS = {
   MOUSE_ENTER: 'mouseenter',
   MOUSE_LEAVE: 'mouseleave',
+  MOUSE_DOWN: 'mousedown',
+  MOUSE_UP: 'mouseup',
   FOCUS: 'focus',
   BLUR: 'blur',
   CLICK: 'click',

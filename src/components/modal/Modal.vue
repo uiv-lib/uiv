@@ -60,7 +60,7 @@
 
   export default {
     mixins: [Local],
-    components: {Btn},
+    components: { Btn },
     props: {
       value: {
         type: Boolean,
@@ -122,9 +122,7 @@
     },
     data () {
       return {
-        msg: '',
-        timeoutId: 0,
-        isCloseSupressed: false
+        msg: ''
       }
     },
     computed: {
@@ -141,7 +139,7 @@
     },
     mounted () {
       removeFromDom(this.$refs.backdrop)
-      on(window, 'mousedown', this.suppressBackgroundClose)
+      on(window, EVENTS.MOUSE_DOWN, this.suppressBackgroundClose)
       on(window, EVENTS.KEY_UP, this.onKeyPress)
       if (this.value) {
         this.$toggle(true)
@@ -154,8 +152,8 @@
       if (getOpenModalNum() === 0) {
         toggleBodyOverflow(true)
       }
-      off(window, 'mousedown', this.suppressBackgroundClose)
-      off(window, 'mouseup', this.unsuppressBackgroundClose)
+      off(window, EVENTS.MOUSE_DOWN, this.suppressBackgroundClose)
+      off(window, EVENTS.MOUSE_UP, this.unsuppressBackgroundClose)
       off(window, EVENTS.KEY_UP, this.onKeyPress)
     },
     methods: {
@@ -270,17 +268,19 @@
           return
         }
 
-        this.$set(this, 'isCloseSupressed', true)
+        this.isCloseSuppressed = true
         on(window, 'mouseup', this.unsuppressBackgroundClose)
       },
       unsuppressBackgroundClose: function () {
-        if (this.isCloseSupressed) {
+        if (this.isCloseSuppressed) {
           off(window, 'mouseup', this.unsuppressBackgroundClose)
-          setTimeout(() => this.$set(this, 'isCloseSupressed', false), 1)
+          setTimeout(() => {
+            this.isCloseSuppressed = false
+          }, 1)
         }
       },
       backdropClicked (event) {
-        if (this.backdrop && !this.isCloseSupressed) {
+        if (this.backdrop && !this.isCloseSuppressed) {
           this.toggle(false)
         }
       }
