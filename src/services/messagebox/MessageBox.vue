@@ -36,39 +36,62 @@
       />
     </template>
     <template slot="footer" v-else>
-      <btn
-        :type="cancelType"
-        @click="toggle(false,'cancel')"
-        :data-action="autoFocus === 'cancel' ? 'auto-focus' : ''"
-        v-text="cancelBtnText"
-      />
-      <btn
-        :type="okType"
-        v-if="type===TYPES.CONFIRM"
-        @click="toggle(false,'ok')"
-        :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
-        v-text="okBtnText"
-      />
-      <btn
-        :type="okType"
-        v-else
-        @click="validate"
-        v-text="okBtnText"
-      />
+      <template v-if="reverseButtons">
+        <btn
+          :type="okType"
+          v-if="type===TYPES.CONFIRM"
+          @click="toggle(false,'ok')"
+          :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
+          v-text="okBtnText"
+        />
+        <btn
+          :type="okType"
+          v-else
+          @click="validate"
+          v-text="okBtnText"
+        />
+        <btn
+          :type="cancelType"
+          @click="toggle(false,'cancel')"
+          :data-action="autoFocus === 'cancel' ? 'auto-focus' : ''"
+          v-text="cancelBtnText"
+        />
+      </template>
+      <template v-else>
+        <btn
+          :type="cancelType"
+          @click="toggle(false,'cancel')"
+          :data-action="autoFocus === 'cancel' ? 'auto-focus' : ''"
+          v-text="cancelBtnText"
+        />
+        <btn
+          :type="okType"
+          v-if="type===TYPES.CONFIRM"
+          @click="toggle(false,'ok')"
+          :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
+          v-text="okBtnText"
+        />
+        <btn
+          :type="okType"
+          v-else
+          @click="validate"
+          v-text="okBtnText"
+        />
+      </template>
     </template>
   </modal>
 </template>
 
 <script>
-  import {TYPES} from './constants'
+  import { TYPES } from './constants'
   import Local from '../../mixins/localeMixin'
   import Modal from '../../components/modal/Modal.vue'
   import Btn from '../../components/button/Btn'
-  import {isExist} from '../../utils/objectUtils'
+  import { isExist } from '../../utils/objectUtils'
 
   export default {
     mixins: [Local],
-    components: {Modal, Btn},
+    components: { Modal, Btn },
     props: {
       backdrop: null,
       title: String,
@@ -112,6 +135,10 @@
       autoFocus: {
         type: String,
         default: 'ok'
+      },
+      reverseButtons: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
@@ -153,7 +180,7 @@
       validate () {
         this.dirty = true
         if (!isExist(this.inputError)) {
-          this.toggle(false, {value: this.input})
+          this.toggle(false, { value: this.input })
         }
       }
     }

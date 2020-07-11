@@ -168,4 +168,5 @@ Name             | Type       | Default  | Required | Description
 `validator`      | Function   |          |          | Custom validator function for prompt. Accepts the input value as param, returns the err msg (not valid) or null (valid)
 `defaultValue`   | String     |          |          | (0.27.0+) The default value to fill in prompt box.
 `inputType`      | String     | text     |          | (0.28.0+) The default input type of prompt box.
-`autoFocus`     | String     | ok       |          | (0.31.0+) Focus on button while message box open. Can be `ok` / `cancel`, or empty String to disable the feature.
+`autoFocus`      | String     | ok       |          | (0.31+) Focus on button while message box open. Can be `ok` / `cancel`, or empty String to disable the feature.
+`reverseButtons` | Boolean    | false    |          | (0.36+) Reverse the order of `ok` and `cancel` button.
