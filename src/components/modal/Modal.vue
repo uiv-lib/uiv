@@ -1,5 +1,5 @@
 <template>
-  <div tabindex="-1" role="dialog" class="modal" :class="{fade:transitionDuration>0}" @mousedown.self="backdropClicked">
+  <div tabindex="-1" role="dialog" class="modal" :class="{fade:transitionDuration>0}" @click.self="backdropClicked">
     <div ref="dialog" class="modal-dialog" :class="modalSizeClass" role="document">
       <div class="modal-content">
         <div class="modal-header" v-if="header">
@@ -123,7 +123,8 @@
     data () {
       return {
         msg: '',
-        timeoutId: 0
+        timeoutId: 0,
+        isCloseSupressed: false
       }
     },
     computed: {
@@ -140,6 +141,7 @@
     },
     mounted () {
       removeFromDom(this.$refs.backdrop)
+      on(window, 'mousedown', this.suppressBackgroundClose)
       on(window, EVENTS.KEY_UP, this.onKeyPress)
       if (this.value) {
         this.$toggle(true)
@@ -152,6 +154,8 @@
       if (getOpenModalNum() === 0) {
         toggleBodyOverflow(true)
       }
+      off(window, 'mousedown', this.suppressBackgroundClose)
+      off(window, 'mouseup', this.unsuppressBackgroundClose)
       off(window, EVENTS.KEY_UP, this.onKeyPress)
     },
     methods: {
@@ -261,8 +265,22 @@
           }, this.transitionDuration)
         }
       },
+      suppressBackgroundClose: function (event) {
+        if (event && event.target === this.$el) {
+          return
+        }
+
+        this.$set(this, 'isCloseSupressed', true)
+        on(window, 'mouseup', this.unsuppressBackgroundClose)
+      },
+      unsuppressBackgroundClose: function () {
+        if (this.isCloseSupressed) {
+          off(window, 'mouseup', this.unsuppressBackgroundClose)
+          setTimeout(() => this.$set(this, 'isCloseSupressed', false), 1)
+        }
+      },
       backdropClicked (event) {
-        if (this.backdrop) {
+        if (this.backdrop && !this.isCloseSupressed) {
           this.toggle(false)
         }
       }
