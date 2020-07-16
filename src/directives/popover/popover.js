@@ -14,7 +14,8 @@ const bind = (el, binding) => {
       title: binding.value && binding.value.title && binding.value.title.toString(),
       content: binding.value && binding.value.content && binding.value.content.toString(),
       viewport: binding.value && binding.value.viewport && binding.value.viewport.toString(),
-      customClass: binding.value && binding.value.customClass && binding.value.customClass.toString()
+      customClass: binding.value && binding.value.customClass && binding.value.customClass.toString(),
+      autoPlacement: binding.value && binding.value.autoPlacement && binding.value.autoPlacement.toString()
     }
   })
   let options = []

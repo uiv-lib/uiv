@@ -2,7 +2,7 @@ import Vue from 'vue'
 import $ from 'jquery'
 import MultiSelectDoc from '@docs/pages/components/MultiSelect.md'
 import _ from 'lodash'
-import utils from '../utils'
+import * as utils from '../utils'
 
 describe('MultiSelect', () => {
   let vm

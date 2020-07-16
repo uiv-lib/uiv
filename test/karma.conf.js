@@ -11,16 +11,11 @@ module.exports = function (config) {
     // 1. install corresponding karma launcher
     //    http://karma-runner.github.io/0.13/config/browsers.html
     // 2. add it to the `browsers` array below.
-    browsers: ['PhantomJS_Desktop'],
+    browsers: ['ChromeHeadlessDesktop'],
     customLaunchers: {
-      'PhantomJS_Desktop': {
-        base: 'PhantomJS',
-        options: {
-          viewportSize: {
-            width: 1920,
-            height: 1080
-          }
-        }
+      'ChromeHeadlessDesktop': {
+        base: 'ChromeHeadless',
+        flags: ['--window-size=1920,1080']
       }
     },
     frameworks: ['mocha', 'sinon-chai'],

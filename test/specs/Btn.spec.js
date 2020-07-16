@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import $ from 'jquery'
-import utils from '../utils'
+import * as utils from '../utils'
 import BtnDoc from '@docs/pages/components/Btn.md'
 import Btn from '@src/components/button/Btn'
 

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import $ from 'jquery'
 import Affix from '@src/components/affix/Affix.vue'
-import utils from '../utils'
+import * as utils from '../utils'
 
 describe('Affix', () => {
   let vm

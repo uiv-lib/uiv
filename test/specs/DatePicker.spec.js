@@ -3,7 +3,7 @@ import DatePicker from '@src/components/datepicker/DatePicker.vue'
 import DatePickerDoc from '@docs/pages/components/DatePicker.md'
 import localeHU from '@src/locale/lang/hu-HU'
 import $ from 'jquery'
-import utils from '../utils'
+import * as utils from '../utils'
 
 describe('DatePicker', () => {
   let vm

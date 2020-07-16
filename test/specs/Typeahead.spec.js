@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import $ from 'jquery'
 import TypeaheadDoc from '@docs/pages/components/Typeahead.md'
-import utils from '../utils'
+import * as utils from '../utils'
 
 describe('Typeahead', () => {
   let xhr, requests, server

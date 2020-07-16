@@ -3,7 +3,7 @@ import $ from 'jquery'
 import Tabs from '@src/components/tabs/Tabs.vue'
 import Tab from '@src/components/tabs/Tab.vue'
 import TabsDoc from '@docs/pages/components/Tabs.md'
-import utils from '../utils'
+import * as utils from '../utils'
 
 describe('Tabs', () => {
   let vm

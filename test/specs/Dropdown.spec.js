@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import $ from 'jquery'
 import DropdownDoc from '@docs/pages/components/Dropdown.md'
-import utils from '../utils'
+import * as utils from '../utils'
 
 describe('Dropdown', () => {
   let vm
