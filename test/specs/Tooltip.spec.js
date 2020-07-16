@@ -56,9 +56,8 @@ describe('Tooltip', () => {
   })
 
   it('should be able to use custom target', async () => {
-    vm = createVm('<div><button ref="btn" type="button">btn</button><tooltip text="test" :target="btn" trigger="focus"></tooltip></div>', {
-        btn: null
-      },
+    vm = createVm('<div><button ref="btn" type="button">btn</button><tooltip text="test" :target="btn" trigger="focus"></tooltip></div>',
+      { btn: null },
       {
         mounted () {
           this.btn = this.$refs.btn

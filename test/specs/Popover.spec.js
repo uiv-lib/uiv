@@ -99,9 +99,8 @@ describe('Popover', () => {
   })
 
   it('should be able to use custom target', async () => {
-    vm = createVm(`<div><button ref="btn" type="button">btn</button><popover :target="btn" trigger="focus" title="123"></popover></div>`, {
-        btn: null
-      },
+    vm = createVm(`<div><button ref="btn" type="button">btn</button><popover :target="btn" trigger="focus" title="123"></popover></div>`,
+      { btn: null },
       {
         mounted () {
           this.btn = this.$refs.btn
@@ -148,9 +147,7 @@ describe('Popover', () => {
     <hr/>
     <btn type="primary" @click="show = !show">Toggle Popover</btn>
   </section>
-    `, {
-      show: false
-    })
+    `, { show: false })
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     vm.show = true
     await sleep(300)
