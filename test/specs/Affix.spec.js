@@ -1,14 +1,12 @@
-import Vue from 'vue'
 import $ from 'jquery'
-import Affix from '@src/components/affix/Affix.vue'
-import * as utils from '../utils'
+import { sleep, createVm, destroyVm } from '../utils'
 
 describe('Affix', () => {
   let vm
   let $el
 
   beforeEach(() => {
-    let res = Vue.compile(`
+    vm = createVm(`
 <div style="height: 2000px">
   <affix :offset="offset">
     <ul>
@@ -17,36 +15,27 @@ describe('Affix', () => {
       <li>Test3</li>
     </ul>
   </affix>
-</div>`)
-    vm = new Vue({
-      components: {Affix},
-      data () {
-        return {
-          offset: 0
-        }
-      },
-      render: res.render,
-      staticRenderFns: res.staticRenderFns
-    }).$mount()
-    $el = $(vm.$el).appendTo('body')
+</div>`, {
+      offset: 0
+    })
+    $el = $(vm.$el)
   })
 
   afterEach(() => {
-    vm.$destroy()
-    $el.remove()
+    destroyVm(vm)
     window.scrollTo(0, 0)
   })
 
   it('should be able to toggle affix class', async () => {
     expect($el.find('.affix').length).to.equal(0)
     window.scrollTo(0, 200)
-    await utils.sleep(200)
+    await sleep(200)
     expect($el.find('.affix').length).to.equal(1)
     window.scrollTo(0, 500)
-    await utils.sleep(200)
+    await sleep(200)
     expect($el.find('.affix').length).to.equal(1)
     window.scrollTo(0, 0)
-    await utils.sleep(200)
+    await sleep(200)
     expect($el.find('.affix').length).to.equal(0)
   })
 
@@ -57,10 +46,10 @@ describe('Affix', () => {
     await vm.$nextTick()
     expect($el.find('.affix').length).to.equal(0)
     window.scrollTo(0, 500)
-    await utils.sleep(200)
+    await sleep(200)
     expect($el.find('.affix').length).to.equal(0)
     window.scrollTo(0, 0)
-    await utils.sleep(200)
+    await sleep(200)
     expect($el.find('.affix').length).to.equal(0)
     $body.css('height', '')
   })
@@ -69,7 +58,7 @@ describe('Affix', () => {
     vm.offset = 50
     await vm.$nextTick()
     window.scrollTo(0, 500)
-    await utils.sleep(200)
+    await sleep(200)
     expect($el.find('.affix').get(0).style.top).to.equal('50px')
   })
 })
