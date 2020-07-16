@@ -1,22 +1,31 @@
-import Vue from 'vue'
-import $ from 'jquery'
-import TypeaheadDoc from '@docs/pages/components/Typeahead.md'
-import * as utils from '../utils'
+import { triggerEvent, sleep, triggerKey, createVm, destroyVm, keyCodes } from '../utils'
+import states from '../../docs/assets/data/states.json'
+import axios from 'axios'
+
+function baseVm () {
+  return createVm(`
+  <section>
+    <btn @click="model=states[0]" type="primary">Set to Alabama</btn>
+    <btn @click="model=null">Clear</btn>
+    <hr/>
+    <label for="input">States of America:</label>
+    <input id="input" class="form-control" type="text" placeholder="Type to search...">
+    <typeahead v-model="model" target="#input" :data="states" item-key="name"/>
+    <br/>
+    <alert v-show="model">You selected {{model}}</alert>
+  </section>
+    `, {
+    model: '',
+    states: states.data
+  })
+}
 
 describe('Typeahead', () => {
   let xhr, requests, server
   let vm
-  let $el
-
-  beforeEach(() => {
-    const Constructor = Vue.extend(TypeaheadDoc)
-    vm = new Constructor().$mount()
-    $el = $(vm.$el).appendTo('body')
-  })
 
   afterEach(() => {
-    vm.$destroy()
-    $el.remove()
+    destroyVm(vm)
   })
 
   before(() => {
@@ -34,30 +43,30 @@ describe('Typeahead', () => {
   })
 
   it('should be able to set and clear typeahead model manually', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const setBtn = _vm.$el.querySelectorAll('.btn')[0]
-    const clearBtn = _vm.$el.querySelectorAll('.btn')[1]
-    const input = _vm.$el.querySelector('input')
+    const setBtn = vm.$el.querySelectorAll('.btn')[0]
+    const clearBtn = vm.$el.querySelectorAll('.btn')[1]
+    const input = vm.$el.querySelector('input')
     setBtn.click()
     await vm.$nextTick()
     expect(input.value).to.equal('Alabama')
-    expect(_vm.model.name).to.equal('Alabama')
-    expect(_vm.model.abbreviation).to.equal('AL')
+    expect(vm.model.name).to.equal('Alabama')
+    expect(vm.model.abbreviation).to.equal('AL')
     clearBtn.click()
     await vm.$nextTick()
     expect(input.value).to.equal('')
-    expect(_vm.model).not.exist
+    expect(vm.model).not.exist
   })
 
   it('should be able to open typeahead when input change', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
@@ -66,13 +75,13 @@ describe('Typeahead', () => {
   })
 
   it('should be able to open typeahead on input focus', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utils.triggerEvent(input, 'focus')
+    triggerEvent(input, 'focus')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
@@ -81,13 +90,13 @@ describe('Typeahead', () => {
   })
 
   it('should be able to keep open on input click', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utils.triggerEvent(input, 'focus')
+    triggerEvent(input, 'focus')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     input.click()
@@ -96,74 +105,74 @@ describe('Typeahead', () => {
   })
 
   it('should be able to close typeahead on input blur', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
-    utils.triggerEvent(input, 'blur')
+    triggerEvent(input, 'blur')
     await vm.$nextTick()
     expect(dropdown.className).not.contain('open')
   })
 
   it('should be able to close typeahead on input esc key', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
-    utils.triggerKey(input, utils.keyCodes.esc)
+    triggerKey(input, keyCodes.esc)
     await vm.$nextTick()
     expect(dropdown.className).not.contain('open')
   })
 
   it('should not close typeahead on input click', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
-    utils.triggerEvent(input, 'click')
+    triggerEvent(input, 'click')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
   })
 
   it('should be able to close typeahead when input changed to empty', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     input.value = ''
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
   })
 
   it('should be able to slice item length', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'a'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(10)
@@ -172,25 +181,25 @@ describe('Typeahead', () => {
   })
 
   it('should not open dropdown if nothing match', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'asdasdasdasd'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
   })
 
   it('should be able to select item', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
@@ -200,20 +209,31 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
     expect(input.value).to.equal('Alabama')
-    expect(_vm.model.name).to.equal('Alabama')
+    expect(vm.model.name).to.equal('Alabama')
   })
 
   it('should be able to use force select', async () => {
-    const _vm = vm.$refs['typeahead-force-select']
-    _vm.forceSelect = true
+    vm = createVm(`
+  <section>
+    <label for="input-3">States of America:</label>
+    <input id="input-3" class="form-control" type="text" placeholder="Type to search...">
+    <typeahead v-model="model" target="#input-3" force-select :data="states" item-key="name"/>
+    <br/>
+    <alert v-show="model">You selected {{model}}</alert>
+  </section>
+    `, {
+      model: '',
+      states: states.data
+    })
+    vm.forceSelect = true
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
-    expect(_vm.model).not.exist
+    expect(vm.model).not.exist
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
     const selected = dropdown.querySelector('li.active a')
@@ -222,129 +242,148 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
     expect(input.value).to.equal('Alabama')
-    expect(_vm.model.name).to.equal('Alabama')
+    expect(vm.model.name).to.equal('Alabama')
   })
 
   it('should not be able to select item using keyboard while dropdown not open', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
-    utils.triggerKey(input, utils.keyCodes.enter, 'down')
+    triggerKey(input, keyCodes.enter, 'down')
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
     expect(input.value).to.equal('')
   })
 
   it('should be able to select item using keyboard', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
     const selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
-    utils.triggerKey(input, 13)
+    triggerKey(input, 13)
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
     expect(input.value).to.equal('Alabama')
-    expect(_vm.model.name).to.equal('Alabama')
+    expect(vm.model.name).to.equal('Alabama')
   })
 
   it('should be able use keyboard nav to go next', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
     let selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
-    utils.triggerKey(input, 40)
+    triggerKey(input, 40)
     await vm.$nextTick()
     selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alaska')
-    utils.triggerKey(input, 40)
+    triggerKey(input, 40)
     await vm.$nextTick()
-    utils.triggerKey(input, 40)
+    triggerKey(input, 40)
     await vm.$nextTick()
     selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Palau')
   })
 
   it('should be able use keyboard nav to go prev', async () => {
-    const _vm = vm.$refs['typeahead-example']
+    vm = baseVm()
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(3)
     let selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
-    utils.triggerKey(input, 40)
+    triggerKey(input, 40)
     await vm.$nextTick()
-    utils.triggerKey(input, 40)
+    triggerKey(input, 40)
     await vm.$nextTick()
-    utils.triggerKey(input, 40)
+    triggerKey(input, 40)
     await vm.$nextTick()
     selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Palau')
-    utils.triggerKey(input, 38)
+    triggerKey(input, 38)
     await vm.$nextTick()
     selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alaska')
-    utils.triggerKey(input, 38)
+    triggerKey(input, 38)
     await vm.$nextTick()
-    utils.triggerKey(input, 38)
+    triggerKey(input, 38)
     await vm.$nextTick()
     selected = dropdown.querySelector('li.active a')
     expect(selected.textContent).to.equal('Alabama')
   })
 
   it('should be able to match start', async () => {
-    const _vm = vm.$refs['typeahead-match-start']
-    _vm.matchStart = true
+    vm = createVm(`
+<section>
+    <label for="input-2">States of America:</label>
+    <input id="input-2" class="form-control" type="text" placeholder="Type to search...">
+    <typeahead v-model="model" target="#input-2" match-start :data="states" item-key="name"/>
+    <br/>
+    <alert v-show="model">You selected {{model}}</alert>
+  </section>
+    `, {
+      model: '',
+      states: states.data
+    })
+    vm.matchStart = true
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'ala'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(2)
   })
 
   it('should be able to use async typeahead', async () => {
-    const _vm = vm.$refs['typeahead-async-query']
+    vm = createVm(`<section>
+    <label for="input-4">Users of Github:</label>
+    <input id="input-4" class="form-control" type="text" placeholder="Type to search...">
+    <typeahead v-model="model" target="#input-4" async-src="https://api.github.com/search/users?q=" async-key="items" item-key="login"/>
+    <br/>
+    <alert v-show="model">You selected {{model}}</alert>
+  </section>`, {
+      model: ''
+    })
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     // matches don't work in here
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     input.value = 'wxsm'
-    utils.triggerEvent(input, 'input')
-    await utils.sleep(600)
+    triggerEvent(input, 'input')
+    await sleep(600)
     server.requests[0].respond(
       200,
-      {'Content-Type': 'application/json'},
-      JSON.stringify({items: [{login: 'wxsms'}]})
+      { 'Content-Type': 'application/json' },
+      JSON.stringify({ items: [{ login: 'wxsms' }] })
     )
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
@@ -355,68 +394,44 @@ describe('Typeahead', () => {
   })
 
   it('should be able to use component target', async () => {
-    const res = Vue.compile('<div>' +
+    vm = createVm('<div>' +
       '<collapse ref="input"/>' +
       '<typeahead ref="typeahead" :target="ele" v-model="model"></typeahead>' +
-      '</div>')
-    const vm = new Vue({
-      data () {
-        return {
-          ele: null,
-          model: null
-        }
-      },
+      '</div>', {
+      ele: null,
+      model: null
+    }, {
       mounted () {
         this.ele = this.$refs.input
-      },
-      render: res.render,
-      staticRenderFns: res.staticRenderFns
+      }
     })
-    vm.$mount()
     await vm.$nextTick()
     expect(vm.$refs.typeahead.inputEl).to.equal(vm.ele.$el)
-    vm.$destroy()
   })
 
   it('should be ok if target invalid', async () => {
-    const res = Vue.compile('<div>' +
+    vm = createVm('<div>' +
       '<typeahead ref="typeahead" :target="ele" v-model="model"></typeahead>' +
-      '</div>')
-    const vm = new Vue({
-      data () {
-        return {
-          ele: {a: 1},
-          model: null
-        }
-      },
-      render: res.render,
-      staticRenderFns: res.staticRenderFns
+      '</div>', {
+      ele: { a: 1 },
+      model: null
     })
-    vm.$mount()
     await vm.$nextTick()
     expect(vm.$refs.typeahead.inputEl).to.be.null
-    vm.$destroy()
   })
 
   it('should be able to use string arr async returns', async () => {
-    const res = Vue.compile('<div>' +
+    vm = createVm('<div>' +
       '<input ref="input">' +
       '<typeahead :target="ele" v-model="model" async-src="https://api.github.com/search/users?q="></typeahead>' +
-      '</div>')
-    const vm = new Vue({
-      data () {
-        return {
-          ele: null,
-          model: null
-        }
-      },
+      '</div>', {
+      ele: null,
+      model: null
+    }, {
       mounted () {
         this.ele = this.$refs.input
-      },
-      render: res.render,
-      staticRenderFns: res.staticRenderFns
+      }
     })
-    vm.$mount()
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -425,11 +440,11 @@ describe('Typeahead', () => {
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     input.value = 'a'
-    utils.triggerEvent(input, 'input')
-    await utils.sleep(600)
+    triggerEvent(input, 'input')
+    await sleep(600)
     server.requests[1].respond(
       200,
-      {'Content-Type': 'application/json'},
+      { 'Content-Type': 'application/json' },
       JSON.stringify(['aa', 'ab', 'ac'])
     )
     await vm.$nextTick()
@@ -438,22 +453,17 @@ describe('Typeahead', () => {
     const selected = dropdown.querySelector('li.active a span')
     expect(selected.textContent).to.equal('aa')
     Element.prototype.matches = savedMatches
-    vm.$destroy()
   })
 
   it('should be able to handel async typeahead error', async () => {
-    const res = Vue.compile('<div>' +
+    vm = createVm('<div>' +
       '<input ref="input">' +
       '<typeahead @loaded-error="onErr" :target="ele" v-model="model" async-src="https://api.github.com/search/users?q="></typeahead>' +
-      '</div>')
-    const vm = new Vue({
-      data () {
-        return {
-          ele: null,
-          model: null,
-          err: null
-        }
-      },
+      '</div>', {
+      ele: null,
+      model: null,
+      err: null
+    }, {
       mounted () {
         this.ele = this.$refs.input
       },
@@ -461,11 +471,8 @@ describe('Typeahead', () => {
         onErr () {
           this.err = 'error'
         }
-      },
-      render: res.render,
-      staticRenderFns: res.staticRenderFns
+      }
     })
-    vm.$mount()
     await vm.$nextTick()
     expect(vm.err).not.exist
     const input = vm.$el.querySelector('input')
@@ -475,46 +482,38 @@ describe('Typeahead', () => {
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     input.value = 'wxsm'
-    utils.triggerEvent(input, 'input')
-    await utils.sleep(600)
+    triggerEvent(input, 'input')
+    await sleep(600)
     server.requests[2].respond(
       500,
-      {'Content-Type': 'application/json'},
-      JSON.stringify([{id: 1, text: 'Provide examples', done: true}])
+      { 'Content-Type': 'application/json' },
+      JSON.stringify([{ id: 1, text: 'Provide examples', done: true }])
     )
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
     expect(vm.err).to.exist
     Element.prototype.matches = savedMatches
-    vm.$destroy()
   })
 
   it('should be able to bind string data', async () => {
-    const res = Vue.compile('<div>' +
+    vm = createVm('<div>' +
       '<input ref="input">' +
       '<typeahead :ignore-case="false" :target="ele" :data="data" v-model="model"></typeahead>' +
-      '</div>')
-    const vm = new Vue({
-      data () {
-        return {
-          data: ['aa', 'ab', 'bb'],
-          ele: null,
-          model: null
-        }
-      },
+      '</div>', {
+      data: ['aa', 'ab', 'bb'],
+      ele: null,
+      model: null
+    }, {
       mounted () {
         this.ele = this.$refs.input
-      },
-      render: res.render,
-      staticRenderFns: res.staticRenderFns
+      }
     })
-    vm.$mount()
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'a'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(2)
@@ -528,47 +527,39 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     expect(vm.model).to.equal('bb')
     expect(input.value).to.equal('bb')
-    vm.$destroy()
   })
 
   it('should be able to disable preselect', async () => {
-    const res = Vue.compile('<div>' +
+    vm = createVm('<div>' +
       '<input ref="input">' +
       '<typeahead :preselect="false" :target="ele" :data="data" v-model="model"></typeahead>' +
-      '</div>')
-    const vm = new Vue({
-      data () {
-        return {
-          data: ['aa', 'ab', 'bb'],
-          ele: null,
-          model: ''
-        }
-      },
+      '</div>', {
+      data: ['aa', 'ab', 'bb'],
+      ele: null,
+      model: ''
+    }, {
       mounted () {
         this.ele = this.$refs.input
-      },
-      render: res.render,
-      staticRenderFns: res.staticRenderFns
+      }
     })
-    vm.$mount()
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     input.value = 'a'
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(2)
     expect(dropdown.querySelector('li.active a')).not.exist
-    utils.triggerKey(input, utils.keyCodes.enter)
+    triggerKey(input, keyCodes.enter)
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
     expect(vm.model).to.equal('a')
     expect(input.value).to.equal('a')
-    utils.triggerEvent(input, 'input')
+    triggerEvent(input, 'input')
     await vm.$nextTick()
-    utils.triggerKey(input, utils.keyCodes.down)
+    triggerKey(input, keyCodes.down)
     await vm.$nextTick()
     expect(dropdown.querySelector('li.active a')).to.exist
     expect(dropdown.querySelector('li.active a').textContent).to.equal('aa')
@@ -577,27 +568,55 @@ describe('Typeahead', () => {
     expect(vm.model).to.equal('aa')
     expect(input.value).to.equal('aa')
     expect(dropdown.className).to.not.contain('open')
-    vm.$destroy()
   })
 
   it('should be able to use async-function and custom template', async () => {
-    const _vm = vm.$refs['typeahead-custom-template']
+    vm = createVm(`  <section>
+    <label for="input-5">Users of Github:</label>
+    <input id="input-5" class="form-control" type="text" placeholder="Type to search...">
+    <typeahead v-model="model" target="#input-5" :async-function="queryFunction" item-key="login">
+      <template slot="item" slot-scope="props">
+        <li v-for="(item, index) in props.items" :class="{active:props.activeIndex===index}">
+          <a role="button" @click="props.select(item)">
+            <img width="22px" height="22px" :src="item.avatar_url + '&s=40'">
+            <span v-html="props.highlight(item)"></span>
+          </a>
+        </li>
+      </template>
+    </typeahead>
+    <br/>
+    <alert v-show="model">You selected {{model}}</alert>
+  </section>`, {
+      model: ''
+    }, {
+      methods: {
+        queryFunction (query, done) {
+          axios.get('https://api.github.com/search/users?q=' + query)
+            .then(res => {
+              done(res.data.items)
+            })
+            .catch(err => {
+              console.log(err)
+            })
+        }
+      }
+    })
     await vm.$nextTick()
-    const input = _vm.$el.querySelector('input')
-    const dropdown = _vm.$el.querySelector('.dropdown')
+    const input = vm.$el.querySelector('input')
+    const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).to.not.contain('open')
     // matches don't work in here
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
     input.value = 'wxsm'
-    utils.triggerEvent(input, 'input')
-    await utils.sleep(600)
+    triggerEvent(input, 'input')
+    await sleep(600)
     server.requests[3].respond(
       200,
-      {'Content-Type': 'application/json'},
-      JSON.stringify({items: [{login: 'wxsms'}]})
+      { 'Content-Type': 'application/json' },
+      JSON.stringify({ items: [{ login: 'wxsms' }] })
     )
-    await vm.$nextTick()
+    await sleep(200)
     expect(dropdown.className).to.contain('open')
     expect(dropdown.querySelectorAll('li').length).to.equal(1)
     const selected = dropdown.querySelector('li.active a span')

@@ -19,41 +19,24 @@ describe('Popover', () => {
   })
 
   it('should be ok to render if no trigger present', async () => {
-    vm = createVm(
-      `<popover v-model="show" title="123"><button data-role="trigger"></button></popover>`,
-      {
-        data () {
-          return { show: true }
-        }
-      }
-    )
+    vm = createVm(`<popover v-model="show" title="123"><button data-role="trigger"></button></popover>`, {
+      show: true
+    })
     await vm.$nextTick()
   })
 
   it('should be able to show popover on init', async () => {
-    vm = createVm(
-      `<popover v-model="show" title="123"><button data-role="trigger"></button></popover>`,
-      {
-        data () {
-          return { show: true }
-        }
-      }
-    )
+    vm = createVm(`<popover v-model="show" title="123"><button data-role="trigger"></button></popover>`, {
+      show: true
+    })
     await sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(1)
   })
 
   it('should be able to use popover directive', async () => {
-    vm = createVm(
-      `<btn v-popover="msg"></btn>`,
-      {
-        data () {
-          return {
-            msg: { title: 'title', content: 'content' }
-          }
-        }
-      }
-    )
+    vm = createVm(`<btn v-popover="msg"></btn>`, {
+      msg: { title: 'title', content: 'content' }
+    })
     await vm.$nextTick()
     const trigger = vm.$el
     triggerEvent(trigger, 'click')
@@ -91,16 +74,9 @@ describe('Popover', () => {
 
   it('directive with invalid modifiers should be ok', async () => {
     // invalid modifier should be ok
-    vm = createVm(
-      `<btn v-popover.test1.test2="msg"></btn>`,
-      {
-        data () {
-          return {
-            msg: { title: 'title', content: 'content' }
-          }
-        }
-      }
-    )
+    vm = createVm(`<btn v-popover.test1.test2="msg"></btn>`, {
+      msg: { title: 'title', content: 'content' }
+    })
     await vm.$nextTick()
     const trigger = vm.$el
     triggerEvent(trigger, 'click')
@@ -115,29 +91,18 @@ describe('Popover', () => {
   })
 
   it('should not show popover with no title and content', async () => {
-    vm = createVm(
-      `<popover v-model="show"><button data-role="trigger"></button></popover>`,
-      {
-        data () {
-          return {
-            show: true
-          }
-        }
-      }
-    )
+    vm = createVm(`<popover v-model="show"><button data-role="trigger"></button></popover>`, {
+      show: true
+    })
     await sleep(300)
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
   it('should be able to use custom target', async () => {
-    vm = createVm(
-      `<div><button ref="btn" type="button">btn</button><popover :target="btn" trigger="focus" title="123"></popover></div>`,
+    vm = createVm(`<div><button ref="btn" type="button">btn</button><popover :target="btn" trigger="focus" title="123"></popover></div>`, {
+        btn: null
+      },
       {
-        data () {
-          return {
-            btn: null
-          }
-        },
         mounted () {
           this.btn = this.$refs.btn
         }
@@ -184,11 +149,7 @@ describe('Popover', () => {
     <btn type="primary" @click="show = !show">Toggle Popover</btn>
   </section>
     `, {
-      data () {
-        return {
-          show: false
-        }
-      }
+      show: false
     })
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     vm.show = true
@@ -363,16 +324,9 @@ describe('Popover', () => {
   })
 
   it('should be able to change trigger in runtime', async () => {
-    vm = createVm(
-      `<popover title="123" :trigger="trigger"><button data-role="trigger"></button></popover>`,
-      {
-        data () {
-          return {
-            trigger: 'focus'
-          }
-        }
-      }
-    )
+    vm = createVm(`<popover title="123" :trigger="trigger"><button data-role="trigger"></button></popover>`, {
+      trigger: 'focus'
+    })
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('button')
@@ -390,16 +344,9 @@ describe('Popover', () => {
   })
 
   it('should be able to change content in runtime', async () => {
-    vm = createVm(
-      `<popover :content="msg" trigger="click"><btn>123</btn></popover>`,
-      {
-        data () {
-          return {
-            msg: 'text'
-          }
-        }
-      }
-    )
+    vm = createVm(`<popover :content="msg" trigger="click"><btn>123</btn></popover>`, {
+      msg: 'text'
+    })
     expect(document.querySelectorAll('.popover').length).to.equal(0)
     await vm.$nextTick()
     vm.msg = 'text2'
