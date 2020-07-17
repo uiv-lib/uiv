@@ -156,8 +156,10 @@ describe('Btn', () => {
     vm = createVm('<btn disabled @click="onClick">{{ msg }}</btn>', {
       msg: 'test'
     }, {
-      onClick () {
-        this.msg = 'clicked'
+      methods: {
+        onClick () {
+          this.msg = 'clicked'
+        }
       }
     })
     await vm.$nextTick()
