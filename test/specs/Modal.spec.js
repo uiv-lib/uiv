@@ -480,7 +480,7 @@ describe('Modal', () => {
       <p>Do you really want to destroy this item?</p>
     </modal>
   </section>`, {
-      open: false,
+      open: false
     })
     const _$el = $(vm.$el)
     const trigger = _$el.find('.btn').get(0)
