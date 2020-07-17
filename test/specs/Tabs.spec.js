@@ -32,7 +32,7 @@ describe('Tabs', () => {
 </tabs>`
     )
     const vm = new Vue({
-      components: {Tab, Tabs},
+      components: { Tab, Tabs },
       render: res.render,
       staticRenderFns: res.staticRenderFns
     })
@@ -67,7 +67,7 @@ describe('Tabs', () => {
             msg: 'hello'
           }
         },
-        components: {Tab, Tabs},
+        components: { Tab, Tabs },
         render: res.render,
         staticRenderFns: res.staticRenderFns
       })
@@ -83,7 +83,7 @@ describe('Tabs', () => {
   it('should be able to add String `customNavClass`', () => {
     const res = Vue.compile('<tabs custom-nav-class="custom-nav-class"><tab>123</tab></tabs>')
     const vm = new Vue({
-      components: {Tab, Tabs},
+      components: { Tab, Tabs },
       render: res.render,
       staticRenderFns: res.staticRenderFns
     })
@@ -96,7 +96,7 @@ describe('Tabs', () => {
   it('should be able to add Object `customNavClass`', () => {
     const res = Vue.compile('<tabs :custom-nav-class="{\'custom-nav-class\':true}"><tab>123</tab></tabs>')
     const vm = new Vue({
-      components: {Tab, Tabs},
+      components: { Tab, Tabs },
       render: res.render,
       staticRenderFns: res.staticRenderFns
     })
@@ -114,7 +114,7 @@ describe('Tabs', () => {
           msg: 'hello'
         }
       },
-      components: {Tab, Tabs},
+      components: { Tab, Tabs },
       render: res.render,
       staticRenderFns: res.staticRenderFns
     })

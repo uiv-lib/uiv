@@ -115,7 +115,7 @@ describe('ScrollSpy', () => {
   })
 
   it('should be able to append to body', async () => {
-    const vm = createVm(`
+    vm = createVm(`
 <section style="height: 5000px;">
   <ul class="nav" v-scrollspy style="height: 200px">
     <li><a href="#1">1</a></li>
@@ -142,11 +142,10 @@ describe('ScrollSpy', () => {
     window.scrollTo(0, 0)
     await sleep(100)
     expect($nav.find('li.active').length).to.equal(0)
-    destroyVm(vm)
   })
 
   it('should be able to handle invalid target', async () => {
-    const vm = createVm(`
+    vm = createVm(`
 <section style="height: 5000px">
   <ul class="nav" v-scrollspy:test="opts" style="height: 200px">
     <li><a href="#1">{{msg}}</a></li>
@@ -162,6 +161,5 @@ describe('ScrollSpy', () => {
     vm.msg = '12345'
     await vm.$nextTick()
     // no err should be throw here
-    destroyVm(vm)
   })
 })
