@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import Vue from 'vue/dist/vue.min'
+import Vue from 'vue'
 
 export const transitionDuration = 300
 

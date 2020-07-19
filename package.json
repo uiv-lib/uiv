@@ -30,11 +30,12 @@
     "coveralls": "cat test/coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "dependencies": {
-    "@rollup/plugin-buble": "^0.21.3",
     "portal-vue": "^2.1.7",
     "vue-functional-data-merge": "^2.0.3"
   },
   "devDependencies": {
+    "@rollup/plugin-alias": "^3.1.1",
+    "@rollup/plugin-buble": "^0.21.3",
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^8.4.0",

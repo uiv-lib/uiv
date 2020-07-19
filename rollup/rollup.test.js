@@ -4,6 +4,7 @@ const vue = require('rollup-plugin-vue')
 const resolve = require('@rollup/plugin-node-resolve').nodeResolve
 const commonjs = require('@rollup/plugin-commonjs')
 const json = require('@rollup/plugin-json')
+const alias = require('@rollup/plugin-alias')
 // const path = require('path')
 
 const { name } = require('../package.json')
@@ -12,6 +13,11 @@ module.exports = {
   plugins: [
     replace({
       'process.env.NODE_ENV': JSON.stringify('test')
+    }),
+    alias({
+      entries: [
+        { find: 'vue', replacement: 'vue/dist/vue.esm.js' }
+      ]
     }),
     json(),
     vue(),
