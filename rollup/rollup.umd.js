@@ -12,15 +12,13 @@ module.exports = _.merge({}, baseConfig, {
     uglify(),
     filesize()
   ],
-  output: [
-    {
-      format: 'umd',
-      name: 'uiv',
-      file: path.join(__dirname, '..', 'dist', `${name}.min.js`),
-      sourcemap: true,
-      globals: {
-        'vue': 'Vue'
-      }
+  output: {
+    format: 'umd',
+    name: 'uiv',
+    file: path.join(__dirname, '..', 'dist', `${name}.min.js`),
+    sourcemap: true,
+    globals: {
+      'vue': 'Vue'
     }
-  ]
+  }
 })

@@ -4,8 +4,11 @@ import { assign } from '../utils/objectUtils'
 export default {
   methods: {
     t () {
-      const args = arguments
-      args[1] = assign({ $$locale: this.locale }, args[1])
+      let args = []
+      for (let i = 0; i < arguments.length; ++i) {
+        args.push(arguments[i])
+      }
+      args[1] = assign({}, { $$locale: this.locale }, args[1])
       return t.apply(this, args)
     }
   },

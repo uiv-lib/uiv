@@ -17,10 +17,14 @@ let i18nHandler = function () {
 
 export const t = function (path, options) {
   options = options || {}
-
-  let value = i18nHandler.apply(this, arguments)
-  if (isExist(value) && !options.$$locale) {
-    return value
+  let value
+  try {
+    value = i18nHandler.apply(this, arguments)
+    if (isExist(value) && !options.$$locale) {
+      return value
+    }
+  } catch (e) {
+    // ignore
   }
   const array = path.split('.')
   let current = options.$$locale || lang

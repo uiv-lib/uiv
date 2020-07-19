@@ -4,6 +4,7 @@ const vue = require('rollup-plugin-vue')
 const resolve = require('@rollup/plugin-node-resolve').nodeResolve
 const commonjs = require('@rollup/plugin-commonjs')
 const json = require('@rollup/plugin-json')
+// const path = require('path')
 
 const { name } = require('../package.json')
 

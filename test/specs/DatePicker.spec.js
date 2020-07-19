@@ -1,4 +1,4 @@
-import localeHU from '../../src/locale/lang/hu-HU'
+import newLocale from '../../src/locale/lang/zh-CN'
 import $ from 'jquery'
 import { createVm, destroyVm, triggerEvent } from '../utils'
 
@@ -388,13 +388,14 @@ describe('DatePicker', () => {
   })
 
   it('should be able to use locale for custom translations', async () => {
-    vm = createVm(`  <section>
-    <date-picker :locale="localeHU" />
+    vm = createVm(`<section>
+    <date-picker :locale="locale" v-model="date"/>
   </section>`, {
-      localeHU
+      date: null,
+      locale: newLocale
     })
     const $el = $(vm.$el)
-    const locale = localeHU.uiv.datePicker
+    const locale = newLocale.uiv.datePicker
     await vm.$nextTick()
     const picker = $el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
