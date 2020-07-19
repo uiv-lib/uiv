@@ -9,3 +9,4 @@ selenium-debug.log
 .idea/
 *.gz
 dist-docs/
+dist/

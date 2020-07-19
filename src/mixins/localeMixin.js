@@ -4,7 +4,7 @@ import { assign } from '../utils/objectUtils'
 export default {
   methods: {
     t () {
-      const args = assign({}, arguments)
+      const args = arguments
       args[1] = assign({ $$locale: this.locale }, args[1])
       return t.apply(this, args)
     }

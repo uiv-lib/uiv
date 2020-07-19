@@ -57,7 +57,7 @@ export const sleep = (time) => {
 }
 
 export const createVm = (template, _data, _options) => {
-  const app = $('<div id="app">').appendTo('body')
+  $('<div id="app"><div id="mount"></div></div>').appendTo('body')
   const res = Vue.compile(template)
   return new Vue({
     data () {
@@ -68,7 +68,7 @@ export const createVm = (template, _data, _options) => {
     ..._options,
     render: res.render,
     staticRenderFns: res.staticRenderFns
-  }).$mount(app.get(0))
+  }).$mount('#mount')
 }
 
 export const destroyVm = (vm) => {
