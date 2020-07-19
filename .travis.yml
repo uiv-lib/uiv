@@ -4,11 +4,11 @@ dist: trusty
 cache:
   yarn: true
   directories:
-  - node_modules
+    - node_modules
 node_js:
   - "lts/*"
 script:
-  - npm run lint
+  #- npm run lint
   - npm run test
   - npm run dist
   #- npm run build

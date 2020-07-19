@@ -16,7 +16,7 @@ module.exports = function (config) {
     customLaunchers: {
       'ChromeHeadlessDesktop': {
         base: 'ChromeHeadless',
-        flags: ['--window-size=1920,1080', '--no-sandbox']
+        flags: ['--window-size=1920,1080']
       }
     },
     frameworks: ['mocha', 'sinon-chai'],
@@ -26,10 +26,10 @@ module.exports = function (config) {
        * Make sure to disable Karma’s file watcher
        * because the preprocessor will use its own.
        */
-      { pattern: 'specs/**/*.spec.js', watched: false }
+      { pattern: './index.js', watched: false }
     ],
     preprocessors: {
-      'specs/**/*.spec.js': ['rollup']
+      './index.js': ['rollup']
     },
     rollupPreprocessor: require('../rollup/rollup.test'),
     singleRun: true,
