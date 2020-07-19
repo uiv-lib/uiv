@@ -1,6 +1,6 @@
 import { triggerEvent, sleep, triggerKey, createVm, destroyVm, keyCodes } from '../utils'
 import states from '../../docs/assets/data/states.json'
-import axios from 'axios'
+import axios from 'axios/dist/axios.min'
 
 function baseVm () {
   return createVm(`

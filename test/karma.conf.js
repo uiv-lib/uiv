@@ -16,7 +16,7 @@ module.exports = function (config) {
     customLaunchers: {
       'ChromeHeadlessDesktop': {
         base: 'ChromeHeadless',
-        flags: ['--window-size=1920,1080']
+        flags: ['--window-size=1920,1080', '--no-sandbox']
       }
     },
     frameworks: ['mocha', 'sinon-chai'],
