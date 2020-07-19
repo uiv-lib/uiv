@@ -16,7 +16,7 @@ module.exports = {
     }),
     alias({
       entries: [
-        { find: 'vue', replacement: 'vue/dist/vue.esm.js' }
+        { find: /^vue$/, replacement: 'vue/dist/vue.esm.js' }
       ]
     }),
     json(),
@@ -30,10 +30,15 @@ module.exports = {
       }
     })
   ],
-  // input: 'test/specs/Typeahead.spec.js',
   output: {
     format: 'iife', // Helps prevent naming collisions.
     name: name, // Required for 'iife' format.
     sourcemap: 'inline' // Sensible for testing.
   }
+  // input: 'test/index.js',
+  // output: {
+  //   format: 'cjs',
+  //   file: path.join(__dirname, '..', 'dist', `${name}.test.js`),
+  //   sourcemap: true
+  // }
 }

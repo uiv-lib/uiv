@@ -1,4 +1,4 @@
-import Vue from 'vue/dist/vue.min'
+import Vue from 'vue'
 import * as uiv from '../src/install'
 
 Vue.config.productionTip = false
