@@ -1,9 +1,11 @@
-import {t} from '../locale'
+import { t } from '../locale'
+import { assign } from '../utils/objectUtils'
 
 export default {
   methods: {
-    t (...args) {
-      args[1] = Object.assign({ $$locale: this.locale }, args[1])
+    t () {
+      const args = assign({}, arguments)
+      args[1] = assign({ $$locale: this.locale }, args[1])
       return t.apply(this, args)
     }
   },

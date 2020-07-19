@@ -1,7 +1,7 @@
-import {TYPES} from './constants'
-import {removeFromDom} from '../../utils/domUtils'
-import {spliceIfExist} from '../../utils/arrayUtils'
-import {isFunction, isExist, isString, isPromiseSupported} from '../../utils/objectUtils'
+import { TYPES } from './constants'
+import { removeFromDom } from '../../utils/domUtils'
+import { spliceIfExist } from '../../utils/arrayUtils'
+import { isFunction, isExist, isString, isPromiseSupported, assign } from '../../utils/objectUtils'
 import MessageBox from './MessageBox.vue'
 import Vue from 'vue'
 
@@ -30,9 +30,7 @@ const init = function (type, options, cb, resolve = null, reject = null) {
   const instance = new Vue({
     extends: MessageBox,
     i18n,
-    propsData: {
-      type,
-      ...options,
+    propsData: assign({}, { type }, options, {
       cb (msg) {
         destroy(instance)
         if (isFunction(cb)) {
@@ -53,7 +51,7 @@ const init = function (type, options, cb, resolve = null, reject = null) {
           }
         }
       }
-    }
+    })
   })
   instance.$mount()
   document.body.appendChild(instance.$el)
@@ -83,4 +81,4 @@ const prompt = function (options, cb) {
   return initModal.apply(this, [TYPES.PROMPT, options, cb])
 }
 
-export default {alert, confirm, prompt}
+export default { alert, confirm, prompt }

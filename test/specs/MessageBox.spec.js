@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import MessageBox from '@src/services/messagebox/MessageBox'
+import MessageBox from '../../src/services/messagebox/MessageBox'
 import { createVm, destroyVm, sleep, triggerEvent, transitionDuration } from '../utils'
 
 function alertVm () {

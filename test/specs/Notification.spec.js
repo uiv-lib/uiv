@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import { createVm, destroyVm, sleep, transitionDuration } from '../utils'
-import Notification from '@src/services/notification/Notification'
+import Notification from '../../src/services/notification/Notification'
 
 const OFFSET = '15px'
 

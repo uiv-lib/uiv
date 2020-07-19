@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../node_modules/vue/dist/vue.min.js"></script>
+  <script src="../dist/uiv.min.js"></script>
+  <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+  <tabs>
+    <tab>Tab content 1.</tab>
+    <tab>Tab content 2.</tab>
+  </tabs>
+</div>
+<script>
+  // No need to install uiv, we already do this for you after script loaded.
+  new Vue().$mount('#app')
+</script>
+</body>
+</html>

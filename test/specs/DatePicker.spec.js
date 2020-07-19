@@ -1,4 +1,4 @@
-import localeHU from '@src/locale/lang/hu-HU'
+import localeHU from '../../src/locale/lang/hu-HU'
 import $ from 'jquery'
 import { createVm, destroyVm, triggerEvent } from '../utils'
 

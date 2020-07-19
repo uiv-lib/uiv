@@ -1,4 +1,4 @@
-import scroll from '@src/directives/scroll'
+import scroll from '../../src/directives/scroll'
 import { createVm, destroyVm } from '../utils'
 
 const HANDLER = '_uiv_scroll_handler'

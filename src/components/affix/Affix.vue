@@ -48,11 +48,12 @@
         let element = {}
         const rect = this.$el.getBoundingClientRect()
         const body = document.body
-        for (let type of ['Top', 'Left']) {
+        const types = ['Top', 'Left']
+        types.forEach(type => {
           let t = type.toLowerCase()
           scroll[t] = window['page' + (type === 'Top' ? 'Y' : 'X') + 'Offset']
           element[t] = scroll[t] + rect[t] - (this.$el['client' + type] || body['client' + type] || 0)
-        }
+        })
         let fix = scroll.top > element.top - this.offset
         if (this.affixed !== fix) {
           this.affixed = fix

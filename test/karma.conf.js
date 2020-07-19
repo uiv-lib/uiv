@@ -3,9 +3,10 @@
 // we are also using it with karma-webpack
 //   https://github.com/webpack/karma-webpack
 const path = require('path')
-const webpackConfig = require('../build/webpack.test.conf')
 
 module.exports = function (config) {
+  process.env.CHROME_BIN = require('puppeteer').executablePath()
+
   config.set({
     // to run in additional browsers:
     // 1. install corresponding karma launcher
@@ -15,20 +16,23 @@ module.exports = function (config) {
     customLaunchers: {
       'ChromeHeadlessDesktop': {
         base: 'ChromeHeadless',
-        flags: ['--window-size=1920,1080']
+        flags: ['--window-size=1920,1080', '--no-sandbox']
       }
     },
     frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage-istanbul'],
-    files: ['./index.js'],
-    singleRun: true,
+    files: [
+      /**
+       * Make sure to disable Karma’s file watcher
+       * because the preprocessor will use its own.
+       */
+      { pattern: 'specs/**/*.spec.js', watched: false }
+    ],
     preprocessors: {
-      './index.js': ['webpack', 'sourcemap']
+      'specs/**/*.spec.js': ['rollup']
     },
-    webpack: webpackConfig,
-    webpackMiddleware: {
-      noInfo: true
-    },
+    rollupPreprocessor: require('../rollup/rollup.test'),
+    singleRun: true,
     coverageIstanbulReporter: {
       reports: ['lcov', 'text-summary'],
       dir: path.join(__dirname, 'coverage'),

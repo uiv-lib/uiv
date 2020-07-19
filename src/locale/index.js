@@ -1,5 +1,5 @@
 // https://github.com/ElemeFE/element/blob/dev/src/locale/index.js
-import {isFunction, isExist} from '../utils/objectUtils'
+import { isFunction, isExist, assign } from '../utils/objectUtils'
 import defaultLang from './lang/en-US'
 
 let lang = defaultLang
@@ -11,7 +11,7 @@ let i18nHandler = function () {
       return vuei18n.apply(this, arguments)
     } catch (err) {
       //  vuei18n.apply doesn't work with 7.3.3 of vue-i18n
-      return this.$t(...arguments)
+      return this.$t(assign({}, arguments))
     }
   }
 }
@@ -44,4 +44,4 @@ export const i18n = function (fn) {
   i18nHandler = fn || i18nHandler
 }
 
-export default {use, t, i18n}
+export default { use, t, i18n }

@@ -9,10 +9,11 @@ import {
   getParents
 } from '../../utils/domUtils'
 import { nodeListToArray } from '../../utils/arrayUtils'
+import { assign } from '../../utils/objectUtils'
 
 function ScrollSpy (element, target = 'body', options = {}) {
   this.el = element
-  this.opts = Object.assign({}, ScrollSpy.DEFAULTS, options)
+  this.opts = assign({}, ScrollSpy.DEFAULTS, options)
   this.opts.target = target
   if (target === 'body') {
     this.scrollElement = window

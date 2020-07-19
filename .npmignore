@@ -8,7 +8,6 @@ test/
 docs/
 dist-docs/
 
-.babelrc
 .editorconfig
 .eslintignore
 .eslintrc.js
