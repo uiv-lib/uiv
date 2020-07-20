@@ -1,6 +1,6 @@
 import { triggerEvent, sleep, triggerKey, createVm, destroyVm, keyCodes } from '../utils'
+import { getRequest } from '../../src/utils/httpUtils'
 import states from '../assets/data/states.json'
-import axios from 'axios/dist/axios.min'
 
 function baseVm () {
   return createVm(`
@@ -591,9 +591,9 @@ describe('Typeahead', () => {
     }, {
       methods: {
         queryFunction (query, done) {
-          axios.get('https://api.github.com/search/users?q=' + query)
-            .then(res => {
-              done(res.data.items)
+          getRequest('https://api.github.com/search/users?q=' + query)
+            .then(data => {
+              done(data.items)
             })
             .catch(err => {
               console.log(err)

@@ -1,18 +1,6 @@
-# Created by .ignore support plugin (hsz.mobi)
-
 .github/
-build/
-config/
-static/
 test/
-docs/
-dist-docs/
-
-.editorconfig
-.eslintignore
 .eslintrc.js
-.postcssrc.js
 .travis.yml
-index.html
 .yarnrc
 yarn.lock
