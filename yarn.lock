@@ -4915,7 +4915,7 @@ istanbul-lib-hook@^1.2.2:
   dependencies:
     append-transform "^0.4.0"
 
-istanbul-lib-instrument@^1.10.2:
+istanbul-lib-instrument@^1.10.2, istanbul-lib-instrument@^1.9.1:
   version "1.10.2"
   resolved "https://registry.npm.taobao.org/istanbul-lib-instrument/download/istanbul-lib-instrument-1.10.2.tgz#1f55ed10ac3c47f2bdddd5307935126754d0a9ca"
   integrity sha1-H1XtEKw8R/K93dUweTUSZ1TQqco=
@@ -8197,6 +8197,14 @@ rollup-plugin-filesize@^9.0.2:
     pacote "^11.1.10"
     terser "^4.8.0"
 
+rollup-plugin-istanbul@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npm.taobao.org/rollup-plugin-istanbul/download/rollup-plugin-istanbul-2.0.1.tgz#f562d378b4082855ef035e63c04d9ee1bd601c20"
+  integrity sha1-9WLTeLQIKFXvA15jwE2e4b1gHCA=
+  dependencies:
+    istanbul-lib-instrument "^1.9.1"
+    rollup-pluginutils "^2.0.1"
+
 rollup-plugin-uglify@^6.0.4:
   version "6.0.4"
   resolved "https://registry.npm.taobao.org/rollup-plugin-uglify/download/rollup-plugin-uglify-6.0.4.tgz#65a0959d91586627f1e46a7db966fd504ec6c4e6"
@@ -8222,7 +8230,7 @@ rollup-plugin-vue@^5.1.9:
     source-map "0.7.3"
     vue-runtime-helpers "^1.1.2"
 
-rollup-pluginutils@^2.8.2:
+rollup-pluginutils@^2.0.1, rollup-pluginutils@^2.8.2:
   version "2.8.2"
   resolved "https://registry.npm.taobao.org/rollup-pluginutils/download/rollup-pluginutils-2.8.2.tgz#72f2af0748b592364dbd3389e600e5a9444a351e"
   integrity sha1-cvKvB0i1kjZNvTOJ5gDlqURKNR4=

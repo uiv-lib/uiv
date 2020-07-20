@@ -5,7 +5,8 @@ const resolve = require('@rollup/plugin-node-resolve').nodeResolve
 const commonjs = require('@rollup/plugin-commonjs')
 const json = require('@rollup/plugin-json')
 const alias = require('@rollup/plugin-alias')
-// const path = require('path')
+const istanbul = require('rollup-plugin-istanbul')
+const path = require('path')
 
 const { name } = require('../package.json')
 
@@ -28,6 +29,14 @@ module.exports = {
       transforms: {
         asyncAwait: false
       }
+    }),
+    istanbul({
+      exclude: [
+        'test/**/*.js',
+        'test/**/*.json',
+        'node_modules/**/*.js',
+        'node_modules/**/*.mjs'
+      ]
     })
   ],
   output: {

@@ -97,6 +97,7 @@
     "rimraf": "^2.6.0",
     "rollup": "^2.21.0",
     "rollup-plugin-filesize": "^9.0.2",
+    "rollup-plugin-istanbul": "^2.0.1",
     "rollup-plugin-uglify": "^6.0.4",
     "rollup-plugin-vue": "^5.1.9",
     "semver": "^5.3.0",
