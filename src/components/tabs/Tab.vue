@@ -54,7 +54,7 @@
             this.$el.offsetHeight
             addClass(this.$el, IN_CLASS)
             try {
-              this.$parent.$emit('after-change', this.$parent.activeIndex)
+              this.$parent.$emit('changed', this.$parent.activeIndex)
             } catch (e) {
               throw new Error('<tab> parent must be <tabs>.')
             }
