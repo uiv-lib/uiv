@@ -17,17 +17,21 @@ export const keyCodes = {
 
 export const triggerEvent = (elm, name, evtProps = {}, ...opts) => {
   let eventName
+  let evt
   if (/^mouse|click/.test(name)) {
     eventName = 'MouseEvents'
   } else if (/^key/.test(name)) {
     eventName = 'KeyboardEvent'
+    evt = new KeyboardEvent(name, evtProps)
   } else {
     eventName = 'HTMLEvents'
   }
-  const evt = document.createEvent(eventName)
-  evt.initEvent(name, ...opts)
-  for (let k in evtProps) {
-    evt[k] = evtProps[k]
+  if (!evt) {
+    evt = document.createEvent(eventName)
+    evt.initEvent(name, ...opts)
+    for (let k in evtProps) {
+      evt[k] = evtProps[k]
+    }
   }
   elm.dispatchEvent
     ? elm.dispatchEvent(evt)

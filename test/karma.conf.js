@@ -12,14 +12,15 @@ module.exports = function (config) {
     // 1. install corresponding karma launcher
     //    http://karma-runner.github.io/0.13/config/browsers.html
     // 2. add it to the `browsers` array below.
-    browsers: ['ChromeHeadlessDesktop'],
-    customLaunchers: {
-      'ChromeHeadlessDesktop': {
-        base: 'ChromeHeadless',
-        flags: ['--window-size=1920,1080']
-        // flags: ['--window-size=1920,1080', '--no-sandbox']
-      }
-    },
+    // browsers: ['ChromeHeadlessDesktop'],
+    // customLaunchers: {
+    //   'ChromeHeadlessDesktop': {
+    //     base: 'ChromeHeadless',
+    //     flags: ['--window-size=1920,1080']
+    //     // flags: ['--window-size=1920,1080', '--no-sandbox']
+    //   }
+    // },
+    browsers: ['Chrome'],
     frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage-istanbul'],
     files: [
@@ -27,7 +28,8 @@ module.exports = function (config) {
        * Make sure to disable Karma’s file watcher
        * because the preprocessor will use its own.
        */
-      { pattern: './index.js', watched: false }
+      { pattern: './index.js', watched: false },
+      '../node_modules/bootstrap/dist/css/bootstrap.min.css'
     ],
     preprocessors: {
       './index.js': ['rollup']

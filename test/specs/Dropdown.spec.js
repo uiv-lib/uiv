@@ -1,4 +1,5 @@
-import { createVm, destroyVm, triggerEvent } from '../utils'
+import { createVm, destroyVm, triggerEvent, keyCodes } from '../utils'
+import $ from 'jquery'
 
 function appendToBodyVm () {
   return createVm(`<div><dropdown append-to-body>
@@ -75,6 +76,34 @@ describe('Dropdown', () => {
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
+  })
+
+  it('should be able to close dropdown using keyboard esc', async () => {
+    vm = baseVm()
+    const dropdown = vm.$el.querySelector('.dropdown')
+    const trigger = dropdown.querySelector('button')
+    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.className).to.not.contain('open')
+    triggerEvent(trigger, 'click')
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    triggerEvent(trigger, 'keydown', { keyCode: keyCodes.esc })
+    await vm.$nextTick()
+    expect(dropdown.className).to.not.contain('open')
+  })
+
+  it('should be able to navigate between items using keyboard up & down', async () => {
+    vm = baseVm()
+    const dropdown = vm.$el.querySelector('.dropdown')
+    const trigger = dropdown.querySelector('button')
+    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.className).to.not.contain('open')
+    triggerEvent(trigger, 'click')
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    triggerEvent(trigger, 'keydown', { keyCode: keyCodes.down })
+    await vm.$nextTick()
+    expect($($(dropdown).find('li > a').get(0)).is(':focus')).to.be.true
   })
 
   it('should be able to close dropdown on trigger click', async () => {

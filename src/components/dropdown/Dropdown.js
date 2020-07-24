@@ -96,12 +96,15 @@ export default {
         const dropdownEl = this.$refs.dropdown
         const keyCode = event.keyCode || event.which
         if (keyCode === 27) {
+          // esc
           this.toggle(false)
           this.triggerEl && this.triggerEl.focus()
         } else if (keyCode === 13) {
+          // enter
           const currentFocus = dropdownEl.querySelector('li > a:focus')
           currentFocus && currentFocus.click()
         } else if (keyCode === 38 || keyCode === 40) {
+          // up || down
           event.preventDefault()
           event.stopPropagation()
           const currentFocus = dropdownEl.querySelector('li > a:focus')

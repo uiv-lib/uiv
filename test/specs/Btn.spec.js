@@ -186,11 +186,11 @@ describe('Btn', () => {
     await vm.$nextTick()
     expect($btnInputCheckbox.find('label.btn').length).to.equal(4)
     expect($btnInputCheckbox.find('label.btn > input[type=checkbox]').length).to.equal(4)
-    // active first one
+    // first one should be actived by default
     expect($btnInputCheckbox.find('label.btn.active').length).to.equal(1)
     expect($btnInputCheckbox.find('label.btn > input[type=checkbox]').get(0).checked).to.be.true
     expect($btnInputCheckbox.find('label.btn').get(0).className).to.contain('active')
-    // disabled last one
+    // last one shoubd be disabled by default
     expect($btnInputCheckbox.find('label.btn.disabled').length).to.equal(1)
     expect($btnInputCheckbox.find('label.btn.disabled > input[disabled]').length).to.equal(1)
     expect($btnInputCheckbox.find('label.btn').get(3).className).to.contain('disabled')
