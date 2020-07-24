@@ -14,9 +14,7 @@
           <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-if="tab.$slots.title">
             <portal-target :name="tab._uid.toString()"/>
           </a>
-          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-else-if="tab.htmlTitle"
-             v-html="tab.title"></a>
-          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-else-if="tab.title"
+          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-else="tab.title"
              v-text="tab.title"></a>
         </li>
       </template>

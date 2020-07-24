@@ -22,15 +22,11 @@
         type: String,
         default: 'Tab Title'
       },
-      htmlTitle: {
-        type: Boolean,
-        default: false
-      },
       disabled: {
         type: Boolean,
         default: false
       },
-      'tab-classes': {
+      tabClasses: {
         type: Object,
         default: () => { return {} }
       },

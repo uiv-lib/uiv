@@ -197,7 +197,7 @@ describe('Tabs', () => {
     expect(activeContent[0].querySelector('p').textContent).to.contain('Home tab')
   })
 
-  it('should be able to render HTML title with prop', async () => {
+  it('should not be able to render HTML title with deprecated prop', async () => {
     vm = createVm(`<div><tabs>
   <tab title="<i class='glyphicon glyphicon-home'></i> Home" html-title>
     <p>This tab has a <code>html-title</code>.</p>
@@ -213,7 +213,7 @@ describe('Tabs', () => {
     await vm.$nextTick()
     const nav = $el.find('.nav-tabs').get(0)
     const tab = nav.querySelectorAll('li')[0]
-    expect(tab.querySelector('i')).to.exist
+    expect(tab.querySelector('i')).not.to.exist
   })
 
   it('should be able to render HTML title with slot', async () => {
