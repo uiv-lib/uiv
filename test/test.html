@@ -54,6 +54,13 @@
 </head>
 <body>
 <div id="app">
+  <div>
+    <btn type="primary" @click="show=!show">Click me!</btn>
+  </div>
+  <br/>
+  <collapse v-model="show">
+    <div class="well" style="margin-bottom: 0">Hi there.</div>
+  </collapse>
   <tabs>
     <tab>Tab content 1.</tab>
     <tab>Tab content 2.</tab>
@@ -69,7 +76,8 @@
   new Vue({
     data () {
       return {
-        date: null
+        date: null,
+        show: false
       }
     }
   }).$mount('#app')

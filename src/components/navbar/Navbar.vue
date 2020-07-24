@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import Collapse from '../collapse/Collapse.vue'
+  import Collapse from '../collapse/Collapse.js'
 
   export default {
     components: {Collapse},
