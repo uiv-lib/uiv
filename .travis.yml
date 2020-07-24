@@ -4,14 +4,13 @@ dist: trusty
 cache:
   yarn: true
   directories:
-  - node_modules
+    - node_modules
 node_js:
   - "lts/*"
 script:
   - npm run lint
   - npm run test
   - npm run dist
-  - npm run build
 after_success: 'npm run coveralls'
 
 deploy:
@@ -28,10 +27,3 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
-  - provider: pages
-    verbose: true
-    skip_cleanup: true
-    github_token: $GITHUB_TOKEN
-    local_dir: dist-docs
-    on:
-      branch: master

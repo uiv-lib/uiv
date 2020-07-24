@@ -8,11 +8,12 @@ import {
   getClosest,
   getParents
 } from '../../utils/domUtils'
-import {nodeListToArray} from '../../utils/arrayUtils'
+import { nodeListToArray } from '../../utils/arrayUtils'
+import { assign } from '../../utils/objectUtils'
 
 function ScrollSpy (element, target = 'body', options = {}) {
   this.el = element
-  this.opts = Object.assign({}, ScrollSpy.DEFAULTS, options)
+  this.opts = assign({}, ScrollSpy.DEFAULTS, options)
   this.opts.target = target
   if (target === 'body') {
     this.scrollElement = window
@@ -49,11 +50,9 @@ ScrollSpy.prototype.refresh = function () {
     .map(ele => {
       const href = ele.getAttribute('href')
       if (/^#./.test(href)) {
-        const doc = document.documentElement
         const rootEl = isWindow ? document : this.scrollElement
         const hrefEl = rootEl.querySelector(`[id='${href.slice(1)}']`)
-        const windowScrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
-        const offset = isWindow ? hrefEl.getBoundingClientRect().top + windowScrollTop : hrefEl.offsetTop + this.scrollElement.scrollTop
+        const offset = isWindow ? hrefEl.getBoundingClientRect().top : hrefEl.offsetTop
         return [offset, href]
       } else {
         return null
@@ -168,4 +167,4 @@ const update = (el, binding) => {
   }
 }
 
-export default {bind, unbind, update, inserted}
+export default { bind, unbind, update, inserted }

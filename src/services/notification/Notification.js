@@ -1,8 +1,8 @@
-import {removeFromDom} from '../../utils/domUtils'
-import {spliceIfExist} from '../../utils/arrayUtils'
-import {isFunction, isExist, isString, isPromiseSupported} from '../../utils/objectUtils'
+import { removeFromDom } from '../../utils/domUtils'
+import { spliceIfExist } from '../../utils/arrayUtils'
+import { isFunction, isExist, isString, isPromiseSupported, assign } from '../../utils/objectUtils'
 import Notification from './Notification.vue'
-import {PLACEMENTS} from './constants'
+import { PLACEMENTS } from './constants'
 import Vue from 'vue'
 
 const queues = {
@@ -33,10 +33,7 @@ const init = (options, cb, resolve = null, reject = null) => {
   }
   let instance = new Vue({
     extends: Notification,
-    propsData: {
-      queue,
-      placement,
-      ...options,
+    propsData: assign({}, { queue, placement }, options, {
       cb (msg) {
         destroy(queue, instance)
         if (isFunction(cb)) {
@@ -45,7 +42,7 @@ const init = (options, cb, resolve = null, reject = null) => {
           resolve(msg)
         }
       }
-    }
+    })
   })
   instance.$mount()
   document.body.appendChild(instance.$el)
@@ -79,10 +76,9 @@ function _notify2 (type, args) {
       type
     })
   } else {
-    _notify({
-      ...args,
+    _notify(assign({}, args, {
       type
-    })
+    }))
   }
 }
 
@@ -138,4 +134,4 @@ const notify = Object.defineProperties(_notify, {
   }
 })
 
-export default {notify}
+export default { notify }

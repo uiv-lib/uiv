@@ -1,18 +1,29 @@
-import 'es6-promise/auto'
-import Vue from 'vue'
-import * as uiv from '@src/install'
-
-Vue.config.productionTip = false
-// simulate router-link
-Vue.component('router-link', {
-  template: '<a href="#router-link"><slot></slot></a>'
-})
-Vue.use(uiv)
-
-// Polyfill fn.bind() for PhantomJS
-/* eslint-disable no-extend-native */
-Function.prototype.bind = require('function-bind')
-
-// require all test files (files that ends with .spec.js)
-const testsContext = require.context('./specs', true, /\.spec$/)
-testsContext.keys().forEach(testsContext)
+import './setup'
+import './specs/Alert.spec'
+import './specs/Affix.spec'
+import './specs/arrayUtils.spec'
+import './specs/Breadcrumbs.spec'
+import './specs/Btn.spec'
+import './specs/BtnGroup.spec'
+import './specs/Carousel.spec'
+import './specs/Collapse.spec'
+import './specs/DatePicker.spec'
+import './specs/domUtils.spec'
+import './specs/Dropdown.spec'
+import './specs/httpUtils.spec'
+import './specs/install.spec'
+import './specs/locale.spec'
+import './specs/MessageBox.spec'
+import './specs/Modal.spec'
+import './specs/MultiSelect.spec'
+import './specs/Navbar.spec'
+import './specs/Notification.spec'
+import './specs/Pagination.spec'
+import './specs/Popover.spec'
+import './specs/ProgressBar.spec'
+import './specs/scroll.spec'
+import './specs/ScrollSpy.spec'
+import './specs/Tabs.spec'
+import './specs/TimePicker.spec'
+import './specs/Tooltip.spec'
+import './specs/Typeahead.spec'

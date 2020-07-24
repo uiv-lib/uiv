@@ -70,11 +70,11 @@
 <script>
   import Local from '../../mixins/localeMixin'
   import Dropdown from '../dropdown/Dropdown.vue'
-  import {onlyUnique} from '../../utils/arrayUtils'
+  import { onlyUnique } from '../../utils/arrayUtils'
 
   export default {
     mixins: [Local],
-    components: {Dropdown},
+    components: { Dropdown },
     props: {
       value: {
         type: Array,

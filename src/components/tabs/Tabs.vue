@@ -14,8 +14,10 @@
           <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-if="tab.$slots.title">
             <portal-target :name="tab._uid.toString()"/>
           </a>
-          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-else-if="tab.htmlTitle" v-html="tab.title"></a>
-          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-else-if="tab.title" v-text="tab.title"></a>
+          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-else-if="tab.htmlTitle"
+             v-html="tab.title"></a>
+          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-else-if="tab.title"
+             v-text="tab.title"></a>
         </li>
       </template>
       <li class="pull-right" v-if="!justified && $slots['nav-right']">
@@ -30,13 +32,13 @@
 
 <script>
   import Dropdown from '../dropdown/Dropdown.vue'
-  import {PortalTarget} from 'portal-vue'
-  import {isNumber, isFunction, isExist, isString} from '../../utils/objectUtils'
+  import { PortalTarget } from 'portal-vue'
+  import { isNumber, isFunction, isExist, isString, assign } from '../../utils/objectUtils'
 
   const BEFORE_CHANGE_EVENT = 'before-change'
 
   export default {
-    components: {Dropdown, PortalTarget},
+    components: { Dropdown, PortalTarget },
     props: {
       value: {
         type: Number,
@@ -90,15 +92,11 @@
         const customNavClass = this.customNavClass
         if (isExist(customNavClass)) {
           if (isString(customNavClass)) {
-            return {
-              ...tabClasses,
+            return assign({}, tabClasses, {
               [customNavClass]: true
-            }
+            })
           } else {
-            return {
-              ...tabClasses,
-              ...customNavClass
-            }
+            return assign({}, tabClasses, customNavClass)
           }
         } else {
           return tabClasses
@@ -111,15 +109,11 @@
         const customContentClass = this.customContentClass
         if (isExist(customContentClass)) {
           if (isString(customContentClass)) {
-            return {
-              ...contentClasses,
+            return assign({}, contentClasses, {
               [customContentClass]: true
-            }
+            })
           } else {
-            return {
-              ...contentClasses,
-              ...customContentClass
-            }
+            return assign({}, contentClasses, customContentClass)
           }
         } else {
           return contentClasses
@@ -167,7 +161,7 @@
         }
 
         // return with new classes added to tab
-        return Object.assign(defaultClasses, tab['tabClasses'])
+        return assign(defaultClasses, tab['tabClasses'])
       },
       selectCurrent () {
         let found = false
