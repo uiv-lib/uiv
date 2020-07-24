@@ -38,7 +38,7 @@ export default {
       type: String,
       default: 'body'
     },
-    transitionDuration: {
+    transition: {
       type: Number,
       default: 150
     },
@@ -278,7 +278,7 @@ export default {
             removeFromDom(this.$refs.popup)
             this.$emit('input', false)
             this.$emit('hide')
-          }, this.transitionDuration)
+          }, this.transition)
         }, this.hideDelay)
       }
     },
