@@ -13,14 +13,13 @@ module.exports = function (config) {
     //    http://karma-runner.github.io/0.13/config/browsers.html
     // 2. add it to the `browsers` array below.
     // browsers: ['ChromeHeadlessDesktop'],
-    // customLaunchers: {
-    //   'ChromeHeadlessDesktop': {
-    //     base: 'ChromeHeadless',
-    //     flags: ['--window-size=1920,1080']
-    //     // flags: ['--window-size=1920,1080', '--no-sandbox']
-    //   }
-    // },
-    browsers: ['Chrome'],
+    customLaunchers: {
+      'ChromeNoSandbox': {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
+    browsers: ['ChromeNoSandbox'],
     frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage-istanbul'],
     files: [
