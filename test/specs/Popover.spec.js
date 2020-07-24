@@ -393,9 +393,9 @@ This is a very very long text. This is a very very long text. This is a very ver
     expect(document.querySelectorAll('.popover').length).to.equal(0)
   })
 
-  it('should be able to show even when hideDelay < showDelay < transitionDuration ', async function () {
+  it('should be able to show even when hideDelay < showDelay < transition ', async function () {
     vm = createVm(
-      `<popover :hideDelay="1" :showDelay="100" :transitionDuration="500" trigger="hover" title="123"><button></button></popover>`
+      `<popover :hideDelay="1" :showDelay="100" :transition="500" trigger="hover" title="123"><button></button></popover>`
     )
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('button')

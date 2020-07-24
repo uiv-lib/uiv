@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { createVm, destroyVm, triggerEvent, sleep, transitionDuration } from '../utils'
+import { createVm, destroyVm, triggerEvent, sleep, transition } from '../utils'
 
 function baseVm () {
   return createVm(`<section>
@@ -96,7 +96,7 @@ describe('Modal', () => {
     expect(getBackdropsNum()).to.equal(0)
     // open modal 1
     trigger.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).to.contain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
@@ -106,7 +106,7 @@ describe('Modal', () => {
     expectBodyOverflow(false)
     // open modal 2
     trigger2.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).to.contain('in')
     expect(modal2.className).to.contain('in')
     expect(modal3.className).not.contain('in')
@@ -116,7 +116,7 @@ describe('Modal', () => {
     expectBodyOverflow(false)
     // open modal 3
     trigger3.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).to.contain('in')
     expect(modal2.className).to.contain('in')
     expect(modal3.className).to.contain('in')
@@ -126,7 +126,7 @@ describe('Modal', () => {
     expectBodyOverflow(false)
     // dismiss modal 3
     modal3.querySelector('.btn-primary').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).to.contain('in')
     expect(modal2.className).to.contain('in')
     expect(modal3.className).not.contain('in')
@@ -135,7 +135,7 @@ describe('Modal', () => {
     expectBodyOverflow(false)
     // dismiss modal 2
     modal2.querySelector('.btn-primary').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).to.contain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
@@ -144,7 +144,7 @@ describe('Modal', () => {
     expectBodyOverflow(false)
     // dismiss modal 1
     modal1.querySelector('.btn-primary').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).not.contain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
@@ -191,7 +191,7 @@ describe('Modal', () => {
     expect(getBackdropsNum()).to.equal(0)
     // open modal 1
     trigger.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).to.contain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
@@ -201,7 +201,7 @@ describe('Modal', () => {
     expectBodyOverflow(false)
     // open modal 2
     trigger2.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).to.contain('in')
     expect(modal2.className).to.contain('in')
     expect(modal3.className).not.contain('in')
@@ -211,7 +211,7 @@ describe('Modal', () => {
     expectBodyOverflow(false)
     // open modal 3
     trigger3.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).to.contain('in')
     expect(modal2.className).to.contain('in')
     expect(modal3.className).to.contain('in')
@@ -221,7 +221,7 @@ describe('Modal', () => {
     expectBodyOverflow(false)
     // dismiss modal 3
     modal3.querySelector('.btn-primary').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).to.contain('in')
     expect(modal2.className).to.contain('in')
     expect(modal3.className).not.contain('in')
@@ -230,7 +230,7 @@ describe('Modal', () => {
     expectBodyOverflow(false)
     // dismiss modal 2
     modal2.querySelector('.btn-primary').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).to.contain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
@@ -239,7 +239,7 @@ describe('Modal', () => {
     expectBodyOverflow(false)
     // dismiss modal 1
     modal1.querySelector('.btn-primary').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).not.contain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
@@ -256,7 +256,7 @@ describe('Modal', () => {
     const trigger = _$el.find('.btn').get(0)
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(_$el.find('.modal').get(0).className).to.contain('in')
     expect(_$el.find('.modal-title').get(0).textContent).to.equal('Modal 1')
@@ -268,7 +268,7 @@ describe('Modal', () => {
     const trigger = _$el.find('.btn').get(0)
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(_$el.find('.modal').get(0).className).to.contain('in')
     expect(_$el.find('.modal-title').get(0).textContent).to.equal('Modal 1')
@@ -286,12 +286,12 @@ describe('Modal', () => {
     const trigger = _$el.find('.btn').get(0)
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(_$el.find('.modal').get(0).className).to.contain('in')
     expect(_$el.find('.modal-title').get(0).textContent).to.equal('Modal 1')
     triggerEvent(_$el.find('button.close').get(0), 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(_$el.find('.modal').get(0).className).not.contain('in')
     expect(document.querySelector('.alert')).to.exist
@@ -304,12 +304,12 @@ describe('Modal', () => {
     const trigger = _$el.find('.btn').get(0)
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(_$el.find('.modal').get(0).className).to.contain('in')
     expect(_$el.find('.modal-title').get(0).textContent).to.equal('Modal 1')
     triggerEvent(_$el.find('.modal-footer button').get(1), 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(_$el.find('.modal').get(0).className).not.contain('in')
     expect(document.querySelector('.alert')).to.exist
@@ -330,7 +330,7 @@ describe('Modal', () => {
     const modal = vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(modal.className).to.contain('in')
     expect(modal.querySelector('.modal-dialog.modal-lg').textContent).to.exist
@@ -350,7 +350,7 @@ describe('Modal', () => {
     const modal = vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(modal.className).to.contain('in')
     expect(modal.querySelector('.modal-dialog.modal-sm').textContent).to.exist
@@ -371,7 +371,7 @@ describe('Modal', () => {
     const modal = vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(modal.className).to.contain('in')
     expect(modal.querySelector('.modal-title i')).to.exist
@@ -391,7 +391,7 @@ describe('Modal', () => {
     const modal = vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(modal.className).to.contain('in')
     expect(modal.querySelector('.modal-header')).not.exist
@@ -416,7 +416,7 @@ describe('Modal', () => {
     const modal = vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(modal.className).to.contain('in')
     expect(modal.querySelectorAll('.modal-footer button').length).to.equal(3)
@@ -436,7 +436,7 @@ describe('Modal', () => {
     const modal = vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(modal.className).to.contain('in')
     expect(modal.querySelector('.modal-footer')).not.exist
@@ -461,12 +461,12 @@ describe('Modal', () => {
     const modal = vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(modal.className).to.contain('in')
     expect(modal.querySelectorAll('.modal-footer button').length).to.equal(3)
     triggerEvent(modal.querySelectorAll('.modal-footer button')[0], 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(modal.className).not.contain('in')
   })
@@ -486,7 +486,7 @@ describe('Modal', () => {
     const trigger = _$el.find('.btn').get(0)
     const modal = _$el.find('.modal').get(0)
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(modal.className).to.contain('in')
     const [cancelBtn, okBtn] = modal.querySelectorAll('.modal-footer button')
@@ -509,7 +509,7 @@ describe('Modal', () => {
     const trigger = _$el.find('.btn').get(0)
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration + 100)
+    await sleep(transition + 100)
     // expect(vm.$refs.modal9.$el.querySelector('[data-action="auto-focus"]')).to.equal(vm.$refs.modal9.$el.querySelector(':focus'))
     // have no idea how to get this focused element
   })
@@ -521,11 +521,11 @@ describe('Modal', () => {
     const modal = vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(modal.className).to.contain('in')
     triggerEvent(modal, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(modal.className).not.contain('in')
   })
@@ -544,11 +544,11 @@ describe('Modal', () => {
     const modal = vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(modal.className).to.contain('in')
     triggerEvent(modal, 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(modal.className).to.contain('in')
   })
@@ -589,7 +589,7 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(vm.msg).to.equal('ok')
     vm.$el.querySelector('button.close').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(vm.msg).to.equal('test')
@@ -611,13 +611,13 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(vm.msg).to.equal('ok')
     vm.$el.querySelector('button.close').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     vm.dismissible = true
     await vm.$nextTick()
     vm.$el.querySelector('button.close').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
   })
@@ -640,7 +640,7 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(vm.msg).to.equal('ok')
     vm.$el.querySelector('button.close').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(vm.msg).to.equal('test')
@@ -664,7 +664,7 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(vm.msg).to.equal('ok')
     vm.$el.querySelector('button.close').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(vm.msg).to.equal('test')
     expect(document.querySelector('.modal-backdrop')).to.exist
@@ -706,18 +706,18 @@ describe('Modal', () => {
     expect(getBackdropsNum()).to.equal(0)
     // open modal 1
     trigger.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     // open modal 2
     trigger2.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     // open modal 3
     trigger3.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     // dismiss modal 3
     vm.$refs.modal1.onKeyPress({ keyCode: 27 }) // esc key
     vm.$refs.modal2.onKeyPress({ keyCode: 27 }) // esc key
     vm.$refs.modal3.onKeyPress({ keyCode: 27 }) // esc key
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).to.contain('in')
     expect(modal2.className).to.contain('in')
     expect(modal3.className).not.contain('in')
@@ -728,7 +728,7 @@ describe('Modal', () => {
     vm.$refs.modal1.onKeyPress({ keyCode: 27 }) // esc key
     vm.$refs.modal2.onKeyPress({ keyCode: 27 }) // esc key
     vm.$refs.modal3.onKeyPress({ keyCode: 27 }) // esc key
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).to.contain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
@@ -739,7 +739,7 @@ describe('Modal', () => {
     vm.$refs.modal1.onKeyPress({ keyCode: 27 }) // esc key
     vm.$refs.modal2.onKeyPress({ keyCode: 27 }) // esc key
     vm.$refs.modal3.onKeyPress({ keyCode: 27 }) // esc key
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(modal1.className).not.contain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')

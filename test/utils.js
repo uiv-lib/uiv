@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import Vue from 'vue'
 
-export const transitionDuration = 300
+export const transition = 300
 
 export const keyCodes = {
   esc: 27,

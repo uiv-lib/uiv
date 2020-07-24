@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import MessageBox from '../../src/services/messagebox/MessageBox'
-import { createVm, destroyVm, sleep, triggerEvent, transitionDuration } from '../utils'
+import { createVm, destroyVm, sleep, triggerEvent, transition } from '../utils'
 
 function alertVm () {
   return createVm(`<div><btn @click="alert" type="primary">Click to open an alert modal</btn></div>`, {}, {
@@ -93,14 +93,14 @@ describe('MessageBox', () => {
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('.btn')
     trigger.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     expect(document.querySelector('.modal-title').textContent).to.equal('Title')
     expect(document.querySelector('.modal-body > p').textContent).to.equal('This is an alert message.')
     document.querySelector('.modal .btn').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
@@ -113,13 +113,13 @@ describe('MessageBox', () => {
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('.btn')
     trigger.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     expect(document.querySelector('.modal-title').textContent).to.equal('Confirm')
     document.querySelectorAll('.modal .btn')[0].click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
@@ -132,13 +132,13 @@ describe('MessageBox', () => {
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('.btn')
     trigger.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     expect(document.querySelector('.modal-title').textContent).to.equal('Confirm')
     document.querySelectorAll('.modal .btn')[1].click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
@@ -151,13 +151,13 @@ describe('MessageBox', () => {
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('.btn')
     trigger.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     expect(document.querySelector('.modal-title').textContent).to.equal('Welcome')
     document.querySelectorAll('.modal .btn')[0].click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
@@ -170,7 +170,7 @@ describe('MessageBox', () => {
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('.btn')
     trigger.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
@@ -184,7 +184,7 @@ describe('MessageBox', () => {
     const formGroup = document.querySelector('.modal .form-group')
     expect(formGroup.className).not.contain('has-error')
     expect(formGroup.querySelector('.help-block').style.display).to.equal('none')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
     expect(document.querySelector('.alert')).to.exist
@@ -196,7 +196,7 @@ describe('MessageBox', () => {
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('.btn')
     trigger.click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
@@ -211,12 +211,12 @@ describe('MessageBox', () => {
     expect(formGroup.className).to.contain('has-error')
     expect(formGroup.querySelector('.help-block').style.display).not.equal('none')
     expect(formGroup.querySelector('.help-block').textContent).to.equal('Email address is not valid!')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal')).to.exist
     document.querySelectorAll('.modal .btn')[0].click()
     await vm.$nextTick()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
     expect(document.querySelector('.alert')).to.exist
@@ -228,7 +228,7 @@ describe('MessageBox', () => {
       title: 'Title',
       content: 'This is an alert message.'
     }, console.log)
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     expect(document.querySelector('.modal-title').textContent).to.equal('Title')
@@ -241,7 +241,7 @@ describe('MessageBox', () => {
     const formGroup = document.querySelector('.modal .form-group')
     expect(formGroup.className).not.contain('has-error')
     expect(formGroup.querySelector('.help-block').style.display).to.equal('none')
-    await sleep(transitionDuration)
+    await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
@@ -254,7 +254,7 @@ describe('MessageBox', () => {
       content: 'This is an alert message.',
       defaultValue: 'testtest'
     })
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     expect(document.querySelector('.modal-title').textContent).to.equal('Title')
@@ -263,7 +263,7 @@ describe('MessageBox', () => {
     await vm.$nextTick()
     document.querySelectorAll('.modal .btn')[0].click()
     await vm.$nextTick()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
   })
@@ -281,13 +281,13 @@ describe('MessageBox', () => {
     })
     // restore Promise
     window.Promise = savedPromise
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     expect(document.querySelector('.modal-title').textContent).to.equal('Title')
     expect(document.querySelector('.modal-body > p').textContent).to.equal('This is an alert message.')
     document.querySelector('.modal .btn').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
     sinon.assert.calledWith(spy, 'ok')
@@ -301,11 +301,11 @@ describe('MessageBox', () => {
     MessageBox.alert()
     // restore Promise
     window.Promise = savedPromise
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     document.querySelector('.modal .btn').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
   })
@@ -314,13 +314,13 @@ describe('MessageBox', () => {
     MessageBox.alert(undefined, () => {
       console.log('ok')
     })
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     expect(document.querySelector('.modal-title')).not.exist
     expect(document.querySelector('.modal-body > p').textContent).to.equal('')
     document.querySelector('.modal .btn').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
     sinon.assert.calledWith(spy, 'ok')
@@ -334,11 +334,11 @@ describe('MessageBox', () => {
       .then(() => {
         console.log('ok')
       })
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     triggerEvent(document.querySelector('.modal'), 'click')
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
     sinon.assert.calledWith(spy, 'ok')
@@ -346,11 +346,11 @@ describe('MessageBox', () => {
 
   it('should be able to use confirm with cancel callback', async () => {
     MessageBox.confirm({}, console.log)
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     document.querySelectorAll('.modal .btn')[0].click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
     sinon.assert.calledWith(spy, 'cancel')
@@ -358,11 +358,11 @@ describe('MessageBox', () => {
 
   it('should be able to use confirm with ok callback', async () => {
     MessageBox.confirm({}, console.log)
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     document.querySelectorAll('.modal .btn')[1].click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
     sinon.assert.calledWith(spy, null, 'ok')
@@ -370,11 +370,11 @@ describe('MessageBox', () => {
 
   it('should be able to use prompt with ok callback', async () => {
     MessageBox.prompt({}, console.log)
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     document.querySelectorAll('.modal .btn')[0].click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
     sinon.assert.calledWith(spy, 'cancel')
@@ -384,12 +384,12 @@ describe('MessageBox', () => {
     MessageBox.alert({
       customClass: 'test-class'
     })
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('test-class')
     expect(document.querySelector('.modal').className).to.contain('in')
     document.querySelector('.modal .btn').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
   })
@@ -398,12 +398,12 @@ describe('MessageBox', () => {
     MessageBox.alert({
       content: '<a href="#" id="test-a">test</a>'
     })
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     expect(document.querySelector('.modal #test-a')).not.exist
     document.querySelector('.modal .btn').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
   })
@@ -413,12 +413,12 @@ describe('MessageBox', () => {
       html: true,
       content: '<a href="#" id="test-a">test</a>'
     })
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(document.querySelector('.modal').className).to.contain('in')
     expect(document.querySelector('.modal #test-a')).to.exist
     document.querySelector('.modal .btn').click()
-    await sleep(transitionDuration)
+    await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(document.querySelector('.modal')).not.exist
   })
