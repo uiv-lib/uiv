@@ -1,5 +1,5 @@
 <template>
-  <div tabindex="-1" role="dialog" class="modal" :class="{fade:transitionDuration>0}" @click.self="backdropClicked">
+  <div tabindex="-1" role="dialog" class="modal" :class="{fade:transition>0}" @click.self="backdropClicked">
     <div ref="dialog" class="modal-dialog" :class="modalSizeClass" role="document">
       <div class="modal-content">
         <div class="modal-header" v-if="header">
@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div ref="backdrop" class="modal-backdrop" :class="{fade:transitionDuration>0}"></div>
+    <div ref="backdrop" class="modal-backdrop" :class="{fade:transition>0}"></div>
   </div>
 </template>
 
@@ -94,7 +94,7 @@
         type: Boolean,
         default: true
       },
-      transitionDuration: {
+      transition: {
         type: Number,
         default: 150
       },
@@ -240,7 +240,7 @@
             }
             this.$emit('show')
             this.timeoutId = 0
-          }, this.transitionDuration)
+          }, this.transition)
         } else {
           removeClass(backdrop, IN)
           removeClass(modal, IN)
@@ -260,7 +260,7 @@
             modal.style.zIndex = ''
             backdrop.style.zIndex = ''
             // z-index fix end
-          }, this.transitionDuration)
+          }, this.transition)
         }
       },
       suppressBackgroundClose: function (event) {

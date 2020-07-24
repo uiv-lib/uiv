@@ -69,7 +69,7 @@
 
 <script>
   import Local from '../../mixins/localeMixin'
-  import Dropdown from '../dropdown/Dropdown.vue'
+  import Dropdown from '../dropdown/Dropdown.js'
   import { onlyUnique } from '../../utils/arrayUtils'
 
   export default {

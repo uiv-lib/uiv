@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import Dropdown from '../dropdown/Dropdown.vue'
+  import Dropdown from '../dropdown/Dropdown.js'
   import { PortalTarget } from 'portal-vue'
   import { isNumber, isFunction, isExist, isString, assign } from '../../utils/objectUtils'
 
