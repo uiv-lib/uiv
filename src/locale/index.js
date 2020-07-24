@@ -6,7 +6,10 @@ let lang = defaultLang
 
 let i18nHandler = function () {
   const vuei18n = Object.getPrototypeOf(this).$t
+  /* istanbul ignore else */
+  /* istanbul ignore next */
   if (isFunction(vuei18n)) {
+    /* istanbul ignore next */
     try {
       return vuei18n.apply(this, arguments)
     } catch (err) {
@@ -20,6 +23,7 @@ export const t = function (path, options) {
   let value
   try {
     value = i18nHandler.apply(this, arguments)
+    /* istanbul ignore next */
     if (isExist(value) && !options.$$locale) {
       return value
     }
@@ -36,6 +40,7 @@ export const t = function (path, options) {
     if (!value) return ''
     current = value
   }
+  /* istanbul ignore next */
   return ''
 }
 
