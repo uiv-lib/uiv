@@ -44,7 +44,7 @@
         type: Number,
         validator: v => v >= 0
       },
-      transitionDuration: {
+      transition: {
         type: Number,
         default: 150
       },
@@ -72,7 +72,7 @@
       },
       tabs (tabs) {
         tabs.forEach((tab, index) => {
-          tab.transition = this.transitionDuration
+          tab.transition = this.transition
           if (index === this.activeIndex) {
             tab.show()
           }
