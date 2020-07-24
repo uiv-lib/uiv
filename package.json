@@ -68,6 +68,7 @@
     "rollup": "^2.21.0",
     "rollup-plugin-filesize": "^9.0.2",
     "rollup-plugin-istanbul": "^2.0.1",
+    "rollup-plugin-strip-code": "^0.2.7",
     "rollup-plugin-uglify": "^6.0.4",
     "rollup-plugin-vue": "^5.1.9",
     "sinon": "^9.0.2",

@@ -91,23 +91,34 @@ export default {
     off(window, EVENTS.TOUCH_END, this.windowClicked)
   },
   methods: {
+    getFocusItem () {
+      const dropdownEl = this.$refs.dropdown
+      /* START.TESTS_ONLY */
+      /* istanbul ignore else */
+      if (typeof window.__karma__ !== 'undefined') {
+        return dropdownEl.querySelector('li > a[focus=true]')
+      }
+      /* END.TESTS_ONLY */
+      /* istanbul ignore next */
+      return dropdownEl.querySelector('li > a:focus')
+    },
     onKeyPress (event) {
       if (this.show) {
         const dropdownEl = this.$refs.dropdown
-        const keyCode = event.keyCode || event.which
+        const keyCode = event.keyCode
         if (keyCode === 27) {
           // esc
           this.toggle(false)
           this.triggerEl && this.triggerEl.focus()
         } else if (keyCode === 13) {
           // enter
-          const currentFocus = dropdownEl.querySelector('li > a:focus')
+          const currentFocus = this.getFocusItem()
           currentFocus && currentFocus.click()
         } else if (keyCode === 38 || keyCode === 40) {
           // up || down
           event.preventDefault()
           event.stopPropagation()
-          const currentFocus = dropdownEl.querySelector('li > a:focus')
+          const currentFocus = this.getFocusItem()
           const items = dropdownEl.querySelectorAll('li:not(.disabled) > a')
           if (!currentFocus) {
             focus(items[0])
@@ -152,6 +163,7 @@ export default {
           for (let i = 0, l = this.notCloseElements.length; i < l; i++) {
             const isTargetInElement = this.notCloseElements[i].contains(target)
             let shouldBreak = isTargetInElement
+            /* istanbul ignore else */
             if (this.appendToBody) {
               const isTargetInDropdown = this.$refs.dropdown.contains(target)
               const isElInElements = this.notCloseElements.indexOf(this.$el) >= 0

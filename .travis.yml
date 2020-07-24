@@ -1,16 +1,12 @@
 language: node_js
 node_js:
   - "lts/*"
-sudo: required
+sudo: false
 dist: trusty
-addons:
-  chrome: stable
 cache:
   yarn: true
   directories:
     - node_modules
-install:
-  - yarn
 script:
   - yarn run lint
   - yarn run test

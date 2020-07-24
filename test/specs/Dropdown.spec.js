@@ -60,6 +60,20 @@ function baseVm () {
 </dropdown></div>`)
 }
 
+function assertKeyboardNav (trigger, dropdown, index, keyCode, called = true) {
+  const $dropdown = $(dropdown)
+  const spy = sinon.spy($dropdown.find('li > a').get(index), 'focus')
+  triggerEvent(trigger, 'keydown', { keyCode: keyCode })
+  if (called) {
+    sinon.assert.called(spy)
+  } else {
+    sinon.assert.notCalled(spy)
+  }
+  $dropdown.find('li > a').removeAttr('focus')
+  $dropdown.find('li > a').eq(index).attr('focus', true)
+  $dropdown.find('li > a').get(index).focus.restore()
+}
+
 describe('Dropdown', () => {
   let vm
 
@@ -101,9 +115,51 @@ describe('Dropdown', () => {
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
-    triggerEvent(trigger, 'keydown', { keyCode: keyCodes.down })
+    assertKeyboardNav(trigger, dropdown, 0, keyCodes.down)
+    assertKeyboardNav(trigger, dropdown, 1, keyCodes.down)
+    assertKeyboardNav(trigger, dropdown, 0, keyCodes.up)
+    assertKeyboardNav(trigger, dropdown, 0, keyCodes.up, false)
+    assertKeyboardNav(trigger, dropdown, 1, keyCodes.down)
+    assertKeyboardNav(trigger, dropdown, 2, keyCodes.down)
+    assertKeyboardNav(trigger, dropdown, 3, keyCodes.down)
+    assertKeyboardNav(trigger, dropdown, 3, keyCodes.down, false)
+  })
+
+  it('should not be able to navigate between items using keyboard up & down when dropdown is not open', async () => {
+    vm = baseVm()
+    const dropdown = vm.$el.querySelector('.dropdown')
+    const trigger = dropdown.querySelector('button')
+    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.className).to.not.contain('open')
+    assertKeyboardNav(trigger, dropdown, 0, keyCodes.down, false)
+  })
+
+  it('should be able to navigate between items and select with keyboard enter', async () => {
+    vm = baseVm()
+    const dropdown = vm.$el.querySelector('.dropdown')
+    const trigger = dropdown.querySelector('button')
+    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.className).to.not.contain('open')
+    triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect($($(dropdown).find('li > a').get(0)).is(':focus')).to.be.true
+    expect(dropdown.className).to.contain('open')
+    assertKeyboardNav(trigger, dropdown, 0, keyCodes.down)
+    const spy = sinon.spy($(dropdown).find('li > a').get(0), 'click')
+    triggerEvent(trigger, 'keydown', { keyCode: keyCodes.enter })
+    sinon.assert.called(spy)
+  })
+
+  it('should ignore other keys when open', async () => {
+    vm = baseVm()
+    const dropdown = vm.$el.querySelector('.dropdown')
+    const trigger = dropdown.querySelector('button')
+    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.className).to.not.contain('open')
+    triggerEvent(trigger, 'click')
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    assertKeyboardNav(trigger, dropdown, 0, keyCodes.down)
+    assertKeyboardNav(trigger, dropdown, 1, keyCodes.left, false)
   })
 
   it('should be able to close dropdown on trigger click', async () => {
@@ -137,28 +193,37 @@ describe('Dropdown', () => {
 
   it('should not close dropdown on self click if not-close-elements contains component ref and with append-to-body', async () => {
     vm = createVm(`<dropdown v-model="show" ref="test" append-to-body :not-close-elements="eles">
-<button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button>
-<template slot="dropdown"><li><a href="#">Action</a></li></template>
+  <button class="btn btn-default dropdown-toggle" type="button">
+    <span>Dropdown 1</span><span class="caret"></span>
+  </button>
+  <template slot="dropdown">
+    <li ref="li1"><a href="#">Action</a></li>
+    <li ref="li2"><a href="#">Action2</a></li>
+  </template>
 </dropdown>`, {
       show: true,
       eles: []
     }, {
       mounted () {
-        this.eles.push(this.$el)
+        this.eles.push(this.$refs.li1)
       }
     })
     await vm.$nextTick()
     const dropdown = vm.$el
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
     expect(dropdown.className).to.contain('open')
-    await vm.$nextTick()
-    expect(dropdown.className).to.contain('open')
     // Simulate a window click
-    vm.$refs.test.windowClicked({ target: vm.$el })
+    vm.$refs.test.windowClicked({ target: vm.$refs.li1 })
     await vm.$nextTick()
     expect(dropdown.className).to.contain('open')
     // Simulate a window click
     vm.$refs.test.windowClicked({ target: document.body })
+    await vm.$nextTick()
+    expect(dropdown.className).to.not.contain('open')
+    vm.show = true
+    await vm.$nextTick()
+    // Simulate a window click
+    vm.$refs.test.windowClicked({ target: vm.$refs.li2 })
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
   })
