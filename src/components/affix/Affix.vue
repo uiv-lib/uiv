@@ -57,12 +57,10 @@
         let fix = scroll.top > element.top - this.offset
         if (this.affixed !== fix) {
           this.affixed = fix
-          if (this.affixed) {
-            this.$emit('affix')
-            this.$nextTick(() => {
-              this.$emit('affixed')
-            })
-          }
+          this.$emit(this.affixed ? 'affix' : 'unfix')
+          this.$nextTick(() => {
+            this.$emit(this.affixed ? 'affixed' : 'unfixed')
+          })
         }
       }
     }
