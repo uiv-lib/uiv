@@ -8,7 +8,7 @@ describe('MultiSelect', () => {
     destroyVm(vm)
   })
 
-  it('should be able to use costom placeholder', async () => {
+  it('should be able to use custom placeholder', async () => {
     vm = createVm(`<div>
 <multi-select v-model="selected" :options="options" placeholder="someplaceholder..."/>
 </div>`, {
