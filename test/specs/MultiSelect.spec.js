@@ -491,6 +491,22 @@ describe('MultiSelect', () => {
     expect(dropdown.querySelectorAll('li').length).to.equal(5 + 1)
   })
 
+  it('should be ok if value not present in options', async () => {
+    vm = createVm(`<div>
+<multi-select v-model="selected" :options="options"/>
+</div>`, {
+      selected: [5],
+      options: [
+        { value: 1, label: 'Option1' },
+        { value: 2, label: 'Option2' },
+        { value: 3, label: 'Option3' },
+        { value: 4, label: 'Option4' }
+      ]
+    })
+    await vm.$nextTick()
+    expect(vm.$el.querySelectorAll('.dropdown-toggle > div')[1].textContent).to.equal('5')
+  })
+
   it('should be able use custom filter function', async () => {
     vm = createVm('<multi-select v-model="selected" :options="options" filterable :filter-function="filterFunction"/>', {
       selected: [],
