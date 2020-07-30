@@ -35,7 +35,8 @@ module.exports = {
         'test/**/*.js',
         'test/**/*.json',
         'node_modules/**/*.js',
-        'node_modules/**/*.mjs'
+        'node_modules/**/*.mjs',
+        'src/**/*.vue'
       ]
     })
   ],
@@ -46,7 +47,7 @@ module.exports = {
   }
   // input: 'test/index.js',
   // output: {
-  //   format: 'cjs',
+  //   format: 'es',
   //   file: path.join(__dirname, '..', 'dist', `${name}.test.js`),
   //   sourcemap: true
   // }
