@@ -8,6 +8,18 @@ describe('MultiSelect', () => {
     destroyVm(vm)
   })
 
+  it('should be able to render with no options', async () => {
+    vm = createVm(`<div><multi-select v-model="selected" :options="options"/></div>`, {
+      selected: [],
+      options: []
+    })
+    await vm.$nextTick()
+    const trigger = vm.$el.querySelector('.dropdown-toggle')
+    trigger.click()
+    await vm.$nextTick()
+    expect(vm.$el.querySelectorAll('li > a').length).to.equal(0)
+  })
+
   it('should be able to use custom placeholder', async () => {
     vm = createVm(`<div>
 <multi-select v-model="selected" :options="options" placeholder="someplaceholder..."/>
