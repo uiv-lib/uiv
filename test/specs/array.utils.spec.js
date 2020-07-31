@@ -1,6 +1,6 @@
 import { spliceIfExist } from '../../src/utils/array.utils'
 
-describe('arrayUtils', () => {
+describe('array.utils', () => {
   describe('#spliceIfExist', () => {
     it('should be able to handle non array object', () => {
       const test = null

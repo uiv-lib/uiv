@@ -1,6 +1,6 @@
 import * as utils from '../../src/utils/http.utils'
 
-describe('httpUtils', () => {
+describe('http.utils', () => {
   let xhr, requests, server
 
   before(function () {

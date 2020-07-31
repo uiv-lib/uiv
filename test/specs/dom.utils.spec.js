@@ -1,7 +1,7 @@
 import * as utils from '../../src/utils/dom.utils'
 import $ from 'jquery'
 
-describe('domUtils', () => {
+describe('dom.utils', () => {
   describe('#removeFromDom', () => {
     it('should be able to handle `removeFromDom` with null', () => {
       utils.removeFromDom(null)
