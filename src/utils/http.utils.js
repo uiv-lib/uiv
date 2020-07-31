@@ -1,4 +1,4 @@
-import {isFunction, isExist} from './objectUtils'
+import {isFunction, isExist} from './object.utils'
 
 export function getRequest (url) {
   let request = new window.XMLHttpRequest()

@@ -1,5 +1,5 @@
-import { setDropdownPosition, on, off, EVENTS, focus } from '../../utils/domUtils'
-import { isBoolean } from '../../utils/objectUtils'
+import { setDropdownPosition, on, off, EVENTS, focus } from '../../utils/dom.utils'
+import { isBoolean } from '../../utils/object.utils'
 
 const DEFAULT_TAG = 'div'
 

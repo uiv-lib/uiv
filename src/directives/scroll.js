@@ -1,5 +1,5 @@
-import {EVENTS, on, off} from '../utils/domUtils'
-import {isFunction} from '../utils/objectUtils'
+import {EVENTS, on, off} from '../utils/dom.utils'
+import {isFunction} from '../utils/object.utils'
 
 const HANDLER = '_uiv_scroll_handler'
 const events = [EVENTS.RESIZE, EVENTS.SCROLL]

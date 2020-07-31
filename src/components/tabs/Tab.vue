@@ -8,8 +8,8 @@
 </template>
 
 <script>
-  import {spliceIfExist} from '../../utils/arrayUtils'
-  import {addClass, removeClass} from '../../utils/domUtils'
+  import {spliceIfExist} from '../../utils/array.utils'
+  import {addClass, removeClass} from '../../utils/dom.utils'
   import {Portal} from 'portal-vue'
 
   const ACTIVE_CLASS = 'active'

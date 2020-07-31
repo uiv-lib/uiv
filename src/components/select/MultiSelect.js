@@ -1,6 +1,6 @@
-import Local from '../../mixins/localeMixin'
+import Local from '../../mixins/locale.mixin'
 import Dropdown from '../dropdown/Dropdown.js'
-import { onlyUnique } from '../../utils/arrayUtils'
+import { onlyUnique } from '../../utils/array.utils'
 
 export default {
   mixins: [Local],

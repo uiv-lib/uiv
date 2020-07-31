@@ -21,8 +21,8 @@
 </template>
 
 <script>
-  import {addClass, removeClass} from '../../utils/domUtils'
-  import {isString} from '../../utils/objectUtils'
+  import {addClass, removeClass} from '../../utils/dom.utils'
+  import {isString} from '../../utils/object.utils'
   import Alert from '../../components/alert/Alert.vue'
   import {TYPES, PLACEMENTS} from './constants'
 

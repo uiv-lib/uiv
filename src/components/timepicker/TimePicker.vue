@@ -83,9 +83,9 @@
 </template>
 
 <script>
-  import Local from '../../mixins/localeMixin'
+  import Local from '../../mixins/locale.mixin'
   import Btn from './../button/Btn'
-  import {pad} from '../../utils/stringUtils'
+  import {pad} from '../../utils/string.utils'
 
   const maxHours = 23
   const zero = 0

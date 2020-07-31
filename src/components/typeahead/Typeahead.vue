@@ -19,15 +19,15 @@
 </template>
 
 <script>
-  import {getRequest} from '../../utils/httpUtils'
-  import {isString} from '../../utils/objectUtils'
+  import {getRequest} from '../../utils/http.utils'
+  import {isString} from '../../utils/object.utils'
   import {
     isElement,
     on,
     off,
     ensureElementMatchesFunction,
     EVENTS
-  } from '../../utils/domUtils'
+  } from '../../utils/dom.utils'
   import Dropdown from '../dropdown/Dropdown.js'
 
   export default {

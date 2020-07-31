@@ -59,13 +59,13 @@
 </template>
 
 <script>
-  import Locale from '../../mixins/localeMixin'
+  import Locale from '../../mixins/locale.mixin'
   import DateView from './DateView.vue'
   import MonthView from './MonthView.vue'
   import YearView from './YearView.vue'
   import Btn from './../button/Btn'
-  import {stringify, convertDateToUTC} from '../../utils/dateUtils'
-  import {isNumber} from '../../utils/objectUtils'
+  import {stringify, convertDateToUTC} from '../../utils/date.utils'
+  import {isNumber} from '../../utils/object.utils'
 
   export default {
     mixins: [Locale],

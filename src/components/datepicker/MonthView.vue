@@ -37,9 +37,9 @@
 </template>
 
 <script>
-  import Locale from '../../mixins/localeMixin'
+  import Locale from '../../mixins/locale.mixin'
   import Btn from './../button/Btn'
-  import {isExist} from '../../utils/objectUtils'
+  import {isExist} from '../../utils/object.utils'
 
   export default {
     components: {Btn},

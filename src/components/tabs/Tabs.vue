@@ -31,7 +31,7 @@
 <script>
   import Dropdown from '../dropdown/Dropdown.js'
   import { PortalTarget } from 'portal-vue'
-  import { isNumber, isFunction, isExist, isString, assign } from '../../utils/objectUtils'
+  import { isNumber, isFunction, isExist, isString, assign } from '../../utils/object.utils'
 
   const BEFORE_CHANGE_EVENT = 'before-change'
 

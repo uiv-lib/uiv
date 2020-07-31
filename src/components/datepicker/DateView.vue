@@ -49,10 +49,10 @@
 </template>
 
 <script>
-  import Locale from '../../mixins/localeMixin'
+  import Locale from '../../mixins/locale.mixin'
   import Btn from './../button/Btn'
-  import {daysInMonth, getWeekNumber} from '../../utils/dateUtils'
-  import {isExist, isFunction} from '../../utils/objectUtils'
+  import {daysInMonth, getWeekNumber} from '../../utils/date.utils'
+  import {isExist, isFunction} from '../../utils/object.utils'
 
   export default {
     mixins: [Locale],

@@ -1,5 +1,5 @@
 // https://github.com/ElemeFE/element/blob/dev/src/locale/index.js
-import { isFunction, isExist } from '../utils/objectUtils'
+import { isFunction, isExist } from '../utils/object.utils'
 import defaultLang from './lang/en-US'
 
 let lang = defaultLang

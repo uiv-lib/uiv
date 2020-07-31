@@ -1,6 +1,6 @@
 <script>
-  import {TRIGGERS} from '../../utils/domUtils'
-  import popupMixin from '../../mixins/popupMixin'
+  import {TRIGGERS} from '../../utils/dom.utils'
+  import popupMixin from '../../mixins/popup.mixin'
 
   export default {
     mixins: [popupMixin],

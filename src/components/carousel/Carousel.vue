@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import {isExist} from '../../utils/objectUtils'
+  import {isExist} from '../../utils/object.utils'
 
   export default {
     props: {

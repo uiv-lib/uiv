@@ -1,4 +1,4 @@
-import { spliceIfExist } from '../../src/utils/arrayUtils'
+import { spliceIfExist } from '../../src/utils/array.utils'
 
 describe('arrayUtils', () => {
   describe('#spliceIfExist', () => {

@@ -1,4 +1,4 @@
-import {pad} from './stringUtils'
+import {pad} from './string.utils'
 
 const monthNames = [
   'January',

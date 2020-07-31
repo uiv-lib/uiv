@@ -39,7 +39,7 @@
 </template>
 
 <script>
-  import {range} from '../../utils/arrayUtils'
+  import {range} from '../../utils/array.utils'
 
   export default {
     props: {

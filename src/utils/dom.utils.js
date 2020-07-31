@@ -1,4 +1,4 @@
-import {isExist, isString, isFunction} from './objectUtils'
+import {isExist, isString, isFunction} from './object.utils'
 
 export const EVENTS = {
   MOUSE_ENTER: 'mouseenter',

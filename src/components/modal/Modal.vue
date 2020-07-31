@@ -39,7 +39,7 @@
 </template>
 
 <script>
-  import Local from '../../mixins/localeMixin'
+  import Local from '../../mixins/locale.mixin'
   import Btn from './../button/Btn'
   import {
     EVENTS,
@@ -50,8 +50,8 @@
     addClass,
     removeClass,
     getComputedStyle
-  } from '../../utils/domUtils'
-  import { isFunction, isPromiseSupported } from '../../utils/objectUtils'
+  } from '../../utils/dom.utils'
+  import { isFunction, isPromiseSupported } from '../../utils/object.utils'
 
   const MODAL_BACKDROP = 'modal-backdrop'
   const IN = 'in'

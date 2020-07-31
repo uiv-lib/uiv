@@ -1,5 +1,5 @@
 import { triggerEvent, sleep, triggerKey, createVm, destroyVm, keyCodes } from '../utils'
-import { getRequest } from '../../src/utils/httpUtils'
+import { getRequest } from '../../src/utils/http.utils'
 import states from '../assets/data/states.json'
 
 function baseVm () {
