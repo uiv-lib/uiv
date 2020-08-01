@@ -1,4 +1,5 @@
 import './setup'
+import './specs/object.utils.spec'
 import './specs/array.utils.spec'
 import './specs/dom.utils.spec'
 import './specs/http.utils.spec'
