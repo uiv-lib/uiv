@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import {getRequest} from '../../utils/http.utils'
+  import {request} from '../../utils/http.utils'
   import {isString} from '../../utils/object.utils'
   import {
     isElement,
@@ -214,7 +214,7 @@
         } else if (this.asyncSrc) {
           this.timeoutID = setTimeout(() => {
             this.$emit('loading')
-            getRequest(this.asyncSrc + encodeURIComponent(value))
+            request(this.asyncSrc + encodeURIComponent(value))
               .then(data => {
                 if (this.inputEl.matches(':focus')) {
                   this.prepareItems(this.asyncKey ? data[this.asyncKey] : data, true)

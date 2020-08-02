@@ -1,5 +1,5 @@
 import { triggerEvent, sleep, triggerKey, createVm, destroyVm, keyCodes } from '../utils'
-import { getRequest } from '../../src/utils/http.utils'
+import { request } from '../../src/utils/http.utils'
 import states from '../assets/data/states.json'
 
 function baseVm () {
@@ -591,7 +591,7 @@ describe('Typeahead', () => {
     }, {
       methods: {
         queryFunction (query, done) {
-          getRequest('https://api.github.com/search/users?q=' + query)
+          request('https://api.github.com/search/users?q=' + query)
             .then(data => {
               done(data.items)
             })
