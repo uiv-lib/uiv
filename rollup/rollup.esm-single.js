@@ -27,14 +27,14 @@ const files = [
   'components/navbar/NavbarNav.js',
   'components/navbar/NavbarText.js',
   'components/pagination/Pagination.vue',
-  'components/popover/Popover.vue',
+  'components/popover/Popover.js',
   'components/progressbar/ProgressBar.js',
   'components/progressbar/ProgressBarStack.js',
   'components/select/MultiSelect.vue',
   'components/tabs/Tab.vue',
   'components/tabs/Tabs.vue',
   'components/timepicker/TimePicker.vue',
-  'components/tooltip/Tooltip.vue',
+  'components/tooltip/Tooltip.js',
   'components/typeahead/Typeahead.vue'
 ]
 

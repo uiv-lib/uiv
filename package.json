@@ -9,13 +9,13 @@
   "jsdelivr": "dist/uiv.min.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wxsms/uiv.git"
+    "url": "git+https://github.com/uiv-lib/uiv.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wxsms/uiv/issues"
+    "url": "https://github.com/uiv-lib/uiv/issues"
   },
-  "homepage": "https://github.com/wxsms/uiv",
+  "homepage": "https://uiv.wxsm.space",
   "scripts": {
     "dev": "node build/dev-server.js",
     "dist": "npm run dist:esm && npm run dist:esm-single && npm run dist:cjs && npm run dist:umd",
