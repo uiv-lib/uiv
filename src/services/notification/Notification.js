@@ -1,8 +1,8 @@
 import { removeFromDom } from '../../utils/dom.utils'
 import { spliceIfExist } from '../../utils/array.utils'
 import { isFunction, isExist, isString, isPromiseSupported, assign } from '../../utils/object.utils'
-import Notification from './Notification.vue'
-import { PLACEMENTS } from './constants'
+import Notification from '../../components/notification/Notification.vue'
+import { PLACEMENTS } from '../../constants/notification.constants'
 import Vue from 'vue'
 
 const queues = {
