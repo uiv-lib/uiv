@@ -3,45 +3,50 @@
 // we are also using it with karma-webpack
 //   https://github.com/webpack/karma-webpack
 const path = require('path')
-const webpackConfig = require('../build/webpack.test.conf')
 
 module.exports = function (config) {
+  process.env.CHROME_BIN = require('puppeteer').executablePath()
+
   config.set({
     // to run in additional browsers:
     // 1. install corresponding karma launcher
     //    http://karma-runner.github.io/0.13/config/browsers.html
     // 2. add it to the `browsers` array below.
-    browsers: ['PhantomJS_Desktop'],
+    browsers: ['ChromeHeadlessDesktop'],
     customLaunchers: {
-      'PhantomJS_Desktop': {
-        base: 'PhantomJS',
-        options: {
-          viewportSize: {
-            width: 1920,
-            height: 1080
-          }
-        }
+      'ChromeHeadlessDesktop': {
+        base: 'ChromeHeadless',
+        flags: ['--window-size=1920,1080']
+        // flags: ['--window-size=1920,1080', '--no-sandbox']
       }
     },
+    // browsers: ['Chrome'],
     frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage-istanbul'],
-    files: ['./index.js'],
-    singleRun: true,
+    files: [
+      /**
+       * Make sure to disable Karma’s file watcher
+       * because the preprocessor will use its own.
+       */
+      { pattern: './index.js', watched: false },
+      '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+    ],
     preprocessors: {
-      './index.js': ['webpack', 'sourcemap']
+      './index.js': ['rollup']
     },
-    webpack: webpackConfig,
-    webpackMiddleware: {
-      noInfo: true
-    },
+    rollupPreprocessor: require('../rollup/rollup.test'),
+    singleRun: true,
     coverageIstanbulReporter: {
-      reports: ['lcov', 'text-summary'],
+      reports: ['html', 'lcovonly', 'text-summary'],
       dir: path.join(__dirname, 'coverage'),
-      fixWebpackSourcePaths: true,
+      combineBrowserReports: true,
       skipFilesWithNoCoverage: true,
       'report-config': {
-        lcov: {
+        lcovonly: {
           subdir: '.'
+        },
+        html: {
+          subdir: './html'
         }
       }
     },

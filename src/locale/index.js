@@ -1,27 +1,34 @@
 // https://github.com/ElemeFE/element/blob/dev/src/locale/index.js
-import {isFunction, isExist} from '../utils/objectUtils'
+import { isFunction, isExist } from '../utils/object.utils'
 import defaultLang from './lang/en-US'
 
 let lang = defaultLang
 
 let i18nHandler = function () {
   const vuei18n = Object.getPrototypeOf(this).$t
+  /* istanbul ignore else */
+  /* istanbul ignore next */
   if (isFunction(vuei18n)) {
+    /* istanbul ignore next */
     try {
       return vuei18n.apply(this, arguments)
     } catch (err) {
-      //  vuei18n.apply doesn't work with 7.3.3 of vue-i18n
-      return this.$t(...arguments)
+      return this.$t.apply(this, arguments)
     }
   }
 }
 
 export const t = function (path, options) {
   options = options || {}
-
-  let value = i18nHandler.apply(this, arguments)
-  if (isExist(value) && !options.$$locale) {
-    return value
+  let value
+  try {
+    value = i18nHandler.apply(this, arguments)
+    /* istanbul ignore next */
+    if (isExist(value) && !options.$$locale) {
+      return value
+    }
+  } catch (e) {
+    // ignore
   }
   const array = path.split('.')
   let current = options.$$locale || lang
@@ -33,6 +40,7 @@ export const t = function (path, options) {
     if (!value) return ''
     current = value
   }
+  /* istanbul ignore next */
   return ''
 }
 
@@ -44,4 +52,4 @@ export const i18n = function (fn) {
   i18nHandler = fn || i18nHandler
 }
 
-export default {use, t, i18n}
+export default { use, t, i18n }

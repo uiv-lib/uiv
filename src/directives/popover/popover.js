@@ -1,4 +1,4 @@
-import Popover from '../../components/popover/Popover.vue'
+import Popover from '../../components/popover/Popover.js'
 import Vue from 'vue'
 
 const INSTANCE = '_uiv_popover_instance'
@@ -52,4 +52,4 @@ const update = (el, binding) => {
   }
 }
 
-export default {bind, unbind, update}
+export default { bind, unbind, update }

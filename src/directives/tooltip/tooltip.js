@@ -1,4 +1,4 @@
-import Tooltip from '../../components/tooltip/Tooltip.vue'
+import Tooltip from '../../components/tooltip/Tooltip.js'
 import Vue from 'vue'
 
 const INSTANCE = '_uiv_tooltip_instance'

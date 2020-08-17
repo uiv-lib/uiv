@@ -1,5 +1,5 @@
 import {mergeData} from 'vue-functional-data-merge'
-import linkMixin from '../../mixins/linkMixin'
+import linkMixin from '../../mixins/link.mixin'
 
 export default {
   functional: true,
