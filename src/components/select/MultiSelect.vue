@@ -52,12 +52,12 @@
             @keydown.prevent.stop.enter="selectOption"
             :class="itemClasses(_item)"
             @click.stop="toggle(_item)"
-            v-tooltip="generateTooltip(_item)"
             @mouseenter="currentActive=-1"
             style="outline: 0">
-            <a role="button" v-if="customOptionComponentKey" style="outline: 0">
-              <component :item="_item"
-                         :is="_item[customOptionComponentKey]"/>
+            <a role="button" v-if="customOptionsVisible" style="outline: 0">
+              <slot name="custom-option"
+                    :item="_item">
+              </slot>
               <span v-if="selectedIcon && isItemSelected(_item)" :class="selectedIconClasses"></span>
             </a>
             <a role="button" v-else-if="isItemSelected(_item)" style="outline: 0">
@@ -143,18 +143,6 @@
       fireEvent: {
         type: Boolean,
         default: false
-      },
-      tooltipEnabled: {
-        type: Boolean,
-        default: false
-      },
-      tooltipKey: {
-        type: String,
-        default: null
-      },
-      customOptionComponentKey: {
-        type: String,
-        default: null
       }
     },
     data () {
@@ -242,6 +230,9 @@
         } else {
           return this.placeholder || this.t('uiv.multiSelect.placeholder')
         }
+      },
+      customOptionsVisible () {
+        return !!this.$slots['custom-option'] || !!this.$scopedSlots['custom-option']
       }
     },
     watch: {
@@ -328,13 +319,6 @@
         if (event.key === 'Enter') {
           this.$emit('search', this.filterInput)
         }
-      },
-      generateTooltip (_item) {
-        if (!this.tooltipEnabled) {
-          return null
-        }
-        const key = this.tooltipKey || this.labelKey
-        return _item[key] || null
       }
     }
   }
