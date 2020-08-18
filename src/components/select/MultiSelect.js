@@ -62,7 +62,11 @@ export default {
       type: String,
       default: 'glyphicon glyphicon-ok'
     },
-    itemSelectedClass: String
+    itemSelectedClass: String,
+    fireEvent: {
+      type: Boolean,
+      default: false
+    }
   },
   data () {
     return {
@@ -141,6 +145,9 @@ export default {
       } else {
         return this.placeholder || this.t('uiv.multiSelect.placeholder')
       }
+    },
+    customOptionsVisible () {
+      return !!this.$slots['custom-option'] || !!this.$scopedSlots['custom-option']
     }
   },
   watch: {
@@ -218,6 +225,14 @@ export default {
         } else {
           this.$emit('limit-exceed')
         }
+      }
+    },
+    searchClicked (event) {
+      if (!this.fireEvent) {
+        return
+      }
+      if (event.key === 'Enter') {
+        this.$emit('search', this.filterInput)
       }
     }
   }
