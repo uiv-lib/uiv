@@ -1,6 +1,6 @@
 {
   "name": "uiv",
-  "version": "0.36.0",
+  "version": "0.36.1",
   "description": "Bootstrap 3 components implemented by Vue 2.",
   "author": "wxsm",
   "main": "dist/uiv.common.js",
