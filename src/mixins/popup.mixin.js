@@ -10,7 +10,8 @@ import {
   hasClass,
   setTooltipPosition,
   isElement,
-  addClass, getComputedStyle, getOpenModalNum
+  addClass,
+  getOpenModalNum
 } from '../utils/dom.utils'
 import { isString, isFunction } from '../utils/object.utils'
 
