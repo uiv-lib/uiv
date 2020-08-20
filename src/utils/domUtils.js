@@ -375,3 +375,13 @@ export function focus (el) {
   el.getAttribute('tabindex') ? null : el.setAttribute('tabindex', '-1')
   el.focus()
 }
+
+const MODAL_BACKDROP = 'modal-backdrop'
+
+export function getOpenModals () {
+  return document.querySelectorAll(`.${MODAL_BACKDROP}`)
+}
+
+export function getOpenModalNum () {
+  return getOpenModals().length
+}
