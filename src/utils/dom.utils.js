@@ -1,4 +1,4 @@
-import {isExist, isString, isFunction} from './object.utils'
+import { isExist, isString, isFunction } from './object.utils'
 
 export const EVENTS = {
   MOUSE_ENTER: 'mouseenter',
@@ -49,7 +49,7 @@ export function getComputedStyle (el) {
 export function getViewportSize () {
   let width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
   let height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-  return {width, height}
+  return { width, height }
 }
 
 let scrollbarWidth = null
@@ -374,4 +374,14 @@ export function focus (el) {
   }
   el.getAttribute('tabindex') ? null : el.setAttribute('tabindex', '-1')
   el.focus()
+}
+
+const MODAL_BACKDROP = 'modal-backdrop'
+
+export function getOpenModals () {
+  return document.querySelectorAll(`.${MODAL_BACKDROP}`)
+}
+
+export function getOpenModalNum () {
+  return getOpenModals().length
 }

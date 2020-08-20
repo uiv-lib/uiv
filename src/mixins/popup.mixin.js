@@ -10,9 +10,9 @@ import {
   hasClass,
   setTooltipPosition,
   isElement,
-  addClass
+  addClass, getComputedStyle, getOpenModalNum
 } from '../utils/dom.utils'
-import {isString, isFunction} from '../utils/object.utils'
+import { isString, isFunction } from '../utils/object.utils'
 
 const SHOW_CLASS = 'in'
 
@@ -230,6 +230,12 @@ export default {
           this.showTimeoutId = 0
           const popup = this.$refs.popup
           if (popup) {
+            const alreadyOpenModalNum = getOpenModalNum()
+            if (alreadyOpenModalNum > 1) {
+              const defaultZ = this.name === 'popover' ? 1060 : 1070
+              const offset = (alreadyOpenModalNum - 1) * 20
+              popup.style.zIndex = `${defaultZ + offset}`
+            }
             // add to dom
             if (!popUpAppendedContainer) {
               popup.className = `${this.name} ${this.placement} ${this.customClass ? this.customClass : ''} fade`

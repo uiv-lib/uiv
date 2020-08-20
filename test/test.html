@@ -11,12 +11,14 @@
 <div id="app">
   <div>
     <Modal v-if="if_condition" v-model="v_model_a">hello!
-      <Popover trigger="hover">
+      <span @click="v_model_b=true">Click this for modal 2 </span>
+    </Modal>
+    <Modal v-if="if_condition" v-model="v_model_b">
+      <Popover trigger="click">
         <span>Click this for more popover stuff</span>
         <div slot="popover">Popover result!</div>
       </Popover>
     </Modal>
-    <Modal v-if="if_condition" v-model="v_model_b">hello!</Modal>
     <button @click="open_start_modal">Open Modal</button>
   </div>
 </div>

@@ -8,14 +8,13 @@ import {
   toggleBodyOverflow,
   addClass,
   removeClass,
-  getComputedStyle
+  getComputedStyle,
+  getOpenModals,
+  getOpenModalNum
 } from '../../utils/dom.utils'
 import { isFunction, isPromiseSupported } from '../../utils/object.utils'
 
-const MODAL_BACKDROP = 'modal-backdrop'
 const IN = 'in'
-const getOpenModals = () => document.querySelectorAll(`.${MODAL_BACKDROP}`)
-const getOpenModalNum = () => getOpenModals().length
 
 export default {
   mixins: [Local],
