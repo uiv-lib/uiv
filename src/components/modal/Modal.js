@@ -169,37 +169,43 @@ export default {
       const backdrop = this.$refs.backdrop
       clearTimeout(this.timeoutId)
       if (show) {
-        const alreadyOpenModalNum = getOpenModalNum()
-        document.body.appendChild(backdrop)
-        if (this.appendToBody) {
-          document.body.appendChild(modal)
-        }
-        modal.style.display = this.displayStyle
-        modal.scrollTop = 0
-        backdrop.offsetHeight // force repaint
-        toggleBodyOverflow(false)
-        addClass(backdrop, IN)
-        addClass(modal, IN)
-        // fix z-index for nested modals
-        // no need to calculate if no modal is already open
-        if (alreadyOpenModalNum > 0) {
-          const modalBaseZ = parseInt(getComputedStyle(modal).zIndex) || 1050 // 1050 is default modal z-Index
-          const backdropBaseZ = parseInt(getComputedStyle(backdrop).zIndex) || 1040 // 1040 is default backdrop z-Index
-          const offset = alreadyOpenModalNum * this.zOffset
-          modal.style.zIndex = `${modalBaseZ + offset}`
-          backdrop.style.zIndex = `${backdropBaseZ + offset}`
-        }
-        // z-index fix end
-        this.timeoutId = setTimeout(() => {
-          if (this.autoFocus) {
-            let btn = this.$el.querySelector('[data-action="auto-focus"]')
-            if (btn) {
-              btn.focus()
-            }
+        // If two modals share the same v-if condition the calculated z-index is incorrect,
+        // resulting in popover misbehaviour.
+        // solved by adding a nextTick.
+        // https://github.com/uiv-lib/uiv/issues/342
+        this.$nextTick(() => {
+          const alreadyOpenModalNum = getOpenModalNum()
+          document.body.appendChild(backdrop)
+          if (this.appendToBody) {
+            document.body.appendChild(modal)
           }
-          this.$emit('show')
-          this.timeoutId = 0
-        }, this.transition)
+          modal.style.display = this.displayStyle
+          modal.scrollTop = 0
+          backdrop.offsetHeight // force repaint
+          toggleBodyOverflow(false)
+          addClass(backdrop, IN)
+          addClass(modal, IN)
+          // fix z-index for nested modals
+          // no need to calculate if no modal is already open
+          if (alreadyOpenModalNum > 0) {
+            const modalBaseZ = parseInt(getComputedStyle(modal).zIndex) || 1050 // 1050 is default modal z-Index
+            const backdropBaseZ = parseInt(getComputedStyle(backdrop).zIndex) || 1040 // 1040 is default backdrop z-Index
+            const offset = alreadyOpenModalNum * this.zOffset
+            modal.style.zIndex = `${modalBaseZ + offset}`
+            backdrop.style.zIndex = `${backdropBaseZ + offset}`
+          }
+          // z-index fix end
+          this.timeoutId = setTimeout(() => {
+            if (this.autoFocus) {
+              let btn = this.$el.querySelector('[data-action="auto-focus"]')
+              if (btn) {
+                btn.focus()
+              }
+            }
+            this.$emit('show')
+            this.timeoutId = 0
+          }, this.transition)
+        })
       } else {
         removeClass(backdrop, IN)
         removeClass(modal, IN)
