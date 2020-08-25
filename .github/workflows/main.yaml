@@ -25,24 +25,17 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      # install
       - name: Install
         run: yarn --frozen-lockfile
-
-  test:
-    needs:
-      - install
-    runs-on: ubuntu-latest
-    steps:
+      # lint
       - name: Lint
         run: npm run lint
+      # unitest
       - name: Unit tests
         uses: ianwalter/puppeteer-container@v4.0.0
         with:
           args: npm run test
-  dist:
-    needs:
-      - install
-    runs-on: ubuntu-latest
-    steps:
+      # build dist
       - name: Build dist
         run: npm run dist

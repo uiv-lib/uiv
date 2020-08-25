@@ -26,10 +26,12 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Build dist
         run: npm run dist
+      # npm
       - name: Publish NPM
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # gh release
       - name: Create Release
         uses: actions/create-release@v1
         env:
