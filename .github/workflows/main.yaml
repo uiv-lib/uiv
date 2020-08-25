@@ -1,4 +1,4 @@
-name: CI
+name: CI_TEST
 
 on:
   push:
@@ -39,3 +39,6 @@ jobs:
       # build dist
       - name: Build dist
         run: npm run dist
+      # coveralls
+      - name: Coveralls
+        run: npm run coveralls
