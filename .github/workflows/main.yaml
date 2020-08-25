@@ -1,4 +1,4 @@
-name: CI_TEST
+name: CI
 
 on:
   push:
@@ -9,36 +9,36 @@ on:
       - dev
 
 jobs:
-  install:
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      # install
+      - uses: actions/checkout@v2
+      - uses: c-hive/gha-yarn-cache@v1
       - name: Install
         run: yarn --frozen-lockfile
-      # lint
       - name: Lint
         run: npm run lint
-      # unitest
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: c-hive/gha-yarn-cache@v1
+      - name: Install
+        run: yarn --frozen-lockfile
       - name: Unit tests
         uses: ianwalter/puppeteer-container@v4.0.0
         with:
           args: npm run test
-      # build dist
-      - name: Build dist
-        run: npm run dist
-      # coveralls
       - name: Coveralls
         run: npm run coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+  dist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: c-hive/gha-yarn-cache@v1
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Build dist
+        run: npm run dist
