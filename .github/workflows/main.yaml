@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install
+        run: yarn --frozen-lockfile
+
+  test:
+    needs:
+      - install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lint
+        run: npm run lint
+      - name: Unit tests
+        uses: ianwalter/puppeteer-container@v4.0.0
+        with:
+          args: npm run test
+  dist:
+    needs:
+      - install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build dist
+        run: npm run dist
