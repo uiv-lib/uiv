@@ -30,9 +30,10 @@ jobs:
         with:
           args: npm run test
       - name: Coveralls
-        run: npm run coveralls
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.ACCESS_TOKEN }}
+          path-to-lcov: ./test/coverage/lcov.info
   dist:
     runs-on: ubuntu-latest
     steps:
