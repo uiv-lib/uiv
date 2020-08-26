@@ -14,8 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: c-hive/gha-yarn-cache@v1
-      - name: Install
-        run: yarn --frozen-lockfile
+      - run: yarn --frozen-lockfile
       - name: Lint
         run: npm run lint
   test:
@@ -23,8 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: c-hive/gha-yarn-cache@v1
-      - name: Install
-        run: yarn --frozen-lockfile
+      - run: yarn --frozen-lockfile
       - name: Unit tests
         uses: ianwalter/puppeteer-container@v4.0.0
         with:
@@ -39,7 +37,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: c-hive/gha-yarn-cache@v1
-      - name: Install
-        run: yarn --frozen-lockfile
+      - run: yarn --frozen-lockfile
       - name: Build dist
         run: npm run dist

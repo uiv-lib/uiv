@@ -15,8 +15,7 @@ jobs:
         with:
           node-version: '12.x'
           registry-url: 'https://registry.npmjs.org'
-      - name: Install
-        run: yarn --frozen-lockfile
+      - run: yarn --frozen-lockfile
       - name: Build dist
         run: npm run dist
       - name: Publish NPM
@@ -28,8 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: c-hive/gha-yarn-cache@v1
-      - name: Install
-        run: yarn --frozen-lockfile
+      - run: yarn --frozen-lockfile
       - name: Build dist
         run: npm run dist
       - name: Create Release
