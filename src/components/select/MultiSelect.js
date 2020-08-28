@@ -1,10 +1,10 @@
 import Local from '../../mixins/locale.mixin'
 import Dropdown from '../dropdown/Dropdown.js'
-import { onlyUnique } from '../../utils/array.utils'
+import {onlyUnique} from '../../utils/array.utils'
 
 export default {
   mixins: [Local],
-  components: { Dropdown },
+  components: {Dropdown},
   props: {
     value: {
       type: Array,
@@ -62,11 +62,7 @@ export default {
       type: String,
       default: 'glyphicon glyphicon-ok'
     },
-    itemSelectedClass: String,
-    fireEvent: {
-      type: Boolean,
-      default: false
-    }
+    itemSelectedClass: String
   },
   data () {
     return {
@@ -227,13 +223,8 @@ export default {
         }
       }
     },
-    searchClicked (event) {
-      if (!this.fireEvent) {
-        return
-      }
-      if (event.key === 'Enter') {
-        this.$emit('search', this.filterInput)
-      }
+    searchClicked () {
+      this.$emit('search', this.filterInput)
     }
   }
 }

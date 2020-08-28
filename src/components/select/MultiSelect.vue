@@ -37,7 +37,7 @@
           type="text"
           :placeholder="filterPlaceholder || t('uiv.multiSelect.filterPlaceholder')"
           v-model="filterInput"
-          @keyup="searchClicked"
+          @keyup.enter="searchClicked"
           @keydown.prevent.stop.down="goNextOption"
           @keydown.prevent.stop.up="goPrevOption"
           @keydown.prevent.stop.enter="selectOption"
@@ -60,7 +60,7 @@
               </slot>
               <span v-if="selectedIcon && isItemSelected(_item)" :class="selectedIconClasses"></span>
             </a>
-            <a role="button" v-if="isItemSelected(_item)" style="outline: 0">
+            <a role="button" v-else-if="isItemSelected(_item)" style="outline: 0">
               <b>{{ _item[labelKey] }}</b>
               <span v-if="selectedIcon" :class="selectedIconClasses"></span>
             </a>
