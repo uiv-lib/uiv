@@ -10,32 +10,32 @@
 <body>
 <div id="app">
   <div>
-    <Modal v-if="if_condition" v-model="v_model_a">hello!
-      <span @click="v_model_b=true">Click this for modal 2 </span>
-    </Modal>
-    <Modal v-if="if_condition" v-model="v_model_b">
-      <Popover trigger="click">
-        <span>Click this for more popover stuff</span>
-        <div slot="popover">Popover result!</div>
-      </Popover>
-    </Modal>
-    <button @click="open_start_modal">Open Modal</button>
+    <multi-select v-model="selected" :options="options">
+      <template v-slot:option="slotProps">
+        <i>{{ slotProps.item.label }}</i>
+      </template>
+    </multi-select>
   </div>
 </div>
 <script>
   // No need to install uiv, we already do this for you after script loaded.
   new Vue({
-    data() {
+    data () {
       return {
-        if_condition: false,
-        v_model_a: false,
-        v_model_b: false
-      };
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+          { value: 4, label: 'Option4' },
+          { value: 5, label: 'Option5' }
+        ]
+      }
     },
     methods: {
-      open_start_modal() {
-        this.v_model_a = true;
-        this.if_condition = true;
+      open_start_modal () {
+        this.v_model_a = true
+        this.if_condition = true
         // $this.nextTick(() => (this.v_model_a = true)); // workaround
       }
     }

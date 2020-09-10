@@ -797,4 +797,28 @@ describe('MultiSelect', () => {
     expect(display.textContent).to.equal('Apple, Banana, Orange, Red, Green')
     expect(_.isEqual(vm.selected, [1, 2, 3, 4, 5])).to.be.true
   })
+
+  it('should be able to use option slot', async () => {
+    vm = createVm(`
+    <multi-select v-model="selected" :options="options">
+      <template v-slot:option="slotProps">
+        <i>{{ slotProps.item.label }}</i>
+      </template>
+    </multi-select>`, {
+      selected: [],
+      options: [
+        { value: 1, label: 'Option1' },
+        { value: 2, label: 'Option2' },
+        { value: 3, label: 'Option3' },
+        { value: 4, label: 'Option4' },
+        { value: 5, label: 'Option5' }
+      ]
+    })
+    const dropdown = vm.$el
+    const trigger = dropdown.querySelector('.dropdown-toggle')
+    trigger.click()
+    await vm.$nextTick()
+    expect(dropdown.className).to.contain('open')
+    expect(dropdown.querySelectorAll('li a i').length).to.equal(5)
+  })
 })

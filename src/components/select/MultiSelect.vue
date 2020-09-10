@@ -55,9 +55,7 @@
             @mouseenter="currentActive=-1"
             style="outline: 0">
             <a role="button" v-if="customOptionsVisible" style="outline: 0">
-              <slot name="custom-option"
-                    :item="_item">
-              </slot>
+              <slot name="option" :item="_item"/>
               <span v-if="selectedIcon && isItemSelected(_item)" :class="selectedIconClasses"></span>
             </a>
             <a role="button" v-else-if="isItemSelected(_item)" style="outline: 0">

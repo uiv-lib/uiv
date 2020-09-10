@@ -1,10 +1,10 @@
 import Local from '../../mixins/locale.mixin'
 import Dropdown from '../dropdown/Dropdown.js'
-import {onlyUnique} from '../../utils/array.utils'
+import { onlyUnique } from '../../utils/array.utils'
 
 export default {
   mixins: [Local],
-  components: {Dropdown},
+  components: { Dropdown },
   props: {
     value: {
       type: Array,
@@ -143,7 +143,7 @@ export default {
       }
     },
     customOptionsVisible () {
-      return !!this.$slots['custom-option'] || !!this.$scopedSlots['custom-option']
+      return !!this.$slots['option'] || !!this.$scopedSlots['option']
     }
   },
   watch: {
