@@ -1,8 +1,8 @@
-import { TYPES } from './constants'
-import { removeFromDom } from '../../utils/domUtils'
-import { spliceIfExist } from '../../utils/arrayUtils'
-import { isFunction, isExist, isString, isPromiseSupported, assign } from '../../utils/objectUtils'
-import MessageBox from './MessageBox.vue'
+import { TYPES } from '../../constants/messagebox.constants'
+import { removeFromDom } from '../../utils/dom.utils'
+import { spliceIfExist } from '../../utils/array.utils'
+import { isFunction, isExist, isString, isPromiseSupported, assign } from '../../utils/object.utils'
+import MessageBox from '../../components/messagebox/MessageBox.vue'
 import Vue from 'vue'
 
 const queue = []

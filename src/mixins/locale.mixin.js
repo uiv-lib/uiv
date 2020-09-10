@@ -1,5 +1,5 @@
 import { t } from '../locale'
-import { assign } from '../utils/objectUtils'
+import { assign } from '../utils/object.utils'
 
 export default {
   methods: {

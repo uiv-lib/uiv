@@ -1,4 +1,4 @@
-import { addClass, removeClass } from '../../utils/domUtils'
+import { addClass, removeClass } from '../../utils/dom.utils'
 
 const COLLAPSE = 'collapse'
 const IN = 'in'

@@ -7,9 +7,9 @@ import {
   getViewportSize,
   getClosest,
   getParents
-} from '../../utils/domUtils'
-import { nodeListToArray } from '../../utils/arrayUtils'
-import { assign } from '../../utils/objectUtils'
+} from '../../utils/dom.utils'
+import { nodeListToArray } from '../../utils/array.utils'
+import { assign } from '../../utils/object.utils'
 
 function ScrollSpy (element, target = 'body', options = {}) {
   this.el = element

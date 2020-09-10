@@ -9,6 +9,7 @@ export function assign (target, varArgs) {
     if (nextSource !== null && nextSource !== undefined) {
       for (let nextKey in nextSource) {
         // Avoid bugs when hasOwnProperty is shadowed
+        /* istanbul ignore else */
         if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
           to[nextKey] = nextSource[nextKey]
         }

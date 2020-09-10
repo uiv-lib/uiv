@@ -16,8 +16,7 @@ module.exports = function (config) {
     customLaunchers: {
       'ChromeHeadlessDesktop': {
         base: 'ChromeHeadless',
-        flags: ['--window-size=1920,1080']
-        // flags: ['--window-size=1920,1080', '--no-sandbox']
+        flags: ['--window-size=1920,1080', '--no-sandbox']
       }
     },
     // browsers: ['Chrome'],
@@ -37,13 +36,16 @@ module.exports = function (config) {
     rollupPreprocessor: require('../rollup/rollup.test'),
     singleRun: true,
     coverageIstanbulReporter: {
-      reports: ['lcov', 'text-summary'],
+      reports: ['html', 'lcovonly', 'text-summary'],
       dir: path.join(__dirname, 'coverage'),
-      fixWebpackSourcePaths: true,
+      combineBrowserReports: true,
       skipFilesWithNoCoverage: true,
       'report-config': {
-        lcov: {
+        lcovonly: {
           subdir: '.'
+        },
+        html: {
+          subdir: './html'
         }
       }
     },

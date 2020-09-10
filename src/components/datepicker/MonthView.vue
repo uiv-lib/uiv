@@ -9,7 +9,7 @@
       </td>
       <td colspan="4">
         <btn class="uiv-datepicker-title" block size="sm" style="border: none" @click="changeView()">
-          <b>{{year}}</b>
+          <b>{{ year }}</b>
         </btn>
       </td>
       <td>
@@ -28,7 +28,7 @@
           style="border: none"
           :type="getBtnClass(i*3+j)"
           @click="changeView(i*3+j)">
-          <span>{{tCell(month)}}</span>
+          <span>{{ tCell(month) }}</span>
         </btn>
       </td>
     </tr>
@@ -36,58 +36,4 @@
   </table>
 </template>
 
-<script>
-  import Locale from '../../mixins/localeMixin'
-  import Btn from './../button/Btn'
-  import {isExist} from '../../utils/objectUtils'
-
-  export default {
-    components: {Btn},
-    mixins: [Locale],
-    props: {
-      month: Number,
-      year: Number,
-      iconControlLeft: String,
-      iconControlRight: String
-    },
-    data () {
-      return {
-        rows: []
-      }
-    },
-    mounted () {
-      for (let i = 0; i < 4; i++) {
-        this.rows.push([])
-        for (let j = 0; j < 3; j++) {
-          this.rows[i].push(i * 3 + j + 1)
-        }
-      }
-    },
-    methods: {
-      tCell (cell) {
-        return this.t(`uiv.datePicker.month${cell}`)
-      },
-      getBtnClass (month) {
-        if (month === this.month) {
-          return 'primary'
-        } else {
-          return 'default'
-        }
-      },
-      goPrevYear () {
-        this.$emit('year-change', this.year - 1)
-      },
-      goNextYear () {
-        this.$emit('year-change', this.year + 1)
-      },
-      changeView (monthIndex) {
-        if (isExist(monthIndex)) {
-          this.$emit('month-change', monthIndex)
-          this.$emit('view-change', 'd')
-        } else {
-          this.$emit('view-change', 'y')
-        }
-      }
-    }
-  }
-</script>
+<script src="./MonthView.js"/>
