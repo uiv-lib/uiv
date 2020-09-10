@@ -37,6 +37,7 @@
           type="text"
           :placeholder="filterPlaceholder || t('uiv.multiSelect.filterPlaceholder')"
           v-model="filterInput"
+          @keyup.enter="searchClicked"
           @keydown.prevent.stop.down="goNextOption"
           @keydown.prevent.stop.up="goPrevOption"
           @keydown.prevent.stop.enter="selectOption"
@@ -53,12 +54,16 @@
             @click.stop="toggle(_item)"
             @mouseenter="currentActive=-1"
             style="outline: 0">
-            <a role="button" v-if="isItemSelected(_item)" style="outline: 0">
-              <b>{{_item[labelKey]}}</b>
+            <a role="button" v-if="customOptionsVisible" style="outline: 0">
+              <slot name="option" :item="_item"/>
+              <span v-if="selectedIcon && isItemSelected(_item)" :class="selectedIconClasses"></span>
+            </a>
+            <a role="button" v-else-if="isItemSelected(_item)" style="outline: 0">
+              <b>{{ _item[labelKey] }}</b>
               <span v-if="selectedIcon" :class="selectedIconClasses"></span>
             </a>
             <a role="button" v-else style="outline: 0">
-              <span>{{_item[labelKey]}}</span>
+              <span>{{ _item[labelKey] }}</span>
             </a>
           </li>
         </template>
@@ -74,7 +79,7 @@
 
   export default {
     mixins: [Local],
-    components: {Dropdown},
+    components: { Dropdown },
     props: {
       value: {
         type: Array,
@@ -172,16 +177,8 @@
             $group: v
           }))
       },
-      flatternGroupedOptions () {
-        if (this.groupedOptions && this.groupedOptions.length) {
-          let result = []
-          this.groupedOptions.forEach(v => {
-            result = result.concat(v.options)
-          })
-          return result
-        } else {
-          return []
-        }
+      flattenGroupedOptions () {
+        return [].concat(...this.groupedOptions.map(v => v.options))
       },
       selectClasses () {
         return {
@@ -219,6 +216,9 @@
         } else {
           return this.placeholder || this.t('uiv.multiSelect.placeholder')
         }
+      },
+      customOptionsVisible () {
+        return !!this.$slots['option'] || !!this.$scopedSlots['option']
       }
     },
     watch: {
@@ -242,17 +242,17 @@
         if (!this.showDropdown) {
           return
         }
-        this.currentActive > 0 ? this.currentActive-- : this.currentActive = this.flatternGroupedOptions.length - 1
+        this.currentActive > 0 ? this.currentActive-- : this.currentActive = this.flattenGroupedOptions.length - 1
       },
       goNextOption () {
         if (!this.showDropdown) {
           return
         }
-        this.currentActive < this.flatternGroupedOptions.length - 1 ? this.currentActive++ : this.currentActive = 0
+        this.currentActive < this.flattenGroupedOptions.length - 1 ? this.currentActive++ : this.currentActive = 0
       },
       selectOption () {
         const index = this.currentActive
-        const options = this.flatternGroupedOptions
+        const options = this.flattenGroupedOptions
         if (!this.showDropdown) {
           this.showDropdown = true
         } else if (index >= 0 && index < options.length) {
@@ -262,7 +262,7 @@
       itemClasses (item) {
         const result = {
           disabled: item.disabled,
-          active: this.currentActive === this.flatternGroupedOptions.indexOf(item)
+          active: this.currentActive === this.flattenGroupedOptions.indexOf(item)
         }
         if (this.itemSelectedClass) {
           result[this.itemSelectedClass] = this.isItemSelected(item)
@@ -297,6 +297,9 @@
             this.$emit('limit-exceed')
           }
         }
+      },
+      searchClicked () {
+        this.$emit('search', this.filterInput)
       }
     }
   }
