@@ -35,6 +35,7 @@ export const PLACEMENTS = {
 }
 
 export function isIE11 () {
+  /* istanbul ignore next */
   return !!window.MSInputMethodContext && !!document.documentMode
 }
 
@@ -47,8 +48,10 @@ export function getComputedStyle (el) {
 }
 
 export function getViewportSize () {
-  let width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
-  let height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+  /* istanbul ignore next */
+  let width = Math.max(document.documentElement.clientWidth, window.innerWidth) || 0
+  /* istanbul ignore next */
+  let height = Math.max(document.documentElement.clientHeight, window.innerHeight) || 0
   return { width, height }
 }
 
@@ -62,6 +65,7 @@ export function getScrollbarWidth (recalculate = false) {
     screenSize.height === savedScreenSize.height && screenSize.width === savedScreenSize.width) {
     return scrollbarWidth
   }
+  /* istanbul ignore next */
   if (document.readyState === 'loading') {
     return null
   }
@@ -81,10 +85,12 @@ export function getScrollbarWidth (recalculate = false) {
 }
 
 export function on (element, event, handler) {
+  /* istanbul ignore next */
   element.addEventListener(event, handler)
 }
 
 export function off (element, event, handler) {
+  /* istanbul ignore next */
   element.removeEventListener(event, handler)
 }
 
@@ -97,6 +103,7 @@ export function removeFromDom (el) {
 }
 
 export function ensureElementMatchesFunction () {
+  /* istanbul ignore next */
   if (!Element.prototype.matches) {
     Element.prototype.matches =
       Element.prototype.matchesSelector ||
