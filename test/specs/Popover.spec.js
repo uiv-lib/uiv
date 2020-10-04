@@ -25,6 +25,21 @@ describe('Popover', () => {
     await vm.$nextTick()
   })
 
+  it('should clear all timeouts before destroy', async () => {
+    vm = createVm(`<popover ref="popover" v-model="show" title="123"></popover>`, { show: false })
+    vm.$refs.popover.hideTimeoutId = 1
+    vm.$refs.popover.showTimeoutId = 2
+    vm.$refs.popover.transitionTimeoutId = 3
+    vm.$refs.popover.autoTimeoutId = 4
+    await vm.$nextTick()
+    vm.$refs.popover.$destroy()
+    await vm.$nextTick()
+    expect(vm.$refs.popover.hideTimeoutId).to.equal(0)
+    expect(vm.$refs.popover.showTimeoutId).to.equal(0)
+    expect(vm.$refs.popover.transitionTimeoutId).to.equal(0)
+    expect(vm.$refs.popover.autoTimeoutId).to.equal(0)
+  })
+
   it('should be able to show popover on init', async () => {
     vm = createVm(`<popover v-model="show" title="123"><button data-role="trigger"></button></popover>`, {
       show: true

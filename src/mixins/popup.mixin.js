@@ -198,6 +198,7 @@ export default {
     },
     resetPosition () {
       const popup = this.$refs.popup
+      /* istanbul ignore else */
       if (popup) {
         setTooltipPosition(popup, this.triggerEl, this.placement, this.autoPlacement, this.appendTo, this.viewport)
         popup.offsetHeight

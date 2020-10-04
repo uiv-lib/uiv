@@ -63,10 +63,56 @@ describe('Modal', () => {
     }
   }
 
+  it('should aware backdrop keydown & keyup to hide', async () => {
+    vm = createVm(`<section>
+    <modal v-model="open1" title="Modal 1" ref="modal">
+      <p>This is a simple large modal.</p>
+      <p>Click on the button below to open a nested modal.</p>
+    </modal>
+  </section>`, {
+      open1: true
+    })
+    await vm.$nextTick()
+    // simulate window mousedown
+    vm.$refs.modal.suppressBackgroundClose({ target: vm.$refs.modal.$el })
+    await vm.$nextTick()
+    expect(vm.$refs.modal.isCloseSuppressed).to.be.undefined
+    // simulate window mouseup
+    vm.$refs.modal.unsuppressBackgroundClose()
+    // simulate window click
+    vm.$refs.modal.backdropClicked()
+    await sleep(transition)
+    expect(vm.$refs.modal.isCloseSuppressed).to.be.undefined
+    expect(vm.$refs.modal.$el.className).to.not.contain('in')
+  })
+
+  it('should suppress inside modal keydown & keyup to prevent unexpected hiding', async () => {
+    vm = createVm(`<section>
+    <modal v-model="open1" title="Modal 1" ref="modal">
+      <p>This is a simple large modal.</p>
+      <p>Click on the button below to open a nested modal.</p>
+    </modal>
+  </section>`, {
+      open1: true
+    })
+    await vm.$nextTick()
+    // simulate window mousedown
+    vm.$refs.modal.suppressBackgroundClose({ target: window })
+    await vm.$nextTick()
+    expect(vm.$refs.modal.isCloseSuppressed).to.be.true
+    // simulate window mouseup
+    vm.$refs.modal.unsuppressBackgroundClose()
+    // simulate window click
+    vm.$refs.modal.backdropClicked()
+    await sleep(transition)
+    expect(vm.$refs.modal.isCloseSuppressed).to.be.false
+    expect(vm.$refs.modal.$el.className).to.contain('in')
+  })
+
   it('should be able to use nested modals (logically)', async () => {
     // enable body with overflow-y
     document.body.style.height = '9999px'
-    vm = createVm(`  <section>
+    vm = createVm(`<section>
     <btn type="primary" @click="open1=true">Open set of nested modals (logically)</btn>
     <modal v-model="open1" title="Modal 1" size="lg">
       <p>This is a simple large modal.</p>
@@ -158,7 +204,7 @@ describe('Modal', () => {
   it('should be able to use nested modals', async () => {
     // enable body with overflow-y
     document.body.style.height = '9999px'
-    vm = createVm(`  <section>
+    vm = createVm(`<section>
     <btn type="primary" @click="open1=true">Open set of nested modals</btn>
     <!-- \`append-to-body\` not required here -->
     <modal v-model="open1" title="Modal 1" size="lg" ref="modal1">
@@ -243,6 +289,60 @@ describe('Modal', () => {
     expect(modal1.className).not.contain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
+    expect(getBackdropsNum()).to.equal(0)
+    // body overflow should be enable now
+    expectBodyOverflow(true)
+    // reset body height
+    document.body.style.height = ''
+  })
+
+  it('should be able destroy nested modals', async () => {
+    // enable body with overflow-y
+    document.body.style.height = '9999px'
+    vm = createVm(`<section>
+    <btn type="primary" @click="open1=true">Open set of nested modals</btn>
+    <!-- \`append-to-body\` not required here -->
+    <modal v-model="open1" title="Modal 1" size="lg" ref="modal1">
+      <p>This is a simple large modal.</p>
+      <p>Click on the button below to open a nested modal.</p>
+      <btn type="info" @click="open2=true">Open Modal 2</btn>
+      <!-- \`append-to-body\` required, because this is a nested modal -->
+      <modal v-if="open2" v-model="open2" title="Modal 2" append-to-body ref="modal2">
+        <p>This is a nested modal.</p>
+        <btn type="info" @click="open3=true">Open Modal 3</btn>
+      </modal>
+    </modal>
+  </section>`, {
+      open1: false,
+      open2: false,
+      open3: false
+    })
+    await vm.$nextTick()
+    const _$el = $(vm.$el)
+    const modal1 = _$el.find('.modal').get(0)
+    const trigger = _$el.find('.btn').get(0)
+    expect(getBackdropsNum()).to.equal(0)
+    // open modal 1
+    trigger.click()
+    await sleep(transition)
+    expect(modal1.className).to.contain('in')
+    expectBodyOverflow(false)
+    // open modal 2
+    vm.open2 = true
+    await sleep(transition)
+    expect(getBackdropsNum()).to.equal(2)
+    expectBodyOverflow(false)
+    // dismiss modal 2
+    vm.open2 = false
+    await sleep(transition)
+    expect(modal1.className).to.contain('in')
+    expect(getBackdropsNum()).to.equal(1)
+    // body overflow should be still disabled, because modal 1 is still open
+    expectBodyOverflow(false)
+    // dismiss modal 1
+    modal1.querySelector('.btn-primary').click()
+    await sleep(transition)
+    expect(modal1.className).not.contain('in')
     expect(getBackdropsNum()).to.equal(0)
     // body overflow should be enable now
     expectBodyOverflow(true)
@@ -497,7 +597,7 @@ describe('Modal', () => {
   })
 
   it('should be able to auto-focus on ok btn', async () => {
-    vm = createVm(`  <section>
+    vm = createVm(`<section>
     <btn type="primary" @click="open=true">Auto Focus</btn>
     <modal v-model="open" title="Modal Title" auto-focus>
       <p>Check this out! The OK button is focused now.</p>
@@ -510,8 +610,24 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition + 100)
-    // expect(vm.$refs.modal9.$el.querySelector('[data-action="auto-focus"]')).to.equal(vm.$refs.modal9.$el.querySelector(':focus'))
-    // have no idea how to get this focused element
+    expect(vm.$el.querySelector('[data-action="auto-focus"]').getAttribute('data-focused')).to.equal('true')
+  })
+
+  it('should be ok if auto-focus is true and no data-action=auto-focus present', async () => {
+    vm = createVm(`<section>
+    <btn type="primary" @click="open=true">Auto Focus</btn>
+    <modal v-model="open" title="Modal Title" auto-focus>
+      <div slot="footer"><button>ok</button></div>
+    </modal>
+  </section>`, {
+      open: false
+    })
+    const _$el = $(vm.$el)
+    const trigger = _$el.find('.btn').get(0)
+    expect(document.querySelector('.modal-backdrop')).not.exist
+    triggerEvent(trigger, 'click')
+    await sleep(transition + 100)
+    expect(vm.$el.querySelector('[data-action="auto-focus"]')).to.be.null
   })
 
   it('should be able to close modal on backdrop click', async () => {
@@ -531,7 +647,7 @@ describe('Modal', () => {
   })
 
   it('should not be able to close backdrop-false modal', async () => {
-    vm = createVm(`  <section>
+    vm = createVm(`<section>
     <btn type="primary" @click="open=true">Disable Backdrop</btn>
     <modal v-model="open" title="Modal Title" :backdrop="false">
       <p>This is a modal that can not close by backdrop click.</p>
@@ -620,6 +736,56 @@ describe('Modal', () => {
     await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
+  })
+
+  it('should be able to use `beforeClose` when promise not supported', async () => {
+    vm = createVm('<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>', {
+      open: true,
+      msg: 'ok'
+    }, {
+      methods: {
+        beforeClose () {
+          this.msg = 'test'
+          return true
+        }
+      }
+    })
+    await vm.$nextTick()
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(vm.msg).to.equal('ok')
+    const _promise = window.Promise
+    window.Promise = undefined
+    vm.$el.querySelector('button.close').click()
+    window.Promise = _promise
+    await sleep(transition)
+    await vm.$nextTick()
+    expect(document.querySelector('.modal-backdrop')).not.exist
+    expect(vm.msg).to.equal('test')
+  })
+
+  it('should be able to interrupt hide with `beforeClose` promise is not supported', async () => {
+    vm = createVm('<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>', {
+      open: true,
+      msg: 'ok'
+    }, {
+      methods: {
+        beforeClose () {
+          this.msg = 'test'
+          return false
+        }
+      }
+    })
+    await vm.$nextTick()
+    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(vm.msg).to.equal('ok')
+    const _promise = window.Promise
+    window.Promise = undefined
+    vm.$el.querySelector('button.close').click()
+    window.Promise = _promise
+    await sleep(transition)
+    await vm.$nextTick()
+    expect(vm.msg).to.equal('test')
+    expect(document.querySelector('.modal-backdrop')).to.exist
   })
 
   it('should be able to use `beforeClose` when result is promise', async () => {
