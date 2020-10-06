@@ -1,11 +1,11 @@
 import { request } from '../../utils/http.utils'
 import { isString } from '../../utils/object.utils'
 import {
-  isElement,
   on,
   off,
   ensureElementMatchesFunction,
-  EVENTS
+  EVENTS,
+  getElementBySelectorOrRef
 } from '../../utils/dom.utils'
 import Dropdown from '../dropdown/Dropdown.js'
 
@@ -132,13 +132,7 @@ export default {
       if (!target) {
         return
       }
-      if (isString(target)) { // is selector
-        this.inputEl = document.querySelector(target)
-      } else if (isElement(target)) { // is element
-        this.inputEl = target
-      } else if (isElement(target.$el)) { // is component
-        this.inputEl = target.$el
-      }
+      this.inputEl = getElementBySelectorOrRef(target)
     },
     initListeners () {
       if (this.inputEl) {

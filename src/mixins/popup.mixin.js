@@ -9,11 +9,10 @@ import {
   removeClass,
   hasClass,
   setTooltipPosition,
-  isElement,
   addClass,
-  getOpenModalNum
+  getOpenModalNum, getElementBySelectorOrRef
 } from '../utils/dom.utils'
-import { isString, isFunction } from '../utils/object.utils'
+import { isFunction } from '../utils/object.utils'
 
 const SHOW_CLASS = 'in'
 
@@ -91,6 +90,7 @@ export default {
         // reset position while content changed & is shown
         // nextTick is required
         this.$nextTick(() => {
+          /* istanbul ignore else */
           if (this.isShown()) {
             this.resetPosition()
           }
@@ -101,6 +101,7 @@ export default {
     },
     enable (value) {
       // hide if enable changed to false
+      /* istanbul ignore else */
       if (!value) {
         this.hide()
       }
@@ -125,13 +126,7 @@ export default {
     initTriggerElByTarget (target) {
       if (target) {
         // target exist
-        if (isString(target)) { // is selector
-          this.triggerEl = document.querySelector(target)
-        } else if (isElement(target)) { // is element
-          this.triggerEl = target
-        } else if (isElement(target.$el)) { // is component
-          this.triggerEl = target.$el
-        }
+        this.triggerEl = getElementBySelectorOrRef(target)
       } else {
         // find special element
         let trigger = this.$el.querySelector('[data-role="trigger"]')
@@ -241,14 +236,7 @@ export default {
             // add to dom
             if (!popUpAppendedContainer) {
               popup.className = `${this.name} ${this.placement} ${this.customClass ? this.customClass : ''} fade`
-              let container
-              if (isString(this.appendTo)) { // is selector
-                container = document.querySelector(this.appendTo)
-              } else if (isElement(this.appendTo)) { // is element
-                container = this.appendTo
-              } else if (isElement(this.appendTo.$el)) { // is component
-                container = this.appendTo.$el
-              }
+              const container = getElementBySelectorOrRef(this.appendTo)
               container.appendChild(popup)
               this.resetPosition()
             }

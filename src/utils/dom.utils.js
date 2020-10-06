@@ -230,14 +230,7 @@ export function setTooltipPosition (tooltip, trigger, placement, auto, appendTo,
     containerScrollLeft = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0)
     containerScrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
   } else {
-    let container
-    if (isString(appendTo)) { // is selector
-      container = document.querySelector(appendTo)
-    } else if (isElement(appendTo)) { // is element
-      container = appendTo
-    } else if (isElement(appendTo.$el)) { // is component
-      container = appendTo.$el
-    }
+    const container = getElementBySelectorOrRef(appendTo)
     containerScrollLeft = container.scrollLeft
     containerScrollTop = container.scrollTop
   }
@@ -398,4 +391,16 @@ export function getOpenModals () {
 
 export function getOpenModalNum () {
   return getOpenModals().length
+}
+
+export function getElementBySelectorOrRef (q) {
+  if (isString(q)) { // is selector
+    return document.querySelector(q)
+  } else if (isElement(q)) { // is element
+    return q
+  } else if (isElement(q.$el)) { // is component
+    return q.$el
+  } else {
+    return null
+  }
 }

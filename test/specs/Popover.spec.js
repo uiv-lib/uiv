@@ -48,6 +48,32 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).to.equal(1)
   })
 
+  it('should hide popover while enable set to false', async () => {
+    vm = createVm(`<popover v-model="show" title="123" :enable="enable"><button data-role="trigger"></button></popover>`, {
+      show: true,
+      enable: true
+    })
+    await sleep(300)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    vm.enable = false
+    await sleep(300)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+  })
+
+  it('should hide popover while all content become empty', async () => {
+    vm = createVm(`<popover v-model="show" :title="title" :content="content"><button data-role="trigger"></button></popover>`, {
+      show: true,
+      content: '123',
+      title: '321'
+    })
+    await sleep(300)
+    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    vm.content = ''
+    vm.title = ''
+    await sleep(300)
+    expect(document.querySelectorAll('.popover').length).to.equal(0)
+  })
+
   it('should be able to use custom string append-to', async () => {
     vm = createVm(`<div id="test">
 <popover append-to="#test" v-model="show" title="123">
