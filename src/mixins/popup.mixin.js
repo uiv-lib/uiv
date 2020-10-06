@@ -36,7 +36,7 @@ export default {
       default: true
     },
     appendTo: {
-      type: String,
+      type: null,
       default: 'body'
     },
     transition: {
@@ -241,7 +241,14 @@ export default {
             // add to dom
             if (!popUpAppendedContainer) {
               popup.className = `${this.name} ${this.placement} ${this.customClass ? this.customClass : ''} fade`
-              let container = document.querySelector(this.appendTo)
+              let container
+              if (isString(this.appendTo)) { // is selector
+                container = document.querySelector(this.appendTo)
+              } else if (isElement(this.appendTo)) { // is element
+                container = this.appendTo
+              } else if (isElement(this.appendTo.$el)) { // is component
+                container = this.appendTo.$el
+              }
               container.appendChild(popup)
               this.resetPosition()
             }

@@ -48,6 +48,50 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).to.equal(1)
   })
 
+  it('should be able to use custom string append-to', async () => {
+    vm = createVm(`<div id="test">
+<popover append-to="#test" v-model="show" title="123">
+<button data-role="trigger"></button>
+</popover>
+</div>`, {
+      show: true
+    })
+    await sleep(300)
+    expect(document.querySelectorAll('#test .popover').length).to.equal(1)
+  })
+
+  it('should be able to use custom element append-to', async () => {
+    vm = createVm(`<div id="test" ref="el">
+<popover v-if="appendTo" :append-to="appendTo" v-model="show" title="123">
+<button data-role="trigger"></button>
+</popover>
+</div>`, {
+      show: true,
+      appendTo: null
+    })
+    await vm.$nextTick()
+    vm.appendTo = vm.$refs.el
+    await vm.$nextTick()
+    await sleep(300)
+    expect(document.querySelectorAll('#test .popover').length).to.equal(1)
+  })
+
+  it('should be able to use custom component append-to', async () => {
+    vm = createVm(`<div id="test" ref="el">
+<popover v-if="appendTo" :append-to="appendTo" v-model="show" title="123">
+<button data-role="trigger"></button>
+</popover>
+</div>`, {
+      show: true,
+      appendTo: null
+    })
+    await vm.$nextTick()
+    vm.appendTo = vm
+    await vm.$nextTick()
+    await sleep(300)
+    expect(document.querySelectorAll('#test .popover').length).to.equal(1)
+  })
+
   it('should be able to use popover directive', async () => {
     vm = createVm(`<btn v-popover="msg"></btn>`, {
       msg: { title: 'title', content: 'content' }

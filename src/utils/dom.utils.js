@@ -218,19 +218,26 @@ export function isAvailableAtPosition (trigger, popup, placement) {
   return top && right && bottom && left
 }
 
-export function setTooltipPosition (tooltip, trigger, placement, auto, appendToSelector, viewport) {
+export function setTooltipPosition (tooltip, trigger, placement, auto, appendTo, viewport) {
   if (!isElement(tooltip) || !isElement(trigger)) {
     return
   }
   const isPopover = tooltip && tooltip.className && tooltip.className.indexOf('popover') >= 0
   let containerScrollTop
   let containerScrollLeft
-  if (!isExist(appendToSelector) || appendToSelector === 'body') {
+  if (!isExist(appendTo) || appendTo === 'body') {
     const doc = document.documentElement
     containerScrollLeft = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0)
     containerScrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
   } else {
-    const container = document.querySelector(appendToSelector)
+    let container
+    if (isString(appendTo)) { // is selector
+      container = document.querySelector(appendTo)
+    } else if (isElement(appendTo)) { // is element
+      container = appendTo
+    } else if (isElement(appendTo.$el)) { // is component
+      container = appendTo.$el
+    }
     containerScrollLeft = container.scrollLeft
     containerScrollTop = container.scrollTop
   }
