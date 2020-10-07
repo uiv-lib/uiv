@@ -5466,10 +5466,10 @@ void-elements@^2.0.0, void-elements@^2.0.1:
   resolved "https://registry.npm.taobao.org/void-elements/download/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
   integrity sha1-wGavtYK7HLQSjWDqkjkulNXp2+w=
 
-vue-functional-data-merge@^2.0.3:
-  version "2.0.7"
-  resolved "https://registry.npm.taobao.org/vue-functional-data-merge/download/vue-functional-data-merge-2.0.7.tgz#bdee655181eacdcb1f96ce95a4cc14e75313d1da"
-  integrity sha1-ve5lUYHqzcsfls6VpMwU51MT0do=
+vue-functional-data-merge@^3.0.0:
+  version "3.1.0"
+  resolved "https://registry.npm.taobao.org/vue-functional-data-merge/download/vue-functional-data-merge-3.1.0.tgz#08a7797583b7f35680587f8a1d51d729aa1dc657"
+  integrity sha1-CKd5dYO381aAWH+KHVHXKaodxlc=
 
 vue-runtime-helpers@^1.1.2:
   version "1.1.2"
