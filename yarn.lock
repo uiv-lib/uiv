@@ -770,10 +770,10 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bootstrap@3.4.1:
-  version "3.4.1"
-  resolved "https://registry.npm.taobao.org/bootstrap/download/bootstrap-3.4.1.tgz?cache=0&sync_timestamp=1601394489362&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fbootstrap%2Fdownload%2Fbootstrap-3.4.1.tgz#c3a347d419e289ad11f4033e3c4132b87c081d72"
-  integrity sha1-w6NH1Bniia0R9AM+PEEyuHwIHXI=
+bootstrap@4.5.2:
+  version "4.5.2"
+  resolved "https://registry.npm.taobao.org/bootstrap/download/bootstrap-4.5.2.tgz?cache=0&sync_timestamp=1601394489362&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fbootstrap%2Fdownload%2Fbootstrap-4.5.2.tgz#a85c4eda59155f0d71186b6e6ad9b875813779ab"
+  integrity sha1-qFxO2lkVXw1xGGtuatm4dYE3eas=
 
 boxen@^4.2.0:
   version "4.2.0"
