@@ -1704,9 +1704,9 @@ eslint-plugin-standard@3.1.0:
   resolved "https://registry.npm.taobao.org/eslint-plugin-standard/download/eslint-plugin-standard-3.1.0.tgz#2a9e21259ba4c47c02d53b2d0c9135d4b1022d47"
   integrity sha1-Kp4hJZukxHwC1TstDJE11LECLUc=
 
-eslint-plugin-vue@^7.0.1:
+eslint-plugin-vue@7.0.1:
   version "7.0.1"
-  resolved "https://registry.npm.taobao.org/eslint-plugin-vue/download/eslint-plugin-vue-7.0.1.tgz?cache=0&sync_timestamp=1601862885547&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-plugin-vue%2Fdownload%2Feslint-plugin-vue-7.0.1.tgz#8e69a9041bb9719c018f154fdcacbb17713e0240"
+  resolved "https://registry.npm.taobao.org/eslint-plugin-vue/download/eslint-plugin-vue-7.0.1.tgz#8e69a9041bb9719c018f154fdcacbb17713e0240"
   integrity sha1-jmmpBBu5cZwBjxVP3Ky7F3E+AkA=
   dependencies:
     eslint-utils "^2.1.0"
