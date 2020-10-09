@@ -58,7 +58,7 @@ describe('Modal', () => {
       expect(document.body.style.paddingRight).to.equal('')
       expect(document.body.className).not.contain('modal-open')
     } else {
-      expect(document.body.style.paddingRight).to.contain(`px`)
+      expect(document.body.style.paddingRight).to.contain('px')
       expect(document.body.className).to.contain('modal-open')
     }
   }

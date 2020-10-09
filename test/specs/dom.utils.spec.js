@@ -79,7 +79,7 @@ describe('dom.utils', () => {
       const $body = $('html, body')
       $body.css('height', '9999px')
       utils.toggleBodyOverflow(false)
-      expect(document.body.style.paddingRight).to.contain(`px`)
+      expect(document.body.style.paddingRight).to.contain('px')
       utils.toggleBodyOverflow(true)
       $body.css('height', '')
     })

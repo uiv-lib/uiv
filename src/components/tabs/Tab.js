@@ -65,7 +65,7 @@ export default {
     }
   },
   beforeDestroy () {
-    let tabs = this.$parent && this.$parent.tabs
+    const tabs = this.$parent && this.$parent.tabs
     spliceIfExist(tabs, this)
   },
   methods: {

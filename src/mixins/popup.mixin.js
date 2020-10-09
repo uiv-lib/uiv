@@ -129,12 +129,12 @@ export default {
         this.triggerEl = getElementBySelectorOrRef(target)
       } else {
         // find special element
-        let trigger = this.$el.querySelector('[data-role="trigger"]')
+        const trigger = this.$el.querySelector('[data-role="trigger"]')
         if (trigger) {
           this.triggerEl = trigger
         } else {
           // use the first child
-          let firstChild = this.$el.firstChild
+          const firstChild = this.$el.firstChild
           this.triggerEl = firstChild === this.$refs.popup ? null : firstChild
         }
       }

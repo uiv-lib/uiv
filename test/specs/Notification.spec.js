@@ -306,7 +306,7 @@ describe('Notification', () => {
   })
 
   it('should be able to use `dismissible=false` notification', async () => {
-    vm = createVm(`<div><btn @click="notify" type="primary">Notification Without Dismiss Button</btn></div>`, {}, {
+    vm = createVm('<div><btn @click="notify" type="primary">Notification Without Dismiss Button</btn></div>', {}, {
       methods: {
         notify () {
           this.$notify({

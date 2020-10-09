@@ -1,8 +1,8 @@
-import {mergeData} from 'vue-functional-data-merge'
+import { mergeData } from 'vue-functional-data-merge'
 
 export default {
   functional: true,
-  render (h, {props, children, data}) {
+  render (h, { props, children, data }) {
     return h(
       'div',
       mergeData(data, {

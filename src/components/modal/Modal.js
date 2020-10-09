@@ -196,7 +196,7 @@ export default {
           // z-index fix end
           this.timeoutId = setTimeout(() => {
             if (this.autoFocus) {
-              let btn = this.$el.querySelector('[data-action="auto-focus"]')
+              const btn = this.$el.querySelector('[data-action="auto-focus"]')
               if (btn) {
                 btn.focus()
                 /* START.TESTS_ONLY */

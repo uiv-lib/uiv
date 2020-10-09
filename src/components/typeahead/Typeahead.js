@@ -126,7 +126,7 @@ export default {
       }
     },
     hasEmptySlot () {
-      return !!this.$slots['empty'] || !!this.$scopedSlots['empty']
+      return !!this.$slots.empty || !!this.$scopedSlots.empty
     },
     initInputElByTarget (target) {
       if (!target) {
@@ -160,7 +160,7 @@ export default {
       this.items = []
       this.activeIndex = this.preselect ? 0 : -1
       for (let i = 0, l = data.length; i < l; i++) {
-        let item = data[i]
+        const item = data[i]
         let key = this.itemKey ? item[this.itemKey] : item
         key = key.toString()
         let index = -1
@@ -215,13 +215,13 @@ export default {
       }
     },
     inputChanged () {
-      let value = this.inputEl.value
+      const value = this.inputEl.value
       this.fetchItems(value, this.debounce)
       this.$emit('input', this.forceSelect ? undefined : value)
     },
     inputFocused () {
       if (this.openOnFocus) {
-        let value = this.inputEl.value
+        const value = this.inputEl.value
         this.fetchItems(value, 0)
       }
     },
@@ -255,10 +255,11 @@ export default {
           case 38:
             this.activeIndex = this.activeIndex > 0 ? this.activeIndex - 1 : 0
             break
-          case 40:
-            let maxIndex = this.items.length - 1
+          case 40: {
+            const maxIndex = this.items.length - 1
             this.activeIndex = this.activeIndex < maxIndex ? this.activeIndex + 1 : maxIndex
             break
+          }
         }
       }
     },
@@ -267,8 +268,8 @@ export default {
       this.open = false
     },
     highlight (item) {
-      let value = this.itemKey ? item[this.itemKey] : item
-      let inputValue = this.inputEl.value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
+      const value = this.itemKey ? item[this.itemKey] : item
+      const inputValue = this.inputEl.value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
       return value.replace(new RegExp(`${inputValue}`, this.regexOptions), '<b>$&</b>')
     }
   }

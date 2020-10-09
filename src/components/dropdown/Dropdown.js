@@ -156,7 +156,7 @@ export default {
       this.$emit('input', this.show)
     },
     windowClicked (event) {
-      let target = event.target
+      const target = event.target
       if (this.show && target) {
         let targetInNotCloseElements = false
         if (this.notCloseElements) {
@@ -187,10 +187,10 @@ export default {
     },
     appendDropdownToBody () {
       try {
-        let el = this.$refs.dropdown
+        const el = this.$refs.dropdown
         el.style.display = 'block'
         document.body.appendChild(el)
-        let positionElement = this.positionElement || this.$el
+        const positionElement = this.positionElement || this.$el
         setDropdownPosition(el, positionElement, this)
       } catch (e) {
         // Silent
@@ -198,7 +198,7 @@ export default {
     },
     removeDropdownFromBody () {
       try {
-        let el = this.$refs.dropdown
+        const el = this.$refs.dropdown
         el.removeAttribute('style')
         this.$el.appendChild(el)
       } catch (e) {

@@ -9,7 +9,7 @@ describe('Pagination', () => {
   })
 
   it('should be able to hide boundary links', async () => {
-    vm = createVm(`<div><pagination v-model="currentPage" :total-page="totalPage"/></div>`, {
+    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage"/></div>', {
       totalPage: 18,
       currentPage: 1
     })
@@ -22,7 +22,7 @@ describe('Pagination', () => {
   })
 
   it('should be able to show boundary links', async () => {
-    vm = createVm(`<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>`, {
+    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>', {
       totalPage: 18,
       currentPage: 1
     })
@@ -66,7 +66,7 @@ describe('Pagination', () => {
   })
 
   it('should be able to change current page', async () => {
-    vm = createVm(`<div><pagination v-model="currentPage" :total-page="totalPage"/></div>`, {
+    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage"/></div>', {
       totalPage: 18,
       currentPage: 1
     })
@@ -113,7 +113,7 @@ describe('Pagination', () => {
   })
 
   it('should be able to change total page', async () => {
-    vm = createVm(`<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>`, {
+    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>', {
       totalPage: 18,
       currentPage: 1
     })
@@ -133,7 +133,7 @@ describe('Pagination', () => {
   })
 
   it('should be able to go to first page', async () => {
-    vm = createVm(`<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>`, {
+    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>', {
       totalPage: 18,
       currentPage: 1
     })
@@ -154,7 +154,7 @@ describe('Pagination', () => {
   })
 
   it('last group has max size item', async () => {
-    vm = createVm(`<div><pagination v-model="currentPage" :total-page="totalPage"/></div>`, {
+    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage"/></div>', {
       totalPage: 18,
       currentPage: 1
     })
@@ -171,7 +171,7 @@ describe('Pagination', () => {
   })
 
   it('should be go to next group', async () => {
-    vm = createVm(`<div><pagination v-model="currentPage" :total-page="totalPage"/></div>`, {
+    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage"/></div>', {
       totalPage: 18,
       currentPage: 1
     })
@@ -194,7 +194,7 @@ describe('Pagination', () => {
   })
 
   it('should be go to perv group', async () => {
-    vm = createVm(`<div><pagination v-model="currentPage" :total-page="totalPage"/></div>`, {
+    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage"/></div>', {
       totalPage: 18,
       currentPage: 1
     })
@@ -218,7 +218,7 @@ describe('Pagination', () => {
   })
 
   it('should be able to disable component', async () => {
-    vm = createVm(`<div><pagination v-model="currentPage" :total-page="totalPage" disabled/></div>`, {
+    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage" disabled/></div>', {
       totalPage: 18,
       currentPage: 1
     })

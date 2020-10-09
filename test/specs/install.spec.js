@@ -26,7 +26,7 @@ describe('install', () => {
 
   it('should be able to install with prefix', () => {
     // simulate a Vue.use
-    uiv.install(Vue, {prefix: 'uiv'})
+    uiv.install(Vue, { prefix: 'uiv' })
     // components
     sinon.assert.calledWith(cSpy, 'uivAlert')
     sinon.assert.calledWith(cSpy, 'uivModal')

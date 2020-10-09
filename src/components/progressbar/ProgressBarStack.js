@@ -1,15 +1,15 @@
-import {mergeData} from 'vue-functional-data-merge'
+import { mergeData } from 'vue-functional-data-merge'
 
 export default {
   functional: true,
-  render (h, {props, data}) {
+  render (h, { props, data }) {
     return h(
       'div',
       mergeData(data, {
         class: {
           'progress-bar': true,
           'progress-bar-striped': props.striped,
-          'active': props.striped && props.active,
+          active: props.striped && props.active,
           [`progress-bar-${props.type}`]: Boolean(props.type)
         },
         style: {

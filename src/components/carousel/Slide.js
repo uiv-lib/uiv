@@ -20,7 +20,7 @@ export default {
     }
   },
   beforeDestroy () {
-    let slides = this.$parent && this.$parent.slides
+    const slides = this.$parent && this.$parent.slides
     spliceIfExist(slides, this)
   }
 }

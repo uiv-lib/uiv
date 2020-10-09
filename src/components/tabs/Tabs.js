@@ -1,6 +1,6 @@
 import Dropdown from '../dropdown/Dropdown.js'
 import { PortalTarget } from 'portal-vue'
-import { isNumber, isFunction, isExist, isString, assign } from '../../utils/object.utils'
+import { isNumber, isFunction, isExist, isString, assign, hasOwnProperty } from '../../utils/object.utils'
 
 const BEFORE_CHANGE_EVENT = 'before-change'
 
@@ -50,7 +50,7 @@ export default {
   computed: {
     navClasses () {
       const tabClasses = {
-        'nav': true,
+        nav: true,
         'nav-justified': this.justified,
         'nav-tabs': !this.pills,
         'nav-pills': this.pills,
@@ -88,10 +88,10 @@ export default {
     },
     groupedTabs () {
       let tabs = []
-      let hash = {}
+      const hash = {}
       this.tabs.forEach(tab => {
         if (tab.group) {
-          if (hash.hasOwnProperty(tab.group)) {
+          if (hasOwnProperty(hash, tab.group)) {
             tabs[hash[tab.group]].tabs.push(tab)
           } else {
             tabs.push({
@@ -121,14 +121,14 @@ export default {
   },
   methods: {
     getTabClasses (tab, isSubTab = false) {
-      let defaultClasses = {
+      const defaultClasses = {
         active: tab.active,
         disabled: tab.disabled,
         'pull-right': tab.pullRight && !isSubTab
       }
 
       // return with new classes added to tab
-      return assign(defaultClasses, tab['tabClasses'])
+      return assign(defaultClasses, tab.tabClasses)
     },
     selectCurrent () {
       let found = false

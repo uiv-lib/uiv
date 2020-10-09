@@ -8,7 +8,7 @@ describe('ProgressBar', () => {
   })
 
   it('should be able to render default', async () => {
-    vm = createVm(`<progress-bar v-model="progress"/>`, {
+    vm = createVm('<progress-bar v-model="progress"/>', {
       progress: 66
     })
     await vm.$nextTick()
@@ -17,7 +17,7 @@ describe('ProgressBar', () => {
   })
 
   it('should be able to render label', async () => {
-    vm = createVm(`<section><progress-bar v-model="progress" label/></section>`, {
+    vm = createVm('<section><progress-bar v-model="progress" label/></section>', {
       progress1: 1,
       progress: 66
     })
@@ -27,7 +27,7 @@ describe('ProgressBar', () => {
   })
 
   it('should be able to render custom label', async () => {
-    vm = createVm(`<section><progress-bar v-model="progress" label label-text="Loading......Please wait."/></section>`, {
+    vm = createVm('<section><progress-bar v-model="progress" label label-text="Loading......Please wait."/></section>', {
       progress1: 1,
       progress: 66
     })
@@ -37,7 +37,7 @@ describe('ProgressBar', () => {
   })
 
   it('should be able to render label with min width', async () => {
-    vm = createVm(`<section><progress-bar v-model="progress1" min-width label/></section>`, {
+    vm = createVm('<section><progress-bar v-model="progress1" min-width label/></section>', {
       progress1: 1,
       progress: 66
     })
@@ -87,7 +87,7 @@ describe('ProgressBar', () => {
   })
 
   it('should be able to render animation', async () => {
-    vm = createVm(`<div><progress-bar v-model="progress" striped active/></div>`, {
+    vm = createVm('<div><progress-bar v-model="progress" striped active/></div>', {
       progress: 40
     })
     await vm.$nextTick()

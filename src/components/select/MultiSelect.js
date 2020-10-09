@@ -143,7 +143,7 @@ export default {
       }
     },
     customOptionsVisible () {
-      return !!this.$slots['option'] || !!this.$scopedSlots['option']
+      return !!this.$slots.option || !!this.$scopedSlots.option
     }
   },
   watch: {

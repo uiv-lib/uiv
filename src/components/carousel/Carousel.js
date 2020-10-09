@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     run (newIndex, oldIndex) {
-      let currentActiveIndex = oldIndex || 0
+      const currentActiveIndex = oldIndex || 0
       let direction
       if (newIndex > currentActiveIndex) {
         direction = ['next', 'left']

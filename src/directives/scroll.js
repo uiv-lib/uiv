@@ -1,11 +1,11 @@
-import {EVENTS, on, off} from '../utils/dom.utils'
-import {isFunction} from '../utils/object.utils'
+import { EVENTS, on, off } from '../utils/dom.utils'
+import { isFunction } from '../utils/object.utils'
 
 const HANDLER = '_uiv_scroll_handler'
 const events = [EVENTS.RESIZE, EVENTS.SCROLL]
 
 const bind = (el, binding) => {
-  let callback = binding.value
+  const callback = binding.value
   if (!isFunction(callback)) {
     return
   }
@@ -29,4 +29,4 @@ const update = (el, binding) => {
   }
 }
 
-export default {bind, unbind, update}
+export default { bind, unbind, update }

@@ -49,9 +49,9 @@ export function getComputedStyle (el) {
 
 export function getViewportSize () {
   /* istanbul ignore next */
-  let width = Math.max(document.documentElement.clientWidth, window.innerWidth) || 0
+  const width = Math.max(document.documentElement.clientWidth, window.innerWidth) || 0
   /* istanbul ignore next */
-  let height = Math.max(document.documentElement.clientHeight, window.innerHeight) || 0
+  const height = Math.max(document.documentElement.clientHeight, window.innerHeight) || 0
   return { width, height }
 }
 
@@ -59,7 +59,7 @@ let scrollbarWidth = null
 let savedScreenSize = null
 
 export function getScrollbarWidth (recalculate = false) {
-  let screenSize = getViewportSize()
+  const screenSize = getViewportSize()
   // return directly when already calculated & not force recalculate & screen size not changed
   if (scrollbarWidth !== null && !recalculate &&
     screenSize.height === savedScreenSize.height && screenSize.width === savedScreenSize.width) {
@@ -112,7 +112,7 @@ export function ensureElementMatchesFunction () {
       Element.prototype.oMatchesSelector ||
       Element.prototype.webkitMatchesSelector ||
       function (s) {
-        let matches = (this.document || this.ownerDocument).querySelectorAll(s)
+        const matches = (this.document || this.ownerDocument).querySelectorAll(s)
         let i = matches.length
         while (--i >= 0 && matches.item(i) !== this) {
         }
@@ -126,7 +126,7 @@ export function addClass (el, className) {
     return
   }
   if (el.className) {
-    let classes = el.className.split(' ')
+    const classes = el.className.split(' ')
     if (classes.indexOf(className) < 0) {
       classes.push(className)
       el.className = classes.join(' ')
@@ -141,8 +141,8 @@ export function removeClass (el, className) {
     return
   }
   if (el.className) {
-    let classes = el.className.split(' ')
-    let newClasses = []
+    const classes = el.className.split(' ')
+    const newClasses = []
     for (let i = 0, l = classes.length; i < l; i++) {
       if (classes[i] !== className) {
         newClasses.push(classes[i])
@@ -156,7 +156,7 @@ export function hasClass (el, className) {
   if (!isElement(el)) {
     return false
   }
-  let classes = el.className.split(' ')
+  const classes = el.className.split(' ')
   for (let i = 0, l = classes.length; i < l; i++) {
     if (classes[i] === className) {
       return true
@@ -166,11 +166,11 @@ export function hasClass (el, className) {
 }
 
 export function setDropdownPosition (dropdown, trigger, options = {}) {
-  let doc = document.documentElement
-  let containerScrollLeft = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0)
-  let containerScrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
-  let rect = trigger.getBoundingClientRect()
-  let dropdownRect = dropdown.getBoundingClientRect()
+  const doc = document.documentElement
+  const containerScrollLeft = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0)
+  const containerScrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
+  const rect = trigger.getBoundingClientRect()
+  const dropdownRect = dropdown.getBoundingClientRect()
   dropdown.style.right = 'auto'
   dropdown.style.bottom = 'auto'
   if (options.menuRight) {
@@ -186,9 +186,9 @@ export function setDropdownPosition (dropdown, trigger, options = {}) {
 }
 
 export function isAvailableAtPosition (trigger, popup, placement) {
-  let triggerRect = trigger.getBoundingClientRect()
-  let popupRect = popup.getBoundingClientRect()
-  let viewPortSize = getViewportSize()
+  const triggerRect = trigger.getBoundingClientRect()
+  const popupRect = popup.getBoundingClientRect()
+  const viewPortSize = getViewportSize()
   let top = true
   let right = true
   let bottom = true
@@ -238,7 +238,7 @@ export function setTooltipPosition (tooltip, trigger, placement, auto, appendTo,
   if (auto) {
     // Try: right -> bottom -> left -> top
     // Cause the default placement is top
-    let placements = [PLACEMENTS.RIGHT, PLACEMENTS.BOTTOM, PLACEMENTS.LEFT, PLACEMENTS.TOP]
+    const placements = [PLACEMENTS.RIGHT, PLACEMENTS.BOTTOM, PLACEMENTS.LEFT, PLACEMENTS.TOP]
     // The class switch helper function
     const changePlacementClass = (placement) => {
       // console.log(placement)
@@ -262,8 +262,8 @@ export function setTooltipPosition (tooltip, trigger, placement, auto, appendTo,
     }
   }
   // fix left and top for tooltip
-  let rect = trigger.getBoundingClientRect()
-  let tooltipRect = tooltip.getBoundingClientRect()
+  const rect = trigger.getBoundingClientRect()
+  const tooltipRect = tooltip.getBoundingClientRect()
   let top
   let left
   if (placement === PLACEMENTS.BOTTOM) {
@@ -362,7 +362,7 @@ export function getClosest (el, selector) {
 
 export function getParents (el, selector, until = null) {
   ensureElementMatchesFunction()
-  let parents = []
+  const parents = []
   let parent = el.parentElement
   while (parent) {
     if (parent.matches(selector)) {

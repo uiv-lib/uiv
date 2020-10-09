@@ -109,7 +109,7 @@ describe('DatePicker', () => {
 
   it('should be able to switch to month view from date view', async () => {
     await vm.$nextTick()
-    let picker = $el.find('[data-role="date-picker"]').get(0)
+    const picker = $el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
     const dateView = picker.querySelectorAll('table')[0]
     const yearMonthBtn = dateView.querySelectorAll('button')[1]
@@ -289,7 +289,7 @@ describe('DatePicker', () => {
   })
 
   it('should be able to hide today btn', async () => {
-    vm = createVm(`<date-picker v-model="date" :today-btn="false" :clear-btn="false"/>`, {
+    vm = createVm('<date-picker v-model="date" :today-btn="false" :clear-btn="false"/>', {
       date: null
     })
     const $el = $(vm.$el)
@@ -298,7 +298,7 @@ describe('DatePicker', () => {
   })
 
   it('should be able to hide clear btn', async () => {
-    vm = createVm(`<date-picker v-model="date" :today-btn="false" :clear-btn="false"/>`, {
+    vm = createVm('<date-picker v-model="date" :today-btn="false" :clear-btn="false"/>', {
       date: null
     })
     const $el = $(vm.$el)
@@ -307,7 +307,7 @@ describe('DatePicker', () => {
   })
 
   it('should be able to limit date range and render correct date view', async () => {
-    vm = createVm(`<div><date-picker v-model="date" limit-from="2018-01-01" limit-to="2019-01-01"/></div>`, {
+    vm = createVm('<div><date-picker v-model="date" limit-from="2018-01-01" limit-to="2019-01-01"/></div>', {
       date: null
     })
     const $el = $(vm.$el)
@@ -323,7 +323,7 @@ describe('DatePicker', () => {
   })
 
   it('should be able to limit date range and not able to set invalid date', async () => {
-    vm = createVm(`<date-picker v-model="date" limit-from="2018-01-01" limit-to="2019-01-01"/>`, {
+    vm = createVm('<date-picker v-model="date" limit-from="2018-01-01" limit-to="2019-01-01"/>', {
       date: null
     })
     vm.date = '2020-01-01'
@@ -368,7 +368,7 @@ describe('DatePicker', () => {
   })
 
   it('should be able to use custom date classes', async () => {
-    vm = createVm(`<div><date-picker v-model="date" :date-class="dateClass"/></div>`, {
+    vm = createVm('<div><date-picker v-model="date" :date-class="dateClass"/></div>', {
       date: null
     }, {
       methods: {

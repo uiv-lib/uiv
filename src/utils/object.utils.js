@@ -3,11 +3,11 @@ export function assign (target, varArgs) {
   if (target === null || target === undefined) {
     throw new TypeError('Cannot convert undefined or null to object')
   }
-  let to = Object(target)
+  const to = Object(target)
   for (let index = 1; index < arguments.length; index++) {
-    let nextSource = arguments[index]
+    const nextSource = arguments[index]
     if (nextSource !== null && nextSource !== undefined) {
-      for (let nextKey in nextSource) {
+      for (const nextKey in nextSource) {
         // Avoid bugs when hasOwnProperty is shadowed
         /* istanbul ignore else */
         if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
@@ -41,4 +41,8 @@ export function isBoolean (obj) {
 
 export function isPromiseSupported () {
   return typeof window !== 'undefined' && isExist(window.Promise)
+}
+
+export function hasOwnProperty (o, k) {
+  return Object.prototype.hasOwnProperty.call(o, k)
 }

@@ -31,10 +31,10 @@ export function daysInMonth (month, year) {
 
 export function stringify (date, format) {
   try {
-    let year = date.getFullYear()
-    let month = date.getMonth() + 1
-    let day = date.getDate()
-    let monthName = monthNames[month - 1]
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const monthName = monthNames[month - 1]
     return format
       .replace(/yyyy/g, year)
       .replace(/MMMM/g, monthName)
