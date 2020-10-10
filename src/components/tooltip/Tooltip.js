@@ -24,9 +24,9 @@ export default {
             }
           },
           [
-            h('div', { 'class': 'tooltip-arrow' }),
+            h('div', { class: 'tooltip-arrow' }),
             h('div', {
-              'class': 'tooltip-inner',
+              class: 'tooltip-inner',
               domProps: { innerHTML: this.text }
             })
           ]

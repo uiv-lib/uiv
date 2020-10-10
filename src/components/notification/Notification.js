@@ -74,8 +74,8 @@ export default {
   },
   computed: {
     styles () {
-      let queue = this.queue
-      let thisIndex = queue.indexOf(this)
+      const queue = this.queue
+      const thisIndex = queue.indexOf(this)
       return {
         position: 'fixed',
         [this.vertical]: `${this.getTotalHeightOfQueue(queue, thisIndex)}px`,

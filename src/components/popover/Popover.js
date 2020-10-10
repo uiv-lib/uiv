@@ -23,14 +23,14 @@ export default {
             }
           },
           [
-            h('div', { 'class': 'arrow' }),
+            h('div', { class: 'arrow' }),
             h('h3', {
-              'class': 'popover-title',
+              class: 'popover-title',
               directives: [
                 { name: 'show', value: this.title }
               ]
             }, this.title),
-            h('div', { 'class': 'popover-content' }, [this.content || this.$slots.popover])
+            h('div', { class: 'popover-content' }, [this.content || this.$slots.popover])
           ]
         )
       ]

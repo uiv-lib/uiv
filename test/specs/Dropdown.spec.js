@@ -279,7 +279,7 @@ describe('Dropdown', () => {
 
   it('should be able to open dropdown append to body & menu-right on trigger click', async () => {
     vm = appendToBodyVm()
-    const dropdown = vm.$el.querySelectorAll(`.dropdown`)[1]
+    const dropdown = vm.$el.querySelectorAll('.dropdown')[1]
     const trigger = dropdown.querySelector('button')
     expect(dropdown.className).to.not.contain('open')
     expect(dropdown.querySelector('.dropdown-menu-right')).to.exist

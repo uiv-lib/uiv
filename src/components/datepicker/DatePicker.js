@@ -71,7 +71,7 @@ export default {
   },
   computed: {
     valueDateObj () {
-      let ts = this.dateParser(this.value)
+      const ts = this.dateParser(this.value)
       if (isNaN(ts)) {
         return null
       } else {
@@ -96,7 +96,7 @@ export default {
       }
     },
     limit () {
-      let limit = {}
+      const limit = {}
       if (this.limitFrom) {
         let limitFrom = this.dateParser(this.limitFrom)
         if (!isNaN(limitFrom)) {
@@ -132,7 +132,7 @@ export default {
   },
   methods: {
     setMonthAndYearByValue (val, oldVal) {
-      let ts = this.dateParser(val)
+      const ts = this.dateParser(val)
       if (!isNaN(ts)) {
         let date = new Date(ts)
         if (date.getHours() !== 0) {
@@ -155,7 +155,7 @@ export default {
     },
     onDateChange (date) {
       if (date && isNumber(date.date) && isNumber(date.month) && isNumber(date.year)) {
-        let _date = new Date(date.year, date.month, date.date)
+        const _date = new Date(date.year, date.month, date.date)
         this.$emit('input', this.format ? stringify(_date, this.format) : _date)
         // if the input event trigger nothing (same value)
         // manually correct

@@ -35,17 +35,17 @@ export default {
         return
       }
       // get window scroll and element position to detect if have to be normal or affixed
-      let scroll = {}
-      let element = {}
+      const scroll = {}
+      const element = {}
       const rect = this.$el.getBoundingClientRect()
       const body = document.body
       const types = ['Top', 'Left']
       types.forEach(type => {
-        let t = type.toLowerCase()
+        const t = type.toLowerCase()
         scroll[t] = window['page' + (type === 'Top' ? 'Y' : 'X') + 'Offset']
         element[t] = scroll[t] + rect[t] - (this.$el['client' + type] || body['client' + type] || 0)
       })
-      let fix = scroll.top > element.top - this.offset
+      const fix = scroll.top > element.top - this.offset
       if (this.affixed !== fix) {
         this.affixed = fix
         this.$emit(this.affixed ? 'affix' : 'unfix')

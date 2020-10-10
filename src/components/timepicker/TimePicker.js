@@ -81,7 +81,7 @@ export default {
         // Prevent a runtime reset from being overwritten
         return
       }
-      let hour = parseInt(value)
+      const hour = parseInt(value)
       if (this.showMeridian) {
         if (hour >= 1 && hour <= cutUpAmAndPm) {
           if (this.meridian) {
@@ -100,7 +100,7 @@ export default {
         // Prevent a runtime reset from being overwritten
         return
       }
-      let minutesStr = parseInt(value)
+      const minutesStr = parseInt(value)
       if (minutesStr >= zero && minutesStr <= maxMinutes) {
         this.minutes = minutesStr
       }
@@ -206,13 +206,13 @@ export default {
       time.setHours(this.hours)
       time.setMinutes(this.minutes)
       if (this.max) {
-        let max = new Date(time)
+        const max = new Date(time)
         max.setHours(this.max.getHours())
         max.setMinutes(this.max.getMinutes())
         time = time > max ? max : time
       }
       if (this.min) {
-        let min = new Date(time)
+        const min = new Date(time)
         min.setHours(this.min.getHours())
         min.setMinutes(this.min.getMinutes())
         time = time < min ? min : time

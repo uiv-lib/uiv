@@ -44,7 +44,7 @@ ScrollSpy.prototype.refresh = function () {
   this.offsets = []
   this.targets = []
   this.scrollHeight = this.getScrollHeight()
-  let list = nodeListToArray(this.el.querySelectorAll(this.selector))
+  const list = nodeListToArray(this.el.querySelectorAll(this.selector))
   const isWindow = this.scrollElement === window
   list
     .map(ele => {
@@ -102,7 +102,7 @@ ScrollSpy.prototype.activate = function (target) {
     '[data-target="' + target + '"],' +
     this.selector + '[href="' + target + '"]'
   const activeCallback = this.opts.callback
-  let active = nodeListToArray(this.el.querySelectorAll(selector))
+  const active = nodeListToArray(this.el.querySelectorAll(selector))
   active.forEach(ele => {
     getParents(ele, 'li')
       .forEach(item => {
@@ -116,7 +116,7 @@ ScrollSpy.prototype.activate = function (target) {
 }
 
 ScrollSpy.prototype.clear = function () {
-  let list = nodeListToArray(this.el.querySelectorAll(this.selector))
+  const list = nodeListToArray(this.el.querySelectorAll(this.selector))
   list.forEach(ele => {
     getParents(ele, '.active', this.opts.target).forEach(item => {
       removeClass(item, 'active')
@@ -148,7 +148,7 @@ const inserted = (el, binding) => {
 
 const unbind = (el) => {
   // console.log('unbind')
-  let instance = el[INSTANCE]
+  const instance = el[INSTANCE]
   if (instance && instance.scrollElement) {
     events.forEach(event => {
       off(instance.scrollElement, event, instance.handler)

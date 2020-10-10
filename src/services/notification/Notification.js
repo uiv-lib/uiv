@@ -1,6 +1,6 @@
 import { removeFromDom } from '../../utils/dom.utils'
 import { spliceIfExist } from '../../utils/array.utils'
-import { isFunction, isExist, isString, isPromiseSupported, assign } from '../../utils/object.utils'
+import { isFunction, isExist, isString, isPromiseSupported, assign, hasOwnProperty } from '../../utils/object.utils'
 import Notification from '../../components/notification/Notification.vue'
 import { PLACEMENTS } from '../../constants/notification.constants'
 import Vue from 'vue'
@@ -31,7 +31,7 @@ const init = (options, cb, resolve = null, reject = null) => {
   if (options.type === 'error') {
     options.type = 'danger'
   }
-  let instance = new Vue({
+  const instance = new Vue({
     extends: Notification,
     propsData: assign({}, { queue, placement }, options, {
       cb (msg) {
@@ -122,9 +122,9 @@ const notify = Object.defineProperties(_notify, {
     configurable: false,
     writable: false,
     value () {
-      for (let key in queues) {
+      for (const key in queues) {
         /* istanbul ignore else */
-        if (queues.hasOwnProperty(key)) {
+        if (hasOwnProperty(queues, key)) {
           queues[key].forEach(instance => {
             instance.onDismissed()
           })

@@ -2,13 +2,13 @@ import $ from 'jquery'
 import { createVm, destroyVm, triggerEvent } from '../utils'
 
 function baseVm () {
-  return createVm(`<div><time-picker v-model="time"/></div>`, {
+  return createVm('<div><time-picker v-model="time"/></div>', {
     time: new Date()
   })
 }
 
 function h24Vm () {
-  return createVm(`<div><time-picker v-model="time" :show-meridian="false"/></div>`, {
+  return createVm('<div><time-picker v-model="time" :show-meridian="false"/></div>', {
     time: new Date()
   })
 }
@@ -227,7 +227,7 @@ describe('TimePicker', () => {
   })
 
   it('should not be able to update time bigger than max', async () => {
-    vm = createVm(`<div><time-picker v-model="time" :max="max" :min="min"/></div>`, {
+    vm = createVm('<div><time-picker v-model="time" :max="max" :min="min"/></div>', {
       time: new Date(),
       min: new Date('2017/01/01 8:00'), // date doesn't matter
       max: new Date('2017/01/01 20:00')
@@ -244,7 +244,7 @@ describe('TimePicker', () => {
   })
 
   it('should not be able to update time smaller than min', async () => {
-    vm = createVm(`<div><time-picker v-model="time" :max="max" :min="min"/></div>`, {
+    vm = createVm('<div><time-picker v-model="time" :max="max" :min="min"/></div>', {
       time: new Date(),
       min: new Date('2017/01/01 8:00'), // date doesn't matter
       max: new Date('2017/01/01 20:00')
@@ -264,7 +264,7 @@ describe('TimePicker', () => {
   })
 
   it('should be able to use custom icons', async () => {
-    vm = createVm(`<div><time-picker v-model="time" icon-control-up="glyphicon glyphicon-plus" icon-control-down="glyphicon glyphicon-minus"/></div>`, {
+    vm = createVm('<div><time-picker v-model="time" icon-control-up="glyphicon glyphicon-plus" icon-control-down="glyphicon glyphicon-minus"/></div>', {
       time: new Date()
     })
     const $el = $(vm.$el)
@@ -377,7 +377,7 @@ describe('TimePicker', () => {
   })
 
   it('should be able to hide controls', async () => {
-    vm = createVm(`<div> <time-picker v-model="time" :controls="false"/></div>`, {
+    vm = createVm('<div> <time-picker v-model="time" :controls="false"/></div>', {
       time: new Date()
     })
     const $el = $(vm.$el)
@@ -387,7 +387,7 @@ describe('TimePicker', () => {
   })
 
   it('should display empty fields when date provided is invalid', async () => {
-    vm = createVm(`<div><time-picker v-model="time"/></div>`, {
+    vm = createVm('<div><time-picker v-model="time"/></div>', {
       time: new Date('')
     })
     await vm.$nextTick()
@@ -407,7 +407,7 @@ describe('TimePicker', () => {
   })
 
   it('should display empty fields when date provided is invalid and minutes button still work', async () => {
-    vm = createVm(`<div><time-picker v-model="time"/></div>`, {
+    vm = createVm('<div><time-picker v-model="time"/></div>', {
       time: new Date('')
     })
     await vm.$nextTick()
@@ -430,7 +430,7 @@ describe('TimePicker', () => {
   })
 
   it('should display empty fields when date provided is invalid and hour button still work', async () => {
-    vm = createVm(`<div><time-picker v-model="time"/></div>`, {
+    vm = createVm('<div><time-picker v-model="time"/></div>', {
       time: new Date('')
     })
     await vm.$nextTick()
@@ -451,7 +451,7 @@ describe('TimePicker', () => {
     expect(toggleBtn.textContent).to.equal('AM')
   })
   it('should display empty fields when date is reset at runtime', async () => {
-    vm = createVm(`<div> <time-picker v-model="time" :controls="false"/></div>`, {
+    vm = createVm('<div> <time-picker v-model="time" :controls="false"/></div>', {
       time: new Date()
     })
     await vm.$nextTick()
@@ -471,7 +471,7 @@ describe('TimePicker', () => {
     expect(minutesInput.style.width).to.equal('50px')
   })
   it('should accept an input-width prop that sets the specified width to the hours and minutes input', async () => {
-    vm = createVm(`<div><time-picker v-model="time" :input-width="inputWidth"/></div>`, {
+    vm = createVm('<div><time-picker v-model="time" :input-width="inputWidth"/></div>', {
       time: new Date(''),
       inputWidth: 180
     })

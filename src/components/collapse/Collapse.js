@@ -33,7 +33,7 @@ export default {
     }
   },
   mounted () {
-    let el = this.$el
+    const el = this.$el
     addClass(el, COLLAPSE)
     if (this.value) {
       addClass(el, IN)
@@ -42,12 +42,12 @@ export default {
   methods: {
     toggle (show) {
       clearTimeout(this.timeoutId)
-      let el = this.$el
+      const el = this.$el
       if (show) {
         this.$emit('show')
         removeClass(el, COLLAPSE)
         el.style.height = 'auto'
-        let height = window.getComputedStyle(el).height
+        const height = window.getComputedStyle(el).height
         el.style.height = null
         addClass(el, COLLAPSING)
         el.offsetHeight // force repaint

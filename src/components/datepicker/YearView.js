@@ -9,8 +9,8 @@ export default {
   },
   computed: {
     rows () {
-      let rows = []
-      let yearGroupStart = this.year - this.year % 20
+      const rows = []
+      const yearGroupStart = this.year - this.year % 20
       for (let i = 0; i < 4; i++) {
         rows.push([])
         for (let j = 0; j < 5; j++) {
@@ -20,7 +20,7 @@ export default {
       return rows
     },
     yearStr () {
-      let start = this.year - this.year % 20
+      const start = this.year - this.year % 20
       return `${start} ~ ${start + 19}`
     }
   },

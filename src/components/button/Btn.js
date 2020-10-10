@@ -1,4 +1,4 @@
-import {mergeData} from 'vue-functional-data-merge'
+import { mergeData } from 'vue-functional-data-merge'
 import linkMixin from '../../mixins/link.mixin'
 import BtnGroup from './BtnGroup'
 
@@ -8,7 +8,7 @@ const INPUT_TYPE_RADIO = 'radio'
 export default {
   functional: true,
   mixins: [linkMixin],
-  render (h, {children, props, data}) {
+  render (h, { children, props, data }) {
     // event listeners
     const listeners = data.on || {}
     // checkbox: model contain inputValue
@@ -96,9 +96,9 @@ export default {
                 } else {
                   valueCopied.push(props.inputValue)
                 }
-                listeners['input'](valueCopied)
+                listeners.input(valueCopied)
               } else {
-                listeners['input'](props.inputValue)
+                listeners.input(props.inputValue)
               }
             }
           }

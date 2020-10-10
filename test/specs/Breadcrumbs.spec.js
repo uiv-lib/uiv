@@ -9,7 +9,7 @@ describe('Breadcrumbs', () => {
   })
 
   it('should be able to render with item data', () => {
-    vm = createVm(`<breadcrumbs :items="items"/>`, {
+    vm = createVm('<breadcrumbs :items="items"/>', {
       items: [
         { text: 'Home', href: '#' },
         { text: 'Library', href: '#' },
@@ -57,7 +57,7 @@ describe('Breadcrumbs', () => {
   })
 
   it('should be able to render router-link', () => {
-    vm = createVm(`<breadcrumbs :items="items"/>`, {
+    vm = createVm('<breadcrumbs :items="items"/>', {
       items: [
         { text: 'Home', to: '/', exact: true },
         { text: 'Breadcrumbs', to: '/breadcrumbs' }

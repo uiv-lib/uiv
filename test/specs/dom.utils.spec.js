@@ -79,7 +79,7 @@ describe('dom.utils', () => {
       const $body = $('html, body')
       $body.css('height', '9999px')
       utils.toggleBodyOverflow(false)
-      expect(document.body.style.paddingRight).to.contain(`px`)
+      expect(document.body.style.paddingRight).to.contain('px')
       utils.toggleBodyOverflow(true)
       $body.css('height', '')
     })
@@ -100,6 +100,24 @@ describe('dom.utils', () => {
   describe('#getClosest', () => {
     it('should be able to handle null input', () => {
       expect(utils.getClosest(null)).to.be.null
+    })
+  })
+
+  describe('#getElementBySelectorOrRef', () => {
+    it('should be able to handle string input', () => {
+      expect(utils.getElementBySelectorOrRef('body')).to.equal(document.querySelector('body'))
+    })
+
+    it('should be able to handle element input', () => {
+      expect(utils.getElementBySelectorOrRef(document.querySelector('body'))).to.equal(document.querySelector('body'))
+    })
+
+    it('should be able to handle component input', () => {
+      expect(utils.getElementBySelectorOrRef({ $el: document.querySelector('body') })).to.equal(document.querySelector('body'))
+    })
+
+    it('should be able to handle other input', () => {
+      expect(utils.getElementBySelectorOrRef(123)).to.be.null
     })
   })
 })

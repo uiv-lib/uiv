@@ -1,13 +1,14 @@
 import Tooltip from '../../components/tooltip/Tooltip.js'
 import Vue from 'vue'
+import { hasOwnProperty } from '../../utils/object.utils'
 
 const INSTANCE = '_uiv_tooltip_instance'
 
 const bind = (el, binding) => {
   // console.log('bind')
   unbind(el)
-  let Constructor = Vue.extend(Tooltip)
-  let vm = new Constructor({
+  const Constructor = Vue.extend(Tooltip)
+  const vm = new Constructor({
     propsData: {
       target: el,
       appendTo: binding.arg && '#' + binding.arg,
@@ -18,9 +19,9 @@ const bind = (el, binding) => {
       hideDelay: binding.value && binding.value.hideDelay
     }
   })
-  let options = []
-  for (let key in binding.modifiers) {
-    if (binding.modifiers.hasOwnProperty(key) && binding.modifiers[key]) {
+  const options = []
+  for (const key in binding.modifiers) {
+    if (hasOwnProperty(binding.modifiers, key) && binding.modifiers[key]) {
       options.push(key)
     }
   }
@@ -39,7 +40,7 @@ const bind = (el, binding) => {
 
 const unbind = (el) => {
   // console.log('unbind')
-  let vm = el[INSTANCE]
+  const vm = el[INSTANCE]
   if (vm) {
     vm.$destroy()
   }
@@ -53,4 +54,4 @@ const update = (el, binding) => {
   }
 }
 
-export default {bind, unbind, update}
+export default { bind, unbind, update }

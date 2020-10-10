@@ -4,7 +4,7 @@ import { assign } from '../utils/object.utils'
 export default {
   methods: {
     t () {
-      let args = []
+      const args = []
       for (let i = 0; i < arguments.length; ++i) {
         args.push(arguments[i])
       }

@@ -9,7 +9,7 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to render with no options', async () => {
-    vm = createVm(`<div><multi-select v-model="selected" :options="options"/></div>`, {
+    vm = createVm('<div><multi-select v-model="selected" :options="options"/></div>', {
       selected: [],
       options: []
     })
@@ -731,7 +731,7 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to display grouped options', async () => {
-    vm = createVm(`<div><multi-select v-model="selected" :options="options"/></div>`, {
+    vm = createVm('<div><multi-select v-model="selected" :options="options"/></div>', {
       selected: [],
       options: [
         { value: 1, label: 'Apple', group: 'Fruit' },

@@ -3,7 +3,7 @@ import MessageBox from '../../src/services/messagebox/MessageBox'
 import { createVm, destroyVm, sleep, triggerEvent, transition } from '../utils'
 
 function alertVm () {
-  return createVm(`<div><btn @click="alert" type="primary">Click to open an alert modal</btn></div>`, {}, {
+  return createVm('<div><btn @click="alert" type="primary">Click to open an alert modal</btn></div>', {}, {
     methods: {
       alert () {
         this.$alert({
@@ -19,7 +19,7 @@ function alertVm () {
 }
 
 function confirmVm () {
-  return createVm(`<div><btn @click="confirm" type="primary">Click to open a confirm modal</btn></div>`, {}, {
+  return createVm('<div><btn @click="confirm" type="primary">Click to open a confirm modal</btn></div>', {}, {
     methods: {
       confirm () {
         this.$confirm({
@@ -41,7 +41,7 @@ function confirmVm () {
 }
 
 function promptVm () {
-  return createVm(`<div><btn @click="confirm" type="primary">Click to open a prompt modal</btn></div>`, {}, {
+  return createVm('<div><btn @click="confirm" type="primary">Click to open a prompt modal</btn></div>', {}, {
     methods: {
       confirm () {
         this.$prompt({

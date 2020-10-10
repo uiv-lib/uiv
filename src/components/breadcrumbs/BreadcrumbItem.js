@@ -1,10 +1,10 @@
-import {mergeData} from 'vue-functional-data-merge'
+import { mergeData } from 'vue-functional-data-merge'
 import linkMixin from '../../mixins/link.mixin'
 
 export default {
   functional: true,
   mixins: [linkMixin],
-  render (h, {props, data, children}) {
+  render (h, { props, data, children }) {
     let slot
     if (props.active) {
       slot = children
@@ -29,7 +29,7 @@ export default {
         }, children)
       ]
     }
-    return h('li', mergeData(data, {class: {active: props.active}}), slot)
+    return h('li', mergeData(data, { class: { active: props.active } }), slot)
   },
   props: {
     active: {

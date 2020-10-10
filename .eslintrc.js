@@ -3,10 +3,10 @@
 module.exports = {
   root: true,
   env: {
-    browser: true,
+    browser: true
   },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  extends: 'standard',
+  extends: ['standard', 'plugin:vue/base'],
   // required to lint *.vue files
   plugins: [
     'html'

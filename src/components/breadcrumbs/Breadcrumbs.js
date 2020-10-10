@@ -1,9 +1,10 @@
-import {mergeData} from 'vue-functional-data-merge'
+import { mergeData } from 'vue-functional-data-merge'
 import BreadcrumbItem from './BreadcrumbItem.js'
+import { hasOwnProperty } from '../../utils/object.utils'
 
 export default {
   functional: true,
-  render (h, {props, data, children}) {
+  render (h, { props, data, children }) {
     let slot = []
     if (children && children.length) {
       slot = children
@@ -12,9 +13,9 @@ export default {
         return h(
           BreadcrumbItem,
           {
-            key: item.hasOwnProperty('key') ? item.key : index,
+            key: hasOwnProperty(item, 'key') ? item.key : index,
             props: {
-              active: item.hasOwnProperty('active') ? item.active : index === props.items.length - 1,
+              active: hasOwnProperty(item, 'active') ? item.active : index === props.items.length - 1,
               href: item.href,
               target: item.target,
               to: item.to,
@@ -27,7 +28,7 @@ export default {
         )
       })
     }
-    return h('ol', mergeData(data, {class: 'breadcrumb'}), slot)
+    return h('ol', mergeData(data, { class: 'breadcrumb' }), slot)
   },
   props: {
     items: Array

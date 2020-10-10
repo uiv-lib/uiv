@@ -1,4 +1,4 @@
-import {install} from './install'
+import { install } from './install'
 
 // auto install
 if (typeof window !== 'undefined' && window.Vue) {

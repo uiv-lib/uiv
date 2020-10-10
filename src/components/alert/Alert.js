@@ -21,7 +21,7 @@ export default {
   computed: {
     alertClass () {
       return {
-        'alert': true,
+        alert: true,
         [`alert-${this.type}`]: Boolean(this.type),
         'alert-dismissible': this.dismissible
       }

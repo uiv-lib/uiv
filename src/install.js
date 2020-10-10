@@ -9,22 +9,22 @@ const install = (Vue, options = {}) => {
   locale.i18n(options.i18n)
   // Register components
   Object.keys(components).forEach(key => {
-    let _key = options.prefix ? options.prefix + key : key
+    const _key = options.prefix ? options.prefix + key : key
     Vue.component(_key, components[key])
   })
   // Register directives
   Object.keys(directives).forEach(key => {
-    let _key = options.prefix ? options.prefix + '-' + key : key
+    const _key = options.prefix ? options.prefix + '-' + key : key
     Vue.directive(_key, directives[key])
   })
   // Register services
   Object.keys(services).forEach(key => {
     const service = services[key]
     Object.keys(service).forEach(serviceKey => {
-      let _key = options.prefix ? options.prefix + '_' + serviceKey : serviceKey
+      const _key = options.prefix ? options.prefix + '_' + serviceKey : serviceKey
       Vue.prototype['$' + _key] = service[serviceKey]
     })
   })
 }
 
-export {install}
+export { install }

@@ -1,13 +1,14 @@
 import Popover from '../../components/popover/Popover.js'
 import Vue from 'vue'
+import { hasOwnProperty } from '../../utils/object.utils'
 
 const INSTANCE = '_uiv_popover_instance'
 
 const bind = (el, binding) => {
   // console.log('bind')
   unbind(el)
-  let Constructor = Vue.extend(Popover)
-  let vm = new Constructor({
+  const Constructor = Vue.extend(Popover)
+  const vm = new Constructor({
     propsData: {
       target: el,
       appendTo: binding.arg && '#' + binding.arg,
@@ -17,9 +18,9 @@ const bind = (el, binding) => {
       customClass: binding.value && binding.value.customClass && binding.value.customClass.toString()
     }
   })
-  let options = []
-  for (let key in binding.modifiers) {
-    if (binding.modifiers.hasOwnProperty(key) && binding.modifiers[key]) {
+  const options = []
+  for (const key in binding.modifiers) {
+    if (hasOwnProperty(binding.modifiers, key) && binding.modifiers[key]) {
       options.push(key)
     }
   }
@@ -38,7 +39,7 @@ const bind = (el, binding) => {
 
 const unbind = (el) => {
   // console.log('unbind')
-  let vm = el[INSTANCE]
+  const vm = el[INSTANCE]
   if (vm) {
     vm.$destroy()
   }
