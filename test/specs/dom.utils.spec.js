@@ -1,5 +1,6 @@
 import * as utils from '../../src/utils/dom.utils'
 import $ from 'jquery'
+import { createVm } from '../utils'
 
 describe('dom.utils', () => {
   describe('#isElement', () => {
@@ -81,7 +82,38 @@ describe('dom.utils', () => {
       utils.toggleBodyOverflow(false)
       expect(document.body.style.paddingRight).to.contain('px')
       utils.toggleBodyOverflow(true)
+      expect(document.body.style.paddingRight || null).to.be.null
       $body.css('height', '')
+    })
+
+    it('should be able to toggle fixed top nav padding right as well', () => {
+      const $body = $('html, body')
+      const vm = createVm('<navbar fixed-top/>')
+      const nav = vm.$el
+      expect(nav.className).to.contain('navbar-fixed-top')
+      $body.css('overflow-y', 'scroll')
+      utils.toggleBodyOverflow(false)
+      expect(nav.style.paddingRight).to.contain('px')
+      utils.toggleBodyOverflow(true)
+      expect(nav.style.paddingRight || null).to.be.null
+      $body.css('overflow-y', '')
+      vm.$destroy()
+      nav.remove()
+    })
+
+    it('should be able to toggle fixed bottom nav padding right as well', () => {
+      const $body = $('html, body')
+      const vm = createVm('<navbar fixed-bottom/>')
+      const nav = vm.$el
+      expect(nav.className).to.contain('navbar-fixed-bottom')
+      $body.css('overflow-y', 'scroll')
+      utils.toggleBodyOverflow(false)
+      expect(nav.style.paddingRight).to.contain('px')
+      utils.toggleBodyOverflow(true)
+      expect(nav.style.paddingRight || null).to.be.null
+      $body.css('overflow-y', '')
+      vm.$destroy()
+      nav.remove()
     })
   })
 

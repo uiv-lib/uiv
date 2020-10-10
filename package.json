@@ -1,6 +1,6 @@
 {
   "name": "uiv",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Bootstrap 3 components implemented by Vue 2.",
   "author": "wxsm",
   "main": "dist/uiv.common.js",
@@ -45,7 +45,7 @@
     "coveralls": "3.1.0",
     "cross-env": "7.0.2",
     "es6-object-assign": "1.1.0",
-    "eslint": "7.10.0",
+    "eslint": "7.11.0",
     "eslint-config-standard": "14.1.1",
     "eslint-plugin-html": "6.1.0",
     "eslint-plugin-import": "2.22.1",
