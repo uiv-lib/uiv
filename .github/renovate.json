@@ -1,5 +1,14 @@
 {
   "extends": [
     "config:base"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "assignees": [
+    "wxsms"
+  ],
+  "reviewers": [
+    "wxsms"
   ]
 }
