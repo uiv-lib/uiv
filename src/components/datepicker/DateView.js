@@ -89,10 +89,14 @@ export default {
             beforeTo = dateObj < this.limit.to
           }
           date.disabled = !afterFrom || !beforeTo
-          date.classes = isFunction(this.dateClass) ? this.dateClass(dateObj, {
-            currentMonth: this.month,
-            currentYear: this.year
-          }) : ''
+          if (isFunction(this.dateClass)) {
+            date.classes = this.dateClass(dateObj, {
+              currentMonth: this.month,
+              currentYear: this.year
+            })
+          } else {
+            date.classes = ''
+          }
           rows[i].push(date)
         }
       }
