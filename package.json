@@ -46,7 +46,7 @@
     "cross-env": "7.0.2",
     "es6-object-assign": "1.1.0",
     "eslint": "7.12.1",
-    "eslint-config-standard": "15.0.0",
+    "eslint-config-standard": "15.0.1",
     "eslint-plugin-html": "6.1.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-node": "11.1.0",
