@@ -59,6 +59,7 @@ const init = function (type, options, cb, resolve = null, reject = null) {
   queue.push(instance)
 }
 
+// eslint-disable-next-line default-param-last
 const initModal = function (type, options = {}, cb) {
   if (isPromiseSupported()) {
     return new Promise((resolve, reject) => {
