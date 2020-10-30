@@ -4389,10 +4389,10 @@ sinon-chai@3.5.0:
   resolved "https://registry.npm.taobao.org/sinon-chai/download/sinon-chai-3.5.0.tgz#c9a78304b0e15befe57ef68e8a85a00553f5c60e"
   integrity sha1-yaeDBLDhW+/lfvaOioWgBVP1xg4=
 
-sinon@9.2.0:
-  version "9.2.0"
-  resolved "https://registry.npm.taobao.org/sinon/download/sinon-9.2.0.tgz?cache=0&sync_timestamp=1602061422940&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsinon%2Fdownload%2Fsinon-9.2.0.tgz#1d333967e30023609f7347351ebc0dc964c0f3c9"
-  integrity sha1-HTM5Z+MAI2Cfc0c1HrwNyWTA88k=
+sinon@9.2.1:
+  version "9.2.1"
+  resolved "https://registry.npm.taobao.org/sinon/download/sinon-9.2.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsinon%2Fdownload%2Fsinon-9.2.1.tgz#64cc88beac718557055bd8caa526b34a2231be6d"
+  integrity sha1-ZMyIvqxxhVcFW9jKpSazSiIxvm0=
   dependencies:
     "@sinonjs/commons" "^1.8.1"
     "@sinonjs/fake-timers" "^6.0.1"
