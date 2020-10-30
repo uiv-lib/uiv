@@ -114,8 +114,8 @@ export function ensureElementMatchesFunction () {
       function (s) {
         const matches = (this.document || this.ownerDocument).querySelectorAll(s)
         let i = matches.length
-        while (--i >= 0 && matches.item(i) !== this) {
-        }
+        // eslint-disable-next-line no-empty
+        while (--i >= 0 && matches.item(i) !== this) {}
         return i > -1
       }
   }
