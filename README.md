@@ -52,6 +52,14 @@ For more information, pls visit [https://uiv.wxsm.space/usage/getting-started.ht
 
 Detailed changes for each release are documented in the [release notes](https://github.com/uiv-lib/uiv/releases).
 
+## Special thanks
+
+This project is supported by [JetBrains](https://www.jetbrains.com/?from=uiv).
+
+<p>
+<a href="https://www.jetbrains.com/?from=uiv"><img width="250" src="https://user-images.githubusercontent.com/5960988/98058377-82daf680-1e7f-11eb-839b-adad5eff0737.png" alt="JetBrains.png"></a>
+</p>
+
 ## Funding
 
 If you think that this project is useful and wanted to support it financially, feel free to choose payment methods below. I really appreciate it.
