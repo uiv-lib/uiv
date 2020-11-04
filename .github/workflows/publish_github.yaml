@@ -17,7 +17,7 @@ jobs:
         uses: deef0000dragon1/json-edit-action@v1
         env:
           KEY: name
-          VALUE: "@wxsms/uiv"
+          VALUE: "@uiv-lib/uiv"
           FILE: package.json
       - uses: c-hive/gha-yarn-cache@v1
       - run: yarn --frozen-lockfile
