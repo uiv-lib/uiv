@@ -1428,9 +1428,9 @@ domhandler@^3.0.0, domhandler@^3.3.0:
   dependencies:
     domelementtype "^2.0.1"
 
-domutils@^2.0.0:
+domutils@^2.4.2:
   version "2.4.2"
-  resolved "https://registry.npm.taobao.org/domutils/download/domutils-2.4.2.tgz#7ee5be261944e1ad487d9aa0616720010123922b"
+  resolved "https://registry.npm.taobao.org/domutils/download/domutils-2.4.2.tgz?cache=0&sync_timestamp=1601761124698&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdomutils%2Fdownload%2Fdomutils-2.4.2.tgz#7ee5be261944e1ad487d9aa0616720010123922b"
   integrity sha1-fuW+JhlE4a1IfZqgYWcgAQEjkis=
   dependencies:
     dom-serializer "^1.0.1"
@@ -1668,12 +1668,12 @@ eslint-plugin-es@^3.0.0:
     eslint-utils "^2.0.0"
     regexpp "^3.0.0"
 
-eslint-plugin-html@6.1.0:
-  version "6.1.0"
-  resolved "https://registry.npm.taobao.org/eslint-plugin-html/download/eslint-plugin-html-6.1.0.tgz?cache=0&sync_timestamp=1599391535931&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-plugin-html%2Fdownload%2Feslint-plugin-html-6.1.0.tgz#0e0d4845d4b3eb6e199652385e272f7b722673db"
-  integrity sha1-Dg1IRdSz624ZllI4Xicve3Imc9s=
+eslint-plugin-html@6.1.1:
+  version "6.1.1"
+  resolved "https://registry.npm.taobao.org/eslint-plugin-html/download/eslint-plugin-html-6.1.1.tgz#95aee151900b9bb2da5fa017b45cc64456a0a74e"
+  integrity sha1-la7hUZALm7LaX6AXtFzGRFagp04=
   dependencies:
-    htmlparser2 "^4.1.0"
+    htmlparser2 "^5.0.1"
 
 eslint-plugin-import@2.22.1:
   version "2.22.1"
@@ -2245,14 +2245,14 @@ html-escaper@^2.0.0:
   resolved "https://registry.npm.taobao.org/html-escaper/download/html-escaper-2.0.2.tgz#dfd60027da36a36dfcbe236262c00a5822681453"
   integrity sha1-39YAJ9o2o238viNiYsAKWCJoFFM=
 
-htmlparser2@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.npm.taobao.org/htmlparser2/download/htmlparser2-4.1.0.tgz?cache=0&sync_timestamp=1601761730691&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fhtmlparser2%2Fdownload%2Fhtmlparser2-4.1.0.tgz#9a4ef161f2e4625ebf7dfbe6c0a2f52d18a59e78"
-  integrity sha1-mk7xYfLkYl6/ffvmwKL1LRilnng=
+htmlparser2@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.npm.taobao.org/htmlparser2/download/htmlparser2-5.0.1.tgz?cache=0&sync_timestamp=1603668140078&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fhtmlparser2%2Fdownload%2Fhtmlparser2-5.0.1.tgz#7daa6fc3e35d6107ac95a4fc08781f091664f6e7"
+  integrity sha1-fapvw+NdYQeslaT8CHgfCRZk9uc=
   dependencies:
     domelementtype "^2.0.1"
-    domhandler "^3.0.0"
-    domutils "^2.0.0"
+    domhandler "^3.3.0"
+    domutils "^2.4.2"
     entities "^2.0.0"
 
 http-cache-semantics@^4.0.4:
