@@ -1,4 +1,5 @@
 import { isExist, isString, isFunction } from './object.utils'
+import { nodeListToArray } from './array.utils'
 
 export const EVENTS = {
   MOUSE_ENTER: 'mouseenter',
@@ -337,7 +338,7 @@ export function toggleBodyOverflow (enable) {
   if (enable) {
     removeClass(body, MODAL_OPEN)
     body.style.paddingRight = null
-    document.querySelectorAll(FIXED_CONTENT).forEach(node => {
+    nodeListToArray(document.querySelectorAll(FIXED_CONTENT)).forEach(node => {
       node.style.paddingRight = null
     })
   } else {
@@ -346,7 +347,7 @@ export function toggleBodyOverflow (enable) {
     if (documentHasScrollbar && !browsersWithFloatingScrollbar) {
       const scrollbarWidth = getScrollbarWidth()
       body.style.paddingRight = `${scrollbarWidth}px`
-      document.querySelectorAll(FIXED_CONTENT).forEach(node => {
+      nodeListToArray(document.querySelectorAll(FIXED_CONTENT)).forEach(node => {
         node.style.paddingRight = `${scrollbarWidth}px`
       })
     }
