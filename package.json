@@ -71,7 +71,7 @@
     "rollup-plugin-istanbul": "2.0.1",
     "rollup-plugin-strip-code": "0.2.7",
     "rollup-plugin-uglify": "6.0.4",
-    "rollup-plugin-vue": "5.1.9",
+    "rollup-plugin-vue": "6.0.0",
     "sinon": "9.2.1",
     "sinon-chai": "3.5.0",
     "vue": "2.6.12",
