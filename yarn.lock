@@ -122,10 +122,10 @@
     "@types/buble" "^0.19.2"
     buble "^0.20.0"
 
-"@rollup/plugin-commonjs@16.0.0":
-  version "16.0.0"
-  resolved "https://registry.npm.taobao.org/@rollup/plugin-commonjs/download/@rollup/plugin-commonjs-16.0.0.tgz?cache=0&sync_timestamp=1603768361922&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40rollup%2Fplugin-commonjs%2Fdownload%2F%40rollup%2Fplugin-commonjs-16.0.0.tgz#169004d56cd0f0a1d0f35915d31a036b0efe281f"
-  integrity sha1-FpAE1WzQ8KHQ81kV0xoDaw7+KB8=
+"@rollup/plugin-commonjs@17.0.0":
+  version "17.0.0"
+  resolved "https://registry.npm.taobao.org/@rollup/plugin-commonjs/download/@rollup/plugin-commonjs-17.0.0.tgz#2ae2228354cf0fbba6cf9f06f30b2c66a974324c"
+  integrity sha1-KuIig1TPD7umz58G8wssZql0Mkw=
   dependencies:
     "@rollup/pluginutils" "^3.1.0"
     commondir "^1.0.1"
