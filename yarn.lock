@@ -4242,10 +4242,10 @@ rimraf@^3.0.0, rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-rollup-plugin-filesize@9.0.2:
-  version "9.0.2"
-  resolved "https://registry.npm.taobao.org/rollup-plugin-filesize/download/rollup-plugin-filesize-9.0.2.tgz#1470bb93d40dd0c2a5381cae58b8b7106f13d185"
-  integrity sha1-FHC7k9QN0MKlOByuWLi3EG8T0YU=
+rollup-plugin-filesize@9.1.0:
+  version "9.1.0"
+  resolved "https://registry.npm.taobao.org/rollup-plugin-filesize/download/rollup-plugin-filesize-9.1.0.tgz?cache=0&sync_timestamp=1607119737983&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frollup-plugin-filesize%2Fdownload%2Frollup-plugin-filesize-9.1.0.tgz#e6032a2975d1c0c8f2c30ecaa73a12bf39406461"
+  integrity sha1-5gMqKXXRwMjyww7KpzoSvzlAZGE=
   dependencies:
     "@babel/runtime" "^7.10.3"
     boxen "^4.2.0"
@@ -4254,7 +4254,7 @@ rollup-plugin-filesize@9.0.2:
     filesize "^6.1.0"
     gzip-size "^5.1.1"
     pacote "^11.1.10"
-    terser "^4.8.0"
+    terser "^5.5.1"
 
 rollup-plugin-istanbul@2.0.1:
   version "2.0.1"
@@ -4519,7 +4519,7 @@ source-map-resolve@^0.5.2:
     source-map-url "^0.4.0"
     urix "^0.1.0"
 
-source-map-support@~0.5.12:
+source-map-support@~0.5.19:
   version "0.5.19"
   resolved "https://registry.npm.taobao.org/source-map-support/download/source-map-support-0.5.19.tgz#a98b62f86dcaf4f67399648c085291ab9e8fed61"
   integrity sha1-qYti+G3K9PZzmWSMCFKRq56P7WE=
@@ -4537,7 +4537,7 @@ source-map@0.6.*, source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.0, sourc
   resolved "https://registry.npm.taobao.org/source-map/download/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha1-dHIq8y6WFOnCh6jQu95IteLxomM=
 
-source-map@0.7.3, source-map@^0.7.3:
+source-map@0.7.3, source-map@^0.7.3, source-map@~0.7.2:
   version "0.7.3"
   resolved "https://registry.npm.taobao.org/source-map/download/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
   integrity sha1-UwL4FpAxc1ImVECS5kmB91F1A4M=
@@ -4822,14 +4822,14 @@ term-size@^2.1.0:
   resolved "https://registry.npm.taobao.org/term-size/download/term-size-2.2.0.tgz#1f16adedfe9bdc18800e1776821734086fcc6753"
   integrity sha1-Hxat7f6b3BiADhd2ghc0CG/MZ1M=
 
-terser@^4.8.0:
-  version "4.8.0"
-  resolved "https://registry.npm.taobao.org/terser/download/terser-4.8.0.tgz#63056343d7c70bb29f3af665865a46fe03a0df17"
-  integrity sha1-YwVjQ9fHC7KfOvZlhlpG/gOg3xc=
+terser@^5.5.1:
+  version "5.5.1"
+  resolved "https://registry.npm.taobao.org/terser/download/terser-5.5.1.tgz?cache=0&sync_timestamp=1606492324408&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fterser%2Fdownload%2Fterser-5.5.1.tgz#540caa25139d6f496fdea056e414284886fb2289"
+  integrity sha1-VAyqJROdb0lv3qBW5BQoSIb7Iok=
   dependencies:
     commander "^2.20.0"
-    source-map "~0.6.1"
-    source-map-support "~0.5.12"
+    source-map "~0.7.2"
+    source-map-support "~0.5.19"
 
 text-table@^0.2.0:
   version "0.2.0"
