@@ -142,10 +142,10 @@
   dependencies:
     "@rollup/pluginutils" "^3.0.8"
 
-"@rollup/plugin-node-resolve@11.0.0":
-  version "11.0.0"
-  resolved "https://registry.npm.taobao.org/@rollup/plugin-node-resolve/download/@rollup/plugin-node-resolve-11.0.0.tgz?cache=0&sync_timestamp=1606762454427&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40rollup%2Fplugin-node-resolve%2Fdownload%2F%40rollup%2Fplugin-node-resolve-11.0.0.tgz#770458fb26691a686c5f29f37dded94832ffce59"
-  integrity sha1-dwRY+yZpGmhsXynzfd7ZSDL/zlk=
+"@rollup/plugin-node-resolve@11.0.1":
+  version "11.0.1"
+  resolved "https://registry.npm.taobao.org/@rollup/plugin-node-resolve/download/@rollup/plugin-node-resolve-11.0.1.tgz?cache=0&sync_timestamp=1607999941135&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40rollup%2Fplugin-node-resolve%2Fdownload%2F%40rollup%2Fplugin-node-resolve-11.0.1.tgz#d3765eec4bccf960801439a999382aed2dca959b"
+  integrity sha1-03Ze7EvM+WCAFDmpmTgq7S3KlZs=
   dependencies:
     "@rollup/pluginutils" "^3.1.0"
     "@types/resolve" "1.17.1"
