@@ -52,7 +52,7 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "5.0.0",
-    "eslint-plugin-vue": "7.2.0",
+    "eslint-plugin-vue": "7.3.0",
     "jquery": "3.5.1",
     "karma": "5.2.3",
     "karma-chrome-launcher": "3.1.0",

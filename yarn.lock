@@ -1716,15 +1716,15 @@ eslint-plugin-standard@5.0.0:
   resolved "https://registry.npm.taobao.org/eslint-plugin-standard/download/eslint-plugin-standard-5.0.0.tgz?cache=0&sync_timestamp=1606091828930&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-plugin-standard%2Fdownload%2Feslint-plugin-standard-5.0.0.tgz#c43f6925d669f177db46f095ea30be95476b1ee4"
   integrity sha1-xD9pJdZp8XfbRvCV6jC+lUdrHuQ=
 
-eslint-plugin-vue@7.2.0:
-  version "7.2.0"
-  resolved "https://registry.npm.taobao.org/eslint-plugin-vue/download/eslint-plugin-vue-7.2.0.tgz?cache=0&sync_timestamp=1607054031956&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-plugin-vue%2Fdownload%2Feslint-plugin-vue-7.2.0.tgz#dd8323fe7ca28fe9377ce3f5f6cf17afe2686f2a"
-  integrity sha1-3YMj/nyij+k3fOP19s8Xr+Jobyo=
+eslint-plugin-vue@7.3.0:
+  version "7.3.0"
+  resolved "https://registry.npm.taobao.org/eslint-plugin-vue/download/eslint-plugin-vue-7.3.0.tgz?cache=0&sync_timestamp=1608096312858&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-plugin-vue%2Fdownload%2Feslint-plugin-vue-7.3.0.tgz#0faf0fcf0e1b1052bf800d4dee42d64f50679cb0"
+  integrity sha1-D68Pzw4bEFK/gA1N7kLWT1BnnLA=
   dependencies:
     eslint-utils "^2.1.0"
     natural-compare "^1.4.0"
     semver "^7.3.2"
-    vue-eslint-parser "^7.2.0"
+    vue-eslint-parser "^7.3.0"
 
 eslint-scope@^5.0.0, eslint-scope@^5.1.1:
   version "5.1.1"
@@ -5085,10 +5085,10 @@ void-elements@^2.0.0, void-elements@^2.0.1:
   resolved "https://registry.npm.taobao.org/void-elements/download/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
   integrity sha1-wGavtYK7HLQSjWDqkjkulNXp2+w=
 
-vue-eslint-parser@^7.2.0:
-  version "7.2.0"
-  resolved "https://registry.npm.taobao.org/vue-eslint-parser/download/vue-eslint-parser-7.2.0.tgz?cache=0&sync_timestamp=1606963523314&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-eslint-parser%2Fdownload%2Fvue-eslint-parser-7.2.0.tgz#1e17ae94ca71e617025e05143c8ac5593aacb6ef"
-  integrity sha1-HheulMpx5hcCXgUUPIrFWTqstu8=
+vue-eslint-parser@^7.3.0:
+  version "7.3.0"
+  resolved "https://registry.npm.taobao.org/vue-eslint-parser/download/vue-eslint-parser-7.3.0.tgz?cache=0&sync_timestamp=1608031021392&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-eslint-parser%2Fdownload%2Fvue-eslint-parser-7.3.0.tgz#894085839d99d81296fa081d19643733f23d7559"
+  integrity sha1-iUCFg52Z2BKW+ggdGWQ3M/I9dVk=
   dependencies:
     debug "^4.1.1"
     eslint-scope "^5.0.0"
