@@ -68,7 +68,7 @@
     "puppeteer": "5.5.0",
     "rollup": "2.35.1",
     "rollup-plugin-filesize": "9.1.0",
-    "rollup-plugin-istanbul": "2.0.1",
+    "rollup-plugin-istanbul": "3.0.0",
     "rollup-plugin-strip-code": "0.2.7",
     "rollup-plugin-uglify": "6.0.4",
     "rollup-plugin-vue": "5.1.9",
