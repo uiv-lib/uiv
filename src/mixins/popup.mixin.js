@@ -38,6 +38,10 @@ export default {
       type: null,
       default: 'body'
     },
+    positionBy: {
+      type: null,
+      default: null
+    },
     transition: {
       type: Number,
       default: 150
@@ -195,7 +199,7 @@ export default {
       const popup = this.$refs.popup
       /* istanbul ignore else */
       if (popup) {
-        setTooltipPosition(popup, this.triggerEl, this.placement, this.autoPlacement, this.appendTo, this.viewport)
+        setTooltipPosition(popup, this.triggerEl, this.placement, this.autoPlacement, this.appendTo, this.positionBy, this.viewport)
         popup.offsetHeight
       }
     },
