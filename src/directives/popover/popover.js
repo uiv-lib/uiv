@@ -13,6 +13,7 @@ const bind = (el, binding) => {
       target: el,
       appendTo: binding.arg && '#' + binding.arg,
       title: binding.value && binding.value.title && binding.value.title.toString(),
+      positionBy: binding.value && binding.value.positionBy && binding.value.positionBy.toString(),
       content: binding.value && binding.value.content && binding.value.content.toString(),
       viewport: binding.value && binding.value.viewport && binding.value.viewport.toString(),
       customClass: binding.value && binding.value.customClass && binding.value.customClass.toString()
