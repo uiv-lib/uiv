@@ -363,10 +363,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sinonjs/samsam@^5.3.0":
-  version "5.3.0"
-  resolved "https://registry.npm.taobao.org/@sinonjs/samsam/download/@sinonjs/samsam-5.3.0.tgz#1d2f0743dc54bf13fe9d508baefacdffa25d4329"
-  integrity sha1-HS8HQ9xUvxP+nVCLrvrN/6JdQyk=
+"@sinonjs/samsam@^5.3.1":
+  version "5.3.1"
+  resolved "https://registry.npm.taobao.org/@sinonjs/samsam/download/@sinonjs/samsam-5.3.1.tgz#375a45fe6ed4e92fca2fb920e007c48232a6507f"
+  integrity sha1-N1pF/m7U6S/KL7kg4AfEgjKmUH8=
   dependencies:
     "@sinonjs/commons" "^1.6.0"
     lodash.get "^4.4.2"
@@ -4386,14 +4386,14 @@ sinon-chai@3.5.0:
   resolved "https://registry.npm.taobao.org/sinon-chai/download/sinon-chai-3.5.0.tgz#c9a78304b0e15befe57ef68e8a85a00553f5c60e"
   integrity sha1-yaeDBLDhW+/lfvaOioWgBVP1xg4=
 
-sinon@9.2.3:
-  version "9.2.3"
-  resolved "https://registry.npm.taobao.org/sinon/download/sinon-9.2.3.tgz#f68ce414e843e2fd638703043c97f260697caa52"
-  integrity sha1-9ozkFOhD4v1jhwMEPJfyYGl8qlI=
+sinon@9.2.4:
+  version "9.2.4"
+  resolved "https://registry.npm.taobao.org/sinon/download/sinon-9.2.4.tgz#e55af4d3b174a4443a8762fa8421c2976683752b"
+  integrity sha1-5Vr007F0pEQ6h2L6hCHCl2aDdSs=
   dependencies:
     "@sinonjs/commons" "^1.8.1"
     "@sinonjs/fake-timers" "^6.0.1"
-    "@sinonjs/samsam" "^5.3.0"
+    "@sinonjs/samsam" "^5.3.1"
     diff "^4.0.2"
     nise "^4.0.4"
     supports-color "^7.1.0"
