@@ -1577,10 +1577,10 @@ engine.io-parser@~4.0.0:
   dependencies:
     base64-arraybuffer "0.1.4"
 
-engine.io@~4.0.6:
-  version "4.0.6"
-  resolved "https://registry.npm.taobao.org/engine.io/download/engine.io-4.0.6.tgz#7268635d64e2154ab5e7f9ef967ad1744a4c41a9"
-  integrity sha1-cmhjXWTiFUq15/nvlnrRdEpMQak=
+engine.io@~4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npm.taobao.org/engine.io/download/engine.io-4.1.0.tgz?cache=0&sync_timestamp=1610585673619&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fengine.io%2Fdownload%2Fengine.io-4.1.0.tgz#d8ac90a09ed9fc703abf87023f1e1815e33f044e"
+  integrity sha1-2KyQoJ7Z/HA6v4cCPx4YFeM/BE4=
   dependencies:
     accepts "~1.3.4"
     base64id "2.0.0"
@@ -2872,10 +2872,10 @@ karma-spec-reporter@0.0.32:
   dependencies:
     colors "^1.1.2"
 
-karma@6.0.3:
-  version "6.0.3"
-  resolved "https://registry.npm.taobao.org/karma/download/karma-6.0.3.tgz#a35b4371306e08e3f8e46b5753aff46eaf3eec2c"
-  integrity sha1-o1tDcTBuCOP45GtXU6/0bq8+7Cw=
+karma@6.0.4:
+  version "6.0.4"
+  resolved "https://registry.npm.taobao.org/karma/download/karma-6.0.4.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fkarma%2Fdownload%2Fkarma-6.0.4.tgz#5c73bb1fdecd9acf8b8d5318c48ce9c85c035f79"
+  integrity sha1-XHO7H97Nms+LjVMYxIzpyFwDX3k=
   dependencies:
     body-parser "^1.19.0"
     braces "^3.0.2"
@@ -2895,7 +2895,7 @@ karma@6.0.3:
     qjobs "^1.2.0"
     range-parser "^1.2.1"
     rimraf "^3.0.2"
-    socket.io "^3.0.4"
+    socket.io "^3.1.0"
     source-map "^0.6.1"
     tmp "0.2.1"
     ua-parser-js "^0.7.23"
@@ -4417,10 +4417,10 @@ smart-buffer@^4.1.0:
   resolved "https://registry.npm.taobao.org/smart-buffer/download/smart-buffer-4.1.0.tgz#91605c25d91652f4661ea69ccf45f1b331ca21ba"
   integrity sha1-kWBcJdkWUvRmHqacz0XxszHKIbo=
 
-socket.io-adapter@~2.0.3:
-  version "2.0.3"
-  resolved "https://registry.npm.taobao.org/socket.io-adapter/download/socket.io-adapter-2.0.3.tgz#372b7cde7a535fc4f4f0d5ac7f73952a3062d438"
-  integrity sha1-Nyt83npTX8T08NWsf3OVKjBi1Dg=
+socket.io-adapter@~2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/socket.io-adapter/download/socket.io-adapter-2.1.0.tgz#edc5dc36602f2985918d631c1399215e97a1b527"
+  integrity sha1-7cXcNmAvKYWRjWMcE5khXpehtSc=
 
 socket.io-parser@~4.0.3:
   version "4.0.3"
@@ -4431,10 +4431,10 @@ socket.io-parser@~4.0.3:
     component-emitter "~1.3.0"
     debug "~4.3.1"
 
-socket.io@^3.0.4:
-  version "3.0.5"
-  resolved "https://registry.npm.taobao.org/socket.io/download/socket.io-3.0.5.tgz?cache=0&sync_timestamp=1610012933584&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsocket.io%2Fdownload%2Fsocket.io-3.0.5.tgz#b4328116b6b34f76270725a4e35b75e2348d2264"
-  integrity sha1-tDKBFrazT3YnByWk41t14jSNImQ=
+socket.io@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.npm.taobao.org/socket.io/download/socket.io-3.1.0.tgz?cache=0&sync_timestamp=1610672494760&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsocket.io%2Fdownload%2Fsocket.io-3.1.0.tgz#4f3accda31e95893f618090c9cb5e85d345421fb"
+  integrity sha1-TzrM2jHpWJP2GAkMnLXoXTRUIfs=
   dependencies:
     "@types/cookie" "^0.4.0"
     "@types/cors" "^2.8.8"
@@ -4442,8 +4442,8 @@ socket.io@^3.0.4:
     accepts "~1.3.4"
     base64id "~2.0.0"
     debug "~4.3.1"
-    engine.io "~4.0.6"
-    socket.io-adapter "~2.0.3"
+    engine.io "~4.1.0"
+    socket.io-adapter "~2.1.0"
     socket.io-parser "~4.0.3"
 
 socks-proxy-agent@^5.0.0:
