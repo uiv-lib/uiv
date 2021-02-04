@@ -276,10 +276,10 @@
     node-gyp "^7.1.0"
     read-package-json-fast "^1.1.3"
 
-"@rollup/plugin-alias@3.1.1":
-  version "3.1.1"
-  resolved "https://registry.npm.taobao.org/@rollup/plugin-alias/download/@rollup/plugin-alias-3.1.1.tgz#bb96cf37fefeb0a953a6566c284855c7d1cd290c"
-  integrity sha1-u5bPN/7+sKlTplZsKEhVx9HNKQw=
+"@rollup/plugin-alias@3.1.2":
+  version "3.1.2"
+  resolved "https://registry.npm.taobao.org/@rollup/plugin-alias/download/@rollup/plugin-alias-3.1.2.tgz#c585b05be4a7782d269c69d13def56f44e417772"
+  integrity sha1-xYWwW+SneC0mnGnRPe9W9E5Bd3I=
   dependencies:
     slash "^3.0.0"
 
