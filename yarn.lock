@@ -3932,10 +3932,10 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.npm.taobao.org/punycode/download/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha1-tYsBCsQMIsVldhbI0sLALHv0eew=
 
-puppeteer@7.0.0:
-  version "7.0.0"
-  resolved "https://registry.npm.taobao.org/puppeteer/download/puppeteer-7.0.0.tgz?cache=0&sync_timestamp=1612367181860&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpuppeteer%2Fdownload%2Fpuppeteer-7.0.0.tgz#be25ebf53edc1ecc09cb40af4a15f21fd1d38637"
-  integrity sha1-viXr9T7cHswJy0CvShXyH9HThjc=
+puppeteer@7.0.1:
+  version "7.0.1"
+  resolved "https://registry.npm.taobao.org/puppeteer/download/puppeteer-7.0.1.tgz#de0c2602e27bf9b12d7540aae52d6ed121a81884"
+  integrity sha1-3gwmAuJ7+bEtdUCq5S1u0SGoGIQ=
   dependencies:
     debug "^4.1.0"
     devtools-protocol "0.0.847576"
