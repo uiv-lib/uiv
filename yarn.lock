@@ -972,10 +972,10 @@ center-align@^0.1.1:
     align-text "^0.1.3"
     lazy-cache "^1.0.3"
 
-chai@4.2.0:
-  version "4.2.0"
-  resolved "https://registry.npm.taobao.org/chai/download/chai-4.2.0.tgz#760aa72cf20e3795e84b12877ce0e83737aa29e5"
-  integrity sha1-dgqnLPION5XoSxKHfODoNzeqKeU=
+chai@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.npm.taobao.org/chai/download/chai-4.3.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fchai%2Fdownload%2Fchai-4.3.0.tgz#5523a5faf7f819c8a92480d70a8cccbadacfc25f"
+  integrity sha1-VSOl+vf4GcipJIDXCozMutrPwl8=
   dependencies:
     assertion-error "^1.1.0"
     check-error "^1.0.2"
