@@ -11,9 +11,14 @@
           </template>
         </dropdown>
         <li v-else role="presentation" :class="getTabClasses(tab)" v-show="!tab.hidden">
-          <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-if="tab.$slots.title">
-            <portal-target :name="tab._uid.toString()"/>
-          </a>
+          <portal-target
+              :name="tab._uid.toString()"
+              tag="a"
+              role="tab"
+              href="#"
+              @click.native.prevent="select(tabs.indexOf(tab))"
+              v-if="tab.$slots.title"
+          />
           <a role="tab" href="#" @click.prevent="select(tabs.indexOf(tab))" v-else="tab.title"
              v-text="tab.title"></a>
         </li>
