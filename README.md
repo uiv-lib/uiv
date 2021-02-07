@@ -13,7 +13,7 @@
 
 If this project has helped you out, please support it with a star :star2:.
 
-[中文文档](https://uiv.wxsm.space/zh/usage/getting-started.html)
+[中文文档](https://uiv.wxsm.space/zh/)
 
 ## Introduction
 
