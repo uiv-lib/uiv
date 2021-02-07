@@ -13,6 +13,8 @@
 
 If this project has helped you out, please support it with a star :star2:.
 
+[中文文档](https://uiv.wxsm.space/zh/usage/getting-started.html)
+
 ## Introduction
 
 **uiv** is a Bootstrap 3 component lib implemented by Vue 2.
