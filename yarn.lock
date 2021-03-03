@@ -982,16 +982,16 @@ center-align@^0.1.1:
     align-text "^0.1.3"
     lazy-cache "^1.0.3"
 
-chai@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.npm.taobao.org/chai/download/chai-4.3.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fchai%2Fdownload%2Fchai-4.3.0.tgz#5523a5faf7f819c8a92480d70a8cccbadacfc25f"
-  integrity sha1-VSOl+vf4GcipJIDXCozMutrPwl8=
+chai@4.3.1:
+  version "4.3.1"
+  resolved "https://registry.npm.taobao.org/chai/download/chai-4.3.1.tgz?cache=0&sync_timestamp=1614710061317&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fchai%2Fdownload%2Fchai-4.3.1.tgz#6fc6af447610709818e5c45116207d60b8a49cfd"
+  integrity sha1-b8avRHYQcJgY5cRRFiB9YLiknP0=
   dependencies:
     assertion-error "^1.1.0"
     check-error "^1.0.2"
     deep-eql "^3.0.1"
     get-func-name "^2.0.0"
-    pathval "^1.1.0"
+    pathval "^1.1.1"
     type-detect "^4.0.5"
 
 chalk@^1.1.3:
@@ -3623,10 +3623,10 @@ path-type@^2.0.0:
   dependencies:
     pify "^2.0.0"
 
-pathval@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npm.taobao.org/pathval/download/pathval-1.1.0.tgz#b942e6d4bde653005ef6b71361def8727d0645e0"
-  integrity sha1-uULm1L3mUwBe9rcTYd74cn0GReA=
+pathval@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npm.taobao.org/pathval/download/pathval-1.1.1.tgz?cache=0&sync_timestamp=1611662316573&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpathval%2Fdownload%2Fpathval-1.1.1.tgz#8534e77a77ce7ac5a2512ea21e0fdb8fcf6c3d8d"
+  integrity sha1-hTTnenfOesWiUS6iHg/bj89sPY0=
 
 pend@~1.2.0:
   version "1.2.0"
