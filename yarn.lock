@@ -2865,10 +2865,10 @@ karma-spec-reporter@0.0.32:
   dependencies:
     colors "^1.1.2"
 
-karma@6.1.2:
-  version "6.1.2"
-  resolved "https://registry.npm.taobao.org/karma/download/karma-6.1.2.tgz#9d7394559f5deb150b3021c1860960281c3a0e50"
-  integrity sha1-nXOUVZ9d6xULMCHBhglgKBw6DlA=
+karma@6.2.0:
+  version "6.2.0"
+  resolved "https://registry.npm.taobao.org/karma/download/karma-6.2.0.tgz?cache=0&sync_timestamp=1615419463137&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fkarma%2Fdownload%2Fkarma-6.2.0.tgz#5302ca36390b146f635b3427982afe0a94c72ff7"
+  integrity sha1-UwLKNjkLFG9jWzQnmCr+CpTHL/c=
   dependencies:
     body-parser "^1.19.0"
     braces "^3.0.2"
