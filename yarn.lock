@@ -2845,10 +2845,10 @@ karma-mocha@2.0.1:
   dependencies:
     minimist "^1.2.3"
 
-karma-rollup-preprocessor@7.0.6:
-  version "7.0.6"
-  resolved "https://registry.npm.taobao.org/karma-rollup-preprocessor/download/karma-rollup-preprocessor-7.0.6.tgz#7abb3b037ed5c8351bab17d8f0c6aa3912ed2b5a"
-  integrity sha1-ers7A37VyDUbqxfY8MaqORLtK1o=
+karma-rollup-preprocessor@7.0.7:
+  version "7.0.7"
+  resolved "https://registry.npm.taobao.org/karma-rollup-preprocessor/download/karma-rollup-preprocessor-7.0.7.tgz#d06e587b108273ae564cbd5c5914a75602191a23"
+  integrity sha1-0G5YexCCc65WTL1cWRSnVgIZGiM=
   dependencies:
     chokidar "^3.3.1"
     debounce "^1.2.0"
