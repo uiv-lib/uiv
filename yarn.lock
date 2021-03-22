@@ -3285,10 +3285,10 @@ negotiator@0.6.2:
   resolved "https://registry.npm.taobao.org/negotiator/download/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha1-/qz3zPUlp3rpY0Q2pkiD/+yjRvs=
 
-nise@^4.0.4:
-  version "4.0.4"
-  resolved "https://registry.npm.taobao.org/nise/download/nise-4.0.4.tgz#d73dea3e5731e6561992b8f570be9e363c4512dd"
-  integrity sha1-1z3qPlcx5lYZkrj1cL6eNjxFEt0=
+nise@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npm.taobao.org/nise/download/nise-4.1.0.tgz#8fb75a26e90b99202fa1e63f448f58efbcdedaf6"
+  integrity sha1-j7daJukLmSAvoeY/RI9Y77ze2vY=
   dependencies:
     "@sinonjs/commons" "^1.7.0"
     "@sinonjs/fake-timers" "^6.0.0"
@@ -4384,16 +4384,16 @@ sinon-chai@3.5.0:
   resolved "https://registry.npm.taobao.org/sinon-chai/download/sinon-chai-3.5.0.tgz#c9a78304b0e15befe57ef68e8a85a00553f5c60e"
   integrity sha1-yaeDBLDhW+/lfvaOioWgBVP1xg4=
 
-sinon@9.2.4:
-  version "9.2.4"
-  resolved "https://registry.npm.taobao.org/sinon/download/sinon-9.2.4.tgz#e55af4d3b174a4443a8762fa8421c2976683752b"
-  integrity sha1-5Vr007F0pEQ6h2L6hCHCl2aDdSs=
+sinon@10.0.0:
+  version "10.0.0"
+  resolved "https://registry.npm.taobao.org/sinon/download/sinon-10.0.0.tgz#52279f97e35646ff73d23207d0307977c9b81430"
+  integrity sha1-Uiefl+NWRv9z0jIH0DB5d8m4FDA=
   dependencies:
     "@sinonjs/commons" "^1.8.1"
     "@sinonjs/fake-timers" "^6.0.1"
     "@sinonjs/samsam" "^5.3.1"
     diff "^4.0.2"
-    nise "^4.0.4"
+    nise "^4.1.0"
     supports-color "^7.1.0"
 
 slash@^3.0.0:
