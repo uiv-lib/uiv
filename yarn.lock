@@ -4379,10 +4379,10 @@ signal-exit@^3.0.0:
   resolved "https://registry.npm.taobao.org/signal-exit/download/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha1-oUEMLt2PB3sItOJTyOrPyvBXRhw=
 
-sinon-chai@3.5.0:
-  version "3.5.0"
-  resolved "https://registry.npm.taobao.org/sinon-chai/download/sinon-chai-3.5.0.tgz#c9a78304b0e15befe57ef68e8a85a00553f5c60e"
-  integrity sha1-yaeDBLDhW+/lfvaOioWgBVP1xg4=
+sinon-chai@3.6.0:
+  version "3.6.0"
+  resolved "https://registry.npm.taobao.org/sinon-chai/download/sinon-chai-3.6.0.tgz#25bd59a37ef8990245e085a40f1f79d6bf023b7a"
+  integrity sha1-Jb1Zo374mQJF4IWkDx951r8CO3o=
 
 sinon@10.0.0:
   version "10.0.0"
