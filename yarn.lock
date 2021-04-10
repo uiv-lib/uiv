@@ -1764,10 +1764,10 @@ eslint-plugin-node@11.1.0:
     resolve "^1.10.1"
     semver "^6.1.0"
 
-eslint-plugin-promise@4.3.1:
-  version "4.3.1"
-  resolved "https://registry.npm.taobao.org/eslint-plugin-promise/download/eslint-plugin-promise-4.3.1.tgz#61485df2a359e03149fdafc0a68b0e030ad2ac45"
-  integrity sha1-YUhd8qNZ4DFJ/a/AposOAwrSrEU=
+eslint-plugin-promise@5.1.0:
+  version "5.1.0"
+  resolved "https://registry.npm.taobao.org/eslint-plugin-promise/download/eslint-plugin-promise-5.1.0.tgz#fb2188fb734e4557993733b41aa1a688f46c6f24"
+  integrity sha1-+yGI+3NORVeZNzO0GqGmiPRsbyQ=
 
 eslint-plugin-standard@5.0.0:
   version "5.0.0"
