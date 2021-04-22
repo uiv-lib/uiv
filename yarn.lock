@@ -1413,10 +1413,10 @@ depd@^1.1.2, depd@~1.1.2:
   resolved "https://registry.npm.taobao.org/depd/download/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
   integrity sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
 
-devtools-protocol@0.0.854822:
-  version "0.0.854822"
-  resolved "https://registry.npm.taobao.org/devtools-protocol/download/devtools-protocol-0.0.854822.tgz?cache=0&sync_timestamp=1614134683415&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdevtools-protocol%2Fdownload%2Fdevtools-protocol-0.0.854822.tgz#eac3a5260a6b3b4e729a09fdc0c77b0d322e777b"
-  integrity sha1-6sOlJgprO05ymgn9wMd7DTIud3s=
+devtools-protocol@0.0.869402:
+  version "0.0.869402"
+  resolved "https://registry.nlark.com/devtools-protocol/download/devtools-protocol-0.0.869402.tgz#03ade701761742e43ae4de5dc188bcd80f156d8d"
+  integrity sha1-A63nAXYXQuQ65N5dwYi82A8VbY0=
 
 di@^0.0.1:
   version "0.0.1"
@@ -3948,13 +3948,13 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.npm.taobao.org/punycode/download/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha1-tYsBCsQMIsVldhbI0sLALHv0eew=
 
-puppeteer@8.0.0:
-  version "8.0.0"
-  resolved "https://registry.npm.taobao.org/puppeteer/download/puppeteer-8.0.0.tgz?cache=0&sync_timestamp=1614329416752&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpuppeteer%2Fdownload%2Fpuppeteer-8.0.0.tgz#a236669118aa795331c2d0ca19877159e7664705"
-  integrity sha1-ojZmkRiqeVMxwtDKGYdxWedmRwU=
+puppeteer@9.0.0:
+  version "9.0.0"
+  resolved "https://registry.nlark.com/puppeteer/download/puppeteer-9.0.0.tgz#b476e17ceb3e33a6667bf682d66dde9898f9c031"
+  integrity sha1-tHbhfOs+M6Zme/aC1m3emJj5wDE=
   dependencies:
     debug "^4.1.0"
-    devtools-protocol "0.0.854822"
+    devtools-protocol "0.0.869402"
     extract-zip "^2.0.0"
     https-proxy-agent "^5.0.0"
     node-fetch "^2.6.1"
