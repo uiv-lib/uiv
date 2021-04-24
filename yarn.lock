@@ -1809,10 +1809,10 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://registry.npm.taobao.org/eslint-visitor-keys/download/eslint-visitor-keys-2.0.0.tgz?cache=0&sync_timestamp=1597435237209&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-visitor-keys%2Fdownload%2Feslint-visitor-keys-2.0.0.tgz#21fdc8fbcd9c795cc0321f0563702095751511a8"
   integrity sha1-If3I+82ceVzAMh8FY3AglXUVEag=
 
-eslint@7.24.0:
-  version "7.24.0"
-  resolved "https://registry.npm.taobao.org/eslint/download/eslint-7.24.0.tgz#2e44fa62d93892bfdb100521f17345ba54b8513a"
-  integrity sha1-LkT6Ytk4kr/bEAUh8XNFulS4UTo=
+eslint@7.25.0:
+  version "7.25.0"
+  resolved "https://registry.nlark.com/eslint/download/eslint-7.25.0.tgz?cache=0&sync_timestamp=1619218146193&other_urls=https%3A%2F%2Fregistry.nlark.com%2Feslint%2Fdownload%2Feslint-7.25.0.tgz#1309e4404d94e676e3e831b3a3ad2b050031eb67"
+  integrity sha1-EwnkQE2U5nbj6DGzo60rBQAx62c=
   dependencies:
     "@babel/code-frame" "7.12.11"
     "@eslint/eslintrc" "^0.4.0"
