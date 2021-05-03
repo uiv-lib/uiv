@@ -3948,10 +3948,10 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.npm.taobao.org/punycode/download/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha1-tYsBCsQMIsVldhbI0sLALHv0eew=
 
-puppeteer@9.0.0:
-  version "9.0.0"
-  resolved "https://registry.nlark.com/puppeteer/download/puppeteer-9.0.0.tgz#b476e17ceb3e33a6667bf682d66dde9898f9c031"
-  integrity sha1-tHbhfOs+M6Zme/aC1m3emJj5wDE=
+puppeteer@9.1.0:
+  version "9.1.0"
+  resolved "https://registry.nlark.com/puppeteer/download/puppeteer-9.1.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fpuppeteer%2Fdownload%2Fpuppeteer-9.1.0.tgz#0530ed1f595088eefd078c8f1f7618d00f216a56"
+  integrity sha1-BTDtH1lQiO79B4yPH3YY0A8halY=
   dependencies:
     debug "^4.1.0"
     devtools-protocol "0.0.869402"
