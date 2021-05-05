@@ -834,10 +834,10 @@ body-parser@^1.19.0:
     raw-body "2.4.0"
     type-is "~1.6.17"
 
-bootstrap@3.4.1:
-  version "3.4.1"
-  resolved "https://registry.npm.taobao.org/bootstrap/download/bootstrap-3.4.1.tgz?cache=0&sync_timestamp=1601394489362&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fbootstrap%2Fdownload%2Fbootstrap-3.4.1.tgz#c3a347d419e289ad11f4033e3c4132b87c081d72"
-  integrity sha1-w6NH1Bniia0R9AM+PEEyuHwIHXI=
+bootstrap@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.nlark.com/bootstrap/download/bootstrap-5.0.0.tgz#97635ac0e0d6cb466700ebf0fd266bfabf352ed2"
+  integrity sha1-l2NawODWy0ZnAOvw/SZr+r81LtI=
 
 boxen@^5.0.0:
   version "5.0.0"
