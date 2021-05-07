@@ -297,10 +297,10 @@
     "@types/buble" "^0.19.2"
     buble "^0.20.0"
 
-"@rollup/plugin-commonjs@18.1.0":
-  version "18.1.0"
-  resolved "https://registry.nlark.com/@rollup/plugin-commonjs/download/@rollup/plugin-commonjs-18.1.0.tgz?cache=0&sync_timestamp=1620137272316&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40rollup%2Fplugin-commonjs%2Fdownload%2F%40rollup%2Fplugin-commonjs-18.1.0.tgz#5a760d757af168a50727c0ae080251fbfcc5eb02"
-  integrity sha1-WnYNdXrxaKUHJ8CuCAJR+/zF6wI=
+"@rollup/plugin-commonjs@19.0.0":
+  version "19.0.0"
+  resolved "https://registry.nlark.com/@rollup/plugin-commonjs/download/@rollup/plugin-commonjs-19.0.0.tgz#8c3e71f9a66908e60d70cc1be205834ef3e45f71"
+  integrity sha1-jD5x+aZpCOYNcMwb4gWDTvPkX3E=
   dependencies:
     "@rollup/pluginutils" "^3.1.0"
     commondir "^1.0.1"
