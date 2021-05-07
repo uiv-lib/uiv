@@ -4915,9 +4915,9 @@ type-is@~1.6.17:
     mime-types "~2.1.24"
 
 ua-parser-js@^0.7.23:
-  version "0.7.23"
-  resolved "https://registry.npm.taobao.org/ua-parser-js/download/ua-parser-js-0.7.23.tgz#704d67f951e13195fbcd3d78818577f5bc1d547b"
-  integrity sha1-cE1n+VHhMZX7zT14gYV39bwdVHs=
+  version "0.7.28"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
+  integrity sha512-6Gurc1n//gjp9eQNXjD9O3M/sMwVtN5S8Lv9bvOYBfKfDNiIIhqiyi01vMBO45u4zkDE420w/e0se7Vs+sIg+g==
 
 uglify-js@^2.6.1:
   version "2.8.29"
