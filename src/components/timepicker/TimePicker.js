@@ -19,8 +19,8 @@ export default {
       type: Boolean,
       default: true
     },
-    min: Date,
-    max: Date,
+    min: null,
+    max: null,
     hourStep: {
       type: Number,
       default: 1
@@ -205,13 +205,13 @@ export default {
       }
       time.setHours(this.hours)
       time.setMinutes(this.minutes)
-      if (this.max) {
+      if (this.max instanceof Date) {
         const max = new Date(time)
         max.setHours(this.max.getHours())
         max.setMinutes(this.max.getMinutes())
         time = time > max ? max : time
       }
-      if (this.min) {
+      if (this.min instanceof Date) {
         const min = new Date(time)
         min.setHours(this.min.getHours())
         min.setMinutes(this.min.getMinutes())
