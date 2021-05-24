@@ -354,24 +354,31 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
-"@sinonjs/commons@^1.6.0", "@sinonjs/commons@^1.7.0", "@sinonjs/commons@^1.8.1":
+"@sinonjs/commons@^1.6.0", "@sinonjs/commons@^1.7.0":
   version "1.8.1"
   resolved "https://registry.npm.taobao.org/@sinonjs/commons/download/@sinonjs/commons-1.8.1.tgz#e7df00f98a203324f6dc7cc606cad9d4a8ab2217"
   integrity sha1-598A+YogMyT23HzGBsrZ1KirIhc=
   dependencies:
     type-detect "4.0.8"
 
-"@sinonjs/fake-timers@^6.0.0", "@sinonjs/fake-timers@^6.0.1":
-  version "6.0.1"
-  resolved "https://registry.npm.taobao.org/@sinonjs/fake-timers/download/@sinonjs/fake-timers-6.0.1.tgz#293674fccb3262ac782c7aadfdeca86b10c75c40"
-  integrity sha1-KTZ0/MsyYqx4LHqt/eyoaxDHXEA=
+"@sinonjs/commons@^1.8.3":
+  version "1.8.3"
+  resolved "https://registry.npm.taobao.org/@sinonjs/commons/download/@sinonjs/commons-1.8.3.tgz#3802ddd21a50a949b6721ddd72da36e67e7f1b2d"
+  integrity sha1-OALd0hpQqUm2ch3dcto25n5/Gy0=
+  dependencies:
+    type-detect "4.0.8"
+
+"@sinonjs/fake-timers@^7.0.4", "@sinonjs/fake-timers@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.nlark.com/@sinonjs/fake-timers/download/@sinonjs/fake-timers-7.1.0.tgz?cache=0&sync_timestamp=1621603732632&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40sinonjs%2Ffake-timers%2Fdownload%2F%40sinonjs%2Ffake-timers-7.1.0.tgz#8f13af27d842cbf51ad4502e05562fe9391d084e"
+  integrity sha1-jxOvJ9hCy/Ua1FAuBVYv6TkdCE4=
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sinonjs/samsam@^5.3.1":
-  version "5.3.1"
-  resolved "https://registry.npm.taobao.org/@sinonjs/samsam/download/@sinonjs/samsam-5.3.1.tgz#375a45fe6ed4e92fca2fb920e007c48232a6507f"
-  integrity sha1-N1pF/m7U6S/KL7kg4AfEgjKmUH8=
+"@sinonjs/samsam@^6.0.2":
+  version "6.0.2"
+  resolved "https://registry.nlark.com/@sinonjs/samsam/download/@sinonjs/samsam-6.0.2.tgz#a0117d823260f282c04bff5f8704bdc2ac6910bb"
+  integrity sha1-oBF9gjJg8oLAS/9fhwS9wqxpELs=
   dependencies:
     "@sinonjs/commons" "^1.6.0"
     lodash.get "^4.4.2"
@@ -1446,15 +1453,10 @@ di@^0.0.1:
   resolved "https://registry.npm.taobao.org/di/download/di-0.0.1.tgz#806649326ceaa7caa3306d75d985ea2748ba913c"
   integrity sha1-gGZJMmzqp8qjMG112YXqJ0i6kTw=
 
-diff@5.0.0:
+diff@5.0.0, diff@^5.0.0:
   version "5.0.0"
   resolved "https://registry.npm.taobao.org/diff/download/diff-5.0.0.tgz?cache=0&sync_timestamp=1604804068216&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdiff%2Fdownload%2Fdiff-5.0.0.tgz#7ed6ad76d859d030787ec35855f5b1daf31d852b"
   integrity sha1-ftatdthZ0DB4fsNYVfWx2vMdhSs=
-
-diff@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.npm.taobao.org/diff/download/diff-4.0.2.tgz#60f3aecb89d5fae520c11aa19efc2bb982aade7d"
-  integrity sha1-YPOuy4nV+uUgwRqhnvwruYKq3n0=
 
 doctrine@^2.1.0:
   version "2.1.0"
@@ -3386,13 +3388,13 @@ negotiator@0.6.2:
   resolved "https://registry.npm.taobao.org/negotiator/download/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha1-/qz3zPUlp3rpY0Q2pkiD/+yjRvs=
 
-nise@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.npm.taobao.org/nise/download/nise-4.1.0.tgz#8fb75a26e90b99202fa1e63f448f58efbcdedaf6"
-  integrity sha1-j7daJukLmSAvoeY/RI9Y77ze2vY=
+nise@^5.0.4:
+  version "5.0.4"
+  resolved "https://registry.nlark.com/nise/download/nise-5.0.4.tgz#aafddeec51d8bcb9842a51be8d82d0b9f289b002"
+  integrity sha1-qv3e7FHYvLmEKlG+jYLQufKJsAI=
   dependencies:
     "@sinonjs/commons" "^1.7.0"
-    "@sinonjs/fake-timers" "^6.0.0"
+    "@sinonjs/fake-timers" "^7.0.4"
     "@sinonjs/text-encoding" "^0.7.1"
     just-extend "^4.0.2"
     path-to-regexp "^1.7.0"
@@ -4506,17 +4508,17 @@ sinon-chai@3.6.0:
   resolved "https://registry.npm.taobao.org/sinon-chai/download/sinon-chai-3.6.0.tgz#25bd59a37ef8990245e085a40f1f79d6bf023b7a"
   integrity sha1-Jb1Zo374mQJF4IWkDx951r8CO3o=
 
-sinon@10.0.0:
-  version "10.0.0"
-  resolved "https://registry.npm.taobao.org/sinon/download/sinon-10.0.0.tgz#52279f97e35646ff73d23207d0307977c9b81430"
-  integrity sha1-Uiefl+NWRv9z0jIH0DB5d8m4FDA=
+sinon@11.0.0:
+  version "11.0.0"
+  resolved "https://registry.nlark.com/sinon/download/sinon-11.0.0.tgz#e45bae910425d3e52f7eebcb34b47ad42cc7eb57"
+  integrity sha1-5FuukQQl0+UvfuvLNLR61CzH61c=
   dependencies:
-    "@sinonjs/commons" "^1.8.1"
-    "@sinonjs/fake-timers" "^6.0.1"
-    "@sinonjs/samsam" "^5.3.1"
-    diff "^4.0.2"
-    nise "^4.1.0"
-    supports-color "^7.1.0"
+    "@sinonjs/commons" "^1.8.3"
+    "@sinonjs/fake-timers" "^7.1.0"
+    "@sinonjs/samsam" "^6.0.2"
+    diff "^5.0.0"
+    nise "^5.0.4"
+    supports-color "^8.1.1"
 
 slash@^3.0.0:
   version "3.0.0"
@@ -4823,7 +4825,7 @@ stylus@^0.54.5:
     semver "^6.3.0"
     source-map "^0.7.3"
 
-supports-color@8.1.1:
+supports-color@8.1.1, supports-color@^8.1.1:
   version "8.1.1"
   resolved "https://registry.npm.taobao.org/supports-color/download/supports-color-8.1.1.tgz#cd6fc17e28500cff56c1b86c0a7fd4a54a73005c"
   integrity sha1-zW/BfihQDP9WwbhsCn/UpUpzAFw=
