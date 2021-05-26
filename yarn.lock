@@ -4508,17 +4508,17 @@ sinon-chai@3.7.0:
   resolved "https://registry.nlark.com/sinon-chai/download/sinon-chai-3.7.0.tgz?cache=0&sync_timestamp=1621944385975&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsinon-chai%2Fdownload%2Fsinon-chai-3.7.0.tgz#cfb7dec1c50990ed18c153f1840721cf13139783"
   integrity sha1-z7fewcUJkO0YwVPxhAchzxMTl4M=
 
-sinon@11.1.0:
-  version "11.1.0"
-  resolved "https://registry.nlark.com/sinon/download/sinon-11.1.0.tgz#e8aa528ffb964d98a588b5f3b81a27720b6e3ed3"
-  integrity sha1-6KpSj/uWTZiliLXzuBoncgtuPtM=
+sinon@11.1.1:
+  version "11.1.1"
+  resolved "https://registry.nlark.com/sinon/download/sinon-11.1.1.tgz?cache=0&sync_timestamp=1622042192268&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsinon%2Fdownload%2Fsinon-11.1.1.tgz#99a295a8b6f0fadbbb7e004076f3ae54fc6eab91"
+  integrity sha1-maKVqLbw+tu7fgBAdvOuVPxuq5E=
   dependencies:
     "@sinonjs/commons" "^1.8.3"
     "@sinonjs/fake-timers" "^7.1.0"
     "@sinonjs/samsam" "^6.0.2"
     diff "^5.0.0"
     nise "^5.1.0"
-    supports-color "^8.1.1"
+    supports-color "^7.2.0"
 
 slash@^3.0.0:
   version "3.0.0"
@@ -4825,7 +4825,7 @@ stylus@^0.54.5:
     semver "^6.3.0"
     source-map "^0.7.3"
 
-supports-color@8.1.1, supports-color@^8.1.1:
+supports-color@8.1.1:
   version "8.1.1"
   resolved "https://registry.npm.taobao.org/supports-color/download/supports-color-8.1.1.tgz#cd6fc17e28500cff56c1b86c0a7fd4a54a73005c"
   integrity sha1-zW/BfihQDP9WwbhsCn/UpUpzAFw=
@@ -4858,7 +4858,7 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-supports-color@^7.1.0:
+supports-color@^7.1.0, supports-color@^7.2.0:
   version "7.2.0"
   resolved "https://registry.npm.taobao.org/supports-color/download/supports-color-7.2.0.tgz?cache=0&sync_timestamp=1598611849430&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsupports-color%2Fdownload%2Fsupports-color-7.2.0.tgz#1b7dcdcb32b8138801b3e478ba6a51caa89648da"
   integrity sha1-G33NyzK4E4gBs+R4umpRyqiWSNo=
