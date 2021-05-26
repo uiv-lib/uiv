@@ -73,7 +73,7 @@
     "rollup-plugin-uglify": "6.0.4",
     "rollup-plugin-vue": "5.1.9",
     "sinon": "11.1.0",
-    "sinon-chai": "3.6.0",
+    "sinon-chai": "3.7.0",
     "vue": "2.6.12",
     "vue-template-compiler": "2.6.12"
   },
