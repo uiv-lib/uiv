@@ -2210,7 +2210,19 @@ glob-parent@^5.0.0, glob-parent@~5.1.0:
   dependencies:
     is-glob "^4.0.1"
 
-glob@7.1.6, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6:
+glob@7.1.7:
+  version "7.1.7"
+  resolved "https://registry.nlark.com/glob/download/glob-7.1.7.tgz?cache=0&sync_timestamp=1620337555606&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fglob%2Fdownload%2Fglob-7.1.7.tgz#3b193e9233f01d42d0b3f78294bbeeb418f94a90"
+  integrity sha1-Oxk+kjPwHULQs/eClLvutBj5SpA=
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^3.0.4"
+    once "^1.3.0"
+    path-is-absolute "^1.0.0"
+
+glob@^7.1.3, glob@^7.1.4, glob@^7.1.6:
   version "7.1.6"
   resolved "https://registry.npm.taobao.org/glob/download/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
   integrity sha1-FB8zuBp8JJLhJVlDB0gMRmeSeKY=
@@ -2688,6 +2700,11 @@ is-typedarray@~1.0.0:
   resolved "https://registry.npm.taobao.org/is-typedarray/download/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   integrity sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=
 
+is-unicode-supported@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npm.taobao.org/is-unicode-supported/download/is-unicode-supported-0.1.0.tgz#3f26c76a809593b52bfa2ecb5710ed2779b522a7"
+  integrity sha1-PybHaoCVk7Ur+i7LVxDtJ3m1Iqc=
+
 isarray@0.0.1:
   version "0.0.1"
   resolved "https://registry.npm.taobao.org/isarray/download/isarray-0.0.1.tgz#8a18acfca9a8f4177e09abfc6038939b05d1eedf"
@@ -2789,10 +2806,10 @@ js-tokens@^4.0.0:
   resolved "https://registry.npm.taobao.org/js-tokens/download/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha1-GSA/tZmR35jjoocFDUZHzerzJJk=
 
-js-yaml@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npm.taobao.org/js-yaml/download/js-yaml-4.0.0.tgz?cache=0&sync_timestamp=1609680103034&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fjs-yaml%2Fdownload%2Fjs-yaml-4.0.0.tgz#f426bc0ff4b4051926cd588c71113183409a121f"
-  integrity sha1-9Ca8D/S0BRkmzViMcRExg0CaEh8=
+js-yaml@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.nlark.com/js-yaml/download/js-yaml-4.1.0.tgz?cache=0&sync_timestamp=1618847165988&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fjs-yaml%2Fdownload%2Fjs-yaml-4.1.0.tgz#c1fb65f8f5017901cdd2c951864ba18458a10602"
+  integrity sha1-wftl+PUBeQHN0slRhkuhhFihBgI=
   dependencies:
     argparse "^2.0.1"
 
@@ -3106,12 +3123,13 @@ log-driver@^1.2.7:
   resolved "https://registry.npm.taobao.org/log-driver/download/log-driver-1.2.7.tgz#63b95021f0702fedfa2c9bb0a24e7797d71871d8"
   integrity sha1-Y7lQIfBwL+36LJuwok53l9cYcdg=
 
-log-symbols@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npm.taobao.org/log-symbols/download/log-symbols-4.0.0.tgz#69b3cc46d20f448eccdb75ea1fa733d9e821c920"
-  integrity sha1-abPMRtIPRI7M23XqH6cz2eghySA=
+log-symbols@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.nlark.com/log-symbols/download/log-symbols-4.1.0.tgz?cache=0&sync_timestamp=1618847128438&other_urls=https%3A%2F%2Fregistry.nlark.com%2Flog-symbols%2Fdownload%2Flog-symbols-4.1.0.tgz#3fbdbb95b4683ac9fc785111e792e558d4abd503"
+  integrity sha1-P727lbRoOsn8eFER55LlWNSr1QM=
   dependencies:
-    chalk "^4.0.0"
+    chalk "^4.1.0"
+    is-unicode-supported "^0.1.0"
 
 log4js@^6.2.1:
   version "6.3.0"
@@ -3322,10 +3340,10 @@ mocha-lcov-reporter@1.3.0:
   resolved "https://registry.npm.taobao.org/mocha-lcov-reporter/download/mocha-lcov-reporter-1.3.0.tgz#469bdef4f8afc9a116056f079df6182d0afb0384"
   integrity sha1-Rpve9PivyaEWBW8HnfYYLQr7A4Q=
 
-mocha@8.4.0:
-  version "8.4.0"
-  resolved "https://registry.nlark.com/mocha/download/mocha-8.4.0.tgz#677be88bf15980a3cae03a73e10a0fc3997f0cff"
-  integrity sha1-Z3voi/FZgKPK4Dpz4QoPw5l/DP8=
+mocha@9.0.0:
+  version "9.0.0"
+  resolved "https://registry.nlark.com/mocha/download/mocha-9.0.0.tgz#67ce848170cb6426f9e84c57e38376dc9017bab4"
+  integrity sha1-Z86EgXDLZCb56ExX44N23JAXurQ=
   dependencies:
     "@ungap/promise-all-settled" "1.1.2"
     ansi-colors "4.1.1"
@@ -3335,20 +3353,20 @@ mocha@8.4.0:
     diff "5.0.0"
     escape-string-regexp "4.0.0"
     find-up "5.0.0"
-    glob "7.1.6"
+    glob "7.1.7"
     growl "1.10.5"
     he "1.2.0"
-    js-yaml "4.0.0"
-    log-symbols "4.0.0"
+    js-yaml "4.1.0"
+    log-symbols "4.1.0"
     minimatch "3.0.4"
     ms "2.1.3"
-    nanoid "3.1.20"
+    nanoid "3.1.23"
     serialize-javascript "5.0.1"
     strip-json-comments "3.1.1"
     supports-color "8.1.1"
     which "2.0.2"
     wide-align "1.1.3"
-    workerpool "6.1.0"
+    workerpool "6.1.4"
     yargs "16.2.0"
     yargs-parser "20.2.4"
     yargs-unparser "2.0.0"
@@ -3368,10 +3386,10 @@ ms@2.1.3, ms@^2.1.1:
   resolved "https://registry.nlark.com/ms/download/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha1-V0yBOM4dK1hh8LRFedut1gxmFbI=
 
-nanoid@3.1.20:
-  version "3.1.20"
-  resolved "https://registry.npm.taobao.org/nanoid/download/nanoid-3.1.20.tgz#badc263c6b1dcf14b71efaa85f6ab4c1d6cfc788"
-  integrity sha1-utwmPGsdzxS3HvqoX2q0wdbPx4g=
+nanoid@3.1.23:
+  version "3.1.23"
+  resolved "https://registry.nlark.com/nanoid/download/nanoid-3.1.23.tgz?cache=0&sync_timestamp=1620673736265&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fnanoid%2Fdownload%2Fnanoid-3.1.23.tgz#f744086ce7c2bc47ee0a8472574d5c78e4183a81"
+  integrity sha1-90QIbOfCvEfuCoRyV01ceOQYOoE=
 
 native-request@^1.0.5:
   version "1.0.7"
@@ -5303,10 +5321,10 @@ wordwrap@0.0.2:
   resolved "https://registry.npm.taobao.org/wordwrap/download/wordwrap-0.0.2.tgz#b79669bb42ecb409f83d583cad52ca17eaa1643f"
   integrity sha1-t5Zpu0LstAn4PVg8rVLKF+qhZD8=
 
-workerpool@6.1.0:
-  version "6.1.0"
-  resolved "https://registry.npm.taobao.org/workerpool/download/workerpool-6.1.0.tgz#a8e038b4c94569596852de7a8ea4228eefdeb37b"
-  integrity sha1-qOA4tMlFaVloUt56jqQiju/es3s=
+workerpool@6.1.4:
+  version "6.1.4"
+  resolved "https://registry.npm.taobao.org/workerpool/download/workerpool-6.1.4.tgz#6a972b6df82e38d50248ee2820aa98e2d0ad3090"
+  integrity sha1-apcrbfguONUCSO4oIKqY4tCtMJA=
 
 wrap-ansi@^7.0.0:
   version "7.0.0"
