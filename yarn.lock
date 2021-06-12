@@ -1787,10 +1787,10 @@ eslint-plugin-standard@5.0.0:
   resolved "https://registry.npm.taobao.org/eslint-plugin-standard/download/eslint-plugin-standard-5.0.0.tgz?cache=0&sync_timestamp=1606091828930&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-plugin-standard%2Fdownload%2Feslint-plugin-standard-5.0.0.tgz#c43f6925d669f177db46f095ea30be95476b1ee4"
   integrity sha1-xD9pJdZp8XfbRvCV6jC+lUdrHuQ=
 
-eslint-plugin-vue@7.10.0:
-  version "7.10.0"
-  resolved "https://registry.nlark.com/eslint-plugin-vue/download/eslint-plugin-vue-7.10.0.tgz#251749aa99e089e085275f011042c6e74189f89a"
-  integrity sha1-JRdJqpngieCFJ18BEELG50GJ+Jo=
+eslint-plugin-vue@7.11.0:
+  version "7.11.0"
+  resolved "https://registry.nlark.com/eslint-plugin-vue/download/eslint-plugin-vue-7.11.0.tgz#c19b098899b7e3cd692beffbbe73611064ef1ea6"
+  integrity sha1-wZsJiJm3481pK+/7vnNhEGTvHqY=
   dependencies:
     eslint-utils "^2.1.0"
     natural-compare "^1.4.0"
