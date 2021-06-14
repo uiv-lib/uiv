@@ -1062,7 +1062,7 @@ check-error@^1.0.2:
   resolved "https://registry.npm.taobao.org/check-error/download/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
   integrity sha1-V00xLt2Iu13YkS6Sht1sCu1KrII=
 
-chokidar@3.5.1:
+chokidar@3.5.1, chokidar@^3.5.1:
   version "3.5.1"
   resolved "https://registry.npm.taobao.org/chokidar/download/chokidar-3.5.1.tgz?cache=0&sync_timestamp=1610721450018&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fchokidar%2Fdownload%2Fchokidar-3.5.1.tgz#ee9ce7bbebd2b79f49f304799d5468e31e14e68a"
   integrity sha1-7pznu+vSt59J8wR5nVRo4x4U5oo=
@@ -1077,7 +1077,7 @@ chokidar@3.5.1:
   optionalDependencies:
     fsevents "~2.3.1"
 
-"chokidar@>=2.0.0 <4.0.0", chokidar@^3.3.1, chokidar@^3.4.2:
+"chokidar@>=2.0.0 <4.0.0", chokidar@^3.3.1:
   version "3.4.2"
   resolved "https://registry.npm.taobao.org/chokidar/download/chokidar-3.4.2.tgz?cache=0&sync_timestamp=1596729075254&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fchokidar%2Fdownload%2Fchokidar-3.4.2.tgz#38dc8e658dec3809741eb3ef7bb0a47fe424232d"
   integrity sha1-ONyOZY3sOAl0HrPve7Ckf+QkIy0=
@@ -2217,7 +2217,7 @@ glob-parent@~5.1.0:
   dependencies:
     is-glob "^4.0.1"
 
-glob@7.1.7:
+glob@7.1.7, glob@^7.1.7:
   version "7.1.7"
   resolved "https://registry.nlark.com/glob/download/glob-7.1.7.tgz?cache=0&sync_timestamp=1620337555606&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fglob%2Fdownload%2Fglob-7.1.7.tgz#3b193e9233f01d42d0b3f78294bbeeb418f94a90"
   integrity sha1-Oxk+kjPwHULQs/eClLvutBj5SpA=
@@ -2260,10 +2260,15 @@ globals@^13.9.0:
   dependencies:
     type-fest "^0.20.2"
 
-graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.3, graceful-fs@^4.2.4:
+graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.3:
   version "4.2.4"
   resolved "https://registry.npm.taobao.org/graceful-fs/download/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha1-Ila94U02MpWMRl68ltxGfKB6Kfs=
+
+graceful-fs@^4.2.6:
+  version "4.2.6"
+  resolved "https://registry.nlark.com/graceful-fs/download/graceful-fs-4.2.6.tgz#ff040b2b0853b23c3d31027523706f1885d76bee"
+  integrity sha1-/wQLKwhTsjw9MQJ1I3BvGIXXa+4=
 
 growl@1.10.5:
   version "1.10.5"
@@ -2722,10 +2727,10 @@ isarray@~1.0.0:
   resolved "https://registry.npm.taobao.org/isarray/download/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
   integrity sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=
 
-isbinaryfile@^4.0.6:
-  version "4.0.6"
-  resolved "https://registry.npm.taobao.org/isbinaryfile/download/isbinaryfile-4.0.6.tgz#edcb62b224e2b4710830b67498c8e4e5a4d2610b"
-  integrity sha1-7ctisiTitHEIMLZ0mMjk5aTSYQs=
+isbinaryfile@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.nlark.com/isbinaryfile/download/isbinaryfile-4.0.8.tgz#5d34b94865bd4946633ecc78a026fc76c5b11fcf"
+  integrity sha1-XTS5SGW9SUZjPsx4oCb8dsWxH88=
 
 isexe@^2.0.0:
   version "2.0.0"
@@ -2984,33 +2989,33 @@ karma-spec-reporter@0.0.32:
   dependencies:
     colors "^1.1.2"
 
-karma@6.3.3:
-  version "6.3.3"
-  resolved "https://registry.nlark.com/karma/download/karma-6.3.3.tgz?cache=0&sync_timestamp=1622573859594&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fkarma%2Fdownload%2Fkarma-6.3.3.tgz#bd04c7c533f8de99b3c3e85e191d0a6ae2621ad1"
-  integrity sha1-vQTHxTP43pmzw+heGR0KauJiGtE=
+karma@6.3.4:
+  version "6.3.4"
+  resolved "https://registry.nlark.com/karma/download/karma-6.3.4.tgz?cache=0&sync_timestamp=1623648145499&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fkarma%2Fdownload%2Fkarma-6.3.4.tgz#359899d3aab3d6b918ea0f57046fd2a6b68565e6"
+  integrity sha1-NZiZ06qz1rkY6g9XBG/SpraFZeY=
   dependencies:
     body-parser "^1.19.0"
     braces "^3.0.2"
-    chokidar "^3.4.2"
+    chokidar "^3.5.1"
     colors "^1.4.0"
     connect "^3.7.0"
     di "^0.0.1"
     dom-serialize "^2.2.1"
-    glob "^7.1.6"
-    graceful-fs "^4.2.4"
+    glob "^7.1.7"
+    graceful-fs "^4.2.6"
     http-proxy "^1.18.1"
-    isbinaryfile "^4.0.6"
-    lodash "^4.17.19"
-    log4js "^6.2.1"
-    mime "^2.4.5"
+    isbinaryfile "^4.0.8"
+    lodash "^4.17.21"
+    log4js "^6.3.0"
+    mime "^2.5.2"
     minimatch "^3.0.4"
     qjobs "^1.2.0"
     range-parser "^1.2.1"
     rimraf "^3.0.2"
     socket.io "^3.1.0"
     source-map "^0.6.1"
-    tmp "0.2.1"
-    ua-parser-js "^0.7.23"
+    tmp "^0.2.1"
+    ua-parser-js "^0.7.28"
     yargs "^16.1.1"
 
 kind-of@^3.0.2:
@@ -3115,7 +3120,7 @@ lodash.truncate@^4.4.2:
   resolved "https://registry.npm.taobao.org/lodash.truncate/download/lodash.truncate-4.4.2.tgz#5a350da0b1113b837ecfffd5812cbe58d6eae193"
   integrity sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=
 
-lodash@4.17.21:
+lodash@4.17.21, lodash@^4.17.21:
   version "4.17.21"
   resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=
@@ -3138,9 +3143,9 @@ log-symbols@4.1.0:
     chalk "^4.1.0"
     is-unicode-supported "^0.1.0"
 
-log4js@^6.2.1:
+log4js@^6.3.0:
   version "6.3.0"
-  resolved "https://registry.npm.taobao.org/log4js/download/log4js-6.3.0.tgz#10dfafbb434351a3e30277a00b9879446f715bcb"
+  resolved "https://registry.nlark.com/log4js/download/log4js-6.3.0.tgz#10dfafbb434351a3e30277a00b9879446f715bcb"
   integrity sha1-EN+vu0NDUaPjAnegC5h5RG9xW8s=
   dependencies:
     date-format "^3.0.0"
@@ -3253,10 +3258,10 @@ mime@^1.4.1:
   resolved "https://registry.npm.taobao.org/mime/download/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha1-Ms2eXGRVO9WNGaVor0Uqz/BJgbE=
 
-mime@^2.4.5:
-  version "2.4.6"
-  resolved "https://registry.npm.taobao.org/mime/download/mime-2.4.6.tgz#e5b407c90db442f2beb5b162373d07b69affa4d1"
-  integrity sha1-5bQHyQ20QvK+tbFiNz0Htpr/pNE=
+mime@^2.5.2:
+  version "2.5.2"
+  resolved "https://registry.npm.taobao.org/mime/download/mime-2.5.2.tgz?cache=0&sync_timestamp=1613584838235&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmime%2Fdownload%2Fmime-2.5.2.tgz#6e3dc6cc2b9510643830e5f19d5cb753da5eeabe"
+  integrity sha1-bj3GzCuVEGQ4MOXxnVy3U9pe6r4=
 
 minimatch@3.0.4, minimatch@^3.0.4:
   version "3.0.4"
@@ -4973,7 +4978,7 @@ through@^2.3.8:
   resolved "https://registry.npm.taobao.org/through/download/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
   integrity sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=
 
-tmp@0.2.1:
+tmp@^0.2.1:
   version "0.2.1"
   resolved "https://registry.npm.taobao.org/tmp/download/tmp-0.2.1.tgz#8457fc3037dcf4719c251367a1af6500ee1ccf14"
   integrity sha1-hFf8MDfc9HGcJRNnoa9lAO4czxQ=
@@ -5067,10 +5072,10 @@ type-is@~1.6.17:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-ua-parser-js@^0.7.23:
-  version "0.7.23"
-  resolved "https://registry.npm.taobao.org/ua-parser-js/download/ua-parser-js-0.7.23.tgz#704d67f951e13195fbcd3d78818577f5bc1d547b"
-  integrity sha1-cE1n+VHhMZX7zT14gYV39bwdVHs=
+ua-parser-js@^0.7.28:
+  version "0.7.28"
+  resolved "https://registry.npm.taobao.org/ua-parser-js/download/ua-parser-js-0.7.28.tgz?cache=0&sync_timestamp=1618065908450&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fua-parser-js%2Fdownload%2Fua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
+  integrity sha1-i6BOZT81ziECOcZGYWhb+RId7DE=
 
 uglify-js@^2.6.1:
   version "2.8.29"
