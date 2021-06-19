@@ -19,7 +19,7 @@ jobs:
           KEY: name
           VALUE: "@uiv-lib/uiv"
           FILE: package.json
-      - uses: c-hive/gha-yarn-cache@v1
+      - uses: c-hive/gha-yarn-cache@v2
       - run: yarn --frozen-lockfile
         env:
           PUPPETEER_SKIP_DOWNLOAD: true
