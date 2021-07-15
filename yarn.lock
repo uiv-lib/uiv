@@ -4502,10 +4502,10 @@ rollup-pluginutils@^2.8.2:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@2.53.1:
-  version "2.53.1"
-  resolved "https://registry.nlark.com/rollup/download/rollup-2.53.1.tgz#b60439efd1eb41bdb56630509bd99aae78b575d3"
-  integrity sha1-tgQ579HrQb21ZjBQm9marni1ddM=
+rollup@2.53.2:
+  version "2.53.2"
+  resolved "https://registry.nlark.com/rollup/download/rollup-2.53.2.tgz?cache=0&sync_timestamp=1626322851158&other_urls=https%3A%2F%2Fregistry.nlark.com%2Frollup%2Fdownload%2Frollup-2.53.2.tgz#3279f9bfba1fe446585560802e418c5fbcaefa51"
+  integrity sha1-Mnn5v7of5EZYVWCALkGMX7yu+lE=
   optionalDependencies:
     fsevents "~2.3.2"
 
