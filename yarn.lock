@@ -295,10 +295,10 @@
     puka "^1.0.1"
     read-package-json-fast "^2.0.1"
 
-"@rollup/plugin-alias@3.1.3":
-  version "3.1.3"
-  resolved "https://registry.nlark.com/@rollup/plugin-alias/download/@rollup/plugin-alias-3.1.3.tgz#86787ab317cdc31e205c2ae380f66673054988bc"
-  integrity sha1-hnh6sxfNwx4gXCrjgPZmcwVJiLw=
+"@rollup/plugin-alias@3.1.4":
+  version "3.1.4"
+  resolved "https://registry.nlark.com/@rollup/plugin-alias/download/@rollup/plugin-alias-3.1.4.tgz#47774f4ff0eab5937f7acb392cf2b89921f03b7d"
+  integrity sha1-R3dPT/DqtZN/ess5LPK4mSHwO30=
   dependencies:
     slash "^3.0.0"
 
