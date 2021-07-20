@@ -1824,15 +1824,15 @@ eslint-plugin-standard@5.0.0:
   resolved "https://registry.npm.taobao.org/eslint-plugin-standard/download/eslint-plugin-standard-5.0.0.tgz?cache=0&sync_timestamp=1606091828930&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-plugin-standard%2Fdownload%2Feslint-plugin-standard-5.0.0.tgz#c43f6925d669f177db46f095ea30be95476b1ee4"
   integrity sha1-xD9pJdZp8XfbRvCV6jC+lUdrHuQ=
 
-eslint-plugin-vue@7.13.0:
-  version "7.13.0"
-  resolved "https://registry.nlark.com/eslint-plugin-vue/download/eslint-plugin-vue-7.13.0.tgz?cache=0&sync_timestamp=1625569836364&other_urls=https%3A%2F%2Fregistry.nlark.com%2Feslint-plugin-vue%2Fdownload%2Feslint-plugin-vue-7.13.0.tgz#6f3d232bf1fcd0428353b0d581ebaca1c5dbc17a"
-  integrity sha1-bz0jK/H80EKDU7DVgeusocXbwXo=
+eslint-plugin-vue@7.14.0:
+  version "7.14.0"
+  resolved "https://registry.nlark.com/eslint-plugin-vue/download/eslint-plugin-vue-7.14.0.tgz#8c00f211064bd2708fc1aa4abd0592538fbb2cb1"
+  integrity sha1-jADyEQZL0nCPwapKvQWSU4+7LLE=
   dependencies:
     eslint-utils "^2.1.0"
     natural-compare "^1.4.0"
-    semver "^7.3.2"
-    vue-eslint-parser "^7.8.0"
+    semver "^6.3.0"
+    vue-eslint-parser "^7.9.0"
 
 eslint-scope@^5.1.1:
   version "5.1.1"
@@ -5283,10 +5283,10 @@ void-elements@^2.0.0, void-elements@^2.0.1:
   resolved "https://registry.npm.taobao.org/void-elements/download/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
   integrity sha1-wGavtYK7HLQSjWDqkjkulNXp2+w=
 
-vue-eslint-parser@^7.8.0:
-  version "7.8.0"
-  resolved "https://registry.nlark.com/vue-eslint-parser/download/vue-eslint-parser-7.8.0.tgz#43850bf856c9a69d62c0e12769609c338423684b"
-  integrity sha1-Q4UL+FbJpp1iwOEnaWCcM4QjaEs=
+vue-eslint-parser@^7.9.0:
+  version "7.9.0"
+  resolved "https://registry.nlark.com/vue-eslint-parser/download/vue-eslint-parser-7.9.0.tgz#5eeedc71f22ebc7b18b957d1ab171acf29a41e64"
+  integrity sha1-Xu7ccfIuvHsYuVfRqxcazymkHmQ=
   dependencies:
     debug "^4.1.1"
     eslint-scope "^5.1.1"
