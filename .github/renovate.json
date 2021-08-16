@@ -2,13 +2,14 @@
   "extends": [
     "config:base"
   ],
-  "labels": [
-    "dependencies"
-  ],
-  "assignees": [
-    "wxsms"
-  ],
-  "reviewers": [
-    "wxsms"
+  "packageRules": [
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    }
   ]
 }
