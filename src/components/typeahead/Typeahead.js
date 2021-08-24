@@ -113,7 +113,7 @@ export default {
       this.setInputTextByValue(value)
     },
     activeIndex(index) {
-      this.$emit('selected-item-changed', index)
+      index >= 0 && this.$emit('selected-item-changed', index)
     },
   },
   methods: {
