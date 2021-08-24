@@ -23,15 +23,15 @@ export default {
       week4: 'Čt',
       week5: 'Pá',
       week6: 'So',
-      week7: 'Ne'
+      week7: 'Ne',
     },
     timePicker: {
       am: 'Dop.',
-      pm: 'Odp.'
+      pm: 'Odp.',
     },
     modal: {
       cancel: 'Zrušit',
-      ok: 'OK'
-    }
-  }
+      ok: 'OK',
+    },
+  },
 }

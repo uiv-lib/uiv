@@ -137,6 +137,8 @@ describe('BtnGroup', () => {
     await vm.$nextTick()
     expect(_$el.find('.btn-group-justified').length).to.equal(2)
     expect(_$el.find('.btn-group-justified > .btn-group').length).to.equal(3)
-    expect(_$el.find('.btn-group-justified > .btn-group > .btn').length).to.equal(3)
+    expect(
+      _$el.find('.btn-group-justified > .btn-group > .btn').length
+    ).to.equal(3)
   })
 })

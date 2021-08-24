@@ -10,7 +10,8 @@ describe('Collapse', () => {
   })
 
   it('should be able to toggle collapse on trigger click', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <div>
       <btn type="primary" @click="show=!show">Click me!</btn>
     </div>
@@ -18,9 +19,11 @@ describe('Collapse', () => {
     <collapse v-model="show">
       <div class="well" style="margin-bottom: 0">Hi there.</div>
     </collapse>
-  </section>`, {
-      show: false
-    })
+  </section>`,
+      {
+        show: false,
+      }
+    )
     $el = $(vm.$el)
     const trigger = $el.find('button').get(0)
     const collapse = $el.find('.collapse').get(0)
@@ -34,7 +37,8 @@ describe('Collapse', () => {
   })
 
   it('should be able to toggle accordion', async () => {
-    vm = createVm(`<div><div class="panel-group">
+    vm = createVm(
+      `<div><div class="panel-group">
     <div class="panel panel-default">
       <div class="panel-heading" role="button" @click="toggleAccordion(0)">
         <h4 class="panel-title">Collapsible Group Item #1</h4>
@@ -68,19 +72,22 @@ describe('Collapse', () => {
         </div>
       </collapse>
     </div>
-  </div></div>`, {
-      showAccordion: [true, false, false]
-    }, {
-      methods: {
-        toggleAccordion (index) {
-          if (this.showAccordion[index]) {
-            this.$set(this.showAccordion, index, false)
-          } else {
-            this.showAccordion = this.showAccordion.map((v, i) => i === index)
-          }
-        }
+  </div></div>`,
+      {
+        showAccordion: [true, false, false],
+      },
+      {
+        methods: {
+          toggleAccordion(index) {
+            if (this.showAccordion[index]) {
+              this.$set(this.showAccordion, index, false)
+            } else {
+              this.showAccordion = this.showAccordion.map((v, i) => i === index)
+            }
+          },
+        },
       }
-    })
+    )
     $el = $(vm.$el)
     const triggers = $el.find('.panel-heading')
     const collapse = $el.find('.collapse')

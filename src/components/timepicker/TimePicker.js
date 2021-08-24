@@ -13,70 +13,70 @@ export default {
   props: {
     value: {
       type: Date,
-      required: true
+      required: true,
     },
     showMeridian: {
       type: Boolean,
-      default: true
+      default: true,
     },
     min: null,
     max: null,
     hourStep: {
       type: Number,
-      default: 1
+      default: 1,
     },
     minStep: {
       type: Number,
-      default: 1
+      default: 1,
     },
     readonly: {
       type: Boolean,
-      default: false
+      default: false,
     },
     controls: {
       type: Boolean,
-      default: true
+      default: true,
     },
     iconControlUp: {
       type: String,
-      default: 'glyphicon glyphicon-chevron-up'
+      default: 'glyphicon glyphicon-chevron-up',
     },
     iconControlDown: {
       type: String,
-      default: 'glyphicon glyphicon-chevron-down'
+      default: 'glyphicon glyphicon-chevron-down',
     },
     inputWidth: {
       type: Number,
-      default: 50
-    }
+      default: 50,
+    },
   },
-  data () {
+  data() {
     return {
       hours: 0,
       minutes: 0,
       meridian: true,
       hoursText: '',
-      minutesText: ''
+      minutesText: '',
     }
   },
-  mounted () {
+  mounted() {
     this.updateByValue(this.value)
   },
   computed: {
-    inputStyles () {
+    inputStyles() {
       return {
-        width: `${this.inputWidth}px`
+        width: `${this.inputWidth}px`,
       }
-    }
+    },
   },
   watch: {
-    value (value) {
+    value(value) {
       this.updateByValue(value)
     },
-    showMeridian (value) {
+    showMeridian(value) {
       this.setTime()
     },
-    hoursText (value) {
+    hoursText(value) {
       if (this.hours === 0 && value === '') {
         // Prevent a runtime reset from being overwritten
         return
@@ -87,7 +87,8 @@ export default {
           if (this.meridian) {
             this.hours = hour === cutUpAmAndPm ? 0 : hour
           } else {
-            this.hours = hour === cutUpAmAndPm ? cutUpAmAndPm : hour + cutUpAmAndPm
+            this.hours =
+              hour === cutUpAmAndPm ? cutUpAmAndPm : hour + cutUpAmAndPm
           }
         }
       } else if (hour >= zero && hour <= maxHours) {
@@ -95,7 +96,7 @@ export default {
       }
       this.setTime()
     },
-    minutesText (value) {
+    minutesText(value) {
       if (this.minutes === 0 && value === '') {
         // Prevent a runtime reset from being overwritten
         return
@@ -105,10 +106,10 @@ export default {
         this.minutes = minutesStr
       }
       this.setTime()
-    }
+    },
   },
   methods: {
-    updateByValue (value) {
+    updateByValue(value) {
       if (isNaN(value.getTime())) {
         this.hours = 0
         this.minutes = 0
@@ -143,15 +144,15 @@ export default {
       this.$refs.hoursInput.value = this.hoursText
       this.$refs.minutesInput.value = this.minutesText
     },
-    addHour (step) {
+    addHour(step) {
       step = step || this.hourStep
       this.hours = this.hours >= maxHours ? zero : this.hours + step
     },
-    reduceHour (step) {
+    reduceHour(step) {
       step = step || this.hourStep
       this.hours = this.hours <= zero ? maxHours : this.hours - step
     },
-    addMinute () {
+    addMinute() {
       if (this.minutes >= maxMinutes) {
         this.minutes = zero
         this.addHour(1)
@@ -159,7 +160,7 @@ export default {
         this.minutes += this.minStep
       }
     },
-    reduceMinute () {
+    reduceMinute() {
       if (this.minutes <= zero) {
         this.minutes = maxMinutes + 1 - this.minStep
         this.reduceHour(1)
@@ -167,7 +168,7 @@ export default {
         this.minutes -= this.minStep
       }
     },
-    changeTime (isHour, isPlus) {
+    changeTime(isHour, isPlus) {
       if (!this.readonly) {
         if (isHour && isPlus) {
           this.addHour()
@@ -181,7 +182,7 @@ export default {
         this.setTime()
       }
     },
-    toggleMeridian () {
+    toggleMeridian() {
       this.meridian = !this.meridian
       if (this.meridian) {
         this.hours -= cutUpAmAndPm
@@ -190,13 +191,13 @@ export default {
       }
       this.setTime()
     },
-    onWheel (e, isHour) {
+    onWheel(e, isHour) {
       if (!this.readonly) {
         e.preventDefault()
         this.changeTime(isHour, e.deltaY < 0)
       }
     },
-    setTime () {
+    setTime() {
       let time = this.value
       if (isNaN(time.getTime())) {
         time = new Date()
@@ -219,10 +220,10 @@ export default {
       }
       this.$emit('input', new Date(time))
     },
-    selectInputValue (e) {
+    selectInputValue(e) {
       // mouseup should be prevented!
       // See various comments in https://stackoverflow.com/questions/3272089/programmatically-selecting-text-in-an-input-field-on-ios-devices-mobile-safari
       e.target.setSelectionRange(0, 2)
-    }
-  }
+    },
+  },
 }

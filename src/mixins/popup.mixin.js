@@ -10,7 +10,8 @@ import {
   hasClass,
   setTooltipPosition,
   addClass,
-  getOpenModalNum, getElementBySelectorOrRef
+  getOpenModalNum,
+  getElementBySelectorOrRef,
 } from '../utils/dom.utils'
 import { isFunction } from '../utils/object.utils'
 
@@ -20,75 +21,75 @@ export default {
   props: {
     value: {
       type: Boolean,
-      default: false
+      default: false,
     },
     tag: {
       type: String,
-      default: 'span'
+      default: 'span',
     },
     placement: {
       type: String,
-      default: PLACEMENTS.TOP
+      default: PLACEMENTS.TOP,
     },
     autoPlacement: {
       type: Boolean,
-      default: true
+      default: true,
     },
     appendTo: {
       type: null,
-      default: 'body'
+      default: 'body',
     },
     positionBy: {
       type: null,
-      default: null
+      default: null,
     },
     transition: {
       type: Number,
-      default: 150
+      default: 150,
     },
     hideDelay: {
       type: Number,
-      default: 0
+      default: 0,
     },
     showDelay: {
       type: Number,
-      default: 0
+      default: 0,
     },
     enable: {
       type: Boolean,
-      default: true
+      default: true,
     },
     enterable: {
       type: Boolean,
-      default: true
+      default: true,
     },
     target: null,
     viewport: null,
-    customClass: String
+    customClass: String,
   },
-  data () {
+  data() {
     return {
       triggerEl: null,
       hideTimeoutId: 0,
       showTimeoutId: 0,
       transitionTimeoutId: 0,
-      autoTimeoutId: 0
+      autoTimeoutId: 0,
     }
   },
   watch: {
-    value (v) {
+    value(v) {
       v ? this.show() : this.hide()
     },
-    trigger () {
+    trigger() {
       this.clearListeners()
       this.initListeners()
     },
-    target (value) {
+    target(value) {
       this.clearListeners()
       this.initTriggerElByTarget(value)
       this.initListeners()
     },
-    allContent (value) {
+    allContent(value) {
       // can not use value because it can not detect slot changes
       if (this.isNotEmpty()) {
         // reset position while content changed & is shown
@@ -103,15 +104,15 @@ export default {
         this.hide()
       }
     },
-    enable (value) {
+    enable(value) {
       // hide if enable changed to false
       /* istanbul ignore else */
       if (!value) {
         this.hide()
       }
-    }
+    },
   },
-  mounted () {
+  mounted() {
     ensureElementMatchesFunction()
     removeFromDom(this.$refs.popup)
     this.$nextTick(() => {
@@ -122,12 +123,12 @@ export default {
       }
     })
   },
-  beforeDestroy () {
+  beforeDestroy() {
     this.clearListeners()
     removeFromDom(this.$refs.popup)
   },
   methods: {
-    initTriggerElByTarget (target) {
+    initTriggerElByTarget(target) {
       if (target) {
         // target exist
         this.triggerEl = getElementBySelectorOrRef(target)
@@ -143,7 +144,7 @@ export default {
         }
       }
     },
-    initListeners () {
+    initListeners() {
       if (this.triggerEl) {
         if (this.trigger === TRIGGERS.HOVER) {
           on(this.triggerEl, EVENTS.MOUSE_ENTER, this.show)
@@ -156,13 +157,16 @@ export default {
           on(this.triggerEl, EVENTS.MOUSE_LEAVE, this.handleAuto)
           on(this.triggerEl, EVENTS.FOCUS, this.handleAuto)
           on(this.triggerEl, EVENTS.BLUR, this.handleAuto)
-        } else if (this.trigger === TRIGGERS.CLICK || this.trigger === TRIGGERS.OUTSIDE_CLICK) {
+        } else if (
+          this.trigger === TRIGGERS.CLICK ||
+          this.trigger === TRIGGERS.OUTSIDE_CLICK
+        ) {
           on(this.triggerEl, EVENTS.CLICK, this.toggle)
         }
       }
       on(window, EVENTS.CLICK, this.windowClicked)
     },
-    clearListeners () {
+    clearListeners() {
       if (this.triggerEl) {
         off(this.triggerEl, EVENTS.FOCUS, this.show)
         off(this.triggerEl, EVENTS.BLUR, this.hide)
@@ -177,7 +181,7 @@ export default {
       off(window, EVENTS.CLICK, this.windowClicked)
       this.clearTimeouts()
     },
-    clearTimeouts () {
+    clearTimeouts() {
       if (this.hideTimeoutId) {
         clearTimeout(this.hideTimeoutId)
         this.hideTimeoutId = 0
@@ -195,28 +199,45 @@ export default {
         this.autoTimeoutId = 0
       }
     },
-    resetPosition () {
+    resetPosition() {
       const popup = this.$refs.popup
       /* istanbul ignore else */
       if (popup) {
-        setTooltipPosition(popup, this.triggerEl, this.placement, this.autoPlacement, this.appendTo, this.positionBy, this.viewport)
+        setTooltipPosition(
+          popup,
+          this.triggerEl,
+          this.placement,
+          this.autoPlacement,
+          this.appendTo,
+          this.positionBy,
+          this.viewport
+        )
         popup.offsetHeight
       }
     },
-    hideOnLeave () {
-      if (this.trigger === TRIGGERS.HOVER || (this.trigger === TRIGGERS.HOVER_FOCUS && !this.triggerEl.matches(':focus'))) {
+    hideOnLeave() {
+      if (
+        this.trigger === TRIGGERS.HOVER ||
+        (this.trigger === TRIGGERS.HOVER_FOCUS &&
+          !this.triggerEl.matches(':focus'))
+      ) {
         this.$hide()
       }
     },
-    toggle () {
+    toggle() {
       if (this.isShown()) {
         this.hide()
       } else {
         this.show()
       }
     },
-    show () {
-      if (this.enable && this.triggerEl && this.isNotEmpty() && !this.isShown()) {
+    show() {
+      if (
+        this.enable &&
+        this.triggerEl &&
+        this.isNotEmpty() &&
+        !this.isShown()
+      ) {
         const popUpAppendedContainer = this.hideTimeoutId > 0 // weird condition
         if (popUpAppendedContainer) {
           clearTimeout(this.hideTimeoutId)
@@ -239,7 +260,9 @@ export default {
             }
             // add to dom
             if (!popUpAppendedContainer) {
-              popup.className = `${this.name} ${this.placement} ${this.customClass ? this.customClass : ''} fade`
+              popup.className = `${this.name} ${this.placement} ${
+                this.customClass ? this.customClass : ''
+              } fade`
               const container = getElementBySelectorOrRef(this.appendTo)
               container.appendChild(popup)
               this.resetPosition()
@@ -251,7 +274,7 @@ export default {
         }, this.showDelay)
       }
     },
-    hide () {
+    hide() {
       if (this.showTimeoutId > 0) {
         clearTimeout(this.showTimeoutId)
         this.showTimeoutId = 0
@@ -260,7 +283,11 @@ export default {
       if (!this.isShown()) {
         return
       }
-      if (this.enterable && (this.trigger === TRIGGERS.HOVER || this.trigger === TRIGGERS.HOVER_FOCUS)) {
+      if (
+        this.enterable &&
+        (this.trigger === TRIGGERS.HOVER ||
+          this.trigger === TRIGGERS.HOVER_FOCUS)
+      ) {
         clearTimeout(this.hideTimeoutId)
         this.hideTimeoutId = setTimeout(() => {
           this.hideTimeoutId = 0
@@ -273,7 +300,7 @@ export default {
         this.$hide()
       }
     },
-    $hide () {
+    $hide() {
       if (this.isShown()) {
         clearTimeout(this.hideTimeoutId)
         this.hideTimeoutId = setTimeout(() => {
@@ -289,17 +316,22 @@ export default {
         }, this.hideDelay)
       }
     },
-    isShown () {
+    isShown() {
       return hasClass(this.$refs.popup, SHOW_CLASS)
     },
-    windowClicked (event) {
-      if (this.triggerEl && isFunction(this.triggerEl.contains) && !this.triggerEl.contains(event.target) &&
-        this.trigger === TRIGGERS.OUTSIDE_CLICK && !(this.$refs.popup && this.$refs.popup.contains(event.target)) &&
-        this.isShown()) {
+    windowClicked(event) {
+      if (
+        this.triggerEl &&
+        isFunction(this.triggerEl.contains) &&
+        !this.triggerEl.contains(event.target) &&
+        this.trigger === TRIGGERS.OUTSIDE_CLICK &&
+        !(this.$refs.popup && this.$refs.popup.contains(event.target)) &&
+        this.isShown()
+      ) {
         this.hide()
       }
     },
-    handleAuto () {
+    handleAuto() {
       clearTimeout(this.autoTimeoutId)
       this.autoTimeoutId = setTimeout(() => {
         this.autoTimeoutId = 0
@@ -309,6 +341,6 @@ export default {
           this.hide()
         }
       }, 20) // 20ms make firefox happy
-    }
-  }
+    },
+  },
 }

@@ -6,7 +6,8 @@ describe('Affix', () => {
   let $el
 
   beforeEach(() => {
-    vm = createVm(`
+    vm = createVm(
+      `
 <div style="height: 2000px">
   <affix :offset="offset">
     <ul>
@@ -15,9 +16,11 @@ describe('Affix', () => {
       <li>Test3</li>
     </ul>
   </affix>
-</div>`, {
-      offset: 0
-    })
+</div>`,
+      {
+        offset: 0,
+      }
+    )
     $el = $(vm.$el)
   })
 

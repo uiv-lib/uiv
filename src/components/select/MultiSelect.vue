@@ -1,12 +1,13 @@
 <template>
   <dropdown
-    v-model="showDropdown"
     ref="dropdown"
+    v-model="showDropdown"
     :not-close-elements="els"
     :append-to-body="appendToBody"
     :disabled="disabled"
     :style="containerStyles"
-    @keydown.native.esc="showDropdown=false">
+    @keydown.native.esc="showDropdown = false"
+  >
     <div
       class="form-control dropdown-toggle clearfix"
       :class="selectClasses"
@@ -17,52 +18,72 @@
       @blur="$emit('blur', $event)"
       @keydown.prevent.stop.down="goNextOption"
       @keydown.prevent.stop.up="goPrevOption"
-      @keydown.prevent.stop.enter="selectOption">
-      <div class="pull-right" style="display: inline-block;vertical-align: middle">
+      @keydown.prevent.stop.enter="selectOption"
+    >
+      <div
+        class="pull-right"
+        style="display: inline-block; vertical-align: middle"
+      >
         <span>&nbsp;</span>
         <span class="caret"></span>
       </div>
       <div
         :class="selectTextClasses"
-        style="overflow-x: hidden; text-overflow: ellipsis; white-space: nowrap;"
+        style="overflow-x: hidden; text-overflow: ellipsis; white-space: nowrap"
         v-text="selectedText"
       ></div>
     </div>
     <template slot="dropdown">
       <li v-if="filterable" style="padding: 4px 8px">
         <input
-          aria-label="Filter..."
           ref="filterInput"
+          v-model="filterInput"
+          aria-label="Filter..."
           class="form-control input-sm"
           type="text"
-          :placeholder="filterPlaceholder || t('uiv.multiSelect.filterPlaceholder')"
-          v-model="filterInput"
+          :placeholder="
+            filterPlaceholder || t('uiv.multiSelect.filterPlaceholder')
+          "
           @keyup.enter="searchClicked"
           @keydown.prevent.stop.down="goNextOption"
           @keydown.prevent.stop.up="goPrevOption"
           @keydown.prevent.stop.enter="selectOption"
         />
       </li>
-      <template v-for="item in groupedOptions">
-        <li v-if="item.$group" class="dropdown-header" v-text="item.$group"></li>
-        <template v-for="_item in item.options">
+      <template v-for="(item, index) in groupedOptions">
+        <li
+          v-if="item.$group"
+          :key="index"
+          class="dropdown-header"
+          v-text="item.$group"
+        ></li>
+        <template v-for="(_item, j) in item.options">
           <li
+            :key="j"
+            :class="itemClasses(_item)"
+            style="outline: 0"
             @keydown.prevent.stop.down="goNextOption"
             @keydown.prevent.stop.up="goPrevOption"
             @keydown.prevent.stop.enter="selectOption"
-            :class="itemClasses(_item)"
             @click.stop="toggle(_item)"
-            @mouseenter="currentActive=-1"
-            style="outline: 0">
-            <a role="button" v-if="customOptionsVisible" style="outline: 0">
-              <slot name="option" :item="_item"/>
-              <span v-if="selectedIcon && isItemSelected(_item)" :class="selectedIconClasses"></span>
+            @mouseenter="currentActive = -1"
+          >
+            <a v-if="customOptionsVisible" role="button" style="outline: 0">
+              <slot name="option" :item="_item" />
+              <span
+                v-if="selectedIcon && isItemSelected(_item)"
+                :class="selectedIconClasses"
+              ></span>
             </a>
-            <a role="button" v-else-if="isItemSelected(_item)" style="outline: 0">
+            <a
+              v-else-if="isItemSelected(_item)"
+              role="button"
+              style="outline: 0"
+            >
               <b>{{ _item[labelKey] }}</b>
               <span v-if="selectedIcon" :class="selectedIconClasses"></span>
             </a>
-            <a role="button" v-else style="outline: 0">
+            <a v-else role="button" style="outline: 0">
               <span>{{ _item[labelKey] }}</span>
             </a>
           </li>
@@ -72,4 +93,4 @@
   </dropdown>
 </template>
 
-<script src="./MultiSelect.js"/>
+<script src="./MultiSelect.js" />

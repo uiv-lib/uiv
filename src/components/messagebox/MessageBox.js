@@ -13,90 +13,92 @@ export default {
     content: String,
     html: {
       type: Boolean,
-      default: false
+      default: false,
     },
     okText: String,
     okType: {
       type: String,
-      default: 'primary'
+      default: 'primary',
     },
     cancelText: String,
     cancelType: {
       type: String,
-      default: 'default'
+      default: 'default',
     },
     type: {
       type: Number,
-      default: TYPES.ALERT
+      default: TYPES.ALERT,
     },
     size: {
       type: String,
-      default: 'sm'
+      default: 'sm',
     },
     cb: {
       type: Function,
-      required: true
+      required: true,
     },
     validator: {
       type: Function,
-      default: () => null
+      default: () => null,
     },
     customClass: null,
     defaultValue: String,
     inputType: {
       type: String,
-      default: 'text'
+      default: 'text',
     },
     autoFocus: {
       type: String,
-      default: 'ok'
+      default: 'ok',
     },
     reverseButtons: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  data () {
+  data() {
     return {
       TYPES,
       show: false,
       input: '',
-      dirty: false
+      dirty: false,
     }
   },
-  mounted () {
+  mounted() {
     if (this.defaultValue) {
       this.input = this.defaultValue
     }
   },
   computed: {
-    closeOnBackdropClick () {
+    closeOnBackdropClick() {
       // use backdrop prop if exist
       // otherwise, only not available if render as alert
-      return isExist(this.backdrop) ? Boolean(this.backdrop) : (this.type !== TYPES.ALERT)
+      return isExist(this.backdrop)
+        ? Boolean(this.backdrop)
+        : this.type !== TYPES.ALERT
     },
-    inputError () {
+    inputError() {
       return this.validator(this.input)
     },
-    inputNotValid () {
+    inputNotValid() {
       return this.dirty && this.inputError
     },
-    okBtnText () {
+    okBtnText() {
       return this.okText || this.t('uiv.modal.ok')
     },
-    cancelBtnText () {
+    cancelBtnText() {
       return this.cancelText || this.t('uiv.modal.cancel')
-    }
+    },
   },
   methods: {
-    toggle (show, msg) {
+    toggle(show, msg) {
       this.$refs.modal.toggle(show, msg)
     },
-    validate () {
+    validate() {
       this.dirty = true
       if (!isExist(this.inputError)) {
         this.toggle(false, { value: this.input })
       }
-    }
-  }
+    },
+  },
 }

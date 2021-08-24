@@ -23,15 +23,15 @@ export default {
       week4: 'Per',
       week5: 'Cum',
       week6: 'Cmt',
-      week7: 'Paz'
+      week7: 'Paz',
     },
     timePicker: {
       am: 'Öğleden Önce',
-      pm: 'Öğleden Sonra'
+      pm: 'Öğleden Sonra',
     },
     modal: {
       cancel: 'İptal',
-      ok: 'Tamam'
-    }
-  }
+      ok: 'Tamam',
+    },
+  },
 }

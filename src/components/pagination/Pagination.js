@@ -5,52 +5,55 @@ export default {
     value: {
       type: Number,
       required: true,
-      validator: v => v >= 1
+      validator: (v) => v >= 1,
     },
     boundaryLinks: {
       type: Boolean,
-      default: false
+      default: false,
     },
     directionLinks: {
       type: Boolean,
-      default: true
+      default: true,
     },
     size: String,
     align: String,
     totalPage: {
       type: Number,
       required: true,
-      validator: v => v >= 0
+      validator: (v) => v >= 0,
     },
     maxSize: {
       type: Number,
       default: 5,
-      validator: v => v >= 0
+      validator: (v) => v >= 0,
     },
-    disabled: Boolean
+    disabled: Boolean,
   },
-  data () {
+  data() {
     return {
-      sliceStart: 0
+      sliceStart: 0,
     }
   },
   computed: {
-    navClasses () {
+    navClasses() {
       return {
-        [`text-${this.align}`]: Boolean(this.align)
+        [`text-${this.align}`]: Boolean(this.align),
       }
     },
-    classes () {
+    classes() {
       return {
-        [`pagination-${this.size}`]: Boolean(this.size)
+        [`pagination-${this.size}`]: Boolean(this.size),
       }
     },
-    sliceArray () {
-      return range(this.totalPage).slice(this.sliceStart, this.sliceStart + this.maxSize)
-    }
+    sliceArray() {
+      return range(this.totalPage).slice(
+        this.sliceStart,
+        this.sliceStart + this.maxSize
+      )
+    },
   },
   methods: {
-    calculateSliceStart () {
+    calculateSliceStart() {
       const currentPage = this.value
       const chunkSize = this.maxSize
       const currentChunkStart = this.sliceStart
@@ -70,20 +73,27 @@ export default {
         }
       }
     },
-    onPageChange (page) {
-      if (!this.disabled && page > 0 && page <= this.totalPage && page !== this.value) {
+    onPageChange(page) {
+      if (
+        !this.disabled &&
+        page > 0 &&
+        page <= this.totalPage &&
+        page !== this.value
+      ) {
         this.$emit('input', page)
         this.$emit('change', page)
       }
     },
-    toPage (pre) {
+    toPage(pre) {
       if (this.disabled) {
         return
       }
       const chunkSize = this.maxSize
       const currentChunkStart = this.sliceStart
       const lastChunkStart = this.totalPage - chunkSize
-      const start = pre ? currentChunkStart - chunkSize : currentChunkStart + chunkSize
+      const start = pre
+        ? currentChunkStart - chunkSize
+        : currentChunkStart + chunkSize
       if (start < 0) {
         this.sliceStart = 0
       } else if (start > lastChunkStart) {
@@ -91,11 +101,15 @@ export default {
       } else {
         this.sliceStart = start
       }
-    }
+    },
   },
-  created () {
-    this.$watch(vm => [vm.value, vm.maxSize, vm.totalPage].join(), this.calculateSliceStart, {
-      immediate: true
-    })
-  }
+  created() {
+    this.$watch(
+      (vm) => [vm.value, vm.maxSize, vm.totalPage].join(),
+      this.calculateSliceStart,
+      {
+        immediate: true,
+      }
+    )
+  },
 }

@@ -3,15 +3,22 @@ import * as utils from '../../src/utils/object.utils'
 describe('object.utils', () => {
   describe('#assign', () => {
     it('should be able to merge objects', () => {
-      expect(utils.assign({}, { a: 1 }, { a: 2, b: 3 })).to.deep.equal({ a: 2, b: 3 })
+      expect(utils.assign({}, { a: 1 }, { a: 2, b: 3 })).to.deep.equal({
+        a: 2,
+        b: 3,
+      })
     })
 
     it('should be able to handle null target', () => {
-      expect(utils.assign.bind(this, null, {})).to.throw('Cannot convert undefined or null to object')
+      expect(utils.assign.bind(this, null, {})).to.throw(
+        'Cannot convert undefined or null to object'
+      )
     })
 
     it('should be able to handle null or undefined source', () => {
-      expect(utils.assign({}, { a: 1 }, null, undefined, { a: 2, b: 3 })).to.deep.equal({ a: 2, b: 3 })
+      expect(
+        utils.assign({}, { a: 1 }, null, undefined, { a: 2, b: 3 })
+      ).to.deep.equal({ a: 2, b: 3 })
     })
 
     it('should be able to avoid prototype properties', () => {

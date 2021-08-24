@@ -23,15 +23,15 @@ export default {
       week4: 'Чт',
       week5: 'Пт',
       week6: 'Сб',
-      week7: 'Вс'
+      week7: 'Вс',
     },
     timePicker: {
       am: 'дня',
-      pm: 'вечера'
+      pm: 'вечера',
     },
     modal: {
       cancel: 'Отмена',
-      ok: 'OK'
-    }
-  }
+      ok: 'OK',
+    },
+  },
 }

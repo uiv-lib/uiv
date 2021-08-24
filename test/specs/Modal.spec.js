@@ -1,8 +1,9 @@
 import $ from 'jquery'
 import { createVm, destroyVm, triggerEvent, sleep, transition } from '../utils'
 
-function baseVm () {
-  return createVm(`<section>
+function baseVm() {
+  return createVm(
+    `<section>
     <btn type="primary" @click="open=true">Launch Demo Modal</btn>
     <modal v-model="open" title="Modal 1" @hide="callback" ref="modal" id="modal-demo">
       <h4>Text in a modal</h4>
@@ -32,15 +33,18 @@ function baseVm () {
       <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
       <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
     </modal>
-  </section>`, {
-    open: false
-  }, {
-    methods: {
-      callback (msg) {
-        this.$notify(`Modal dismissed with msg '${msg}'.`)
-      }
+  </section>`,
+    {
+      open: false,
+    },
+    {
+      methods: {
+        callback(msg) {
+          this.$notify(`Modal dismissed with msg '${msg}'.`)
+        },
+      },
     }
-  })
+  )
 }
 
 describe('Modal', () => {
@@ -64,14 +68,17 @@ describe('Modal', () => {
   }
 
   it('should aware backdrop keydown & keyup to hide', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <modal v-model="open1" title="Modal 1" ref="modal">
       <p>This is a simple large modal.</p>
       <p>Click on the button below to open a nested modal.</p>
     </modal>
-  </section>`, {
-      open1: true
-    })
+  </section>`,
+      {
+        open1: true,
+      }
+    )
     await vm.$nextTick()
     // simulate window mousedown
     vm.$refs.modal.suppressBackgroundClose({ target: vm.$refs.modal.$el })
@@ -87,14 +94,17 @@ describe('Modal', () => {
   })
 
   it('should suppress inside modal keydown & keyup to prevent unexpected hiding', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <modal v-model="open1" title="Modal 1" ref="modal">
       <p>This is a simple large modal.</p>
       <p>Click on the button below to open a nested modal.</p>
     </modal>
-  </section>`, {
-      open1: true
-    })
+  </section>`,
+      {
+        open1: true,
+      }
+    )
     await vm.$nextTick()
     // simulate window mousedown
     vm.$refs.modal.suppressBackgroundClose({ target: window })
@@ -112,7 +122,8 @@ describe('Modal', () => {
   it('should be able to use nested modals (logically)', async () => {
     // enable body with overflow-y
     document.body.style.height = '9999px'
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <btn type="primary" @click="open1=true">Open set of nested modals (logically)</btn>
     <modal v-model="open1" title="Modal 1" size="lg">
       <p>This is a simple large modal.</p>
@@ -126,11 +137,13 @@ describe('Modal', () => {
     <modal v-model="open3" title="Modal 3" size="sm">
       <p>This is another nested modal.</p>
     </modal>
-  </section>`, {
-      open1: false,
-      open2: false,
-      open3: false
-    })
+  </section>`,
+      {
+        open1: false,
+        open2: false,
+        open3: false,
+      }
+    )
     await vm.$nextTick()
     const _$el = $(vm.$el)
     const modal1 = _$el.find('.modal').get(0)
@@ -204,7 +217,8 @@ describe('Modal', () => {
   it('should be able to use nested modals', async () => {
     // enable body with overflow-y
     document.body.style.height = '9999px'
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <btn type="primary" @click="open1=true">Open set of nested modals</btn>
     <!-- \`append-to-body\` not required here -->
     <modal v-model="open1" title="Modal 1" size="lg" ref="modal1">
@@ -221,11 +235,13 @@ describe('Modal', () => {
         </modal>
       </modal>
     </modal>
-  </section>`, {
-      open1: false,
-      open2: false,
-      open3: false
-    })
+  </section>`,
+      {
+        open1: false,
+        open2: false,
+        open3: false,
+      }
+    )
     await vm.$nextTick()
     const _$el = $(vm.$el)
     const modal1 = _$el.find('.modal').get(0)
@@ -299,7 +315,8 @@ describe('Modal', () => {
   it('should be able destroy nested modals', async () => {
     // enable body with overflow-y
     document.body.style.height = '9999px'
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <btn type="primary" @click="open1=true">Open set of nested modals</btn>
     <!-- \`append-to-body\` not required here -->
     <modal v-model="open1" title="Modal 1" size="lg" ref="modal1">
@@ -312,11 +329,13 @@ describe('Modal', () => {
         <btn type="info" @click="open3=true">Open Modal 3</btn>
       </modal>
     </modal>
-  </section>`, {
-      open1: false,
-      open2: false,
-      open3: false
-    })
+  </section>`,
+      {
+        open1: false,
+        open2: false,
+        open3: false,
+      }
+    )
     await vm.$nextTick()
     const _$el = $(vm.$el)
     const modal1 = _$el.find('.modal').get(0)
@@ -395,7 +414,9 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(_$el.find('.modal').get(0).className).not.contain('in')
     expect(document.querySelector('.alert')).to.exist
-    expect(document.querySelector('.alert .media-body > div').textContent).to.contain('dismiss')
+    expect(
+      document.querySelector('.alert .media-body > div').textContent
+    ).to.contain('dismiss')
   })
 
   it('should be able to close modal 1 with ok option and fire callback', async () => {
@@ -413,18 +434,23 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     expect(_$el.find('.modal').get(0).className).not.contain('in')
     expect(document.querySelector('.alert')).to.exist
-    expect(document.querySelector('.alert .media-body > div').textContent).to.contain('ok')
+    expect(
+      document.querySelector('.alert .media-body > div').textContent
+    ).to.contain('ok')
   })
 
   it('should be able to render large modal', async () => {
-    vm = createVm(` <section>
+    vm = createVm(
+      ` <section>
     <btn type="primary" @click="open1=true">Large Modal</btn>
     <modal v-model="open1" title="Modal Title" size="lg">
       <p>This is a large modal.</p>
     </modal>
-  </section>`, {
-      open1: false
-    })
+  </section>`,
+      {
+        open1: false,
+      }
+    )
     const _$el = $(vm.$el)
     const trigger = _$el.find('.btn').get(0)
     const modal = vm.$el.querySelectorAll('.modal')[0]
@@ -437,14 +463,17 @@ describe('Modal', () => {
   })
 
   it('should be able to render small modal', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <btn type="primary" @click="open2=true">Small Modal</btn>
     <modal v-model="open2" title="Modal Title" size="sm">
       <p>This is a small modal.</p>
     </modal>
-  </section>`, {
-      open2: false
-    })
+  </section>`,
+      {
+        open2: false,
+      }
+    )
     const _$el = $(vm.$el)
     const trigger = _$el.find('.btn').get(0)
     const modal = vm.$el.querySelectorAll('.modal')[0]
@@ -457,15 +486,18 @@ describe('Modal', () => {
   })
 
   it('should be able to render HTML title modal', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <btn type="primary" @click="open1=true">HTML Title</btn>
     <modal v-model="open1">
       <span slot="title"><i class="glyphicon glyphicon-heart"></i> Modal Title</span>
       <p>This is a modal with HTML title.</p>
     </modal>
-  </section>`, {
-      open1: false
-    })
+  </section>`,
+      {
+        open1: false,
+      }
+    )
     const _$el = $(vm.$el)
     const trigger = _$el.find('.btn').get(0)
     const modal = vm.$el.querySelectorAll('.modal')[0]
@@ -478,14 +510,17 @@ describe('Modal', () => {
   })
 
   it('should be able to render no header modal', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <btn type="primary" @click="open2=true">No Header</btn>
     <modal v-model="open2" :header="false">
       <p>This is a modal with no header.</p>
     </modal>
-  </section>`, {
-      open2: false
-    })
+  </section>`,
+      {
+        open2: false,
+      }
+    )
     const _$el = $(vm.$el)
     const trigger = _$el.find('.btn').get(0)
     const modal = vm.$el.querySelectorAll('.modal')[0]
@@ -498,7 +533,8 @@ describe('Modal', () => {
   })
 
   it('should be able to render customize footer modal', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <btn type="primary" @click="open1=true">Custom Footer</btn>
     <modal v-model="open1" title="Modal Title">
       <p>This is a modal with custom footer.</p>
@@ -508,9 +544,11 @@ describe('Modal', () => {
         <btn type="danger">Danger Action</btn>
       </div>
     </modal>
-  </section>`, {
-      open1: false
-    })
+  </section>`,
+      {
+        open1: false,
+      }
+    )
     const _$el = $(vm.$el)
     const trigger = _$el.find('.btn').get(0)
     const modal = vm.$el.querySelectorAll('.modal')[0]
@@ -523,14 +561,17 @@ describe('Modal', () => {
   })
 
   it('should be able to render no footer modal', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <btn type="primary" @click="open2=true">No Footer</btn>
     <modal v-model="open2" title="Modal Title" :footer="false">
       <p>This is a modal with no footer.</p>
     </modal>
-  </section>`, {
-      open2: false
-    })
+  </section>`,
+      {
+        open2: false,
+      }
+    )
     const _$el = $(vm.$el)
     const trigger = _$el.find('.btn').get(0)
     const modal = vm.$el.querySelectorAll('.modal')[0]
@@ -543,7 +584,8 @@ describe('Modal', () => {
   })
 
   it('should be able to close customize footer modal', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <btn type="primary" @click="open1=true">Custom Footer</btn>
     <modal v-model="open1" title="Modal Title">
       <p>This is a modal with custom footer.</p>
@@ -553,9 +595,11 @@ describe('Modal', () => {
         <btn type="danger">Danger Action</btn>
       </div>
     </modal>
-  </section>`, {
-      open1: false
-    })
+  </section>`,
+      {
+        open1: false,
+      }
+    )
     const _$el = $(vm.$el)
     const trigger = _$el.find('.btn').get(0)
     const modal = vm.$el.querySelectorAll('.modal')[0]
@@ -572,16 +616,19 @@ describe('Modal', () => {
   })
 
   it('should be able to customize button texts and types', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <btn type="primary" @click="open=true">Custom Button Text and Type</btn>
     <modal v-model="open" title="Are you sure?"
            ok-text="Yes, please" cancel-text="No way!"
            ok-type="danger" cancel-type="warning">
       <p>Do you really want to destroy this item?</p>
     </modal>
-  </section>`, {
-      open: false
-    })
+  </section>`,
+      {
+        open: false,
+      }
+    )
     const _$el = $(vm.$el)
     const trigger = _$el.find('.btn').get(0)
     const modal = _$el.find('.modal').get(0)
@@ -597,31 +644,41 @@ describe('Modal', () => {
   })
 
   it('should be able to auto-focus on ok btn', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <btn type="primary" @click="open=true">Auto Focus</btn>
     <modal v-model="open" title="Modal Title" auto-focus>
       <p>Check this out! The OK button is focused now.</p>
     </modal>
-  </section>`, {
-      open: false
-    })
+  </section>`,
+      {
+        open: false,
+      }
+    )
     const _$el = $(vm.$el)
     const trigger = _$el.find('.btn').get(0)
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition + 100)
-    expect(vm.$el.querySelector('[data-action="auto-focus"]').getAttribute('data-focused')).to.equal('true')
+    expect(
+      vm.$el
+        .querySelector('[data-action="auto-focus"]')
+        .getAttribute('data-focused')
+    ).to.equal('true')
   })
 
   it('should be ok if auto-focus is true and no data-action=auto-focus present', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <btn type="primary" @click="open=true">Auto Focus</btn>
     <modal v-model="open" title="Modal Title" auto-focus>
       <div slot="footer"><button>ok</button></div>
     </modal>
-  </section>`, {
-      open: false
-    })
+  </section>`,
+      {
+        open: false,
+      }
+    )
     const _$el = $(vm.$el)
     const trigger = _$el.find('.btn').get(0)
     expect(document.querySelector('.modal-backdrop')).not.exist
@@ -647,14 +704,17 @@ describe('Modal', () => {
   })
 
   it('should not be able to close backdrop-false modal', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <btn type="primary" @click="open=true">Disable Backdrop</btn>
     <modal v-model="open" title="Modal Title" :backdrop="false">
       <p>This is a modal that can not close by backdrop click.</p>
     </modal>
-  </section>`, {
-      open: false
-    })
+  </section>`,
+      {
+        open: false,
+      }
+    )
     const _$el = $(vm.$el)
     const trigger = _$el.find('.btn').get(0)
     const modal = vm.$el.querySelectorAll('.modal')[0]
@@ -670,9 +730,12 @@ describe('Modal', () => {
   })
 
   it('should be able to open modal on init', async () => {
-    vm = createVm('<modal v-model="open" title="Modal 1"><p>This is a simple modal.</p></modal>', {
-      open: true
-    })
+    vm = createVm(
+      '<modal v-model="open" title="Modal 1"><p>This is a simple modal.</p></modal>',
+      {
+        open: true,
+      }
+    )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(vm.$el.className).to.contain('in')
@@ -680,9 +743,12 @@ describe('Modal', () => {
   })
 
   it('should be able to hide dismiss btn', async () => {
-    vm = createVm('<modal v-model="open" title="Modal 1" :dismiss-btn="false"><p>This is a simple modal.</p></modal>', {
-      open: true
-    })
+    vm = createVm(
+      '<modal v-model="open" title="Modal 1" :dismiss-btn="false"><p>This is a simple modal.</p></modal>',
+      {
+        open: true,
+      }
+    )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(vm.$el.className).to.contain('in')
@@ -690,17 +756,21 @@ describe('Modal', () => {
   })
 
   it('should be able to use `beforeClose`', async () => {
-    vm = createVm('<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>', {
-      open: true,
-      msg: 'ok'
-    }, {
-      methods: {
-        beforeClose () {
-          this.msg = 'test'
-          return true
-        }
+    vm = createVm(
+      '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
+      {
+        open: true,
+        msg: 'ok',
+      },
+      {
+        methods: {
+          beforeClose() {
+            this.msg = 'test'
+            return true
+          },
+        },
       }
-    })
+    )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(vm.msg).to.equal('ok')
@@ -712,17 +782,21 @@ describe('Modal', () => {
   })
 
   it('should be able to interrupt hide with `beforeClose`', async () => {
-    vm = createVm('<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>', {
-      open: true,
-      msg: 'ok',
-      dismissible: false
-    }, {
-      methods: {
-        beforeClose () {
-          return this.dismissible
-        }
+    vm = createVm(
+      '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
+      {
+        open: true,
+        msg: 'ok',
+        dismissible: false,
+      },
+      {
+        methods: {
+          beforeClose() {
+            return this.dismissible
+          },
+        },
       }
-    })
+    )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(vm.msg).to.equal('ok')
@@ -739,17 +813,21 @@ describe('Modal', () => {
   })
 
   it('should be able to use `beforeClose` when promise not supported', async () => {
-    vm = createVm('<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>', {
-      open: true,
-      msg: 'ok'
-    }, {
-      methods: {
-        beforeClose () {
-          this.msg = 'test'
-          return true
-        }
+    vm = createVm(
+      '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
+      {
+        open: true,
+        msg: 'ok',
+      },
+      {
+        methods: {
+          beforeClose() {
+            this.msg = 'test'
+            return true
+          },
+        },
       }
-    })
+    )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(vm.msg).to.equal('ok')
@@ -764,17 +842,21 @@ describe('Modal', () => {
   })
 
   it('should be able to interrupt hide with `beforeClose` promise is not supported', async () => {
-    vm = createVm('<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>', {
-      open: true,
-      msg: 'ok'
-    }, {
-      methods: {
-        beforeClose () {
-          this.msg = 'test'
-          return false
-        }
+    vm = createVm(
+      '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
+      {
+        open: true,
+        msg: 'ok',
+      },
+      {
+        methods: {
+          beforeClose() {
+            this.msg = 'test'
+            return false
+          },
+        },
       }
-    })
+    )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(vm.msg).to.equal('ok')
@@ -789,19 +871,23 @@ describe('Modal', () => {
   })
 
   it('should be able to use `beforeClose` when result is promise', async () => {
-    vm = createVm('<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>', {
-      open: true,
-      msg: 'ok'
-    }, {
-      methods: {
-        beforeClose () {
-          this.msg = 'test'
-          return new Promise((resolve) => {
-            resolve(true)
-          })
-        }
+    vm = createVm(
+      '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
+      {
+        open: true,
+        msg: 'ok',
+      },
+      {
+        methods: {
+          beforeClose() {
+            this.msg = 'test'
+            return new Promise((resolve) => {
+              resolve(true)
+            })
+          },
+        },
       }
-    })
+    )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(vm.msg).to.equal('ok')
@@ -813,19 +899,23 @@ describe('Modal', () => {
   })
 
   it('should be able to interrupt hide with `beforeClose` when result is promise', async () => {
-    vm = createVm('<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>', {
-      open: true,
-      msg: 'ok'
-    }, {
-      methods: {
-        beforeClose () {
-          this.msg = 'test'
-          return new Promise((resolve) => {
-            resolve(false)
-          })
-        }
+    vm = createVm(
+      '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
+      {
+        open: true,
+        msg: 'ok',
+      },
+      {
+        methods: {
+          beforeClose() {
+            this.msg = 'test'
+            return new Promise((resolve) => {
+              resolve(false)
+            })
+          },
+        },
       }
-    })
+    )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
     expect(vm.msg).to.equal('ok')
@@ -839,7 +929,8 @@ describe('Modal', () => {
   it('should close the top most modal only when ESC pressed', async () => {
     // enable body with overflow-y
     document.body.style.height = '9999px'
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <btn type="primary" @click="open1=true">Open set of nested modals</btn>
     <!-- \`append-to-body\` not required here -->
     <modal v-model="open1" title="Modal 1" size="lg" ref="modal1">
@@ -856,11 +947,13 @@ describe('Modal', () => {
         </modal>
       </modal>
     </modal>
-  </section>`, {
-      open1: false,
-      open2: false,
-      open3: false
-    })
+  </section>`,
+      {
+        open1: false,
+        open2: false,
+        open3: false,
+      }
+    )
     await vm.$nextTick()
     const _$el = $(vm.$el)
     const modal1 = _$el.find('.modal').get(0)

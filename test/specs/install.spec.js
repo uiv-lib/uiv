@@ -1,7 +1,7 @@
 import * as uiv from '../../src/install'
 
 describe('install', () => {
-  function Vue () {
+  function Vue() {
     // nothing
   }
 

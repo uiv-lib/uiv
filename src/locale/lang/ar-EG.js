@@ -23,15 +23,15 @@ export default {
       week4: 'الخميس',
       week5: 'الجمعة',
       week6: 'السبت',
-      week7: 'الأحد'
+      week7: 'الأحد',
     },
     timePicker: {
       am: 'AM',
-      pm: 'PM'
+      pm: 'PM',
     },
     modal: {
       cancel: 'إلغاء',
-      ok: 'موافق'
-    }
-  }
+      ok: 'موافق',
+    },
+  },
 }

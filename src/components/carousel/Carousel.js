@@ -5,43 +5,43 @@ export default {
     value: Number,
     indicators: {
       type: Boolean,
-      default: true
+      default: true,
     },
     controls: {
       type: Boolean,
-      default: true
+      default: true,
     },
     interval: {
       type: Number,
-      default: 5000
+      default: 5000,
     },
     iconControlLeft: {
       type: String,
-      default: 'glyphicon glyphicon-chevron-left'
+      default: 'glyphicon glyphicon-chevron-left',
     },
     iconControlRight: {
       type: String,
-      default: 'glyphicon glyphicon-chevron-right'
-    }
+      default: 'glyphicon glyphicon-chevron-right',
+    },
   },
-  data () {
+  data() {
     return {
       slides: [],
       activeIndex: 0, // Make v-model not required
       timeoutId: 0,
-      intervalId: 0
+      intervalId: 0,
     }
   },
   watch: {
-    interval () {
+    interval() {
       this.startInterval()
     },
-    value (index, oldValue) {
+    value(index, oldValue) {
       this.run(index, oldValue)
       this.activeIndex = index
-    }
+    },
   },
-  mounted () {
+  mounted() {
     if (isExist(this.value)) {
       this.activeIndex = this.value
     }
@@ -50,11 +50,11 @@ export default {
     }
     this.startInterval()
   },
-  beforeDestroy () {
+  beforeDestroy() {
     this.stopInterval()
   },
   methods: {
-    run (newIndex, oldIndex) {
+    run(newIndex, oldIndex) {
       const currentActiveIndex = oldIndex || 0
       let direction
       if (newIndex > currentActiveIndex) {
@@ -80,7 +80,7 @@ export default {
         }, 600)
       })
     },
-    startInterval () {
+    startInterval() {
       this.stopInterval()
       if (this.interval > 0) {
         this.intervalId = setInterval(() => {
@@ -88,12 +88,12 @@ export default {
         }, this.interval)
       }
     },
-    stopInterval () {
+    stopInterval() {
       clearInterval(this.intervalId)
       this.intervalId = 0
     },
-    resetAllSlideClass () {
-      this.slides.forEach(slide => {
+    resetAllSlideClass() {
+      this.slides.forEach((slide) => {
         slide.slideClass.active = false
         slide.slideClass.left = false
         slide.slideClass.right = false
@@ -101,11 +101,11 @@ export default {
         slide.slideClass.prev = false
       })
     },
-    $select (index) {
+    $select(index) {
       this.resetAllSlideClass()
       this.slides[index].slideClass.active = true
     },
-    select (index) {
+    select(index) {
       if (this.timeoutId !== 0 || index === this.activeIndex) {
         return
       }
@@ -116,11 +116,15 @@ export default {
         this.activeIndex = index
       }
     },
-    prev () {
-      this.select(this.activeIndex === 0 ? this.slides.length - 1 : this.activeIndex - 1)
+    prev() {
+      this.select(
+        this.activeIndex === 0 ? this.slides.length - 1 : this.activeIndex - 1
+      )
     },
-    next () {
-      this.select(this.activeIndex === this.slides.length - 1 ? 0 : this.activeIndex + 1)
-    }
-  }
+    next() {
+      this.select(
+        this.activeIndex === this.slides.length - 1 ? 0 : this.activeIndex + 1
+      )
+    },
+  },
 }

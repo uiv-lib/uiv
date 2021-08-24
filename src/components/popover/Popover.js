@@ -3,61 +3,64 @@ import popupMixin from '../../mixins/popup.mixin'
 
 export default {
   mixins: [popupMixin],
-  data () {
+  data() {
     return {
-      name: 'popover'
+      name: 'popover',
     }
   },
-  render (h) {
-    return h(this.tag,
-      [
-        this.$slots.default,
-        h('div',
-          {
-            style: {
-              display: 'block'
-            },
-            ref: 'popup',
-            on: {
-              mouseleave: this.hideOnLeave
-            }
+  render(h) {
+    return h(this.tag, [
+      this.$slots.default,
+      h(
+        'div',
+        {
+          style: {
+            display: 'block',
           },
-          [
-            h('div', { class: 'arrow' }),
-            h('h3', {
+          ref: 'popup',
+          on: {
+            mouseleave: this.hideOnLeave,
+          },
+        },
+        [
+          h('div', { class: 'arrow' }),
+          h(
+            'h3',
+            {
               class: 'popover-title',
-              directives: [
-                { name: 'show', value: this.title }
-              ]
-            }, this.title),
-            h('div', { class: 'popover-content' }, [this.content || this.$slots.popover])
-          ]
-        )
-      ]
-    )
+              directives: [{ name: 'show', value: this.title }],
+            },
+            this.title
+          ),
+          h('div', { class: 'popover-content' }, [
+            this.content || this.$slots.popover,
+          ]),
+        ]
+      ),
+    ])
   },
   props: {
     title: {
       type: String,
-      default: ''
+      default: '',
     },
     content: {
       type: String,
-      default: ''
+      default: '',
     },
     trigger: {
       type: String,
-      default: TRIGGERS.OUTSIDE_CLICK
-    }
+      default: TRIGGERS.OUTSIDE_CLICK,
+    },
   },
   computed: {
-    allContent () {
+    allContent() {
       return this.title + this.content
-    }
+    },
   },
   methods: {
-    isNotEmpty () {
+    isNotEmpty() {
       return this.title || this.content || this.$slots.popover
-    }
-  }
+    },
+  },
 }

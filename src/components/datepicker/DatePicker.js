@@ -13,64 +13,64 @@ export default {
     value: null,
     width: {
       type: Number,
-      default: 270
+      default: 270,
     },
     todayBtn: {
       type: Boolean,
-      default: true
+      default: true,
     },
     clearBtn: {
       type: Boolean,
-      default: true
+      default: true,
     },
     closeOnSelected: {
       type: Boolean,
-      default: true
+      default: true,
     },
     limitFrom: null,
     limitTo: null,
     format: {
       type: String,
-      default: 'yyyy-MM-dd'
+      default: 'yyyy-MM-dd',
     },
     initialView: {
       type: String,
-      default: 'd'
+      default: 'd',
     },
     dateParser: {
       type: Function,
-      default: Date.parse
+      default: Date.parse,
     },
     dateClass: Function,
     yearMonthFormatter: Function,
     weekStartsWith: {
       type: Number,
       default: 0,
-      validator (value) {
+      validator(value) {
         return value >= 0 && value <= 6
-      }
+      },
     },
     weekNumbers: Boolean,
     iconControlLeft: {
       type: String,
-      default: 'glyphicon glyphicon-chevron-left'
+      default: 'glyphicon glyphicon-chevron-left',
     },
     iconControlRight: {
       type: String,
-      default: 'glyphicon glyphicon-chevron-right'
-    }
+      default: 'glyphicon glyphicon-chevron-right',
+    },
   },
-  data () {
+  data() {
     return {
       show: false,
       now: new Date(),
       currentMonth: 0,
       currentYear: 0,
-      view: 'd'
+      view: 'd',
     }
   },
   computed: {
-    valueDateObj () {
+    valueDateObj() {
       const ts = this.dateParser(this.value)
       if (isNaN(ts)) {
         return null
@@ -82,20 +82,20 @@ export default {
         return date
       }
     },
-    pickerStyle () {
+    pickerStyle() {
       return {
-        width: this.width + 'px'
+        width: this.width + 'px',
       }
     },
-    pickerClass () {
+    pickerClass() {
       return {
         'uiv-datepicker': true,
         'uiv-datepicker-date': this.view === 'd',
         'uiv-datepicker-month': this.view === 'm',
-        'uiv-datepicker-year': this.view === 'y'
+        'uiv-datepicker-year': this.view === 'y',
       }
     },
-    limit () {
+    limit() {
       const limit = {}
       if (this.limitFrom) {
         let limitFrom = this.dateParser(this.limitFrom)
@@ -114,9 +114,9 @@ export default {
         }
       }
       return limit
-    }
+    },
   },
-  mounted () {
+  mounted() {
     if (this.value) {
       this.setMonthAndYearByValue(this.value)
     } else {
@@ -126,19 +126,23 @@ export default {
     }
   },
   watch: {
-    value (val, oldVal) {
+    value(val, oldVal) {
       this.setMonthAndYearByValue(val, oldVal)
-    }
+    },
   },
   methods: {
-    setMonthAndYearByValue (val, oldVal) {
+    setMonthAndYearByValue(val, oldVal) {
       const ts = this.dateParser(val)
       if (!isNaN(ts)) {
         let date = new Date(ts)
         if (date.getHours() !== 0) {
           date = new Date(ts + date.getTimezoneOffset() * 60 * 1000)
         }
-        if (this.limit && ((this.limit.from && date < this.limit.from) || (this.limit.to && date >= this.limit.to))) {
+        if (
+          this.limit &&
+          ((this.limit.from && date < this.limit.from) ||
+            (this.limit.to && date >= this.limit.to))
+        ) {
           this.$emit('input', oldVal || '')
         } else {
           this.currentMonth = date.getMonth()
@@ -146,15 +150,20 @@ export default {
         }
       }
     },
-    onMonthChange (month) {
+    onMonthChange(month) {
       this.currentMonth = month
     },
-    onYearChange (year) {
+    onYearChange(year) {
       this.currentYear = year
       this.currentMonth = undefined
     },
-    onDateChange (date) {
-      if (date && isNumber(date.date) && isNumber(date.month) && isNumber(date.year)) {
+    onDateChange(date) {
+      if (
+        date &&
+        isNumber(date.date) &&
+        isNumber(date.month) &&
+        isNumber(date.year)
+      ) {
         const _date = new Date(date.year, date.month, date.date)
         this.$emit('input', this.format ? stringify(_date, this.format) : _date)
         // if the input event trigger nothing (same value)
@@ -165,27 +174,30 @@ export default {
         this.$emit('input', '')
       }
     },
-    onViewChange (view) {
+    onViewChange(view) {
       this.view = view
     },
-    selectToday () {
+    selectToday() {
       this.view = 'd'
       this.onDateChange({
         date: this.now.getDate(),
         month: this.now.getMonth(),
-        year: this.now.getFullYear()
+        year: this.now.getFullYear(),
       })
     },
-    clearSelect () {
+    clearSelect() {
       this.currentMonth = this.now.getMonth()
       this.currentYear = this.now.getFullYear()
       this.view = this.initialView
       this.onDateChange()
     },
-    onPickerClick (event) {
-      if (event.target.getAttribute('data-action') !== 'select' || !this.closeOnSelected) {
+    onPickerClick(event) {
+      if (
+        event.target.getAttribute('data-action') !== 'select' ||
+        !this.closeOnSelected
+      ) {
         event.stopPropagation()
       }
-    }
-  }
+    },
+  },
 }

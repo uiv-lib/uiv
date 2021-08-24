@@ -1,16 +1,19 @@
 import $ from 'jquery'
 import { createVm, destroyVm, triggerEvent } from '../utils'
 
-function baseVm () {
+function baseVm() {
   return createVm('<div><time-picker v-model="time"/></div>', {
-    time: new Date()
+    time: new Date(),
   })
 }
 
-function h24Vm () {
-  return createVm('<div><time-picker v-model="time" :show-meridian="false"/></div>', {
-    time: new Date()
-  })
+function h24Vm() {
+  return createVm(
+    '<div><time-picker v-model="time" :show-meridian="false"/></div>',
+    {
+      time: new Date(),
+    }
+  )
 }
 
 describe('TimePicker', () => {
@@ -79,7 +82,9 @@ describe('TimePicker', () => {
     vm = baseVm()
     await vm.$nextTick()
     const beforeText = vm.$el.querySelectorAll('input')[0].value
-    const hourMinus = vm.$el.querySelectorAll('tr')[2].querySelector('td button')
+    const hourMinus = vm.$el
+      .querySelectorAll('tr')[2]
+      .querySelector('td button')
     triggerEvent(hourMinus, 'click')
     await vm.$nextTick()
     let afterText = vm.$el.querySelectorAll('input')[0].value
@@ -101,7 +106,9 @@ describe('TimePicker', () => {
     vm = baseVm()
     await vm.$nextTick()
     const beforeText = vm.$el.querySelectorAll('input')[1].value
-    const minutesMinus = vm.$el.querySelectorAll('tr')[2].querySelectorAll('td button')[1]
+    const minutesMinus = vm.$el
+      .querySelectorAll('tr')[2]
+      .querySelectorAll('td button')[1]
     triggerEvent(minutesMinus, 'click')
     await vm.$nextTick()
     const afterText = vm.$el.querySelectorAll('input')[1].value
@@ -203,7 +210,9 @@ describe('TimePicker', () => {
     vm.time = new Date(vm.time)
     await vm.$nextTick()
     const beforeHourText = vm.$el.querySelectorAll('input')[0].value
-    const minutesMinus = vm.$el.querySelectorAll('tr')[2].querySelectorAll('td button')[1]
+    const minutesMinus = vm.$el
+      .querySelectorAll('tr')[2]
+      .querySelectorAll('td button')[1]
     triggerEvent(minutesMinus, 'click')
     await vm.$nextTick()
     const afterHourText = vm.$el.querySelectorAll('input')[0].value
@@ -227,11 +236,14 @@ describe('TimePicker', () => {
   })
 
   it('should not be able to update time bigger than max', async () => {
-    vm = createVm('<div><time-picker v-model="time" :max="max" :min="min"/></div>', {
-      time: new Date(),
-      min: new Date('2017/01/01 8:00'), // date doesn't matter
-      max: new Date('2017/01/01 20:00')
-    })
+    vm = createVm(
+      '<div><time-picker v-model="time" :max="max" :min="min"/></div>',
+      {
+        time: new Date(),
+        min: new Date('2017/01/01 8:00'), // date doesn't matter
+        max: new Date('2017/01/01 20:00'),
+      }
+    )
     vm.time.setHours(20)
     vm.time = new Date(vm.time)
     await vm.$nextTick()
@@ -244,18 +256,23 @@ describe('TimePicker', () => {
   })
 
   it('should not be able to update time smaller than min', async () => {
-    vm = createVm('<div><time-picker v-model="time" :max="max" :min="min"/></div>', {
-      time: new Date(),
-      min: new Date('2017/01/01 8:00'), // date doesn't matter
-      max: new Date('2017/01/01 20:00')
-    })
+    vm = createVm(
+      '<div><time-picker v-model="time" :max="max" :min="min"/></div>',
+      {
+        time: new Date(),
+        min: new Date('2017/01/01 8:00'), // date doesn't matter
+        max: new Date('2017/01/01 20:00'),
+      }
+    )
     vm.time.setHours(8)
     vm.time.setMinutes(30)
     vm.time = new Date(vm.time)
     await vm.$nextTick()
     const hourText = vm.$el.querySelectorAll('input')[0]
     expect(hourText.value).to.equal('08')
-    const hourMinus = vm.$el.querySelectorAll('tr')[2].querySelector('td button')
+    const hourMinus = vm.$el
+      .querySelectorAll('tr')[2]
+      .querySelector('td button')
     triggerEvent(hourMinus, 'click')
     await vm.$nextTick()
     const minutesText = vm.$el.querySelectorAll('input')[1]
@@ -264,18 +281,25 @@ describe('TimePicker', () => {
   })
 
   it('should be able to use custom icons', async () => {
-    vm = createVm('<div><time-picker v-model="time" icon-control-up="glyphicon glyphicon-plus" icon-control-down="glyphicon glyphicon-minus"/></div>', {
-      time: new Date()
-    })
+    vm = createVm(
+      '<div><time-picker v-model="time" icon-control-up="glyphicon glyphicon-plus" icon-control-down="glyphicon glyphicon-minus"/></div>',
+      {
+        time: new Date(),
+      }
+    )
     const $el = $(vm.$el)
-    expect($el.find('tr:first-child .btn > i').get(0).className).to.contain('glyphicon-plus')
-    expect($el.find('tr:last-child .btn > i').get(0).className).to.contain('glyphicon-minus')
+    expect($el.find('tr:first-child .btn > i').get(0).className).to.contain(
+      'glyphicon-plus'
+    )
+    expect($el.find('tr:last-child .btn > i').get(0).className).to.contain(
+      'glyphicon-minus'
+    )
   })
 
   it('should be able to toggle meridian in runtime', async () => {
     vm = createVm('<time-picker v-model="time" :show-meridian="meridian"/>', {
       time: new Date(),
-      meridian: true
+      meridian: true,
     })
     const $el = $(vm.$el)
     await vm.$nextTick()
@@ -297,7 +321,7 @@ describe('TimePicker', () => {
 
   it('should not be able to change time while readonly', async () => {
     vm = createVm('<time-picker ref="timepicker" v-model="time" readonly/>', {
-      time: new Date()
+      time: new Date(),
     })
     await vm.$nextTick()
     const timeBefore = new Date(vm.time)
@@ -307,7 +331,10 @@ describe('TimePicker', () => {
     const timeAfter = new Date(vm.time)
     expect(timeAfter.getTime()).to.equal(timeBefore.getTime())
     // on wheel
-    vm.$refs.timepicker.onWheel({ deltaY: -1, preventDefault: () => null }, true)
+    vm.$refs.timepicker.onWheel(
+      { deltaY: -1, preventDefault: () => null },
+      true
+    )
     await vm.$nextTick()
     const timeAfterAgain = new Date(vm.time)
     expect(timeAfterAgain.getTime()).to.equal(timeBefore.getTime())
@@ -315,12 +342,15 @@ describe('TimePicker', () => {
 
   it('should be able to change hour use wheel', async () => {
     vm = createVm('<time-picker ref="timepicker" v-model="time"/>', {
-      time: new Date()
+      time: new Date(),
     })
     await vm.$nextTick()
     const timeBefore = new Date(vm.time)
     // add hour
-    vm.$refs.timepicker.onWheel({ deltaY: -1, preventDefault: () => null }, true)
+    vm.$refs.timepicker.onWheel(
+      { deltaY: -1, preventDefault: () => null },
+      true
+    )
     await vm.$nextTick()
     const timeAfter = new Date(vm.time)
     expect(timeAfter.getTime()).to.equal(timeBefore.getTime() + 60 * 60 * 1000)
@@ -333,17 +363,23 @@ describe('TimePicker', () => {
 
   it('should be able to change minute use wheel', async () => {
     vm = createVm('<time-picker ref="timepicker" v-model="time"/>', {
-      time: new Date()
+      time: new Date(),
     })
     await vm.$nextTick()
     const timeBefore = new Date(vm.time)
     // add hour
-    vm.$refs.timepicker.onWheel({ deltaY: -1, preventDefault: () => null }, false)
+    vm.$refs.timepicker.onWheel(
+      { deltaY: -1, preventDefault: () => null },
+      false
+    )
     await vm.$nextTick()
     const timeAfter = new Date(vm.time)
     expect(timeAfter.getTime()).to.equal(timeBefore.getTime() + 60 * 1000)
     // minus hour
-    vm.$refs.timepicker.onWheel({ deltaY: 1, preventDefault: () => null }, false)
+    vm.$refs.timepicker.onWheel(
+      { deltaY: 1, preventDefault: () => null },
+      false
+    )
     await vm.$nextTick()
     const timeAfterAgain = new Date(vm.time)
     expect(timeAfterAgain.getTime()).to.equal(timeBefore.getTime())
@@ -352,7 +388,7 @@ describe('TimePicker', () => {
 
   it('should be able to select input content on mouseup', async () => {
     vm = createVm('<time-picker v-model="time"/>', {
-      time: new Date()
+      time: new Date(),
     })
     await vm.$nextTick()
     const hoursInput = vm.$el.querySelectorAll('input')[0]
@@ -377,9 +413,12 @@ describe('TimePicker', () => {
   })
 
   it('should be able to hide controls', async () => {
-    vm = createVm('<div> <time-picker v-model="time" :controls="false"/></div>', {
-      time: new Date()
-    })
+    vm = createVm(
+      '<div> <time-picker v-model="time" :controls="false"/></div>',
+      {
+        time: new Date(),
+      }
+    )
     const $el = $(vm.$el)
     // We could still have a button for the AM/PM toggle
     expect($el.find('tr:first-child .btn').length).not.to.equal(2)
@@ -388,7 +427,7 @@ describe('TimePicker', () => {
 
   it('should display empty fields when date provided is invalid', async () => {
     vm = createVm('<div><time-picker v-model="time"/></div>', {
-      time: new Date('')
+      time: new Date(''),
     })
     await vm.$nextTick()
     const hourText = vm.$el.querySelectorAll('input')[0]
@@ -408,7 +447,7 @@ describe('TimePicker', () => {
 
   it('should display empty fields when date provided is invalid and minutes button still work', async () => {
     vm = createVm('<div><time-picker v-model="time"/></div>', {
-      time: new Date('')
+      time: new Date(''),
     })
     await vm.$nextTick()
     const hourText = vm.$el.querySelectorAll('input')[0]
@@ -431,7 +470,7 @@ describe('TimePicker', () => {
 
   it('should display empty fields when date provided is invalid and hour button still work', async () => {
     vm = createVm('<div><time-picker v-model="time"/></div>', {
-      time: new Date('')
+      time: new Date(''),
     })
     await vm.$nextTick()
     const hourText = vm.$el.querySelectorAll('input')[0]
@@ -451,9 +490,12 @@ describe('TimePicker', () => {
     expect(toggleBtn.textContent).to.equal('AM')
   })
   it('should display empty fields when date is reset at runtime', async () => {
-    vm = createVm('<div> <time-picker v-model="time" :controls="false"/></div>', {
-      time: new Date()
-    })
+    vm = createVm(
+      '<div> <time-picker v-model="time" :controls="false"/></div>',
+      {
+        time: new Date(),
+      }
+    )
     await vm.$nextTick()
     // Set an invalid date at runtime (not via the initial config)
     vm.time = new Date('')
@@ -471,10 +513,13 @@ describe('TimePicker', () => {
     expect(minutesInput.style.width).to.equal('50px')
   })
   it('should accept an input-width prop that sets the specified width to the hours and minutes input', async () => {
-    vm = createVm('<div><time-picker v-model="time" :input-width="inputWidth"/></div>', {
-      time: new Date(''),
-      inputWidth: 180
-    })
+    vm = createVm(
+      '<div><time-picker v-model="time" :input-width="inputWidth"/></div>',
+      {
+        time: new Date(''),
+        inputWidth: 180,
+      }
+    )
     const inputWidth = vm.inputWidth
     // Check that the passed value is not the default value
     expect(inputWidth).to.not.equal(50)

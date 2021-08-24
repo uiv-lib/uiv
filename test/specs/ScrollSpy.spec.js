@@ -10,14 +10,17 @@ const expectDropdownActive = ($nav, hash) => {
   expect($nav.find('li.active').length).to.equal(2)
   expect($nav.find('li.dropdown.active').length).to.equal(1)
   expect($nav.find('li.dropdown.active > ul > li.active').length).to.equal(1)
-  expect($nav.find('li.dropdown.active > ul > li.active > a').attr('href')).to.equal(hash)
+  expect(
+    $nav.find('li.dropdown.active > ul > li.active > a').attr('href')
+  ).to.equal(hash)
 }
 
 describe('ScrollSpy', () => {
   let vm
 
   beforeEach(() => {
-    vm = createVm(`
+    vm = createVm(
+      `
   <section>
     <nav class="navbar navbar-default navbar-static"  v-scrollspy:scrollspy-example>
       <div class="container-fluid">
@@ -60,7 +63,9 @@ describe('ScrollSpy', () => {
       <p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
     </div>
   </section>
-    `, { show: false })
+    `,
+      { show: false }
+    )
   })
 
   afterEach(() => {
@@ -145,16 +150,19 @@ describe('ScrollSpy', () => {
   })
 
   it('should be able to handle invalid target', async () => {
-    vm = createVm(`
+    vm = createVm(
+      `
 <section style="height: 5000px">
   <ul class="nav" v-scrollspy:test="opts" style="height: 200px">
     <li><a href="#1">{{msg}}</a></li>
   </ul>
 </section>
-    `, {
-      opts: {},
-      msg: 'test'
-    })
+    `,
+      {
+        opts: {},
+        msg: 'test',
+      }
+    )
     await vm.$nextTick()
     vm.opts = { offset: 100 }
     await vm.$nextTick()

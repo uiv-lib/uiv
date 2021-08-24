@@ -10,7 +10,7 @@ import {
   removeClass,
   getComputedStyle,
   getOpenModals,
-  getOpenModalNum
+  getOpenModalNum,
 } from '../../utils/dom.utils'
 import { isFunction, isPromiseSupported } from '../../utils/object.utils'
 
@@ -22,80 +22,80 @@ export default {
   props: {
     value: {
       type: Boolean,
-      default: false
+      default: false,
     },
     title: String,
     size: String,
     backdrop: {
       type: Boolean,
-      default: true
+      default: true,
     },
     footer: {
       type: Boolean,
-      default: true
+      default: true,
     },
     header: {
       type: Boolean,
-      default: true
+      default: true,
     },
     cancelText: String,
     cancelType: {
       type: String,
-      default: 'default'
+      default: 'default',
     },
     okText: String,
     okType: {
       type: String,
-      default: 'primary'
+      default: 'primary',
     },
     dismissBtn: {
       type: Boolean,
-      default: true
+      default: true,
     },
     transition: {
       type: Number,
-      default: 150
+      default: 150,
     },
     autoFocus: {
       type: Boolean,
-      default: false
+      default: false,
     },
     keyboard: {
       type: Boolean,
-      default: true
+      default: true,
     },
     beforeClose: Function,
     zOffset: {
       type: Number,
-      default: 20
+      default: 20,
     },
     appendToBody: {
       type: Boolean,
-      default: false
+      default: false,
     },
     displayStyle: {
       type: String,
-      default: 'block'
-    }
+      default: 'block',
+    },
   },
-  data () {
+  data() {
     return {
-      msg: ''
+      msg: '',
     }
   },
   computed: {
-    modalSizeClass () {
+    modalSizeClass() {
       return {
-        [`modal-${this.size}`]: Boolean(this.size)
+        [`modal-${this.size}`]: Boolean(this.size),
       }
-    }
+    },
   },
   watch: {
-    value (v) {
+    value(v) {
       this.$toggle(v)
-    }
+    },
   },
-  mounted () {
+  mounted() {
     removeFromDom(this.$refs.backdrop)
     on(window, EVENTS.MOUSE_DOWN, this.suppressBackgroundClose)
     on(window, EVENTS.KEY_UP, this.onKeyPress)
@@ -103,7 +103,7 @@ export default {
       this.$toggle(true)
     }
   },
-  beforeDestroy () {
+  beforeDestroy() {
     clearTimeout(this.timeoutId)
     removeFromDom(this.$refs.backdrop)
     removeFromDom(this.$el)
@@ -115,11 +115,12 @@ export default {
     off(window, EVENTS.KEY_UP, this.onKeyPress)
   },
   methods: {
-    onKeyPress (event) {
+    onKeyPress(event) {
       if (this.keyboard && this.value && event.keyCode === 27) {
         const thisModal = this.$refs.backdrop
         let thisZIndex = thisModal.style.zIndex
-        thisZIndex = thisZIndex && thisZIndex !== 'auto' ? parseInt(thisZIndex) : 0
+        thisZIndex =
+          thisZIndex && thisZIndex !== 'auto' ? parseInt(thisZIndex) : 0
         // Find out if this modal is the top most one.
         const modals = getOpenModals()
         const modalsLength = modals.length
@@ -136,7 +137,7 @@ export default {
         this.toggle(false)
       }
     },
-    toggle (show, msg) {
+    toggle(show, msg) {
       let shouldClose = true
       if (isFunction(this.beforeClose)) {
         shouldClose = this.beforeClose(msg)
@@ -163,7 +164,7 @@ export default {
         this.$emit('input', show)
       }
     },
-    $toggle (show) {
+    $toggle(show) {
       const modal = this.$el
       const backdrop = this.$refs.backdrop
       clearTimeout(this.timeoutId)
@@ -188,7 +189,8 @@ export default {
           // no need to calculate if no modal is already open
           if (alreadyOpenModalNum > 0) {
             const modalBaseZ = parseInt(getComputedStyle(modal).zIndex) || 1050 // 1050 is default modal z-Index
-            const backdropBaseZ = parseInt(getComputedStyle(backdrop).zIndex) || 1040 // 1040 is default backdrop z-Index
+            const backdropBaseZ =
+              parseInt(getComputedStyle(backdrop).zIndex) || 1040 // 1040 is default backdrop z-Index
             const offset = alreadyOpenModalNum * this.zOffset
             modal.style.zIndex = `${modalBaseZ + offset}`
             backdrop.style.zIndex = `${backdropBaseZ + offset}`
@@ -231,14 +233,14 @@ export default {
         }, this.transition)
       }
     },
-    suppressBackgroundClose (event) {
+    suppressBackgroundClose(event) {
       if (event && event.target === this.$el) {
         return
       }
       this.isCloseSuppressed = true
       on(window, 'mouseup', this.unsuppressBackgroundClose)
     },
-    unsuppressBackgroundClose () {
+    unsuppressBackgroundClose() {
       if (this.isCloseSuppressed) {
         off(window, 'mouseup', this.unsuppressBackgroundClose)
         setTimeout(() => {
@@ -246,10 +248,10 @@ export default {
         }, 1)
       }
     },
-    backdropClicked (event) {
+    backdropClicked(event) {
       if (this.backdrop && !this.isCloseSuppressed) {
         this.toggle(false)
       }
-    }
-  }
+    },
+  },
 }

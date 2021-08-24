@@ -1,9 +1,17 @@
-import { triggerEvent, sleep, triggerKey, createVm, destroyVm, keyCodes } from '../utils'
+import {
+  triggerEvent,
+  sleep,
+  triggerKey,
+  createVm,
+  destroyVm,
+  keyCodes,
+} from '../utils'
 import { request } from '../../src/utils/http.utils'
 import states from '../assets/data/states.json'
 
-function baseVm () {
-  return createVm(`
+function baseVm() {
+  return createVm(
+    `
   <section>
     <btn @click="model=states[0]" type="primary">Set to Alabama</btn>
     <btn @click="model=null">Clear</btn>
@@ -14,10 +22,12 @@ function baseVm () {
     <br/>
     <alert v-show="model">You selected {{model}}</alert>
   </section>
-    `, {
-    model: '',
-    states: states.data
-  })
+    `,
+    {
+      model: '',
+      states: states.data,
+    }
+  )
 }
 
 describe('Typeahead', () => {
@@ -213,7 +223,8 @@ describe('Typeahead', () => {
   })
 
   it('should be able to use force select', async () => {
-    vm = createVm(`
+    vm = createVm(
+      `
   <section>
     <label for="input-3">States of America:</label>
     <input id="input-3" class="form-control" type="text" placeholder="Type to search...">
@@ -221,10 +232,12 @@ describe('Typeahead', () => {
     <br/>
     <alert v-show="model">You selected {{model}}</alert>
   </section>
-    `, {
-      model: '',
-      states: states.data
-    })
+    `,
+      {
+        model: '',
+        states: states.data,
+      }
+    )
     vm.forceSelect = true
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
@@ -336,7 +349,8 @@ describe('Typeahead', () => {
   })
 
   it('should be able to match start', async () => {
-    vm = createVm(`
+    vm = createVm(
+      `
 <section>
     <label for="input-2">States of America:</label>
     <input id="input-2" class="form-control" type="text" placeholder="Type to search...">
@@ -344,10 +358,12 @@ describe('Typeahead', () => {
     <br/>
     <alert v-show="model">You selected {{model}}</alert>
   </section>
-    `, {
-      model: '',
-      states: states.data
-    })
+    `,
+      {
+        model: '',
+        states: states.data,
+      }
+    )
     vm.matchStart = true
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
@@ -361,15 +377,18 @@ describe('Typeahead', () => {
   })
 
   it('should be able to use async typeahead', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <label for="input-4">Users of Github:</label>
     <input id="input-4" class="form-control" type="text" placeholder="Type to search...">
     <typeahead v-model="model" target="#input-4" async-src="https://api.github.com/search/users?q=" async-key="items" item-key="login"/>
     <br/>
     <alert v-show="model">You selected {{model}}</alert>
-  </section>`, {
-      model: ''
-    })
+  </section>`,
+      {
+        model: '',
+      }
+    )
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -394,44 +413,55 @@ describe('Typeahead', () => {
   })
 
   it('should be able to use component target', async () => {
-    vm = createVm('<div>' +
-      '<collapse ref="input"/>' +
-      '<typeahead ref="typeahead" :target="ele" v-model="model"></typeahead>' +
-      '</div>', {
-      ele: null,
-      model: null
-    }, {
-      mounted () {
-        this.ele = this.$refs.input
+    vm = createVm(
+      '<div>' +
+        '<collapse ref="input"/>' +
+        '<typeahead ref="typeahead" :target="ele" v-model="model"></typeahead>' +
+        '</div>',
+      {
+        ele: null,
+        model: null,
+      },
+      {
+        mounted() {
+          this.ele = this.$refs.input
+        },
       }
-    })
+    )
     await vm.$nextTick()
     expect(vm.$refs.typeahead.inputEl).to.equal(vm.ele.$el)
   })
 
   it('should be ok if target invalid', async () => {
-    vm = createVm('<div>' +
-      '<typeahead ref="typeahead" :target="ele" v-model="model"></typeahead>' +
-      '</div>', {
-      ele: { a: 1 },
-      model: null
-    })
+    vm = createVm(
+      '<div>' +
+        '<typeahead ref="typeahead" :target="ele" v-model="model"></typeahead>' +
+        '</div>',
+      {
+        ele: { a: 1 },
+        model: null,
+      }
+    )
     await vm.$nextTick()
     expect(vm.$refs.typeahead.inputEl).to.be.null
   })
 
   it('should be able to use string arr async returns', async () => {
-    vm = createVm('<div>' +
-      '<input ref="input">' +
-      '<typeahead :target="ele" v-model="model" async-src="https://api.github.com/search/users?q="></typeahead>' +
-      '</div>', {
-      ele: null,
-      model: null
-    }, {
-      mounted () {
-        this.ele = this.$refs.input
+    vm = createVm(
+      '<div>' +
+        '<input ref="input">' +
+        '<typeahead :target="ele" v-model="model" async-src="https://api.github.com/search/users?q="></typeahead>' +
+        '</div>',
+      {
+        ele: null,
+        model: null,
+      },
+      {
+        mounted() {
+          this.ele = this.$refs.input
+        },
       }
-    })
+    )
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -456,23 +486,27 @@ describe('Typeahead', () => {
   })
 
   it('should be able to handel async typeahead error', async () => {
-    vm = createVm('<div>' +
-      '<input ref="input">' +
-      '<typeahead @loaded-error="onErr" :target="ele" v-model="model" async-src="https://api.github.com/search/users?q="></typeahead>' +
-      '</div>', {
-      ele: null,
-      model: null,
-      err: null
-    }, {
-      mounted () {
-        this.ele = this.$refs.input
+    vm = createVm(
+      '<div>' +
+        '<input ref="input">' +
+        '<typeahead @loaded-error="onErr" :target="ele" v-model="model" async-src="https://api.github.com/search/users?q="></typeahead>' +
+        '</div>',
+      {
+        ele: null,
+        model: null,
+        err: null,
       },
-      methods: {
-        onErr () {
-          this.err = 'error'
-        }
+      {
+        mounted() {
+          this.ele = this.$refs.input
+        },
+        methods: {
+          onErr() {
+            this.err = 'error'
+          },
+        },
       }
-    })
+    )
     await vm.$nextTick()
     expect(vm.err).not.exist
     const input = vm.$el.querySelector('input')
@@ -496,18 +530,22 @@ describe('Typeahead', () => {
   })
 
   it('should be able to bind string data', async () => {
-    vm = createVm('<div>' +
-      '<input ref="input">' +
-      '<typeahead :ignore-case="false" :target="ele" :data="data" v-model="model"></typeahead>' +
-      '</div>', {
-      data: ['aa', 'ab', 'bb'],
-      ele: null,
-      model: null
-    }, {
-      mounted () {
-        this.ele = this.$refs.input
+    vm = createVm(
+      '<div>' +
+        '<input ref="input">' +
+        '<typeahead :ignore-case="false" :target="ele" :data="data" v-model="model"></typeahead>' +
+        '</div>',
+      {
+        data: ['aa', 'ab', 'bb'],
+        ele: null,
+        model: null,
+      },
+      {
+        mounted() {
+          this.ele = this.$refs.input
+        },
       }
-    })
+    )
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -530,18 +568,22 @@ describe('Typeahead', () => {
   })
 
   it('should be able to disable preselect', async () => {
-    vm = createVm('<div>' +
-      '<input ref="input">' +
-      '<typeahead :preselect="false" :target="ele" :data="data" v-model="model"></typeahead>' +
-      '</div>', {
-      data: ['aa', 'ab', 'bb'],
-      ele: null,
-      model: ''
-    }, {
-      mounted () {
-        this.ele = this.$refs.input
+    vm = createVm(
+      '<div>' +
+        '<input ref="input">' +
+        '<typeahead :preselect="false" :target="ele" :data="data" v-model="model"></typeahead>' +
+        '</div>',
+      {
+        data: ['aa', 'ab', 'bb'],
+        ele: null,
+        model: '',
+      },
+      {
+        mounted() {
+          this.ele = this.$refs.input
+        },
       }
-    })
+    )
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -571,7 +613,8 @@ describe('Typeahead', () => {
   })
 
   it('should be able to use async-function and custom template', async () => {
-    vm = createVm(`  <section>
+    vm = createVm(
+      `  <section>
     <label for="input-5">Users of Github:</label>
     <input id="input-5" class="form-control" type="text" placeholder="Type to search...">
     <typeahead v-model="model" target="#input-5" :async-function="queryFunction" item-key="login">
@@ -586,21 +629,24 @@ describe('Typeahead', () => {
     </typeahead>
     <br/>
     <alert v-show="model">You selected {{model}}</alert>
-  </section>`, {
-      model: ''
-    }, {
-      methods: {
-        queryFunction (query, done) {
-          request('https://api.github.com/search/users?q=' + query)
-            .then(data => {
-              done(data.items)
-            })
-            .catch(err => {
-              console.log(err)
-            })
-        }
+  </section>`,
+      {
+        model: '',
+      },
+      {
+        methods: {
+          queryFunction(query, done) {
+            request('https://api.github.com/search/users?q=' + query)
+              .then((data) => {
+                done(data.items)
+              })
+              .catch((err) => {
+                console.log(err)
+              })
+          },
+        },
       }
-    })
+    )
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')

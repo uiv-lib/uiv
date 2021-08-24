@@ -23,19 +23,19 @@ export default {
       week4: 'Dj',
       week5: 'Dv',
       week6: 'Ds',
-      week7: 'Dg'
+      week7: 'Dg',
     },
     timePicker: {
       am: 'AM',
-      pm: 'PM'
+      pm: 'PM',
     },
     modal: {
       cancel: 'Cancel·lar',
-      ok: "D'acord"
+      ok: "D'acord",
     },
     multiSelect: {
       placeholder: 'Sel·leccionar...',
-      filterPlaceholder: 'Cercar...'
-    }
-  }
+      filterPlaceholder: 'Cercar...',
+    },
+  },
 }

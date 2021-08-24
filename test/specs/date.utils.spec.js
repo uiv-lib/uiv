@@ -57,34 +57,78 @@ describe('date.utils', () => {
       const date = new Date('2020-01-02')
       const str = utils.stringify(date, 'yyyy-MMM-dd')
       expect(str).to.equal('2020-Jan-02')
-      expect(utils.stringify(new Date('2020-02-02'), 'yyyy-MMM-dd')).to.equal('2020-Feb-02')
-      expect(utils.stringify(new Date('2020-03-02'), 'yyyy-MMM-dd')).to.equal('2020-Mar-02')
-      expect(utils.stringify(new Date('2020-04-02'), 'yyyy-MMM-dd')).to.equal('2020-Apr-02')
-      expect(utils.stringify(new Date('2020-05-02'), 'yyyy-MMM-dd')).to.equal('2020-May-02')
-      expect(utils.stringify(new Date('2020-06-02'), 'yyyy-MMM-dd')).to.equal('2020-Jun-02')
-      expect(utils.stringify(new Date('2020-07-02'), 'yyyy-MMM-dd')).to.equal('2020-Jul-02')
-      expect(utils.stringify(new Date('2020-08-02'), 'yyyy-MMM-dd')).to.equal('2020-Aug-02')
-      expect(utils.stringify(new Date('2020-09-02'), 'yyyy-MMM-dd')).to.equal('2020-Sep-02')
-      expect(utils.stringify(new Date('2020-10-02'), 'yyyy-MMM-dd')).to.equal('2020-Oct-02')
-      expect(utils.stringify(new Date('2020-11-02'), 'yyyy-MMM-dd')).to.equal('2020-Nov-02')
-      expect(utils.stringify(new Date('2020-12-02'), 'yyyy-MMM-dd')).to.equal('2020-Dec-02')
+      expect(utils.stringify(new Date('2020-02-02'), 'yyyy-MMM-dd')).to.equal(
+        '2020-Feb-02'
+      )
+      expect(utils.stringify(new Date('2020-03-02'), 'yyyy-MMM-dd')).to.equal(
+        '2020-Mar-02'
+      )
+      expect(utils.stringify(new Date('2020-04-02'), 'yyyy-MMM-dd')).to.equal(
+        '2020-Apr-02'
+      )
+      expect(utils.stringify(new Date('2020-05-02'), 'yyyy-MMM-dd')).to.equal(
+        '2020-May-02'
+      )
+      expect(utils.stringify(new Date('2020-06-02'), 'yyyy-MMM-dd')).to.equal(
+        '2020-Jun-02'
+      )
+      expect(utils.stringify(new Date('2020-07-02'), 'yyyy-MMM-dd')).to.equal(
+        '2020-Jul-02'
+      )
+      expect(utils.stringify(new Date('2020-08-02'), 'yyyy-MMM-dd')).to.equal(
+        '2020-Aug-02'
+      )
+      expect(utils.stringify(new Date('2020-09-02'), 'yyyy-MMM-dd')).to.equal(
+        '2020-Sep-02'
+      )
+      expect(utils.stringify(new Date('2020-10-02'), 'yyyy-MMM-dd')).to.equal(
+        '2020-Oct-02'
+      )
+      expect(utils.stringify(new Date('2020-11-02'), 'yyyy-MMM-dd')).to.equal(
+        '2020-Nov-02'
+      )
+      expect(utils.stringify(new Date('2020-12-02'), 'yyyy-MMM-dd')).to.equal(
+        '2020-Dec-02'
+      )
     })
 
     it('should format correctly with yyyy-MMMM-dd', () => {
       const date = new Date('2020-01-02')
       const str = utils.stringify(date, 'yyyy-MMMM-dd')
       expect(str).to.equal('2020-January-02')
-      expect(utils.stringify(new Date('2020-02-02'), 'yyyy-MMMM-dd')).to.equal('2020-February-02')
-      expect(utils.stringify(new Date('2020-03-02'), 'yyyy-MMMM-dd')).to.equal('2020-March-02')
-      expect(utils.stringify(new Date('2020-04-02'), 'yyyy-MMMM-dd')).to.equal('2020-April-02')
-      expect(utils.stringify(new Date('2020-05-02'), 'yyyy-MMMM-dd')).to.equal('2020-May-02')
-      expect(utils.stringify(new Date('2020-06-02'), 'yyyy-MMMM-dd')).to.equal('2020-June-02')
-      expect(utils.stringify(new Date('2020-07-02'), 'yyyy-MMMM-dd')).to.equal('2020-July-02')
-      expect(utils.stringify(new Date('2020-08-02'), 'yyyy-MMMM-dd')).to.equal('2020-August-02')
-      expect(utils.stringify(new Date('2020-09-02'), 'yyyy-MMMM-dd')).to.equal('2020-September-02')
-      expect(utils.stringify(new Date('2020-10-02'), 'yyyy-MMMM-dd')).to.equal('2020-October-02')
-      expect(utils.stringify(new Date('2020-11-02'), 'yyyy-MMMM-dd')).to.equal('2020-November-02')
-      expect(utils.stringify(new Date('2020-12-02'), 'yyyy-MMMM-dd')).to.equal('2020-December-02')
+      expect(utils.stringify(new Date('2020-02-02'), 'yyyy-MMMM-dd')).to.equal(
+        '2020-February-02'
+      )
+      expect(utils.stringify(new Date('2020-03-02'), 'yyyy-MMMM-dd')).to.equal(
+        '2020-March-02'
+      )
+      expect(utils.stringify(new Date('2020-04-02'), 'yyyy-MMMM-dd')).to.equal(
+        '2020-April-02'
+      )
+      expect(utils.stringify(new Date('2020-05-02'), 'yyyy-MMMM-dd')).to.equal(
+        '2020-May-02'
+      )
+      expect(utils.stringify(new Date('2020-06-02'), 'yyyy-MMMM-dd')).to.equal(
+        '2020-June-02'
+      )
+      expect(utils.stringify(new Date('2020-07-02'), 'yyyy-MMMM-dd')).to.equal(
+        '2020-July-02'
+      )
+      expect(utils.stringify(new Date('2020-08-02'), 'yyyy-MMMM-dd')).to.equal(
+        '2020-August-02'
+      )
+      expect(utils.stringify(new Date('2020-09-02'), 'yyyy-MMMM-dd')).to.equal(
+        '2020-September-02'
+      )
+      expect(utils.stringify(new Date('2020-10-02'), 'yyyy-MMMM-dd')).to.equal(
+        '2020-October-02'
+      )
+      expect(utils.stringify(new Date('2020-11-02'), 'yyyy-MMMM-dd')).to.equal(
+        '2020-November-02'
+      )
+      expect(utils.stringify(new Date('2020-12-02'), 'yyyy-MMMM-dd')).to.equal(
+        '2020-December-02'
+      )
     })
 
     it('should be ok if date parse fail', () => {
@@ -113,14 +157,14 @@ describe('date.utils', () => {
       const weekNum = utils.getWeekNumber({
         year: date.getFullYear(),
         month: date.getMonth(),
-        date: date.getDate()
+        date: date.getDate(),
       })
       expect(weekNum).to.equal(1)
       const date2 = new Date('2020-02-01')
       const weekNum2 = utils.getWeekNumber({
         year: date2.getFullYear(),
         month: date2.getMonth(),
-        date: date2.getDate()
+        date: date2.getDate(),
       })
       expect(weekNum2).to.equal(5)
     })
@@ -130,7 +174,7 @@ describe('date.utils', () => {
       const weekNum = utils.getWeekNumber({
         year: date.getFullYear(),
         month: date.getMonth(),
-        date: date.getDate()
+        date: date.getDate(),
       })
       expect(weekNum).to.equal(1)
     })

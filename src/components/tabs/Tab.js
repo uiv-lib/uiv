@@ -10,34 +10,36 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Tab Title'
+      default: 'Tab Title',
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     tabClasses: {
       type: Object,
-      default: () => { return {} }
+      default: () => {
+        return {}
+      },
     },
     group: String,
     pullRight: {
       type: Boolean,
-      default: false
+      default: false,
     },
     hidden: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  data () {
+  data() {
     return {
       active: true,
-      transition: 150
+      transition: 150,
     }
   },
   watch: {
-    active (active) {
+    active(active) {
       if (active) {
         setTimeout(() => {
           addClass(this.$el, ACTIVE_CLASS)
@@ -55,25 +57,25 @@ export default {
           removeClass(this.$el, ACTIVE_CLASS)
         }, this.transition)
       }
-    }
+    },
   },
-  created () {
+  created() {
     try {
       this.$parent.tabs.push(this)
     } catch (e) {
       throw new Error('<tab> parent must be <tabs>.')
     }
   },
-  beforeDestroy () {
+  beforeDestroy() {
     const tabs = this.$parent && this.$parent.tabs
     spliceIfExist(tabs, this)
   },
   methods: {
-    show () {
+    show() {
       this.$nextTick(() => {
         addClass(this.$el, ACTIVE_CLASS)
         addClass(this.$el, IN_CLASS)
       })
-    }
-  }
+    },
+  },
 }

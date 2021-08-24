@@ -5,12 +5,12 @@ export default {
   props: {
     year: Number,
     iconControlLeft: String,
-    iconControlRight: String
+    iconControlRight: String,
   },
   computed: {
-    rows () {
+    rows() {
       const rows = []
-      const yearGroupStart = this.year - this.year % 20
+      const yearGroupStart = this.year - (this.year % 20)
       for (let i = 0; i < 4; i++) {
         rows.push([])
         for (let j = 0; j < 5; j++) {
@@ -19,28 +19,28 @@ export default {
       }
       return rows
     },
-    yearStr () {
-      const start = this.year - this.year % 20
+    yearStr() {
+      const start = this.year - (this.year % 20)
       return `${start} ~ ${start + 19}`
-    }
+    },
   },
   methods: {
-    getBtnClass (year) {
+    getBtnClass(year) {
       if (year === this.year) {
         return 'primary'
       } else {
         return 'default'
       }
     },
-    goPrevYear () {
+    goPrevYear() {
       this.$emit('year-change', this.year - 20)
     },
-    goNextYear () {
+    goNextYear() {
       this.$emit('year-change', this.year + 20)
     },
-    changeView (year) {
+    changeView(year) {
       this.$emit('year-change', year)
       this.$emit('view-change', 'm')
-    }
-  }
+    },
+  },
 }

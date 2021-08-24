@@ -16,11 +16,11 @@ export default {
     iconControlRight: String,
     dateClass: Function,
     yearMonthFormatter: Function,
-    weekNumbers: Boolean
+    weekNumbers: Boolean,
   },
   components: { Btn },
   computed: {
-    weekDays () {
+    weekDays() {
       const days = []
       let firstDay = this.weekStartsWith
       while (days.length < 7) {
@@ -31,14 +31,16 @@ export default {
       }
       return days
     },
-    yearMonthStr () {
+    yearMonthStr() {
       if (this.yearMonthFormatter) {
         return this.yearMonthFormatter(this.year, this.month)
       } else {
-        return isExist(this.month) ? `${this.year} ${this.t(`uiv.datePicker.month${this.month + 1}`)}` : this.year
+        return isExist(this.month)
+          ? `${this.year} ${this.t(`uiv.datePicker.month${this.month + 1}`)}`
+          : this.year
       }
     },
-    monthDayRows () {
+    monthDayRows() {
       const rows = []
       const firstDay = new Date(this.year, this.month, 1)
       const prevMonthLastDate = new Date(this.year, this.month, 0).getDate()
@@ -92,7 +94,7 @@ export default {
           if (isFunction(this.dateClass)) {
             date.classes = this.dateClass(dateObj, {
               currentMonth: this.month,
-              currentYear: this.year
+              currentYear: this.year,
             })
           } else {
             date.classes = ''
@@ -101,31 +103,35 @@ export default {
         }
       }
       return rows
-    }
+    },
   },
   methods: {
     getWeekNumber,
-    tWeekName (index) {
+    tWeekName(index) {
       return this.t(`uiv.datePicker.week${index}`)
     },
-    getBtnType (date) {
-      if (this.date &&
+    getBtnType(date) {
+      if (
+        this.date &&
         date.date === this.date.getDate() &&
         date.month === this.date.getMonth() &&
-        date.year === this.date.getFullYear()) {
+        date.year === this.date.getFullYear()
+      ) {
         return 'primary'
-      } else if (date.date === this.today.getDate() &&
+      } else if (
+        date.date === this.today.getDate() &&
         date.month === this.today.getMonth() &&
-        date.year === this.today.getFullYear()) {
+        date.year === this.today.getFullYear()
+      ) {
         return 'info'
       } else {
         return 'default'
       }
     },
-    select (date) {
+    select(date) {
       this.$emit('date-change', date)
     },
-    goPrevMonth () {
+    goPrevMonth() {
       let month = this.month
       let year = this.year
       if (this.month > 0) {
@@ -137,7 +143,7 @@ export default {
       }
       this.$emit('month-change', month)
     },
-    goNextMonth () {
+    goNextMonth() {
       let month = this.month
       let year = this.year
       if (this.month < 11) {
@@ -149,8 +155,8 @@ export default {
       }
       this.$emit('month-change', month)
     },
-    changeView () {
+    changeView() {
       this.$emit('view-change', 'm')
-    }
-  }
+    },
+  },
 }

@@ -8,12 +8,15 @@ const INPUT_TYPE_RADIO = 'radio'
 export default {
   functional: true,
   mixins: [linkMixin],
-  render (h, { children, props, data }) {
+  render(h, { children, props, data }) {
     // event listeners
     const listeners = data.on || {}
     // checkbox: model contain inputValue
     // radio: model === inputValue
-    const isInputActive = props.inputType === INPUT_TYPE_CHECKBOX ? props.value.indexOf(props.inputValue) >= 0 : props.value === props.inputValue
+    const isInputActive =
+      props.inputType === INPUT_TYPE_CHECKBOX
+        ? props.value.indexOf(props.inputValue) >= 0
+        : props.value === props.inputValue
     // button class
     const classes = {
       btn: true,
@@ -21,16 +24,16 @@ export default {
       disabled: props.disabled,
       'btn-block': props.block,
       [`btn-${props.type}`]: Boolean(props.type),
-      [`btn-${props.size}`]: Boolean(props.size)
+      [`btn-${props.size}`]: Boolean(props.size),
     }
     // prevent event for disabled links
     const on = {
-      click (e) {
+      click(e) {
         if (props.disabled && e instanceof Event) {
           e.preventDefault()
           e.stopPropagation()
         }
-      }
+      },
     }
     // render params
     let tag, options, slot
@@ -45,8 +48,8 @@ export default {
         attrs: {
           role: 'button',
           href: props.href,
-          target: props.target
-        }
+          target: props.target,
+        },
       })
     } else if (props.to) {
       // is vue router link
@@ -60,18 +63,18 @@ export default {
           to: props.to,
           replace: props.replace,
           append: props.append,
-          exact: props.exact
+          exact: props.exact,
         },
         attrs: {
-          role: 'button'
-        }
+          role: 'button',
+        },
       })
     } else if (props.inputType) {
       // is input checkbox or radio
       tag = 'label'
       options = mergeData(data, {
         on,
-        class: classes
+        class: classes,
       })
       slot = [
         h('input', {
@@ -79,16 +82,16 @@ export default {
             autocomplete: 'off',
             type: props.inputType,
             checked: isInputActive ? 'checked' : null,
-            disabled: props.disabled
+            disabled: props.disabled,
           },
           domProps: {
-            checked: isInputActive // required
+            checked: isInputActive, // required
           },
           on: {
-            input (evt) {
+            input(evt) {
               evt.stopPropagation()
             },
-            change () {
+            change() {
               if (props.inputType === INPUT_TYPE_CHECKBOX) {
                 const valueCopied = props.value.slice()
                 if (isInputActive) {
@@ -100,24 +103,28 @@ export default {
               } else {
                 listeners.input(props.inputValue)
               }
-            }
-          }
+            },
+          },
         }),
-        children
+        children,
       ]
     } else if (props.justified) {
       // is in justified btn-group
       tag = BtnGroup
       options = {}
       slot = [
-        h('button', mergeData(data, {
-          on,
-          class: classes,
-          attrs: {
-            type: props.nativeType,
-            disabled: props.disabled
-          }
-        }), children)
+        h(
+          'button',
+          mergeData(data, {
+            on,
+            class: classes,
+            attrs: {
+              type: props.nativeType,
+              disabled: props.disabled,
+            },
+          }),
+          children
+        ),
       ]
     } else {
       // is button
@@ -128,8 +135,8 @@ export default {
         class: classes,
         attrs: {
           type: props.nativeType,
-          disabled: props.disabled
-        }
+          disabled: props.disabled,
+        },
       })
     }
 
@@ -138,37 +145,37 @@ export default {
   props: {
     justified: {
       type: Boolean,
-      default: false
+      default: false,
     },
     type: {
       type: String,
-      default: 'default'
+      default: 'default',
     },
     nativeType: {
       type: String,
-      default: 'button'
+      default: 'button',
     },
     size: String,
     block: {
       type: Boolean,
-      default: false
+      default: false,
     },
     active: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // <input> props
     value: null,
     inputValue: null,
     inputType: {
       type: String,
-      validator (value) {
+      validator(value) {
         return value === INPUT_TYPE_CHECKBOX || value === INPUT_TYPE_RADIO
-      }
-    }
-  }
+      },
+    },
+  },
 }

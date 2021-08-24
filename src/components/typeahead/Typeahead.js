@@ -5,7 +5,7 @@ import {
   off,
   ensureElementMatchesFunction,
   EVENTS,
-  getElementBySelectorOrRef
+  getElementBySelectorOrRef,
 } from '../../utils/dom.utils'
 import Dropdown from '../dropdown/Dropdown.js'
 
@@ -13,58 +13,58 @@ export default {
   components: { Dropdown },
   props: {
     value: {
-      required: true
+      required: true,
     },
     data: Array,
     itemKey: String,
     appendToBody: {
       type: Boolean,
-      default: false
+      default: false,
     },
     ignoreCase: {
       type: Boolean,
-      default: true
+      default: true,
     },
     matchStart: {
       type: Boolean,
-      default: false
+      default: false,
     },
     forceSelect: {
       type: Boolean,
-      default: false
+      default: false,
     },
     forceClear: {
       type: Boolean,
-      default: false
+      default: false,
     },
     limit: {
       type: Number,
-      default: 10
+      default: 10,
     },
     asyncSrc: String,
     asyncKey: String,
     asyncFunction: Function,
     debounce: {
       type: Number,
-      default: 200
+      default: 200,
     },
     openOnFocus: {
       type: Boolean,
-      default: true
+      default: true,
     },
     openOnEmpty: {
       type: Boolean,
-      default: false
+      default: false,
     },
     target: {
-      required: true
+      required: true,
     },
     preselect: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
-  data () {
+  data() {
     return {
       inputEl: null,
       items: [],
@@ -72,11 +72,11 @@ export default {
       timeoutID: 0,
       elements: [],
       open: false,
-      dropdownMenuEl: null
+      dropdownMenuEl: null,
     }
   },
   computed: {
-    regexOptions () {
+    regexOptions() {
       let options = ''
       if (this.ignoreCase) {
         options += 'i'
@@ -85,35 +85,36 @@ export default {
         options += 'g'
       }
       return options
-    }
+    },
   },
-  mounted () {
+  mounted() {
     ensureElementMatchesFunction()
     this.$nextTick(() => {
       this.initInputElByTarget(this.target)
       this.initListeners()
-      this.dropdownMenuEl = this.$refs.dropdown.$el.querySelector('.dropdown-menu')
+      this.dropdownMenuEl =
+        this.$refs.dropdown.$el.querySelector('.dropdown-menu')
       // set input text if v-model not empty
       if (this.value) {
         this.setInputTextByValue(this.value)
       }
     })
   },
-  beforeDestroy () {
+  beforeDestroy() {
     this.removeListeners()
   },
   watch: {
-    target (el) {
+    target(el) {
       this.removeListeners()
       this.initInputElByTarget(el)
       this.initListeners()
     },
-    value (value) {
+    value(value) {
       this.setInputTextByValue(value)
-    }
+    },
   },
   methods: {
-    setInputTextByValue (value) {
+    setInputTextByValue(value) {
       if (isString(value)) {
         // direct
         this.inputEl.value = value
@@ -125,16 +126,16 @@ export default {
         this.inputEl.value = ''
       }
     },
-    hasEmptySlot () {
+    hasEmptySlot() {
       return !!this.$slots.empty || !!this.$scopedSlots.empty
     },
-    initInputElByTarget (target) {
+    initInputElByTarget(target) {
       if (!target) {
         return
       }
       this.inputEl = getElementBySelectorOrRef(target)
     },
-    initListeners () {
+    initListeners() {
       if (this.inputEl) {
         this.elements = [this.inputEl]
         on(this.inputEl, EVENTS.FOCUS, this.inputFocused)
@@ -143,7 +144,7 @@ export default {
         on(this.inputEl, EVENTS.KEY_DOWN, this.inputKeyPressed)
       }
     },
-    removeListeners () {
+    removeListeners() {
       this.elements = []
       if (this.inputEl) {
         off(this.inputEl, EVENTS.FOCUS, this.inputFocused)
@@ -152,7 +153,7 @@ export default {
         off(this.inputEl, EVENTS.KEY_DOWN, this.inputKeyPressed)
       }
     },
-    prepareItems (data, disableFilters = false) {
+    prepareItems(data, disableFilters = false) {
       if (disableFilters) {
         this.items = data.slice(0, this.limit)
         return
@@ -177,7 +178,7 @@ export default {
         }
       }
     },
-    fetchItems (value, debounce) {
+    fetchItems(value, debounce) {
       clearTimeout(this.timeoutID)
       if (value === '' && !this.openOnEmpty) {
         this.open = false
@@ -188,14 +189,17 @@ export default {
         this.timeoutID = setTimeout(() => {
           this.$emit('loading')
           request(this.asyncSrc + encodeURIComponent(value))
-            .then(data => {
+            .then((data) => {
               if (this.inputEl.matches(':focus')) {
-                this.prepareItems(this.asyncKey ? data[this.asyncKey] : data, true)
+                this.prepareItems(
+                  this.asyncKey ? data[this.asyncKey] : data,
+                  true
+                )
                 this.open = this.hasEmptySlot() || Boolean(this.items.length)
               }
               this.$emit('loaded')
             })
-            .catch(err => {
+            .catch((err) => {
               console.error(err)
               this.$emit('loaded-error')
             })
@@ -214,18 +218,18 @@ export default {
         }, debounce)
       }
     },
-    inputChanged () {
+    inputChanged() {
       const value = this.inputEl.value
       this.fetchItems(value, this.debounce)
       this.$emit('input', this.forceSelect ? undefined : value)
     },
-    inputFocused () {
+    inputFocused() {
       if (this.openOnFocus) {
         const value = this.inputEl.value
         this.fetchItems(value, 0)
       }
     },
-    inputBlured () {
+    inputBlured() {
       if (!this.dropdownMenuEl.matches(':hover')) {
         this.open = false
       }
@@ -237,7 +241,7 @@ export default {
         })
       }
     },
-    inputKeyPressed (event) {
+    inputKeyPressed(event) {
       event.stopPropagation()
       if (this.open) {
         switch (event.keyCode) {
@@ -257,20 +261,27 @@ export default {
             break
           case 40: {
             const maxIndex = this.items.length - 1
-            this.activeIndex = this.activeIndex < maxIndex ? this.activeIndex + 1 : maxIndex
+            this.activeIndex =
+              this.activeIndex < maxIndex ? this.activeIndex + 1 : maxIndex
             break
           }
         }
       }
     },
-    selectItem (item) {
+    selectItem(item) {
       this.$emit('input', item)
       this.open = false
     },
-    highlight (item) {
+    highlight(item) {
       const value = this.itemKey ? item[this.itemKey] : item
-      const inputValue = this.inputEl.value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
-      return value.replace(new RegExp(`${inputValue}`, this.regexOptions), '<b>$&</b>')
-    }
-  }
+      const inputValue = this.inputEl.value.replace(
+        /[-[\]{}()*+?.,\\^$|#\s]/g,
+        '\\$&'
+      )
+      return value.replace(
+        new RegExp(`${inputValue}`, this.regexOptions),
+        '<b>$&</b>'
+      )
+    },
+  },
 }

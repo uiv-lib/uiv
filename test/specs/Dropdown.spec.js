@@ -1,7 +1,7 @@
 import { createVm, destroyVm, triggerEvent, keyCodes } from '../utils'
 import $ from 'jquery'
 
-function appendToBodyVm () {
+function appendToBodyVm() {
   return createVm(`<div><dropdown append-to-body>
   <btn class="dropdown-toggle">Dropdown <span class="caret"></span></btn>
   <template slot="dropdown">
@@ -36,7 +36,7 @@ function appendToBodyVm () {
 </dropdown></div>`)
 }
 
-function baseVm () {
+function baseVm() {
   return createVm(`<div><dropdown ref="dropdown">
   <btn type="primary" class="dropdown-toggle">Dropdown <span class="caret"></span></btn>
   <template slot="dropdown">
@@ -60,7 +60,7 @@ function baseVm () {
 </dropdown></div>`)
 }
 
-function assertKeyboardNav (trigger, dropdown, index, keyCode, called = true) {
+function assertKeyboardNav(trigger, dropdown, index, keyCode, called = true) {
   const $dropdown = $(dropdown)
   const spy = sinon.spy($dropdown.find('li > a').get(index), 'focus')
   triggerEvent(trigger, 'keydown', { keyCode: keyCode })
@@ -192,7 +192,8 @@ describe('Dropdown', () => {
   })
 
   it('should not close dropdown on self click if not-close-elements contains component ref and with append-to-body', async () => {
-    vm = createVm(`<dropdown v-model="show" ref="test" append-to-body :not-close-elements="eles">
+    vm = createVm(
+      `<dropdown v-model="show" ref="test" append-to-body :not-close-elements="eles">
   <button class="btn btn-default dropdown-toggle" type="button">
     <span>Dropdown 1</span><span class="caret"></span>
   </button>
@@ -200,14 +201,17 @@ describe('Dropdown', () => {
     <li ref="li1"><a href="#">Action</a></li>
     <li ref="li2"><a href="#">Action2</a></li>
   </template>
-</dropdown>`, {
-      show: true,
-      eles: []
-    }, {
-      mounted () {
-        this.eles.push(this.$refs.li1)
+</dropdown>`,
+      {
+        show: true,
+        eles: [],
+      },
+      {
+        mounted() {
+          this.eles.push(this.$refs.li1)
+        },
       }
-    })
+    )
     await vm.$nextTick()
     const dropdown = vm.$el
     expect(dropdown.tagName.toLowerCase()).to.equal('div')
@@ -274,7 +278,9 @@ describe('Dropdown', () => {
 </dropdown></div>`)
     await vm.$nextTick()
     const menuRight = vm.$el.querySelector('.dropdown')
-    expect(menuRight.querySelector('.dropdown-menu').className).to.contain('dropdown-menu-right')
+    expect(menuRight.querySelector('.dropdown-menu').className).to.contain(
+      'dropdown-menu-right'
+    )
   })
 
   it('should be able to open dropdown append to body & menu-right on trigger click', async () => {
@@ -310,18 +316,24 @@ describe('Dropdown', () => {
   })
 
   it('should be able to open dropdown on init', async () => {
-    vm = createVm('<dropdown v-model="show"><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template slot="dropdown"><li><a href="#">Action</a></li></template></dropdown>', {
-      show: true
-    })
+    vm = createVm(
+      '<dropdown v-model="show"><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template slot="dropdown"><li><a href="#">Action</a></li></template></dropdown>',
+      {
+        show: true,
+      }
+    )
     await vm.$nextTick()
     const dropdown = vm.$el
     expect(dropdown.className).to.contain('open')
   })
 
   it('should be able to disable dropdown', async () => {
-    vm = createVm('<dropdown v-model="show" disabled><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template slot="dropdown"><li><a href="#">Action</a></li></template></dropdown>', {
-      show: true
-    })
+    vm = createVm(
+      '<dropdown v-model="show" disabled><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template slot="dropdown"><li><a href="#">Action</a></li></template></dropdown>',
+      {
+        show: true,
+      }
+    )
     await vm.$nextTick()
     const dropdown = vm.$el
     expect(dropdown.className).not.contain('open')

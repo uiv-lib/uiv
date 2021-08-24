@@ -1,6 +1,6 @@
 <template>
   <nav :class="navClasses">
-    <div :class="fluid?'container-fluid':'container'">
+    <div :class="fluid ? 'container-fluid' : 'container'">
       <div class="navbar-header">
         <slot name="collapse-btn">
           <button type="button" class="navbar-toggle collapsed" @click="toggle">
@@ -10,14 +10,14 @@
             <span class="icon-bar"></span>
           </button>
         </slot>
-        <slot name="brand"/>
+        <slot name="brand" />
       </div>
-      <slot/>
-      <collapse class="navbar-collapse" v-model="show">
-        <slot name="collapse"/>
+      <slot />
+      <collapse v-model="show" class="navbar-collapse">
+        <slot name="collapse" />
       </collapse>
     </div>
   </nav>
 </template>
 
-<script src="./Navbar.js"/>
+<script src="./Navbar.js" />

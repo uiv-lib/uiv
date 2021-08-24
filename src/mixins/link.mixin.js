@@ -7,15 +7,15 @@ export default {
     to: null,
     replace: {
       type: Boolean,
-      default: false
+      default: false,
     },
     append: {
       type: Boolean,
-      default: false
+      default: false,
     },
     exact: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 }

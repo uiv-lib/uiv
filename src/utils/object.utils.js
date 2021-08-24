@@ -1,5 +1,5 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Polyfill
-export function assign (target, varArgs) {
+export function assign(target, varArgs) {
   if (target === null || target === undefined) {
     throw new TypeError('Cannot convert undefined or null to object')
   }
@@ -19,30 +19,30 @@ export function assign (target, varArgs) {
   return to
 }
 
-export function isExist (obj) {
+export function isExist(obj) {
   return typeof obj !== 'undefined' && obj !== null
 }
 
-export function isFunction (obj) {
+export function isFunction(obj) {
   return typeof obj === 'function'
 }
 
-export function isNumber (obj) {
+export function isNumber(obj) {
   return typeof obj === 'number'
 }
 
-export function isString (obj) {
+export function isString(obj) {
   return typeof obj === 'string'
 }
 
-export function isBoolean (obj) {
+export function isBoolean(obj) {
   return typeof obj === 'boolean'
 }
 
-export function isPromiseSupported () {
+export function isPromiseSupported() {
   return typeof window !== 'undefined' && isExist(window.Promise)
 }
 
-export function hasOwnProperty (o, k) {
+export function hasOwnProperty(o, k) {
   return Object.prototype.hasOwnProperty.call(o, k)
 }

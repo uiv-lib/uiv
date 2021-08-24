@@ -13,8 +13,8 @@ describe('Breadcrumbs', () => {
       items: [
         { text: 'Home', href: '#' },
         { text: 'Library', href: '#' },
-        { text: 'Data', href: '#' }
-      ]
+        { text: 'Data', href: '#' },
+      ],
     })
     const $breadcrumb = $(vm.$el)
     const $li = $('li', $breadcrumb)
@@ -60,8 +60,8 @@ describe('Breadcrumbs', () => {
     vm = createVm('<breadcrumbs :items="items"/>', {
       items: [
         { text: 'Home', to: '/', exact: true },
-        { text: 'Breadcrumbs', to: '/breadcrumbs' }
-      ]
+        { text: 'Breadcrumbs', to: '/breadcrumbs' },
+      ],
     })
     const $breadcrumb = $(vm.$el)
     const $nav1 = $breadcrumb.find('li a').first()
@@ -70,7 +70,7 @@ describe('Breadcrumbs', () => {
 
   it('should not auto active last item if using active prop', () => {
     vm = createVm('<breadcrumbs :items="items"></breadcrumbs>', {
-      items: [{ text: 'test', href: '#', active: false, key: 0 }]
+      items: [{ text: 'test', href: '#', active: false, key: 0 }],
     })
     const $breadcrumb = $(vm.$el)
     const $li = $('li', $breadcrumb)

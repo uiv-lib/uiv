@@ -22,9 +22,12 @@ describe('Tooltip', () => {
     const tag = document.createElement('div')
     tag.id = 'tag'
     document.body.appendChild(tag)
-    vm = createVm('<tooltip trigger="focus" text="test" append-to="#tag"><button type="button">{{msg}}</button></tooltip>', {
-      msg: 'hello'
-    })
+    vm = createVm(
+      '<tooltip trigger="focus" text="test" append-to="#tag"><button type="button">{{msg}}</button></tooltip>',
+      {
+        msg: 'hello',
+      }
+    )
     await vm.$nextTick()
     triggerEvent(vm.$el.querySelector('button'), 'focus')
     await sleep(300)
@@ -34,35 +37,40 @@ describe('Tooltip', () => {
 
   it('should be able to render with no content', async () => {
     vm = createVm('<tooltip text="test"></tooltip>', {
-      msg: 'hello'
+      msg: 'hello',
     })
     await vm.$nextTick()
   })
 
   it('should be able to show tooltip on init', async () => {
-    vm = createVm('<tooltip text="test" v-model="show"><button></button></tooltip>', {
-      show: true
-    })
+    vm = createVm(
+      '<tooltip text="test" v-model="show"><button></button></tooltip>',
+      {
+        show: true,
+      }
+    )
     await sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
   })
 
   it('should not show tooltip with empty text', async () => {
     vm = createVm('<tooltip v-model="show"><button></button></tooltip>', {
-      show: true
+      show: true,
     })
     await sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
   })
 
   it('should be able to use custom target', async () => {
-    vm = createVm('<div><button ref="btn" type="button">btn</button><tooltip text="test" :target="btn" trigger="focus"></tooltip></div>',
+    vm = createVm(
+      '<div><button ref="btn" type="button">btn</button><tooltip text="test" :target="btn" trigger="focus"></tooltip></div>',
       { btn: null },
       {
-        mounted () {
+        mounted() {
           this.btn = this.$refs.btn
-        }
-      })
+        },
+      }
+    )
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     triggerEvent(vm.btn, 'focus')
@@ -73,7 +81,7 @@ describe('Tooltip', () => {
   it('should be able to use tooltip directive', async () => {
     vm = createVm('<btn v-tooltip.click="msg">{{test}}</btn>', {
       msg: 'title',
-      test: 'test'
+      test: 'test',
     })
     await vm.$nextTick()
     const trigger = vm.$el
@@ -110,7 +118,7 @@ describe('Tooltip', () => {
   it('directive with invalid modifiers should be ok', async () => {
     // invalid modifier should be ok
     vm = createVm('<btn v-tooltip.test1.test2.click="msg"></btn>', {
-      msg: 'title'
+      msg: 'title',
     })
     await vm.$nextTick()
     const trigger = vm.$el
@@ -127,7 +135,7 @@ describe('Tooltip', () => {
   it('should handle being updated while hiding when directive', async () => {
     vm = createVm('<btn v-tooltip.hover="msg">{{test}}</btn>', {
       msg: 'title',
-      test: 'test'
+      test: 'test',
     })
     await vm.$nextTick()
     const trigger = vm.$el
@@ -144,10 +152,13 @@ describe('Tooltip', () => {
   })
 
   it('should handle being updated while showing when directive', async () => {
-    vm = createVm('<btn v-tooltip.hover="{ text: msg, showDelay: 150 }">{{test}}</btn>', {
-      msg: 'title',
-      test: 'test'
-    })
+    vm = createVm(
+      '<btn v-tooltip.hover="{ text: msg, showDelay: 150 }">{{test}}</btn>',
+      {
+        msg: 'title',
+        test: 'test',
+      }
+    )
     await vm.$nextTick()
     const trigger = vm.$el
     triggerEvent(trigger, 'mouseenter')
@@ -163,9 +174,12 @@ describe('Tooltip', () => {
   })
 
   it('should support show and hide delay when directive', async () => {
-    vm = createVm('<btn v-tooltip.hover="{ text: msg, showDelay: 300, hideDelay: 400 }">test</btn>', {
-      msg: 'title'
-    })
+    vm = createVm(
+      '<btn v-tooltip.hover="{ text: msg, showDelay: 300, hideDelay: 400 }">test</btn>',
+      {
+        msg: 'title',
+      }
+    )
     await vm.$nextTick()
     const trigger = vm.$el
     triggerEvent(trigger, 'mouseenter')
@@ -183,9 +197,12 @@ describe('Tooltip', () => {
   })
 
   it('should clear timeouts correctly', async () => {
-    vm = createVm('<tooltip ref=\'tooltip\' :text=\'msg\' trigger=\'hover\'><btn>test</btn></tooltip>', {
-      msg: 'title'
-    })
+    vm = createVm(
+      "<tooltip ref='tooltip' :text='msg' trigger='hover'><btn>test</btn></tooltip>",
+      {
+        msg: 'title',
+      }
+    )
     await vm.$nextTick()
     const tooltip = vm.$refs.tooltip
     // handles empty timeoutids correctly
@@ -229,7 +246,8 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change trigger to manual', async () => {
-    vm = createVm(`
+    vm = createVm(
+      `
   <section>
     <tooltip text="Static tooltip content goes here" trigger="manual" v-model="show">
       <btn>You Can't Trigger Tooltip Here...</btn>
@@ -237,9 +255,11 @@ describe('Tooltip', () => {
     <hr/>
     <btn type="primary" @click="show = !show">Toggle Tooltip</btn>
   </section>
-    `, {
-      show: false
-    })
+    `,
+      {
+        show: false,
+      }
+    )
     vm.show = true
     await sleep(300)
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
@@ -249,7 +269,9 @@ describe('Tooltip', () => {
   })
 
   it('should be able to toggle correctly on fast click', async () => {
-    vm = createVm('<btn v-tooltip.click="\'Static tooltip content\'" type="primary">Click</btn>')
+    vm = createVm(
+      '<btn v-tooltip.click="\'Static tooltip content\'" type="primary">Click</btn>'
+    )
     const button = vm.$el
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
@@ -266,7 +288,9 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change trigger to click', async () => {
-    vm = createVm('<btn v-tooltip.click="\'Static tooltip content\'" type="primary">Click</btn>')
+    vm = createVm(
+      '<btn v-tooltip.click="\'Static tooltip content\'" type="primary">Click</btn>'
+    )
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     triggerEvent(vm.$el, 'click')
@@ -278,7 +302,9 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change trigger to outside-click', async () => {
-    vm = createVm('<btn v-tooltip.outside-click="\'Static tooltip content\'" type="primary">Outside-Click</btn>')
+    vm = createVm(
+      '<btn v-tooltip.outside-click="\'Static tooltip content\'" type="primary">Outside-Click</btn>'
+    )
     const button = vm.$el
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
@@ -291,7 +317,8 @@ describe('Tooltip', () => {
   })
 
   it('should be able to disable', async () => {
-    vm = createVm(`<tooltip text="Static tooltip content goes here" :enable="false">
+    vm =
+      createVm(`<tooltip text="Static tooltip content goes here" :enable="false">
   <btn type="primary">Disabled Tooltip</btn>
 </tooltip>`)
     await vm.$nextTick()
@@ -305,7 +332,9 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change placement to top', async () => {
-    vm = createVm('<btn v-tooltip.top="\'Tooltip content on top\'" type="primary">Top</btn>')
+    vm = createVm(
+      '<btn v-tooltip.top="\'Tooltip content on top\'" type="primary">Top</btn>'
+    )
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     const trigger = vm.$el
@@ -323,7 +352,9 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change placement to bottom', async () => {
-    vm = createVm('<btn v-tooltip.bottom="\'Tooltip content on bottom\'" type="primary">Bottom</btn>')
+    vm = createVm(
+      '<btn v-tooltip.bottom="\'Tooltip content on bottom\'" type="primary">Bottom</btn>'
+    )
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     const trigger = vm.$el
@@ -341,7 +372,9 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change placement to left', async () => {
-    vm = createVm('<btn v-tooltip.left="\'Tooltip content on left\'" type="primary">Left</btn>')
+    vm = createVm(
+      '<btn v-tooltip.left="\'Tooltip content on left\'" type="primary">Left</btn>'
+    )
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     const trigger = vm.$el
@@ -359,7 +392,9 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change placement to right', async () => {
-    vm = createVm('<btn v-tooltip.right="\'Tooltip content on right\'" type="primary">Right</btn>')
+    vm = createVm(
+      '<btn v-tooltip.right="\'Tooltip content on right\'" type="primary">Right</btn>'
+    )
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     const trigger = vm.$el
@@ -377,9 +412,12 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change trigger in runtime', async () => {
-    vm = createVm('<tooltip text="test" :trigger="trigger"><btn></btn></tooltip>', {
-      trigger: 'focus'
-    })
+    vm = createVm(
+      '<tooltip text="test" :trigger="trigger"><btn></btn></tooltip>',
+      {
+        trigger: 'focus',
+      }
+    )
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('button')
@@ -397,9 +435,12 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change text in runtime', async () => {
-    vm = createVm('<tooltip :text="msg" trigger="click"><btn>123</btn></tooltip>', {
-      msg: 'text'
-    })
+    vm = createVm(
+      '<tooltip :text="msg" trigger="click"><btn>123</btn></tooltip>',
+      {
+        msg: 'text',
+      }
+    )
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     await vm.$nextTick()
     vm.msg = 'text2'
@@ -415,7 +456,9 @@ describe('Tooltip', () => {
     This is a very very long text. This is a very very long text. This is a very very long text`
     await vm.$nextTick()
     expect(document.querySelectorAll('.tooltip').length).to.equal(1)
-    expect(document.querySelector('.tooltip-inner').innerText).to.contain('This is a very very long text')
+    expect(document.querySelector('.tooltip-inner').innerText).to.contain(
+      'This is a very very long text'
+    )
     await vm.$nextTick()
     const topAfter = document.querySelector('.tooltip').style.top
     expect(topAfter).not.equal(topBefore)
@@ -426,10 +469,13 @@ describe('Tooltip', () => {
   })
 
   it('should be able to change enable in runtime', async () => {
-    vm = createVm('<tooltip :text="msg" trigger="click" :enable="enable"><btn>123</btn></tooltip>', {
-      msg: 'text',
-      enable: true
-    })
+    vm = createVm(
+      '<tooltip :text="msg" trigger="click" :enable="enable"><btn>123</btn></tooltip>',
+      {
+        msg: 'text',
+        enable: true,
+      }
+    )
     expect(document.querySelectorAll('.tooltip').length).to.equal(0)
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('button')

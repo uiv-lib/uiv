@@ -9,10 +9,13 @@ describe('Pagination', () => {
   })
 
   it('should be able to hide boundary links', async () => {
-    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage"/></div>', {
-      totalPage: 18,
-      currentPage: 1
-    })
+    vm = createVm(
+      '<div><pagination v-model="currentPage" :total-page="totalPage"/></div>',
+      {
+        totalPage: 18,
+        currentPage: 1,
+      }
+    )
     await vm.$nextTick()
     const pagination = vm.$el.querySelector('.pagination')
     const first = pagination.querySelector('[aria-label="First"]')
@@ -22,10 +25,13 @@ describe('Pagination', () => {
   })
 
   it('should be able to show boundary links', async () => {
-    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>', {
-      totalPage: 18,
-      currentPage: 1
-    })
+    vm = createVm(
+      '<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>',
+      {
+        totalPage: 18,
+        currentPage: 1,
+      }
+    )
     const pagination = vm.$el.querySelector('.pagination')
     const first = pagination.querySelector('[aria-label="First"]')
     const last = pagination.querySelector('[aria-label="Last"]')
@@ -34,13 +40,16 @@ describe('Pagination', () => {
   })
 
   it('should be able to hide direction links', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <pagination v-model="currentPage" :total-page="totalPage"/>
     <pagination v-model="currentPage" :total-page="totalPage" :direction-links="false"/>
-  </section>`, {
-      totalPage: 18,
-      currentPage: 1
-    })
+  </section>`,
+      {
+        totalPage: 18,
+        currentPage: 1,
+      }
+    )
     await vm.$nextTick()
     const pagination = vm.$el.querySelectorAll('ul.pagination')[1]
     const pre = pagination.querySelector('[aria-label="Previous"]')
@@ -50,13 +59,16 @@ describe('Pagination', () => {
   })
 
   it('should be able to show direction links', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <pagination v-model="currentPage" :total-page="totalPage"/>
     <pagination v-model="currentPage" :total-page="totalPage" :direction-links="false"/>
-  </section>`, {
-      totalPage: 18,
-      currentPage: 1
-    })
+  </section>`,
+      {
+        totalPage: 18,
+        currentPage: 1,
+      }
+    )
     await vm.$nextTick()
     const pagination = vm.$el.querySelectorAll('ul.pagination')[0]
     const pre = pagination.querySelector('[aria-label="Previous"]')
@@ -66,10 +78,13 @@ describe('Pagination', () => {
   })
 
   it('should be able to change current page', async () => {
-    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage"/></div>', {
-      totalPage: 18,
-      currentPage: 1
-    })
+    vm = createVm(
+      '<div><pagination v-model="currentPage" :total-page="totalPage"/></div>',
+      {
+        totalPage: 18,
+        currentPage: 1,
+      }
+    )
     vm.currentPage = 1
     await vm.$nextTick()
     let pagination = vm.$el.querySelector('ul.pagination')
@@ -83,29 +98,41 @@ describe('Pagination', () => {
   })
 
   it('should be able to change size', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <pagination v-model="currentPage" :total-page="totalPage" size="lg"/>
     <pagination v-model="currentPage" :total-page="totalPage"/>
     <pagination v-model="currentPage" :total-page="totalPage" size="sm"/>
-  </section>`, {
-      totalPage: 18,
-      currentPage: 1
-    })
+  </section>`,
+      {
+        totalPage: 18,
+        currentPage: 1,
+      }
+    )
     await vm.$nextTick()
-    expect(vm.$el.querySelectorAll('.pagination')[0].className).to.equal('pagination pagination-lg')
-    expect(vm.$el.querySelectorAll('.pagination')[1].className).to.equal('pagination')
-    expect(vm.$el.querySelectorAll('.pagination')[2].className).to.equal('pagination pagination-sm')
+    expect(vm.$el.querySelectorAll('.pagination')[0].className).to.equal(
+      'pagination pagination-lg'
+    )
+    expect(vm.$el.querySelectorAll('.pagination')[1].className).to.equal(
+      'pagination'
+    )
+    expect(vm.$el.querySelectorAll('.pagination')[2].className).to.equal(
+      'pagination pagination-sm'
+    )
   })
 
   it('should be able to change alignment', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <pagination v-model="currentPage" :total-page="totalPage"/>
     <pagination v-model="currentPage" :total-page="totalPage" align="center"/>
     <pagination v-model="currentPage" :total-page="totalPage" align="right"/>
-  </section>`, {
-      totalPage: 18,
-      currentPage: 1
-    })
+  </section>`,
+      {
+        totalPage: 18,
+        currentPage: 1,
+      }
+    )
     await vm.$nextTick()
     expect(vm.$el.querySelectorAll('nav')[0].className).to.equal('')
     expect(vm.$el.querySelectorAll('nav')[1].className).to.equal('text-center')
@@ -113,10 +140,13 @@ describe('Pagination', () => {
   })
 
   it('should be able to change total page', async () => {
-    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>', {
-      totalPage: 18,
-      currentPage: 1
-    })
+    vm = createVm(
+      '<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>',
+      {
+        totalPage: 18,
+        currentPage: 1,
+      }
+    )
     await vm.$nextTick()
     const pagination = vm.$el.querySelector('ul.pagination')
     const lastBtn = pagination.querySelector('[aria-label="Last"]')
@@ -133,10 +163,13 @@ describe('Pagination', () => {
   })
 
   it('should be able to go to first page', async () => {
-    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>', {
-      totalPage: 18,
-      currentPage: 1
-    })
+    vm = createVm(
+      '<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>',
+      {
+        totalPage: 18,
+        currentPage: 1,
+      }
+    )
     vm.currentPage = 18
     await vm.$nextTick()
     const pagination = vm.$el.querySelector('ul.pagination')
@@ -154,10 +187,13 @@ describe('Pagination', () => {
   })
 
   it('last group has max size item', async () => {
-    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage"/></div>', {
-      totalPage: 18,
-      currentPage: 1
-    })
+    vm = createVm(
+      '<div><pagination v-model="currentPage" :total-page="totalPage"/></div>',
+      {
+        totalPage: 18,
+        currentPage: 1,
+      }
+    )
     vm.currentPage = 18
     await vm.$nextTick()
     let pagination = vm.$el.querySelector('ul.pagination')
@@ -171,10 +207,13 @@ describe('Pagination', () => {
   })
 
   it('should be go to next group', async () => {
-    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage"/></div>', {
-      totalPage: 18,
-      currentPage: 1
-    })
+    vm = createVm(
+      '<div><pagination v-model="currentPage" :total-page="totalPage"/></div>',
+      {
+        totalPage: 18,
+        currentPage: 1,
+      }
+    )
     vm.totalPage = 13
     await vm.$nextTick()
     let pagination = vm.$el.querySelector('ul.pagination')
@@ -194,15 +233,20 @@ describe('Pagination', () => {
   })
 
   it('should be go to perv group', async () => {
-    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage"/></div>', {
-      totalPage: 18,
-      currentPage: 1
-    })
+    vm = createVm(
+      '<div><pagination v-model="currentPage" :total-page="totalPage"/></div>',
+      {
+        totalPage: 18,
+        currentPage: 1,
+      }
+    )
     vm.totalPage = 13
     vm.currentPage = 12
     await vm.$nextTick()
     let pagination = vm.$el.querySelector('ul.pagination')
-    const prevGroupBtn = pagination.querySelector('[aria-label="Previous group"]')
+    const prevGroupBtn = pagination.querySelector(
+      '[aria-label="Previous group"]'
+    )
     let startBtn = $(pagination).find('a:not([aria-label])').get(0)
     expect(Number(startBtn.text)).to.equal(vm.totalPage - 5 + 1)
     triggerEvent(prevGroupBtn, 'click')
@@ -218,14 +262,19 @@ describe('Pagination', () => {
   })
 
   it('should be able to disable component', async () => {
-    vm = createVm('<div><pagination v-model="currentPage" :total-page="totalPage" disabled/></div>', {
-      totalPage: 18,
-      currentPage: 1
-    })
+    vm = createVm(
+      '<div><pagination v-model="currentPage" :total-page="totalPage" disabled/></div>',
+      {
+        totalPage: 18,
+        currentPage: 1,
+      }
+    )
     await vm.$nextTick()
     const pagination = vm.$el.querySelector('ul.pagination')
     // all btns has disabled class
-    expect(pagination.querySelectorAll('li').length).to.equal(pagination.querySelectorAll('.disabled').length)
+    expect(pagination.querySelectorAll('li').length).to.equal(
+      pagination.querySelectorAll('.disabled').length
+    )
     expect(pagination.querySelector('.active > a').textContent).to.equal('1')
     // all btns function are disabled
     const btns = pagination.querySelectorAll('li > a')

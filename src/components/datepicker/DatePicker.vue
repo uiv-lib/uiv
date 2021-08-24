@@ -1,7 +1,12 @@
 <template>
-  <div :class="pickerClass" :style="pickerStyle" data-role="date-picker" @click="onPickerClick">
+  <div
+    :class="pickerClass"
+    :style="pickerStyle"
+    data-role="date-picker"
+    @click="onPickerClick"
+  >
     <date-view
-      v-show="view==='d'"
+      v-show="view === 'd'"
       :month="currentMonth"
       :year="currentYear"
       :date="valueDateObj"
@@ -17,9 +22,10 @@
       @month-change="onMonthChange"
       @year-change="onYearChange"
       @date-change="onDateChange"
-      @view-change="onViewChange"/>
+      @view-change="onViewChange"
+    />
     <month-view
-      v-show="view==='m'"
+      v-show="view === 'm'"
       :month="currentMonth"
       :year="currentYear"
       :icon-control-left="iconControlLeft"
@@ -27,29 +33,31 @@
       :locale="locale"
       @month-change="onMonthChange"
       @year-change="onYearChange"
-      @view-change="onViewChange"/>
+      @view-change="onViewChange"
+    />
     <year-view
-      v-show="view==='y'"
+      v-show="view === 'y'"
       :year="currentYear"
       :icon-control-left="iconControlLeft"
       :icon-control-right="iconControlRight"
       @year-change="onYearChange"
-      @view-change="onViewChange"/>
-    <div v-if="todayBtn||clearBtn">
-      <br/>
+      @view-change="onViewChange"
+    />
+    <div v-if="todayBtn || clearBtn">
+      <br />
       <div class="text-center">
         <btn
+          v-if="todayBtn"
           data-action="select"
           type="info"
           size="sm"
-          v-if="todayBtn"
           @click="selectToday"
           v-text="t('uiv.datePicker.today')"
         />
         <btn
+          v-if="clearBtn"
           data-action="select"
           size="sm"
-          v-if="clearBtn"
           @click="clearSelect"
           v-text="t('uiv.datePicker.clear')"
         />
@@ -58,4 +66,4 @@
   </div>
 </template>
 
-<script src="./DatePicker.js"/>
+<script src="./DatePicker.js" />

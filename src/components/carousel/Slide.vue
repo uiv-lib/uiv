@@ -4,4 +4,4 @@
   </div>
 </template>
 
-<script src="./Slide.js"/>
+<script src="./Slide.js" />

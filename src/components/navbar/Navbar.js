@@ -6,42 +6,42 @@ export default {
     value: Boolean,
     fluid: {
       type: Boolean,
-      default: true
+      default: true,
     },
     fixedTop: Boolean,
     fixedBottom: Boolean,
     staticTop: Boolean,
-    inverse: Boolean
+    inverse: Boolean,
   },
-  data () {
+  data() {
     return {
-      show: false
+      show: false,
     }
   },
   computed: {
-    navClasses () {
+    navClasses() {
       return {
         navbar: true,
         'navbar-default': !this.inverse,
         'navbar-inverse': this.inverse,
         'navbar-static-top': this.staticTop,
         'navbar-fixed-bottom': this.fixedBottom,
-        'navbar-fixed-top': this.fixedTop
+        'navbar-fixed-top': this.fixedTop,
       }
-    }
+    },
   },
-  mounted () {
+  mounted() {
     this.show = !!this.value
   },
   watch: {
-    value (v) {
+    value(v) {
       this.show = v
-    }
+    },
   },
   methods: {
-    toggle () {
+    toggle() {
       this.show = !this.show
       this.$emit('input', this.show)
-    }
-  }
+    },
+  },
 }

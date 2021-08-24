@@ -1,5 +1,11 @@
 import _ from 'lodash'
-import { createVm, destroyVm, triggerKey, triggerEvent, keyCodes } from '../utils'
+import {
+  createVm,
+  destroyVm,
+  triggerKey,
+  triggerEvent,
+  keyCodes,
+} from '../utils'
 
 describe('MultiSelect', () => {
   let vm
@@ -9,10 +15,13 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to render with no options', async () => {
-    vm = createVm('<div><multi-select v-model="selected" :options="options"/></div>', {
-      selected: [],
-      options: []
-    })
+    vm = createVm(
+      '<div><multi-select v-model="selected" :options="options"/></div>',
+      {
+        selected: [],
+        options: [],
+      }
+    )
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('.dropdown-toggle')
     trigger.click()
@@ -21,31 +30,37 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to use custom placeholder', async () => {
-    vm = createVm(`<div>
+    vm = createVm(
+      `<div>
 <multi-select v-model="selected" :options="options" placeholder="someplaceholder..."/>
-</div>`, {
-      selected: [],
-      options: [
-        { value: 1, label: 'Option1' }
-      ]
-    })
+</div>`,
+      {
+        selected: [],
+        options: [{ value: 1, label: 'Option1' }],
+      }
+    )
     await vm.$nextTick()
-    expect(vm.$el.querySelector('[data-role="trigger"] .text-muted').textContent).to.equal('someplaceholder...')
+    expect(
+      vm.$el.querySelector('[data-role="trigger"] .text-muted').textContent
+    ).to.equal('someplaceholder...')
   })
 
   it('should be able to open dropdown and select options', async () => {
-    vm = createVm(`<div>
+    vm = createVm(
+      `<div>
 <multi-select v-model="selected" :options="options"/>
-</div>`, {
-      selected: [],
-      options: [
-        { value: 1, label: 'Option1' },
-        { value: 2, label: 'Option2' },
-        { value: 3, label: 'Option3' },
-        { value: 4, label: 'Option4' },
-        { value: 5, label: 'Option5' }
-      ]
-    })
+</div>`,
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+          { value: 4, label: 'Option4' },
+          { value: 5, label: 'Option5' },
+        ],
+      }
+    )
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
@@ -55,11 +70,21 @@ describe('MultiSelect', () => {
     expect(dropdown.className).to.contain('open')
     expect(_.isEmpty(vm.selected)).to.be.true
     expect(display.textContent).to.equal('Select...')
-    expect(dropdown.querySelectorAll('li > a')[0].textContent).to.equal('Option1')
-    expect(dropdown.querySelectorAll('li > a')[1].textContent).to.equal('Option2')
-    expect(dropdown.querySelectorAll('li > a')[2].textContent).to.equal('Option3')
-    expect(dropdown.querySelectorAll('li > a')[3].textContent).to.equal('Option4')
-    expect(dropdown.querySelectorAll('li > a')[4].textContent).to.equal('Option5')
+    expect(dropdown.querySelectorAll('li > a')[0].textContent).to.equal(
+      'Option1'
+    )
+    expect(dropdown.querySelectorAll('li > a')[1].textContent).to.equal(
+      'Option2'
+    )
+    expect(dropdown.querySelectorAll('li > a')[2].textContent).to.equal(
+      'Option3'
+    )
+    expect(dropdown.querySelectorAll('li > a')[3].textContent).to.equal(
+      'Option4'
+    )
+    expect(dropdown.querySelectorAll('li > a')[4].textContent).to.equal(
+      'Option5'
+    )
     // select option 1
     dropdown.querySelectorAll('li')[0].click()
     await vm.$nextTick()
@@ -83,7 +108,9 @@ describe('MultiSelect', () => {
     // select option 5
     dropdown.querySelectorAll('li')[4].click()
     await vm.$nextTick()
-    expect(display.textContent).to.equal('Option1, Option2, Option3, Option4, Option5')
+    expect(display.textContent).to.equal(
+      'Option1, Option2, Option3, Option4, Option5'
+    )
     expect(_.isEqual(vm.selected, [1, 2, 3, 4, 5])).to.be.true
     // unselect option 1
     dropdown.querySelectorAll('li')[0].click()
@@ -113,18 +140,21 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to use custom `itemSelectedClass`', async () => {
-    vm = createVm(`<div>
+    vm = createVm(
+      `<div>
 <multi-select v-model="selected" :options="options" item-selected-class="someclass"/>
-</div>`, {
-      selected: [],
-      options: [
-        { value: 1, label: 'Option1' },
-        { value: 2, label: 'Option2' },
-        { value: 3, label: 'Option3' },
-        { value: 4, label: 'Option4' },
-        { value: 5, label: 'Option5' }
-      ]
-    })
+</div>`,
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+          { value: 4, label: 'Option4' },
+          { value: 5, label: 'Option5' },
+        ],
+      }
+    )
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
@@ -140,18 +170,21 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to limit selected length', async () => {
-    vm = createVm(`<div>
+    vm = createVm(
+      `<div>
 <multi-select v-model="selected" :options="options" :limit="3"/>
-</div>`, {
-      selected: [],
-      options: [
-        { value: 1, label: 'Option1' },
-        { value: 2, label: 'Option2' },
-        { value: 3, label: 'Option3' },
-        { value: 4, label: 'Option4' },
-        { value: 5, label: 'Option5' }
-      ]
-    })
+</div>`,
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+          { value: 4, label: 'Option4' },
+          { value: 5, label: 'Option5' },
+        ],
+      }
+    )
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
@@ -201,21 +234,24 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to render optional sizes', async () => {
-    vm = createVm(`  <section>
+    vm = createVm(
+      `  <section>
       <multi-select v-model="selected" :options="options" size="sm"/>
       <multi-select v-model="selected" :options="options"/>
       <multi-select v-model="selected" :options="options" size="lg"/>
       <multi-select v-model="selected" :options="options" size="lg" block/>
-  </section>`, {
-      selected: [],
-      options: [
-        { value: 1, label: 'Option1' },
-        { value: 2, label: 'Option2' },
-        { value: 3, label: 'Option3' },
-        { value: 4, label: 'Option4' },
-        { value: 5, label: 'Option5' }
-      ]
-    })
+  </section>`,
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+          { value: 4, label: 'Option4' },
+          { value: 5, label: 'Option5' },
+        ],
+      }
+    )
     const _el = vm.$el
     const dropdown1 = _el.querySelectorAll('.dropdown')[0]
     const dropdown2 = _el.querySelectorAll('.dropdown')[1]
@@ -244,18 +280,21 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to disable options', async () => {
-    vm = createVm(`<div>
+    vm = createVm(
+      `<div>
 <multi-select v-model="selected" :options="options"/>
-</div>`, {
-      selected: [],
-      options: [
-        { value: 1, label: 'Option1' },
-        { value: 2, label: 'Option2' },
-        { value: 3, label: 'Option3', disabled: true },
-        { value: 4, label: 'Option4' },
-        { value: 5, label: 'Option5', disabled: true }
-      ]
-    })
+</div>`,
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3', disabled: true },
+          { value: 4, label: 'Option4' },
+          { value: 5, label: 'Option5', disabled: true },
+        ],
+      }
+    )
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
@@ -290,21 +329,26 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to disable dropdown', async () => {
-    vm = createVm(`<div>
+    vm = createVm(
+      `<div>
 <multi-select v-model="selected" :options="options" disabled/>
-</div>`, {
-      selected: [],
-      options: [
-        { value: 1, label: 'Option1' },
-        { value: 2, label: 'Option2' },
-        { value: 3, label: 'Option3' },
-        { value: 4, label: 'Option4' },
-        { value: 5, label: 'Option5' }
-      ]
-    })
+</div>`,
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+          { value: 4, label: 'Option4' },
+          { value: 5, label: 'Option5' },
+        ],
+      }
+    )
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
-    expect(dropdown.querySelector('.form-control').getAttribute('disabled')).to.equal('disabled')
+    expect(
+      dropdown.querySelector('.form-control').getAttribute('disabled')
+    ).to.equal('disabled')
     expect(dropdown.className).not.contain('open')
     trigger.click()
     await vm.$nextTick()
@@ -312,18 +356,21 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to collapse selected', async () => {
-    vm = createVm(`<div>
+    vm = createVm(
+      `<div>
 <multi-select v-model="selected" :options="options" collapse-selected/>
-</div>`, {
-      selected: [],
-      options: [
-        { value: 1, label: 'Option1' },
-        { value: 2, label: 'Option2' },
-        { value: 3, label: 'Option3' },
-        { value: 4, label: 'Option4' },
-        { value: 5, label: 'Option5' }
-      ]
-    })
+</div>`,
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+          { value: 4, label: 'Option4' },
+          { value: 5, label: 'Option5' },
+        ],
+      }
+    )
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
@@ -386,18 +433,21 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to filter options', async () => {
-    vm = createVm(`<div>
+    vm = createVm(
+      `<div>
 <multi-select v-model="selected" :options="options" filterable/>
-</div>`, {
-      selected: [],
-      options: [
-        { value: 1, label: 'Option1' },
-        { value: 2, label: 'Option2' },
-        { value: 3, label: 'Option3' },
-        { value: 4, label: 'Option4' },
-        { value: 5, label: 'Option5' }
-      ]
-    })
+</div>`,
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+          { value: 4, label: 'Option4' },
+          { value: 5, label: 'Option5' },
+        ],
+      }
+    )
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const searchInput = dropdown.querySelector('.form-control.input-sm')
@@ -432,32 +482,38 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to use custom filter placeholder', async () => {
-    vm = createVm(`<div>
+    vm = createVm(
+      `<div>
 <multi-select v-model="selected" :options="options" filterable filter-placeholder="someplaceholder..."/>
-</div>`, {
-      selected: [],
-      options: [
-        { value: 1, label: 'Option1' }
-      ]
-    })
+</div>`,
+      {
+        selected: [],
+        options: [{ value: 1, label: 'Option1' }],
+      }
+    )
     const dropdown = vm.$el.querySelector('.dropdown')
     const searchInput = dropdown.querySelector('.form-control.input-sm')
-    expect(searchInput.getAttribute('placeholder')).to.equal('someplaceholder...')
+    expect(searchInput.getAttribute('placeholder')).to.equal(
+      'someplaceholder...'
+    )
   })
 
   it('should be able to use custom labelKey and valueKey', async () => {
-    vm = createVm(`<div>
+    vm = createVm(
+      `<div>
 <multi-select v-model="selected" :options="options" filterable label-key="someLabel" value-key="someVal"/>
-</div>`, {
-      selected: [],
-      options: [
-        { someVal: 1, someLabel: 'Option1' },
-        { someVal: 2, someLabel: 'Option2' },
-        { someVal: 3, someLabel: 'Option3' },
-        { someVal: 4, someLabel: 'Option4' },
-        { someVal: 5, someLabel: 'Option5' }
-      ]
-    })
+</div>`,
+      {
+        selected: [],
+        options: [
+          { someVal: 1, someLabel: 'Option1' },
+          { someVal: 2, someLabel: 'Option2' },
+          { someVal: 3, someLabel: 'Option3' },
+          { someVal: 4, someLabel: 'Option4' },
+          { someVal: 5, someLabel: 'Option5' },
+        ],
+      }
+    )
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const searchInput = dropdown.querySelector('.form-control.input-sm')
@@ -492,39 +548,48 @@ describe('MultiSelect', () => {
   })
 
   it('should be ok if value not present in options', async () => {
-    vm = createVm(`<div>
+    vm = createVm(
+      `<div>
 <multi-select v-model="selected" :options="options"/>
-</div>`, {
-      selected: [5],
-      options: [
-        { value: 1, label: 'Option1' },
-        { value: 2, label: 'Option2' },
-        { value: 3, label: 'Option3' },
-        { value: 4, label: 'Option4' }
-      ]
-    })
+</div>`,
+      {
+        selected: [5],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+          { value: 4, label: 'Option4' },
+        ],
+      }
+    )
     await vm.$nextTick()
-    expect(vm.$el.querySelectorAll('.dropdown-toggle > div')[1].textContent).to.equal('5')
+    expect(
+      vm.$el.querySelectorAll('.dropdown-toggle > div')[1].textContent
+    ).to.equal('5')
   })
 
   it('should be able use custom filter function', async () => {
-    vm = createVm('<multi-select v-model="selected" :options="options" filterable :filter-function="filterFunction"/>', {
-      selected: [],
-      options: [
-        { value: 1, label: 'Option1' },
-        { value: 2, label: 'Option2' },
-        { value: 3, label: 'Option3' },
-        { value: 4, label: 'Option4' },
-        { value: 5, label: 'Option5' }
-      ]
-    }, {
-      methods: {
-        filterFunction (query) {
-          // always return option 1 and 5
-          return [this.options[0], this.options[4]]
-        }
+    vm = createVm(
+      '<multi-select v-model="selected" :options="options" filterable :filter-function="filterFunction"/>',
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+          { value: 4, label: 'Option4' },
+          { value: 5, label: 'Option5' },
+        ],
+      },
+      {
+        methods: {
+          filterFunction(query) {
+            // always return option 1 and 5
+            return [this.options[0], this.options[4]]
+          },
+        },
       }
-    })
+    )
     const dropdown = vm.$el
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const searchInput = dropdown.querySelector('.form-control.input-sm')
@@ -537,14 +602,22 @@ describe('MultiSelect', () => {
     triggerEvent(searchInput, 'input')
     await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).to.equal(2 + 1)
-    expect(dropdown.querySelectorAll('li > a')[0].textContent).to.equal('Option1')
-    expect(dropdown.querySelectorAll('li > a')[1].textContent).to.equal('Option5')
+    expect(dropdown.querySelectorAll('li > a')[0].textContent).to.equal(
+      'Option1'
+    )
+    expect(dropdown.querySelectorAll('li > a')[1].textContent).to.equal(
+      'Option5'
+    )
     searchInput.value = '3'
     triggerEvent(searchInput, 'input')
     await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).to.equal(2 + 1)
-    expect(dropdown.querySelectorAll('li > a')[0].textContent).to.equal('Option1')
-    expect(dropdown.querySelectorAll('li > a')[1].textContent).to.equal('Option5')
+    expect(dropdown.querySelectorAll('li > a')[0].textContent).to.equal(
+      'Option1'
+    )
+    expect(dropdown.querySelectorAll('li > a')[1].textContent).to.equal(
+      'Option5'
+    )
     searchInput.value = ''
     triggerEvent(searchInput, 'input')
     await vm.$nextTick()
@@ -552,18 +625,21 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to use keyboard nav & select', async () => {
-    vm = createVm(`<div>
+    vm = createVm(
+      `<div>
 <multi-select v-model="selected" :options="options"/>
-</div>`, {
-      selected: [],
-      options: [
-        { value: 1, label: 'Option1' },
-        { value: 2, label: 'Option2' },
-        { value: 3, label: 'Option3' },
-        { value: 4, label: 'Option4' },
-        { value: 5, label: 'Option5' }
-      ]
-    })
+</div>`,
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+          { value: 4, label: 'Option4' },
+          { value: 5, label: 'Option5' },
+        ],
+      }
+    )
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
@@ -626,7 +702,9 @@ describe('MultiSelect', () => {
     expect(dropdown.querySelectorAll('li')[4].className).to.contain('active')
     triggerKey(trigger, keyCodes.enter)
     await vm.$nextTick()
-    expect(display.textContent).to.equal('Option1, Option2, Option3, Option4, Option5')
+    expect(display.textContent).to.equal(
+      'Option1, Option2, Option3, Option4, Option5'
+    )
     expect(_.isEqual(vm.selected, [1, 2, 3, 4, 5])).to.be.true
     // unselect option 1
     // go next (option 1)
@@ -697,16 +775,19 @@ describe('MultiSelect', () => {
   })
 
   it('should behave like single toggle while limit=1', async () => {
-    vm = createVm('<multi-select v-model="selected" :options="options" :limit="1"/>', {
-      selected: [],
-      options: [
-        { value: 1, label: 'Option1' },
-        { value: 2, label: 'Option2' },
-        { value: 3, label: 'Option3' },
-        { value: 4, label: 'Option4' },
-        { value: 5, label: 'Option5' }
-      ]
-    })
+    vm = createVm(
+      '<multi-select v-model="selected" :options="options" :limit="1"/>',
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+          { value: 4, label: 'Option4' },
+          { value: 5, label: 'Option5' },
+        ],
+      }
+    )
     const dropdown = vm.$el
     const trigger = dropdown.querySelector('.dropdown-toggle')
     trigger.click()
@@ -731,23 +812,30 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to display grouped options', async () => {
-    vm = createVm('<div><multi-select v-model="selected" :options="options"/></div>', {
-      selected: [],
-      options: [
-        { value: 1, label: 'Apple', group: 'Fruit' },
-        { value: 2, label: 'Banana', group: 'Fruit' },
-        { value: 3, label: 'Orange', group: 'Fruit' },
-        { value: 4, label: 'Red', group: 'Color' },
-        { value: 5, label: 'Green', group: 'Color' }
-      ]
-    })
+    vm = createVm(
+      '<div><multi-select v-model="selected" :options="options"/></div>',
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Apple', group: 'Fruit' },
+          { value: 2, label: 'Banana', group: 'Fruit' },
+          { value: 3, label: 'Orange', group: 'Fruit' },
+          { value: 4, label: 'Red', group: 'Color' },
+          { value: 5, label: 'Green', group: 'Color' },
+        ],
+      }
+    )
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
     expect(dropdown.className).not.contain('open')
     expect(dropdown.querySelectorAll('.dropdown-header').length).to.equal(2)
-    expect(dropdown.querySelectorAll('.dropdown-header')[0].textContent).to.equal('Fruit')
-    expect(dropdown.querySelectorAll('.dropdown-header')[1].textContent).to.equal('Color')
+    expect(
+      dropdown.querySelectorAll('.dropdown-header')[0].textContent
+    ).to.equal('Fruit')
+    expect(
+      dropdown.querySelectorAll('.dropdown-header')[1].textContent
+    ).to.equal('Color')
     // open dropdown
     triggerKey(trigger, keyCodes.enter)
     await vm.$nextTick()
@@ -799,21 +887,24 @@ describe('MultiSelect', () => {
   })
 
   it('should be able to use option slot', async () => {
-    vm = createVm(`
+    vm = createVm(
+      `
     <multi-select v-model="selected" :options="options">
       <template v-slot:option="slotProps">
         <i>{{ slotProps.item.label }}</i>
       </template>
-    </multi-select>`, {
-      selected: [],
-      options: [
-        { value: 1, label: 'Option1' },
-        { value: 2, label: 'Option2' },
-        { value: 3, label: 'Option3' },
-        { value: 4, label: 'Option4' },
-        { value: 5, label: 'Option5' }
-      ]
-    })
+    </multi-select>`,
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+          { value: 4, label: 'Option4' },
+          { value: 5, label: 'Option5' },
+        ],
+      }
+    )
     const dropdown = vm.$el
     const trigger = dropdown.querySelector('.dropdown-toggle')
     trigger.click()

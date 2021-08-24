@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import { createVm, destroyVm, sleep, triggerEvent } from '../utils'
 
-function baseVm () {
+function baseVm() {
   return createVm(`<div><tabs>
   <tab title="Home">
     <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
@@ -18,8 +18,9 @@ function baseVm () {
 </tabs></div>`)
 }
 
-function dynamicVm () {
-  return createVm(`<section>
+function dynamicVm() {
+  return createVm(
+    `<section>
     <tabs v-model="index">
       <tab v-for="tab in tabs" :title="tab" :key="tab">
         <p>Dynamic {{tab}}</p>
@@ -31,28 +32,31 @@ function dynamicVm () {
         </btn>
       </template>
     </tabs>
-  </section>`, {
-    tabs: ['Tab 1'],
-    count: 1,
-    index: 0
-  }, {
-    methods: {
-      push () {
-        this.tabs.push(`Tab ${++this.count}`)
-        // open the new tab after created
-        this.$nextTick(() => {
-          this.index = this.tabs.length - 1
-        })
+  </section>`,
+    {
+      tabs: ['Tab 1'],
+      count: 1,
+      index: 0,
+    },
+    {
+      methods: {
+        push() {
+          this.tabs.push(`Tab ${++this.count}`)
+          // open the new tab after created
+          this.$nextTick(() => {
+            this.index = this.tabs.length - 1
+          })
+        },
+        close() {
+          this.tabs.splice(this.index, 1)
+          // select prev tab if the closed tab is the last one
+          if (this.index === this.tabs.length && this.index > 0) {
+            --this.index
+          }
+        },
       },
-      close () {
-        this.tabs.splice(this.index, 1)
-        // select prev tab if the closed tab is the last one
-        if (this.index === this.tabs.length && this.index > 0) {
-          --this.index
-        }
-      }
     }
-  })
+  )
 }
 
 describe('Tabs', () => {
@@ -75,16 +79,40 @@ describe('Tabs', () => {
     )
     await vm.$nextTick()
     // 1,2
-    expect(vm.$el.querySelectorAll('.nav.nav-tabs > li')[0].style.display).to.equal('none')
-    expect(vm.$el.querySelectorAll('.nav.nav-tabs > li')[1].style.display).to.not.equal('none')
+    expect(
+      vm.$el.querySelectorAll('.nav.nav-tabs > li')[0].style.display
+    ).to.equal('none')
+    expect(
+      vm.$el.querySelectorAll('.nav.nav-tabs > li')[1].style.display
+    ).to.not.equal('none')
     // 3,4
-    expect(vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[0].style.display).to.not.equal('none')
-    expect(vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[0].querySelectorAll('li')[0].style.display).to.equal('none')
-    expect(vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[0].querySelectorAll('li')[1].style.display).to.not.equal('none')
+    expect(
+      vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[0].style.display
+    ).to.not.equal('none')
+    expect(
+      vm.$el
+        .querySelectorAll('.nav.nav-tabs .dropdown')[0]
+        .querySelectorAll('li')[0].style.display
+    ).to.equal('none')
+    expect(
+      vm.$el
+        .querySelectorAll('.nav.nav-tabs .dropdown')[0]
+        .querySelectorAll('li')[1].style.display
+    ).to.not.equal('none')
     // 5,6
-    expect(vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[1].style.display).to.equal('none')
-    expect(vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[1].querySelectorAll('li')[0].style.display).to.equal('none')
-    expect(vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[1].querySelectorAll('li')[1].style.display).to.equal('none')
+    expect(
+      vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[1].style.display
+    ).to.equal('none')
+    expect(
+      vm.$el
+        .querySelectorAll('.nav.nav-tabs .dropdown')[1]
+        .querySelectorAll('li')[0].style.display
+    ).to.equal('none')
+    expect(
+      vm.$el
+        .querySelectorAll('.nav.nav-tabs .dropdown')[1]
+        .querySelectorAll('li')[1].style.display
+    ).to.equal('none')
   })
 
   it('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {
@@ -95,7 +123,7 @@ describe('Tabs', () => {
     try {
       const spy = sinon.spy(window.console, 'error')
       vm = createVm('<tabs><tab><tab>{{ msg }}</tab></tab></tabs>', {
-        msg: 'hello'
+        msg: 'hello',
       })
       sinon.assert.called(spy)
     } finally {
@@ -104,18 +132,26 @@ describe('Tabs', () => {
   })
 
   it('should be able to add String `customNavClass`', () => {
-    vm = createVm('<tabs custom-nav-class="custom-nav-class"><tab>123</tab></tabs>')
-    expect(vm.$el.querySelector('.nav.nav-tabs').className).to.contain('custom-nav-class')
+    vm = createVm(
+      '<tabs custom-nav-class="custom-nav-class"><tab>123</tab></tabs>'
+    )
+    expect(vm.$el.querySelector('.nav.nav-tabs').className).to.contain(
+      'custom-nav-class'
+    )
   })
 
   it('should be able to add Object `customNavClass`', () => {
-    vm = createVm('<tabs :custom-nav-class="{\'custom-nav-class\':true}"><tab>123</tab></tabs>')
-    expect(vm.$el.querySelector('.nav.nav-tabs').className).to.contain('custom-nav-class')
+    vm = createVm(
+      '<tabs :custom-nav-class="{\'custom-nav-class\':true}"><tab>123</tab></tabs>'
+    )
+    expect(vm.$el.querySelector('.nav.nav-tabs').className).to.contain(
+      'custom-nav-class'
+    )
   })
 
   it('should be ok if no <tab> present in <tabs>', () => {
     vm = createVm('<tabs>{{msg}}</tabs>', {
-      msg: 'hello'
+      msg: 'hello',
     })
   })
 
@@ -131,7 +167,9 @@ describe('Tabs', () => {
     expect(activeTab[0].querySelector('a').textContent).to.equal('Home')
     const activeContent = content.querySelectorAll('.tab-pane.active')
     expect(activeContent.length).to.equal(1)
-    expect(activeContent[0].querySelector('p').textContent).to.contain('Raw denim you probably haven')
+    expect(activeContent[0].querySelector('p').textContent).to.contain(
+      'Raw denim you probably haven'
+    )
   })
 
   it('should be able to open correct tab content after click on tab nav', async () => {
@@ -153,7 +191,9 @@ describe('Tabs', () => {
     expect(activeTab[0].querySelector('a').textContent).to.equal('Profile')
     const activeContent = content.querySelectorAll('.tab-pane.active')
     expect(activeContent.length).to.equal(1)
-    expect(activeContent[0].querySelector('p').textContent).to.contain('Food truck fixie locavore, accusamus mcsw')
+    expect(activeContent[0].querySelector('p').textContent).to.contain(
+      'Food truck fixie locavore, accusamus mcsw'
+    )
   })
 
   it('should not be able to select disabled tab', async () => {
@@ -184,7 +224,9 @@ describe('Tabs', () => {
     expect(tab1.className).to.equal('disabled')
     let activeContent = content.querySelectorAll('.tab-pane.active')
     expect(activeContent.length).to.equal(1)
-    expect(activeContent[0].querySelector('p').textContent).to.contain('Home tab')
+    expect(activeContent[0].querySelector('p').textContent).to.contain(
+      'Home tab'
+    )
     // In dropdown
     const tab2 = nav.querySelector('.dropdown').querySelectorAll('li')[1]
     expect(tab2.className).to.equal('disabled')
@@ -194,7 +236,9 @@ describe('Tabs', () => {
     expect(tab2.className).to.equal('disabled')
     activeContent = content.querySelectorAll('.tab-pane.active')
     expect(activeContent.length).to.equal(1)
-    expect(activeContent[0].querySelector('p').textContent).to.contain('Home tab')
+    expect(activeContent[0].querySelector('p').textContent).to.contain(
+      'Home tab'
+    )
   })
 
   it('should not be able to render HTML title with deprecated prop', async () => {
@@ -236,7 +280,8 @@ describe('Tabs', () => {
   })
 
   it('should be able to run callback function', async () => {
-    vm = createVm(`<div><tabs @change="onChange">
+    vm = createVm(
+      `<div><tabs @change="onChange">
     <tab title="Home">
       <p>Home tab.</p>
     </tab>
@@ -246,15 +291,18 @@ describe('Tabs', () => {
     <tab title="<i class='glyphicon glyphicon-bell'></i> Alert!" html-title>
       <p>This tab has HTML title and callback function!</p>
     </tab>
-  </tabs></div>`, {}, {
-      methods: {
-        onChange (index) {
-          if (index === 2) {
-            window.alert('You clicked on a tab that has callback function!')
-          }
-        }
+  </tabs></div>`,
+      {},
+      {
+        methods: {
+          onChange(index) {
+            if (index === 2) {
+              window.alert('You clicked on a tab that has callback function!')
+            }
+          },
+        },
       }
-    })
+    )
     const $el = $(vm.$el)
     await vm.$nextTick()
     const nav = $el.find('.nav-tabs').get(0)
@@ -286,13 +334,21 @@ describe('Tabs', () => {
     expect(tab5.querySelector('.dropdown-menu')).to.exist
     expect(tab5.className).to.contain('dropdown')
     expect(tab5.className).to.contain('open')
-    triggerEvent(tab5.querySelector('.dropdown-menu').querySelector('li').querySelector('a'), 'click')
+    triggerEvent(
+      tab5
+        .querySelector('.dropdown-menu')
+        .querySelector('li')
+        .querySelector('a'),
+      'click'
+    )
     await vm.$nextTick()
     await sleep(350)
     expect(tab5.className).to.contain('active')
     const activeContent = content.querySelectorAll('.tab-pane.active')
     expect(activeContent.length).to.equal(1)
-    expect(activeContent[0].querySelector('p').textContent).to.contain('Etsy mixtape wayfarers')
+    expect(activeContent[0].querySelector('p').textContent).to.contain(
+      'Etsy mixtape wayfarers'
+    )
   })
 
   it('should be able to use with v-model', async () => {
@@ -420,7 +476,8 @@ describe('Tabs', () => {
   })
 
   it('should not display tab if before-change callback return false', async () => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <tabs v-model="index" @before-change="onBeforeChange">
       <tab title="Home">
         <div>
@@ -440,21 +497,24 @@ describe('Tabs', () => {
         <p>Others tab.</p>
       </tab>
     </tabs>
-  </section>`, {
-      index: 0,
-      input: ''
-    }, {
-      methods: {
-        onBeforeChange (indexFrom, indexTo, done) {
-          if (indexFrom === 0 && this.input === '') {
-            this.$notify('Please fill your name first.')
-            done(1)
-          } else {
-            done()
-          }
-        }
+  </section>`,
+      {
+        index: 0,
+        input: '',
+      },
+      {
+        methods: {
+          onBeforeChange(indexFrom, indexTo, done) {
+            if (indexFrom === 0 && this.input === '') {
+              this.$notify('Please fill your name first.')
+              done(1)
+            } else {
+              done()
+            }
+          },
+        },
       }
-    })
+    )
     const $el = $(vm.$el)
     const nav = $el.find('.nav-tabs').get(0)
     await vm.$nextTick()

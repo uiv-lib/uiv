@@ -6,7 +6,8 @@ describe('Carousel', () => {
   let $el
 
   beforeEach(() => {
-    vm = createVm(`<section>
+    vm = createVm(
+      `<section>
     <carousel :indicators="indicators" :controls="controls" :interval="interval" ref="carousel">
       <slide v-for="(slide, index) in slides" :key="index">
         <div style="width: 100%;height: 400px;" :style="{background:index % 2 === 0? '#99a9bf' : '#d3dce6'}"></div>
@@ -28,23 +29,26 @@ describe('Carousel', () => {
         </div>
       </div>
     </form>
-  </section>`, {
-      interval: 5000,
-      indicators: true,
-      controls: true,
-      slides: [
-        { title: 'Slide 1' },
-        { title: 'Slide 2' },
-        { title: 'Slide 3' },
-        { title: 'Slide 4' }
-      ]
-    }, {
-      methods: {
-        pushSlide () {
-          this.slides.push({ title: `Slide ${this.slides.length + 1}` })
-        }
+  </section>`,
+      {
+        interval: 5000,
+        indicators: true,
+        controls: true,
+        slides: [
+          { title: 'Slide 1' },
+          { title: 'Slide 2' },
+          { title: 'Slide 3' },
+          { title: 'Slide 4' },
+        ],
+      },
+      {
+        methods: {
+          pushSlide() {
+            this.slides.push({ title: `Slide ${this.slides.length + 1}` })
+          },
+        },
       }
-    })
+    )
     $el = $(vm.$refs.carousel.$el)
   })
 
@@ -59,9 +63,12 @@ describe('Carousel', () => {
     }
     try {
       const spy = sinon.spy(window.console, 'error')
-      vm = createVm('<carousel><slide><slide>{{ msg }}</slide></slide></carousel>', {
-        msg: 'hello'
-      })
+      vm = createVm(
+        '<carousel><slide><slide>{{ msg }}</slide></slide></carousel>',
+        {
+          msg: 'hello',
+        }
+      )
       sinon.assert.called(spy)
     } finally {
       window.console.error = _error
@@ -69,23 +76,30 @@ describe('Carousel', () => {
   })
 
   it('should be able to work with v-model', async () => {
-    vm = createVm('<carousel v-model="index"><slide>1</slide><slide>2</slide></carousel>', {
-      index: 1
-    })
+    vm = createVm(
+      '<carousel v-model="index"><slide>1</slide><slide>2</slide></carousel>',
+      {
+        index: 1,
+      }
+    )
     $el = $(vm.$el)
     await vm.$nextTick()
     expect($el.find('.carousel-inner .item.active').length).to.equal(1)
-    expect($el.find('.carousel-inner .item').get(1).className).to.contain('active')
+    expect($el.find('.carousel-inner .item').get(1).className).to.contain(
+      'active'
+    )
     triggerEvent($el.find('.carousel-control.right').get(0), 'click')
     await sleep(700)
     expect($el.find('.carousel-inner .item.active').length).to.equal(1)
-    expect($el.find('.carousel-inner .item').get(0).className).to.contain('active')
+    expect($el.find('.carousel-inner .item').get(0).className).to.contain(
+      'active'
+    )
     expect(vm.index).to.equal(0)
   })
 
   it('should be ok if no <slide> present in <carousel>', () => {
     vm = createVm('<carousel>{{msg}}</carousel>', {
-      msg: 'hello'
+      msg: 'hello',
     })
   })
 
@@ -94,7 +108,9 @@ describe('Carousel', () => {
     expect($el.find('.carousel-inner .item').length).to.equal(4)
     expect($el.find('.carousel-indicators li').length).to.equal(4)
     expect($el.find('.carousel-control').length).to.equal(2)
-    expect($el.find('.carousel-inner .item').get(0).className).to.contain('active')
+    expect($el.find('.carousel-inner .item').get(0).className).to.contain(
+      'active'
+    )
   })
 
   it('should be able to go next on right control click', async () => {
@@ -102,7 +118,9 @@ describe('Carousel', () => {
     triggerEvent($el.find('.carousel-control.right').get(0), 'click')
     await sleep(700)
     expect($el.find('.carousel-inner .item.active').length).to.equal(1)
-    expect($el.find('.carousel-inner .item').get(1).className).to.contain('active')
+    expect($el.find('.carousel-inner .item').get(1).className).to.contain(
+      'active'
+    )
   })
 
   it('should be able to go prev on left control click', async () => {
@@ -110,11 +128,15 @@ describe('Carousel', () => {
     triggerEvent($el.find('.carousel-control.left').get(0), 'click')
     await sleep(700)
     expect($el.find('.carousel-inner .item.active').length).to.equal(1)
-    expect($el.find('.carousel-inner .item').get(3).className).to.contain('active')
+    expect($el.find('.carousel-inner .item').get(3).className).to.contain(
+      'active'
+    )
     triggerEvent($el.find('.carousel-control.left').get(0), 'click')
     await sleep(700)
     expect($el.find('.carousel-inner .item.active').length).to.equal(1)
-    expect($el.find('.carousel-inner .item').get(2).className).to.contain('active')
+    expect($el.find('.carousel-inner .item').get(2).className).to.contain(
+      'active'
+    )
   })
 
   it('should be able to go index on indicator click', async () => {
@@ -125,13 +147,17 @@ describe('Carousel', () => {
     expect($el.find('.carousel-indicators .active').length).to.equal(1)
     expect($indicators.get(1).className).to.contain('active')
     expect($el.find('.carousel-inner .item.active').length).to.equal(1)
-    expect($el.find('.carousel-inner .item').get(1).className).to.contain('active')
+    expect($el.find('.carousel-inner .item').get(1).className).to.contain(
+      'active'
+    )
     triggerEvent($indicators.get(0), 'click')
     await sleep(700)
     expect($el.find('.carousel-indicators .active').length).to.equal(1)
     expect($indicators.get(0).className).to.contain('active')
     expect($el.find('.carousel-inner .item.active').length).to.equal(1)
-    expect($el.find('.carousel-inner .item').get(0).className).to.contain('active')
+    expect($el.find('.carousel-inner .item').get(0).className).to.contain(
+      'active'
+    )
   })
 
   it('should be able to hide indicators', async () => {
@@ -143,12 +169,19 @@ describe('Carousel', () => {
 
   it('should be able to use custom icons', async () => {
     const leftControlClass = 'my-custom-left-class'
-    vm = createVm('<carousel :icon-control-left="customLeftIcon" icon-control-right="custom-css-class"></carousel>', {
-      customLeftIcon: leftControlClass
-    })
+    vm = createVm(
+      '<carousel :icon-control-left="customLeftIcon" icon-control-right="custom-css-class"></carousel>',
+      {
+        customLeftIcon: leftControlClass,
+      }
+    )
     $el = $(vm.$el)
-    expect($el.find('.left.carousel-control > span').get(0).className).to.contain(leftControlClass)
-    expect($el.find('.right.carousel-control > span').get(0).className).to.contain('custom-css-class')
+    expect(
+      $el.find('.left.carousel-control > span').get(0).className
+    ).to.contain(leftControlClass)
+    expect(
+      $el.find('.right.carousel-control > span').get(0).className
+    ).to.contain('custom-css-class')
   })
 
   it('should be able to hide controls', async () => {
@@ -172,9 +205,13 @@ describe('Carousel', () => {
     await vm.$nextTick()
     await sleep(1200)
     expect($el.find('.carousel-indicators .active').length).to.equal(1)
-    expect($el.find('.carousel-indicators li').get(1).className).to.contain('active')
+    expect($el.find('.carousel-indicators li').get(1).className).to.contain(
+      'active'
+    )
     expect($el.find('.carousel-inner .item.active').length).to.equal(1)
-    expect($el.find('.carousel-inner .item').get(1).className).to.contain('active')
+    expect($el.find('.carousel-inner .item').get(1).className).to.contain(
+      'active'
+    )
   })
 
   it('should be able to stop interval', async () => {
@@ -183,8 +220,12 @@ describe('Carousel', () => {
     await vm.$nextTick()
     await sleep(1200)
     expect($el.find('.carousel-indicators .active').length).to.equal(1)
-    expect($el.find('.carousel-indicators li').get(0).className).to.contain('active')
+    expect($el.find('.carousel-indicators li').get(0).className).to.contain(
+      'active'
+    )
     expect($el.find('.carousel-inner .item.active').length).to.equal(1)
-    expect($el.find('.carousel-inner .item').get(0).className).to.contain('active')
+    expect($el.find('.carousel-inner .item').get(0).className).to.contain(
+      'active'
+    )
   })
 })

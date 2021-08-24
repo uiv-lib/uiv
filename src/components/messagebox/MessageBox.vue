@@ -1,8 +1,8 @@
 <template>
   <modal
     ref="modal"
-    auto-focus
     v-model="show"
+    auto-focus
     :size="size"
     :title="title"
     :header="!!title"
@@ -10,76 +10,68 @@
     :cancel-text="cancelText"
     :ok-text="okText"
     :class="customClass"
-    @hide="cb">
+    @hide="cb"
+  >
     <div v-if="html" v-html="content"></div>
     <p v-else>{{ content }}</p>
-    <div v-if="type===TYPES.PROMPT">
-      <div class="form-group" :class="{'has-error':inputNotValid}">
+    <div v-if="type === TYPES.PROMPT">
+      <div class="form-group" :class="{ 'has-error': inputNotValid }">
         <input
           ref="input"
-          :type="inputType"
           v-model="input"
+          :type="inputType"
           class="form-control"
           required
           data-action="auto-focus"
-          @change="dirty=true"
-          @keyup.enter="validate"/>
-        <span class="help-block" v-show="inputNotValid">{{ inputError }}</span>
+          @change="dirty = true"
+          @keyup.enter="validate"
+        />
+        <span v-show="inputNotValid" class="help-block">{{ inputError }}</span>
       </div>
     </div>
-    <template slot="footer" v-if="type===TYPES.ALERT">
+    <template v-if="type === TYPES.ALERT" slot="footer">
       <btn
         :type="okType"
-        @click="toggle(false,'ok')"
         :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
+        @click="toggle(false, 'ok')"
         v-text="okBtnText"
       />
     </template>
-    <template slot="footer" v-else>
+    <template v-else slot="footer">
       <template v-if="reverseButtons">
         <btn
+          v-if="type === TYPES.CONFIRM"
           :type="okType"
-          v-if="type===TYPES.CONFIRM"
-          @click="toggle(false,'ok')"
           :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
+          @click="toggle(false, 'ok')"
           v-text="okBtnText"
         />
-        <btn
-          :type="okType"
-          v-else
-          @click="validate"
-          v-text="okBtnText"
-        />
+        <btn v-else :type="okType" @click="validate" v-text="okBtnText" />
         <btn
           :type="cancelType"
-          @click="toggle(false,'cancel')"
           :data-action="autoFocus === 'cancel' ? 'auto-focus' : ''"
+          @click="toggle(false, 'cancel')"
           v-text="cancelBtnText"
         />
       </template>
       <template v-else>
         <btn
           :type="cancelType"
-          @click="toggle(false,'cancel')"
           :data-action="autoFocus === 'cancel' ? 'auto-focus' : ''"
+          @click="toggle(false, 'cancel')"
           v-text="cancelBtnText"
         />
         <btn
+          v-if="type === TYPES.CONFIRM"
           :type="okType"
-          v-if="type===TYPES.CONFIRM"
-          @click="toggle(false,'ok')"
           :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
+          @click="toggle(false, 'ok')"
           v-text="okBtnText"
         />
-        <btn
-          :type="okType"
-          v-else
-          @click="validate"
-          v-text="okBtnText"
-        />
+        <btn v-else :type="okType" @click="validate" v-text="okBtnText" />
       </template>
     </template>
   </modal>
 </template>
 
-<script src="./MessageBox.js"/>
+<script src="./MessageBox.js" />

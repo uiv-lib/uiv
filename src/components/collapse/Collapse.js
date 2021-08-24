@@ -5,34 +5,34 @@ const IN = 'in'
 const COLLAPSING = 'collapsing'
 
 export default {
-  render (h) {
+  render(h) {
     return h(this.tag, {}, this.$slots.default)
   },
   props: {
     tag: {
       type: String,
-      default: 'div'
+      default: 'div',
     },
     value: {
       type: Boolean,
-      default: false
+      default: false,
     },
     transition: {
       type: Number,
-      default: 350
-    }
+      default: 350,
+    },
   },
-  data () {
+  data() {
     return {
-      timeoutId: 0
+      timeoutId: 0,
     }
   },
   watch: {
-    value (show) {
+    value(show) {
       this.toggle(show)
-    }
+    },
   },
-  mounted () {
+  mounted() {
     const el = this.$el
     addClass(el, COLLAPSE)
     if (this.value) {
@@ -40,7 +40,7 @@ export default {
     }
   },
   methods: {
-    toggle (show) {
+    toggle(show) {
       clearTimeout(this.timeoutId)
       const el = this.$el
       if (show) {
@@ -76,6 +76,6 @@ export default {
           this.$emit('hidden')
         }, this.transition)
       }
-    }
-  }
+    },
+  },
 }

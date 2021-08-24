@@ -15,15 +15,15 @@ export default {
     content: String,
     html: {
       type: Boolean,
-      default: false
+      default: false,
     },
     duration: {
       type: Number,
-      default: 5000
+      default: 5000,
     },
     dismissible: {
       type: Boolean,
-      default: true
+      default: true,
     },
     type: String,
     placement: String,
@@ -31,38 +31,46 @@ export default {
     customClass: null,
     cb: {
       type: Function,
-      required: true
+      required: true,
     },
     queue: {
       type: Array,
-      required: true
+      required: true,
     },
     offsetY: {
       type: Number,
-      default: 15
+      default: 15,
     },
     offsetX: {
       type: Number,
-      default: 15
+      default: 15,
     },
     offset: {
       type: Number,
-      default: 15
-    }
+      default: 15,
+    },
   },
-  data () {
+  data() {
     return {
       height: 0,
       top: 0,
-      horizontal: this.placement === PLACEMENTS.TOP_LEFT || this.placement === PLACEMENTS.BOTTOM_LEFT ? 'left' : 'right',
-      vertical: this.placement === PLACEMENTS.TOP_LEFT || this.placement === PLACEMENTS.TOP_RIGHT ? 'top' : 'bottom'
+      horizontal:
+        this.placement === PLACEMENTS.TOP_LEFT ||
+        this.placement === PLACEMENTS.BOTTOM_LEFT
+          ? 'left'
+          : 'right',
+      vertical:
+        this.placement === PLACEMENTS.TOP_LEFT ||
+        this.placement === PLACEMENTS.TOP_RIGHT
+          ? 'top'
+          : 'bottom',
     }
   },
-  created () {
+  created() {
     // get prev notifications total height in the queue
     this.top = this.getTotalHeightOfQueue(this.queue)
   },
-  mounted () {
+  mounted() {
     const el = this.$el
     el.style[this.vertical] = this.top + 'px'
     this.$nextTick(() => {
@@ -73,17 +81,17 @@ export default {
     })
   },
   computed: {
-    styles () {
+    styles() {
       const queue = this.queue
       const thisIndex = queue.indexOf(this)
       return {
         position: 'fixed',
         [this.vertical]: `${this.getTotalHeightOfQueue(queue, thisIndex)}px`,
         width: `${WIDTH}px`,
-        transition: `all ${TRANSITION_DURATION / 1000}s ease-in-out`
+        transition: `all ${TRANSITION_DURATION / 1000}s ease-in-out`,
       }
     },
-    icons () {
+    icons() {
       if (isString(this.icon)) {
         return this.icon
       }
@@ -98,19 +106,19 @@ export default {
         default:
           return null
       }
-    }
+    },
   },
   methods: {
-    getTotalHeightOfQueue (queue, lastIndex = queue.length) {
+    getTotalHeightOfQueue(queue, lastIndex = queue.length) {
       let totalHeight = this.offsetY
       for (let i = 0; i < lastIndex; i++) {
         totalHeight += queue[i].height + this.offset
       }
       return totalHeight
     },
-    onDismissed () {
+    onDismissed() {
       removeClass(this.$el, IN_CLASS)
       setTimeout(this.cb, TRANSITION_DURATION)
-    }
-  }
+    },
+  },
 }

@@ -2,36 +2,42 @@ import scroll from './../../directives/scroll'
 
 export default {
   directives: {
-    scroll
+    scroll,
   },
   props: {
     offset: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
-  data () {
+  data() {
     return {
-      affixed: false
+      affixed: false,
     }
   },
   computed: {
-    classes () {
+    classes() {
       return {
-        affix: this.affixed
+        affix: this.affixed,
       }
     },
-    styles () {
+    styles() {
       return {
-        top: this.affixed ? this.offset + 'px' : null
+        top: this.affixed ? this.offset + 'px' : null,
       }
-    }
+    },
   },
   methods: {
     // from https://github.com/ant-design/ant-design/blob/master/components/affix/index.jsx#L20
-    onScroll () {
+    onScroll() {
       // if is hidden don't calculate anything
-      if (!(this.$el.offsetWidth || this.$el.offsetHeight || this.$el.getClientRects().length)) {
+      if (
+        !(
+          this.$el.offsetWidth ||
+          this.$el.offsetHeight ||
+          this.$el.getClientRects().length
+        )
+      ) {
         return
       }
       // get window scroll and element position to detect if have to be normal or affixed
@@ -40,10 +46,13 @@ export default {
       const rect = this.$el.getBoundingClientRect()
       const body = document.body
       const types = ['Top', 'Left']
-      types.forEach(type => {
+      types.forEach((type) => {
         const t = type.toLowerCase()
         scroll[t] = window['page' + (type === 'Top' ? 'Y' : 'X') + 'Offset']
-        element[t] = scroll[t] + rect[t] - (this.$el['client' + type] || body['client' + type] || 0)
+        element[t] =
+          scroll[t] +
+          rect[t] -
+          (this.$el['client' + type] || body['client' + type] || 0)
       })
       const fix = scroll.top > element.top - this.offset
       if (this.affixed !== fix) {
@@ -53,6 +62,6 @@ export default {
           this.$emit(this.affixed ? 'affixed' : 'unfixed')
         })
       }
-    }
-  }
+    },
+  },
 }

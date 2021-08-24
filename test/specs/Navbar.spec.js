@@ -1,6 +1,6 @@
 import { createVm, destroyVm, sleep } from '../utils'
 
-function baseVm () {
+function baseVm() {
   return createVm(`<div><navbar>
   <a class="navbar-brand" slot="brand" href="#">Brand</a>
   <template slot="collapse">
@@ -47,8 +47,12 @@ describe('Navbar', () => {
     const collapse = nav.querySelector('.navbar-collapse.collapse')
     expect(collapse).to.exist
     expect(collapse.querySelectorAll('.nav.navbar-nav').length).to.equal(2)
-    expect(collapse.querySelectorAll('.nav.navbar-nav.navbar-right').length).to.equal(1)
-    expect(collapse.querySelectorAll('.navbar-form.navbar-left').length).to.equal(1)
+    expect(
+      collapse.querySelectorAll('.nav.navbar-nav.navbar-right').length
+    ).to.equal(1)
+    expect(
+      collapse.querySelectorAll('.navbar-form.navbar-left').length
+    ).to.equal(1)
   })
 
   it('should be able to render nav-text', async () => {
@@ -58,7 +62,9 @@ describe('Navbar', () => {
 </navbar></div>`)
     const nav = vm.$el.querySelector('nav')
     expect(nav.querySelector('.navbar-text')).to.exist
-    expect(nav.querySelector('.navbar-text').textContent).to.equal('Signed in as wxsm')
+    expect(nav.querySelector('.navbar-text').textContent).to.equal(
+      'Signed in as wxsm'
+    )
   })
 
   it('should be able to render static top', async () => {
@@ -99,7 +105,7 @@ describe('Navbar', () => {
 
   it('should be able to use with v-model', async () => {
     vm = createVm('<div><navbar v-model="show"/></div>', {
-      show: true
+      show: true,
     })
     const nav = vm.$el
     const trigger = nav.querySelector('.navbar-toggle')

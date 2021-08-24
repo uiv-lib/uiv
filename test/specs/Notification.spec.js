@@ -4,90 +4,105 @@ import Notification from '../../src/services/notification/Notification'
 
 const OFFSET = '15px'
 
-function baseVm () {
-  return createVm(`<section>
+function baseVm() {
+  return createVm(
+    `<section>
     <btn @click="notify" type="primary">Simplest Notification</btn>
     <btn @click="notify2" type="primary">No Auto-dismiss Notification</btn>
-  </section>`, {}, {
-    methods: {
-      // example with callback
-      // pass a String as the notification content
-      notify () {
-        this.$notify('This is a simple notify msg.', () => {
-          // callback after dismissed
-          console.log('dismissed')
-        })
+  </section>`,
+    {},
+    {
+      methods: {
+        // example with callback
+        // pass a String as the notification content
+        notify() {
+          this.$notify('This is a simple notify msg.', () => {
+            // callback after dismissed
+            console.log('dismissed')
+          })
+        },
+        // example with Promise and options
+        notify2() {
+          this.$notify({
+            title: 'Title',
+            content: 'This notification will not dismiss automatically.',
+            duration: 0,
+          }).then(() => {
+            // resolve after dismissed
+            console.log('dismissed')
+          })
+        },
       },
-      // example with Promise and options
-      notify2 () {
-        this.$notify({
-          title: 'Title',
-          content: 'This notification will not dismiss automatically.',
-          duration: 0
-        }).then(() => {
-          // resolve after dismissed
-          console.log('dismissed')
-        })
-      }
     }
-  })
+  )
 }
 
-function typesVm () {
-  return createVm(`<section>
+function typesVm() {
+  return createVm(
+    `<section>
     <btn @click="info" type="info">Info</btn>
     <btn @click="success" type="success">Success</btn>
     <btn @click="warning" type="warning">Warning</btn>
     <btn @click="danger" type="danger">Danger</btn>
-  </section>`, {}, {
-    methods: {
-      info () {
-        this.$notify({
-          type: 'info',
-          title: 'Heads up!',
-          content: 'This alert needs your attention, but it\'s not super important.'
-        })
+  </section>`,
+    {},
+    {
+      methods: {
+        info() {
+          this.$notify({
+            type: 'info',
+            title: 'Heads up!',
+            content:
+              "This alert needs your attention, but it's not super important.",
+          })
+        },
+        success() {
+          this.$notify({
+            type: 'success',
+            title: 'Well done!',
+            content: 'You successfully read this important alert message.',
+          })
+        },
+        warning() {
+          // simple warning with content only
+          this.$notify.warning(
+            "Better check yourself, you're not looking too good."
+          )
+        },
+        danger() {
+          // error msg with title and content (other options available too)
+          // `error` is an alias of `danger` (both of them works)
+          this.$notify.error({
+            title: 'Oh snap!',
+            content: 'Change a few things up and try submitting again.',
+          })
+        },
       },
-      success () {
-        this.$notify({
-          type: 'success',
-          title: 'Well done!',
-          content: 'You successfully read this important alert message.'
-        })
-      },
-      warning () {
-        // simple warning with content only
-        this.$notify.warning('Better check yourself, you\'re not looking too good.')
-      },
-      danger () {
-        // error msg with title and content (other options available too)
-        // `error` is an alias of `danger` (both of them works)
-        this.$notify.error({
-          title: 'Oh snap!',
-          content: 'Change a few things up and try submitting again.'
-        })
-      }
     }
-  })
+  )
 }
 
-function placementVm () {
-  return createVm(`<section>
+function placementVm() {
+  return createVm(
+    `<section>
     <btn @click="notify('top-right')" type="primary">Top Right (Default)</btn>
     <btn @click="notify('bottom-right')" type="primary">Bottom Right</btn>
     <btn @click="notify('bottom-left')" type="primary">Bottom Left</btn>
     <btn @click="notify('top-left')" type="primary">Top Left</btn>
-  </section>`, {}, {
-    methods: {
-      notify (placement) {
-        this.$notify({
-          placement, // equal to `placement: placement` in ES6
-          title: 'Title',
-          content: `This is a notify msg at ${placement}.`
-        })
-      }
+  </section>`,
+    {},
+    {
+      methods: {
+        notify(placement) {
+          this.$notify({
+            placement, // equal to `placement: placement` in ES6
+            title: 'Title',
+            content: `This is a notify msg at ${placement}.`,
+          })
+        },
+      },
     }
-  })
+  )
 }
 
 describe('Notification', () => {
@@ -125,7 +140,9 @@ describe('Notification', () => {
     expect(alert.className).to.contain('fade')
     expect(alert.className).to.contain('in')
     expect(alert.querySelector('.media-heading')).not.exist
-    expect(alert.querySelector('.media-body > div').textContent).to.equal('This is a simple notify msg.')
+    expect(alert.querySelector('.media-body > div').textContent).to.equal(
+      'This is a simple notify msg.'
+    )
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
@@ -147,7 +164,9 @@ describe('Notification', () => {
     expect(alert.className).to.contain('fade')
     expect(alert.className).to.contain('in')
     expect(alert.querySelector('.media-heading').textContent).to.equal('Title')
-    expect(alert.querySelectorAll('.media-body > div')[1].textContent).to.equal('This notification will not dismiss automatically.')
+    expect(alert.querySelectorAll('.media-body > div')[1].textContent).to.equal(
+      'This notification will not dismiss automatically.'
+    )
     await sleep(5000 + 1000)
     expect(document.querySelector('.alert')).to.exist
     alert.querySelector('button.close').click()
@@ -167,8 +186,11 @@ describe('Notification', () => {
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
     expect(alert.className).to.contain('alert-info')
-    expect(alert.querySelectorAll('.media-left > .glyphicon').length).to.equal(1)
-    expect(alert.querySelectorAll('.media-left > .glyphicon-info-sign')).to.exist
+    expect(alert.querySelectorAll('.media-left > .glyphicon').length).to.equal(
+      1
+    )
+    expect(alert.querySelectorAll('.media-left > .glyphicon-info-sign')).to
+      .exist
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
@@ -185,7 +207,9 @@ describe('Notification', () => {
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
     expect(alert.className).to.contain('alert-success')
-    expect(alert.querySelectorAll('.media-left > .glyphicon').length).to.equal(1)
+    expect(alert.querySelectorAll('.media-left > .glyphicon').length).to.equal(
+      1
+    )
     expect(alert.querySelectorAll('.media-left > .glyphicon-ok-sign')).to.exist
     alert.querySelector('button.close').click()
     await sleep(transition)
@@ -203,8 +227,11 @@ describe('Notification', () => {
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
     expect(alert.className).to.contain('alert-warning')
-    expect(alert.querySelectorAll('.media-left > .glyphicon').length).to.equal(1)
-    expect(alert.querySelectorAll('.media-left > .glyphicon-info-sign')).to.exist
+    expect(alert.querySelectorAll('.media-left > .glyphicon').length).to.equal(
+      1
+    )
+    expect(alert.querySelectorAll('.media-left > .glyphicon-info-sign')).to
+      .exist
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
@@ -221,8 +248,11 @@ describe('Notification', () => {
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
     expect(alert.className).to.contain('alert-danger')
-    expect(alert.querySelectorAll('.media-left > .glyphicon').length).to.equal(1)
-    expect(alert.querySelectorAll('.media-left > .glyphicon-remove-sign')).to.exist
+    expect(alert.querySelectorAll('.media-left > .glyphicon').length).to.equal(
+      1
+    )
+    expect(alert.querySelectorAll('.media-left > .glyphicon-remove-sign')).to
+      .exist
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
@@ -306,17 +336,21 @@ describe('Notification', () => {
   })
 
   it('should be able to use `dismissible=false` notification', async () => {
-    vm = createVm('<div><btn @click="notify" type="primary">Notification Without Dismiss Button</btn></div>', {}, {
-      methods: {
-        notify () {
-          this.$notify({
-            title: 'Title',
-            content: 'This is a notification without dismiss btn.',
-            dismissible: false
-          })
-        }
+    vm = createVm(
+      '<div><btn @click="notify" type="primary">Notification Without Dismiss Button</btn></div>',
+      {},
+      {
+        methods: {
+          notify() {
+            this.$notify({
+              title: 'Title',
+              content: 'This is a notification without dismiss btn.',
+              dismissible: false,
+            })
+          },
+        },
       }
-    })
+    )
     await vm.$nextTick()
     const trigger = vm.$el.querySelectorAll('.btn')[0]
     trigger.click()
@@ -389,7 +423,11 @@ describe('Notification', () => {
   })
 
   it('should be able to work with `custom-class`', async () => {
-    Notification.notify({ title: 'test', type: 'danger', customClass: 'test-class' })
+    Notification.notify({
+      title: 'test',
+      type: 'danger',
+      customClass: 'test-class',
+    })
     await sleep(transition)
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
@@ -403,7 +441,7 @@ describe('Notification', () => {
   it('should not be able to use HTML content if html=false', async () => {
     Notification.notify({
       title: 'test',
-      content: '<a href="#" id="test-a">test</a>'
+      content: '<a href="#" id="test-a">test</a>',
     })
     await sleep(transition)
     const alert = document.querySelector('.alert')
@@ -418,7 +456,7 @@ describe('Notification', () => {
     Notification.notify({
       title: 'test',
       html: true,
-      content: '<a href="#" id="test-a">test</a>'
+      content: '<a href="#" id="test-a">test</a>',
     })
     await sleep(transition)
     const alert = document.querySelector('.alert')

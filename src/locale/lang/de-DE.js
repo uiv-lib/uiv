@@ -23,15 +23,15 @@ export default {
       week4: 'Do',
       week5: 'Fr',
       week6: 'Sa',
-      week7: 'So'
+      week7: 'So',
     },
     timePicker: {
       am: 'Vormittag',
-      pm: 'Nachmittag'
+      pm: 'Nachmittag',
     },
     modal: {
       cancel: 'Abbrechen',
-      ok: 'OK'
-    }
-  }
+      ok: 'OK',
+    },
+  },
 }

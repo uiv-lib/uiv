@@ -23,15 +23,15 @@ export default {
       week4: 'To',
       week5: 'Pe',
       week6: 'La',
-      week7: 'Su'
+      week7: 'Su',
     },
     timePicker: {
       am: 'AM',
-      pm: 'PM'
+      pm: 'PM',
     },
     modal: {
       cancel: 'Peruuta',
-      ok: 'OK'
-    }
-  }
+      ok: 'OK',
+    },
+  },
 }

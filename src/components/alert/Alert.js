@@ -2,43 +2,43 @@ export default {
   props: {
     dismissible: {
       type: Boolean,
-      default: false
+      default: false,
     },
     duration: {
       type: Number,
-      default: 0
+      default: 0,
     },
     type: {
       type: String,
-      default: 'info'
-    }
+      default: 'info',
+    },
   },
-  data () {
+  data() {
     return {
-      timeout: 0
+      timeout: 0,
     }
   },
   computed: {
-    alertClass () {
+    alertClass() {
       return {
         alert: true,
         [`alert-${this.type}`]: Boolean(this.type),
-        'alert-dismissible': this.dismissible
+        'alert-dismissible': this.dismissible,
       }
-    }
+    },
   },
   methods: {
-    closeAlert () {
+    closeAlert() {
       clearTimeout(this.timeout)
       this.$emit('dismissed')
-    }
+    },
   },
-  mounted () {
+  mounted() {
     if (this.duration > 0) {
       this.timeout = setTimeout(this.closeAlert, this.duration)
     }
   },
-  destroyed () {
+  destroyed() {
     clearTimeout(this.timeout)
-  }
+  },
 }

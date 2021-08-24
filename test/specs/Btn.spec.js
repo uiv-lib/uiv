@@ -88,7 +88,8 @@ describe('Btn', () => {
   })
 
   it('should be able to render block level btn', () => {
-    vm = createVm(`<div><btn block size="lg" type="primary">Block level button</btn>
+    vm =
+      createVm(`<div><btn block size="lg" type="primary">Block level button</btn>
 <btn block size="lg">Block level button</btn></div>`)
     const $btnBlock = $(vm.$el)
     expect($btnBlock.find('.btn.btn-block').length).to.equal(2)
@@ -136,15 +137,19 @@ describe('Btn', () => {
   })
 
   it('should emit click event', async () => {
-    vm = createVm('<btn @click="onClick">{{ msg }}</btn>', {
-      msg: 'test'
-    }, {
-      methods: {
-        onClick () {
-          this.msg = 'clicked'
-        }
+    vm = createVm(
+      '<btn @click="onClick">{{ msg }}</btn>',
+      {
+        msg: 'test',
+      },
+      {
+        methods: {
+          onClick() {
+            this.msg = 'clicked'
+          },
+        },
       }
-    })
+    )
     await vm.$nextTick()
     expect(vm.msg).to.equal('test')
     triggerEvent(vm.$el, 'click')
@@ -153,15 +158,19 @@ describe('Btn', () => {
   })
 
   it('should not emit click event while disabled', async () => {
-    vm = createVm('<btn disabled @click="onClick">{{ msg }}</btn>', {
-      msg: 'test'
-    }, {
-      methods: {
-        onClick () {
-          this.msg = 'clicked'
-        }
+    vm = createVm(
+      '<btn disabled @click="onClick">{{ msg }}</btn>',
+      {
+        msg: 'test',
+      },
+      {
+        methods: {
+          onClick() {
+            this.msg = 'clicked'
+          },
+        },
       }
-    })
+    )
     await vm.$nextTick()
     expect(vm.msg).to.equal('test')
     triggerEvent(vm.$el, 'click')
@@ -170,7 +179,8 @@ describe('Btn', () => {
   })
 
   it('should be able to render checkbox btn', async () => {
-    vm = createVm(`  <section>
+    vm = createVm(
+      `  <section>
     <btn-group>
       <btn input-type="checkbox" input-value="1" v-model="model">Checkbox 1</btn>
       <btn input-type="checkbox" input-value="2" v-model="model">Checkbox 2</btn>
@@ -179,25 +189,38 @@ describe('Btn', () => {
     </btn-group>
     <hr/>
     <alert>Selected: {{model}}</alert>
-  </section>`, {
-      model: ['1']
-    })
+  </section>`,
+      {
+        model: ['1'],
+      }
+    )
     const $btnInputCheckbox = $(vm.$el)
     await vm.$nextTick()
     expect($btnInputCheckbox.find('label.btn').length).to.equal(4)
-    expect($btnInputCheckbox.find('label.btn > input[type=checkbox]').length).to.equal(4)
+    expect(
+      $btnInputCheckbox.find('label.btn > input[type=checkbox]').length
+    ).to.equal(4)
     // first one should be actived by default
     expect($btnInputCheckbox.find('label.btn.active').length).to.equal(1)
-    expect($btnInputCheckbox.find('label.btn > input[type=checkbox]').get(0).checked).to.be.true
-    expect($btnInputCheckbox.find('label.btn').get(0).className).to.contain('active')
+    expect(
+      $btnInputCheckbox.find('label.btn > input[type=checkbox]').get(0).checked
+    ).to.be.true
+    expect($btnInputCheckbox.find('label.btn').get(0).className).to.contain(
+      'active'
+    )
     // last one shoubd be disabled by default
     expect($btnInputCheckbox.find('label.btn.disabled').length).to.equal(1)
-    expect($btnInputCheckbox.find('label.btn.disabled > input[disabled]').length).to.equal(1)
-    expect($btnInputCheckbox.find('label.btn').get(3).className).to.contain('disabled')
+    expect(
+      $btnInputCheckbox.find('label.btn.disabled > input[disabled]').length
+    ).to.equal(1)
+    expect($btnInputCheckbox.find('label.btn').get(3).className).to.contain(
+      'disabled'
+    )
   })
 
   it('should be able to select checkbox btn', async () => {
-    vm = createVm(`  <section>
+    vm = createVm(
+      `  <section>
     <btn-group>
       <btn input-type="checkbox" input-value="1" v-model="model">Checkbox 1</btn>
       <btn input-type="checkbox" input-value="2" v-model="model">Checkbox 2</btn>
@@ -206,9 +229,11 @@ describe('Btn', () => {
     </btn-group>
     <hr/>
     <alert>Selected: {{model}}</alert>
-  </section>`, {
-      model: ['1']
-    })
+  </section>`,
+      {
+        model: ['1'],
+      }
+    )
     const $el = $(vm.$el)
     await vm.$nextTick()
     // phantomjs won't response on label click
@@ -216,9 +241,12 @@ describe('Btn', () => {
     await vm.$nextTick()
     // active second one
     expect($el.find('label.btn.active').length).to.equal(2)
-    expect($el.find('label.btn > input[type=checkbox]').get(0).checked).to.be.true
-    expect($el.find('label.btn > input[type=checkbox]').get(1).checked).to.be.true
-    expect($el.find('label.btn > input[type=checkbox]').get(3).checked).to.be.false
+    expect($el.find('label.btn > input[type=checkbox]').get(0).checked).to.be
+      .true
+    expect($el.find('label.btn > input[type=checkbox]').get(1).checked).to.be
+      .true
+    expect($el.find('label.btn > input[type=checkbox]').get(3).checked).to.be
+      .false
     expect($el.find('label.btn').get(1).className).to.contain('active')
     // model change
     expect(vm.model.length).to.equal(2)
@@ -227,7 +255,8 @@ describe('Btn', () => {
   })
 
   it('should be able to un-select checkbox btn', async () => {
-    vm = createVm(`  <section>
+    vm = createVm(
+      `  <section>
     <btn-group>
       <btn input-type="checkbox" input-value="1" v-model="model">Checkbox 1</btn>
       <btn input-type="checkbox" input-value="2" v-model="model">Checkbox 2</btn>
@@ -236,9 +265,11 @@ describe('Btn', () => {
     </btn-group>
     <hr/>
     <alert>Selected: {{model}}</alert>
-  </section>`, {
-      model: ['1']
-    })
+  </section>`,
+      {
+        model: ['1'],
+      }
+    )
     const $el = $(vm.$el)
     await vm.$nextTick()
     // phantomjs won't response on label click
@@ -250,7 +281,8 @@ describe('Btn', () => {
   })
 
   it('should be able to render radio btn', async () => {
-    vm = createVm(`  <section>
+    vm = createVm(
+      `  <section>
     <btn-group>
       <btn input-type="radio" input-value="1" v-model="model">Radio 1</btn>
       <btn input-type="radio" input-value="2" v-model="model">Radio 2</btn>
@@ -259,25 +291,37 @@ describe('Btn', () => {
     </btn-group>
     <hr/>
     <alert>Selected: {{model}}</alert>
-  </section>`, {
-      model: '1'
-    })
+  </section>`,
+      {
+        model: '1',
+      }
+    )
     const $btnInputRadio = $(vm.$el)
     await vm.$nextTick()
     expect($btnInputRadio.find('label.btn').length).to.equal(4)
-    expect($btnInputRadio.find('label.btn > input[type=radio]').length).to.equal(4)
+    expect(
+      $btnInputRadio.find('label.btn > input[type=radio]').length
+    ).to.equal(4)
     // active first one
     expect($btnInputRadio.find('label.btn.active').length).to.equal(1)
-    expect($btnInputRadio.find('label.btn > input[type=radio]').get(0).checked).to.be.true
-    expect($btnInputRadio.find('label.btn').get(0).className).to.contain('active')
+    expect($btnInputRadio.find('label.btn > input[type=radio]').get(0).checked)
+      .to.be.true
+    expect($btnInputRadio.find('label.btn').get(0).className).to.contain(
+      'active'
+    )
     // disabled last one
     expect($btnInputRadio.find('label.btn.disabled').length).to.equal(1)
-    expect($btnInputRadio.find('label.btn.disabled > input[disabled]').length).to.equal(1)
-    expect($btnInputRadio.find('label.btn').get(3).className).to.contain('disabled')
+    expect(
+      $btnInputRadio.find('label.btn.disabled > input[disabled]').length
+    ).to.equal(1)
+    expect($btnInputRadio.find('label.btn').get(3).className).to.contain(
+      'disabled'
+    )
   })
 
   it('should be able to select radio btn', async () => {
-    vm = createVm(`  <section>
+    vm = createVm(
+      `  <section>
     <btn-group>
       <btn input-type="radio" input-value="1" v-model="model">Radio 1</btn>
       <btn input-type="radio" input-value="2" v-model="model">Radio 2</btn>
@@ -286,9 +330,11 @@ describe('Btn', () => {
     </btn-group>
     <hr/>
     <alert>Selected: {{model}}</alert>
-  </section>`, {
-      model: '1'
-    })
+  </section>`,
+      {
+        model: '1',
+      }
+    )
     const $el = $(vm.$el)
     await vm.$nextTick()
     // phantomjs won't response on label click
@@ -305,7 +351,8 @@ describe('Btn', () => {
   })
 
   it('should not be able to un-select radio btn', async () => {
-    vm = createVm(`  <section>
+    vm = createVm(
+      `  <section>
     <btn-group>
       <btn input-type="radio" input-value="1" v-model="model">Radio 1</btn>
       <btn input-type="radio" input-value="2" v-model="model">Radio 2</btn>
@@ -314,9 +361,11 @@ describe('Btn', () => {
     </btn-group>
     <hr/>
     <alert>Selected: {{model}}</alert>
-  </section>`, {
-      model: '1'
-    })
+  </section>`,
+      {
+        model: '1',
+      }
+    )
     const $el = $(vm.$el)
     await vm.$nextTick()
     // phantomjs won't response on label click

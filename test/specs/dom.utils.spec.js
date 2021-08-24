@@ -137,15 +137,21 @@ describe('dom.utils', () => {
 
   describe('#getElementBySelectorOrRef', () => {
     it('should be able to handle string input', () => {
-      expect(utils.getElementBySelectorOrRef('body')).to.equal(document.querySelector('body'))
+      expect(utils.getElementBySelectorOrRef('body')).to.equal(
+        document.querySelector('body')
+      )
     })
 
     it('should be able to handle element input', () => {
-      expect(utils.getElementBySelectorOrRef(document.querySelector('body'))).to.equal(document.querySelector('body'))
+      expect(
+        utils.getElementBySelectorOrRef(document.querySelector('body'))
+      ).to.equal(document.querySelector('body'))
     })
 
     it('should be able to handle component input', () => {
-      expect(utils.getElementBySelectorOrRef({ $el: document.querySelector('body') })).to.equal(document.querySelector('body'))
+      expect(
+        utils.getElementBySelectorOrRef({ $el: document.querySelector('body') })
+      ).to.equal(document.querySelector('body'))
     })
 
     it('should be able to handle other input', () => {
