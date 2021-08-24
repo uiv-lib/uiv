@@ -22,6 +22,8 @@ jobs:
       - name: Changelog
         uses: scottbrenner/generate-changelog-action@master
         id: Changelog
+        with:
+          exclude: chore
         env:
           REPO: ${{ github.repository }}
       - name: Create Release
