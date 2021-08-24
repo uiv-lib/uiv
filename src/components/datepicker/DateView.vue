@@ -50,7 +50,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(row, index) in monthDayRows" :key="index">
+      <tr v-for="(row, i) in monthDayRows" :key="i">
         <td
           v-if="weekNumbers"
           class="text-center"
@@ -60,7 +60,7 @@
             getWeekNumber(row[weekStartsWith])
           }}</small>
         </td>
-        <td v-for="(date, _index) in row" :key="_index">
+        <td v-for="(date, j) in row" :key="`${i}_${j}`">
           <btn
             block
             size="sm"

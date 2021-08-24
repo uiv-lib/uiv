@@ -50,16 +50,16 @@
           @keydown.prevent.stop.enter="selectOption"
         />
       </li>
-      <template v-for="(item, index) in groupedOptions">
+      <template v-for="(item, i) in groupedOptions">
         <li
           v-if="item.$group"
-          :key="index"
+          :key="i"
           class="dropdown-header"
           v-text="item.$group"
         ></li>
         <template v-for="(_item, j) in item.options">
           <li
-            :key="j"
+            :key="`${i}_${j}`"
             :class="itemClasses(_item)"
             style="outline: 0"
             @keydown.prevent.stop.down="goNextOption"

@@ -39,7 +39,12 @@
     </thead>
     <tbody>
       <tr v-for="(row, i) in rows" :key="i">
-        <td v-for="(month, j) in row" :key="j" colspan="2" width="33.333333%">
+        <td
+          v-for="(month, j) in row"
+          :key="`${i}_${j}`"
+          colspan="2"
+          width="33.333333%"
+        >
           <btn
             block
             size="sm"

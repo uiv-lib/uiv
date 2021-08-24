@@ -17,7 +17,7 @@
           :key="index"
           :class="{ active: index === activeIndex }"
           @click="select(index)"
-        ></li>
+        />
       </ol>
     </slot>
     <div class="carousel-inner" role="listbox">

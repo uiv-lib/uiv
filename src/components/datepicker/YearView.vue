@@ -37,8 +37,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(row, index) in rows" :key="index">
-        <td v-for="(year, _index) in row" :key="_index" width="20%">
+      <tr v-for="(row, i) in rows" :key="i">
+        <td v-for="(year, j) in row" :key="`${i}_${j}`" width="20%">
           <btn
             block
             size="sm"

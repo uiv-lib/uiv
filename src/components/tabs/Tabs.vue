@@ -1,11 +1,11 @@
 <template>
   <section>
     <ul :class="navClasses" role="tablist">
-      <template v-for="(tab, index) in groupedTabs">
+      <template v-for="(tab, i) in groupedTabs">
         <dropdown
           v-if="tab.tabs"
           v-show="!tab.hidden"
-          :key="index"
+          :key="i"
           role="presentation"
           tag="li"
           :class="getTabClasses(tab)"
@@ -17,7 +17,7 @@
             <li
               v-for="(subTab, j) in tab.tabs"
               v-show="!subTab.hidden"
-              :key="j"
+              :key="`${i}_${j}`"
               :class="getTabClasses(subTab, true)"
             >
               <a href="#" @click.prevent="select(tabs.indexOf(subTab))">{{
@@ -29,7 +29,7 @@
         <li
           v-else
           v-show="!tab.hidden"
-          :key="index"
+          :key="i"
           role="presentation"
           :class="getTabClasses(tab)"
         >

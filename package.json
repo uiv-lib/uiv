@@ -26,7 +26,7 @@
     "dist:test": "rollup -c rollup/rollup.test.js",
     "build": "node build/build-docs.js && node build/build-dist-config.js",
     "test": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
-    "lint": "eslint --ext .js,.vue src test/specs",
+    "lint": "eslint --ext .js,.vue src test",
     "lint:fix": "npm run lint -- --fix",
     "coveralls": "cat test/coverage/lcov.info | ./node_modules/.bin/coveralls"
   },

@@ -14,10 +14,10 @@ module.exports = function (config) {
     // 2. add it to the `browsers` array below.
     browsers: ['ChromeHeadlessDesktop'],
     customLaunchers: {
-      'ChromeHeadlessDesktop': {
+      ChromeHeadlessDesktop: {
         base: 'ChromeHeadless',
-        flags: ['--window-size=1920,1080', '--no-sandbox']
-      }
+        flags: ['--window-size=1920,1080', '--no-sandbox'],
+      },
     },
     // browsers: ['Chrome'],
     frameworks: ['mocha', 'sinon-chai'],
@@ -28,10 +28,10 @@ module.exports = function (config) {
        * because the preprocessor will use its own.
        */
       { pattern: './index.js', watched: false },
-      '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+      '../node_modules/bootstrap/dist/css/bootstrap.min.css',
     ],
     preprocessors: {
-      './index.js': ['rollup']
+      './index.js': ['rollup'],
     },
     rollupPreprocessor: require('../rollup/rollup.test'),
     singleRun: true,
@@ -42,15 +42,15 @@ module.exports = function (config) {
       skipFilesWithNoCoverage: true,
       'report-config': {
         lcovonly: {
-          subdir: '.'
+          subdir: '.',
         },
         html: {
-          subdir: './html'
-        }
-      }
+          subdir: './html',
+        },
+      },
     },
     client: {
-      useIframe: false // Page scroll not working without this!!!
-    }
+      useIframe: false, // Page scroll not working without this!!!
+    },
   })
 }

@@ -12,7 +12,7 @@ export const keyCodes = {
   left: 37,
   right: 39,
   down: 40,
-  'delete': [8, 46]
+  delete: [8, 46],
 }
 
 export const triggerEvent = (elm, name, evtProps = {}, ...opts) => {
@@ -33,9 +33,7 @@ export const triggerEvent = (elm, name, evtProps = {}, ...opts) => {
       evt[k] = evtProps[k]
     }
   }
-  elm.dispatchEvent
-    ? elm.dispatchEvent(evt)
-    : elm.fireEvent('on' + name, evt)
+  elm.dispatchEvent ? elm.dispatchEvent(evt) : elm.fireEvent('on' + name, evt)
   return elm
 }
 
@@ -55,7 +53,7 @@ export const triggerKey = (el, key, type = 'down') => {
 }
 
 export const sleep = (time) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, time)
   })
 }
@@ -64,14 +62,14 @@ export const createVm = (template, _data, _options) => {
   $('<div id="app"><div id="mount"></div></div>').appendTo('body')
   const res = Vue.compile(template)
   return new Vue({
-    data () {
+    data() {
       return {
-        ..._data
+        ..._data,
       }
     },
     ..._options,
     render: res.render,
-    staticRenderFns: res.staticRenderFns
+    staticRenderFns: res.staticRenderFns,
   }).$mount('#mount')
 }
 
