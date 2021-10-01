@@ -68,7 +68,7 @@
     "mocha-lcov-reporter": "1.3.0",
     "prettier": "2.4.1",
     "puppeteer": "10.4.0",
-    "rollup": "2.57.0",
+    "rollup": "2.58.0",
     "rollup-plugin-filesize": "9.1.1",
     "rollup-plugin-istanbul": "3.0.0",
     "rollup-plugin-strip-code": "0.2.7",
