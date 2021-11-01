@@ -55,7 +55,7 @@
     "eslint-plugin-promise": "5.1.1",
     "eslint-plugin-vue": "8.0.3",
     "jquery": "3.6.0",
-    "karma": "6.3.6",
+    "karma": "6.3.7",
     "karma-chrome-launcher": "3.1.0",
     "karma-coverage-istanbul-reporter": "3.0.3",
     "karma-mocha": "2.0.1",
