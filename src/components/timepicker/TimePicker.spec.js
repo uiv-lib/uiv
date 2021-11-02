@@ -1,5 +1,15 @@
-import $ from 'jquery'
-import { createWrapper, destroyVm, triggerEvent } from '../utils'
+import newLocale from '../../locale/lang/zh-CN'
+import {
+  createWrapper,
+  keyCodes,
+  nextTick,
+  sleep,
+  transition,
+  triggerEvent,
+  triggerKey,
+} from '../../__test__/utils'
+import { RouterLinkStub } from '@vue/test-utils'
+import _ from 'lodash'
 
 function baseVm() {
   return createWrapper('<div><time-picker v-model="time"/></div>', {
@@ -17,14 +27,9 @@ function h24Vm() {
 }
 
 describe('TimePicker', () => {
-  let vm
-
-  afterEach(() => {
-    destroyVm(vm)
-  })
-
   it('should be able to toggle meridian', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     vm.time.setHours(9)
     vm.time = new Date(vm.time)
     await vm.$nextTick()
@@ -42,7 +47,8 @@ describe('TimePicker', () => {
   })
 
   it('should be able to add 1 hour', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const beforeText = vm.$el.querySelectorAll('input')[0].value
     const hourPlus = vm.$el.querySelectorAll('td')[0].querySelector('button')
@@ -64,7 +70,8 @@ describe('TimePicker', () => {
   })
 
   it('should be able to add 1 minute', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const beforeText = vm.$el.querySelectorAll('input')[1].value
     const minutesPlus = vm.$el.querySelectorAll('tr td button')[1]
@@ -79,7 +86,8 @@ describe('TimePicker', () => {
   })
 
   it('should be able to minus 1 hour', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const beforeText = vm.$el.querySelectorAll('input')[0].value
     const hourMinus = vm.$el
@@ -103,7 +111,8 @@ describe('TimePicker', () => {
   })
 
   it('should be able to minus 1 minute', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const beforeText = vm.$el.querySelectorAll('input')[1].value
     const minutesMinus = vm.$el
@@ -120,14 +129,16 @@ describe('TimePicker', () => {
   })
 
   it('should be able to use 24h mode', async () => {
-    vm = h24Vm()
+    const wrapper = h24Vm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const toggleBtn = vm.$el.querySelector('[data-action="toggleMeridian"]')
-    expect(toggleBtn).not.toBeDefined()
+    expect(toggleBtn).toBeNull()
   })
 
   it('should be able to display correctly when hour = 0', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     vm.time.setHours(0)
     vm.time = new Date(vm.time)
     await vm.$nextTick()
@@ -138,7 +149,8 @@ describe('TimePicker', () => {
   })
 
   it('should be able to display correctly when hour = 12', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     vm.time.setHours(12)
     vm.time = new Date(vm.time)
     await vm.$nextTick()
@@ -149,7 +161,8 @@ describe('TimePicker', () => {
   })
 
   it('should be able to set hour using input in 24h mode', async () => {
-    vm = h24Vm()
+    const wrapper = h24Vm()
+    const vm = wrapper.vm
     vm.time.setHours(12)
     vm.time = new Date(vm.time)
     await vm.$nextTick()
@@ -163,7 +176,8 @@ describe('TimePicker', () => {
   })
 
   it('should be able to set hour using input in 12h mode', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     vm.time.setHours(12)
     vm.time = new Date(vm.time)
     await vm.$nextTick()
@@ -175,7 +189,8 @@ describe('TimePicker', () => {
   })
 
   it('should be able to set minute using input', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     vm.time.setHours(12)
     vm.time.setMinutes(0)
     vm.time = new Date(vm.time)
@@ -188,7 +203,8 @@ describe('TimePicker', () => {
   })
 
   it('should add hour when minute is 60', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     vm.time.setHours(9)
     vm.time.setMinutes(59)
     vm.time = new Date(vm.time)
@@ -204,7 +220,8 @@ describe('TimePicker', () => {
   })
 
   it('should minus hour when minute is -1', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     vm.time.setHours(9)
     vm.time.setMinutes(0)
     vm.time = new Date(vm.time)
@@ -222,7 +239,8 @@ describe('TimePicker', () => {
   })
 
   it('can be set to 9:00', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     vm.time.setHours(9)
     vm.time.setMinutes(0)
     vm.time = new Date(vm.time)
@@ -244,6 +262,7 @@ describe('TimePicker', () => {
         max: new Date('2017/01/01 20:00'),
       }
     )
+    const vm = wrapper.vm
     vm.time.setHours(20)
     vm.time = new Date(vm.time)
     await vm.$nextTick()
@@ -264,6 +283,7 @@ describe('TimePicker', () => {
         max: new Date('2017/01/01 20:00'),
       }
     )
+    const vm = wrapper.vm
     vm.time.setHours(8)
     vm.time.setMinutes(30)
     vm.time = new Date(vm.time)
@@ -287,11 +307,12 @@ describe('TimePicker', () => {
         time: new Date(),
       }
     )
-    const $el = $(vm.$el)
-    expect($el.find('tr:first-child .btn > i').get(0).className).toContain(
+    const vm = wrapper.vm
+    const $el = vm.$el
+    expect($el.querySelector('tr:first-child .btn > i').className).toContain(
       'glyphicon-plus'
     )
-    expect($el.find('tr:last-child .btn > i').get(0).className).toContain(
+    expect($el.querySelector('tr:last-child .btn > i').className).toContain(
       'glyphicon-minus'
     )
   })
@@ -304,20 +325,27 @@ describe('TimePicker', () => {
         meridian: true,
       }
     )
-    const $el = $(vm.$el)
+    const vm = wrapper.vm
+    const $el = vm.$el
     await vm.$nextTick()
-    expect($el.find('[data-action="toggleMeridian"]').length).toEqual(1)
+    expect(
+      $el.querySelectorAll('[data-action="toggleMeridian"]').length
+    ).toEqual(1)
     const timeBefore = new Date(vm.time)
     // toggle meridian
     vm.meridian = false
     await vm.$nextTick()
-    expect($el.find('[data-action="toggleMeridian"]').length).toEqual(0)
+    expect(
+      $el.querySelectorAll('[data-action="toggleMeridian"]').length
+    ).toEqual(0)
     const timeAfter = new Date(vm.time)
     expect(timeAfter.getTime()).toEqual(timeBefore.getTime())
     // toggle meridian
     vm.meridian = true
     await vm.$nextTick()
-    expect($el.find('[data-action="toggleMeridian"]').length).toEqual(1)
+    expect(
+      $el.querySelectorAll('[data-action="toggleMeridian"]').length
+    ).toEqual(1)
     const timeAfterAgain = new Date(vm.time)
     expect(timeAfterAgain.getTime()).toEqual(timeBefore.getTime())
   })
@@ -329,6 +357,7 @@ describe('TimePicker', () => {
         time: new Date(),
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const timeBefore = new Date(vm.time)
     // on click & keydown
@@ -353,6 +382,7 @@ describe('TimePicker', () => {
         time: new Date(),
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const timeBefore = new Date(vm.time)
     // add hour
@@ -377,6 +407,7 @@ describe('TimePicker', () => {
         time: new Date(),
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const timeBefore = new Date(vm.time)
     // add hour
@@ -402,26 +433,26 @@ describe('TimePicker', () => {
     const wrapper = createWrapper('<time-picker v-model="time"/>', {
       time: new Date(),
     })
+    const vm = wrapper.vm
     await vm.$nextTick()
     const hoursInput = vm.$el.querySelectorAll('input')[0]
-    const hoursInputSpy = sinon.spy(hoursInput, 'setSelectionRange')
+    const hoursInputSpy = jest.spyOn(hoursInput, 'setSelectionRange')
     triggerEvent(hoursInput, 'mouseup')
     await vm.$nextTick()
-    sinon.assert.calledOnce(hoursInputSpy)
-    hoursInput.setSelectionRange.restore()
+    expect(hoursInputSpy).toBeCalledTimes(1)
     const minutesInput = vm.$el.querySelectorAll('input')[1]
-    const minutesInputSpy = sinon.spy(minutesInput, 'setSelectionRange')
+    const minutesInputSpy = jest.spyOn(minutesInput, 'setSelectionRange')
     triggerEvent(minutesInput, 'mouseup')
     await vm.$nextTick()
-    sinon.assert.calledOnce(minutesInputSpy)
-    minutesInput.setSelectionRange.restore()
+    expect(minutesInputSpy).toBeCalledTimes(1)
   })
 
   it('should show controls by default', async () => {
-    vm = baseVm()
-    const $el = $(vm.$el)
-    expect($el.find('tr:first-child .btn').length).toEqual(2)
-    expect($el.find('tr:last-child .btn').length).toEqual(2)
+    const wrapper = baseVm()
+    const vm = wrapper.vm
+    const $el = vm.$el
+    expect($el.querySelectorAll('tr:first-child .btn').length).toEqual(2)
+    expect($el.querySelectorAll('tr:last-child .btn').length).toEqual(2)
   })
 
   it('should be able to hide controls', async () => {
@@ -431,16 +462,18 @@ describe('TimePicker', () => {
         time: new Date(),
       }
     )
-    const $el = $(vm.$el)
+    const vm = wrapper.vm
+    const $el = vm.$el
     // We could still have a button for the AM/PM toggle
-    expect($el.find('tr:first-child .btn').length).not.toEqual(2)
-    expect($el.find('tr:last-child .btn').length).not.toEqual(2)
+    expect($el.querySelectorAll('tr:first-child .btn').length).not.toEqual(2)
+    expect($el.querySelectorAll('tr:last-child .btn').length).not.toEqual(2)
   })
 
   it('should display empty fields when date provided is invalid', async () => {
     const wrapper = createWrapper('<div><time-picker v-model="time"/></div>', {
       time: new Date(''),
     })
+    const vm = wrapper.vm
     await vm.$nextTick()
     const hourText = vm.$el.querySelectorAll('input')[0]
     const minutesText = vm.$el.querySelectorAll('input')[1]
@@ -461,6 +494,7 @@ describe('TimePicker', () => {
     const wrapper = createWrapper('<div><time-picker v-model="time"/></div>', {
       time: new Date(''),
     })
+    const vm = wrapper.vm
     await vm.$nextTick()
     const hourText = vm.$el.querySelectorAll('input')[0]
     const minutesText = vm.$el.querySelectorAll('input')[1]
@@ -484,6 +518,7 @@ describe('TimePicker', () => {
     const wrapper = createWrapper('<div><time-picker v-model="time"/></div>', {
       time: new Date(''),
     })
+    const vm = wrapper.vm
     await vm.$nextTick()
     const hourText = vm.$el.querySelectorAll('input')[0]
     const minutesText = vm.$el.querySelectorAll('input')[1]
@@ -508,6 +543,7 @@ describe('TimePicker', () => {
         time: new Date(),
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     // Set an invalid date at runtime (not via the initial config)
     vm.time = new Date('')
@@ -518,7 +554,8 @@ describe('TimePicker', () => {
     expect(minutesText.value).toEqual('')
   })
   it('should have a default input width to 50px', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     const hoursInput = vm.$el.querySelectorAll('input')[0]
     expect(hoursInput.style.width).toEqual('50px')
     const minutesInput = vm.$el.querySelectorAll('input')[1]
@@ -532,9 +569,10 @@ describe('TimePicker', () => {
         inputWidth: 180,
       }
     )
+    const vm = wrapper.vm
     const inputWidth = vm.inputWidth
     // Check that the passed value is not the default value
-    expect(inputWidth).to.not.equal(50)
+    expect(inputWidth).not.toEqual(50)
     const hoursInput = vm.$el.querySelectorAll('input')[0]
     expect(hoursInput.style.width).toEqual(`${inputWidth}px`)
     const minutesInput = vm.$el.querySelectorAll('input')[1]

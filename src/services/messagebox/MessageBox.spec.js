@@ -8,7 +8,7 @@ import {
   triggerEvent,
 } from '../../__test__/utils'
 import { RouterLinkStub } from '@vue/test-utils'
-import MessageBox from '../../services/messagebox/MessageBox'
+import MessageBox from './MessageBox'
 
 describe('MessageBox Service', () => {
   let spy

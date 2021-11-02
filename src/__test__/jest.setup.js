@@ -15,3 +15,5 @@ afterEach(() => {
   jest.clearAllMocks()
   jest.clearAllTimers()
 })
+
+jest.setTimeout(10000)

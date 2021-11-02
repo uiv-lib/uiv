@@ -38,17 +38,34 @@ export async function nextTick(times = 5) {
   }
 }
 
+export const triggerElementEvent = (elm, name, evtProps = {}, ...opts) => {
+  let eventName
+  let evt
+  if (/^mouse|click/.test(name)) {
+    eventName = 'MouseEvents'
+  } else if (/^key/.test(name)) {
+    eventName = 'KeyboardEvent'
+    evt = new KeyboardEvent(name, evtProps)
+  } else {
+    eventName = 'HTMLEvents'
+  }
+  if (!evt) {
+    evt = document.createEvent(eventName)
+    evt.initEvent(name, ...opts)
+    for (let k in evtProps) {
+      evt[k] = evtProps[k]
+    }
+  }
+  elm.dispatchEvent ? elm.dispatchEvent(evt) : elm.fireEvent('on' + name, evt)
+  return elm
+}
+
 /**
  * just a wrapper for historical codes
  */
 export async function triggerEvent(wrapper, event) {
   if (wrapper instanceof HTMLElement) {
-    wrapper.dispatchEvent(
-      new Event(event, {
-        bubbles: true,
-        cancelable: true,
-      })
-    )
+    return triggerElementEvent.apply(null, arguments)
   } else {
     await wrapper.trigger(event)
   }

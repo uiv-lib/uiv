@@ -1,13 +1,18 @@
+import newLocale from '../../locale/lang/zh-CN'
 import {
-  triggerEvent,
-  sleep,
-  triggerKey,
   createWrapper,
-  destroyVm,
   keyCodes,
-} from '../utils'
-import { request } from '../src/utils/http.utils'
-import states from './assets/data/states.json'
+  nextTick,
+  sleep,
+  transition,
+  triggerEvent,
+  triggerKey,
+} from '../../__test__/utils'
+import { RouterLinkStub } from '@vue/test-utils'
+import _ from 'lodash'
+import { request } from '../../utils/http.utils'
+import states from '../../__test__/states.json'
+import sinon from 'sinon'
 
 function baseVm() {
   return createWrapper(
@@ -34,11 +39,7 @@ describe('Typeahead', () => {
   let xhr, requests, server
   let vm
 
-  afterEach(() => {
-    destroyVm(vm)
-  })
-
-  before(() => {
+  beforeEach(() => {
     xhr = sinon.useFakeXMLHttpRequest()
     requests = []
     xhr.onCreate = (req) => {
@@ -47,13 +48,14 @@ describe('Typeahead', () => {
     server = sinon.fakeServer.create()
   })
 
-  after(() => {
+  afterEach(() => {
     xhr.restore()
     server.restore()
   })
 
   it('should be able to set and clear typeahead model manually', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const setBtn = vm.$el.querySelectorAll('.btn')[0]
     const clearBtn = vm.$el.querySelectorAll('.btn')[1]
@@ -66,11 +68,12 @@ describe('Typeahead', () => {
     clearBtn.click()
     await vm.$nextTick()
     expect(input.value).toEqual('')
-    expect(vm.model).not.toBeDefined()
+    expect(vm.model).toBeNull()
   })
 
   it('should be able to open typeahead when input change', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -85,7 +88,8 @@ describe('Typeahead', () => {
   })
 
   it('should be able to open typeahead on input focus', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -100,7 +104,8 @@ describe('Typeahead', () => {
   })
 
   it('should be able to keep open on input click', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -115,7 +120,8 @@ describe('Typeahead', () => {
   })
 
   it('should be able to close typeahead on input blur', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -130,7 +136,8 @@ describe('Typeahead', () => {
   })
 
   it('should be able to close typeahead on input esc key', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -145,7 +152,8 @@ describe('Typeahead', () => {
   })
 
   it('should not close typeahead on input click', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -160,7 +168,8 @@ describe('Typeahead', () => {
   })
 
   it('should be able to close typeahead when input changed to empty', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -176,7 +185,8 @@ describe('Typeahead', () => {
   })
 
   it('should be able to slice item length', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -191,7 +201,8 @@ describe('Typeahead', () => {
   })
 
   it('should not open dropdown if nothing match', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -203,7 +214,8 @@ describe('Typeahead', () => {
   })
 
   it('should be able to select item', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -238,6 +250,7 @@ describe('Typeahead', () => {
         states: states.data,
       }
     )
+    const vm = wrapper.vm
     vm.forceSelect = true
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
@@ -246,7 +259,7 @@ describe('Typeahead', () => {
     input.value = 'ala'
     triggerEvent(input, 'input')
     await vm.$nextTick()
-    expect(vm.model).not.toBeDefined()
+    expect(vm.model).toBeUndefined()
     expect(dropdown.className).toContain('open')
     expect(dropdown.querySelectorAll('li').length).toEqual(3)
     const selected = dropdown.querySelector('li.active a')
@@ -259,7 +272,8 @@ describe('Typeahead', () => {
   })
 
   it('should not be able to select item using keyboard while dropdown not open', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -271,7 +285,8 @@ describe('Typeahead', () => {
   })
 
   it('should be able to select item using keyboard', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -291,7 +306,8 @@ describe('Typeahead', () => {
   })
 
   it('should be able use keyboard nav to go next', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -316,7 +332,8 @@ describe('Typeahead', () => {
   })
 
   it('should be able use keyboard nav to go prev', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -364,6 +381,7 @@ describe('Typeahead', () => {
         states: states.data,
       }
     )
+    const vm = wrapper.vm
     vm.matchStart = true
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
@@ -389,6 +407,7 @@ describe('Typeahead', () => {
         model: '',
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -428,6 +447,7 @@ describe('Typeahead', () => {
         },
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     expect(vm.$refs.typeahead.inputEl).toEqual(vm.ele.$el)
   })
@@ -442,8 +462,9 @@ describe('Typeahead', () => {
         model: null,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
-    expect(vm.$refs.typeahead.inputEl).to.be.null
+    expect(vm.$refs.typeahead.inputEl).toBeNull()
   })
 
   it('should be able to use string arr async returns', async () => {
@@ -462,6 +483,7 @@ describe('Typeahead', () => {
         },
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -472,7 +494,7 @@ describe('Typeahead', () => {
     input.value = 'a'
     triggerEvent(input, 'input')
     await sleep(600)
-    server.requests[1].respond(
+    server.requests[0].respond(
       200,
       { 'Content-Type': 'application/json' },
       JSON.stringify(['aa', 'ab', 'ac'])
@@ -507,8 +529,9 @@ describe('Typeahead', () => {
         },
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
-    expect(vm.err).not.toBeDefined()
+    expect(vm.err).toBeNull()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
     expect(dropdown.className).not.toContain('open')
@@ -518,7 +541,7 @@ describe('Typeahead', () => {
     input.value = 'wxsm'
     triggerEvent(input, 'input')
     await sleep(600)
-    server.requests[2].respond(
+    server.requests[0].respond(
       500,
       { 'Content-Type': 'application/json' },
       JSON.stringify([{ id: 1, text: 'Provide examples', done: true }])
@@ -546,6 +569,7 @@ describe('Typeahead', () => {
         },
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -584,6 +608,7 @@ describe('Typeahead', () => {
         },
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -593,7 +618,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     expect(dropdown.querySelectorAll('li').length).toEqual(2)
-    expect(dropdown.querySelector('li.active a')).not.toBeDefined()
+    expect(dropdown.querySelector('li.active a')).toBeNull()
     triggerKey(input, keyCodes.enter)
     await vm.$nextTick()
     expect(dropdown.className).not.toContain('open')
@@ -647,6 +672,7 @@ describe('Typeahead', () => {
         },
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
@@ -657,7 +683,7 @@ describe('Typeahead', () => {
     input.value = 'wxsm'
     triggerEvent(input, 'input')
     await sleep(600)
-    server.requests[3].respond(
+    server.requests[0].respond(
       200,
       { 'Content-Type': 'application/json' },
       JSON.stringify({ items: [{ login: 'wxsms' }] })

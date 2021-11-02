@@ -1,6 +1,13 @@
-import $ from 'jquery'
-import { createWrapper, destroyVm, sleep, transition } from '../utils'
-import Notification from '../src/services/notification/Notification'
+import newLocale from '../../locale/lang/zh-CN'
+import {
+  createWrapper,
+  keyCodes,
+  nextTick,
+  sleep,
+  transition,
+  triggerEvent,
+} from '../../__test__/utils'
+import { RouterLinkStub } from '@vue/test-utils'
 
 const OFFSET = '15px'
 
@@ -116,18 +123,16 @@ describe('Notification', () => {
       return true
     }
 
-    spy = sinon.spy(console, 'log')
+    spy = jest.spyOn(console, 'log')
   })
 
   afterEach(() => {
-    console.log.restore()
     console.log = savedLog
-    destroyVm(vm)
-    $('.alert').remove()
   })
 
   it('should be able to use notification', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const trigger = vm.$el.querySelectorAll('.btn')[0]
     trigger.click()
@@ -139,19 +144,20 @@ describe('Notification', () => {
     expect(alert.className).toContain('alert-dismissible')
     expect(alert.className).toContain('fade')
     expect(alert.className).toContain('in')
-    expect(alert.querySelector('.media-heading')).not.toBeDefined()
+    expect(alert.querySelector('.media-heading')).toBeNull()
     expect(alert.querySelector('.media-body > div').textContent).toEqual(
       'This is a simple notify msg.'
     )
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
-    expect(document.querySelector('.alert')).not.toBeDefined()
-    sinon.assert.calledWith(spy, 'dismissed')
+    expect(document.querySelector('.alert')).toBeNull()
+    expect(spy).toBeCalledWith('dismissed')
   })
 
   it('should be able to use no auto-dismiss notification', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const trigger = vm.$el.querySelectorAll('.btn')[1]
     trigger.click()
@@ -172,12 +178,13 @@ describe('Notification', () => {
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
-    expect(document.querySelector('.alert')).not.toBeDefined()
-    sinon.assert.calledWith(spy, 'dismissed')
-  }).timeout(5000 + 3000)
+    expect(document.querySelector('.alert')).toBeNull()
+    expect(spy).toBeCalledWith('dismissed')
+  })
 
   it('should be able to use `type=info` notification', async () => {
-    vm = typesVm()
+    const wrapper = typesVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const trigger = vm.$el.querySelectorAll('.btn')[0]
     trigger.click()
@@ -187,16 +194,18 @@ describe('Notification', () => {
     expect(alert).toBeDefined()
     expect(alert.className).toContain('alert-info')
     expect(alert.querySelectorAll('.media-left > .glyphicon').length).toEqual(1)
-    expect(alert.querySelectorAll('.media-left > .glyphicon-info-sign')).to
-      .exist
+    expect(
+      alert.querySelectorAll('.media-left > .glyphicon-info-sign')
+    ).toBeDefined()
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
-    expect(document.querySelector('.alert')).not.toBeDefined()
+    expect(document.querySelector('.alert')).toBeNull()
   })
 
   it('should be able to use `type=success` notification', async () => {
-    vm = typesVm()
+    const wrapper = typesVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const trigger = vm.$el.querySelectorAll('.btn')[1]
     trigger.click()
@@ -212,11 +221,12 @@ describe('Notification', () => {
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
-    expect(document.querySelector('.alert')).not.toBeDefined()
+    expect(document.querySelector('.alert')).toBeNull()
   })
 
   it('should be able to use `type=warning` notification', async () => {
-    vm = typesVm()
+    const wrapper = typesVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const trigger = vm.$el.querySelectorAll('.btn')[2]
     trigger.click()
@@ -226,16 +236,18 @@ describe('Notification', () => {
     expect(alert).toBeDefined()
     expect(alert.className).toContain('alert-warning')
     expect(alert.querySelectorAll('.media-left > .glyphicon').length).toEqual(1)
-    expect(alert.querySelectorAll('.media-left > .glyphicon-info-sign')).to
-      .exist
+    expect(
+      alert.querySelectorAll('.media-left > .glyphicon-info-sign')
+    ).toBeDefined()
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
-    expect(document.querySelector('.alert')).not.toBeDefined()
+    expect(document.querySelector('.alert')).toBeNull()
   })
 
   it('should be able to use `type=danger` notification', async () => {
-    vm = typesVm()
+    const wrapper = typesVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const trigger = vm.$el.querySelectorAll('.btn')[3]
     trigger.click()
@@ -245,16 +257,18 @@ describe('Notification', () => {
     expect(alert).toBeDefined()
     expect(alert.className).toContain('alert-danger')
     expect(alert.querySelectorAll('.media-left > .glyphicon').length).toEqual(1)
-    expect(alert.querySelectorAll('.media-left > .glyphicon-remove-sign')).to
-      .exist
+    expect(
+      alert.querySelectorAll('.media-left > .glyphicon-remove-sign')
+    ).toBeDefined()
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
-    expect(document.querySelector('.alert')).not.toBeDefined()
+    expect(document.querySelector('.alert')).toBeNull()
   })
 
   it('should be able to use `placement=top-right` notification', async () => {
-    vm = placementVm()
+    const wrapper = placementVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const trigger = vm.$el.querySelectorAll('.btn')[0]
     trigger.click()
@@ -269,11 +283,12 @@ describe('Notification', () => {
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
-    expect(document.querySelector('.alert')).not.toBeDefined()
+    expect(document.querySelector('.alert')).toBeNull()
   })
 
   it('should be able to use `placement=bottom-right` notification', async () => {
-    vm = placementVm()
+    const wrapper = placementVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const trigger = vm.$el.querySelectorAll('.btn')[1]
     trigger.click()
@@ -288,11 +303,12 @@ describe('Notification', () => {
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
-    expect(document.querySelector('.alert')).not.toBeDefined()
+    expect(document.querySelector('.alert')).toBeNull()
   })
 
   it('should be able to use `placement=bottom-left` notification', async () => {
-    vm = placementVm()
+    const wrapper = placementVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const trigger = vm.$el.querySelectorAll('.btn')[2]
     trigger.click()
@@ -307,11 +323,12 @@ describe('Notification', () => {
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
-    expect(document.querySelector('.alert')).not.toBeDefined()
+    expect(document.querySelector('.alert')).toBeNull()
   })
 
   it('should be able to use `placement=top-left` notification', async () => {
-    vm = placementVm()
+    const wrapper = placementVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
     const trigger = vm.$el.querySelectorAll('.btn')[3]
     trigger.click()
@@ -326,7 +343,7 @@ describe('Notification', () => {
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
-    expect(document.querySelector('.alert')).not.toBeDefined()
+    expect(document.querySelector('.alert')).toBeNull()
   })
 
   it('should be able to use `dismissible=false` notification', async () => {
@@ -345,6 +362,7 @@ describe('Notification', () => {
         },
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const trigger = vm.$el.querySelectorAll('.btn')[0]
     trigger.click()
@@ -354,110 +372,10 @@ describe('Notification', () => {
     await vm.$nextTick()
     const alert = document.querySelectorAll('.alert')
     expect(alert.length).toEqual(2)
-    expect(alert[0].querySelector('button.close')).not.toBeDefined()
-    expect(alert[1].querySelector('button.close')).not.toBeDefined()
+    expect(alert[0].querySelector('button.close')).toBeNull()
+    expect(alert[1].querySelector('button.close')).toBeNull()
     await sleep(5000 + 1000)
     await vm.$nextTick()
-    expect(document.querySelector('.alert')).not.toBeDefined()
-  }).timeout(5000 + 3000)
-
-  it('should be able to use without options and callback', async () => {
-    Notification.notify(undefined)
-    await sleep(transition)
-    const alert = document.querySelector('.alert')
-    expect(alert).toBeDefined()
-    alert.querySelector('button.close').click()
-    await sleep(transition)
-    expect(document.querySelector('.alert')).not.toBeDefined()
-  })
-
-  it('should be able to use without Promise', async () => {
-    // mute Promise
-    const savedPromise = window.Promise
-    window.Promise = null
-    // alert
-    Notification.notify({ title: 'test' })
-    // restore Promise
-    window.Promise = savedPromise
-    await sleep(transition)
-    const alert = document.querySelector('.alert')
-    expect(alert).toBeDefined()
-    alert.querySelector('button.close').click()
-    await sleep(transition)
-    expect(document.querySelector('.alert')).not.toBeDefined()
-  })
-
-  it('should be able to avoid invalid placement', async () => {
-    Notification.notify({ placement: 'top-bottom' }) // invalid
-    await sleep(transition)
-    expect(document.querySelector('.alert')).not.toBeDefined()
-  })
-
-  it('should be able to use custom icon', async () => {
-    Notification.notify({ title: 'test', icon: 'fa fa-check' })
-    await sleep(transition)
-    const alert = document.querySelector('.alert')
-    expect(alert).toBeDefined()
-    expect(alert.querySelectorAll('.media-left > .fa').length).toEqual(1)
-    expect(alert.querySelectorAll('.media-left > .fa-check')).toBeDefined()
-    alert.querySelector('button.close').click()
-    await sleep(transition)
-    expect(document.querySelector('.alert')).not.toBeDefined()
-  })
-
-  it('should be able to disable icon with types', async () => {
-    Notification.notify({ title: 'test', icon: '', type: 'danger' })
-    await sleep(transition)
-    const alert = document.querySelector('.alert')
-    expect(alert).toBeDefined()
-    expect(alert.querySelector('.media-left')).not.toBeDefined()
-    alert.querySelector('button.close').click()
-    await sleep(transition)
-    expect(document.querySelector('.alert')).not.toBeDefined()
-  })
-
-  it('should be able to work with `custom-class`', async () => {
-    Notification.notify({
-      title: 'test',
-      type: 'danger',
-      customClass: 'test-class',
-    })
-    await sleep(transition)
-    const alert = document.querySelector('.alert')
-    expect(alert).toBeDefined()
-    expect(alert.className).toContain('test-class')
-    expect(alert.className).toContain('alert-danger')
-    alert.querySelector('button.close').click()
-    await sleep(transition)
-    expect(document.querySelector('.alert')).not.toBeDefined()
-  })
-
-  it('should not be able to use HTML content if html=false', async () => {
-    Notification.notify({
-      title: 'test',
-      content: '<a href="#" id="test-a">test</a>',
-    })
-    await sleep(transition)
-    const alert = document.querySelector('.alert')
-    expect(alert).toBeDefined()
-    expect(alert.querySelector('#test-a')).not.toBeDefined()
-    alert.querySelector('button.close').click()
-    await sleep(transition)
-    expect(document.querySelector('.alert')).not.toBeDefined()
-  })
-
-  it('should be able to use HTML content', async () => {
-    Notification.notify({
-      title: 'test',
-      html: true,
-      content: '<a href="#" id="test-a">test</a>',
-    })
-    await sleep(transition)
-    const alert = document.querySelector('.alert')
-    expect(alert).toBeDefined()
-    expect(alert.querySelector('#test-a')).toBeDefined()
-    alert.querySelector('button.close').click()
-    await sleep(transition)
-    expect(document.querySelector('.alert')).not.toBeDefined()
+    expect(document.querySelector('.alert')).toBeNull()
   })
 })
