@@ -65,7 +65,8 @@ export const triggerElementEvent = (elm, name, evtProps = {}, ...opts) => {
  */
 export async function triggerEvent(wrapper, event) {
   if (wrapper instanceof HTMLElement) {
-    return triggerElementEvent.apply(null, arguments)
+    triggerElementEvent.apply(null, arguments)
+    await nextTick()
   } else {
     await wrapper.trigger(event)
   }
