@@ -1032,10 +1032,10 @@
     sass "^1.18.0"
     stylus "^0.54.5"
 
-"@vue/test-utils@^1.2.2":
+"@vue/test-utils@1.2.2":
   version "1.2.2"
-  resolved "https://registry.npmmirror.com/@vue/test-utils/download/@vue/test-utils-1.2.2.tgz?cache=0&sync_timestamp=1634084127919&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40vue%2Ftest-utils%2Fdownload%2F%40vue%2Ftest-utils-1.2.2.tgz#0242ea4e202d4853541bb167fead3f2249140ab7"
-  integrity sha1-AkLqTiAtSFNUG7Fn/q0/IkkUCrc=
+  resolved "https://registry.yarnpkg.com/@vue/test-utils/-/test-utils-1.2.2.tgz#0242ea4e202d4853541bb167fead3f2249140ab7"
+  integrity sha512-P+yiAsszoy8z1TqXiVUnAZaJj0WGGz5fCxm4bOSI6Cpwy1+PNYwYxDv0ROAA/SUtOPppV+aD8tp/QWwxf8ROJw==
   dependencies:
     dom-event-types "^1.0.0"
     lodash "^4.17.15"
@@ -1295,10 +1295,10 @@ babel-code-frame@^6.26.0:
     esutils "^2.0.2"
     js-tokens "^3.0.2"
 
-babel-core@^6.26.0, babel-core@^6.26.3:
+babel-core@6.26.3, babel-core@^6.26.0:
   version "6.26.3"
-  resolved "https://registry.nlark.com/babel-core/download/babel-core-6.26.3.tgz#b2e2f09e342d0f0c88e2f02e067794125e75c207"
-  integrity sha1-suLwnjQtDwyI4vAuBneUEl51wgc=
+  resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.26.3.tgz#b2e2f09e342d0f0c88e2f02e067794125e75c207"
+  integrity sha512-6jyFLuDmeidKmUEb3NM+/yawG0M2bDZ9Z1qbZP59cyHLz8kYGKYwpJP0UwUKKUiTRNvxfLesJnTedqczP7cTDA==
   dependencies:
     babel-code-frame "^6.26.0"
     babel-generator "^6.26.0"
@@ -1447,10 +1447,10 @@ babel-helpers@^6.24.1:
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
-babel-jest@^27.3.1:
+babel-jest@27.3.1, babel-jest@^27.3.1:
   version "27.3.1"
-  resolved "https://registry.npmmirror.com/babel-jest/download/babel-jest-27.3.1.tgz?cache=0&sync_timestamp=1634626713402&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fbabel-jest%2Fdownload%2Fbabel-jest-27.3.1.tgz#0636a3404c68e07001e434ac4956d82da8a80022"
-  integrity sha1-BjajQExo4HAB5DSsSVbYLaioACI=
+  resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-27.3.1.tgz#0636a3404c68e07001e434ac4956d82da8a80022"
+  integrity sha512-SjIF8hh/ir0peae2D6S6ZKRhUy7q/DnpH7k/V6fT4Bgs/LXXUztOpX4G2tCgq8mLo5HA9mN6NmlFMeYtKmIsTQ==
   dependencies:
     "@jest/transform" "^27.3.1"
     "@jest/types" "^27.2.5"
@@ -1752,10 +1752,10 @@ babel-preset-current-node-syntax@^1.0.0:
     "@babel/plugin-syntax-optional-chaining" "^7.8.3"
     "@babel/plugin-syntax-top-level-await" "^7.8.3"
 
-babel-preset-env@^1.7.0:
+babel-preset-env@1.7.0:
   version "1.7.0"
-  resolved "https://registry.nlark.com/babel-preset-env/download/babel-preset-env-1.7.0.tgz#dea79fa4ebeb883cd35dab07e260c1c9c04df77a"
-  integrity sha1-3qefpOvriDzTXasH4mDBycBN93o=
+  resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.7.0.tgz#dea79fa4ebeb883cd35dab07e260c1c9c04df77a"
+  integrity sha512-9OR2afuKDneX2/q2EurSftUYM0xGu4O2D9adAhVfADDhrYDaxXV0rBbevVYoY9n6nyX1PmQW/0jtpJvUNr9CHg==
   dependencies:
     babel-plugin-check-es2015-constants "^6.22.0"
     babel-plugin-syntax-trailing-function-commas "^6.22.0"
@@ -4154,9 +4154,9 @@ jest-runtime@^27.3.1:
     strip-bom "^4.0.0"
     yargs "^16.2.0"
 
-jest-serializer-vue@^2.0.2:
+jest-serializer-vue@2.0.2:
   version "2.0.2"
-  resolved "https://registry.npm.taobao.org/jest-serializer-vue/download/jest-serializer-vue-2.0.2.tgz#b238ef286357ec6b480421bd47145050987d59b3"
+  resolved "https://registry.yarnpkg.com/jest-serializer-vue/-/jest-serializer-vue-2.0.2.tgz#b238ef286357ec6b480421bd47145050987d59b3"
   integrity sha1-sjjvKGNX7GtIBCG9RxRQUJh9WbM=
   dependencies:
     pretty "2.0.0"
@@ -4253,10 +4253,10 @@ jest-worker@^27.3.1:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
-jest@^27.3.1:
+jest@27.3.1:
   version "27.3.1"
-  resolved "https://registry.npmmirror.com/jest/download/jest-27.3.1.tgz?cache=0&sync_timestamp=1634626752478&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fjest%2Fdownload%2Fjest-27.3.1.tgz#b5bab64e8f56b6f7e275ba1836898b0d9f1e5c8a"
-  integrity sha1-tbq2To9WtvfidboYNomLDZ8eXIo=
+  resolved "https://registry.yarnpkg.com/jest/-/jest-27.3.1.tgz#b5bab64e8f56b6f7e275ba1836898b0d9f1e5c8a"
+  integrity sha512-U2AX0AgQGd5EzMsiZpYt8HyZ+nSVIh5ujQ9CPp9EQZJMjXIiSZpJNweZl0swatKRoqHWgGKM3zaSwm4Zaz87ng==
   dependencies:
     "@jest/core" "^27.3.1"
     import-local "^3.0.2"
@@ -4667,7 +4667,6 @@ minipass-fetch@^1.3.0, minipass-fetch@^1.3.2:
   resolved "https://registry.yarnpkg.com/minipass-fetch/-/minipass-fetch-1.3.4.tgz#63f5af868a38746ca7b33b03393ddf8c291244fe"
   integrity sha512-TielGogIzbUEtd1LsjZFs47RWuHHfhl6TiCx1InVxApBAmQ8bL0dL5ilkLGcRvuyW/A9nE+Lvn855Ewz8S0PnQ==
   dependencies:
-    encoding "^0.1.12"
     minipass "^3.1.0"
     minipass-sized "^1.0.3"
     minizlib "^2.0.0"
@@ -5811,10 +5810,10 @@ signal-exit@^3.0.2, signal-exit@^3.0.3:
   resolved "https://registry.npmmirror.com/signal-exit/download/signal-exit-3.0.5.tgz?cache=0&sync_timestamp=1632948384106&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fsignal-exit%2Fdownload%2Fsignal-exit-3.0.5.tgz#9e3e8cc0c75a99472b44321033a7702e7738252f"
   integrity sha1-nj6MwMdamUcrRDIQM6dwLnc4JS8=
 
-sinon@^11.1.2:
+sinon@11.1.2:
   version "11.1.2"
-  resolved "https://registry.nlark.com/sinon/download/sinon-11.1.2.tgz#9e78850c747241d5c59d1614d8f9cbe8840e8674"
-  integrity sha1-nniFDHRyQdXFnRYU2PnL6IQOhnQ=
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-11.1.2.tgz#9e78850c747241d5c59d1614d8f9cbe8840e8674"
+  integrity sha512-59237HChms4kg7/sXhiRcUzdSkKuydDeTiamT/jesUVHshBgL8XAmhgFo0GfK6RruMDM/iRSij1EybmMog9cJw==
   dependencies:
     "@sinonjs/commons" "^1.8.3"
     "@sinonjs/fake-timers" "^7.1.2"
@@ -6453,10 +6452,10 @@ vue-functional-data-merge@^3.0.0:
   resolved "https://registry.yarnpkg.com/vue-functional-data-merge/-/vue-functional-data-merge-3.1.0.tgz#08a7797583b7f35680587f8a1d51d729aa1dc657"
   integrity sha512-leT4kdJVQyeZNY1kmnS1xiUlQ9z1B/kdBFCILIjYYQDqZgLqCLa0UhjSSeRX6c3mUe6U5qYeM8LrEqkHJ1B4LA==
 
-vue-jest@^3.0.7:
+vue-jest@3.0.7:
   version "3.0.7"
-  resolved "https://registry.nlark.com/vue-jest/download/vue-jest-3.0.7.tgz#a6d29758a5cb4d750f5d1242212be39be4296a33"
-  integrity sha1-ptKXWKXLTXUPXRJCISvjm+QpajM=
+  resolved "https://registry.yarnpkg.com/vue-jest/-/vue-jest-3.0.7.tgz#a6d29758a5cb4d750f5d1242212be39be4296a33"
+  integrity sha512-PIOxFM+wsBMry26ZpfBvUQ/DGH2hvp5khDQ1n51g3bN0TwFwTy4J85XVfxTRMukqHji/GnAoGUnlZ5Ao73K62w==
   dependencies:
     babel-plugin-transform-es2015-modules-commonjs "^6.26.0"
     chalk "^2.1.0"
