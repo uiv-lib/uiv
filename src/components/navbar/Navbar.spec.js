@@ -1,4 +1,13 @@
-import { createWrapper, destroyVm, sleep } from '../utils'
+import newLocale from '../../locale/lang/zh-CN'
+import {
+  createWrapper,
+  keyCodes,
+  nextTick,
+  sleep,
+  transition,
+  triggerEvent,
+} from '../../__test__/utils'
+import { RouterLinkStub } from '@vue/test-utils'
 
 function baseVm() {
   return createWrapper(`<div><navbar>
@@ -32,15 +41,9 @@ function baseVm() {
 }
 
 describe('Navbar', () => {
-  let vm
-
-  afterEach(() => {
-    destroyVm(vm)
-  })
-
   it('should be able to render correct content', async () => {
-    vm = baseVm()
-    const nav = vm.$el.querySelector('nav')
+    const wrapper = baseVm()
+    const nav = wrapper.vm.$el.querySelector('nav')
     expect(nav.className).toEqual('navbar navbar-default')
     expect(nav.querySelector('.navbar-brand')).toBeDefined()
     expect(nav.querySelector('.navbar-brand').textContent).toEqual('Brand')
@@ -60,7 +63,7 @@ describe('Navbar', () => {
   <a class="navbar-brand" slot="brand" href="#">Brand</a>
   <navbar-text>Signed in as wxsm</navbar-text>
 </navbar></div>`)
-    const nav = vm.$el.querySelector('nav')
+    const nav = wrapper.vm.$el.querySelector('nav')
     expect(nav.querySelector('.navbar-text')).toBeDefined()
     expect(nav.querySelector('.navbar-text').textContent).toEqual(
       'Signed in as wxsm'
@@ -71,7 +74,7 @@ describe('Navbar', () => {
     const wrapper = createWrapper(`<div><navbar static-top>
   <a class="navbar-brand" slot="brand" href="#">Brand</a>
 </navbar></div>`)
-    const nav = vm.$el.querySelector('nav')
+    const nav = wrapper.vm.$el.querySelector('nav')
     expect(nav.className).toContain('navbar-static-top')
   })
 
@@ -85,13 +88,13 @@ describe('Navbar', () => {
     </navbar-nav>
   </template>
 </navbar></div>`)
-    const nav = vm.$el.querySelector('nav')
+    const nav = wrapper.vm.$el.querySelector('nav')
     expect(nav.className).toContain('navbar-inverse')
   })
 
   it('should be able to toggle collapse content', async () => {
-    vm = baseVm()
-    const nav = vm.$el.querySelector('nav')
+    const wrapper = baseVm()
+    const nav = wrapper.vm.$el.querySelector('nav')
     const trigger = nav.querySelector('.navbar-toggle')
     const collapse = nav.querySelector('.navbar-collapse.collapse')
     expect(collapse.className).not.toContain('in')
@@ -107,6 +110,7 @@ describe('Navbar', () => {
     const wrapper = createWrapper('<div><navbar v-model="show"/></div>', {
       show: true,
     })
+    const vm = wrapper.vm
     const nav = vm.$el
     const trigger = nav.querySelector('.navbar-toggle')
     const collapse = nav.querySelector('.navbar-collapse.collapse')
@@ -122,12 +126,14 @@ describe('Navbar', () => {
 
   it('should be able to render fixed-top', async () => {
     const wrapper = createWrapper('<navbar fixed-top/>')
+    const vm = wrapper.vm
     const nav = vm.$el
     expect(nav.className).toContain('navbar-fixed-top')
   })
 
   it('should be able to render fixed-bottom', async () => {
     const wrapper = createWrapper('<navbar fixed-bottom/>')
+    const vm = wrapper.vm
     const nav = vm.$el
     expect(nav.className).toContain('navbar-fixed-bottom')
   })

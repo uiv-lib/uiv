@@ -67,3 +67,18 @@ export const keyCodes = {
 }
 
 export const transition = 300
+
+export const triggerKey = (el, key, type = 'down') => {
+  if (document.createEventObject) {
+    let eventObj = document.createEventObject()
+    eventObj.keyCode = key
+    el.fireEvent(`onkey${type}`, eventObj)
+    eventObj.keyCode = key
+  } else if (document.createEvent) {
+    let eventObj = document.createEvent('Events')
+    eventObj.initEvent(`key${type}`, true, true)
+    eventObj.which = key
+    eventObj.keyCode = key
+    el.dispatchEvent(eventObj)
+  }
+}

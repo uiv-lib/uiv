@@ -1,13 +1,16 @@
-import $ from 'jquery'
-import { createWrapper, destroyVm, triggerEvent } from '../utils'
+import newLocale from '../../locale/lang/zh-CN'
+import {
+  createWrapper,
+  keyCodes,
+  nextTick,
+  sleep,
+  transition,
+  triggerEvent,
+} from '../../__test__/utils'
+import { RouterLinkStub } from '@vue/test-utils'
+import _ from 'lodash'
 
 describe('Pagination', () => {
-  let vm
-
-  afterEach(() => {
-    destroyVm(vm)
-  })
-
   it('should be able to hide boundary links', async () => {
     const wrapper = createWrapper(
       '<div><pagination v-model="currentPage" :total-page="totalPage"/></div>',
@@ -16,12 +19,13 @@ describe('Pagination', () => {
         currentPage: 1,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const pagination = vm.$el.querySelector('.pagination')
     const first = pagination.querySelector('[aria-label="First"]')
     const last = pagination.querySelector('[aria-label="Last"]')
-    expect(first).to.not.toBeDefined()
-    expect(last).to.not.toBeDefined()
+    expect(first).toBeNull()
+    expect(last).toBeNull()
   })
 
   it('should be able to show boundary links', async () => {
@@ -32,6 +36,7 @@ describe('Pagination', () => {
         currentPage: 1,
       }
     )
+    const vm = wrapper.vm
     const pagination = vm.$el.querySelector('.pagination')
     const first = pagination.querySelector('[aria-label="First"]')
     const last = pagination.querySelector('[aria-label="Last"]')
@@ -50,12 +55,13 @@ describe('Pagination', () => {
         currentPage: 1,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const pagination = vm.$el.querySelectorAll('ul.pagination')[1]
     const pre = pagination.querySelector('[aria-label="Previous"]')
     const next = pagination.querySelector('[aria-label="Next"]')
-    expect(pre).to.not.toBeDefined()
-    expect(next).to.not.toBeDefined()
+    expect(pre).toBeNull()
+    expect(next).toBeNull()
   })
 
   it('should be able to show direction links', async () => {
@@ -69,6 +75,7 @@ describe('Pagination', () => {
         currentPage: 1,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const pagination = vm.$el.querySelectorAll('ul.pagination')[0]
     const pre = pagination.querySelector('[aria-label="Previous"]')
@@ -85,6 +92,7 @@ describe('Pagination', () => {
         currentPage: 1,
       }
     )
+    const vm = wrapper.vm
     vm.currentPage = 1
     await vm.$nextTick()
     let pagination = vm.$el.querySelector('ul.pagination')
@@ -109,6 +117,7 @@ describe('Pagination', () => {
         currentPage: 1,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     expect(vm.$el.querySelectorAll('.pagination')[0].className).toEqual(
       'pagination pagination-lg'
@@ -133,6 +142,7 @@ describe('Pagination', () => {
         currentPage: 1,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     expect(vm.$el.querySelectorAll('nav')[0].className).toEqual('')
     expect(vm.$el.querySelectorAll('nav')[1].className).toEqual('text-center')
@@ -147,6 +157,7 @@ describe('Pagination', () => {
         currentPage: 1,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const pagination = vm.$el.querySelector('ul.pagination')
     const lastBtn = pagination.querySelector('[aria-label="Last"]')
@@ -170,6 +181,7 @@ describe('Pagination', () => {
         currentPage: 1,
       }
     )
+    const vm = wrapper.vm
     vm.currentPage = 18
     await vm.$nextTick()
     const pagination = vm.$el.querySelector('ul.pagination')
@@ -194,15 +206,16 @@ describe('Pagination', () => {
         currentPage: 1,
       }
     )
+    const vm = wrapper.vm
     vm.currentPage = 18
     await vm.$nextTick()
     let pagination = vm.$el.querySelector('ul.pagination')
-    let startBtn = $(pagination).find('a:not([aria-label])').get(0)
+    let startBtn = pagination.querySelector('a:not([aria-label])')
     expect(Number(startBtn.text)).toEqual(vm.totalPage - 5 + 1)
     vm.currentPage = 12
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
-    startBtn = $(pagination).find('a:not([aria-label])').get(0)
+    startBtn = pagination.querySelector('a:not([aria-label])')
     expect(Number(startBtn.text)).toEqual(vm.currentPage - 5 + 1)
   })
 
@@ -214,21 +227,22 @@ describe('Pagination', () => {
         currentPage: 1,
       }
     )
+    const vm = wrapper.vm
     vm.totalPage = 13
     await vm.$nextTick()
     let pagination = vm.$el.querySelector('ul.pagination')
     const nextGroupBtn = pagination.querySelector('[aria-label="Next group"]')
-    let startBtn = $(pagination).find('a:not([aria-label])').get(0)
+    let startBtn = pagination.querySelector('a:not([aria-label])')
     expect(Number(startBtn.text)).toEqual(1)
     triggerEvent(nextGroupBtn, 'click')
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
-    startBtn = $(pagination).find('a:not([aria-label])').get(0)
+    startBtn = pagination.querySelector('a:not([aria-label])')
     expect(Number(startBtn.text)).toEqual(1 + 5)
     triggerEvent(nextGroupBtn, 'click')
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
-    startBtn = $(pagination).find('a:not([aria-label])').get(0)
+    startBtn = pagination.querySelector('a:not([aria-label])')
     expect(Number(startBtn.text)).toEqual(vm.totalPage - 5 + 1)
   })
 
@@ -240,6 +254,7 @@ describe('Pagination', () => {
         currentPage: 1,
       }
     )
+    const vm = wrapper.vm
     vm.totalPage = 13
     vm.currentPage = 12
     await vm.$nextTick()
@@ -247,17 +262,17 @@ describe('Pagination', () => {
     const prevGroupBtn = pagination.querySelector(
       '[aria-label="Previous group"]'
     )
-    let startBtn = $(pagination).find('a:not([aria-label])').get(0)
+    let startBtn = pagination.querySelector('a:not([aria-label])')
     expect(Number(startBtn.text)).toEqual(vm.totalPage - 5 + 1)
     triggerEvent(prevGroupBtn, 'click')
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
-    startBtn = $(pagination).find('a:not([aria-label])').get(0)
+    startBtn = pagination.querySelector('a:not([aria-label])')
     expect(Number(startBtn.text)).toEqual(vm.totalPage - 5 * 2 + 1)
     triggerEvent(prevGroupBtn, 'click')
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
-    startBtn = $(pagination).find('a:not([aria-label])').get(0)
+    startBtn = pagination.querySelector('a:not([aria-label])')
     expect(Number(startBtn.text)).toEqual(1)
   })
 
@@ -269,6 +284,7 @@ describe('Pagination', () => {
         currentPage: 1,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const pagination = vm.$el.querySelector('ul.pagination')
     // all btns has disabled class

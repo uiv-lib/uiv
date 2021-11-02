@@ -1,16 +1,21 @@
-import { createWrapper, destroyVm } from '../utils'
+import newLocale from '../../locale/lang/zh-CN'
+import {
+  createWrapper,
+  keyCodes,
+  nextTick,
+  sleep,
+  transition,
+  triggerEvent,
+} from '../../__test__/utils'
+import { RouterLinkStub } from '@vue/test-utils'
+import _ from 'lodash'
 
 describe('ProgressBar', () => {
-  let vm
-
-  afterEach(() => {
-    destroyVm(vm)
-  })
-
   it('should be able to render default', async () => {
     const wrapper = createWrapper('<progress-bar v-model="progress"/>', {
       progress: 66,
     })
+    const vm = wrapper.vm
     await vm.$nextTick()
     const bars = vm.$el
     expect(bars.querySelector('.progress-bar').style.width).toEqual('66%')
@@ -24,6 +29,7 @@ describe('ProgressBar', () => {
         progress: 66,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
     expect(bars[0].querySelector('.progress-bar').textContent).toEqual('66%')
@@ -37,6 +43,7 @@ describe('ProgressBar', () => {
         progress: 66,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
     expect(bars[0].querySelector('.progress-bar').textContent).toContain(
@@ -52,6 +59,7 @@ describe('ProgressBar', () => {
         progress: 66,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
     expect(bars[0].querySelector('.progress-bar').style.minWidth).toEqual('2em')
@@ -72,6 +80,7 @@ describe('ProgressBar', () => {
         progress80: 80,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
     expect(bars[0].querySelector('.progress-bar').className).toContain(
@@ -103,6 +112,7 @@ describe('ProgressBar', () => {
         progress80: 80,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
     expect(bars[0].querySelector('.progress-bar').className).toContain(
@@ -126,6 +136,7 @@ describe('ProgressBar', () => {
         progress: 40,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
     expect(bars[0].querySelector('.progress-bar').className).toContain('active')
@@ -144,6 +155,7 @@ describe('ProgressBar', () => {
         progress10: 10,
       }
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
     expect(bars[0].querySelectorAll('.progress-bar').length).toEqual(3)

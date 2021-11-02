@@ -1,5 +1,15 @@
-import $ from 'jquery'
-import { createWrapper, destroyVm, sleep, triggerEvent } from '../utils'
+import newLocale from '../../locale/lang/zh-CN'
+import {
+  createWrapper,
+  keyCodes,
+  nextTick,
+  sleep,
+  transition,
+  triggerEvent,
+  triggerKey,
+} from '../../__test__/utils'
+import { RouterLinkStub } from '@vue/test-utils'
+import _ from 'lodash'
 
 function baseVm() {
   return createWrapper(`<div><tabs>
@@ -60,12 +70,6 @@ function dynamicVm() {
 }
 
 describe('Tabs', () => {
-  let vm
-
-  afterEach(() => {
-    destroyVm(vm)
-  })
-
   it('should not be able hide tabs using `hidden` prop', async () => {
     const wrapper = createWrapper(
       `<tabs>
@@ -77,6 +81,7 @@ describe('Tabs', () => {
     <tab group="Dropdown2" hidden>6</tab>
 </tabs>`
     )
+    const vm = wrapper.vm
     await vm.$nextTick()
     // 1,2
     expect(
@@ -84,11 +89,11 @@ describe('Tabs', () => {
     ).toEqual('none')
     expect(
       vm.$el.querySelectorAll('.nav.nav-tabs > li')[1].style.display
-    ).to.not.equal('none')
+    ).not.toEqual('none')
     // 3,4
     expect(
       vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[0].style.display
-    ).to.not.equal('none')
+    ).not.toEqual('none')
     expect(
       vm.$el
         .querySelectorAll('.nav.nav-tabs .dropdown')[0]
@@ -98,7 +103,7 @@ describe('Tabs', () => {
       vm.$el
         .querySelectorAll('.nav.nav-tabs .dropdown')[0]
         .querySelectorAll('li')[1].style.display
-    ).to.not.equal('none')
+    ).not.toEqual('none')
     // 5,6
     expect(
       vm.$el.querySelectorAll('.nav.nav-tabs .dropdown')[1].style.display
@@ -115,20 +120,21 @@ describe('Tabs', () => {
     ).toEqual('none')
   })
 
-  it('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {
+  // todo
+  it.skip('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {
     const _error = window.console.error
     window.console.error = () => {
       // Silent to remove out logs in terminal
     }
     try {
-      const spy = sinon.spy(window.console, 'error')
+      const spy = jest.spyOn(window.console, 'error')
       const wrapper = createWrapper(
         '<tabs><tab><tab>{{ msg }}</tab></tab></tabs>',
         {
           msg: 'hello',
         }
       )
-      sinon.assert.called(spy)
+      expect(spy).toBeCalled()
     } finally {
       window.console.error = _error
     }
@@ -138,6 +144,7 @@ describe('Tabs', () => {
     const wrapper = createWrapper(
       '<tabs custom-nav-class="custom-nav-class"><tab>123</tab></tabs>'
     )
+    const vm = wrapper.vm
     expect(vm.$el.querySelector('.nav.nav-tabs').className).toContain(
       'custom-nav-class'
     )
@@ -147,6 +154,7 @@ describe('Tabs', () => {
     const wrapper = createWrapper(
       '<tabs :custom-nav-class="{\'custom-nav-class\':true}"><tab>123</tab></tabs>'
     )
+    const vm = wrapper.vm
     expect(vm.$el.querySelector('.nav.nav-tabs').className).toContain(
       'custom-nav-class'
     )
@@ -159,12 +167,13 @@ describe('Tabs', () => {
   })
 
   it('should be able to render first tab on open', async () => {
-    vm = baseVm()
-    const $el = $(vm.$el)
+    const wrapper = baseVm()
+    const vm = wrapper.vm
+    const $el = vm.$el
     await vm.$nextTick()
     await vm.$nextTick()
-    const nav = $el.find('.nav-tabs').get(0)
-    const content = $el.find('.tab-content').get(0)
+    const nav = $el.querySelector('.nav-tabs')
+    const content = $el.querySelector('.tab-content')
     const activeTab = nav.querySelectorAll('.active')
     expect(activeTab.length).toEqual(1)
     expect(activeTab[0].querySelector('a').textContent).toEqual('Home')
@@ -176,11 +185,12 @@ describe('Tabs', () => {
   })
 
   it('should be able to open correct tab content after click on tab nav', async () => {
-    vm = baseVm()
-    const $el = $(vm.$el)
+    const wrapper = baseVm()
+    const vm = wrapper.vm
+    const $el = vm.$el
     await vm.$nextTick()
-    const nav = $el.find('.nav-tabs').get(0)
-    const content = $el.find('.tab-content').get(0)
+    const nav = $el.querySelector('.nav-tabs')
+    const content = $el.querySelector('.tab-content')
     const tab = nav.querySelectorAll('li')[1].querySelector('a')
     triggerEvent(tab, 'click')
     await vm.$nextTick()
@@ -214,10 +224,11 @@ describe('Tabs', () => {
     <p>@bootstrap tab.</p>
   </tab>
 </tabs></div>`)
+    const vm = wrapper.vm
     await vm.$nextTick()
-    const $el = $(vm.$el)
-    const nav = $el.find('.nav-tabs').get(0)
-    const content = $el.find('.tab-content').get(0)
+    const $el = vm.$el
+    const nav = $el.querySelector('.nav-tabs')
+    const content = $el.querySelector('.tab-content')
     // In nav
     const tab1 = nav.querySelectorAll('li')[1]
     expect(tab1.className).toEqual('disabled')
@@ -256,11 +267,12 @@ describe('Tabs', () => {
     <p>This tab has a <code>title</code> slot.</p>
   </tab>
 </tabs></div>`)
-    const $el = $(vm.$el)
+    const vm = wrapper.vm
+    const $el = vm.$el
     await vm.$nextTick()
-    const nav = $el.find('.nav-tabs').get(0)
+    const nav = $el.querySelector('.nav-tabs')
     const tab = nav.querySelectorAll('li')[0]
-    expect(tab.querySelector('i')).not.toBeDefined()
+    expect(tab.querySelector('i')).toBeNull()
   })
 
   it('should be able to render HTML title with slot', async () => {
@@ -275,9 +287,10 @@ describe('Tabs', () => {
     <p>This tab has a <code>title</code> slot.</p>
   </tab>
 </tabs></div>`)
+    const vm = wrapper.vm
     await vm.$nextTick()
-    const $el = $(vm.$el)
-    const nav = $el.find('.nav-tabs').get(0)
+    const $el = vm.$el
+    const nav = $el.querySelector('.nav-tabs')
     const tab = nav.querySelectorAll('li')[1]
     expect(tab.querySelector('i')).toBeDefined()
   })
@@ -306,30 +319,32 @@ describe('Tabs', () => {
         },
       }
     )
-    const $el = $(vm.$el)
+    const vm = wrapper.vm
+    const $el = vm.$el
     await vm.$nextTick()
-    const nav = $el.find('.nav-tabs').get(0)
+    const nav = $el.querySelector('.nav-tabs')
     const _savedAlert = window.alert
     window.alert = () => {
       // Silent to remove out logs in terminal
     }
-    const spy = sinon.spy(window, 'alert')
+    const spy = jest.spyOn(window, 'alert')
     triggerEvent(nav.querySelectorAll('li > a')[1], 'click')
     await vm.$nextTick()
     await sleep(350)
     triggerEvent(nav.querySelectorAll('li > a')[2], 'click')
     await vm.$nextTick()
     await sleep(350)
-    sinon.assert.calledOnce(spy)
+    expect(spy).toBeCalled()
     window.alert = _savedAlert
   })
 
   it('should be able to open grouped tab', async () => {
-    vm = baseVm()
+    const wrapper = baseVm()
+    const vm = wrapper.vm
     await vm.$nextTick()
-    const $el = $(vm.$el)
-    const nav = $el.find('.nav-tabs').get(0)
-    const content = $el.find('.tab-content').get(0)
+    const $el = vm.$el
+    const nav = $el.querySelector('.nav-tabs')
+    const content = $el.querySelector('.tab-content')
     const tab5 = nav.querySelector('li.dropdown')
     triggerEvent(tab5.querySelectorAll('a')[0], 'click')
     await vm.$nextTick()
@@ -355,12 +370,13 @@ describe('Tabs', () => {
   })
 
   it('should be able to use with v-model', async () => {
-    vm = dynamicVm()
-    const $el = $(vm.$el)
+    const wrapper = dynamicVm()
+    const vm = wrapper.vm
+    const $el = vm.$el
     await vm.$nextTick()
     await vm.$nextTick()
-    const nav = $el.find('.nav-tabs').get(0)
-    const content = $el.find('.tab-content').get(0)
+    const nav = $el.querySelector('.nav-tabs')
+    const content = $el.querySelector('.tab-content')
     // 1 tab + 1 btn
     expect(nav.querySelectorAll('li').length).toEqual(1 + 1)
     // check active tab
@@ -374,10 +390,11 @@ describe('Tabs', () => {
   })
 
   it('should be able to push tab', async () => {
-    vm = dynamicVm()
-    const $el = $(vm.$el)
-    const nav = $el.find('.nav-tabs').get(0)
-    const content = $el.find('.tab-content').get(0)
+    const wrapper = dynamicVm()
+    const vm = wrapper.vm
+    const $el = vm.$el
+    const nav = $el.querySelector('.nav-tabs')
+    const content = $el.querySelector('.tab-content')
     const pushBtn = nav.querySelector('.btn')
     await vm.$nextTick()
     await vm.$nextTick()
@@ -397,10 +414,11 @@ describe('Tabs', () => {
   })
 
   it('should be able to close tab', async () => {
-    vm = dynamicVm()
-    const $el = $(vm.$el)
-    const nav = $el.find('.nav-tabs').get(0)
-    const content = $el.find('.tab-content').get(0)
+    const wrapper = dynamicVm()
+    const vm = wrapper.vm
+    const $el = vm.$el
+    const nav = $el.querySelector('.nav-tabs')
+    const content = $el.querySelector('.tab-content')
     const pushBtn = nav.querySelector('.btn')
     await vm.$nextTick()
     await vm.$nextTick()
@@ -424,10 +442,11 @@ describe('Tabs', () => {
   })
 
   it('should be able to select dynamic tab', async () => {
-    vm = dynamicVm()
-    const $el = $(vm.$el)
-    const nav = $el.find('.nav-tabs').get(0)
-    const content = $el.find('.tab-content').get(0)
+    const wrapper = dynamicVm()
+    const vm = wrapper.vm
+    const $el = vm.$el
+    const nav = $el.querySelector('.nav-tabs')
+    const content = $el.querySelector('.tab-content')
     const pushBtn = nav.querySelector('.btn')
     await vm.$nextTick()
     await vm.$nextTick()
@@ -518,8 +537,9 @@ describe('Tabs', () => {
         },
       }
     )
-    const $el = $(vm.$el)
-    const nav = $el.find('.nav-tabs').get(0)
+    const vm = wrapper.vm
+    const $el = vm.$el
+    const nav = $el.querySelector('.nav-tabs')
     await vm.$nextTick()
     await vm.$nextTick()
     expect(nav.querySelectorAll('li').length).toEqual(3)

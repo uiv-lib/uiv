@@ -6,6 +6,7 @@ import {
   sleep,
   transition,
   triggerEvent,
+  triggerKey,
 } from '../../__test__/utils'
 import { RouterLinkStub } from '@vue/test-utils'
 import _ from 'lodash'
@@ -19,11 +20,12 @@ describe('MultiSelect', () => {
         options: [],
       }
     )
-    await nextTick()
-    const trigger = wrapper.element.querySelector('.dropdown-toggle')
+    const vm = wrapper.vm
+    await vm.$nextTick()
+    const trigger = vm.$el.querySelector('.dropdown-toggle')
     trigger.click()
-    await nextTick()
-    expect(wrapper.element.querySelectorAll('li > a').length).toEqual(0)
+    await vm.$nextTick()
+    expect(vm.$el.querySelectorAll('li > a').length).toEqual(0)
   })
 
   it('should be able to use custom placeholder', async () => {
@@ -36,10 +38,10 @@ describe('MultiSelect', () => {
         options: [{ value: 1, label: 'Option1' }],
       }
     )
-    await nextTick()
+    const vm = wrapper.vm
+    await vm.$nextTick()
     expect(
-      wrapper.element.querySelector('[data-role="trigger"] .text-muted')
-        .textContent
+      vm.$el.querySelector('[data-role="trigger"] .text-muted').textContent
     ).toEqual('someplaceholder...')
   })
 
@@ -59,14 +61,15 @@ describe('MultiSelect', () => {
         ],
       }
     )
-    const dropdown = wrapper.element.querySelector('.dropdown')
+    const vm = wrapper.vm
+    const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
     expect(dropdown.className).not.toContain('open')
     trigger.click()
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.className).toContain('open')
-    expect(_.isEmpty(wrapper.vm.selected)).toBeTruthy()
+    expect(_.isEmpty(vm.selected)).toBeTruthy()
     expect(display.textContent).toEqual('Select...')
     expect(dropdown.querySelectorAll('li > a')[0].textContent).toEqual(
       'Option1'
@@ -85,56 +88,56 @@ describe('MultiSelect', () => {
     )
     // select option 1
     dropdown.querySelectorAll('li')[0].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1')
-    expect(_.isEqual(wrapper.vm.selected, [1])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1])).toBeTruthy()
     // select option 2
     dropdown.querySelectorAll('li')[1].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, Option2')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2])).toBeTruthy()
     // select option 3
     dropdown.querySelectorAll('li')[2].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, Option2, Option3')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3])).toBeTruthy()
     // select option 4
     dropdown.querySelectorAll('li')[3].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, Option2, Option3, Option4')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3, 4])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3, 4])).toBeTruthy()
     // select option 5
     dropdown.querySelectorAll('li')[4].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual(
       'Option1, Option2, Option3, Option4, Option5'
     )
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3, 4, 5])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3, 4, 5])).toBeTruthy()
     // unselect option 1
     dropdown.querySelectorAll('li')[0].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option2, Option3, Option4, Option5')
-    expect(_.isEqual(wrapper.vm.selected, [2, 3, 4, 5])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [2, 3, 4, 5])).toBeTruthy()
     // unselect option 2
     dropdown.querySelectorAll('li')[1].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option3, Option4, Option5')
-    expect(_.isEqual(wrapper.vm.selected, [3, 4, 5])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [3, 4, 5])).toBeTruthy()
     // unselect option 3
     dropdown.querySelectorAll('li')[2].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option4, Option5')
-    expect(_.isEqual(wrapper.vm.selected, [4, 5])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [4, 5])).toBeTruthy()
     // unselect option 4
     dropdown.querySelectorAll('li')[3].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option5')
-    expect(_.isEqual(wrapper.vm.selected, [5])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [5])).toBeTruthy()
     // unselect option 5
     dropdown.querySelectorAll('li')[4].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Select...')
-    expect(_.isEmpty(wrapper.vm.selected)).toBeTruthy()
+    expect(_.isEmpty(vm.selected)).toBeTruthy()
   })
 
   it('should be able to use custom `itemSelectedClass`', async () => {
@@ -153,18 +156,19 @@ describe('MultiSelect', () => {
         ],
       }
     )
-    const dropdown = wrapper.element.querySelector('.dropdown')
+    const vm = wrapper.vm
+    const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
     trigger.click()
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     // select option 1
     dropdown.querySelectorAll('li')[2].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option3')
     expect(dropdown.querySelectorAll('li')[2].className).toContain('someclass')
-    expect(_.isEqual(wrapper.vm.selected, [3])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [3])).toBeTruthy()
   })
 
   it('should be able to limit selected length', async () => {
@@ -183,52 +187,53 @@ describe('MultiSelect', () => {
         ],
       }
     )
-    const dropdown = wrapper.element.querySelector('.dropdown')
+    const vm = wrapper.vm
+    const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
     trigger.click()
-    await nextTick()
-    expect(_.isEmpty(wrapper.vm.selected)).toBeTruthy()
+    await vm.$nextTick()
+    expect(_.isEmpty(vm.selected)).toBeTruthy()
     // select option 1
     dropdown.querySelectorAll('li')[0].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1')
-    expect(_.isEqual(wrapper.vm.selected, [1])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1])).toBeTruthy()
     // select option 2
     dropdown.querySelectorAll('li')[1].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, Option2')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2])).toBeTruthy()
     // select option 3
     dropdown.querySelectorAll('li')[2].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, Option2, Option3')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3])).toBeTruthy()
     // select option 4 (should not work)
     dropdown.querySelectorAll('li')[3].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, Option2, Option3')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3])).toBeTruthy()
     // select option 5 (should not work)
     dropdown.querySelectorAll('li')[4].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, Option2, Option3')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3])).toBeTruthy()
     // unselect option 1
     dropdown.querySelectorAll('li')[0].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option2, Option3')
-    expect(_.isEqual(wrapper.vm.selected, [2, 3])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [2, 3])).toBeTruthy()
     // unselect option 2
     dropdown.querySelectorAll('li')[1].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option3')
-    expect(_.isEqual(wrapper.vm.selected, [3])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [3])).toBeTruthy()
     // unselect option 3
     dropdown.querySelectorAll('li')[2].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Select...')
-    expect(_.isEmpty(wrapper.vm.selected)).toBeTruthy()
+    expect(_.isEmpty(vm.selected)).toBeTruthy()
   })
 
   it('should be able to render optional sizes', async () => {
@@ -250,7 +255,8 @@ describe('MultiSelect', () => {
         ],
       }
     )
-    const _el = wrapper.element
+    const vm = wrapper.vm
+    const _el = vm.$el
     const dropdown1 = _el.querySelectorAll('.dropdown')[0]
     const dropdown2 = _el.querySelectorAll('.dropdown')[1]
     const dropdown3 = _el.querySelectorAll('.dropdown')[2]
@@ -293,37 +299,38 @@ describe('MultiSelect', () => {
         ],
       }
     )
-    const dropdown = wrapper.element.querySelector('.dropdown')
+    const vm = wrapper.vm
+    const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
     trigger.click()
-    await nextTick()
-    expect(_.isEmpty(wrapper.vm.selected)).toBeTruthy()
+    await vm.$nextTick()
+    expect(_.isEmpty(vm.selected)).toBeTruthy()
     // select option 1
     dropdown.querySelectorAll('li')[0].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1')
-    expect(_.isEqual(wrapper.vm.selected, [1])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1])).toBeTruthy()
     // select option 2
     dropdown.querySelectorAll('li')[1].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, Option2')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2])).toBeTruthy()
     // select option 3 (should not work)
     dropdown.querySelectorAll('li')[2].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, Option2')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2])).toBeTruthy()
     // select option 4
     dropdown.querySelectorAll('li')[3].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, Option2, Option4')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 4])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 4])).toBeTruthy()
     // select option 5 (should not work)
     dropdown.querySelectorAll('li')[4].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, Option2, Option4')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 4])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 4])).toBeTruthy()
   })
 
   it('should be able to disable dropdown', async () => {
@@ -342,14 +349,15 @@ describe('MultiSelect', () => {
         ],
       }
     )
-    const dropdown = wrapper.element.querySelector('.dropdown')
+    const vm = wrapper.vm
+    const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     expect(
       dropdown.querySelector('.form-control').getAttribute('disabled')
     ).toEqual('disabled')
     expect(dropdown.className).not.toContain('open')
     trigger.click()
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.className).not.toContain('open')
   })
 
@@ -369,65 +377,66 @@ describe('MultiSelect', () => {
         ],
       }
     )
-    const dropdown = wrapper.element.querySelector('.dropdown')
+    const vm = wrapper.vm
+    const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
     expect(dropdown.className).not.toContain('open')
     trigger.click()
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.className).toContain('open')
-    expect(_.isEmpty(wrapper.vm.selected)).toBeTruthy()
+    expect(_.isEmpty(vm.selected)).toBeTruthy()
     expect(display.textContent).toEqual('Select...')
     // select option 1
     dropdown.querySelectorAll('li')[0].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1')
-    expect(_.isEqual(wrapper.vm.selected, [1])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1])).toBeTruthy()
     // select option 2
     dropdown.querySelectorAll('li')[1].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, +1')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2])).toBeTruthy()
     // select option 3
     dropdown.querySelectorAll('li')[2].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, +2')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3])).toBeTruthy()
     // select option 4
     dropdown.querySelectorAll('li')[3].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, +3')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3, 4])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3, 4])).toBeTruthy()
     // select option 5
     dropdown.querySelectorAll('li')[4].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, +4')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3, 4, 5])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3, 4, 5])).toBeTruthy()
     // unselect option 1
     dropdown.querySelectorAll('li')[0].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option2, +3')
-    expect(_.isEqual(wrapper.vm.selected, [2, 3, 4, 5])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [2, 3, 4, 5])).toBeTruthy()
     // unselect option 2
     dropdown.querySelectorAll('li')[1].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option3, +2')
-    expect(_.isEqual(wrapper.vm.selected, [3, 4, 5])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [3, 4, 5])).toBeTruthy()
     // unselect option 3
     dropdown.querySelectorAll('li')[2].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option4, +1')
-    expect(_.isEqual(wrapper.vm.selected, [4, 5])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [4, 5])).toBeTruthy()
     // unselect option 4
     dropdown.querySelectorAll('li')[3].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option5')
-    expect(_.isEqual(wrapper.vm.selected, [5])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [5])).toBeTruthy()
     // unselect option 5
     dropdown.querySelectorAll('li')[4].click()
-    await nextTick()
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Select...')
-    expect(_.isEmpty(wrapper.vm.selected)).toBeTruthy()
+    expect(_.isEmpty(vm.selected)).toBeTruthy()
   })
 
   it('should be able to filter options', async () => {
@@ -446,36 +455,37 @@ describe('MultiSelect', () => {
         ],
       }
     )
-    const dropdown = wrapper.element.querySelector('.dropdown')
+    const vm = wrapper.vm
+    const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const searchInput = dropdown.querySelector('.form-control.input-sm')
     trigger.click()
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     // + 1 is the search box
     expect(dropdown.querySelectorAll('li').length).toEqual(5 + 1)
     searchInput.value = 'option'
     triggerEvent(searchInput, 'input')
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).toEqual(5 + 1)
     searchInput.value = '1'
     triggerEvent(searchInput, 'input')
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).toEqual(1 + 1)
     expect(dropdown.querySelector('li > a').textContent).toEqual('Option1')
     searchInput.value = 'Option1'
     triggerEvent(searchInput, 'input')
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).toEqual(1 + 1)
     expect(dropdown.querySelector('li > a').textContent).toEqual('Option1')
     searchInput.value = '5'
     triggerEvent(searchInput, 'input')
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).toEqual(1 + 1)
     expect(dropdown.querySelector('li > a').textContent).toEqual('Option5')
     searchInput.value = ''
     triggerEvent(searchInput, 'input')
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).toEqual(5 + 1)
   })
 
@@ -489,7 +499,8 @@ describe('MultiSelect', () => {
         options: [{ value: 1, label: 'Option1' }],
       }
     )
-    const dropdown = wrapper.element.querySelector('.dropdown')
+    const vm = wrapper.vm
+    const dropdown = vm.$el.querySelector('.dropdown')
     const searchInput = dropdown.querySelector('.form-control.input-sm')
     expect(searchInput.getAttribute('placeholder')).toEqual(
       'someplaceholder...'
@@ -512,36 +523,37 @@ describe('MultiSelect', () => {
         ],
       }
     )
-    const dropdown = wrapper.element.querySelector('.dropdown')
+    const vm = wrapper.vm
+    const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const searchInput = dropdown.querySelector('.form-control.input-sm')
     trigger.click()
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     // + 1 is the search box
     expect(dropdown.querySelectorAll('li').length).toEqual(5 + 1)
     searchInput.value = 'option'
     triggerEvent(searchInput, 'input')
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).toEqual(5 + 1)
     searchInput.value = '1'
     triggerEvent(searchInput, 'input')
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).toEqual(1 + 1)
     expect(dropdown.querySelector('li > a').textContent).toEqual('Option1')
     searchInput.value = 'Option1'
     triggerEvent(searchInput, 'input')
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).toEqual(1 + 1)
     expect(dropdown.querySelector('li > a').textContent).toEqual('Option1')
     searchInput.value = '5'
     triggerEvent(searchInput, 'input')
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).toEqual(1 + 1)
     expect(dropdown.querySelector('li > a').textContent).toEqual('Option5')
     searchInput.value = ''
     triggerEvent(searchInput, 'input')
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).toEqual(5 + 1)
   })
 
@@ -560,9 +572,10 @@ describe('MultiSelect', () => {
         ],
       }
     )
-    await nextTick()
+    const vm = wrapper.vm
+    await vm.$nextTick()
     expect(
-      wrapper.element.querySelectorAll('.dropdown-toggle > div')[1].textContent
+      vm.$el.querySelectorAll('.dropdown-toggle > div')[1].textContent
     ).toEqual('5')
   })
 
@@ -588,17 +601,18 @@ describe('MultiSelect', () => {
         },
       }
     )
-    const dropdown = wrapper.element
+    const vm = wrapper.vm
+    const dropdown = vm.$el
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const searchInput = dropdown.querySelector('.form-control.input-sm')
     trigger.click()
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     // + 1 is the search box
     expect(dropdown.querySelectorAll('li').length).toEqual(5 + 1)
     searchInput.value = 'option'
     triggerEvent(searchInput, 'input')
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).toEqual(2 + 1)
     expect(dropdown.querySelectorAll('li > a')[0].textContent).toEqual(
       'Option1'
@@ -608,7 +622,7 @@ describe('MultiSelect', () => {
     )
     searchInput.value = '3'
     triggerEvent(searchInput, 'input')
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).toEqual(2 + 1)
     expect(dropdown.querySelectorAll('li > a')[0].textContent).toEqual(
       'Option1'
@@ -618,7 +632,7 @@ describe('MultiSelect', () => {
     )
     searchInput.value = ''
     triggerEvent(searchInput, 'input')
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li').length).toEqual(5 + 1)
   })
 
@@ -638,139 +652,140 @@ describe('MultiSelect', () => {
         ],
       }
     )
-    const dropdown = wrapper.element.querySelector('.dropdown')
-    const trigger = wrapper.find('.dropdown-toggle')
+    const vm = wrapper.vm
+    const dropdown = vm.$el.querySelector('.dropdown')
+    const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
     expect(dropdown.className).not.toContain('open')
     // nothing happens
-    triggerEvent(trigger, 'keydown.up')
-    await nextTick()
+    triggerKey(trigger, keyCodes.up)
+    await vm.$nextTick()
     // nothing happens
-    triggerEvent(trigger, 'keydown.down')
-    await nextTick()
+    triggerKey(trigger, keyCodes.down)
+    await vm.$nextTick()
     // open dropdown
-    triggerEvent(trigger, 'keydown.enter')
-    await nextTick()
+    triggerKey(trigger, keyCodes.enter)
+    await vm.$nextTick()
     expect(dropdown.className).toContain('open')
-    expect(_.isEmpty(wrapper.vm.selected)).toBeTruthy()
+    expect(_.isEmpty(vm.selected)).toBeTruthy()
     // nothing happens
-    triggerEvent(trigger, 'keydown.enter')
-    await nextTick()
-    expect(_.isEmpty(wrapper.vm.selected)).toBeTruthy()
+    triggerKey(trigger, keyCodes.enter)
+    await vm.$nextTick()
+    expect(_.isEmpty(vm.selected)).toBeTruthy()
     // select option 1
-    triggerEvent(trigger, 'keydown.down')
-    await nextTick()
+    triggerKey(trigger, keyCodes.down)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[0].className).toContain('active')
-    triggerEvent(trigger, 'keydown.enter')
-    await nextTick()
+    triggerKey(trigger, keyCodes.enter)
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1')
-    expect(_.isEqual(wrapper.vm.selected, [1])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1])).toBeTruthy()
     // select option 2
-    triggerEvent(trigger, 'keydown.down')
-    await nextTick()
+    triggerKey(trigger, keyCodes.down)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[1].className).toContain('active')
-    triggerEvent(trigger, 'keydown.enter')
-    await nextTick()
+    triggerKey(trigger, keyCodes.enter)
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, Option2')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2])).toBeTruthy()
     // select option 3
-    triggerEvent(trigger, 'keydown.down')
-    await nextTick()
+    triggerKey(trigger, keyCodes.down)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[2].className).toContain('active')
-    triggerEvent(trigger, 'keydown.enter')
-    await nextTick()
+    triggerKey(trigger, keyCodes.enter)
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, Option2, Option3')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3])).toBeTruthy()
     // select option 4
-    triggerEvent(trigger, 'keydown.down')
-    await nextTick()
+    triggerKey(trigger, keyCodes.down)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[3].className).toContain('active')
-    triggerEvent(trigger, 'keydown.enter')
-    await nextTick()
+    triggerKey(trigger, keyCodes.enter)
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Option1, Option2, Option3, Option4')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3, 4])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3, 4])).toBeTruthy()
     // select option 5
-    triggerEvent(trigger, 'keydown.down')
-    await nextTick()
+    triggerKey(trigger, keyCodes.down)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[4].className).toContain('active')
-    triggerEvent(trigger, 'keydown.enter')
-    await nextTick()
+    triggerKey(trigger, keyCodes.enter)
+    await vm.$nextTick()
     expect(display.textContent).toEqual(
       'Option1, Option2, Option3, Option4, Option5'
     )
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3, 4, 5])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3, 4, 5])).toBeTruthy()
     // unselect option 1
     // go next (option 1)
-    triggerEvent(trigger, 'keydown.down')
-    await nextTick()
+    triggerKey(trigger, keyCodes.down)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[0].className).toContain('active')
     // go prev (option 5)
-    triggerEvent(trigger, 'keydown.up')
-    await nextTick()
+    triggerKey(trigger, keyCodes.up)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[4].className).toContain('active')
     // go prev (option 4)
-    triggerEvent(trigger, 'keydown.up')
-    await nextTick()
+    triggerKey(trigger, keyCodes.up)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[3].className).toContain('active')
     // go next (option 5)
-    triggerEvent(trigger, 'keydown.down')
-    await nextTick()
+    triggerKey(trigger, keyCodes.down)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[4].className).toContain('active')
     // go next (option 1)
-    triggerEvent(trigger, 'keydown.down')
-    await nextTick()
+    triggerKey(trigger, keyCodes.down)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[0].className).toContain('active')
     // todo: why failed?
-    // // unselect option 1
-    // await triggerEvent(trigger, 'keydown.enter')
+    // triggerKey(trigger, keyCodes.enter)
+    // await vm.$nextTick()
     // expect(display.textContent).toEqual('Option2, Option3, Option4, Option5')
-    // expect(_.isEqual(wrapper.vm.selected, [2, 3, 4, 5])).toBeTruthy()
+    // expect(_.isEqual(vm.selected, [2, 3, 4, 5])).toBeTruthy()
     // // unselect option 2
-    // triggerEvent(trigger, 'keydown.down')
-    // await nextTick()
+    // triggerKey(trigger, keyCodes.down)
+    // await vm.$nextTick()
     // expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     // expect(dropdown.querySelectorAll('li')[1].className).toContain('active')
-    // triggerEvent(trigger, 'keydown.enter')
-    // await nextTick()
+    // triggerKey(trigger, keyCodes.enter)
+    // await vm.$nextTick()
     // expect(display.textContent).toEqual('Option3, Option4, Option5')
-    // expect(_.isEqual(wrapper.vm.selected, [3, 4, 5])).toBeTruthy()
+    // expect(_.isEqual(vm.selected, [3, 4, 5])).toBeTruthy()
     // // unselect option 3
-    // triggerEvent(trigger, 'keydown.down')
-    // await nextTick()
+    // triggerKey(trigger, keyCodes.down)
+    // await vm.$nextTick()
     // expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     // expect(dropdown.querySelectorAll('li')[2].className).toContain('active')
-    // triggerEvent(trigger, 'keydown.enter')
-    // await nextTick()
+    // triggerKey(trigger, keyCodes.enter)
+    // await vm.$nextTick()
     // expect(display.textContent).toEqual('Option4, Option5')
-    // expect(_.isEqual(wrapper.vm.selected, [4, 5])).toBeTruthy()
+    // expect(_.isEqual(vm.selected, [4, 5])).toBeTruthy()
     // // unselect option 4
-    // triggerEvent(trigger, 'keydown.down')
-    // await nextTick()
+    // triggerKey(trigger, keyCodes.down)
+    // await vm.$nextTick()
     // expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     // expect(dropdown.querySelectorAll('li')[3].className).toContain('active')
-    // triggerEvent(trigger, 'keydown.enter')
-    // await nextTick()
+    // triggerKey(trigger, keyCodes.enter)
+    // await vm.$nextTick()
     // expect(display.textContent).toEqual('Option5')
-    // expect(_.isEqual(wrapper.vm.selected, [5])).toBeTruthy()
+    // expect(_.isEqual(vm.selected, [5])).toBeTruthy()
     // // unselect option 5
-    // triggerEvent(trigger, 'keydown.down')
-    // await nextTick()
+    // triggerKey(trigger, keyCodes.down)
+    // await vm.$nextTick()
     // expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     // expect(dropdown.querySelectorAll('li')[4].className).toContain('active')
-    // triggerEvent(trigger, 'keydown.enter')
-    // await nextTick()
+    // triggerKey(trigger, keyCodes.enter)
+    // await vm.$nextTick()
     // expect(display.textContent).toEqual('Select...')
-    // expect(_.isEmpty(wrapper.vm.selected)).toBeTruthy()
+    // expect(_.isEmpty(vm.selected)).toBeTruthy()
   })
 
   it('should behave like single toggle while limit=1', async () => {
@@ -787,27 +802,28 @@ describe('MultiSelect', () => {
         ],
       }
     )
-    const dropdown = wrapper.element
+    const vm = wrapper.vm
+    const dropdown = vm.$el
     const trigger = dropdown.querySelector('.dropdown-toggle')
     trigger.click()
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     // select option 1
     dropdown.querySelectorAll('li')[0].click()
-    await nextTick()
-    expect(_.isEqual(wrapper.vm.selected, [1])).toBeTruthy()
+    await vm.$nextTick()
+    expect(_.isEqual(vm.selected, [1])).toBeTruthy()
     // select option 2
     dropdown.querySelectorAll('li')[1].click()
-    await nextTick()
-    expect(_.isEqual(wrapper.vm.selected, [2])).toBeTruthy()
+    await vm.$nextTick()
+    expect(_.isEqual(vm.selected, [2])).toBeTruthy()
     // select option 3
     dropdown.querySelectorAll('li')[2].click()
-    await nextTick()
-    expect(_.isEqual(wrapper.vm.selected, [3])).toBeTruthy()
+    await vm.$nextTick()
+    expect(_.isEqual(vm.selected, [3])).toBeTruthy()
     // un-select option 3
     dropdown.querySelectorAll('li')[2].click()
-    await nextTick()
-    expect(_.isEqual(wrapper.vm.selected, [])).toBeTruthy()
+    await vm.$nextTick()
+    expect(_.isEqual(vm.selected, [])).toBeTruthy()
   })
 
   it('should be able to display grouped options', async () => {
@@ -824,8 +840,9 @@ describe('MultiSelect', () => {
         ],
       }
     )
-    const dropdown = wrapper.element.querySelector('.dropdown')
-    const trigger = wrapper.find('.dropdown-toggle')
+    const vm = wrapper.vm
+    const dropdown = vm.$el.querySelector('.dropdown')
+    const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
     expect(dropdown.className).not.toContain('open')
     expect(dropdown.querySelectorAll('.dropdown-header').length).toEqual(2)
@@ -836,53 +853,53 @@ describe('MultiSelect', () => {
       dropdown.querySelectorAll('.dropdown-header')[1].textContent
     ).toEqual('Color')
     // open dropdown
-    triggerEvent(trigger, 'keydown.enter')
-    await nextTick()
+    triggerKey(trigger, keyCodes.enter)
+    await vm.$nextTick()
     // select option 1
-    triggerEvent(trigger, 'keydown.down')
-    await nextTick()
+    triggerKey(trigger, keyCodes.down)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[1].className).toContain('active')
-    triggerEvent(trigger, 'keydown.enter')
-    await nextTick()
+    triggerKey(trigger, keyCodes.enter)
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Apple')
-    expect(_.isEqual(wrapper.vm.selected, [1])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1])).toBeTruthy()
     // select option 2
-    triggerEvent(trigger, 'keydown.down')
-    await nextTick()
+    triggerKey(trigger, keyCodes.down)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[2].className).toContain('active')
-    triggerEvent(trigger, 'keydown.enter')
-    await nextTick()
+    triggerKey(trigger, keyCodes.enter)
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Apple, Banana')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2])).toBeTruthy()
     // select option 3
-    triggerEvent(trigger, 'keydown.down')
-    await nextTick()
+    triggerKey(trigger, keyCodes.down)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[3].className).toContain('active')
-    triggerEvent(trigger, 'keydown.enter')
-    await nextTick()
+    triggerKey(trigger, keyCodes.enter)
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Apple, Banana, Orange')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3])).toBeTruthy()
     // select option 4
-    triggerEvent(trigger, 'keydown.down')
-    await nextTick()
+    triggerKey(trigger, keyCodes.down)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[5].className).toContain('active')
-    triggerEvent(trigger, 'keydown.enter')
-    await nextTick()
+    triggerKey(trigger, keyCodes.enter)
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Apple, Banana, Orange, Red')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3, 4])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3, 4])).toBeTruthy()
     // select option 5
-    triggerEvent(trigger, 'keydown.down')
-    await nextTick()
+    triggerKey(trigger, keyCodes.down)
+    await vm.$nextTick()
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
     expect(dropdown.querySelectorAll('li')[6].className).toContain('active')
-    triggerEvent(trigger, 'keydown.enter')
-    await nextTick()
+    triggerKey(trigger, keyCodes.enter)
+    await vm.$nextTick()
     expect(display.textContent).toEqual('Apple, Banana, Orange, Red, Green')
-    expect(_.isEqual(wrapper.vm.selected, [1, 2, 3, 4, 5])).toBeTruthy()
+    expect(_.isEqual(vm.selected, [1, 2, 3, 4, 5])).toBeTruthy()
   })
 
   it('should be able to use option slot', async () => {
@@ -904,10 +921,11 @@ describe('MultiSelect', () => {
         ],
       }
     )
-    const dropdown = wrapper.element
+    const vm = wrapper.vm
+    const dropdown = vm.$el
     const trigger = dropdown.querySelector('.dropdown-toggle')
     trigger.click()
-    await nextTick()
+    await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     expect(dropdown.querySelectorAll('li a i').length).toEqual(5)
   })
