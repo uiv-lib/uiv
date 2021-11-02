@@ -1,5 +1,5 @@
 import scroll from '../src/directives/scroll'
-import { createVm, destroyVm } from '../utils'
+import { createWrapper, destroyVm } from '../utils'
 
 const HANDLER = '_uiv_scroll_handler'
 
@@ -11,7 +11,7 @@ describe('scroll directive', () => {
   })
 
   it('should be able to bind scroll function', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div v-scroll="onScroll"></div>',
       {
         msg: 'hello',
@@ -26,11 +26,11 @@ describe('scroll directive', () => {
       }
     )
     await vm.$nextTick()
-    expect(vm.$el[HANDLER]).to.equal(vm.onScroll)
+    expect(vm.$el[HANDLER]).toEqual(vm.onScroll)
   })
 
   it('should not bind non-function value', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div v-scroll="msg"></div>',
       {
         msg: 'hello',
@@ -44,7 +44,7 @@ describe('scroll directive', () => {
   })
 
   it('should be able to get with fail callback', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div v-scroll="msg"></div>',
       {
         msg: 'hello',

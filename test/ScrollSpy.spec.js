@@ -1,25 +1,25 @@
 import $ from 'jquery'
-import { sleep, createVm, destroyVm } from '../utils'
+import { sleep, createWrapper, destroyVm } from '../utils'
 
 const expectActive = ($nav, hash) => {
-  expect($nav.find('li.active').length).to.equal(1)
-  expect($nav.find('li.active > a').attr('href')).to.equal(hash)
+  expect($nav.find('li.active').length).toEqual(1)
+  expect($nav.find('li.active > a').attr('href')).toEqual(hash)
 }
 
 const expectDropdownActive = ($nav, hash) => {
-  expect($nav.find('li.active').length).to.equal(2)
-  expect($nav.find('li.dropdown.active').length).to.equal(1)
-  expect($nav.find('li.dropdown.active > ul > li.active').length).to.equal(1)
+  expect($nav.find('li.active').length).toEqual(2)
+  expect($nav.find('li.dropdown.active').length).toEqual(1)
+  expect($nav.find('li.dropdown.active > ul > li.active').length).toEqual(1)
   expect(
     $nav.find('li.dropdown.active > ul > li.active > a').attr('href')
-  ).to.equal(hash)
+  ).toEqual(hash)
 }
 
 describe('ScrollSpy', () => {
   let vm
 
   beforeEach(() => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `
   <section>
     <nav class="navbar navbar-default navbar-static"  v-scrollspy:scrollspy-example>
@@ -120,7 +120,7 @@ describe('ScrollSpy', () => {
   })
 
   it('should be able to append to body', async () => {
-    vm = createVm(`
+    const wrapper = createWrapper(`
 <section style="height: 5000px;">
   <ul class="nav" v-scrollspy style="height: 200px">
     <li><a href="#1">1</a></li>
@@ -134,7 +134,7 @@ describe('ScrollSpy', () => {
     await vm.$nextTick()
     const $el = $(vm.$el)
     const $nav = $el.find('.nav')
-    expect($nav.find('li.active').length).to.equal(0)
+    expect($nav.find('li.active').length).toEqual(0)
     window.scrollTo(0, $el.find('#1').get(0).offsetTop)
     await sleep(100)
     expectActive($nav, '#1')
@@ -146,11 +146,11 @@ describe('ScrollSpy', () => {
     expectActive($nav, '#3')
     window.scrollTo(0, 0)
     await sleep(100)
-    expect($nav.find('li.active').length).to.equal(0)
+    expect($nav.find('li.active').length).toEqual(0)
   })
 
   it('should be able to handle invalid target', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `
 <section style="height: 5000px">
   <ul class="nav" v-scrollspy:test="opts" style="height: 200px">

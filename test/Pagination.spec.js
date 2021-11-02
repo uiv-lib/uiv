@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { createVm, destroyVm, triggerEvent } from '../utils'
+import { createWrapper, destroyVm, triggerEvent } from '../utils'
 
 describe('Pagination', () => {
   let vm
@@ -9,7 +9,7 @@ describe('Pagination', () => {
   })
 
   it('should be able to hide boundary links', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div><pagination v-model="currentPage" :total-page="totalPage"/></div>',
       {
         totalPage: 18,
@@ -25,7 +25,7 @@ describe('Pagination', () => {
   })
 
   it('should be able to show boundary links', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>',
       {
         totalPage: 18,
@@ -40,7 +40,7 @@ describe('Pagination', () => {
   })
 
   it('should be able to hide direction links', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <pagination v-model="currentPage" :total-page="totalPage"/>
     <pagination v-model="currentPage" :total-page="totalPage" :direction-links="false"/>
@@ -59,7 +59,7 @@ describe('Pagination', () => {
   })
 
   it('should be able to show direction links', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <pagination v-model="currentPage" :total-page="totalPage"/>
     <pagination v-model="currentPage" :total-page="totalPage" :direction-links="false"/>
@@ -78,7 +78,7 @@ describe('Pagination', () => {
   })
 
   it('should be able to change current page', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div><pagination v-model="currentPage" :total-page="totalPage"/></div>',
       {
         totalPage: 18,
@@ -89,16 +89,16 @@ describe('Pagination', () => {
     await vm.$nextTick()
     let pagination = vm.$el.querySelector('ul.pagination')
     let currentPageElement = pagination.querySelector('li.active a')
-    expect(Number(currentPageElement.text)).to.equal(vm.currentPage)
+    expect(Number(currentPageElement.text)).toEqual(vm.currentPage)
     vm.currentPage = 6
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
     currentPageElement = pagination.querySelector('li.active a')
-    expect(Number(currentPageElement.text)).to.equal(vm.currentPage)
+    expect(Number(currentPageElement.text)).toEqual(vm.currentPage)
   })
 
   it('should be able to change size', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <pagination v-model="currentPage" :total-page="totalPage" size="lg"/>
     <pagination v-model="currentPage" :total-page="totalPage"/>
@@ -110,19 +110,19 @@ describe('Pagination', () => {
       }
     )
     await vm.$nextTick()
-    expect(vm.$el.querySelectorAll('.pagination')[0].className).to.equal(
+    expect(vm.$el.querySelectorAll('.pagination')[0].className).toEqual(
       'pagination pagination-lg'
     )
-    expect(vm.$el.querySelectorAll('.pagination')[1].className).to.equal(
+    expect(vm.$el.querySelectorAll('.pagination')[1].className).toEqual(
       'pagination'
     )
-    expect(vm.$el.querySelectorAll('.pagination')[2].className).to.equal(
+    expect(vm.$el.querySelectorAll('.pagination')[2].className).toEqual(
       'pagination pagination-sm'
     )
   })
 
   it('should be able to change alignment', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <pagination v-model="currentPage" :total-page="totalPage"/>
     <pagination v-model="currentPage" :total-page="totalPage" align="center"/>
@@ -134,13 +134,13 @@ describe('Pagination', () => {
       }
     )
     await vm.$nextTick()
-    expect(vm.$el.querySelectorAll('nav')[0].className).to.equal('')
-    expect(vm.$el.querySelectorAll('nav')[1].className).to.equal('text-center')
-    expect(vm.$el.querySelectorAll('nav')[2].className).to.equal('text-right')
+    expect(vm.$el.querySelectorAll('nav')[0].className).toEqual('')
+    expect(vm.$el.querySelectorAll('nav')[1].className).toEqual('text-center')
+    expect(vm.$el.querySelectorAll('nav')[2].className).toEqual('text-right')
   })
 
   it('should be able to change total page', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>',
       {
         totalPage: 18,
@@ -153,17 +153,17 @@ describe('Pagination', () => {
     triggerEvent(lastBtn, 'click')
     await vm.$nextTick()
     let activeBtn = pagination.querySelector('.active a')
-    expect(Number(activeBtn.text)).to.equal(vm.totalPage)
+    expect(Number(activeBtn.text)).toEqual(vm.totalPage)
     vm.totalPage = 100
     await vm.$nextTick()
     triggerEvent(lastBtn, 'click')
     await vm.$nextTick()
     activeBtn = pagination.querySelector('.active a')
-    expect(Number(activeBtn.text)).to.equal(vm.totalPage)
+    expect(Number(activeBtn.text)).toEqual(vm.totalPage)
   })
 
   it('should be able to go to first page', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div><pagination v-model="currentPage" :total-page="totalPage" boundary-links/></div>',
       {
         totalPage: 18,
@@ -177,17 +177,17 @@ describe('Pagination', () => {
     triggerEvent(lastBtn, 'click')
     await vm.$nextTick()
     let activeBtn = pagination.querySelector('.active a')
-    expect(Number(activeBtn.text)).to.equal(vm.totalPage)
+    expect(Number(activeBtn.text)).toEqual(vm.totalPage)
     const firstBtn = pagination.querySelector('[aria-label="First"]')
     triggerEvent(firstBtn, 'click')
     await vm.$nextTick()
     activeBtn = pagination.querySelector('.active a')
-    expect(vm.currentPage).to.equal(1)
-    expect(Number(activeBtn.text)).to.equal(vm.currentPage)
+    expect(vm.currentPage).toEqual(1)
+    expect(Number(activeBtn.text)).toEqual(vm.currentPage)
   })
 
   it('last group has max size item', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div><pagination v-model="currentPage" :total-page="totalPage"/></div>',
       {
         totalPage: 18,
@@ -198,16 +198,16 @@ describe('Pagination', () => {
     await vm.$nextTick()
     let pagination = vm.$el.querySelector('ul.pagination')
     let startBtn = $(pagination).find('a:not([aria-label])').get(0)
-    expect(Number(startBtn.text)).to.equal(vm.totalPage - 5 + 1)
+    expect(Number(startBtn.text)).toEqual(vm.totalPage - 5 + 1)
     vm.currentPage = 12
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
     startBtn = $(pagination).find('a:not([aria-label])').get(0)
-    expect(Number(startBtn.text)).to.equal(vm.currentPage - 5 + 1)
+    expect(Number(startBtn.text)).toEqual(vm.currentPage - 5 + 1)
   })
 
   it('should be go to next group', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div><pagination v-model="currentPage" :total-page="totalPage"/></div>',
       {
         totalPage: 18,
@@ -219,21 +219,21 @@ describe('Pagination', () => {
     let pagination = vm.$el.querySelector('ul.pagination')
     const nextGroupBtn = pagination.querySelector('[aria-label="Next group"]')
     let startBtn = $(pagination).find('a:not([aria-label])').get(0)
-    expect(Number(startBtn.text)).to.equal(1)
+    expect(Number(startBtn.text)).toEqual(1)
     triggerEvent(nextGroupBtn, 'click')
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
     startBtn = $(pagination).find('a:not([aria-label])').get(0)
-    expect(Number(startBtn.text)).to.equal(1 + 5)
+    expect(Number(startBtn.text)).toEqual(1 + 5)
     triggerEvent(nextGroupBtn, 'click')
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
     startBtn = $(pagination).find('a:not([aria-label])').get(0)
-    expect(Number(startBtn.text)).to.equal(vm.totalPage - 5 + 1)
+    expect(Number(startBtn.text)).toEqual(vm.totalPage - 5 + 1)
   })
 
   it('should be go to perv group', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div><pagination v-model="currentPage" :total-page="totalPage"/></div>',
       {
         totalPage: 18,
@@ -248,21 +248,21 @@ describe('Pagination', () => {
       '[aria-label="Previous group"]'
     )
     let startBtn = $(pagination).find('a:not([aria-label])').get(0)
-    expect(Number(startBtn.text)).to.equal(vm.totalPage - 5 + 1)
+    expect(Number(startBtn.text)).toEqual(vm.totalPage - 5 + 1)
     triggerEvent(prevGroupBtn, 'click')
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
     startBtn = $(pagination).find('a:not([aria-label])').get(0)
-    expect(Number(startBtn.text)).to.equal(vm.totalPage - 5 * 2 + 1)
+    expect(Number(startBtn.text)).toEqual(vm.totalPage - 5 * 2 + 1)
     triggerEvent(prevGroupBtn, 'click')
     await vm.$nextTick()
     pagination = vm.$el.querySelector('ul.pagination')
     startBtn = $(pagination).find('a:not([aria-label])').get(0)
-    expect(Number(startBtn.text)).to.equal(1)
+    expect(Number(startBtn.text)).toEqual(1)
   })
 
   it('should be able to disable component', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div><pagination v-model="currentPage" :total-page="totalPage" disabled/></div>',
       {
         totalPage: 18,
@@ -272,16 +272,16 @@ describe('Pagination', () => {
     await vm.$nextTick()
     const pagination = vm.$el.querySelector('ul.pagination')
     // all btns has disabled class
-    expect(pagination.querySelectorAll('li').length).to.equal(
+    expect(pagination.querySelectorAll('li').length).toEqual(
       pagination.querySelectorAll('.disabled').length
     )
-    expect(pagination.querySelector('.active > a').textContent).to.equal('1')
+    expect(pagination.querySelector('.active > a').textContent).toEqual('1')
     // all btns function are disabled
     const btns = pagination.querySelectorAll('li > a')
     for (let i = 0; i < btns.length; i++) {
       btns[i].click()
       await vm.$nextTick()
-      expect(pagination.querySelector('.active > a').textContent).to.equal('1')
+      expect(pagination.querySelector('.active > a').textContent).toEqual('1')
     }
   })
 })

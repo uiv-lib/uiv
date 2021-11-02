@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { createVm, destroyVm, triggerEvent, sleep } from '../utils'
+import { createWrapper, destroyVm, triggerEvent, sleep } from '../utils'
 
 describe('Collapse', () => {
   let vm
@@ -10,7 +10,7 @@ describe('Collapse', () => {
   })
 
   it('should be able to toggle collapse on trigger click', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <div>
       <btn type="primary" @click="show=!show">Click me!</btn>
@@ -27,17 +27,17 @@ describe('Collapse', () => {
     $el = $(vm.$el)
     const trigger = $el.find('button').get(0)
     const collapse = $el.find('.collapse').get(0)
-    expect(collapse.className).to.equal('collapse')
+    expect(collapse.className).toEqual('collapse')
     triggerEvent(trigger, 'click')
     await sleep(400)
-    expect(collapse.className).to.equal('collapse in')
+    expect(collapse.className).toEqual('collapse in')
     triggerEvent(trigger, 'click')
     await sleep(400)
-    expect(collapse.className).to.equal('collapse')
+    expect(collapse.className).toEqual('collapse')
   })
 
   it('should be able to toggle accordion', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<div><div class="panel-group">
     <div class="panel panel-default">
       <div class="panel-heading" role="button" @click="toggleAccordion(0)">
@@ -91,14 +91,14 @@ describe('Collapse', () => {
     $el = $(vm.$el)
     const triggers = $el.find('.panel-heading')
     const collapse = $el.find('.collapse')
-    expect(collapse.get(0).className).to.equal('collapse in')
-    expect(collapse.get(1).className).to.equal('collapse')
+    expect(collapse.get(0).className).toEqual('collapse in')
+    expect(collapse.get(1).className).toEqual('collapse')
     triggerEvent(triggers.get(1), 'click')
     await sleep(400)
-    expect(collapse.get(0).className).to.equal('collapse')
-    expect(collapse.get(1).className).to.equal('collapse in')
+    expect(collapse.get(0).className).toEqual('collapse')
+    expect(collapse.get(1).className).toEqual('collapse in')
     triggerEvent(triggers.get(1), 'click')
     await sleep(400)
-    expect(collapse.get(1).className).to.equal('collapse')
+    expect(collapse.get(1).className).toEqual('collapse')
   })
 })

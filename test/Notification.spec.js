@@ -1,11 +1,11 @@
 import $ from 'jquery'
-import { createVm, destroyVm, sleep, transition } from '../utils'
+import { createWrapper, destroyVm, sleep, transition } from '../utils'
 import Notification from '../src/services/notification/Notification'
 
 const OFFSET = '15px'
 
 function baseVm() {
-  return createVm(
+  return createWrapper(
     `<section>
     <btn @click="notify" type="primary">Simplest Notification</btn>
     <btn @click="notify2" type="primary">No Auto-dismiss Notification</btn>
@@ -38,7 +38,7 @@ function baseVm() {
 }
 
 function typesVm() {
-  return createVm(
+  return createWrapper(
     `<section>
     <btn @click="info" type="info">Info</btn>
     <btn @click="success" type="success">Success</btn>
@@ -83,7 +83,7 @@ function typesVm() {
 }
 
 function placementVm() {
-  return createVm(
+  return createWrapper(
     `<section>
     <btn @click="notify('top-right')" type="primary">Top Right (Default)</btn>
     <btn @click="notify('bottom-right')" type="primary">Bottom Right</btn>
@@ -135,12 +135,12 @@ describe('Notification', () => {
     await vm.$nextTick()
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
-    expect(alert.className).to.contain('alert-info')
-    expect(alert.className).to.contain('alert-dismissible')
-    expect(alert.className).to.contain('fade')
-    expect(alert.className).to.contain('in')
+    expect(alert.className).toContain('alert-info')
+    expect(alert.className).toContain('alert-dismissible')
+    expect(alert.className).toContain('fade')
+    expect(alert.className).toContain('in')
     expect(alert.querySelector('.media-heading')).not.exist
-    expect(alert.querySelector('.media-body > div').textContent).to.equal(
+    expect(alert.querySelector('.media-body > div').textContent).toEqual(
       'This is a simple notify msg.'
     )
     alert.querySelector('button.close').click()
@@ -159,12 +159,12 @@ describe('Notification', () => {
     await vm.$nextTick()
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
-    expect(alert.className).to.contain('alert-info')
-    expect(alert.className).to.contain('alert-dismissible')
-    expect(alert.className).to.contain('fade')
-    expect(alert.className).to.contain('in')
-    expect(alert.querySelector('.media-heading').textContent).to.equal('Title')
-    expect(alert.querySelectorAll('.media-body > div')[1].textContent).to.equal(
+    expect(alert.className).toContain('alert-info')
+    expect(alert.className).toContain('alert-dismissible')
+    expect(alert.className).toContain('fade')
+    expect(alert.className).toContain('in')
+    expect(alert.querySelector('.media-heading').textContent).toEqual('Title')
+    expect(alert.querySelectorAll('.media-body > div')[1].textContent).toEqual(
       'This notification will not dismiss automatically.'
     )
     await sleep(5000 + 1000)
@@ -185,10 +185,8 @@ describe('Notification', () => {
     await vm.$nextTick()
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
-    expect(alert.className).to.contain('alert-info')
-    expect(alert.querySelectorAll('.media-left > .glyphicon').length).to.equal(
-      1
-    )
+    expect(alert.className).toContain('alert-info')
+    expect(alert.querySelectorAll('.media-left > .glyphicon').length).toEqual(1)
     expect(alert.querySelectorAll('.media-left > .glyphicon-info-sign')).to
       .exist
     alert.querySelector('button.close').click()
@@ -206,10 +204,8 @@ describe('Notification', () => {
     await vm.$nextTick()
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
-    expect(alert.className).to.contain('alert-success')
-    expect(alert.querySelectorAll('.media-left > .glyphicon').length).to.equal(
-      1
-    )
+    expect(alert.className).toContain('alert-success')
+    expect(alert.querySelectorAll('.media-left > .glyphicon').length).toEqual(1)
     expect(alert.querySelectorAll('.media-left > .glyphicon-ok-sign')).to.exist
     alert.querySelector('button.close').click()
     await sleep(transition)
@@ -226,10 +222,8 @@ describe('Notification', () => {
     await vm.$nextTick()
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
-    expect(alert.className).to.contain('alert-warning')
-    expect(alert.querySelectorAll('.media-left > .glyphicon').length).to.equal(
-      1
-    )
+    expect(alert.className).toContain('alert-warning')
+    expect(alert.querySelectorAll('.media-left > .glyphicon').length).toEqual(1)
     expect(alert.querySelectorAll('.media-left > .glyphicon-info-sign')).to
       .exist
     alert.querySelector('button.close').click()
@@ -247,10 +241,8 @@ describe('Notification', () => {
     await vm.$nextTick()
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
-    expect(alert.className).to.contain('alert-danger')
-    expect(alert.querySelectorAll('.media-left > .glyphicon').length).to.equal(
-      1
-    )
+    expect(alert.className).toContain('alert-danger')
+    expect(alert.querySelectorAll('.media-left > .glyphicon').length).toEqual(1)
     expect(alert.querySelectorAll('.media-left > .glyphicon-remove-sign')).to
       .exist
     alert.querySelector('button.close').click()
@@ -268,10 +260,10 @@ describe('Notification', () => {
     await vm.$nextTick()
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
-    expect(alert.style.top).to.equal(OFFSET)
-    expect(alert.style.right).to.equal(OFFSET)
-    expect(alert.style.bottom).to.equal('')
-    expect(alert.style.left).to.equal('')
+    expect(alert.style.top).toEqual(OFFSET)
+    expect(alert.style.right).toEqual(OFFSET)
+    expect(alert.style.bottom).toEqual('')
+    expect(alert.style.left).toEqual('')
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
@@ -287,10 +279,10 @@ describe('Notification', () => {
     await vm.$nextTick()
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
-    expect(alert.style.top).to.equal('')
-    expect(alert.style.right).to.equal(OFFSET)
-    expect(alert.style.bottom).to.equal(OFFSET)
-    expect(alert.style.left).to.equal('')
+    expect(alert.style.top).toEqual('')
+    expect(alert.style.right).toEqual(OFFSET)
+    expect(alert.style.bottom).toEqual(OFFSET)
+    expect(alert.style.left).toEqual('')
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
@@ -306,10 +298,10 @@ describe('Notification', () => {
     await vm.$nextTick()
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
-    expect(alert.style.top).to.equal('')
-    expect(alert.style.right).to.equal('')
-    expect(alert.style.bottom).to.equal(OFFSET)
-    expect(alert.style.left).to.equal(OFFSET)
+    expect(alert.style.top).toEqual('')
+    expect(alert.style.right).toEqual('')
+    expect(alert.style.bottom).toEqual(OFFSET)
+    expect(alert.style.left).toEqual(OFFSET)
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
@@ -325,10 +317,10 @@ describe('Notification', () => {
     await vm.$nextTick()
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
-    expect(alert.style.top).to.equal(OFFSET)
-    expect(alert.style.right).to.equal('')
-    expect(alert.style.bottom).to.equal('')
-    expect(alert.style.left).to.equal(OFFSET)
+    expect(alert.style.top).toEqual(OFFSET)
+    expect(alert.style.right).toEqual('')
+    expect(alert.style.bottom).toEqual('')
+    expect(alert.style.left).toEqual(OFFSET)
     alert.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
@@ -336,7 +328,7 @@ describe('Notification', () => {
   })
 
   it('should be able to use `dismissible=false` notification', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div><btn @click="notify" type="primary">Notification Without Dismiss Button</btn></div>',
       {},
       {
@@ -359,7 +351,7 @@ describe('Notification', () => {
     await sleep(transition)
     await vm.$nextTick()
     const alert = document.querySelectorAll('.alert')
-    expect(alert.length).to.equal(2)
+    expect(alert.length).toEqual(2)
     expect(alert[0].querySelector('button.close')).not.exist
     expect(alert[1].querySelector('button.close')).not.exist
     await sleep(5000 + 1000)
@@ -404,7 +396,7 @@ describe('Notification', () => {
     await sleep(transition)
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
-    expect(alert.querySelectorAll('.media-left > .fa').length).to.equal(1)
+    expect(alert.querySelectorAll('.media-left > .fa').length).toEqual(1)
     expect(alert.querySelectorAll('.media-left > .fa-check')).to.exist
     alert.querySelector('button.close').click()
     await sleep(transition)
@@ -431,8 +423,8 @@ describe('Notification', () => {
     await sleep(transition)
     const alert = document.querySelector('.alert')
     expect(alert).to.exist
-    expect(alert.className).to.contain('test-class')
-    expect(alert.className).to.contain('alert-danger')
+    expect(alert.className).toContain('test-class')
+    expect(alert.className).toContain('alert-danger')
     alert.querySelector('button.close').click()
     await sleep(transition)
     expect(document.querySelector('.alert')).not.exist

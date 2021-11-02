@@ -1,8 +1,8 @@
-import { createVm, destroyVm, triggerEvent, keyCodes } from '../utils'
+import { createWrapper, destroyVm, triggerEvent, keyCodes } from '../utils'
 import $ from 'jquery'
 
 function appendToBodyVm() {
-  return createVm(`<div><dropdown append-to-body>
+  return createWrapper(`<div><dropdown append-to-body>
   <btn class="dropdown-toggle">Dropdown <span class="caret"></span></btn>
   <template slot="dropdown">
     <li><a role="button">Action</a></li>
@@ -37,7 +37,7 @@ function appendToBodyVm() {
 }
 
 function baseVm() {
-  return createVm(`<div><dropdown ref="dropdown">
+  return createWrapper(`<div><dropdown ref="dropdown">
   <btn type="primary" class="dropdown-toggle">Dropdown <span class="caret"></span></btn>
   <template slot="dropdown">
     <li><a role="button">Action</a></li>
@@ -85,22 +85,22 @@ describe('Dropdown', () => {
     vm = baseVm()
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
-    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.tagName.toLowerCase()).toEqual('div')
     expect(dropdown.className).to.not.contain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.className).toContain('open')
   })
 
   it('should be able to close dropdown using keyboard esc', async () => {
     vm = baseVm()
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
-    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.tagName.toLowerCase()).toEqual('div')
     expect(dropdown.className).to.not.contain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.className).toContain('open')
     triggerEvent(trigger, 'keydown', { keyCode: keyCodes.esc })
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
@@ -110,11 +110,11 @@ describe('Dropdown', () => {
     vm = baseVm()
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
-    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.tagName.toLowerCase()).toEqual('div')
     expect(dropdown.className).to.not.contain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.className).toContain('open')
     assertKeyboardNav(trigger, dropdown, 0, keyCodes.down)
     assertKeyboardNav(trigger, dropdown, 1, keyCodes.down)
     assertKeyboardNav(trigger, dropdown, 0, keyCodes.up)
@@ -129,7 +129,7 @@ describe('Dropdown', () => {
     vm = baseVm()
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
-    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.tagName.toLowerCase()).toEqual('div')
     expect(dropdown.className).to.not.contain('open')
     assertKeyboardNav(trigger, dropdown, 0, keyCodes.down, false)
   })
@@ -138,11 +138,11 @@ describe('Dropdown', () => {
     vm = baseVm()
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
-    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.tagName.toLowerCase()).toEqual('div')
     expect(dropdown.className).to.not.contain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.className).toContain('open')
     assertKeyboardNav(trigger, dropdown, 0, keyCodes.down)
     const spy = sinon.spy($(dropdown).find('li > a').get(0), 'click')
     triggerEvent(trigger, 'keydown', { keyCode: keyCodes.enter })
@@ -153,11 +153,11 @@ describe('Dropdown', () => {
     vm = baseVm()
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
-    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.tagName.toLowerCase()).toEqual('div')
     expect(dropdown.className).to.not.contain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.className).toContain('open')
     assertKeyboardNav(trigger, dropdown, 0, keyCodes.down)
     assertKeyboardNav(trigger, dropdown, 1, keyCodes.left, false)
   })
@@ -166,11 +166,11 @@ describe('Dropdown', () => {
     vm = baseVm()
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
-    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.tagName.toLowerCase()).toEqual('div')
     expect(dropdown.className).to.not.contain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.className).toContain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
     expect(dropdown.className).to.not.contain('open')
@@ -180,11 +180,11 @@ describe('Dropdown', () => {
     vm = baseVm()
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
-    expect(dropdown.tagName.toLowerCase()).to.equal('div')
+    expect(dropdown.tagName.toLowerCase()).toEqual('div')
     expect(dropdown.className).to.not.contain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.className).toContain('open')
     // Simulate a window click
     vm.$refs.dropdown.windowClicked({ target: document.body })
     await vm.$nextTick()
@@ -192,7 +192,7 @@ describe('Dropdown', () => {
   })
 
   it('should not close dropdown on self click if not-close-elements contains component ref and with append-to-body', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<dropdown v-model="show" ref="test" append-to-body :not-close-elements="eles">
   <button class="btn btn-default dropdown-toggle" type="button">
     <span>Dropdown 1</span><span class="caret"></span>
@@ -214,12 +214,12 @@ describe('Dropdown', () => {
     )
     await vm.$nextTick()
     const dropdown = vm.$el
-    expect(dropdown.tagName.toLowerCase()).to.equal('div')
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.tagName.toLowerCase()).toEqual('div')
+    expect(dropdown.className).toContain('open')
     // Simulate a window click
     vm.$refs.test.windowClicked({ target: vm.$refs.li1 })
     await vm.$nextTick()
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.className).toContain('open')
     // Simulate a window click
     vm.$refs.test.windowClicked({ target: document.body })
     await vm.$nextTick()
@@ -240,7 +240,7 @@ describe('Dropdown', () => {
     expect(dropdown.querySelector('.dropdown-menu')).to.exist
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.className).toContain('open')
     expect(dropdown.querySelector('.dropdown-menu')).not.exist
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
@@ -249,7 +249,7 @@ describe('Dropdown', () => {
   })
 
   it('should be able to use dropup style', async () => {
-    vm = createVm(`<div><dropdown dropup>
+    const wrapper = createWrapper(`<div><dropdown dropup>
   <btn class="dropdown-toggle">Dropup <span class="caret"></span></btn>
   <template slot="dropdown">
     <li><a role="button">Action</a></li>
@@ -266,7 +266,7 @@ describe('Dropdown', () => {
   })
 
   it('should be able to use menu-right style', async () => {
-    vm = createVm(`<div><dropdown menu-right>
+    const wrapper = createWrapper(`<div><dropdown menu-right>
   <btn class="dropdown-toggle">Menu-Right <span class="caret"></span></btn>
   <template slot="dropdown">
     <li><a role="button">Action</a></li>
@@ -278,7 +278,7 @@ describe('Dropdown', () => {
 </dropdown></div>`)
     await vm.$nextTick()
     const menuRight = vm.$el.querySelector('.dropdown')
-    expect(menuRight.querySelector('.dropdown-menu').className).to.contain(
+    expect(menuRight.querySelector('.dropdown-menu').className).toContain(
       'dropdown-menu-right'
     )
   })
@@ -291,7 +291,7 @@ describe('Dropdown', () => {
     expect(dropdown.querySelector('.dropdown-menu-right')).to.exist
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.className).toContain('open')
     expect(dropdown.querySelector('.dropdown-menu-right')).not.exist
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
@@ -307,7 +307,7 @@ describe('Dropdown', () => {
     expect(dropdown.querySelector('.dropdown-menu')).to.exist
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.className).toContain('open')
     expect(dropdown.querySelector('.dropdown-menu')).not.exist
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
@@ -316,7 +316,7 @@ describe('Dropdown', () => {
   })
 
   it('should be able to open dropdown on init', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<dropdown v-model="show"><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template slot="dropdown"><li><a href="#">Action</a></li></template></dropdown>',
       {
         show: true,
@@ -324,11 +324,11 @@ describe('Dropdown', () => {
     )
     await vm.$nextTick()
     const dropdown = vm.$el
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.className).toContain('open')
   })
 
   it('should be able to disable dropdown', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<dropdown v-model="show" disabled><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template slot="dropdown"><li><a href="#">Action</a></li></template></dropdown>',
       {
         show: true,
@@ -340,7 +340,7 @@ describe('Dropdown', () => {
   })
 
   it('should be able to init with no trigger', async () => {
-    vm = createVm('<dropdown/>')
+    const wrapper = createWrapper('<dropdown/>')
     await vm.$nextTick()
   })
 })

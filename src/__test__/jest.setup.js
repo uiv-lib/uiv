@@ -12,4 +12,6 @@ enableAutoDestroy(afterEach)
 
 afterEach(() => {
   document.body.innerHTML = ''
+  jest.clearAllMocks()
+  jest.clearAllTimers()
 })

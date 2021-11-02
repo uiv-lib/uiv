@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { createVm, destroyVm, triggerEvent, sleep } from '../utils'
+import { createWrapper, destroyVm, triggerEvent, sleep } from '../utils'
 
 describe('Popover', () => {
   let vm
@@ -19,7 +19,7 @@ describe('Popover', () => {
   })
 
   it('should be ok to render if no trigger present', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<popover v-model="show" title="123"><button data-role="trigger"></button></popover>',
       {
         show: true,
@@ -29,7 +29,7 @@ describe('Popover', () => {
   })
 
   it('should clear all timeouts before destroy', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<popover ref="popover" v-model="show" title="123"></popover>',
       { show: false }
     )
@@ -40,25 +40,25 @@ describe('Popover', () => {
     await vm.$nextTick()
     vm.$refs.popover.$destroy()
     await vm.$nextTick()
-    expect(vm.$refs.popover.hideTimeoutId).to.equal(0)
-    expect(vm.$refs.popover.showTimeoutId).to.equal(0)
-    expect(vm.$refs.popover.transitionTimeoutId).to.equal(0)
-    expect(vm.$refs.popover.autoTimeoutId).to.equal(0)
+    expect(vm.$refs.popover.hideTimeoutId).toEqual(0)
+    expect(vm.$refs.popover.showTimeoutId).toEqual(0)
+    expect(vm.$refs.popover.transitionTimeoutId).toEqual(0)
+    expect(vm.$refs.popover.autoTimeoutId).toEqual(0)
   })
 
   it('should be able to show popover on init', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<popover v-model="show" title="123"><button data-role="trigger"></button></popover>',
       {
         show: true,
       }
     )
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
   })
 
   it('should hide popover while enable set to false', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<popover v-model="show" title="123" :enable="enable"><button data-role="trigger"></button></popover>',
       {
         show: true,
@@ -66,14 +66,14 @@ describe('Popover', () => {
       }
     )
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     vm.enable = false
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should hide popover while all content become empty', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<popover v-model="show" :title="title" :content="content"><button data-role="trigger"></button></popover>',
       {
         show: true,
@@ -82,15 +82,15 @@ describe('Popover', () => {
       }
     )
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     vm.content = ''
     vm.title = ''
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to use custom string append-to', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<div id="test">
 <popover append-to="#test" v-model="show" title="123">
 <button data-role="trigger"></button>
@@ -101,11 +101,11 @@ describe('Popover', () => {
       }
     )
     await sleep(300)
-    expect(document.querySelectorAll('#test .popover').length).to.equal(1)
+    expect(document.querySelectorAll('#test .popover').length).toEqual(1)
   })
 
   it('should be able to use custom element append-to', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<div id="test" ref="el">
 <popover v-if="appendTo" :append-to="appendTo" v-model="show" title="123">
 <button data-role="trigger"></button>
@@ -120,11 +120,11 @@ describe('Popover', () => {
     vm.appendTo = vm.$refs.el
     await vm.$nextTick()
     await sleep(300)
-    expect(document.querySelectorAll('#test .popover').length).to.equal(1)
+    expect(document.querySelectorAll('#test .popover').length).toEqual(1)
   })
 
   it('should be able to use custom component append-to', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<div id="test" ref="el">
 <popover v-if="appendTo" :append-to="appendTo" v-model="show" title="123">
 <button data-role="trigger"></button>
@@ -139,11 +139,11 @@ describe('Popover', () => {
     vm.appendTo = vm
     await vm.$nextTick()
     await sleep(300)
-    expect(document.querySelectorAll('#test .popover').length).to.equal(1)
+    expect(document.querySelectorAll('#test .popover').length).toEqual(1)
   })
 
   it('should be able to use popover directive', async () => {
-    vm = createVm('<btn v-popover="msg"></btn>', {
+    const wrapper = createWrapper('<btn v-popover="msg"></btn>', {
       msg: { title: 'title', content: 'content' },
     })
     await vm.$nextTick()
@@ -152,13 +152,13 @@ describe('Popover', () => {
     await sleep(300)
     let popover = document.querySelector('.popover')
     expect(popover).to.exist
-    expect(popover.querySelector('.popover-title').innerText).to.equal('title')
-    expect(popover.querySelector('.popover-content').innerText).to.equal(
+    expect(popover.querySelector('.popover-title').innerText).toEqual('title')
+    expect(popover.querySelector('.popover-content').innerText).toEqual(
       'content'
     )
     triggerEvent(trigger, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     // this should work
     vm.msg = { title: 'title2', content: 'content2' }
     await vm.$nextTick()
@@ -167,13 +167,13 @@ describe('Popover', () => {
     await sleep(300)
     popover = document.querySelector('.popover')
     expect(popover).to.exist
-    expect(popover.querySelector('.popover-title').innerText).to.equal('title2')
-    expect(popover.querySelector('.popover-content').innerText).to.equal(
+    expect(popover.querySelector('.popover-title').innerText).toEqual('title2')
+    expect(popover.querySelector('.popover-content').innerText).toEqual(
       'content2'
     )
     triggerEvent(trigger, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     // this should not work
     vm.$set(vm.msg, 'title', 'title3')
     await vm.$nextTick()
@@ -181,15 +181,15 @@ describe('Popover', () => {
     await sleep(300)
     popover = document.querySelector('.popover')
     expect(popover).to.exist
-    expect(popover.querySelector('.popover-title').innerText).to.equal('title2')
-    expect(popover.querySelector('.popover-content').innerText).to.equal(
+    expect(popover.querySelector('.popover-title').innerText).toEqual('title2')
+    expect(popover.querySelector('.popover-content').innerText).toEqual(
       'content2'
     )
   })
 
   it('directive with invalid modifiers should be ok', async () => {
     // invalid modifier should be ok
-    vm = createVm('<btn v-popover.test1.test2="msg"></btn>', {
+    const wrapper = createWrapper('<btn v-popover.test1.test2="msg"></btn>', {
       msg: { title: 'title', content: 'content' },
     })
     await vm.$nextTick()
@@ -198,28 +198,28 @@ describe('Popover', () => {
     await sleep(300)
     const popover = document.querySelector('.popover')
     expect(popover).to.exist
-    expect(popover.querySelector('.popover-title').innerText).to.equal('title')
-    expect(popover.querySelector('.popover-content').innerText).to.equal(
+    expect(popover.querySelector('.popover-title').innerText).toEqual('title')
+    expect(popover.querySelector('.popover-content').innerText).toEqual(
       'content'
     )
     triggerEvent(trigger, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should not show popover with no title and content', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<popover v-model="show"><button data-role="trigger"></button></popover>',
       {
         show: true,
       }
     )
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to use custom target', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div><button ref="btn" type="button">btn</button><popover :target="btn" trigger="focus" title="123"></popover></div>',
       { btn: null },
       {
@@ -229,14 +229,14 @@ describe('Popover', () => {
       }
     )
     await vm.$nextTick()
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     triggerEvent(vm.btn, 'focus')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
   })
 
   it('should be able to show popover on click', async () => {
-    vm = createVm(`
+    const wrapper = createWrapper(`
 <div>
   <btn type="primary" id="btn">Popover</btn>
   <popover title="Title" target="#btn">
@@ -247,17 +247,17 @@ describe('Popover', () => {
 </div>
     `)
     await vm.$nextTick()
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     triggerEvent(vm.$el.querySelector('button'), 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     triggerEvent(vm.$el.querySelector('button'), 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to change trigger to manual', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `
   <section>
     <popover title="Title" trigger="manual" v-model="show">
@@ -272,21 +272,21 @@ describe('Popover', () => {
     `,
       { show: false }
     )
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     vm.show = true
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     vm.show = false
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able change trigger to hover-focus', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<btn v-popover.hover-focus="{title:\'Title\', content:\'Popover content\'}" type="primary">Hover-Focus</btn>'
     )
     await vm.$nextTick()
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     // matches don't work in here
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
@@ -294,78 +294,78 @@ describe('Popover', () => {
     triggerEvent(trigger, 'focus')
     await sleep(300)
     Element.prototype.matches = savedMatches
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     triggerEvent(trigger, 'blur')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to change trigger to click', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<btn v-popover.click="{title:\'Title\', content:\'Popover content\'}" type="primary">Click</btn>'
     )
     await vm.$nextTick()
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     const trigger = vm.$el
     triggerEvent(trigger, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     triggerEvent(trigger, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to change trigger to hover', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<btn v-popover.hover="{title:\'Title\', content:\'Popover content\'}" type="primary">Hover</btn>'
     )
     await vm.$nextTick()
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     const trigger = vm.$el
     triggerEvent(trigger, 'mouseenter')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     triggerEvent(trigger, 'mouseleave')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to toggle correctly on fast click', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<btn v-popover.click="{title:\'Title\', content:\'Popover content\'}" type="primary">Click</btn>'
     )
     const button = vm.$el
     await vm.$nextTick()
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     triggerEvent(button, 'click')
     triggerEvent(button, 'click')
     triggerEvent(button, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     triggerEvent(button, 'click')
     triggerEvent(button, 'click')
     triggerEvent(button, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to change trigger to outside-click', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<btn v-popover="{title:\'Title\', content:\'Popover content\'}" type="primary">Outside-Click (Default)</btn>'
     )
     const button = vm.$el
     await vm.$nextTick()
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     triggerEvent(button, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     document.body.click()
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to disable', async () => {
-    vm = createVm(`
+    const wrapper = createWrapper(`
 <popover title="Title" :enable="false">
   <btn type="primary">Disabled Popover</btn>
   <template slot="popover">
@@ -374,129 +374,129 @@ describe('Popover', () => {
 </popover>
     `)
     await vm.$nextTick()
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     triggerEvent(vm.$el.querySelector('button'), 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to hide title', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<btn v-popover="{content:\'Popover without a title\'}" type="primary">Popover</btn>'
     )
     await vm.$nextTick()
     const trigger = vm.$el
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     triggerEvent(trigger, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     expect(
       document.querySelector('.popover .popover-title').style.display
-    ).to.equal('none')
+    ).toEqual('none')
     triggerEvent(trigger, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to change placement to top', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<btn v-popover.top="{title:\'Title\', content:\'Popover on top\'}" type="primary">Top</btn>'
     )
     await vm.$nextTick()
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     const trigger = vm.$el
     triggerEvent(trigger, 'click')
     await sleep(300)
     const popover = document.querySelector('.popover')
     expect(popover).to.exist
-    expect(popover.className).to.contain('top')
+    expect(popover.className).toContain('top')
     triggerEvent(trigger, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to change placement to bottom', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<btn v-popover.bottom="{title:\'Title\', content:\'Popover on bottom\'}" type="primary">Bottom</btn>'
     )
     await vm.$nextTick()
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     const trigger = vm.$el
     triggerEvent(trigger, 'click')
     await sleep(300)
     const popover = document.querySelector('.popover')
     expect(popover).to.exist
-    expect(popover.className).to.contain('bottom')
+    expect(popover.className).toContain('bottom')
     triggerEvent(trigger, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to change placement to left', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<btn v-popover.left="{title:\'Title\', content:\'Popover on left\'}" type="primary">Left</btn>'
     )
     await vm.$nextTick()
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     const trigger = vm.$el
     triggerEvent(trigger, 'click')
     await sleep(300)
     const popover = document.querySelector('.popover')
     expect(popover).to.exist
-    expect(popover.className).to.contain('left')
+    expect(popover.className).toContain('left')
     triggerEvent(trigger, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to change placement to right', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<btn v-popover.right="{title:\'Title\', content:\'Popover on right\'}" type="primary">Right</btn>'
     )
     await vm.$nextTick()
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     const trigger = vm.$el
     triggerEvent(trigger, 'click')
     await sleep(300)
     const popover = document.querySelector('.popover')
     expect(popover).to.exist
-    expect(popover.className).to.contain('right')
+    expect(popover.className).toContain('right')
     triggerEvent(trigger, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to change trigger in runtime', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<popover title="123" :trigger="trigger"><button data-role="trigger"></button></popover>',
       {
         trigger: 'focus',
       }
     )
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('button')
     triggerEvent(trigger, 'focus')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     vm.trigger = 'click'
     await vm.$nextTick()
     triggerEvent(trigger, 'blur')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     triggerEvent(trigger, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to change content in runtime', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<popover :content="msg" trigger="click"><btn>123</btn></popover>',
       {
         msg: 'text',
       }
     )
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     await vm.$nextTick()
     vm.msg = 'text2'
     await vm.$nextTick()
@@ -504,8 +504,8 @@ describe('Popover', () => {
     const trigger = vm.$el.querySelector('button')
     triggerEvent(trigger, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
-    expect(document.querySelector('.popover-content').innerText).to.equal(
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
+    expect(document.querySelector('.popover-content').innerText).toEqual(
       'text2'
     )
     const topBefore = document.querySelector('.popover').style.top
@@ -517,8 +517,8 @@ This is a very very long text. This is a very very long text. This is a very ver
 This is a very very long text. This is a very very long text. This is a very very long text
     `
     await vm.$nextTick()
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
-    expect(document.querySelector('.popover-content').innerText).to.contain(
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
+    expect(document.querySelector('.popover-content').innerText).toContain(
       'This is a very very long text'
     )
     await vm.$nextTick()
@@ -526,11 +526,11 @@ This is a very very long text. This is a very very long text. This is a very ver
     expect(topAfter).not.equal(topBefore)
     triggerEvent(trigger, 'click')
     await sleep(300)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to show/hide on specified delay', async function () {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<popover :showDelay="300" :hideDelay="400" trigger="hover" title="123"><button></button></popover>'
     )
     await vm.$nextTick()
@@ -538,30 +538,30 @@ This is a very very long text. This is a very very long text. This is a very ver
     triggerEvent(trigger, 'mouseenter')
     await sleep(150)
     // not shown yet
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
     await sleep(150)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     triggerEvent(trigger, 'mouseleave')
     await sleep(300)
     // not hidden yet
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     await sleep(400)
-    expect(document.querySelectorAll('.popover').length).to.equal(0)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
   })
 
   it('should be able to show even when hideDelay < showDelay < transition ', async function () {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<popover :hideDelay="1" :showDelay="100" :transition="500" trigger="hover" title="123"><button></button></popover>'
     )
     await vm.$nextTick()
     const trigger = vm.$el.querySelector('button')
     triggerEvent(trigger, 'mouseenter')
     await sleep(200)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
     triggerEvent(trigger, 'mouseleave')
     await sleep(200)
     triggerEvent(trigger, 'mouseenter')
     await sleep(600)
-    expect(document.querySelectorAll('.popover').length).to.equal(1)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
   })
 })

@@ -1,8 +1,14 @@
 import $ from 'jquery'
-import { createVm, destroyVm, triggerEvent, sleep, transition } from '../utils'
+import {
+  createWrapper,
+  destroyVm,
+  triggerEvent,
+  sleep,
+  transition,
+} from '../utils'
 
 function baseVm() {
-  return createVm(
+  return createWrapper(
     `<section>
     <btn type="primary" @click="open=true">Launch Demo Modal</btn>
     <modal v-model="open" title="Modal 1" @hide="callback" ref="modal" id="modal-demo">
@@ -59,16 +65,16 @@ describe('Modal', () => {
   const getBackdropsNum = () => $('.modal-backdrop').length
   const expectBodyOverflow = (enable) => {
     if (enable) {
-      expect(document.body.style.paddingRight).to.equal('')
+      expect(document.body.style.paddingRight).toEqual('')
       expect(document.body.className).not.contain('modal-open')
     } else {
-      expect(document.body.style.paddingRight).to.contain('px')
-      expect(document.body.className).to.contain('modal-open')
+      expect(document.body.style.paddingRight).toContain('px')
+      expect(document.body.className).toContain('modal-open')
     }
   }
 
   it('should aware backdrop keydown & keyup to hide', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <modal v-model="open1" title="Modal 1" ref="modal">
       <p>This is a simple large modal.</p>
@@ -94,7 +100,7 @@ describe('Modal', () => {
   })
 
   it('should suppress inside modal keydown & keyup to prevent unexpected hiding', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <modal v-model="open1" title="Modal 1" ref="modal">
       <p>This is a simple large modal.</p>
@@ -109,20 +115,20 @@ describe('Modal', () => {
     // simulate window mousedown
     vm.$refs.modal.suppressBackgroundClose({ target: window })
     await vm.$nextTick()
-    expect(vm.$refs.modal.isCloseSuppressed).to.be.true
+    expect(vm.$refs.modal.isCloseSuppressed).toBeTruthy()
     // simulate window mouseup
     vm.$refs.modal.unsuppressBackgroundClose()
     // simulate window click
     vm.$refs.modal.backdropClicked()
     await sleep(transition)
     expect(vm.$refs.modal.isCloseSuppressed).to.be.false
-    expect(vm.$refs.modal.$el.className).to.contain('in')
+    expect(vm.$refs.modal.$el.className).toContain('in')
   })
 
   it('should be able to use nested modals (logically)', async () => {
     // enable body with overflow-y
     document.body.style.height = '9999px'
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <btn type="primary" @click="open1=true">Open set of nested modals (logically)</btn>
     <modal v-model="open1" title="Modal 1" size="lg">
@@ -152,53 +158,53 @@ describe('Modal', () => {
     const trigger = _$el.find('.btn').get(0)
     const trigger2 = _$el.find('.modal .modal-body .btn').get(0)
     const trigger3 = _$el.find('.modal .modal-body .btn').get(1)
-    expect(getBackdropsNum()).to.equal(0)
+    expect(getBackdropsNum()).toEqual(0)
     // open modal 1
     trigger.click()
     await sleep(transition)
-    expect(modal1.className).to.contain('in')
+    expect(modal1.className).toContain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
-    expect(getBackdropsNum()).to.equal(1)
-    expect(modal1.style.zIndex).to.equal('')
-    expect($('.modal-backdrop').get(0).style.zIndex).to.equal('')
+    expect(getBackdropsNum()).toEqual(1)
+    expect(modal1.style.zIndex).toEqual('')
+    expect($('.modal-backdrop').get(0).style.zIndex).toEqual('')
     expectBodyOverflow(false)
     // open modal 2
     trigger2.click()
     await sleep(transition)
-    expect(modal1.className).to.contain('in')
-    expect(modal2.className).to.contain('in')
+    expect(modal1.className).toContain('in')
+    expect(modal2.className).toContain('in')
     expect(modal3.className).not.contain('in')
-    expect(getBackdropsNum()).to.equal(2)
-    expect(modal2.style.zIndex).to.equal('1070')
-    expect($('.modal-backdrop').get(1).style.zIndex).to.equal('1060')
+    expect(getBackdropsNum()).toEqual(2)
+    expect(modal2.style.zIndex).toEqual('1070')
+    expect($('.modal-backdrop').get(1).style.zIndex).toEqual('1060')
     expectBodyOverflow(false)
     // open modal 3
     trigger3.click()
     await sleep(transition)
-    expect(modal1.className).to.contain('in')
-    expect(modal2.className).to.contain('in')
-    expect(modal3.className).to.contain('in')
-    expect(getBackdropsNum()).to.equal(3)
-    expect(modal3.style.zIndex).to.equal('1090')
-    expect($('.modal-backdrop').get(2).style.zIndex).to.equal('1080')
+    expect(modal1.className).toContain('in')
+    expect(modal2.className).toContain('in')
+    expect(modal3.className).toContain('in')
+    expect(getBackdropsNum()).toEqual(3)
+    expect(modal3.style.zIndex).toEqual('1090')
+    expect($('.modal-backdrop').get(2).style.zIndex).toEqual('1080')
     expectBodyOverflow(false)
     // dismiss modal 3
     modal3.querySelector('.btn-primary').click()
     await sleep(transition)
-    expect(modal1.className).to.contain('in')
-    expect(modal2.className).to.contain('in')
+    expect(modal1.className).toContain('in')
+    expect(modal2.className).toContain('in')
     expect(modal3.className).not.contain('in')
-    expect(getBackdropsNum()).to.equal(2)
+    expect(getBackdropsNum()).toEqual(2)
     // body overflow should be still disabled, because modal 1 & 2 is still open
     expectBodyOverflow(false)
     // dismiss modal 2
     modal2.querySelector('.btn-primary').click()
     await sleep(transition)
-    expect(modal1.className).to.contain('in')
+    expect(modal1.className).toContain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
-    expect(getBackdropsNum()).to.equal(1)
+    expect(getBackdropsNum()).toEqual(1)
     // body overflow should be still disabled, because modal 1 is still open
     expectBodyOverflow(false)
     // dismiss modal 1
@@ -207,7 +213,7 @@ describe('Modal', () => {
     expect(modal1.className).not.contain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
-    expect(getBackdropsNum()).to.equal(0)
+    expect(getBackdropsNum()).toEqual(0)
     // body overflow should be enable now
     expectBodyOverflow(true)
     // reset body height
@@ -217,7 +223,7 @@ describe('Modal', () => {
   it('should be able to use nested modals', async () => {
     // enable body with overflow-y
     document.body.style.height = '9999px'
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <btn type="primary" @click="open1=true">Open set of nested modals</btn>
     <!-- \`append-to-body\` not required here -->
@@ -250,53 +256,53 @@ describe('Modal', () => {
     const trigger = _$el.find('.btn').get(0)
     const trigger2 = _$el.find('.modal .modal-body .btn').get(0)
     const trigger3 = _$el.find('.modal .modal-body .btn').get(1)
-    expect(getBackdropsNum()).to.equal(0)
+    expect(getBackdropsNum()).toEqual(0)
     // open modal 1
     trigger.click()
     await sleep(transition)
-    expect(modal1.className).to.contain('in')
+    expect(modal1.className).toContain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
-    expect(getBackdropsNum()).to.equal(1)
-    expect(modal1.style.zIndex).to.equal('')
-    expect($('.modal-backdrop').get(0).style.zIndex).to.equal('')
+    expect(getBackdropsNum()).toEqual(1)
+    expect(modal1.style.zIndex).toEqual('')
+    expect($('.modal-backdrop').get(0).style.zIndex).toEqual('')
     expectBodyOverflow(false)
     // open modal 2
     trigger2.click()
     await sleep(transition)
-    expect(modal1.className).to.contain('in')
-    expect(modal2.className).to.contain('in')
+    expect(modal1.className).toContain('in')
+    expect(modal2.className).toContain('in')
     expect(modal3.className).not.contain('in')
-    expect(getBackdropsNum()).to.equal(2)
-    expect(modal2.style.zIndex).to.equal('1070')
-    expect($('.modal-backdrop').get(1).style.zIndex).to.equal('1060')
+    expect(getBackdropsNum()).toEqual(2)
+    expect(modal2.style.zIndex).toEqual('1070')
+    expect($('.modal-backdrop').get(1).style.zIndex).toEqual('1060')
     expectBodyOverflow(false)
     // open modal 3
     trigger3.click()
     await sleep(transition)
-    expect(modal1.className).to.contain('in')
-    expect(modal2.className).to.contain('in')
-    expect(modal3.className).to.contain('in')
-    expect(getBackdropsNum()).to.equal(3)
-    expect(modal3.style.zIndex).to.equal('1090')
-    expect($('.modal-backdrop').get(2).style.zIndex).to.equal('1080')
+    expect(modal1.className).toContain('in')
+    expect(modal2.className).toContain('in')
+    expect(modal3.className).toContain('in')
+    expect(getBackdropsNum()).toEqual(3)
+    expect(modal3.style.zIndex).toEqual('1090')
+    expect($('.modal-backdrop').get(2).style.zIndex).toEqual('1080')
     expectBodyOverflow(false)
     // dismiss modal 3
     modal3.querySelector('.btn-primary').click()
     await sleep(transition)
-    expect(modal1.className).to.contain('in')
-    expect(modal2.className).to.contain('in')
+    expect(modal1.className).toContain('in')
+    expect(modal2.className).toContain('in')
     expect(modal3.className).not.contain('in')
-    expect(getBackdropsNum()).to.equal(2)
+    expect(getBackdropsNum()).toEqual(2)
     // body overflow should be still disabled, because modal 1 & 2 is still open
     expectBodyOverflow(false)
     // dismiss modal 2
     modal2.querySelector('.btn-primary').click()
     await sleep(transition)
-    expect(modal1.className).to.contain('in')
+    expect(modal1.className).toContain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
-    expect(getBackdropsNum()).to.equal(1)
+    expect(getBackdropsNum()).toEqual(1)
     // body overflow should be still disabled, because modal 1 is still open
     expectBodyOverflow(false)
     // dismiss modal 1
@@ -305,7 +311,7 @@ describe('Modal', () => {
     expect(modal1.className).not.contain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
-    expect(getBackdropsNum()).to.equal(0)
+    expect(getBackdropsNum()).toEqual(0)
     // body overflow should be enable now
     expectBodyOverflow(true)
     // reset body height
@@ -315,7 +321,7 @@ describe('Modal', () => {
   it('should be able destroy nested modals', async () => {
     // enable body with overflow-y
     document.body.style.height = '9999px'
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <btn type="primary" @click="open1=true">Open set of nested modals</btn>
     <!-- \`append-to-body\` not required here -->
@@ -340,29 +346,29 @@ describe('Modal', () => {
     const _$el = $(vm.$el)
     const modal1 = _$el.find('.modal').get(0)
     const trigger = _$el.find('.btn').get(0)
-    expect(getBackdropsNum()).to.equal(0)
+    expect(getBackdropsNum()).toEqual(0)
     // open modal 1
     trigger.click()
     await sleep(transition)
-    expect(modal1.className).to.contain('in')
+    expect(modal1.className).toContain('in')
     expectBodyOverflow(false)
     // open modal 2
     vm.open2 = true
     await sleep(transition)
-    expect(getBackdropsNum()).to.equal(2)
+    expect(getBackdropsNum()).toEqual(2)
     expectBodyOverflow(false)
     // dismiss modal 2
     vm.open2 = false
     await sleep(transition)
-    expect(modal1.className).to.contain('in')
-    expect(getBackdropsNum()).to.equal(1)
+    expect(modal1.className).toContain('in')
+    expect(getBackdropsNum()).toEqual(1)
     // body overflow should be still disabled, because modal 1 is still open
     expectBodyOverflow(false)
     // dismiss modal 1
     modal1.querySelector('.btn-primary').click()
     await sleep(transition)
     expect(modal1.className).not.contain('in')
-    expect(getBackdropsNum()).to.equal(0)
+    expect(getBackdropsNum()).toEqual(0)
     // body overflow should be enable now
     expectBodyOverflow(true)
     // reset body height
@@ -377,8 +383,8 @@ describe('Modal', () => {
     triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(_$el.find('.modal').get(0).className).to.contain('in')
-    expect(_$el.find('.modal-title').get(0).textContent).to.equal('Modal 1')
+    expect(_$el.find('.modal').get(0).className).toContain('in')
+    expect(_$el.find('.modal-title').get(0).textContent).toEqual('Modal 1')
   })
 
   it('should be able to close by esc key click', async () => {
@@ -389,14 +395,14 @@ describe('Modal', () => {
     triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(_$el.find('.modal').get(0).className).to.contain('in')
-    expect(_$el.find('.modal-title').get(0).textContent).to.equal('Modal 1')
+    expect(_$el.find('.modal').get(0).className).toContain('in')
+    expect(_$el.find('.modal-title').get(0).textContent).toEqual('Modal 1')
     vm.$refs.modal.onKeyPress({ keyCode: 28 }) // not a esc key
     await vm.$nextTick()
-    expect(vm.open).to.equal(true)
+    expect(vm.open).toEqual(true)
     vm.$refs.modal.onKeyPress({ keyCode: 27 }) // esc key
     await vm.$nextTick()
-    expect(vm.open).to.equal(false)
+    expect(vm.open).toEqual(false)
   })
 
   it('should be able to close modal 1 and fire callback', async () => {
@@ -407,8 +413,8 @@ describe('Modal', () => {
     triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(_$el.find('.modal').get(0).className).to.contain('in')
-    expect(_$el.find('.modal-title').get(0).textContent).to.equal('Modal 1')
+    expect(_$el.find('.modal').get(0).className).toContain('in')
+    expect(_$el.find('.modal-title').get(0).textContent).toEqual('Modal 1')
     triggerEvent(_$el.find('button.close').get(0), 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
@@ -416,7 +422,7 @@ describe('Modal', () => {
     expect(document.querySelector('.alert')).to.exist
     expect(
       document.querySelector('.alert .media-body > div').textContent
-    ).to.contain('dismiss')
+    ).toContain('dismiss')
   })
 
   it('should be able to close modal 1 with ok option and fire callback', async () => {
@@ -427,8 +433,8 @@ describe('Modal', () => {
     triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(_$el.find('.modal').get(0).className).to.contain('in')
-    expect(_$el.find('.modal-title').get(0).textContent).to.equal('Modal 1')
+    expect(_$el.find('.modal').get(0).className).toContain('in')
+    expect(_$el.find('.modal-title').get(0).textContent).toEqual('Modal 1')
     triggerEvent(_$el.find('.modal-footer button').get(1), 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
@@ -436,11 +442,11 @@ describe('Modal', () => {
     expect(document.querySelector('.alert')).to.exist
     expect(
       document.querySelector('.alert .media-body > div').textContent
-    ).to.contain('ok')
+    ).toContain('ok')
   })
 
   it('should be able to render large modal', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       ` <section>
     <btn type="primary" @click="open1=true">Large Modal</btn>
     <modal v-model="open1" title="Modal Title" size="lg">
@@ -458,12 +464,12 @@ describe('Modal', () => {
     triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(modal.className).to.contain('in')
+    expect(modal.className).toContain('in')
     expect(modal.querySelector('.modal-dialog.modal-lg').textContent).to.exist
   })
 
   it('should be able to render small modal', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <btn type="primary" @click="open2=true">Small Modal</btn>
     <modal v-model="open2" title="Modal Title" size="sm">
@@ -481,12 +487,12 @@ describe('Modal', () => {
     triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(modal.className).to.contain('in')
+    expect(modal.className).toContain('in')
     expect(modal.querySelector('.modal-dialog.modal-sm').textContent).to.exist
   })
 
   it('should be able to render HTML title modal', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <btn type="primary" @click="open1=true">HTML Title</btn>
     <modal v-model="open1">
@@ -505,12 +511,12 @@ describe('Modal', () => {
     triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(modal.className).to.contain('in')
+    expect(modal.className).toContain('in')
     expect(modal.querySelector('.modal-title i')).to.exist
   })
 
   it('should be able to render no header modal', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <btn type="primary" @click="open2=true">No Header</btn>
     <modal v-model="open2" :header="false">
@@ -528,12 +534,12 @@ describe('Modal', () => {
     triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(modal.className).to.contain('in')
+    expect(modal.className).toContain('in')
     expect(modal.querySelector('.modal-header')).not.exist
   })
 
   it('should be able to render customize footer modal', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <btn type="primary" @click="open1=true">Custom Footer</btn>
     <modal v-model="open1" title="Modal Title">
@@ -556,12 +562,12 @@ describe('Modal', () => {
     triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(modal.className).to.contain('in')
-    expect(modal.querySelectorAll('.modal-footer button').length).to.equal(3)
+    expect(modal.className).toContain('in')
+    expect(modal.querySelectorAll('.modal-footer button').length).toEqual(3)
   })
 
   it('should be able to render no footer modal', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <btn type="primary" @click="open2=true">No Footer</btn>
     <modal v-model="open2" title="Modal Title" :footer="false">
@@ -579,12 +585,12 @@ describe('Modal', () => {
     triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(modal.className).to.contain('in')
+    expect(modal.className).toContain('in')
     expect(modal.querySelector('.modal-footer')).not.exist
   })
 
   it('should be able to close customize footer modal', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <btn type="primary" @click="open1=true">Custom Footer</btn>
     <modal v-model="open1" title="Modal Title">
@@ -607,8 +613,8 @@ describe('Modal', () => {
     triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(modal.className).to.contain('in')
-    expect(modal.querySelectorAll('.modal-footer button').length).to.equal(3)
+    expect(modal.className).toContain('in')
+    expect(modal.querySelectorAll('.modal-footer button').length).toEqual(3)
     triggerEvent(modal.querySelectorAll('.modal-footer button')[0], 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
@@ -616,7 +622,7 @@ describe('Modal', () => {
   })
 
   it('should be able to customize button texts and types', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <btn type="primary" @click="open=true">Custom Button Text and Type</btn>
     <modal v-model="open" title="Are you sure?"
@@ -635,16 +641,16 @@ describe('Modal', () => {
     triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(modal.className).to.contain('in')
+    expect(modal.className).toContain('in')
     const [cancelBtn, okBtn] = modal.querySelectorAll('.modal-footer button')
-    expect(cancelBtn.textContent).to.equal('No way!')
-    expect(cancelBtn.className).to.contain('btn-warning')
-    expect(okBtn.textContent).to.equal('Yes, please')
-    expect(okBtn.className).to.contain('btn-danger')
+    expect(cancelBtn.textContent).toEqual('No way!')
+    expect(cancelBtn.className).toContain('btn-warning')
+    expect(okBtn.textContent).toEqual('Yes, please')
+    expect(okBtn.className).toContain('btn-danger')
   })
 
   it('should be able to auto-focus on ok btn', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <btn type="primary" @click="open=true">Auto Focus</btn>
     <modal v-model="open" title="Modal Title" auto-focus>
@@ -664,11 +670,11 @@ describe('Modal', () => {
       vm.$el
         .querySelector('[data-action="auto-focus"]')
         .getAttribute('data-focused')
-    ).to.equal('true')
+    ).toEqual('true')
   })
 
   it('should be ok if auto-focus is true and no data-action=auto-focus present', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <btn type="primary" @click="open=true">Auto Focus</btn>
     <modal v-model="open" title="Modal Title" auto-focus>
@@ -696,7 +702,7 @@ describe('Modal', () => {
     triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(modal.className).to.contain('in')
+    expect(modal.className).toContain('in')
     triggerEvent(modal, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
@@ -704,7 +710,7 @@ describe('Modal', () => {
   })
 
   it('should not be able to close backdrop-false modal', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <btn type="primary" @click="open=true">Disable Backdrop</btn>
     <modal v-model="open" title="Modal Title" :backdrop="false">
@@ -722,15 +728,15 @@ describe('Modal', () => {
     triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(modal.className).to.contain('in')
+    expect(modal.className).toContain('in')
     triggerEvent(modal, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(modal.className).to.contain('in')
+    expect(modal.className).toContain('in')
   })
 
   it('should be able to open modal on init', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<modal v-model="open" title="Modal 1"><p>This is a simple modal.</p></modal>',
       {
         open: true,
@@ -738,12 +744,12 @@ describe('Modal', () => {
     )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(vm.$el.className).to.contain('in')
+    expect(vm.$el.className).toContain('in')
     expect(vm.$el.querySelector('.close')).to.exist
   })
 
   it('should be able to hide dismiss btn', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<modal v-model="open" title="Modal 1" :dismiss-btn="false"><p>This is a simple modal.</p></modal>',
       {
         open: true,
@@ -751,12 +757,12 @@ describe('Modal', () => {
     )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(vm.$el.className).to.contain('in')
+    expect(vm.$el.className).toContain('in')
     expect(vm.$el.querySelector('.close')).not.exist
   })
 
   it('should be able to use `beforeClose`', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
       {
         open: true,
@@ -773,16 +779,16 @@ describe('Modal', () => {
     )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(vm.msg).to.equal('ok')
+    expect(vm.msg).toEqual('ok')
     vm.$el.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
-    expect(vm.msg).to.equal('test')
+    expect(vm.msg).toEqual('test')
   })
 
   it('should be able to interrupt hide with `beforeClose`', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
       {
         open: true,
@@ -799,7 +805,7 @@ describe('Modal', () => {
     )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(vm.msg).to.equal('ok')
+    expect(vm.msg).toEqual('ok')
     vm.$el.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
@@ -813,7 +819,7 @@ describe('Modal', () => {
   })
 
   it('should be able to use `beforeClose` when promise not supported', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
       {
         open: true,
@@ -830,7 +836,7 @@ describe('Modal', () => {
     )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(vm.msg).to.equal('ok')
+    expect(vm.msg).toEqual('ok')
     const _promise = window.Promise
     window.Promise = undefined
     vm.$el.querySelector('button.close').click()
@@ -838,11 +844,11 @@ describe('Modal', () => {
     await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
-    expect(vm.msg).to.equal('test')
+    expect(vm.msg).toEqual('test')
   })
 
   it('should be able to interrupt hide with `beforeClose` promise is not supported', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
       {
         open: true,
@@ -859,19 +865,19 @@ describe('Modal', () => {
     )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(vm.msg).to.equal('ok')
+    expect(vm.msg).toEqual('ok')
     const _promise = window.Promise
     window.Promise = undefined
     vm.$el.querySelector('button.close').click()
     window.Promise = _promise
     await sleep(transition)
     await vm.$nextTick()
-    expect(vm.msg).to.equal('test')
+    expect(vm.msg).toEqual('test')
     expect(document.querySelector('.modal-backdrop')).to.exist
   })
 
   it('should be able to use `beforeClose` when result is promise', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
       {
         open: true,
@@ -890,16 +896,16 @@ describe('Modal', () => {
     )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(vm.msg).to.equal('ok')
+    expect(vm.msg).toEqual('ok')
     vm.$el.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).not.exist
-    expect(vm.msg).to.equal('test')
+    expect(vm.msg).toEqual('test')
   })
 
   it('should be able to interrupt hide with `beforeClose` when result is promise', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
       {
         open: true,
@@ -918,18 +924,18 @@ describe('Modal', () => {
     )
     await vm.$nextTick()
     expect(document.querySelector('.modal-backdrop')).to.exist
-    expect(vm.msg).to.equal('ok')
+    expect(vm.msg).toEqual('ok')
     vm.$el.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
-    expect(vm.msg).to.equal('test')
+    expect(vm.msg).toEqual('test')
     expect(document.querySelector('.modal-backdrop')).to.exist
   })
 
   it('should close the top most modal only when ESC pressed', async () => {
     // enable body with overflow-y
     document.body.style.height = '9999px'
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <btn type="primary" @click="open1=true">Open set of nested modals</btn>
     <!-- \`append-to-body\` not required here -->
@@ -962,7 +968,7 @@ describe('Modal', () => {
     const trigger = _$el.find('.btn').get(0)
     const trigger2 = _$el.find('.modal .modal-body .btn').get(0)
     const trigger3 = _$el.find('.modal .modal-body .btn').get(1)
-    expect(getBackdropsNum()).to.equal(0)
+    expect(getBackdropsNum()).toEqual(0)
     // open modal 1
     trigger.click()
     await sleep(transition)
@@ -977,10 +983,10 @@ describe('Modal', () => {
     vm.$refs.modal2.onKeyPress({ keyCode: 27 }) // esc key
     vm.$refs.modal3.onKeyPress({ keyCode: 27 }) // esc key
     await sleep(transition)
-    expect(modal1.className).to.contain('in')
-    expect(modal2.className).to.contain('in')
+    expect(modal1.className).toContain('in')
+    expect(modal2.className).toContain('in')
     expect(modal3.className).not.contain('in')
-    expect(getBackdropsNum()).to.equal(2)
+    expect(getBackdropsNum()).toEqual(2)
     // body overflow should be still disabled, because modal 1 & 2 is still open
     expectBodyOverflow(false)
     // dismiss modal 2
@@ -988,10 +994,10 @@ describe('Modal', () => {
     vm.$refs.modal2.onKeyPress({ keyCode: 27 }) // esc key
     vm.$refs.modal3.onKeyPress({ keyCode: 27 }) // esc key
     await sleep(transition)
-    expect(modal1.className).to.contain('in')
+    expect(modal1.className).toContain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
-    expect(getBackdropsNum()).to.equal(1)
+    expect(getBackdropsNum()).toEqual(1)
     // body overflow should be still disabled, because modal 1 is still open
     expectBodyOverflow(false)
     // dismiss modal 1
@@ -1002,7 +1008,7 @@ describe('Modal', () => {
     expect(modal1.className).not.contain('in')
     expect(modal2.className).not.contain('in')
     expect(modal3.className).not.contain('in')
-    expect(getBackdropsNum()).to.equal(0)
+    expect(getBackdropsNum()).toEqual(0)
     // body overflow should be enable now
     expectBodyOverflow(true)
     // reset body height

@@ -1,4 +1,4 @@
-import { createVm, destroyVm } from '../utils'
+import { createWrapper, destroyVm } from '../utils'
 
 describe('ProgressBar', () => {
   let vm
@@ -8,16 +8,16 @@ describe('ProgressBar', () => {
   })
 
   it('should be able to render default', async () => {
-    vm = createVm('<progress-bar v-model="progress"/>', {
+    const wrapper = createWrapper('<progress-bar v-model="progress"/>', {
       progress: 66,
     })
     await vm.$nextTick()
     const bars = vm.$el
-    expect(bars.querySelector('.progress-bar').style.width).to.equal('66%')
+    expect(bars.querySelector('.progress-bar').style.width).toEqual('66%')
   })
 
   it('should be able to render label', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<section><progress-bar v-model="progress" label/></section>',
       {
         progress1: 1,
@@ -26,11 +26,11 @@ describe('ProgressBar', () => {
     )
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
-    expect(bars[0].querySelector('.progress-bar').textContent).to.equal('66%')
+    expect(bars[0].querySelector('.progress-bar').textContent).toEqual('66%')
   })
 
   it('should be able to render custom label', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<section><progress-bar v-model="progress" label label-text="Loading......Please wait."/></section>',
       {
         progress1: 1,
@@ -39,13 +39,13 @@ describe('ProgressBar', () => {
     )
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
-    expect(bars[0].querySelector('.progress-bar').textContent).to.contain(
+    expect(bars[0].querySelector('.progress-bar').textContent).toContain(
       'Loading...'
     )
   })
 
   it('should be able to render label with min width', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<section><progress-bar v-model="progress1" min-width label/></section>',
       {
         progress1: 1,
@@ -54,13 +54,11 @@ describe('ProgressBar', () => {
     )
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
-    expect(bars[0].querySelector('.progress-bar').style.minWidth).to.equal(
-      '2em'
-    )
+    expect(bars[0].querySelector('.progress-bar').style.minWidth).toEqual('2em')
   })
 
   it('should be able to render different types', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <progress-bar v-model="progress40" type="success"/>
     <progress-bar v-model="progress20" type="info"/>
@@ -76,22 +74,22 @@ describe('ProgressBar', () => {
     )
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
-    expect(bars[0].querySelector('.progress-bar').className).to.contain(
+    expect(bars[0].querySelector('.progress-bar').className).toContain(
       'progress-bar-success'
     )
-    expect(bars[1].querySelector('.progress-bar').className).to.contain(
+    expect(bars[1].querySelector('.progress-bar').className).toContain(
       'progress-bar-info'
     )
-    expect(bars[2].querySelector('.progress-bar').className).to.contain(
+    expect(bars[2].querySelector('.progress-bar').className).toContain(
       'progress-bar-warning'
     )
-    expect(bars[3].querySelector('.progress-bar').className).to.contain(
+    expect(bars[3].querySelector('.progress-bar').className).toContain(
       'progress-bar-danger'
     )
   })
 
   it('should be able to render striped', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `  <section>
     <progress-bar v-model="progress40" type="success" striped/>
     <progress-bar v-model="progress20" type="info" striped/>
@@ -107,22 +105,22 @@ describe('ProgressBar', () => {
     )
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
-    expect(bars[0].querySelector('.progress-bar').className).to.contain(
+    expect(bars[0].querySelector('.progress-bar').className).toContain(
       'progress-bar-striped'
     )
-    expect(bars[1].querySelector('.progress-bar').className).to.contain(
+    expect(bars[1].querySelector('.progress-bar').className).toContain(
       'progress-bar-striped'
     )
-    expect(bars[2].querySelector('.progress-bar').className).to.contain(
+    expect(bars[2].querySelector('.progress-bar').className).toContain(
       'progress-bar-striped'
     )
-    expect(bars[3].querySelector('.progress-bar').className).to.contain(
+    expect(bars[3].querySelector('.progress-bar').className).toContain(
       'progress-bar-striped'
     )
   })
 
   it('should be able to render animation', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div><progress-bar v-model="progress" striped active/></div>',
       {
         progress: 40,
@@ -130,13 +128,11 @@ describe('ProgressBar', () => {
     )
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
-    expect(bars[0].querySelector('.progress-bar').className).to.contain(
-      'active'
-    )
+    expect(bars[0].querySelector('.progress-bar').className).toContain('active')
   })
 
   it('should be able to render stacked', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<div><progress-bar>
     <progress-bar-stack v-model="progress35" type="success"/>
     <progress-bar-stack v-model="progress20" type="warning" striped/>
@@ -150,6 +146,6 @@ describe('ProgressBar', () => {
     )
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
-    expect(bars[0].querySelectorAll('.progress-bar').length).to.equal(3)
+    expect(bars[0].querySelectorAll('.progress-bar').length).toEqual(3)
   })
 })

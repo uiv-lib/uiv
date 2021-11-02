@@ -1,13 +1,13 @@
 import newLocale from '../src/locale/lang/zh-CN'
 import $ from 'jquery'
-import { createVm, destroyVm, triggerEvent } from '../utils'
+import { createWrapper, destroyVm, triggerEvent } from '../utils'
 
 describe('DatePicker', () => {
   let vm
   let $el
 
   beforeEach(() => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <date-picker v-model="date"/>
     <br/>
@@ -25,19 +25,19 @@ describe('DatePicker', () => {
   })
 
   it('should render correct month and year with given date on init', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<date-picker v-model="date" ref="datepicker"></date-picker>',
       {
         date: '1991-08-14',
       }
     )
     await vm.$nextTick()
-    expect(vm.$refs.datepicker.currentMonth).to.equal(7)
-    expect(vm.$refs.datepicker.currentYear).to.equal(1991)
+    expect(vm.$refs.datepicker.currentMonth).toEqual(7)
+    expect(vm.$refs.datepicker.currentYear).toEqual(1991)
   })
 
   it('should be able to render custom year month str', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<date-picker v-model="date" :year-month-formatter="formatter"></date-picker>',
       {
         date: '',
@@ -53,7 +53,7 @@ describe('DatePicker', () => {
     await vm.$nextTick()
     $el = $(vm.$el)
     const now = new Date()
-    expect($el.find('.btn').get(1).textContent).to.equal(
+    expect($el.find('.btn').get(1).textContent).toEqual(
       now.getFullYear() + ' ' + now.getMonth()
     )
   })
@@ -63,14 +63,14 @@ describe('DatePicker', () => {
     const picker = $el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
     const dateView = picker.querySelectorAll('table')[0]
-    expect(dateView.style.display).to.equal('')
+    expect(dateView.style.display).toEqual('')
     const yearMonthBtn = dateView.querySelectorAll('button')[1]
     const now = new Date()
-    expect(yearMonthBtn.textContent).to.contain(
+    expect(yearMonthBtn.textContent).toContain(
       `${now.getFullYear()} ${now.toDateString().split(' ')[1]}`
     )
     const todayBtn = dateView.querySelector('.btn-info')
-    expect(todayBtn.textContent).to.equal(now.getDate().toString())
+    expect(todayBtn.textContent).toEqual(now.getDate().toString())
   })
 
   it('should be able to go prev month', async () => {
@@ -79,7 +79,7 @@ describe('DatePicker', () => {
         triggerEvent(actionBtn, 'click')
         await vm.$nextTick()
         now = new Date(now.getFullYear(), now.getMonth(), 0)
-        expect(textBtn.textContent).to.contain(
+        expect(textBtn.textContent).toContain(
           `${now.getFullYear()} ${now.toDateString().split(' ')[1]}`
         )
         // console.log(`${now.getFullYear()} ${now.toDateString().split(' ')[1]}`)
@@ -108,7 +108,7 @@ describe('DatePicker', () => {
         } else {
           now = new Date(now.getFullYear(), now.getMonth() + 1, 1)
         }
-        expect(textBtn.textContent).to.contain(
+        expect(textBtn.textContent).toContain(
           `${now.getFullYear()} ${now.toDateString().split(' ')[1]}`
         )
         // console.log(`${now.getFullYear()} ${now.toDateString().split(' ')[1]}`)
@@ -134,14 +134,14 @@ describe('DatePicker', () => {
     const dateView = picker.querySelectorAll('table')[0]
     const yearMonthBtn = dateView.querySelectorAll('button')[1]
     const monthView = picker.querySelectorAll('table')[1]
-    expect(dateView.style.display).to.equal('')
-    expect(monthView.style.display).to.equal('none')
+    expect(dateView.style.display).toEqual('')
+    expect(monthView.style.display).toEqual('none')
     triggerEvent(yearMonthBtn, 'click')
     await vm.$nextTick()
-    expect(dateView.style.display).to.equal('none')
-    expect(monthView.style.display).to.equal('')
+    expect(dateView.style.display).toEqual('none')
+    expect(monthView.style.display).toEqual('')
     const now = new Date()
-    expect(monthView.querySelectorAll('button')[1].textContent).to.equal(
+    expect(monthView.querySelectorAll('button')[1].textContent).toEqual(
       now.getFullYear().toString()
     )
   })
@@ -160,12 +160,12 @@ describe('DatePicker', () => {
       'click'
     )
     await vm.$nextTick()
-    expect(dateView.style.display).to.equal('')
-    expect(monthView.style.display).to.equal('none')
+    expect(dateView.style.display).toEqual('')
+    expect(monthView.style.display).toEqual('none')
     yearMonthBtn = dateView.querySelectorAll('button')[1]
     let now = new Date()
     now = new Date(now.getFullYear(), 0, 1)
-    expect(yearMonthBtn.textContent).to.contain(
+    expect(yearMonthBtn.textContent).toContain(
       `${now.getFullYear()} ${now.toDateString().split(' ')[1]}`
     )
   })
@@ -178,7 +178,7 @@ describe('DatePicker', () => {
     triggerEvent(monthView.querySelector('button'), 'click')
     await vm.$nextTick()
     const now = new Date()
-    expect(monthView.querySelectorAll('button')[1].textContent).to.equal(
+    expect(monthView.querySelectorAll('button')[1].textContent).toEqual(
       now.getFullYear() - 1 + ''
     )
   })
@@ -191,7 +191,7 @@ describe('DatePicker', () => {
     triggerEvent(monthView.querySelectorAll('button')[2], 'click')
     await vm.$nextTick()
     const now = new Date()
-    expect(monthView.querySelectorAll('button')[1].textContent).to.equal(
+    expect(monthView.querySelectorAll('button')[1].textContent).toEqual(
       now.getFullYear() + 1 + ''
     )
   })
@@ -203,15 +203,15 @@ describe('DatePicker', () => {
     const yearView = picker.querySelectorAll('table')[2]
     const monthView = picker.querySelectorAll('table')[1]
     const yearBtn = monthView.querySelectorAll('button')[1]
-    expect(yearView.style.display).to.equal('none')
+    expect(yearView.style.display).toEqual('none')
     triggerEvent(yearBtn, 'click')
     await vm.$nextTick()
-    expect(monthView.style.display).to.equal('none')
-    expect(yearView.style.display).to.equal('')
+    expect(monthView.style.display).toEqual('none')
+    expect(yearView.style.display).toEqual('')
     const now = new Date()
     const start = now.getFullYear() - (now.getFullYear() % 20)
     const yearStr = `${start} ~ ${start + 19}`
-    expect(yearView.querySelectorAll('button')[1].textContent).to.equal(yearStr)
+    expect(yearView.querySelectorAll('button')[1].textContent).toEqual(yearStr)
   })
 
   it('should be able to switch to month view from year view', async () => {
@@ -220,17 +220,17 @@ describe('DatePicker', () => {
     expect(picker).to.exist
     const yearView = picker.querySelectorAll('table')[2]
     const monthView = picker.querySelectorAll('table')[1]
-    expect(monthView.style.display).to.equal('none')
+    expect(monthView.style.display).toEqual('none')
     triggerEvent(
       yearView.querySelector('tbody').querySelector('button'),
       'click'
     )
     await vm.$nextTick()
-    expect(monthView.style.display).to.equal('')
-    expect(yearView.style.display).to.equal('none')
+    expect(monthView.style.display).toEqual('')
+    expect(yearView.style.display).toEqual('none')
     const now = new Date()
     const year = now.getFullYear() - (now.getFullYear() % 20)
-    expect(monthView.querySelectorAll('button')[1].textContent).to.equal(
+    expect(monthView.querySelectorAll('button')[1].textContent).toEqual(
       year.toString()
     )
   })
@@ -245,7 +245,7 @@ describe('DatePicker', () => {
     const now = new Date()
     const start = now.getFullYear() - (now.getFullYear() % 20)
     const yearStr = `${start - 20} ~ ${start - 20 + 19}`
-    expect(yearView.querySelectorAll('button')[1].textContent).to.equal(yearStr)
+    expect(yearView.querySelectorAll('button')[1].textContent).toEqual(yearStr)
   })
 
   it('should be able to go next year group', async () => {
@@ -258,7 +258,7 @@ describe('DatePicker', () => {
     const now = new Date()
     const start = now.getFullYear() - (now.getFullYear() % 20)
     const yearStr = `${start + 20} ~ ${start + 20 + 19}`
-    expect(yearView.querySelectorAll('button')[1].textContent).to.equal(yearStr)
+    expect(yearView.querySelectorAll('button')[1].textContent).toEqual(yearStr)
   })
 
   it('should be able to select date', async () => {
@@ -270,11 +270,11 @@ describe('DatePicker', () => {
       .querySelectorAll('button')[15]
     triggerEvent(dateBtn, 'click')
     await vm.$nextTick()
-    expect(dateBtn.className).to.contain('btn-primary')
+    expect(dateBtn.className).toContain('btn-primary')
   })
 
   it('should not close the picker on picker body click', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `  <form class="form-inline">
     <dropdown class="form-group">
       <div class="input-group">
@@ -302,10 +302,10 @@ describe('DatePicker', () => {
     expect(dropdown.className).not.contain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.className).toContain('open')
     triggerEvent(picker, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).to.contain('open')
+    expect(dropdown.className).toContain('open')
   })
 
   it('should be able to use today btn', async () => {
@@ -319,7 +319,7 @@ describe('DatePicker', () => {
     await vm.$nextTick()
     expect(
       dateView.querySelector('tbody').querySelector('.btn-primary').textContent
-    ).to.equal(new Date().getDate().toString())
+    ).toEqual(new Date().getDate().toString())
   })
 
   it('should be able to use clear btn', async () => {
@@ -332,11 +332,11 @@ describe('DatePicker', () => {
     await vm.$nextTick()
     expect(
       dateView.querySelector('tbody').querySelectorAll('.btn-primary').length
-    ).to.equal(0)
+    ).toEqual(0)
   })
 
   it('should be able to hide today btn', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<date-picker v-model="date" :today-btn="false" :clear-btn="false"/>',
       {
         date: null,
@@ -344,11 +344,11 @@ describe('DatePicker', () => {
     )
     const $el = $(vm.$el)
     await vm.$nextTick()
-    expect($el.find('button:contains(Today)').length).to.equal(0)
+    expect($el.find('button:contains(Today)').length).toEqual(0)
   })
 
   it('should be able to hide clear btn', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<date-picker v-model="date" :today-btn="false" :clear-btn="false"/>',
       {
         date: null,
@@ -356,11 +356,11 @@ describe('DatePicker', () => {
     )
     const $el = $(vm.$el)
     await vm.$nextTick()
-    expect($el.find('button:contains(Clear)').length).to.equal(0)
+    expect($el.find('button:contains(Clear)').length).toEqual(0)
   })
 
   it('should be able to limit date range and render correct date view', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div><date-picker v-model="date" limit-from="2018-01-01" limit-to="2019-01-01"/></div>',
       {
         date: null,
@@ -373,17 +373,17 @@ describe('DatePicker', () => {
     let btnDisabled = picker
       .querySelector('tbody')
       .querySelectorAll('button:disabled')
-    expect(btnDisabled.length).to.equal(1)
+    expect(btnDisabled.length).toEqual(1)
     vm.date = '2018-12-31'
     await vm.$nextTick()
     btnDisabled = picker
       .querySelector('tbody')
       .querySelectorAll('button:disabled')
-    expect(btnDisabled.length).to.equal(5)
+    expect(btnDisabled.length).toEqual(5)
   })
 
   it('should be able to limit date range and not able to set invalid date', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<date-picker v-model="date" limit-from="2018-01-01" limit-to="2019-01-01"/>',
       {
         date: null,
@@ -391,11 +391,11 @@ describe('DatePicker', () => {
     )
     vm.date = '2020-01-01'
     await vm.$nextTick()
-    expect(vm.date).to.equal('')
+    expect(vm.date).toEqual('')
   })
 
   it('should be able to toggle popup picker', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `  <form class="form-inline">
     <dropdown class="form-group">
       <div class="input-group">
@@ -417,28 +417,28 @@ describe('DatePicker', () => {
     )
     triggerEvent(vm.$el.querySelector('.input-group-btn button'), 'click')
     await vm.$nextTick()
-    expect(vm.$el.querySelector('.dropdown').className).to.contain('open')
+    expect(vm.$el.querySelector('.dropdown').className).toContain('open')
     triggerEvent(vm.$el.querySelector('.input-group-btn button'), 'click')
     await vm.$nextTick()
     expect(vm.$el.querySelector('.dropdown').className).not.contain('open')
   })
 
   it('should be able to use custom icons', async () => {
-    vm = createVm(`<section>
+    const wrapper = createWrapper(`<section>
     <date-picker icon-control-left="glyphicon glyphicon-triangle-left" icon-control-right="glyphicon glyphicon-triangle-right"/>
   </section>`)
     const $el = $(vm.$el)
     const $tr = $el.find('table:first-child tr:first-child')
-    expect($tr.find('td:first-child > .btn > i').get(0).className).to.contain(
+    expect($tr.find('td:first-child > .btn > i').get(0).className).toContain(
       'glyphicon-triangle-left'
     )
-    expect($tr.find('td:last-child > .btn > i').get(0).className).to.contain(
+    expect($tr.find('td:last-child > .btn > i').get(0).className).toContain(
       'glyphicon-triangle-right'
     )
   })
 
   it('should be able to use custom date classes', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       '<div><date-picker v-model="date" :date-class="dateClass"/></div>',
       {
         date: null,
@@ -456,13 +456,13 @@ describe('DatePicker', () => {
     const picker = $el.find('[data-role="date-picker"]').get(0)
     expect(picker).to.exist
     const dateView = picker.querySelectorAll('table')[0]
-    expect(dateView.style.display).to.equal('')
+    expect(dateView.style.display).toEqual('')
     const sundayBtn = dateView.querySelectorAll('.btn-sunday')
-    expect(sundayBtn.length).to.equal(6)
+    expect(sundayBtn.length).toEqual(6)
   })
 
   it('should be able to use locale for custom translations', async () => {
-    vm = createVm(
+    const wrapper = createWrapper(
       `<section>
     <date-picker :locale="locale" v-model="date"/>
   </section>`,
@@ -481,7 +481,7 @@ describe('DatePicker', () => {
       'thead tr:first-child td:nth-child(2) button'
     )
     const now = new Date()
-    expect(yearMonthBtn.textContent).to.contain(
+    expect(yearMonthBtn.textContent).toContain(
       locale[`month${now.getMonth() + 1}`]
     )
     const weekdays = dateView.querySelectorAll('thead tr:last-child td')
@@ -500,8 +500,8 @@ describe('DatePicker', () => {
     ])
     const { today, clear } = locale
     const todayBtn = picker.querySelector('.text-center .btn-info')
-    expect(todayBtn.textContent).to.equal(today)
+    expect(todayBtn.textContent).toEqual(today)
     const clearBtn = picker.querySelector('.text-center .btn-default')
-    expect(clearBtn.textContent).to.equal(clear)
+    expect(clearBtn.textContent).toEqual(clear)
   })
 })

@@ -1,7 +1,7 @@
-import { createVm, destroyVm, sleep } from '../utils'
+import { createWrapper, destroyVm, sleep } from '../utils'
 
 function baseVm() {
-  return createVm(`<div><navbar>
+  return createWrapper(`<div><navbar>
   <a class="navbar-brand" slot="brand" href="#">Brand</a>
   <template slot="collapse">
     <navbar-nav>
@@ -41,42 +41,42 @@ describe('Navbar', () => {
   it('should be able to render correct content', async () => {
     vm = baseVm()
     const nav = vm.$el.querySelector('nav')
-    expect(nav.className).to.equal('navbar navbar-default')
+    expect(nav.className).toEqual('navbar navbar-default')
     expect(nav.querySelector('.navbar-brand')).to.exist
-    expect(nav.querySelector('.navbar-brand').textContent).to.equal('Brand')
+    expect(nav.querySelector('.navbar-brand').textContent).toEqual('Brand')
     const collapse = nav.querySelector('.navbar-collapse.collapse')
     expect(collapse).to.exist
-    expect(collapse.querySelectorAll('.nav.navbar-nav').length).to.equal(2)
+    expect(collapse.querySelectorAll('.nav.navbar-nav').length).toEqual(2)
     expect(
       collapse.querySelectorAll('.nav.navbar-nav.navbar-right').length
-    ).to.equal(1)
+    ).toEqual(1)
     expect(
       collapse.querySelectorAll('.navbar-form.navbar-left').length
-    ).to.equal(1)
+    ).toEqual(1)
   })
 
   it('should be able to render nav-text', async () => {
-    vm = createVm(`<div><navbar>
+    const wrapper = createWrapper(`<div><navbar>
   <a class="navbar-brand" slot="brand" href="#">Brand</a>
   <navbar-text>Signed in as wxsm</navbar-text>
 </navbar></div>`)
     const nav = vm.$el.querySelector('nav')
     expect(nav.querySelector('.navbar-text')).to.exist
-    expect(nav.querySelector('.navbar-text').textContent).to.equal(
+    expect(nav.querySelector('.navbar-text').textContent).toEqual(
       'Signed in as wxsm'
     )
   })
 
   it('should be able to render static top', async () => {
-    vm = createVm(`<div><navbar static-top>
+    const wrapper = createWrapper(`<div><navbar static-top>
   <a class="navbar-brand" slot="brand" href="#">Brand</a>
 </navbar></div>`)
     const nav = vm.$el.querySelector('nav')
-    expect(nav.className).to.contain('navbar-static-top')
+    expect(nav.className).toContain('navbar-static-top')
   })
 
   it('should be able to render inverse', async () => {
-    vm = createVm(`<div><navbar inverse>
+    const wrapper = createWrapper(`<div><navbar inverse>
   <a class="navbar-brand" slot="brand" href="#">Brand</a>
   <template slot="collapse">
     <navbar-nav>
@@ -86,7 +86,7 @@ describe('Navbar', () => {
   </template>
 </navbar></div>`)
     const nav = vm.$el.querySelector('nav')
-    expect(nav.className).to.contain('navbar-inverse')
+    expect(nav.className).toContain('navbar-inverse')
   })
 
   it('should be able to toggle collapse content', async () => {
@@ -97,38 +97,38 @@ describe('Navbar', () => {
     expect(collapse.className).not.contain('in')
     trigger.click()
     await sleep(500)
-    expect(collapse.className).to.contain('in')
+    expect(collapse.className).toContain('in')
     trigger.click()
     await sleep(500)
     expect(collapse.className).not.contain('in')
   })
 
   it('should be able to use with v-model', async () => {
-    vm = createVm('<div><navbar v-model="show"/></div>', {
+    const wrapper = createWrapper('<div><navbar v-model="show"/></div>', {
       show: true,
     })
     const nav = vm.$el
     const trigger = nav.querySelector('.navbar-toggle')
     const collapse = nav.querySelector('.navbar-collapse.collapse')
     await sleep(500)
-    expect(collapse.className).to.contain('in')
+    expect(collapse.className).toContain('in')
     vm.show = false
     await sleep(500)
     expect(collapse.className).not.contain('in')
     trigger.click()
     await sleep(500)
-    expect(collapse.className).to.contain('in')
+    expect(collapse.className).toContain('in')
   })
 
   it('should be able to render fixed-top', async () => {
-    vm = createVm('<navbar fixed-top/>')
+    const wrapper = createWrapper('<navbar fixed-top/>')
     const nav = vm.$el
-    expect(nav.className).to.contain('navbar-fixed-top')
+    expect(nav.className).toContain('navbar-fixed-top')
   })
 
   it('should be able to render fixed-bottom', async () => {
-    vm = createVm('<navbar fixed-bottom/>')
+    const wrapper = createWrapper('<navbar fixed-bottom/>')
     const nav = vm.$el
-    expect(nav.className).to.contain('navbar-fixed-bottom')
+    expect(nav.className).toContain('navbar-fixed-bottom')
   })
 })
