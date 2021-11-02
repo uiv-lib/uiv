@@ -21,7 +21,7 @@ describe('scroll directive', () => {
         directives: { scroll },
         methods: {
           onScroll() {
-            // TODO
+            // ignore
           },
         },
       }

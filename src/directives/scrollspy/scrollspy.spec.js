@@ -1,15 +1,9 @@
-import {
-  createWrapper,
-  keyCodes,
-  nextTick,
-  sleep,
-  transition,
-  triggerEvent,
-  triggerKey,
-} from '../../__test__/utils'
+import { createWrapper, triggerEvent } from '../../__test__/utils'
 
 const expectActive = ($nav, hash) => {
-  expect($nav.querySelectorAll('li.active').length).toEqual(1)
+  expect(
+    $nav.querySelectorAll('.nav > li.active, .dropdown > li.active').length
+  ).toEqual(1)
   expect($nav.querySelector('li.active > a').getAttribute('href')).toEqual(hash)
 }
 
@@ -26,15 +20,38 @@ const expectDropdownActive = ($nav, hash) => {
   ).toEqual(hash)
 }
 
-// todo
-describe.skip('scrollspy', () => {
+describe('scrollspy', () => {
   let vm
 
   beforeEach(() => {
+    window.innerHeight = 10000
+    jest
+      .spyOn(Element.prototype, 'scrollHeight', 'get')
+      .mockImplementation(() => 10000)
+    jest
+      .spyOn(HTMLElement.prototype, 'offsetTop', 'get')
+      .mockImplementation(function () {
+        switch (this.textContent) {
+          case '@vue':
+            return 0
+          case '@bootstrap':
+            return 100
+          case 'one':
+            return 200
+          case 'two':
+            return 300
+          case 'three':
+            return 400
+          default:
+            return 0
+        }
+      })
+    window.pageYOffset = 0
+    window.innerHeight = 1000
     const wrapper = createWrapper(
       `
   <section>
-    <nav class="navbar navbar-default navbar-static"  v-scrollspy:scrollspy-example>
+    <nav class="navbar navbar-default navbar-static" v-scrollspy:scrollspy-example>
       <div class="container-fluid">
         <div class="navbar-header">
           <button class="collapsed navbar-toggle" type="button" @click="show=!show">
@@ -84,15 +101,15 @@ describe.skip('scrollspy', () => {
   it('should be able to toggle active class', async () => {
     // console.log(window.innerWidth, window.innerHeight)
     await vm.$nextTick()
-    const _$el = vm.$el
-    expectActive(_$el, '#vue')
-    const scrollEl = _$el.querySelector('#scrollspy-example')
-    scrollEl.scrollTop = _$el.querySelector('#vue').offsetTop
-    await sleep(100)
-    expectActive(_$el, '#vue')
-    scrollEl.scrollTop = _$el.querySelector('#bootstrap').offsetTop
-    await sleep(100)
-    expectActive(_$el, '#bootstrap')
+    const el = vm.$el
+    expectActive(el, '#vue')
+    const scrollEl = el.querySelector('#scrollspy-example')
+    scrollEl.scrollTop = el.querySelector('#vue').offsetTop
+    await triggerEvent(scrollEl, 'scroll')
+    expectActive(el, '#vue')
+    scrollEl.scrollTop = el.querySelector('#bootstrap').offsetTop
+    await triggerEvent(scrollEl, 'scroll')
+    expectActive(el, '#bootstrap')
   })
 
   it('should be able to toggle dropdown active class', async () => {
@@ -100,13 +117,17 @@ describe.skip('scrollspy', () => {
     const _$el = vm.$el
     const scrollEl = _$el.querySelector('#scrollspy-example')
     scrollEl.scrollTop = _$el.querySelector('#one').offsetTop
-    await sleep(100)
+    await triggerEvent(scrollEl, 'scroll')
+    // console.log(scrollEl.scrollTop, _$el.innerHTML)
+
     expectDropdownActive(_$el, '#one')
     scrollEl.scrollTop = _$el.querySelector('#two').offsetTop
-    await sleep(100)
+    await triggerEvent(scrollEl, 'scroll')
+
     expectDropdownActive(_$el, '#two')
     scrollEl.scrollTop = _$el.querySelector('#three').offsetTop
-    await sleep(100)
+    await triggerEvent(scrollEl, 'scroll')
+
     expectDropdownActive(_$el, '#three')
   })
 
@@ -115,43 +136,66 @@ describe.skip('scrollspy', () => {
     const _$el = vm.$el
     const scrollEl = _$el.querySelector('#scrollspy-example')
     scrollEl.scrollTop = _$el.querySelector('#two').offsetTop
-    await sleep(100)
+    await triggerEvent(scrollEl, 'scroll')
     expectDropdownActive(_$el, '#two')
-    _$el.find('#one').css('height', 200)
+
     scrollEl.scrollTop = 0
-    await sleep(100)
+    await triggerEvent(scrollEl, 'scroll')
+
     scrollEl.scrollTop = _$el.querySelector('#two').offsetTop
-    await sleep(100)
+    await triggerEvent(scrollEl, 'scroll')
+
     expectDropdownActive(_$el, '#two')
   })
 
   it('should be able to append to body', async () => {
+    jest
+      .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+      .mockImplementation(function () {
+        switch (this.id) {
+          case 'id1':
+            return { top: 200 }
+          case 'id2':
+            return { top: 700 }
+          case 'id3':
+            return { top: 1000 }
+          default:
+            return { top: 0 }
+        }
+      })
     const wrapper = createWrapper(`
 <section style="height: 5000px;">
   <ul class="nav" v-scrollspy style="height: 200px">
-    <li><a href="#1">1</a></li>
-    <li><a href="#2">2</a></li>
-    <li><a href="#3">3</a></li>
+    <li><a href="#id1">id1</a></li>
+    <li><a href="#id2">id2</a></li>
+    <li><a href="#id3">id3</a></li>
   </ul>
-  <div id="1" style="height: 200px">1</div>
-  <div id="2" style="height: 500px">2</div>
-  <div id="3" style="height: 300px">3</div>
+  <div id="id1" style="height: 200px">1</div>
+  <div id="id2" style="height: 500px">2</div>
+  <div id="id3" style="height: 300px">3</div>
 </section>`)
+    const vm = wrapper.vm
     await vm.$nextTick()
     const $el = vm.$el
-    expect($el.querySelector('li.active').length).toEqual(0)
-    window.scrollTo(0, $el.querySelector('#1').offsetTop)
-    await sleep(100)
-    expectActive($el, '#1')
-    window.scrollTo(0, $el.querySelector('#2').offsetTop)
-    await sleep(100)
-    expectActive($el, '#2')
-    window.scrollTo(0, $el.querySelector('#3').offsetTop)
-    await sleep(100)
-    expectActive($el, '#3')
+
+    // console.log($el.querySelector('#id1').offsetTop)
+    expect($el.querySelectorAll('li.active').length).toEqual(0)
+
+    window.scrollTo(0, $el.querySelector('#id1').getBoundingClientRect().top)
+    await triggerEvent(document.body, 'scroll')
+    expectActive($el, '#id1')
+
+    window.scrollTo(0, $el.querySelector('#id2').getBoundingClientRect().top)
+    await triggerEvent(document.body, 'scroll')
+    expectActive($el, '#id2')
+
+    window.scrollTo(0, $el.querySelector('#id3').getBoundingClientRect().top)
+    await triggerEvent(document.body, 'scroll')
+    expectActive($el, '#id3')
+
     window.scrollTo(0, 0)
-    await sleep(100)
-    expect($el.find('li.active').length).toEqual(0)
+    await triggerEvent(document.body, 'scroll')
+    expect($el.querySelectorAll('li.active').length).toEqual(0)
   })
 
   it('should be able to handle invalid target', async () => {
