@@ -42,5 +42,28 @@ export async function nextTick(times = 5) {
  * just a wrapper for historical codes
  */
 export async function triggerEvent(wrapper, event) {
-  await wrapper.trigger(event)
+  if (wrapper instanceof HTMLElement) {
+    wrapper.dispatchEvent(
+      new Event(event, {
+        bubbles: true,
+        cancelable: true,
+      })
+    )
+  } else {
+    await wrapper.trigger(event)
+  }
 }
+
+export const keyCodes = {
+  esc: 27,
+  tab: 9,
+  enter: 13,
+  space: 32,
+  up: 38,
+  left: 37,
+  right: 39,
+  down: 40,
+  delete: [8, 46],
+}
+
+export const transition = 300

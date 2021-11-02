@@ -20,8 +20,8 @@ describe('Pagination', () => {
     const pagination = vm.$el.querySelector('.pagination')
     const first = pagination.querySelector('[aria-label="First"]')
     const last = pagination.querySelector('[aria-label="Last"]')
-    expect(first).to.not.exist
-    expect(last).to.not.exist
+    expect(first).to.not.toBeDefined()
+    expect(last).to.not.toBeDefined()
   })
 
   it('should be able to show boundary links', async () => {
@@ -54,8 +54,8 @@ describe('Pagination', () => {
     const pagination = vm.$el.querySelectorAll('ul.pagination')[1]
     const pre = pagination.querySelector('[aria-label="Previous"]')
     const next = pagination.querySelector('[aria-label="Next"]')
-    expect(pre).to.not.exist
-    expect(next).to.not.exist
+    expect(pre).to.not.toBeDefined()
+    expect(next).to.not.toBeDefined()
   })
 
   it('should be able to show direction links', async () => {

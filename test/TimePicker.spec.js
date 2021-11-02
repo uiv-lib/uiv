@@ -123,7 +123,7 @@ describe('TimePicker', () => {
     vm = h24Vm()
     await vm.$nextTick()
     const toggleBtn = vm.$el.querySelector('[data-action="toggleMeridian"]')
-    expect(toggleBtn).not.exist
+    expect(toggleBtn).not.toBeDefined()
   })
 
   it('should be able to display correctly when hour = 0', async () => {

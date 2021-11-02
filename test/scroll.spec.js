@@ -40,7 +40,7 @@ describe('scroll directive', () => {
       }
     )
     await vm.$nextTick()
-    expect(vm.$el[HANDLER]).not.exist
+    expect(vm.$el[HANDLER]).not.toBeDefined()
   })
 
   it('should be able to get with fail callback', async () => {
@@ -54,9 +54,9 @@ describe('scroll directive', () => {
       }
     )
     await vm.$nextTick()
-    expect(vm.$el[HANDLER]).not.exist
+    expect(vm.$el[HANDLER]).not.toBeDefined()
     vm.msg = 'test'
     await vm.$nextTick()
-    expect(vm.$el[HANDLER]).not.exist
+    expect(vm.$el[HANDLER]).not.toBeDefined()
   })
 })
