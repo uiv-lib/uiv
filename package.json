@@ -27,7 +27,7 @@
     "build": "node build/build-docs.js && node build/build-dist-config.js",
     "test": "jest --coverage",
     "test:watch": "yarn test --watch",
-    "lint": "eslint --ext .js,.vue src test build",
+    "lint": "eslint --ext .js,.vue src build",
     "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
