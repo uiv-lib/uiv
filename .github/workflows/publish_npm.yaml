@@ -16,8 +16,6 @@ jobs:
           node-version: '12.x'
           registry-url: 'https://registry.npmjs.org'
       - run: yarn --frozen-lockfile
-        env:
-          PUPPETEER_SKIP_DOWNLOAD: true
       - name: Build dist
         run: npm run dist
       - name: Publish NPM

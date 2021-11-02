@@ -15,8 +15,6 @@ jobs:
           ref: dev
       - uses: c-hive/gha-yarn-cache@v2
       - run: yarn --frozen-lockfile
-        env:
-          PUPPETEER_SKIP_DOWNLOAD: true
       - name: Build dist
         run: npm run dist
       - name: Changelog
