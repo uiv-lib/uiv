@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { mount, createLocalVue } from '@vue/test-utils'
+import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import { install } from '../install'
 
 export const createWrapper = (template, _data, _options) => {
@@ -15,7 +15,14 @@ export const createWrapper = (template, _data, _options) => {
       ..._options,
       template: template,
     },
-    { localVue, attachTo: document.body }
+    {
+      localVue,
+      attachTo: document.body,
+      stubs: {
+        RouterLink: RouterLinkStub,
+        'router-link': RouterLinkStub,
+      },
+    }
   )
 }
 

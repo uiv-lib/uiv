@@ -1,9 +1,11 @@
-import * as utils from '../src/utils/http.utils'
+import * as utils from './http.utils'
+import sinon from 'sinon'
 
 describe('http.utils', () => {
   describe('#request ', () => {
     let xhr, requests, server
-    before(function () {
+
+    beforeEach(function () {
       xhr = sinon.useFakeXMLHttpRequest()
       requests = []
       xhr.onCreate = function (req) {
@@ -12,7 +14,7 @@ describe('http.utils', () => {
       server = sinon.fakeServer.create()
     })
 
-    after(function () {
+    afterEach(function () {
       xhr.restore()
       server.restore()
     })
@@ -34,7 +36,7 @@ describe('http.utils', () => {
       const then = sinon.spy()
       const always = sinon.spy()
       utils.request('/some/path', 'POST').then(then).always(always)
-      server.requests[1].respond(
+      server.requests[0].respond(
         200,
         { 'Content-Type': 'application/json' },
         JSON.stringify([{ id: 1, text: 'Provide examples', done: true }])
@@ -48,7 +50,7 @@ describe('http.utils', () => {
       const err = sinon.spy()
       const always = sinon.spy()
       utils.request('/some/path').then(then).catch(err).always(always)
-      server.requests[2].respond(
+      server.requests[0].respond(
         500,
         { 'Content-Type': 'application/json' },
         JSON.stringify([{ id: 1, text: 'Provide examples', done: true }])
