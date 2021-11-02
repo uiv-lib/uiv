@@ -35,19 +35,24 @@ const files = [
   'components/tabs/Tabs.vue',
   'components/timepicker/TimePicker.vue',
   'components/tooltip/Tooltip.js',
-  'components/typeahead/Typeahead.vue'
+  'components/typeahead/Typeahead.vue',
 ]
 
-module.exports = files.map(file => {
+module.exports = files.map((file) => {
   const prefix = file.startsWith('directives') ? 'v_' : ''
   return _.merge({}, baseConfig, {
     input: path.join(__dirname, '..', 'src', file),
     output: [
       {
         format: 'es',
-        file: path.join(__dirname, '..', 'dist', `${prefix + file.split('/').pop().split('.')[0]}.js`),
-        sourcemap: true
-      }
-    ]
+        file: path.join(
+          __dirname,
+          '..',
+          'dist',
+          `${prefix + file.split('/').pop().split('.')[0]}.js`
+        ),
+        sourcemap: true,
+      },
+    ],
   })
 })

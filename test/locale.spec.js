@@ -1,4 +1,4 @@
-import * as locale from '../../src/locale/index'
+import * as locale from '../src/locale'
 
 describe('locale', () => {
   it('should fetch correct value for given key', () => {

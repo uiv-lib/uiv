@@ -1,4 +1,4 @@
-import * as utils from '../../src/utils/array.utils'
+import * as utils from '../src/utils/array.utils'
 import _ from 'lodash'
 import $ from 'jquery'
 

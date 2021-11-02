@@ -1,4 +1,4 @@
-import * as utils from '../../src/utils/http.utils'
+import * as utils from '../src/utils/http.utils'
 
 describe('http.utils', () => {
   describe('#request ', () => {

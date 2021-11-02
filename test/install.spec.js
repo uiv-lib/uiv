@@ -1,4 +1,4 @@
-import * as uiv from '../../src/install'
+import * as uiv from '../src/install'
 
 describe('install', () => {
   function Vue() {

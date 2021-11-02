@@ -6,8 +6,8 @@ import {
   destroyVm,
   keyCodes,
 } from '../utils'
-import { request } from '../../src/utils/http.utils'
-import states from '../assets/data/states.json'
+import { request } from '../src/utils/http.utils'
+import states from './assets/data/states.json'
 
 function baseVm() {
   return createVm(

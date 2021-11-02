@@ -1,4 +1,4 @@
-import newLocale from '../../src/locale/lang/zh-CN'
+import newLocale from '../src/locale/lang/zh-CN'
 import $ from 'jquery'
 import { createVm, destroyVm, triggerEvent } from '../utils'
 

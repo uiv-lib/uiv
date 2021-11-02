@@ -18,9 +18,7 @@ module.exports = {
   external: ['vue'],
   plugins: [
     alias({
-      entries: [
-        { find: /^vue$/, replacement: 'vue/dist/vue.esm.js' }
-      ]
+      entries: [{ find: /^vue$/, replacement: 'vue/dist/vue.esm.js' }],
     }),
     vue(),
     resolve(),
@@ -28,7 +26,7 @@ module.exports = {
     buble(),
     strip({
       start_comment: 'START.TESTS_ONLY',
-      end_comment: 'END.TESTS_ONLY'
-    })
-  ]
+      end_comment: 'END.TESTS_ONLY',
+    }),
+  ],
 }

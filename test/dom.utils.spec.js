@@ -1,4 +1,4 @@
-import * as utils from '../../src/utils/dom.utils'
+import * as utils from '../src/utils/dom.utils'
 import $ from 'jquery'
 import { createVm } from '../utils'
 

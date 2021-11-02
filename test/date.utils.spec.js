@@ -1,4 +1,4 @@
-import * as utils from '../../src/utils/date.utils'
+import * as utils from '../src/utils/date.utils'
 
 describe('date.utils', () => {
   describe('#daysInMonth', () => {

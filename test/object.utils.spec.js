@@ -1,4 +1,4 @@
-import * as utils from '../../src/utils/object.utils'
+import * as utils from '../src/utils/object.utils'
 
 describe('object.utils', () => {
   describe('#assign', () => {
