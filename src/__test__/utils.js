@@ -37,3 +37,10 @@ export async function nextTick(times = 5) {
     await Vue.prototype.$nextTick()
   }
 }
+
+/**
+ * just a wrapper for historical codes
+ */
+export async function triggerEvent(wrapper, event) {
+  await wrapper.trigger(event)
+}

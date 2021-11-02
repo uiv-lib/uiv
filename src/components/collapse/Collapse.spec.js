@@ -1,14 +1,13 @@
-import $ from 'jquery'
-import { createWrapper, destroyVm, triggerEvent, sleep } from '../utils'
+import {
+  createWrapper,
+  nextTick,
+  sleep,
+  triggerEvent,
+} from '../../__test__/utils'
+import { RouterLinkStub } from '@vue/test-utils'
+import Collapse from './Collapse'
 
 describe('Collapse', () => {
-  let vm
-  let $el
-
-  afterEach(() => {
-    destroyVm(vm)
-  })
-
   it('should be able to toggle collapse on trigger click', async () => {
     const wrapper = createWrapper(
       `<section>
@@ -24,16 +23,15 @@ describe('Collapse', () => {
         show: false,
       }
     )
-    $el = $(vm.$el)
-    const trigger = $el.find('button').get(0)
-    const collapse = $el.find('.collapse').get(0)
-    expect(collapse.className).toEqual('collapse')
-    triggerEvent(trigger, 'click')
+    const trigger = wrapper.findAll('button').at(0)
+    const collapse = wrapper.findAll('.collapse').at(0)
+    expect(collapse.classes()).toEqual(['collapse'])
+    await triggerEvent(trigger, 'click')
     await sleep(400)
-    expect(collapse.className).toEqual('collapse in')
-    triggerEvent(trigger, 'click')
+    expect(collapse.classes()).toEqual(['collapse', 'in'])
+    await triggerEvent(trigger, 'click')
     await sleep(400)
-    expect(collapse.className).toEqual('collapse')
+    expect(collapse.classes()).toEqual(['collapse'])
   })
 
   it('should be able to toggle accordion', async () => {
@@ -88,17 +86,16 @@ describe('Collapse', () => {
         },
       }
     )
-    $el = $(vm.$el)
-    const triggers = $el.find('.panel-heading')
-    const collapse = $el.find('.collapse')
-    expect(collapse.get(0).className).toEqual('collapse in')
-    expect(collapse.get(1).className).toEqual('collapse')
-    triggerEvent(triggers.get(1), 'click')
+    const triggers = wrapper.findAll('.panel-heading')
+    const collapse = wrapper.findAll('.collapse')
+    expect(collapse.at(0).classes()).toEqual(['collapse', 'in'])
+    expect(collapse.at(1).classes()).toEqual(['collapse'])
+    await triggerEvent(triggers.at(1), 'click')
     await sleep(400)
-    expect(collapse.get(0).className).toEqual('collapse')
-    expect(collapse.get(1).className).toEqual('collapse in')
-    triggerEvent(triggers.get(1), 'click')
+    expect(collapse.at(0).classes()).toEqual(['collapse'])
+    expect(collapse.at(1).classes()).toEqual(['collapse', 'in'])
+    await triggerEvent(triggers.at(1), 'click')
     await sleep(400)
-    expect(collapse.get(1).className).toEqual('collapse')
+    expect(collapse.at(1).classes()).toEqual(['collapse'])
   })
 })
