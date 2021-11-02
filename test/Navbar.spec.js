@@ -42,10 +42,10 @@ describe('Navbar', () => {
     vm = baseVm()
     const nav = vm.$el.querySelector('nav')
     expect(nav.className).toEqual('navbar navbar-default')
-    expect(nav.querySelector('.navbar-brand')).to.exist
+    expect(nav.querySelector('.navbar-brand')).toBeDefined()
     expect(nav.querySelector('.navbar-brand').textContent).toEqual('Brand')
     const collapse = nav.querySelector('.navbar-collapse.collapse')
-    expect(collapse).to.exist
+    expect(collapse).toBeDefined()
     expect(collapse.querySelectorAll('.nav.navbar-nav').length).toEqual(2)
     expect(
       collapse.querySelectorAll('.nav.navbar-nav.navbar-right').length
@@ -61,7 +61,7 @@ describe('Navbar', () => {
   <navbar-text>Signed in as wxsm</navbar-text>
 </navbar></div>`)
     const nav = vm.$el.querySelector('nav')
-    expect(nav.querySelector('.navbar-text')).to.exist
+    expect(nav.querySelector('.navbar-text')).toBeDefined()
     expect(nav.querySelector('.navbar-text').textContent).toEqual(
       'Signed in as wxsm'
     )
@@ -94,13 +94,13 @@ describe('Navbar', () => {
     const nav = vm.$el.querySelector('nav')
     const trigger = nav.querySelector('.navbar-toggle')
     const collapse = nav.querySelector('.navbar-collapse.collapse')
-    expect(collapse.className).not.contain('in')
+    expect(collapse.className).not.toContain('in')
     trigger.click()
     await sleep(500)
     expect(collapse.className).toContain('in')
     trigger.click()
     await sleep(500)
-    expect(collapse.className).not.contain('in')
+    expect(collapse.className).not.toContain('in')
   })
 
   it('should be able to use with v-model', async () => {
@@ -114,7 +114,7 @@ describe('Navbar', () => {
     expect(collapse.className).toContain('in')
     vm.show = false
     await sleep(500)
-    expect(collapse.className).not.contain('in')
+    expect(collapse.className).not.toContain('in')
     trigger.click()
     await sleep(500)
     expect(collapse.className).toContain('in')

@@ -31,7 +31,7 @@ describe('Tooltip', () => {
     await vm.$nextTick()
     triggerEvent(vm.$el.querySelector('button'), 'focus')
     await sleep(300)
-    expect(tag.querySelector('.tooltip')).to.exist
+    expect(tag.querySelector('.tooltip')).toBeDefined()
     $(tag).remove()
   })
 
@@ -91,7 +91,7 @@ describe('Tooltip', () => {
     triggerEvent(trigger, 'click')
     await sleep(300)
     let tooltip = document.querySelector('.tooltip')
-    expect(tooltip).to.exist
+    expect(tooltip).toBeDefined()
     expect(tooltip.querySelector('.tooltip-inner').innerText).toEqual('title')
     triggerEvent(trigger, 'click')
     await sleep(300)
@@ -103,7 +103,7 @@ describe('Tooltip', () => {
     triggerEvent(trigger, 'click')
     await sleep(300)
     tooltip = document.querySelector('.tooltip')
-    expect(tooltip).to.exist
+    expect(tooltip).toBeDefined()
     expect(tooltip.querySelector('.tooltip-inner').innerText).toEqual('title2')
     triggerEvent(trigger, 'click')
     await sleep(300)
@@ -114,7 +114,7 @@ describe('Tooltip', () => {
     triggerEvent(trigger, 'click')
     await sleep(300)
     tooltip = document.querySelector('.tooltip')
-    expect(tooltip).to.exist
+    expect(tooltip).toBeDefined()
     expect(tooltip.querySelector('.tooltip-inner').innerText).toEqual('title2')
   })
 
@@ -131,7 +131,7 @@ describe('Tooltip', () => {
     triggerEvent(trigger, 'click')
     await sleep(300)
     const tooltip = document.querySelector('.tooltip')
-    expect(tooltip).to.exist
+    expect(tooltip).toBeDefined()
     expect(tooltip.querySelector('.tooltip-inner').innerText).toEqual('title')
     triggerEvent(trigger, 'click')
     await sleep(300)
@@ -153,7 +153,7 @@ describe('Tooltip', () => {
     triggerEvent(trigger, 'mouseenter')
     await sleep(150)
     const tooltip = document.querySelector('.tooltip')
-    expect(tooltip).to.exist
+    expect(tooltip).toBeDefined()
     expect(tooltip.querySelector('.tooltip-inner').innerText).toEqual('title2')
   })
 
@@ -175,7 +175,7 @@ describe('Tooltip', () => {
     triggerEvent(trigger, 'mouseenter')
     await sleep(150)
     const tooltip = document.querySelector('.tooltip')
-    expect(tooltip).to.exist
+    expect(tooltip).toBeDefined()
     expect(tooltip.querySelector('.tooltip-inner').innerText).toEqual('title2')
   })
 
@@ -350,7 +350,7 @@ describe('Tooltip', () => {
     await sleep(300)
     Element.prototype.matches = savedMatches
     const tooltip = document.querySelector('.tooltip')
-    expect(tooltip).to.exist
+    expect(tooltip).toBeDefined()
     expect(tooltip.className).toContain('top')
     triggerEvent(trigger, 'blur')
     await sleep(300)
@@ -370,7 +370,7 @@ describe('Tooltip', () => {
     await sleep(300)
     Element.prototype.matches = savedMatches
     const tooltip = document.querySelector('.tooltip')
-    expect(tooltip).to.exist
+    expect(tooltip).toBeDefined()
     expect(tooltip.className).toContain('bottom')
     triggerEvent(trigger, 'blur')
     await sleep(300)
@@ -390,7 +390,7 @@ describe('Tooltip', () => {
     await sleep(300)
     Element.prototype.matches = savedMatches
     const tooltip = document.querySelector('.tooltip')
-    expect(tooltip).to.exist
+    expect(tooltip).toBeDefined()
     expect(tooltip.className).toContain('left')
     triggerEvent(trigger, 'blur')
     await sleep(300)
@@ -410,7 +410,7 @@ describe('Tooltip', () => {
     await sleep(300)
     Element.prototype.matches = savedMatches
     const tooltip = document.querySelector('.tooltip')
-    expect(tooltip).to.exist
+    expect(tooltip).toBeDefined()
     expect(tooltip.className).toContain('right')
     triggerEvent(trigger, 'blur')
     await sleep(300)

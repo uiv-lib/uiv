@@ -86,7 +86,7 @@ describe('Dropdown', () => {
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).toEqual('div')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
@@ -97,13 +97,13 @@ describe('Dropdown', () => {
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).toEqual('div')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     triggerEvent(trigger, 'keydown', { keyCode: keyCodes.esc })
     await vm.$nextTick()
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
   })
 
   it('should be able to navigate between items using keyboard up & down', async () => {
@@ -111,7 +111,7 @@ describe('Dropdown', () => {
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).toEqual('div')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
@@ -130,7 +130,7 @@ describe('Dropdown', () => {
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).toEqual('div')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     assertKeyboardNav(trigger, dropdown, 0, keyCodes.down, false)
   })
 
@@ -139,7 +139,7 @@ describe('Dropdown', () => {
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).toEqual('div')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
@@ -154,7 +154,7 @@ describe('Dropdown', () => {
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).toEqual('div')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
@@ -167,13 +167,13 @@ describe('Dropdown', () => {
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).toEqual('div')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
   })
 
   it('should be able to close dropdown on window click', async () => {
@@ -181,14 +181,14 @@ describe('Dropdown', () => {
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
     expect(dropdown.tagName.toLowerCase()).toEqual('div')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     // Simulate a window click
     vm.$refs.dropdown.windowClicked({ target: document.body })
     await vm.$nextTick()
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
   })
 
   it('should not close dropdown on self click if not-close-elements contains component ref and with append-to-body', async () => {
@@ -223,29 +223,29 @@ describe('Dropdown', () => {
     // Simulate a window click
     vm.$refs.test.windowClicked({ target: document.body })
     await vm.$nextTick()
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     vm.show = true
     await vm.$nextTick()
     // Simulate a window click
     vm.$refs.test.windowClicked({ target: vm.$refs.li2 })
     await vm.$nextTick()
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
   })
 
   it('should be able to open dropdown append to body on trigger click', async () => {
     vm = appendToBodyVm()
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('button')
-    expect(dropdown.className).to.not.contain('open')
-    expect(dropdown.querySelector('.dropdown-menu')).to.exist
+    expect(dropdown.className).to.not.toContain('open')
+    expect(dropdown.querySelector('.dropdown-menu')).toBeDefined()
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     expect(dropdown.querySelector('.dropdown-menu')).not.exist
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).not.contain('open')
-    expect(dropdown.querySelector('.dropdown-menu')).to.exist
+    expect(dropdown.className).not.toContain('open')
+    expect(dropdown.querySelector('.dropdown-menu')).toBeDefined()
   })
 
   it('should be able to use dropup style', async () => {
@@ -261,8 +261,8 @@ describe('Dropdown', () => {
 </dropdown></div>`)
     await vm.$nextTick()
     const dropup = vm.$el.querySelector('.dropup')
-    expect(dropup.className).to.not.contain('open')
-    expect(dropup.querySelector('.dropdown-menu')).to.exist
+    expect(dropup.className).to.not.toContain('open')
+    expect(dropup.querySelector('.dropdown-menu')).toBeDefined()
   })
 
   it('should be able to use menu-right style', async () => {
@@ -287,32 +287,32 @@ describe('Dropdown', () => {
     vm = appendToBodyVm()
     const dropdown = vm.$el.querySelectorAll('.dropdown')[1]
     const trigger = dropdown.querySelector('button')
-    expect(dropdown.className).to.not.contain('open')
-    expect(dropdown.querySelector('.dropdown-menu-right')).to.exist
+    expect(dropdown.className).to.not.toContain('open')
+    expect(dropdown.querySelector('.dropdown-menu-right')).toBeDefined()
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     expect(dropdown.querySelector('.dropdown-menu-right')).not.exist
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).not.contain('open')
-    expect(dropdown.querySelector('.dropdown-menu-right')).to.exist
+    expect(dropdown.className).not.toContain('open')
+    expect(dropdown.querySelector('.dropdown-menu-right')).toBeDefined()
   })
 
   it('should be able to open dropdown append to body & dropup on trigger click', async () => {
     vm = appendToBodyVm()
     const dropdown = vm.$el.querySelector('.dropup')
     const trigger = dropdown.querySelector('button')
-    expect(dropdown.className).to.not.contain('open')
-    expect(dropdown.querySelector('.dropdown-menu')).to.exist
+    expect(dropdown.className).to.not.toContain('open')
+    expect(dropdown.querySelector('.dropdown-menu')).toBeDefined()
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     expect(dropdown.querySelector('.dropdown-menu')).not.exist
     triggerEvent(trigger, 'click')
     await vm.$nextTick()
-    expect(dropdown.className).not.contain('open')
-    expect(dropdown.querySelector('.dropdown-menu')).to.exist
+    expect(dropdown.className).not.toContain('open')
+    expect(dropdown.querySelector('.dropdown-menu')).toBeDefined()
   })
 
   it('should be able to open dropdown on init', async () => {
@@ -336,7 +336,7 @@ describe('Dropdown', () => {
     )
     await vm.$nextTick()
     const dropdown = vm.$el
-    expect(dropdown.className).not.contain('open')
+    expect(dropdown.className).not.toContain('open')
   })
 
   it('should be able to init with no trigger', async () => {

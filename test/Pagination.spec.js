@@ -35,8 +35,8 @@ describe('Pagination', () => {
     const pagination = vm.$el.querySelector('.pagination')
     const first = pagination.querySelector('[aria-label="First"]')
     const last = pagination.querySelector('[aria-label="Last"]')
-    expect(first).to.exist
-    expect(last).to.exist
+    expect(first).toBeDefined()
+    expect(last).toBeDefined()
   })
 
   it('should be able to hide direction links', async () => {
@@ -73,8 +73,8 @@ describe('Pagination', () => {
     const pagination = vm.$el.querySelectorAll('ul.pagination')[0]
     const pre = pagination.querySelector('[aria-label="Previous"]')
     const next = pagination.querySelector('[aria-label="Next"]')
-    expect(pre).to.exist
-    expect(next).to.exist
+    expect(pre).toBeDefined()
+    expect(next).toBeDefined()
   })
 
   it('should be able to change current page', async () => {

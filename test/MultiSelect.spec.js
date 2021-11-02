@@ -64,7 +64,7 @@ describe('MultiSelect', () => {
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
-    expect(dropdown.className).not.contain('open')
+    expect(dropdown.className).not.toContain('open')
     trigger.click()
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
@@ -264,18 +264,18 @@ describe('MultiSelect', () => {
     // sm size
     expect(dropdown1.style.width).toEqual('')
     expect(className1).toContain('input-sm')
-    expect(className1).not.contain('input-lg')
+    expect(className1).not.toContain('input-lg')
     // normal
     expect(dropdown2.style.width).toEqual('')
-    expect(className2).not.contain('input-sm')
-    expect(className2).not.contain('input-lg')
+    expect(className2).not.toContain('input-sm')
+    expect(className2).not.toContain('input-lg')
     // lg size
     expect(dropdown3.style.width).toEqual('')
-    expect(className3).not.contain('input-sm')
+    expect(className3).not.toContain('input-sm')
     expect(className3).toContain('input-lg')
     // block + lg size
     expect(dropdown4.style.width).toEqual('100%')
-    expect(className4).not.contain('input-sm')
+    expect(className4).not.toContain('input-sm')
     expect(className4).toContain('input-lg')
   })
 
@@ -349,10 +349,10 @@ describe('MultiSelect', () => {
     expect(
       dropdown.querySelector('.form-control').getAttribute('disabled')
     ).toEqual('disabled')
-    expect(dropdown.className).not.contain('open')
+    expect(dropdown.className).not.toContain('open')
     trigger.click()
     await vm.$nextTick()
-    expect(dropdown.className).not.contain('open')
+    expect(dropdown.className).not.toContain('open')
   })
 
   it('should be able to collapse selected', async () => {
@@ -374,7 +374,7 @@ describe('MultiSelect', () => {
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
-    expect(dropdown.className).not.contain('open')
+    expect(dropdown.className).not.toContain('open')
     trigger.click()
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
@@ -643,7 +643,7 @@ describe('MultiSelect', () => {
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
-    expect(dropdown.className).not.contain('open')
+    expect(dropdown.className).not.toContain('open')
     // nothing happens
     triggerKey(trigger, keyCodes.up)
     await vm.$nextTick()
@@ -828,7 +828,7 @@ describe('MultiSelect', () => {
     const dropdown = vm.$el.querySelector('.dropdown')
     const trigger = dropdown.querySelector('.dropdown-toggle')
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1]
-    expect(dropdown.className).not.contain('open')
+    expect(dropdown.className).not.toContain('open')
     expect(dropdown.querySelectorAll('.dropdown-header').length).toEqual(2)
     expect(
       dropdown.querySelectorAll('.dropdown-header')[0].textContent

@@ -74,7 +74,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'ala'
     triggerEvent(input, 'input')
     await vm.$nextTick()
@@ -89,7 +89,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'ala'
     triggerEvent(input, 'focus')
     await vm.$nextTick()
@@ -104,7 +104,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'ala'
     triggerEvent(input, 'focus')
     await vm.$nextTick()
@@ -119,14 +119,14 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'ala'
     triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     triggerEvent(input, 'blur')
     await vm.$nextTick()
-    expect(dropdown.className).not.contain('open')
+    expect(dropdown.className).not.toContain('open')
   })
 
   it('should be able to close typeahead on input esc key', async () => {
@@ -134,14 +134,14 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'ala'
     triggerEvent(input, 'input')
     await vm.$nextTick()
     expect(dropdown.className).toContain('open')
     triggerKey(input, keyCodes.esc)
     await vm.$nextTick()
-    expect(dropdown.className).not.contain('open')
+    expect(dropdown.className).not.toContain('open')
   })
 
   it('should not close typeahead on input click', async () => {
@@ -149,7 +149,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'ala'
     triggerEvent(input, 'input')
     await vm.$nextTick()
@@ -164,7 +164,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'ala'
     triggerEvent(input, 'input')
     await vm.$nextTick()
@@ -172,7 +172,7 @@ describe('Typeahead', () => {
     input.value = ''
     triggerEvent(input, 'input')
     await vm.$nextTick()
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
   })
 
   it('should be able to slice item length', async () => {
@@ -180,7 +180,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'a'
     triggerEvent(input, 'input')
     await vm.$nextTick()
@@ -195,11 +195,11 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'asdasdasdasd'
     triggerEvent(input, 'input')
     await vm.$nextTick()
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
   })
 
   it('should be able to select item', async () => {
@@ -207,7 +207,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'ala'
     triggerEvent(input, 'input')
     await vm.$nextTick()
@@ -217,7 +217,7 @@ describe('Typeahead', () => {
     expect(selected.textContent).toEqual('Alabama')
     selected.click()
     await vm.$nextTick()
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     expect(input.value).toEqual('Alabama')
     expect(vm.model.name).toEqual('Alabama')
   })
@@ -242,7 +242,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'ala'
     triggerEvent(input, 'input')
     await vm.$nextTick()
@@ -253,7 +253,7 @@ describe('Typeahead', () => {
     expect(selected.textContent).toEqual('Alabama')
     selected.click()
     await vm.$nextTick()
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     expect(input.value).toEqual('Alabama')
     expect(vm.model.name).toEqual('Alabama')
   })
@@ -263,10 +263,10 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     triggerKey(input, keyCodes.enter, 'down')
     await vm.$nextTick()
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     expect(input.value).toEqual('')
   })
 
@@ -275,7 +275,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'ala'
     triggerEvent(input, 'input')
     await vm.$nextTick()
@@ -285,7 +285,7 @@ describe('Typeahead', () => {
     expect(selected.textContent).toEqual('Alabama')
     triggerKey(input, 13)
     await vm.$nextTick()
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     expect(input.value).toEqual('Alabama')
     expect(vm.model.name).toEqual('Alabama')
   })
@@ -295,7 +295,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'ala'
     triggerEvent(input, 'input')
     await vm.$nextTick()
@@ -320,7 +320,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'ala'
     triggerEvent(input, 'input')
     await vm.$nextTick()
@@ -368,7 +368,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'ala'
     triggerEvent(input, 'input')
     await vm.$nextTick()
@@ -392,7 +392,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     // matches don't work in here
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
@@ -465,7 +465,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     // matches don't work in here
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
@@ -511,7 +511,7 @@ describe('Typeahead', () => {
     expect(vm.err).not.exist
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     // matches don't work in here
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true
@@ -524,8 +524,8 @@ describe('Typeahead', () => {
       JSON.stringify([{ id: 1, text: 'Provide examples', done: true }])
     )
     await vm.$nextTick()
-    expect(dropdown.className).to.not.contain('open')
-    expect(vm.err).to.exist
+    expect(dropdown.className).to.not.toContain('open')
+    expect(vm.err).toBeDefined()
     Element.prototype.matches = savedMatches
   })
 
@@ -549,7 +549,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'a'
     triggerEvent(input, 'input')
     await vm.$nextTick()
@@ -587,7 +587,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     input.value = 'a'
     triggerEvent(input, 'input')
     await vm.$nextTick()
@@ -596,20 +596,20 @@ describe('Typeahead', () => {
     expect(dropdown.querySelector('li.active a')).not.exist
     triggerKey(input, keyCodes.enter)
     await vm.$nextTick()
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     expect(vm.model).toEqual('a')
     expect(input.value).toEqual('a')
     triggerEvent(input, 'input')
     await vm.$nextTick()
     triggerKey(input, keyCodes.down)
     await vm.$nextTick()
-    expect(dropdown.querySelector('li.active a')).to.exist
+    expect(dropdown.querySelector('li.active a')).toBeDefined()
     expect(dropdown.querySelector('li.active a').textContent).toEqual('aa')
     dropdown.querySelector('li.active a').click()
     await vm.$nextTick()
     expect(vm.model).toEqual('aa')
     expect(input.value).toEqual('aa')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
   })
 
   it('should be able to use async-function and custom template', async () => {
@@ -650,7 +650,7 @@ describe('Typeahead', () => {
     await vm.$nextTick()
     const input = vm.$el.querySelector('input')
     const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).to.not.contain('open')
+    expect(dropdown.className).to.not.toContain('open')
     // matches don't work in here
     const savedMatches = Element.prototype.matches
     Element.prototype.matches = () => true

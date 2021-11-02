@@ -66,7 +66,7 @@ describe('Modal', () => {
   const expectBodyOverflow = (enable) => {
     if (enable) {
       expect(document.body.style.paddingRight).toEqual('')
-      expect(document.body.className).not.contain('modal-open')
+      expect(document.body.className).not.toContain('modal-open')
     } else {
       expect(document.body.style.paddingRight).toContain('px')
       expect(document.body.className).toContain('modal-open')
@@ -96,7 +96,7 @@ describe('Modal', () => {
     vm.$refs.modal.backdropClicked()
     await sleep(transition)
     expect(vm.$refs.modal.isCloseSuppressed).to.be.undefined
-    expect(vm.$refs.modal.$el.className).to.not.contain('in')
+    expect(vm.$refs.modal.$el.className).to.not.toContain('in')
   })
 
   it('should suppress inside modal keydown & keyup to prevent unexpected hiding', async () => {
@@ -163,8 +163,8 @@ describe('Modal', () => {
     trigger.click()
     await sleep(transition)
     expect(modal1.className).toContain('in')
-    expect(modal2.className).not.contain('in')
-    expect(modal3.className).not.contain('in')
+    expect(modal2.className).not.toContain('in')
+    expect(modal3.className).not.toContain('in')
     expect(getBackdropsNum()).toEqual(1)
     expect(modal1.style.zIndex).toEqual('')
     expect($('.modal-backdrop').get(0).style.zIndex).toEqual('')
@@ -174,7 +174,7 @@ describe('Modal', () => {
     await sleep(transition)
     expect(modal1.className).toContain('in')
     expect(modal2.className).toContain('in')
-    expect(modal3.className).not.contain('in')
+    expect(modal3.className).not.toContain('in')
     expect(getBackdropsNum()).toEqual(2)
     expect(modal2.style.zIndex).toEqual('1070')
     expect($('.modal-backdrop').get(1).style.zIndex).toEqual('1060')
@@ -194,7 +194,7 @@ describe('Modal', () => {
     await sleep(transition)
     expect(modal1.className).toContain('in')
     expect(modal2.className).toContain('in')
-    expect(modal3.className).not.contain('in')
+    expect(modal3.className).not.toContain('in')
     expect(getBackdropsNum()).toEqual(2)
     // body overflow should be still disabled, because modal 1 & 2 is still open
     expectBodyOverflow(false)
@@ -202,17 +202,17 @@ describe('Modal', () => {
     modal2.querySelector('.btn-primary').click()
     await sleep(transition)
     expect(modal1.className).toContain('in')
-    expect(modal2.className).not.contain('in')
-    expect(modal3.className).not.contain('in')
+    expect(modal2.className).not.toContain('in')
+    expect(modal3.className).not.toContain('in')
     expect(getBackdropsNum()).toEqual(1)
     // body overflow should be still disabled, because modal 1 is still open
     expectBodyOverflow(false)
     // dismiss modal 1
     modal1.querySelector('.btn-primary').click()
     await sleep(transition)
-    expect(modal1.className).not.contain('in')
-    expect(modal2.className).not.contain('in')
-    expect(modal3.className).not.contain('in')
+    expect(modal1.className).not.toContain('in')
+    expect(modal2.className).not.toContain('in')
+    expect(modal3.className).not.toContain('in')
     expect(getBackdropsNum()).toEqual(0)
     // body overflow should be enable now
     expectBodyOverflow(true)
@@ -261,8 +261,8 @@ describe('Modal', () => {
     trigger.click()
     await sleep(transition)
     expect(modal1.className).toContain('in')
-    expect(modal2.className).not.contain('in')
-    expect(modal3.className).not.contain('in')
+    expect(modal2.className).not.toContain('in')
+    expect(modal3.className).not.toContain('in')
     expect(getBackdropsNum()).toEqual(1)
     expect(modal1.style.zIndex).toEqual('')
     expect($('.modal-backdrop').get(0).style.zIndex).toEqual('')
@@ -272,7 +272,7 @@ describe('Modal', () => {
     await sleep(transition)
     expect(modal1.className).toContain('in')
     expect(modal2.className).toContain('in')
-    expect(modal3.className).not.contain('in')
+    expect(modal3.className).not.toContain('in')
     expect(getBackdropsNum()).toEqual(2)
     expect(modal2.style.zIndex).toEqual('1070')
     expect($('.modal-backdrop').get(1).style.zIndex).toEqual('1060')
@@ -292,7 +292,7 @@ describe('Modal', () => {
     await sleep(transition)
     expect(modal1.className).toContain('in')
     expect(modal2.className).toContain('in')
-    expect(modal3.className).not.contain('in')
+    expect(modal3.className).not.toContain('in')
     expect(getBackdropsNum()).toEqual(2)
     // body overflow should be still disabled, because modal 1 & 2 is still open
     expectBodyOverflow(false)
@@ -300,17 +300,17 @@ describe('Modal', () => {
     modal2.querySelector('.btn-primary').click()
     await sleep(transition)
     expect(modal1.className).toContain('in')
-    expect(modal2.className).not.contain('in')
-    expect(modal3.className).not.contain('in')
+    expect(modal2.className).not.toContain('in')
+    expect(modal3.className).not.toContain('in')
     expect(getBackdropsNum()).toEqual(1)
     // body overflow should be still disabled, because modal 1 is still open
     expectBodyOverflow(false)
     // dismiss modal 1
     modal1.querySelector('.btn-primary').click()
     await sleep(transition)
-    expect(modal1.className).not.contain('in')
-    expect(modal2.className).not.contain('in')
-    expect(modal3.className).not.contain('in')
+    expect(modal1.className).not.toContain('in')
+    expect(modal2.className).not.toContain('in')
+    expect(modal3.className).not.toContain('in')
     expect(getBackdropsNum()).toEqual(0)
     // body overflow should be enable now
     expectBodyOverflow(true)
@@ -367,7 +367,7 @@ describe('Modal', () => {
     // dismiss modal 1
     modal1.querySelector('.btn-primary').click()
     await sleep(transition)
-    expect(modal1.className).not.contain('in')
+    expect(modal1.className).not.toContain('in')
     expect(getBackdropsNum()).toEqual(0)
     // body overflow should be enable now
     expectBodyOverflow(true)
@@ -382,7 +382,7 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(_$el.find('.modal').get(0).className).toContain('in')
     expect(_$el.find('.modal-title').get(0).textContent).toEqual('Modal 1')
   })
@@ -394,7 +394,7 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(_$el.find('.modal').get(0).className).toContain('in')
     expect(_$el.find('.modal-title').get(0).textContent).toEqual('Modal 1')
     vm.$refs.modal.onKeyPress({ keyCode: 28 }) // not a esc key
@@ -412,14 +412,14 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(_$el.find('.modal').get(0).className).toContain('in')
     expect(_$el.find('.modal-title').get(0).textContent).toEqual('Modal 1')
     triggerEvent(_$el.find('button.close').get(0), 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
-    expect(_$el.find('.modal').get(0).className).not.contain('in')
-    expect(document.querySelector('.alert')).to.exist
+    expect(_$el.find('.modal').get(0).className).not.toContain('in')
+    expect(document.querySelector('.alert')).toBeDefined()
     expect(
       document.querySelector('.alert .media-body > div').textContent
     ).toContain('dismiss')
@@ -432,14 +432,14 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(_$el.find('.modal').get(0).className).toContain('in')
     expect(_$el.find('.modal-title').get(0).textContent).toEqual('Modal 1')
     triggerEvent(_$el.find('.modal-footer button').get(1), 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
-    expect(_$el.find('.modal').get(0).className).not.contain('in')
-    expect(document.querySelector('.alert')).to.exist
+    expect(_$el.find('.modal').get(0).className).not.toContain('in')
+    expect(document.querySelector('.alert')).toBeDefined()
     expect(
       document.querySelector('.alert .media-body > div').textContent
     ).toContain('ok')
@@ -463,9 +463,11 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(modal.className).toContain('in')
-    expect(modal.querySelector('.modal-dialog.modal-lg').textContent).to.exist
+    expect(
+      modal.querySelector('.modal-dialog.modal-lg').textContent
+    ).toBeDefined()
   })
 
   it('should be able to render small modal', async () => {
@@ -486,9 +488,11 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(modal.className).toContain('in')
-    expect(modal.querySelector('.modal-dialog.modal-sm').textContent).to.exist
+    expect(
+      modal.querySelector('.modal-dialog.modal-sm').textContent
+    ).toBeDefined()
   })
 
   it('should be able to render HTML title modal', async () => {
@@ -510,9 +514,9 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(modal.className).toContain('in')
-    expect(modal.querySelector('.modal-title i')).to.exist
+    expect(modal.querySelector('.modal-title i')).toBeDefined()
   })
 
   it('should be able to render no header modal', async () => {
@@ -533,7 +537,7 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(modal.className).toContain('in')
     expect(modal.querySelector('.modal-header')).not.exist
   })
@@ -561,7 +565,7 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(modal.className).toContain('in')
     expect(modal.querySelectorAll('.modal-footer button').length).toEqual(3)
   })
@@ -584,7 +588,7 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(modal.className).toContain('in')
     expect(modal.querySelector('.modal-footer')).not.exist
   })
@@ -612,13 +616,13 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(modal.className).toContain('in')
     expect(modal.querySelectorAll('.modal-footer button').length).toEqual(3)
     triggerEvent(modal.querySelectorAll('.modal-footer button')[0], 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
-    expect(modal.className).not.contain('in')
+    expect(modal.className).not.toContain('in')
   })
 
   it('should be able to customize button texts and types', async () => {
@@ -640,7 +644,7 @@ describe('Modal', () => {
     const modal = _$el.find('.modal').get(0)
     triggerEvent(trigger, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(modal.className).toContain('in')
     const [cancelBtn, okBtn] = modal.querySelectorAll('.modal-footer button')
     expect(cancelBtn.textContent).toEqual('No way!')
@@ -701,12 +705,12 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(modal.className).toContain('in')
     triggerEvent(modal, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).not.exist
-    expect(modal.className).not.contain('in')
+    expect(modal.className).not.toContain('in')
   })
 
   it('should not be able to close backdrop-false modal', async () => {
@@ -727,11 +731,11 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).not.exist
     triggerEvent(trigger, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(modal.className).toContain('in')
     triggerEvent(modal, 'click')
     await sleep(transition)
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(modal.className).toContain('in')
   })
 
@@ -743,9 +747,9 @@ describe('Modal', () => {
       }
     )
     await vm.$nextTick()
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(vm.$el.className).toContain('in')
-    expect(vm.$el.querySelector('.close')).to.exist
+    expect(vm.$el.querySelector('.close')).toBeDefined()
   })
 
   it('should be able to hide dismiss btn', async () => {
@@ -756,7 +760,7 @@ describe('Modal', () => {
       }
     )
     await vm.$nextTick()
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(vm.$el.className).toContain('in')
     expect(vm.$el.querySelector('.close')).not.exist
   })
@@ -778,7 +782,7 @@ describe('Modal', () => {
       }
     )
     await vm.$nextTick()
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(vm.msg).toEqual('ok')
     vm.$el.querySelector('button.close').click()
     await sleep(transition)
@@ -804,12 +808,12 @@ describe('Modal', () => {
       }
     )
     await vm.$nextTick()
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(vm.msg).toEqual('ok')
     vm.$el.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     vm.dismissible = true
     await vm.$nextTick()
     vm.$el.querySelector('button.close').click()
@@ -835,7 +839,7 @@ describe('Modal', () => {
       }
     )
     await vm.$nextTick()
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(vm.msg).toEqual('ok')
     const _promise = window.Promise
     window.Promise = undefined
@@ -864,7 +868,7 @@ describe('Modal', () => {
       }
     )
     await vm.$nextTick()
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(vm.msg).toEqual('ok')
     const _promise = window.Promise
     window.Promise = undefined
@@ -873,7 +877,7 @@ describe('Modal', () => {
     await sleep(transition)
     await vm.$nextTick()
     expect(vm.msg).toEqual('test')
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
   })
 
   it('should be able to use `beforeClose` when result is promise', async () => {
@@ -895,7 +899,7 @@ describe('Modal', () => {
       }
     )
     await vm.$nextTick()
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(vm.msg).toEqual('ok')
     vm.$el.querySelector('button.close').click()
     await sleep(transition)
@@ -923,13 +927,13 @@ describe('Modal', () => {
       }
     )
     await vm.$nextTick()
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(vm.msg).toEqual('ok')
     vm.$el.querySelector('button.close').click()
     await sleep(transition)
     await vm.$nextTick()
     expect(vm.msg).toEqual('test')
-    expect(document.querySelector('.modal-backdrop')).to.exist
+    expect(document.querySelector('.modal-backdrop')).toBeDefined()
   })
 
   it('should close the top most modal only when ESC pressed', async () => {
@@ -985,7 +989,7 @@ describe('Modal', () => {
     await sleep(transition)
     expect(modal1.className).toContain('in')
     expect(modal2.className).toContain('in')
-    expect(modal3.className).not.contain('in')
+    expect(modal3.className).not.toContain('in')
     expect(getBackdropsNum()).toEqual(2)
     // body overflow should be still disabled, because modal 1 & 2 is still open
     expectBodyOverflow(false)
@@ -995,8 +999,8 @@ describe('Modal', () => {
     vm.$refs.modal3.onKeyPress({ keyCode: 27 }) // esc key
     await sleep(transition)
     expect(modal1.className).toContain('in')
-    expect(modal2.className).not.contain('in')
-    expect(modal3.className).not.contain('in')
+    expect(modal2.className).not.toContain('in')
+    expect(modal3.className).not.toContain('in')
     expect(getBackdropsNum()).toEqual(1)
     // body overflow should be still disabled, because modal 1 is still open
     expectBodyOverflow(false)
@@ -1005,9 +1009,9 @@ describe('Modal', () => {
     vm.$refs.modal2.onKeyPress({ keyCode: 27 }) // esc key
     vm.$refs.modal3.onKeyPress({ keyCode: 27 }) // esc key
     await sleep(transition)
-    expect(modal1.className).not.contain('in')
-    expect(modal2.className).not.contain('in')
-    expect(modal3.className).not.contain('in')
+    expect(modal1.className).not.toContain('in')
+    expect(modal2.className).not.toContain('in')
+    expect(modal3.className).not.toContain('in')
     expect(getBackdropsNum()).toEqual(0)
     // body overflow should be enable now
     expectBodyOverflow(true)

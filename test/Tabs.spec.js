@@ -260,7 +260,7 @@ describe('Tabs', () => {
     await vm.$nextTick()
     const nav = $el.find('.nav-tabs').get(0)
     const tab = nav.querySelectorAll('li')[0]
-    expect(tab.querySelector('i')).not.to.exist
+    expect(tab.querySelector('i')).not.toBeDefined()
   })
 
   it('should be able to render HTML title with slot', async () => {
@@ -279,7 +279,7 @@ describe('Tabs', () => {
     const $el = $(vm.$el)
     const nav = $el.find('.nav-tabs').get(0)
     const tab = nav.querySelectorAll('li')[1]
-    expect(tab.querySelector('i')).to.exist
+    expect(tab.querySelector('i')).toBeDefined()
   })
 
   it('should be able to run callback function', async () => {
@@ -334,7 +334,7 @@ describe('Tabs', () => {
     triggerEvent(tab5.querySelectorAll('a')[0], 'click')
     await vm.$nextTick()
     await sleep(350)
-    expect(tab5.querySelector('.dropdown-menu')).to.exist
+    expect(tab5.querySelector('.dropdown-menu')).toBeDefined()
     expect(tab5.className).toContain('dropdown')
     expect(tab5.className).toContain('open')
     triggerEvent(

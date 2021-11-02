@@ -151,7 +151,7 @@ describe('Popover', () => {
     triggerEvent(trigger, 'click')
     await sleep(300)
     let popover = document.querySelector('.popover')
-    expect(popover).to.exist
+    expect(popover).toBeDefined()
     expect(popover.querySelector('.popover-title').innerText).toEqual('title')
     expect(popover.querySelector('.popover-content').innerText).toEqual(
       'content'
@@ -166,7 +166,7 @@ describe('Popover', () => {
     triggerEvent(trigger, 'click')
     await sleep(300)
     popover = document.querySelector('.popover')
-    expect(popover).to.exist
+    expect(popover).toBeDefined()
     expect(popover.querySelector('.popover-title').innerText).toEqual('title2')
     expect(popover.querySelector('.popover-content').innerText).toEqual(
       'content2'
@@ -180,7 +180,7 @@ describe('Popover', () => {
     triggerEvent(trigger, 'click')
     await sleep(300)
     popover = document.querySelector('.popover')
-    expect(popover).to.exist
+    expect(popover).toBeDefined()
     expect(popover.querySelector('.popover-title').innerText).toEqual('title2')
     expect(popover.querySelector('.popover-content').innerText).toEqual(
       'content2'
@@ -197,7 +197,7 @@ describe('Popover', () => {
     triggerEvent(trigger, 'click')
     await sleep(300)
     const popover = document.querySelector('.popover')
-    expect(popover).to.exist
+    expect(popover).toBeDefined()
     expect(popover.querySelector('.popover-title').innerText).toEqual('title')
     expect(popover.querySelector('.popover-content').innerText).toEqual(
       'content'
@@ -408,7 +408,7 @@ describe('Popover', () => {
     triggerEvent(trigger, 'click')
     await sleep(300)
     const popover = document.querySelector('.popover')
-    expect(popover).to.exist
+    expect(popover).toBeDefined()
     expect(popover.className).toContain('top')
     triggerEvent(trigger, 'click')
     await sleep(300)
@@ -425,7 +425,7 @@ describe('Popover', () => {
     triggerEvent(trigger, 'click')
     await sleep(300)
     const popover = document.querySelector('.popover')
-    expect(popover).to.exist
+    expect(popover).toBeDefined()
     expect(popover.className).toContain('bottom')
     triggerEvent(trigger, 'click')
     await sleep(300)
@@ -442,7 +442,7 @@ describe('Popover', () => {
     triggerEvent(trigger, 'click')
     await sleep(300)
     const popover = document.querySelector('.popover')
-    expect(popover).to.exist
+    expect(popover).toBeDefined()
     expect(popover.className).toContain('left')
     triggerEvent(trigger, 'click')
     await sleep(300)
@@ -459,7 +459,7 @@ describe('Popover', () => {
     triggerEvent(trigger, 'click')
     await sleep(300)
     const popover = document.querySelector('.popover')
-    expect(popover).to.exist
+    expect(popover).toBeDefined()
     expect(popover.className).toContain('right')
     triggerEvent(trigger, 'click')
     await sleep(300)
