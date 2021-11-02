@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert renders correctly 1`] = `
+<div
+  class="alert alert-info"
+  role="alert"
+>
+  <!---->
+   EMT YES
+</div>
+`;

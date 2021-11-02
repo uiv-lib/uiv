@@ -1,6 +1,0 @@
-.github/
-test/
-.eslintrc.js
-.travis.yml
-.yarnrc
-yarn.lock

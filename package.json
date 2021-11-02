@@ -19,16 +19,16 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "dist": "npm run dist:esm && npm run dist:esm-single && npm run dist:cjs && npm run dist:umd",
-    "dist:umd": "rollup -c rollup/rollup.umd.js",
-    "dist:cjs": "rollup -c rollup/rollup.cjs.js",
-    "dist:esm": "rollup -c rollup/rollup.esm.js",
-    "dist:esm-single": "rollup -c rollup/rollup.esm-single.js",
-    "dist:test": "rollup -c rollup/rollup.test.js",
+    "dist:umd": "rollup -c build/rollup.umd.js",
+    "dist:cjs": "rollup -c build/rollup.cjs.js",
+    "dist:esm": "rollup -c build/rollup.esm.js",
+    "dist:esm-single": "rollup -c build/rollup.esm-single.js",
+    "dist:test": "rollup -c build/rollup.test.js",
     "build": "node build/build-docs.js && node build/build-dist-config.js",
-    "test": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
-    "lint": "eslint --ext .js,.vue src test",
-    "lint:fix": "npm run lint -- --fix",
-    "coveralls": "cat test/coverage/lcov.info | ./node_modules/.bin/coveralls"
+    "test": "jest --coverage",
+    "test:watch": "yarn test --watch",
+    "lint": "eslint --ext .js,.vue src build",
+    "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
     "portal-vue": "^2.1.7",
@@ -41,9 +41,11 @@
     "@rollup/plugin-json": "4.1.0",
     "@rollup/plugin-node-resolve": "13.0.6",
     "@rollup/plugin-replace": "3.0.0",
+    "@vue/test-utils": "^1.2.2",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^27.3.1",
+    "babel-preset-env": "^1.7.0",
     "bootstrap": "3.4.1",
-    "chai": "4.3.4",
-    "coveralls": "3.1.1",
     "cross-env": "7.0.3",
     "es6-object-assign": "1.1.0",
     "eslint": "8.1.0",
@@ -54,30 +56,46 @@
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-promise": "5.1.1",
     "eslint-plugin-vue": "8.0.3",
-    "jquery": "3.6.0",
-    "karma": "6.3.6",
-    "karma-chrome-launcher": "3.1.0",
-    "karma-coverage-istanbul-reporter": "3.0.3",
-    "karma-mocha": "2.0.1",
-    "karma-rollup-preprocessor": "7.0.7",
-    "karma-sinon-chai": "2.0.2",
-    "karma-sourcemap-loader": "0.3.8",
-    "karma-spec-reporter": "0.0.32",
+    "jest": "^27.3.1",
+    "jest-serializer-vue": "^2.0.2",
     "lodash": "4.17.21",
-    "mocha": "9.1.3",
-    "mocha-lcov-reporter": "1.3.0",
     "prettier": "2.4.1",
-    "puppeteer": "10.4.0",
     "rollup": "2.59.0",
     "rollup-plugin-filesize": "9.1.1",
-    "rollup-plugin-istanbul": "3.0.0",
     "rollup-plugin-strip-code": "0.2.7",
     "rollup-plugin-uglify": "6.0.4",
     "rollup-plugin-vue": "5.1.9",
-    "sinon": "11.1.2",
-    "sinon-chai": "3.7.0",
+    "sinon": "^11.1.2",
     "vue": "2.6.14",
+    "vue-jest": "^3.0.7",
     "vue-template-compiler": "2.6.14"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/__test__/jest.setup.js"
+    ],
+    "testPathIgnorePatterns": [
+      "test/"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*",
+      "!src/__test__/**/*",
+      "!**/*.snap"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "vue-jest",
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    },
+    "snapshotSerializers": [
+      "jest-serializer-vue"
+    ],
+    "testEnvironment": "jsdom"
   },
   "engines": {
     "node": ">= 4.0.0",

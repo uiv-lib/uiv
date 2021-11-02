@@ -21,8 +21,6 @@ jobs:
           FILE: package.json
       - uses: c-hive/gha-yarn-cache@v2
       - run: yarn --frozen-lockfile
-        env:
-          PUPPETEER_SKIP_DOWNLOAD: true
       - name: Build dist
         run: npm run dist
       - run: echo //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }} >> .npmrc

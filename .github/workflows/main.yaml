@@ -11,8 +11,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: c-hive/gha-yarn-cache@v2
       - run: yarn --frozen-lockfile
-        env:
-          PUPPETEER_SKIP_DOWNLOAD: true
       - name: Lint
         run: npm run lint
   test:
@@ -27,14 +25,12 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ./test/coverage/lcov.info
+          path-to-lcov: ./coverage/lcov.info
   dist:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: c-hive/gha-yarn-cache@v2
       - run: yarn --frozen-lockfile
-        env:
-          PUPPETEER_SKIP_DOWNLOAD: true
       - name: Build dist
         run: npm run dist
