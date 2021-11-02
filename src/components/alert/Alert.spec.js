@@ -1,50 +1,38 @@
-import { mount } from '@vue/test-utils'
 import Alert from './Alert'
 import { createWrapper, nextTick, sleep } from '../../__test__/utils'
 
 const DEFAULT_ALERT_CLASS = 'alert-info'
 
 describe('Alert', () => {
-  let wrapper
-
-  afterEach(() => {
-    wrapper.destroy()
-  })
-
   test('renders correctly', () => {
-    wrapper = createWrapper(`<alert>EMT YES</alert>`)
+    const wrapper = createWrapper(`<alert>EMT YES</alert>`)
     expect(wrapper.element).toMatchSnapshot()
   })
 
   it('should be able to add alert with no type', () => {
-    wrapper = createWrapper(`<alert>EMT YES</alert>`)
+    const wrapper = createWrapper(`<alert>EMT YES</alert>`)
     expect(wrapper.classes()).toContain('alert')
     expect(wrapper.classes()).toContain(DEFAULT_ALERT_CLASS)
   })
 
   it('should be able to dismiss alerts', async () => {
-    const dismissed = jest.fn()
-    wrapper = mount(Alert, {
-      propsData: {
-        type: 'warning',
-        dismissible: true,
-      },
-      listeners: {
-        dismissed: dismissed,
-      },
-      slots: {
-        default:
-          "<b>Warning!</b> Better check yourself, you're not looking too good.",
-      },
-    })
-    expect(wrapper.classes()).toContain('alert-warning')
-    expect(dismissed).not.toBeCalled()
+    const wrapper = createWrapper(
+      `<section>
+    <alert type="warning" v-if="show" dismissible @dismissed="show = false">
+      <b>Warning!</b> Better check yourself, you're not looking too good.
+    </alert>
+  </section>`,
+      {
+        show: true,
+      }
+    )
+    expect(wrapper.findComponent(Alert).classes()).toContain('alert-warning')
     await wrapper.find('button.close').trigger('click')
-    expect(dismissed).toBeCalled()
+    expect(wrapper.vm.show).toEqual(false)
   })
 
   it('should be able to add dismissible alerts', async () => {
-    wrapper = createWrapper(
+    const wrapper = createWrapper(
       `<section>
     <alert type="warning" v-if="show" dismissible @dismissed="show = false">
       <b>Warning!</b> Better check yourself, you're not looking too good.
@@ -78,7 +66,7 @@ describe('Alert', () => {
   })
 
   it('should be able to add auto dismiss alerts', async () => {
-    wrapper = createWrapper(
+    const wrapper = createWrapper(
       `
       <section>
     <alert v-for="(item, index) in alerts" :duration="duration" :key="item.key" @dismissed="alerts.splice(index, 1)">

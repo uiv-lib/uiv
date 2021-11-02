@@ -70,6 +70,9 @@
     "vue-template-compiler": "2.6.14"
   },
   "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/__test__/jest.setup.js"
+    ],
     "testPathIgnorePatterns": [
       "test/"
     ],

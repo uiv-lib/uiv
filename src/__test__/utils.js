@@ -5,16 +5,18 @@ import { install } from '../install'
 export const createWrapper = (template, _data, _options) => {
   const localVue = createLocalVue()
   localVue.use(install)
-  const Component = {
-    data() {
-      return {
-        ..._data,
-      }
+  return mount(
+    {
+      data() {
+        return {
+          ..._data,
+        }
+      },
+      ..._options,
+      template: template,
     },
-    ..._options,
-    template: template,
-  }
-  return mount(Component, { localVue })
+    { localVue, attachTo: document.body }
+  )
 }
 
 export const sleep = (time) => {
