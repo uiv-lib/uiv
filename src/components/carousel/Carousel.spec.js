@@ -4,9 +4,7 @@ import {
   sleep,
   triggerEvent,
 } from '../../__test__/utils'
-import { RouterLinkStub } from '@vue/test-utils'
 import Carousel from './Carousel'
-import Slide from './Slide'
 
 describe('Carousel', () => {
   let wrapper
@@ -58,15 +56,16 @@ describe('Carousel', () => {
     await nextTick()
   })
 
-  it.skip('should not be able to work if not using <carousel><slide>...</slide></carousel>', () => {
+  it('should not be able to work if not using <carousel><slide>...</slide></carousel>', () => {
     expect(
-      createWrapper(
+      createWrapper.bind(
+        null,
         '<carousel><slide><slide>{{ msg }}</slide></slide></carousel>',
         {
           msg: 'hello',
         }
       )
-    ).toThrow()
+    ).toThrow('Slide parent must be Carousel.')
   })
 
   it('should be able to work with v-model', async () => {

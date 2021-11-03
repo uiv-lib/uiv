@@ -95,10 +95,10 @@ describe('dom.utils', () => {
       expect(nav.attributes('style')).toContain('padding-right: 0px')
     })
 
-    it.skip('should be able to toggle fixed bottom nav padding right as well', async () => {
+    it('should be able to toggle fixed bottom nav padding right as well', async () => {
       const wrapper = createWrapper('<navbar fixed-bottom/>')
       const nav = wrapper.findComponent({ name: 'navbar' })
-      expect(nav.classes()).toContain('navbar-fixed-top')
+      expect(nav.classes()).toContain('navbar-fixed-bottom')
       document.body.style.overflowY = 'scroll'
       utils.toggleBodyOverflow(false)
       expect(nav.attributes('style')).toContain('padding-right')
@@ -108,15 +108,29 @@ describe('dom.utils', () => {
     })
   })
 
-  describe.skip('#getScrollbarWidth', () => {
-    it('should be able to use `getScrollbarWidth` with `recalculate = false`', () => {
-      const width = utils.getScrollbarWidth(false)
-      expect(width).toBeGreaterThan(0)
+  describe('#getScrollbarWidth', () => {
+    beforeEach(() => {
+      let i = 100
+      jest
+        .spyOn(Element.prototype, 'scrollHeight', 'get')
+        .mockImplementation(function () {
+          i -= 10
+          return i
+        })
+    })
+
+    afterEach(() => {
+      jest.restoreAllMocks()
     })
 
     it('should be able to use `getScrollbarWidth` with `recalculate = true`', () => {
       const width = utils.getScrollbarWidth(true)
-      expect(width).toBeGreaterThan(0)
+      expect(width).toEqual(10)
+    })
+
+    it('should be able to use `getScrollbarWidth` with `recalculate = false`', () => {
+      const width = utils.getScrollbarWidth(false)
+      expect(width).toEqual(10)
     })
   })
 

@@ -1,15 +1,4 @@
-import newLocale from '../../locale/lang/zh-CN'
-import {
-  createWrapper,
-  keyCodes,
-  nextTick,
-  sleep,
-  transition,
-  triggerEvent,
-  triggerKey,
-} from '../../__test__/utils'
-import { RouterLinkStub } from '@vue/test-utils'
-import _ from 'lodash'
+import { createWrapper, sleep, triggerEvent } from '../../__test__/utils'
 
 function baseVm() {
   return createWrapper(`<div><tabs>
@@ -120,24 +109,12 @@ describe('Tabs', () => {
     ).toEqual('none')
   })
 
-  // todo
-  it.skip('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {
-    const _error = window.console.error
-    window.console.error = () => {
-      // Silent to remove out logs in terminal
-    }
-    try {
-      const spy = jest.spyOn(window.console, 'error')
-      const wrapper = createWrapper(
-        '<tabs><tab><tab>{{ msg }}</tab></tab></tabs>',
-        {
-          msg: 'hello',
-        }
-      )
-      expect(spy).toBeCalled()
-    } finally {
-      window.console.error = _error
-    }
+  it('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {
+    expect(
+      createWrapper.bind(null, '<tabs><tab><tab>{{ msg }}</tab></tab></tabs>', {
+        msg: 'hello',
+      })
+    ).toThrow('<tab> parent must be <tabs>.')
   })
 
   it('should be able to add String `customNavClass`', () => {
