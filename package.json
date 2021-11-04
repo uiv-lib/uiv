@@ -65,7 +65,7 @@
     "rollup-plugin-strip-code": "0.2.7",
     "rollup-plugin-uglify": "6.0.4",
     "rollup-plugin-vue": "5.1.9",
-    "sinon": "12.0.0",
+    "sinon": "12.0.1",
     "vue": "2.6.14",
     "vue-jest": "3.0.7",
     "vue-template-compiler": "2.6.14"
