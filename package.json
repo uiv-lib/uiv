@@ -26,9 +26,9 @@
     "dist:test": "rollup -c build/rollup.test.js",
     "build": "node build/build-docs.js && node build/build-dist-config.js",
     "test": "jest --coverage",
-    "test:watch": "yarn test --watch",
+    "test:watch": "pnpm test -- --watch",
     "lint": "eslint --ext .js,.vue src build",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "pnpm lint -- --fix"
   },
   "dependencies": {
     "portal-vue": "^2.1.7",

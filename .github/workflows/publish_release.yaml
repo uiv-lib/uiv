@@ -13,10 +13,19 @@ jobs:
         with:
           fetch-depth: 0
           ref: dev
-      - uses: c-hive/gha-yarn-cache@v2
-      - run: yarn --frozen-lockfile
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: latest
+      - run: pnpm i --frozen-lockfile
       - name: Build dist
-        run: npm run dist
+        run: pnpm run dist
       - name: Changelog
         uses: scottbrenner/generate-changelog-action@master
         id: Changelog
