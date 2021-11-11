@@ -16,7 +16,7 @@ footer: MIT Licensed | Designed and built by @wxsm
 ---
 
 ::: tip
-中文文档正在逐步完善中，欢迎提交 PR 至 [uiv-lib/website](https://github.com/uiv-lib/website)
+中文文档正在逐步完善中，欢迎提交 PR 至 [uiv-lib/uiv](https://github.com/uiv-lib/uiv)
 :::
 
 <p align="center">

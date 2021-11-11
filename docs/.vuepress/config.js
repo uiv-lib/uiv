@@ -1,6 +1,4 @@
 module.exports = {
-  // cache: false,
-  // base: '/website/',
   description: 'Bootstrap 3 components implemented by Vue 2.',
   head: [
     [
@@ -78,7 +76,7 @@ module.exports = {
     smoothScroll: true,
     repo: 'uiv-lib/uiv',
     repoLabel: 'GitHub',
-    docsRepo: 'uiv-lib/website',
+    docsRepo: 'uiv-lib/uiv',
     docsDir: 'docs',
     docsBranch: 'master',
     editLinks: true,
