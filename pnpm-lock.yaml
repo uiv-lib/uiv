@@ -29,7 +29,6 @@ specifiers:
   less: 4.1.2
   less-loader: 7.3.0
   lodash: 4.17.21
-  portal-vue: ^2.1.7
   prettier: 2.4.1
   rollup: 2.59.0
   rollup-plugin-filesize: 9.1.1
@@ -39,13 +38,8 @@ specifiers:
   sinon: 12.0.1
   vitepress: ^0.20.1
   vue: ^3
-  vue-functional-data-merge: ^3.0.0
   vue-jest: 3.0.7
   vue-template-compiler: 2.6.14
-
-dependencies:
-  portal-vue: 2.1.7_vue@3.2.21
-  vue-functional-data-merge: 3.1.0
 
 devDependencies:
   '@rollup/plugin-alias': 3.1.8_rollup@2.59.0
@@ -3193,14 +3187,6 @@ packages:
       find-up: registry.npmmirror.com/find-up/4.1.0
     dev: true
 
-  /portal-vue/2.1.7_vue@3.2.21:
-    resolution: {integrity: sha512-+yCno2oB3xA7irTt0EU5Ezw22L2J51uKAacE/6hMPMoO/mx3h4rXFkkBkT4GFsMDv/vEe8TNKC3ujJJ0PTwb6g==}
-    peerDependencies:
-      vue: ^2.5.18
-    dependencies:
-      vue: registry.npmmirror.com/vue/3.2.21
-    dev: false
-
   /prettier-linter-helpers/1.0.0:
     resolution: {integrity: sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==}
     engines: {node: '>=6.0.0'}
@@ -3652,10 +3638,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /vue-functional-data-merge/3.1.0:
-    resolution: {integrity: sha512-leT4kdJVQyeZNY1kmnS1xiUlQ9z1B/kdBFCILIjYYQDqZgLqCLa0UhjSSeRX6c3mUe6U5qYeM8LrEqkHJ1B4LA==}
-    dev: false
 
   /vue-jest/3.0.7_7450920fa6a99b8132e1600c3578f23a:
     resolution: {integrity: sha512-PIOxFM+wsBMry26ZpfBvUQ/DGH2hvp5khDQ1n51g3bN0TwFwTy4J85XVfxTRMukqHji/GnAoGUnlZ5Ao73K62w==}

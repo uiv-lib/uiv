@@ -40,3 +40,13 @@ jobs:
       - run: pnpm i --frozen-lockfile
       - name: Build dist
         run: pnpm run dist
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: latest
+      - run: pnpm i --frozen-lockfile
+      - name: Build dist
+        run: pnpm run docs:build
