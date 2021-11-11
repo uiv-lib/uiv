@@ -78,7 +78,7 @@ module.exports = {
     repoLabel: 'GitHub',
     docsRepo: 'uiv-lib/uiv',
     docsDir: 'docs',
-    docsBranch: 'master',
+    docsBranch: 'dev',
     editLinks: true,
     editLinkText: 'Edit this page on GitHub',
     nav: [
