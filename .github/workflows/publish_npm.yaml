@@ -1,4 +1,4 @@
-name: CD_NPM
+name: publish npm
 
 on:
   push:

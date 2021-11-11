@@ -17,6 +17,8 @@
   },
   "homepage": "https://uiv.wxsm.space",
   "scripts": {
+    "start": "npm run dev",
+    "dev": "npm run docs:dev",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "dist": "npm run dist:esm && npm run dist:esm-single && npm run dist:cjs && npm run dist:umd",

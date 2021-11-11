@@ -1,4 +1,4 @@
-name: CD_GITHUB
+name: publish github
 
 on:
   push:
