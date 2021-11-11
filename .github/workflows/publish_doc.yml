@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          ref: master
+          ref: dev
       - uses: pnpm/action-setup@v2.0.1
         with:
           version: latest
