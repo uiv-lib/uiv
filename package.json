@@ -17,7 +17,8 @@
   },
   "homepage": "https://uiv.wxsm.space",
   "scripts": {
-    "dev": "node build/dev-server.js",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "dist": "npm run dist:esm && npm run dist:esm-single && npm run dist:cjs && npm run dist:umd",
     "dist:umd": "rollup -c build/rollup.umd.js",
     "dist:cjs": "rollup -c build/rollup.cjs.js",
@@ -27,7 +28,7 @@
     "build": "node build/build-docs.js && node build/build-dist-config.js",
     "test": "jest --coverage",
     "test:watch": "pnpm test -- --watch",
-    "lint": "eslint --ext .js,.vue src build",
+    "lint": "eslint --ext .js,.vue src build docs/.vuepress",
     "lint:fix": "pnpm lint -- --fix"
   },
   "dependencies": {
@@ -68,7 +69,15 @@
     "sinon": "12.0.1",
     "vue": "2.6.14",
     "vue-jest": "3.0.7",
-    "vue-template-compiler": "2.6.14"
+    "vue-template-compiler": "2.6.14",
+    "@vuepress/plugin-active-header-links": "1.8.2",
+    "@vuepress/plugin-google-analytics": "1.8.2",
+    "less": "4.1.2",
+    "less-loader": "7.3.0",
+    "vuepress": "1.8.2",
+    "vuepress-plugin-redirect": "1.2.5",
+    "vuepress-plugin-sitemap": "2.3.1",
+    "axios": "0.24.0"
   },
   "jest": {
     "setupFilesAfterEnv": [
