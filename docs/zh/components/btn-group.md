@@ -10,7 +10,7 @@
 
 <btn-group-example/>
 
-<<< @/docs/.vuepress/components/btn-group/example.vue
+<<< @/.vitepress/components/btn-group/example.vue
 
 ## 按钮工具栏
 
@@ -18,7 +18,7 @@
 
 <btn-group-toolbar/>
 
-<<< @/docs/.vuepress/components/btn-group/toolbar.vue
+<<< @/.vitepress/components/btn-group/toolbar.vue
 
 ## 尺寸
 
@@ -26,7 +26,7 @@
 
 <btn-group-sizes/>
 
-<<< @/docs/.vuepress/components/btn-group/sizes.vue
+<<< @/.vitepress/components/btn-group/sizes.vue
 
 ## 嵌套下拉菜单
 
@@ -34,7 +34,7 @@
 
 <btn-group-nesting/>
 
-<<< @/docs/.vuepress/components/btn-group/nesting.vue
+<<< @/.vitepress/components/btn-group/nesting.vue
 
 ## 垂直排列
 
@@ -46,7 +46,7 @@
 
 <btn-group-vertical/>
 
-<<< @/docs/.vuepress/components/btn-group/vertical.vue
+<<< @/.vitepress/components/btn-group/vertical.vue
 
 ## 横向填充
 
@@ -58,7 +58,7 @@
 
 <btn-group-justified/>
 
-<<< @/docs/.vuepress/components/btn-group/justified.vue
+<<< @/.vitepress/components/btn-group/justified.vue
 
 ## API 文档
 

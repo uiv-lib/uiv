@@ -6,7 +6,7 @@ Use `v-model` to bind selected values, and `options` as select options.
 
 <multi-select-example/>
 
-<<< @/docs/.vuepress/components/multi-select/example.vue
+<<< @/.vitepress/components/multi-select/example.vue
 
 ## Multiple Limit
 
@@ -14,7 +14,7 @@ Use `limit` to restrict the maximum number of options user can select, no limit 
 
 <multi-select-limit/>
 
-<<< @/docs/.vuepress/components/multi-select/limit.vue
+<<< @/.vitepress/components/multi-select/limit.vue
 
 ## Optional Sizes
 
@@ -22,7 +22,7 @@ Optional sizes `sm` and `lg` are supported. You can also add `block` prop to qui
 
 <multi-select-sizes/>
 
-<<< @/docs/.vuepress/components/multi-select/sizes.vue
+<<< @/.vitepress/components/multi-select/sizes.vue
 
 ## Disabled options
 
@@ -30,7 +30,7 @@ Add `disabled: true` to an option to make it unselectable.
 
 <multi-select-disabled-options/>
 
-<<< @/docs/.vuepress/components/multi-select/disabled-options.vue
+<<< @/.vitepress/components/multi-select/disabled-options.vue
 
 ## Disabled select
 
@@ -38,7 +38,7 @@ Add `disabled` to `<multi-select>` to disable the dropdown and click events.
 
 <multi-select-disabled-select/>
 
-<<< @/docs/.vuepress/components/multi-select/disabled-select.vue
+<<< @/.vitepress/components/multi-select/disabled-select.vue
 
 ## Collapse selected
 
@@ -46,7 +46,7 @@ Collapse multiple selected items into a text by using `collapse-selected` prop.
 
 <multi-select-collapse-selected/>
 
-<<< @/docs/.vuepress/components/multi-select/collapse-selected.vue
+<<< @/.vitepress/components/multi-select/collapse-selected.vue
 
 ## Option groups
 
@@ -54,7 +54,7 @@ If you need grouped options, simply add `group` (String) as the name to them.
 
 <multi-select-option-groups/>
 
-<<< @/docs/.vuepress/components/multi-select/option-groups.vue
+<<< @/.vitepress/components/multi-select/option-groups.vue
 
 ## Filterable
 
@@ -64,7 +64,7 @@ By default, options are filtered by item value and label (case ignored), use a c
 
 <multi-select-filterable/>
 
-<<< @/docs/.vuepress/components/multi-select/filterable.vue
+<<< @/.vitepress/components/multi-select/filterable.vue
 
 ## API Reference
 

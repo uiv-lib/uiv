@@ -19,8 +19,8 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "npm run docs:dev",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
     "dist": "npm run dist:esm && npm run dist:esm-single && npm run dist:cjs && npm run dist:umd",
     "dist:umd": "rollup -c build/rollup.umd.js",
     "dist:cjs": "rollup -c build/rollup.cjs.js",
@@ -30,7 +30,7 @@
     "build": "node build/build-docs.js && node build/build-dist-config.js",
     "test": "jest --coverage",
     "test:watch": "pnpm test -- --watch",
-    "lint": "eslint --ext .js,.vue src build docs/.vuepress",
+    "lint": "eslint --ext .js,.vue src build docs/.vitepress",
     "lint:fix": "pnpm lint -- --fix"
   },
   "dependencies": {
@@ -46,8 +46,6 @@
     "@rollup/plugin-replace": "3.0.0",
     "@vue/compiler-sfc": "^3.2.21",
     "@vue/test-utils": "1.2.2",
-    "@vuepress/plugin-active-header-links": "1.8.2",
-    "@vuepress/plugin-google-analytics": "1.8.2",
     "axios": "0.24.0",
     "babel-core": "6.26.3",
     "babel-jest": "27.3.1",
@@ -75,12 +73,10 @@
     "rollup-plugin-uglify": "6.0.4",
     "rollup-plugin-vue": "6.0.0",
     "sinon": "12.0.1",
+    "vitepress": "^0.20.1",
     "vue": "^3",
     "vue-jest": "3.0.7",
-    "vue-template-compiler": "2.6.14",
-    "vuepress": "1.8.2",
-    "vuepress-plugin-redirect": "1.2.5",
-    "vuepress-plugin-sitemap": "2.3.1"
+    "vue-template-compiler": "2.6.14"
   },
   "peerDependencies": {
     "vue": "^3"

@@ -8,7 +8,7 @@ Scroll the area below the navbar and watch the active class change. The dropdown
 
 <scroll-spy-example/>
 
-<<< @/docs/.vuepress/components/scroll-spy/example.vue
+<<< @/.vitepress/components/scroll-spy/example.vue
 
 ## Usage
 

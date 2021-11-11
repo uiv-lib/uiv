@@ -19,13 +19,13 @@ e.g. `time = new Date(time)`
 
 <time-picker-example/>
 
-<<< @/docs/.vuepress/components/time-picker/example.vue
+<<< @/.vitepress/components/time-picker/example.vue
 
 ## 24-hour
 
 <time-picker-example-24/>
 
-<<< @/docs/.vuepress/components/time-picker/example-24.vue
+<<< @/.vitepress/components/time-picker/example-24.vue
 
 ## Range limit
 
@@ -33,7 +33,7 @@ Example that limit time range from **8:00 AM** to **8:00 PM**:
 
 <time-picker-limit/>
 
-<<< @/docs/.vuepress/components/time-picker/limit.vue
+<<< @/.vitepress/components/time-picker/limit.vue
 
 ## Readonly
 
@@ -41,7 +41,7 @@ All input methods are all disabled in readonly mode.
 
 <time-picker-readonly/>
 
-<<< @/docs/.vuepress/components/time-picker/readonly.vue
+<<< @/.vitepress/components/time-picker/readonly.vue
 
 ## With dropdown
 
@@ -49,13 +49,13 @@ All input methods are all disabled in readonly mode.
 
 <time-picker-with-dropdown/>
 
-<<< @/docs/.vuepress/components/time-picker/with-dropdown.vue
+<<< @/.vitepress/components/time-picker/with-dropdown.vue
 
 ## Without controls
 
 <time-picker-no-controls/>
 
-<<< @/docs/.vuepress/components/time-picker/no-controls.vue
+<<< @/.vitepress/components/time-picker/no-controls.vue
 
 ## API Reference
 

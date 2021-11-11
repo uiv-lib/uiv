@@ -8,7 +8,7 @@
 
 <tabs-example/>
 
-<<< @/docs/.vuepress/components/tabs/example.vue
+<<< @/.vitepress/components/tabs/example.vue
 
 ## Disable tabs
 
@@ -16,7 +16,7 @@ Add `disabled` to `<tab>` to disable it.
 
 <tabs-disabled/>
 
-<<< @/docs/.vuepress/components/tabs/disabled.vue
+<<< @/.vitepress/components/tabs/disabled.vue
 
 ## Pull right
 
@@ -24,7 +24,7 @@ Add `pull-right` to `<tab>` to pull it right. A grouped tab will be pulled to ri
 
 <tabs-pull-right/>
 
-<<< @/docs/.vuepress/components/tabs/pull-right.vue
+<<< @/.vitepress/components/tabs/pull-right.vue
 
 ## Justified style
 
@@ -32,7 +32,7 @@ Add `justified` to `<tabs>` to apply justified style.
 
 <tabs-justified/>
 
-<<< @/docs/.vuepress/components/tabs/justified.vue
+<<< @/.vitepress/components/tabs/justified.vue
 
 ## Pills style
 
@@ -42,7 +42,7 @@ Pills are also vertically stackable by adding `stacked`, but if you want the nav
 
 <tabs-pills/>
 
-<<< @/docs/.vuepress/components/tabs/pills.vue
+<<< @/.vitepress/components/tabs/pills.vue
 
 ## Custom titles
 
@@ -50,7 +50,7 @@ With `title` slot you can place any content inside nav tabs.
 
 <tabs-custom-titles/>
 
-<<< @/docs/.vuepress/components/tabs/custom-titles.vue
+<<< @/.vitepress/components/tabs/custom-titles.vue
 
 ## With callbacks
 
@@ -58,7 +58,7 @@ With `title` slot you can place any content inside nav tabs.
 
 <tabs-callbacks/>
 
-<<< @/docs/.vuepress/components/tabs/callbacks.vue
+<<< @/.vitepress/components/tabs/callbacks.vue
 
 ## With `nav-right` slot
 
@@ -66,7 +66,7 @@ With `title` slot you can place any content inside nav tabs.
 
 <tabs-nav-right-slot/>
 
-<<< @/docs/.vuepress/components/tabs/nav-right-slot.vue
+<<< @/.vitepress/components/tabs/nav-right-slot.vue
 
 ## Dynamic tabs
 
@@ -74,7 +74,7 @@ An example that generate closable tabs using `v-for`:
 
 <tabs-dynamic/>
 
-<<< @/docs/.vuepress/components/tabs/dynamic.vue
+<<< @/.vitepress/components/tabs/dynamic.vue
 
 ## Validate before change
 
@@ -82,7 +82,7 @@ In case you need to validate something inside a tab before it being switch, a sa
 
 <tabs-before-change/>
 
-<<< @/docs/.vuepress/components/tabs/before-change.vue
+<<< @/.vitepress/components/tabs/before-change.vue
 
 ## API Reference
 

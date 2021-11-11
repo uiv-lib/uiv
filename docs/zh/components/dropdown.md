@@ -14,7 +14,7 @@ Use `v-model` to indicate the dropdown status.
 
 <dropdown-example/>
 
-<<< @/docs/.vuepress/components/dropdown/example.vue
+<<< @/.vitepress/components/dropdown/example.vue
 
 ## Alignment
 
@@ -22,7 +22,7 @@ By default, a dropdown menu is automatically positioned 100% from the top and al
 
 <dropdown-alignment/>
 
-<<< @/docs/.vuepress/components/dropdown/alignment.vue
+<<< @/.vitepress/components/dropdown/alignment.vue
 
 ## Dropup
 
@@ -30,7 +30,7 @@ Dropdown menus can be changed to expand upwards (instead of downwards) by adding
 
 <dropdown-dropup/>
 
-<<< @/docs/.vuepress/components/dropdown/dropup.vue
+<<< @/.vitepress/components/dropdown/dropup.vue
 
 ## Append to body
 
@@ -38,7 +38,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
 
 <dropdown-append-to-body/>
 
-<<< @/docs/.vuepress/components/dropdown/append-to-body.vue
+<<< @/.vitepress/components/dropdown/append-to-body.vue
 
 ## Within navbar
 
@@ -46,7 +46,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
 
 <dropdown-within-navbar/>
 
-<<< @/docs/.vuepress/components/dropdown/within-navbar.vue
+<<< @/.vitepress/components/dropdown/within-navbar.vue
 
 ## Within pills
 
@@ -54,7 +54,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
 
 <dropdown-within-pills/>
 
-<<< @/docs/.vuepress/components/dropdown/within-pills.vue
+<<< @/.vitepress/components/dropdown/within-pills.vue
 
 ## Advanced
 
@@ -66,7 +66,7 @@ use `not-close-elements` to prevent dropdown close on menu body click if needed.
 
 <dropdown-advanced/>
 
-<<< @/docs/.vuepress/components/dropdown/advanced.vue
+<<< @/.vitepress/components/dropdown/advanced.vue
 
 
 ## API Reference

@@ -1,2 +1,2 @@
 *.md
-docs/.vuepress/dist
+docs/.vitepress/dist

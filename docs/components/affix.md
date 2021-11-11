@@ -16,7 +16,7 @@ Try to scroll the page down and see what's happening to the alert:
 
 <affix-example/>
 
-<<< @/docs/.vuepress/components/affix/example.vue
+<<< @/.vitepress/components/affix/example.vue
 
 ## API Reference
 

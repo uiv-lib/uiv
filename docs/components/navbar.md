@@ -8,7 +8,7 @@ Contents in `collapse` slot can be collapsed (and are toggleable) in mobile view
 
 <navbar-example/>
 
-<<< @/docs/.vuepress/components/navbar/example.vue
+<<< @/.vitepress/components/navbar/example.vue
 
 ## Brand image
 
@@ -16,7 +16,7 @@ Replace the navbar brand with your own image by swapping the text for an `<img>`
 
 <navbar-navbar-image/>
 
-<<< @/docs/.vuepress/components/navbar/navbar-image.vue
+<<< @/.vitepress/components/navbar/navbar-image.vue
 
 ## Forms
 
@@ -24,7 +24,7 @@ Place form content within `<navbar-form>` for proper vertical alignment and coll
 
 <navbar-navbar-form/>
 
-<<< @/docs/.vuepress/components/navbar/navbar-form.vue
+<<< @/.vitepress/components/navbar/navbar-form.vue
 
 ## Buttons
 
@@ -32,7 +32,7 @@ Add the `.navbar-btn` class to `<btn>` that not residing in a `<navbar-form>` to
 
 <navbar-navbar-button/>
 
-<<< @/docs/.vuepress/components/navbar/navbar-button.vue
+<<< @/.vitepress/components/navbar/navbar-button.vue
 
 ## Text
 
@@ -40,7 +40,7 @@ Wrap strings of text in `<navbar-text>` tag for proper leading and color.
 
 <navbar-navbar-text/>
 
-<<< @/docs/.vuepress/components/navbar/navbar-text.vue
+<<< @/.vitepress/components/navbar/navbar-text.vue
 
 ## Non-nav links
 
@@ -48,7 +48,7 @@ For folks using standard links that are not within the regular navbar navigation
 
 <navbar-navbar-links/>
 
-<<< @/docs/.vuepress/components/navbar/navbar-links.vue
+<<< @/.vitepress/components/navbar/navbar-links.vue
 
 ## Fixed navbar
 
@@ -87,7 +87,7 @@ Modify the look of the navbar by adding `inverse` prop.
 
 <navbar-inverse/>
 
-<<< @/docs/.vuepress/components/navbar/inverse.vue
+<<< @/.vitepress/components/navbar/inverse.vue
 
 ## API Reference
 

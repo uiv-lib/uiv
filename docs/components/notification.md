@@ -8,7 +8,7 @@ Click on the button below to show a notification. By default, it is dismissible 
 
 <notification-example/>
 
-<<< @/docs/.vuepress/components/notification/example.vue
+<<< @/.vitepress/components/notification/example.vue
 
 ## Types
 
@@ -19,7 +19,7 @@ Notification with specific type will has a default icon on the left, you can als
 
 <notification-types/>
 
-<<< @/docs/.vuepress/components/notification/types.vue
+<<< @/.vitepress/components/notification/types.vue
 
 ## Placements
 
@@ -29,7 +29,7 @@ The `position` prop defines which corner a notification will slide in. It can be
 
 <notification-placements/>
 
-<<< @/docs/.vuepress/components/notification/placements.vue
+<<< @/.vitepress/components/notification/placements.vue
 
 ## Dismissible
 
@@ -37,7 +37,7 @@ By default a notification is dismissible with a close button, you can hide it by
 
 <notification-dismissible/>
 
-<<< @/docs/.vuepress/components/notification/dismissible.vue
+<<< @/.vitepress/components/notification/dismissible.vue
 
 ## With modals
 

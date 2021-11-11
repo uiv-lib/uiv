@@ -12,7 +12,7 @@ Wrap a series of `<btn>` in `<btn-group>`.
 
 <btn-group-example/>
 
-<<< @/docs/.vuepress/components/btn-group/example.vue
+<<< @/.vitepress/components/btn-group/example.vue
 
 ## Button toolbar
 
@@ -20,7 +20,7 @@ Combine sets of `<btn-group>` into a `<btn-toolbar>` for more complex components
 
 <btn-group-toolbar/>
 
-<<< @/docs/.vuepress/components/btn-group/toolbar.vue
+<<< @/.vitepress/components/btn-group/toolbar.vue
 
 ## Sizing
 
@@ -28,7 +28,7 @@ Instead of applying button sizing classes to every button in a group, just add `
 
 <btn-group-sizes/>
 
-<<< @/docs/.vuepress/components/btn-group/sizes.vue
+<<< @/.vitepress/components/btn-group/sizes.vue
 
 ## Nesting
 
@@ -36,7 +36,7 @@ Instead of applying button sizing classes to every button in a group, just add `
 
 <btn-group-nesting/>
 
-<<< @/docs/.vuepress/components/btn-group/nesting.vue
+<<< @/.vitepress/components/btn-group/nesting.vue
 
 ## Vertical
 
@@ -48,7 +48,7 @@ Split button dropdowns are not supported here.
 
 <btn-group-vertical/>
 
-<<< @/docs/.vuepress/components/btn-group/vertical.vue
+<<< @/.vitepress/components/btn-group/vertical.vue
 
 ## Justified
 
@@ -60,7 +60,7 @@ Due to Bootstrap limitation, `justified` prop on `<btn>` is needed while it is r
 
 <btn-group-justified/>
 
-<<< @/docs/.vuepress/components/btn-group/justified.vue
+<<< @/.vitepress/components/btn-group/justified.vue
 
 ## API Reference
 

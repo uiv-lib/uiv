@@ -12,7 +12,7 @@ An alert example using callback:
 
 <message-box-alert/>
 
-<<< @/docs/.vuepress/components/message-box/alert.vue
+<<< @/.vitepress/components/message-box/alert.vue
 
 ## Confirm
 
@@ -22,7 +22,7 @@ A confirm example using `Promise`:
 
 <message-box-confirm/>
 
-<<< @/docs/.vuepress/components/message-box/confirm.vue
+<<< @/.vitepress/components/message-box/confirm.vue
 
 ## Prompt
 
@@ -30,7 +30,7 @@ Displays a dialog with an optional message prompting the user to input some text
 
 <message-box-prompt/>
 
-<<< @/docs/.vuepress/components/message-box/prompt.vue
+<<< @/.vitepress/components/message-box/prompt.vue
 
 ## Global methods
 

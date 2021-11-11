@@ -8,7 +8,7 @@ Use `items` array to create a breadcrumbs nav. `active` state of last element is
 
 <breadcrumbs-example/>
 
-<<< @/docs/.vuepress/components/breadcrumbs/example.vue
+<<< @/.vitepress/components/breadcrumbs/example.vue
 
 ## Breadcrumb item
 
@@ -20,7 +20,7 @@ The `active` state will not be automatically set if using this mode.
 
 <breadcrumbs-breadcrumbs-item/>
 
-<<< @/docs/.vuepress/components/breadcrumbs/breadcrumbs-item.vue
+<<< @/.vitepress/components/breadcrumbs/breadcrumbs-item.vue
 
 ## Router link
 
@@ -28,7 +28,7 @@ Parse `to` (String or Object) instead of `href` will create a `router-link` for 
 
 <breadcrumbs-router-link/>
 
-<<< @/docs/.vuepress/components/breadcrumbs/router-link.vue
+<<< @/.vitepress/components/breadcrumbs/router-link.vue
 
 ## API Reference
 

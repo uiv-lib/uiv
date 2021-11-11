@@ -10,7 +10,7 @@ If you want to clear the `v-model` of typeahead, simply set it to `null`, the co
 
 <typeahead-example/>
 
-<<< @/docs/.vuepress/components/typeahead/example.vue
+<<< @/.vitepress/components/typeahead/example.vue
 
 ## Target
 
@@ -28,7 +28,7 @@ An example using element reference target:
 
 <typeahead-target/>
 
-<<< @/docs/.vuepress/components/typeahead/target.vue
+<<< @/.vitepress/components/typeahead/target.vue
 
 ## Match start
 
@@ -40,7 +40,7 @@ Only work in local data query mode.
 
 <typeahead-match-start/>
 
-<<< @/docs/.vuepress/components/typeahead/match-start.vue
+<<< @/.vitepress/components/typeahead/match-start.vue
 
 ## Force select
 
@@ -48,7 +48,7 @@ Force user to select from the options or the model will be empty.
 
 <typeahead-force-select/>
 
-<<< @/docs/.vuepress/components/typeahead/force-select.vue
+<<< @/.vitepress/components/typeahead/force-select.vue
 
 ## Async query
 
@@ -62,7 +62,7 @@ An example using `async-src`:
 
 <typeahead-async-query/>
 
-<<< @/docs/.vuepress/components/typeahead/async-query.vue
+<<< @/.vitepress/components/typeahead/async-query.vue
 
 ## Custom template
 
@@ -78,7 +78,7 @@ An example with custom template and `async-function`:
 
 <typeahead-custom-template/>
 
-<<< @/docs/.vuepress/components/typeahead/custom-template.vue
+<<< @/.vitepress/components/typeahead/custom-template.vue
 
 ## API Reference
 

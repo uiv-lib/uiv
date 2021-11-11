@@ -6,7 +6,7 @@
 
 <collapse-example/>
 
-<<< @/docs/.vuepress/components/collapse/example.vue
+<<< @/.vitepress/components/collapse/example.vue
 
 ## 手风琴
 
@@ -14,7 +14,7 @@
 
 <collapse-accordion/>
 
-<<< @/docs/.vuepress/components/collapse/accordion.vue
+<<< @/.vitepress/components/collapse/accordion.vue
 
 ## API 文档
 

@@ -12,7 +12,7 @@ Hover over the button below to toggle tooltips:
 
 <tooltip-example/>
 
-<<< @/docs/.vuepress/components/tooltip/example.vue
+<<< @/.vitepress/components/tooltip/example.vue
 
 ### Trigger target
 
@@ -34,7 +34,7 @@ You can also simply use tooltips via `v-tooltip` directive:
 
 <tooltip-directive/>
 
-<<< @/docs/.vuepress/components/tooltip/directive.vue
+<<< @/.vitepress/components/tooltip/directive.vue
 
 ## Placements
 
@@ -47,7 +47,7 @@ Supported placements:
 
 <tooltip-placements/>
 
-<<< @/docs/.vuepress/components/tooltip/placements.vue
+<<< @/.vitepress/components/tooltip/placements.vue
 
 ## Auto placement
 
@@ -61,7 +61,7 @@ Keeps the tooltip within the bounds of this element.
 
 <tooltip-viewport/>
 
-<<< @/docs/.vuepress/components/tooltip/viewport.vue
+<<< @/.vitepress/components/tooltip/viewport.vue
 
 ## Triggers
 
@@ -75,7 +75,7 @@ Supported triggers:
 
 <tooltip-triggers/>
 
-<<< @/docs/.vuepress/components/tooltip/triggers.vue
+<<< @/.vitepress/components/tooltip/triggers.vue
 
 ## Manual trigger
 
@@ -83,7 +83,7 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
 
 <tooltip-manual-trigger/>
 
-<<< @/docs/.vuepress/components/tooltip/manual-trigger.vue
+<<< @/.vitepress/components/tooltip/manual-trigger.vue
 
 ## API Reference
 

@@ -10,7 +10,7 @@ A simple modal example with callback:
 
 <modal-example/>
 
-<<< @/docs/.vuepress/components/modal/example.vue
+<<< @/.vitepress/components/modal/example.vue
 
 ## Optional sizes
 
@@ -18,7 +18,7 @@ Modals have two optional sizes: `lg` and `sm`.
 
 <modal-sizes/>
 
-<<< @/docs/.vuepress/components/modal/sizes.vue
+<<< @/.vitepress/components/modal/sizes.vue
 
 ## Custom header
 
@@ -28,7 +28,7 @@ Modals have two optional sizes: `lg` and `sm`.
 
 <modal-custom-header/>
 
-<<< @/docs/.vuepress/components/modal/custom-header.vue
+<<< @/.vitepress/components/modal/custom-header.vue
 
 ## Custom footer
 
@@ -37,7 +37,7 @@ Modals have two optional sizes: `lg` and `sm`.
 
 <modal-custom-footer/>
 
-<<< @/docs/.vuepress/components/modal/custom-footer.vue
+<<< @/.vitepress/components/modal/custom-footer.vue
 
 ## Custom button texts and types
 
@@ -46,7 +46,7 @@ Modals have two optional sizes: `lg` and `sm`.
 
 <modal-custom-button-text-and-type/>
 
-<<< @/docs/.vuepress/components/modal/custom-button-text-and-type.vue
+<<< @/.vitepress/components/modal/custom-button-text-and-type.vue
 
 ## Auto focus
 
@@ -60,7 +60,7 @@ Set `backdrop` prop to `false` to disable the modal dismiss action on backdrop c
 
 <modal-disable-backdrop/>
 
-<<< @/docs/.vuepress/components/modal/disable-backdrop.vue
+<<< @/.vitepress/components/modal/disable-backdrop.vue
 
 ## Disable animation
 
@@ -68,7 +68,7 @@ Set `transition` to `0` to disable modal animations.
 
 <modal-disable-animation/>
 
-<<< @/docs/.vuepress/components/modal/disable-animation.vue
+<<< @/.vitepress/components/modal/disable-animation.vue
 
 ## Nested modals
 
@@ -76,13 +76,13 @@ Note that if you want modals to be real nested to each other, you have to add `a
 
 <modal-nested/>
 
-<<< @/docs/.vuepress/components/modal/nested.vue
+<<< @/.vitepress/components/modal/nested.vue
 
 Otherwise, you can simply nest them logically, without any extra settings:
 
 <modal-nested-logically/>
 
-<<< @/docs/.vuepress/components/modal/nested-logically.vue
+<<< @/.vitepress/components/modal/nested-logically.vue
 
 
 ## API Reference

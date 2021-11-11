@@ -16,7 +16,7 @@
 
 <affix-example/>
 
-<<< @/docs/.vuepress/components/affix/example.vue
+<<< @/.vitepress/components/affix/example.vue
 
 ## API 文档
 

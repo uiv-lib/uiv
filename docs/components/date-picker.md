@@ -8,7 +8,7 @@ Use `v-model` to bind the selected date.
 
 <date-picker-example/>
 
-<<< @/docs/.vuepress/components/date-picker/example.vue
+<<< @/.vitepress/components/date-picker/example.vue
 
 ## Formats
 
@@ -31,7 +31,7 @@ If you need a special format that not supported by `Date.parse`, consider using 
 
 <date-picker-formats/>
 
-<<< @/docs/.vuepress/components/date-picker/formats.vue
+<<< @/.vitepress/components/date-picker/formats.vue
 
 ## Buttons
 
@@ -39,7 +39,7 @@ Use `today-btn` and `clear-btn` to toggle visible of them.
 
 <date-picker-without-buttons/>
 
-<<< @/docs/.vuepress/components/date-picker/without-buttons.vue
+<<< @/.vitepress/components/date-picker/without-buttons.vue
 
 ## Range limit
 
@@ -47,7 +47,7 @@ Example that limit date range from today, to next week:
 
 <date-picker-range-limit/>
 
-<<< @/docs/.vuepress/components/date-picker/range-limit.vue
+<<< @/.vitepress/components/date-picker/range-limit.vue
 
 ## Week starts
 
@@ -55,13 +55,13 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 
 <date-picker-week-starts/>
 
-<<< @/docs/.vuepress/components/date-picker/week-starts.vue
+<<< @/.vitepress/components/date-picker/week-starts.vue
 
 ## Week numbers
 
 <date-picker-week-numbers/>
 
-<<< @/docs/.vuepress/components/date-picker/week-numbers.vue
+<<< @/.vitepress/components/date-picker/week-numbers.vue
 
 ## With dropdown
 
@@ -69,7 +69,7 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 
 <date-picker-dropdown-example/>
 
-<<< @/docs/.vuepress/components/date-picker/dropdown-example.vue
+<<< @/.vitepress/components/date-picker/dropdown-example.vue
 
 ## Custom date classes
 
@@ -83,7 +83,7 @@ See below example for detail usage, which has all sunday highlighted:
 
 <date-picker-custom-date-classes/>
 
-<<< @/docs/.vuepress/components/date-picker/custom-date-classes.vue
+<<< @/.vitepress/components/date-picker/custom-date-classes.vue
 
 ## API Reference
 

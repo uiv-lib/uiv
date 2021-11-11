@@ -8,7 +8,7 @@ Default progress bar.
 
 <progress-bar-example/>
 
-<<< @/docs/.vuepress/components/progress-bar/example.vue
+<<< @/.vitepress/components/progress-bar/example.vue
 
 ## With label
 
@@ -18,7 +18,7 @@ To ensure that the label text remains legible even for low percentages, consider
 
 <progress-bar-with-label/>
 
-<<< @/docs/.vuepress/components/progress-bar/with-label.vue
+<<< @/.vitepress/components/progress-bar/with-label.vue
 
 ## Contextual alternatives
 
@@ -26,7 +26,7 @@ Progress bars use some of the same button and alert classes for consistent style
 
 <progress-bar-contextual-alternatives/>
 
-<<< @/docs/.vuepress/components/progress-bar/contextual-alternatives.vue
+<<< @/.vitepress/components/progress-bar/contextual-alternatives.vue
 
 ## Striped
 
@@ -38,7 +38,7 @@ Not available in IE9 and below.
 
 <progress-bar-striped/>
 
-<<< @/docs/.vuepress/components/progress-bar/striped.vue
+<<< @/.vitepress/components/progress-bar/striped.vue
 
 ## Animated
 
@@ -50,7 +50,7 @@ Not available in IE9 and below.
 
 <progress-bar-animated/>
 
-<<< @/docs/.vuepress/components/progress-bar/animated.vue
+<<< @/.vitepress/components/progress-bar/animated.vue
 
 ## Stacked
 
@@ -58,7 +58,7 @@ Place multiple `<progress-bar-stack>` into the same `<progress-bar>` to stack th
 
 <progress-bar-stacked/>
 
-<<< @/docs/.vuepress/components/progress-bar/stacked.vue
+<<< @/.vitepress/components/progress-bar/stacked.vue
 
 ## API Reference
 

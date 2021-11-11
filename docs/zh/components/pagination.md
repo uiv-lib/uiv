@@ -10,7 +10,7 @@ Use `v-model` (1-based) to indicate the current page.
 
 <pagination-example/>
 
-<<< @/docs/.vuepress/components/pagination/example.vue
+<<< @/.vitepress/components/pagination/example.vue
 
 ## Sizing
 
@@ -18,7 +18,7 @@ Fancy larger or smaller pagination? Add `size="lg"` or `size="sm"` for additiona
 
 <pagination-sizes/>
 
-<<< @/docs/.vuepress/components/pagination/sizes.vue
+<<< @/.vitepress/components/pagination/sizes.vue
 
 ## Alignment
 
@@ -26,7 +26,7 @@ By default the pagination component is left aligned. Change the alignment to cen
 
 <pagination-alignment/>
 
-<<< @/docs/.vuepress/components/pagination/alignment.vue
+<<< @/.vitepress/components/pagination/alignment.vue
 
 ## Direction links
 
@@ -34,7 +34,7 @@ By default `direction-links` are enabled, which allows users to nav to previous 
 
 <pagination-direction-links/>
 
-<<< @/docs/.vuepress/components/pagination/direction-links.vue
+<<< @/.vitepress/components/pagination/direction-links.vue
 
 ## Boundary links
 
@@ -42,7 +42,7 @@ Add `boundary-links` to allow fast nav to the first or last page.
 
 <pagination-boundary-links/>
 
-<<< @/docs/.vuepress/components/pagination/boundary-links.vue
+<<< @/.vitepress/components/pagination/boundary-links.vue
 
 ## Chunks
 
@@ -50,13 +50,13 @@ Use `max-size` to define the maximum chunk size of pagers (default is 5). And if
 
 <pagination-chunks/>
 
-<<< @/docs/.vuepress/components/pagination/chunks.vue
+<<< @/.vitepress/components/pagination/chunks.vue
 
 ## Disabled
 
 <pagination-disabled/>
 
-<<< @/docs/.vuepress/components/pagination/disabled.vue
+<<< @/.vitepress/components/pagination/disabled.vue
 
 ## API Reference
 

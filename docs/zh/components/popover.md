@@ -12,7 +12,7 @@ Click the button below to toggle popover:
 
 <popover-example/>
 
-<<< @/docs/.vuepress/components/popover/example.vue
+<<< @/.vitepress/components/popover/example.vue
 
 ### Trigger target
 
@@ -34,7 +34,7 @@ You can also simply use popovers via `v-popover` directive:
 
 <popover-directive/>
 
-<<< @/docs/.vuepress/components/popover/directive.vue
+<<< @/.vitepress/components/popover/directive.vue
 
 ## With empty title
 
@@ -42,7 +42,7 @@ If you don't want the title of popover, just leave the `title` prop unset or bla
 
 <popover-with-empty-title/>
 
-<<< @/docs/.vuepress/components/popover/with-empty-title.vue
+<<< @/.vitepress/components/popover/with-empty-title.vue
 
 ## Placements
 
@@ -55,7 +55,7 @@ Supported placements:
 
 <popover-placements/>
 
-<<< @/docs/.vuepress/components/popover/placements.vue
+<<< @/.vitepress/components/popover/placements.vue
 
 ## Auto placement
 
@@ -69,7 +69,7 @@ Keeps the popover within the bounds of this element.
 
 <popover-viewport/>
 
-<<< @/docs/.vuepress/components/popover/viewport.vue
+<<< @/.vitepress/components/popover/viewport.vue
 
 ## Triggers
 
@@ -83,7 +83,7 @@ Supported triggers:
 
 <popover-triggers/>
 
-<<< @/docs/.vuepress/components/popover/triggers.vue
+<<< @/.vitepress/components/popover/triggers.vue
 
 ## Manual trigger
 
@@ -91,7 +91,7 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
 
 <popover-manual-trigger/>
 
-<<< @/docs/.vuepress/components/popover/manual-trigger.vue
+<<< @/.vitepress/components/popover/manual-trigger.vue
 
 ## API Reference
 

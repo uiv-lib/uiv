@@ -6,7 +6,7 @@
 
 <btn-example/>
 
-<<< @/docs/.vuepress/components/btn/example.vue
+<<< @/.vitepress/components/btn/example.vue
 
 ## 链接
 
@@ -14,7 +14,7 @@
 
 <btn-links/>
 
-<<< @/docs/.vuepress/components/btn/links.vue
+<<< @/.vitepress/components/btn/links.vue
 
 ## 尺寸
 
@@ -22,13 +22,13 @@
 
 <btn-sizes/>
 
-<<< @/docs/.vuepress/components/btn/sizes.vue
+<<< @/.vitepress/components/btn/sizes.vue
 
 通过添加 `block` 参数来创建块级按钮，它会占满父容器的宽度。
 
 <btn-block/>
 
-<<< @/docs/.vuepress/components/btn/block.vue
+<<< @/.vitepress/components/btn/block.vue
 
 ## 激活状态
 
@@ -36,7 +36,7 @@
 
 <btn-active/>
 
-<<< @/docs/.vuepress/components/btn/active.vue
+<<< @/.vitepress/components/btn/active.vue
 
 ## 禁用状态
 
@@ -44,7 +44,7 @@
 
 <btn-disabled/>
 
-<<< @/docs/.vuepress/components/btn/disabled.vue
+<<< @/.vitepress/components/btn/disabled.vue
 
 ## 多选、单选
 
@@ -60,7 +60,7 @@
 
 <btn-checkbox/>
 
-<<< @/docs/.vuepress/components/btn/checkbox.vue
+<<< @/.vitepress/components/btn/checkbox.vue
 
 ### 单选样例
 
@@ -68,7 +68,7 @@
 
 <btn-radio/>
 
-<<< @/docs/.vuepress/components/btn/radio.vue
+<<< @/.vitepress/components/btn/radio.vue
 
 ## API 文档
 
