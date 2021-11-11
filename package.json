@@ -7,6 +7,7 @@
   "module": "dist/uiv.esm.js",
   "unpkg": "dist/uiv.min.js",
   "jsdelivr": "dist/uiv.min.js",
+  "files": ["dist"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uiv-lib/uiv.git"
