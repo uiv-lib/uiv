@@ -11,7 +11,7 @@
         </div>
       </slide>
       <!-- Use this slot for custom indicators -->
-      <template slot="indicators" slot-scope="props">
+      <template #indicators="props">
         <ol class="carousel-indicators custom-carousel-indicators">
           <li
             v-for="(slide, index) in slides"

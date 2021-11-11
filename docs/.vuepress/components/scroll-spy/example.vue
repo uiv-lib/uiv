@@ -26,7 +26,7 @@
               <a class="dropdown-toggle" role="button"
                 >Dropdown <span class="caret"></span
               ></a>
-              <template slot="dropdown">
+              <template #dropdown>
                 <li><a href="#one">one</a></li>
                 <li><a href="#two">two</a></li>
                 <li role="separator" class="divider"></li>

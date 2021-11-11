@@ -9,7 +9,7 @@
           ></btn>
         </div>
       </div>
-      <template slot="dropdown">
+      <template #dropdown>
         <li>
           <date-picker v-model="date" />
         </li>

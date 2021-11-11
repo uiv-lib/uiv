@@ -8,7 +8,9 @@
         <p>Profile tab.</p>
       </tab>
       <tab>
-        <div slot="title"><i class="glyphicon glyphicon-bell"></i> Alert!</div>
+        <template #title>
+          <div><i class="glyphicon glyphicon-bell"></i> Alert!</div>
+        </template>
         <p>This tab has HTML title and callback function!</p>
       </tab>
     </tabs>

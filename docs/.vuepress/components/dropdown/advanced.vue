@@ -10,7 +10,7 @@
       <btn type="primary" class="dropdown-toggle"
         >Dropdown Form <span class="caret"></span
       ></btn>
-      <template slot="dropdown">
+      <template #dropdown>
         <li class="checkbox">
           <label>
             <input v-model="selected" type="checkbox" value="Vue" /> Vue

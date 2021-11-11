@@ -6,7 +6,7 @@
     :append-to-body="appendToBody"
     :disabled="disabled"
     :style="containerStyles"
-    @keydown.native.esc="showDropdown = false"
+    @keydown.esc="showDropdown = false"
   >
     <div
       class="form-control dropdown-toggle clearfix"
@@ -33,7 +33,7 @@
         v-text="selectedText"
       ></div>
     </div>
-    <template slot="dropdown">
+    <template #dropdown>
       <li v-if="filterable" style="padding: 4px 8px">
         <input
           ref="filterInput"
@@ -57,9 +57,8 @@
           class="dropdown-header"
           v-text="item.$group"
         ></li>
-        <template v-for="(_item, j) in item.options">
+        <template v-for="(_item, j) in item.options" :key="`${i}_${j}`">
           <li
-            :key="`${i}_${j}`"
             :class="itemClasses(_item)"
             style="outline: 0"
             @keydown.prevent.stop.down="goNextOption"
@@ -245,7 +244,7 @@ export default {
       }
     },
     customOptionsVisible() {
-      return !!this.$slots.option || !!this.$scopedSlots.option
+      return !!this.$slots.option || !!this.$slots.option
     },
   },
   watch: {

@@ -51,7 +51,10 @@ import { isExist } from '../../utils/object.utils'
 
 export default {
   props: {
-    value: Number,
+    value: {
+      type: Number,
+      default: 0,
+    },
     indicators: {
       type: Boolean,
       default: true,
@@ -99,7 +102,7 @@ export default {
     }
     this.startInterval()
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.stopInterval()
   },
   methods: {

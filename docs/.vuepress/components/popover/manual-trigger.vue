@@ -2,7 +2,7 @@
   <section class="uiv">
     <popover v-model="show" title="Title" trigger="manual">
       <btn>You Can't Trigger Popover Here...</btn>
-      <template slot="popover">
+      <template #popover>
         <p>Popover content</p>
       </template>
     </popover>

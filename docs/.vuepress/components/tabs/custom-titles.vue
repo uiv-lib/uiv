@@ -2,7 +2,9 @@
   <div class="uiv">
     <tabs>
       <tab>
-        <div slot="title"><i class="glyphicon glyphicon-user"></i> Profile</div>
+        <template #title>
+          <div><i class="glyphicon glyphicon-user"></i> Profile</div>
+        </template>
         <p>This tab has a <code>title</code> slot.</p>
       </tab>
       <tab title="Title">

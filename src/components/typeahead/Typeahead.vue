@@ -7,7 +7,7 @@
     :not-close-elements="elements"
     :position-element="inputEl"
   >
-    <template slot="dropdown">
+    <template #dropdown>
       <slot
         name="item"
         :items="items"
@@ -146,7 +146,7 @@ export default {
       }
     })
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.removeListeners()
   },
   methods: {
@@ -163,7 +163,7 @@ export default {
       }
     },
     hasEmptySlot() {
-      return !!this.$slots.empty || !!this.$scopedSlots.empty
+      return !!this.$slots.empty || !!this.$slots.empty
     },
     initInputElByTarget(target) {
       if (!target) {

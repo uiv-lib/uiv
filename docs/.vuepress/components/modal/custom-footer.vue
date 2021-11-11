@@ -4,11 +4,13 @@
     <btn type="primary" @click="open2 = true">No Footer</btn>
     <modal v-model="open1" title="Modal Title">
       <p>This is a modal with custom footer.</p>
-      <div slot="footer">
-        <btn @click="open1 = false">Cancel</btn>
-        <btn type="warning">Warning Action</btn>
-        <btn type="danger">Danger Action</btn>
-      </div>
+      <template #footer>
+        <div>
+          <btn @click="open1 = false">Cancel</btn>
+          <btn type="warning">Warning Action</btn>
+          <btn type="danger">Danger Action</btn>
+        </div>
+      </template>
     </modal>
     <modal v-model="open2" title="Modal Title" :footer="false">
       <p>This is a modal with no footer.</p>

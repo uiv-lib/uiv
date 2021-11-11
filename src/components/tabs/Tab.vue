@@ -76,7 +76,7 @@ export default {
       throw new Error('<tab> parent must be <tabs>.')
     }
   },
-  beforeDestroy() {
+  beforeUnmount() {
     const tabs = this.$parent && this.$parent.tabs
     spliceIfExist(tabs, this)
   },

@@ -14,7 +14,7 @@
           ></btn>
         </div>
       </div>
-      <template slot="dropdown">
+      <template #dropdown>
         <li style="padding: 10px">
           <time-picker v-model="time" :show-meridian="false" />
         </li>

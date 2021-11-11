@@ -29,6 +29,7 @@ export default {
       default: 'info',
     },
   },
+  emits: ['dismissed'],
   data() {
     return {
       timeout: 0,
@@ -48,7 +49,7 @@ export default {
       this.timeout = setTimeout(this.closeAlert, this.duration)
     }
   },
-  destroyed() {
+  unmounted() {
     clearTimeout(this.timeout)
   },
   methods: {

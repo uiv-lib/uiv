@@ -1,8 +1,10 @@
 <template>
   <div class="uiv">
     <navbar inverse>
-      <a slot="brand" class="navbar-brand" href="#">Brand</a>
-      <template slot="collapse">
+      <template #brand>
+        <a class="navbar-brand" href="#">Brand</a>
+      </template>
+      <template #collapse>
         <navbar-nav>
           <li class="active">
             <a role="button">Link <span class="sr-only">(current)</span></a>

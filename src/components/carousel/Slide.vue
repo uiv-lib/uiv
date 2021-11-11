@@ -26,7 +26,7 @@ export default {
       throw new Error('Slide parent must be Carousel.')
     }
   },
-  beforeDestroy() {
+  beforeUnmount() {
     const slides = this.$parent && this.$parent.slides
     spliceIfExist(slides, this)
   },

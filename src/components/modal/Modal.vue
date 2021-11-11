@@ -164,7 +164,7 @@ export default {
       this.$toggle(true)
     }
   },
-  beforeDestroy() {
+  beforeUnmount() {
     clearTimeout(this.timeoutId)
     removeFromDom(this.$refs.backdrop)
     removeFromDom(this.$el)

@@ -1,11 +1,10 @@
 <template>
   <section>
     <ul :class="navClasses" role="tablist">
-      <template v-for="(tab, i) in groupedTabs">
+      <template v-for="(tab, i) in groupedTabs" :key="i">
         <dropdown
           v-if="tab.tabs"
           v-show="!tab.hidden"
-          :key="i"
           role="presentation"
           tag="li"
           :class="getTabClasses(tab)"
@@ -13,7 +12,7 @@
           <a class="dropdown-toggle" role="tab" href="#" @click.prevent
             >{{ tab.group }} <span class="caret"></span
           ></a>
-          <template slot="dropdown">
+          <template #dropdown>
             <li
               v-for="(subTab, j) in tab.tabs"
               v-show="!subTab.hidden"
@@ -29,7 +28,6 @@
         <li
           v-else
           v-show="!tab.hidden"
-          :key="i"
           role="presentation"
           :class="getTabClasses(tab)"
         >
@@ -39,7 +37,7 @@
             tag="a"
             role="tab"
             href="#"
-            @click.native.prevent="select(tabs.indexOf(tab))"
+            @click.prevent="select(tabs.indexOf(tab))"
           />
           <a
             v-else
@@ -80,6 +78,7 @@ export default {
     value: {
       type: Number,
       validator: (v) => v >= 0,
+      default: 0,
     },
     transition: {
       type: Number,
@@ -216,7 +215,7 @@ export default {
       }
     },
     selectValidate(index) {
-      if (isFunction(this.$listeners[BEFORE_CHANGE_EVENT])) {
+      if (isFunction(this.$attrs[BEFORE_CHANGE_EVENT])) {
         this.$emit(BEFORE_CHANGE_EVENT, this.activeIndex, index, (result) => {
           if (!isExist(result)) {
             this.$select(index)

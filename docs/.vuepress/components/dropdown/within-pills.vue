@@ -8,7 +8,7 @@
         <a class="dropdown-toggle" role="button"
           >Dropdown <span class="caret"></span
         ></a>
-        <template slot="dropdown">
+        <template #dropdown>
           <li><a role="button">Action</a></li>
           <li><a role="button">Another action</a></li>
           <li><a role="button">Something else here</a></li>
@@ -20,7 +20,7 @@
         <a class="dropdown-toggle" role="button"
           >Dropdown <span class="caret"></span
         ></a>
-        <template slot="dropdown">
+        <template #dropdown>
           <li><a role="button">Action</a></li>
           <li><a role="button">Another action</a></li>
           <li><a role="button">Something else here</a></li>

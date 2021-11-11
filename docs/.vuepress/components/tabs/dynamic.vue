@@ -5,7 +5,7 @@
         <p>Dynamic {{ tab }}</p>
         <btn @click="close">Close this tab</btn>
       </tab>
-      <template slot="nav-right">
+      <template #nav-right>
         <btn size="sm" @click="push">
           <i class="glyphicon glyphicon-plus"></i> Add
         </btn>

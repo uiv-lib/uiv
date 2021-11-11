@@ -11,7 +11,7 @@
       <btn justified>Middle</btn>
       <dropdown>
         <btn class="dropdown-toggle">Dropdown <span class="caret"></span></btn>
-        <template slot="dropdown">
+        <template #dropdown>
           <li><a role="button">Action</a></li>
           <li><a role="button">Another action</a></li>
           <li><a role="button">Something else here</a></li>

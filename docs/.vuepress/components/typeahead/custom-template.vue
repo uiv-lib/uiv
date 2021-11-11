@@ -13,7 +13,7 @@
       :async-function="queryFunction"
       item-key="login"
     >
-      <template slot="item" slot-scope="props">
+      <template #item="props">
         <li
           v-for="(item, index) in props.items"
           :key="index"

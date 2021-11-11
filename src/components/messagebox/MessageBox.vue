@@ -29,7 +29,7 @@
         <span v-show="inputNotValid" class="help-block">{{ inputError }}</span>
       </div>
     </div>
-    <template v-if="type === TYPES.ALERT" slot="footer">
+    <template v-if="type === TYPES.ALERT" #footer>
       <btn
         :type="okType"
         :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
@@ -37,7 +37,7 @@
         v-text="okBtnText"
       />
     </template>
-    <template v-else slot="footer">
+    <template v-else #footer>
       <template v-if="reverseButtons">
         <btn
           v-if="type === TYPES.CONFIRM"

@@ -1,7 +1,9 @@
 <template>
   <div class="uiv">
     <navbar>
-      <a slot="brand" class="navbar-brand" href="#">Brand</a>
+      <template #brand>
+        <a class="navbar-brand" href="#">Brand</a>
+      </template>
       <navbar-form left>
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" />
