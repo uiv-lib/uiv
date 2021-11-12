@@ -167,6 +167,9 @@ export default {
       this.input = this.defaultValue
     }
   },
+  // unmounted() {
+  //   console.log('unmounted')
+  // },
   methods: {
     toggle(show, msg) {
       this.$refs.modal.toggle(show, msg)

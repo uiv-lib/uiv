@@ -1,6 +1,4 @@
 import { TYPES } from '../../constants/messagebox.constants'
-import { removeFromDom } from '../../utils/dom.utils'
-import { spliceIfExist } from '../../utils/array.utils'
 import {
   isFunction,
   isExist,
@@ -8,15 +6,11 @@ import {
   isPromiseSupported,
 } from '../../utils/object.utils'
 import MessageBox from '../../components/messagebox/MessageBox.vue'
-import { createApp } from 'vue'
+import { render, h } from 'vue'
 
-const queue = []
-
-const destroy = ({ app, container }) => {
+const destroy = (container) => {
   // console.log('destroyModal')
-  removeFromDom(container)
-  app.unmount()
-  spliceIfExist(queue, app)
+  render(null, container)
 }
 
 // handle cancel or ok for confirm & prompt
@@ -33,11 +27,11 @@ const shallResolve = (type, msg) => {
 const init = function (type, options, cb, resolve = null, reject = null) {
   // const i18n = this.$i18n
   const container = document.createElement('div')
-  const app = createApp(MessageBox, {
+  const vNode = h(MessageBox, {
     type,
     ...options,
     cb(msg) {
-      destroy({ app, container })
+      destroy(container)
       if (isFunction(cb)) {
         if (type === TYPES.CONFIRM) {
           shallResolve(type, msg) ? cb(null, msg) : cb(msg)
@@ -57,9 +51,8 @@ const init = function (type, options, cb, resolve = null, reject = null) {
       }
     },
   })
-  const vm = app.mount(container)
-  document.body.appendChild(vm.$el)
-  queue.push(app)
+  render(vNode, container)
+  document.body.appendChild(container.firstElementChild)
 }
 
 // eslint-disable-next-line default-param-last

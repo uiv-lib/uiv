@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { h, render } from 'vue'
 import Popover from '../../components/popover/Popover.vue'
 import { hasOwnProperty } from '../../utils/object.utils'
 
@@ -23,7 +23,7 @@ const bind = (el, binding) => {
       enterable = false
     }
   })
-  const app = createApp(Popover, {
+  const vNode = h(Popover, {
     target: el,
     appendTo: binding.arg && '#' + binding.arg,
     title:
@@ -50,19 +50,15 @@ const bind = (el, binding) => {
   })
 
   const container = document.createElement('div')
-  app.mount(container)
-  el[INSTANCE] = {
-    app,
-    container,
-  }
+  render(vNode, container)
+  el[INSTANCE] = container
 }
 
 const unbind = (el) => {
   // console.log('unbind')
   const instance = el[INSTANCE]
   if (instance) {
-    instance.app.unmount()
-    instance.container.remove()
+    render(null, instance)
   }
   delete el[INSTANCE]
 }

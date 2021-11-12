@@ -29,6 +29,9 @@ export default {
       return this.title + this.content
     },
   },
+  // beforeUnmount() {
+  //   console.log('unmount')
+  // },
   methods: {
     isNotEmpty() {
       return this.title || this.content || this.$slots.popover

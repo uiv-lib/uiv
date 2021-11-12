@@ -39,7 +39,6 @@ specifiers:
   vitepress: ^0.20.1
   vue: ^3
   vue-jest: 3.0.7
-  vue-router: ^4.0.12
   vue-template-compiler: 2.6.14
 
 devDependencies:
@@ -81,7 +80,6 @@ devDependencies:
   vitepress: registry.npmmirror.com/vitepress/0.20.1_less@4.1.2
   vue: registry.npmmirror.com/vue/3.2.21
   vue-jest: 3.0.7_7450920fa6a99b8132e1600c3578f23a
-  vue-router: 4.0.12_vue@3.2.21
   vue-template-compiler: 2.6.14
 
 packages:
@@ -886,10 +884,6 @@ packages:
     resolution: {integrity: sha512-T8Yc9wt/5LbJyCaLiHPReJa0kApcIgJ7Bn735GjItUfh08Z1pJvu8QZqb9s+mMvKV6WUQRV7K2R46YbjMXTTJw==}
     dependencies:
       '@types/yargs-parser': 20.2.1
-    dev: true
-
-  /@vue/devtools-api/6.0.0-beta.20.1:
-    resolution: {integrity: sha512-R2rfiRY+kZugzWh9ZyITaovx+jpU4vgivAEAiz80kvh3yviiTU3CBuGuyWpSwGz9/C7TkSWVM/FtQRGlZ16n8Q==}
     dev: true
 
   /@vue/test-utils/1.2.2_c1f7876f1d9c3b58a68bfeaa8ae7f6d2:
@@ -3822,15 +3816,6 @@ packages:
       vue: registry.npmmirror.com/vue/3.2.21
       vue-template-compiler: 2.6.14
       vue-template-es2015-compiler: 1.9.1
-    dev: true
-
-  /vue-router/4.0.12_vue@3.2.21:
-    resolution: {integrity: sha512-CPXvfqe+mZLB1kBWssssTiWg4EQERyqJZes7USiqfW9B5N2x+nHlnsM1D3b5CaJ6qgCvMmYJnz+G0iWjNCvXrg==}
-    peerDependencies:
-      vue: ^3.0.0
-    dependencies:
-      '@vue/devtools-api': 6.0.0-beta.20.1
-      vue: registry.npmmirror.com/vue/3.2.21
     dev: true
 
   /vue-template-compiler/2.6.14:

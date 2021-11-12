@@ -10,7 +10,7 @@ import {
 } from '../../utils/object.utils'
 import Notification from '../../components/notification/Notification.vue'
 import { PLACEMENTS } from '../../constants/notification.constants'
-import { createApp } from 'vue'
+import { h, render } from 'vue'
 
 const queues = {
   [PLACEMENTS.TOP_LEFT]: [],
@@ -19,11 +19,10 @@ const queues = {
   [PLACEMENTS.BOTTOM_RIGHT]: [],
 }
 
-const destroy = (queue, { app, container }) => {
+const destroy = (queue, { vNode, container }) => {
   // console.log('destroyNotification')
-  removeFromDom(container)
-  app.unmount()
-  spliceIfExist(queue, app.vm)
+  render(null, container)
+  spliceIfExist(queue, vNode.component.ctx)
 }
 
 const init = (options, cb, resolve = null, reject = null) => {
@@ -39,12 +38,12 @@ const init = (options, cb, resolve = null, reject = null) => {
   if (options.type === 'error') {
     options.type = 'danger'
   }
-  const app = createApp(Notification, {
+  const vNode = h(Notification, {
     queue,
     placement,
     ...options,
     cb(msg) {
-      destroy(queue, { app, container })
+      destroy(queue, { vNode, container })
       if (isFunction(cb)) {
         cb(msg)
       } else if (resolve && reject) {
@@ -52,10 +51,9 @@ const init = (options, cb, resolve = null, reject = null) => {
       }
     },
   })
-  const vm = app.mount(container)
-  app.vm = vm
-  document.body.appendChild(vm.$el)
-  queue.push(vm)
+  render(vNode, container)
+  document.body.appendChild(container.firstElementChild)
+  queue.push(vNode.component.ctx)
 }
 
 // eslint-disable-next-line default-param-last

@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { h, render } from 'vue'
 import Tooltip from '../../components/tooltip/Tooltip.vue'
 import { hasOwnProperty } from '../../utils/object.utils'
 
@@ -24,7 +24,7 @@ const bind = (el, binding) => {
     }
   })
 
-  const app = createApp(Tooltip, {
+  const vNode = h(Tooltip, {
     target: el,
     appendTo: binding.arg && '#' + binding.arg,
     text:
@@ -50,19 +50,15 @@ const bind = (el, binding) => {
     trigger,
   })
   const container = document.createElement('div')
-  app.mount(container)
-  el[INSTANCE] = {
-    app,
-    container,
-  }
+  render(vNode, container)
+  el[INSTANCE] = container
 }
 
 const unbind = (el) => {
   // console.log('unbind')
   const instance = el[INSTANCE]
   if (instance) {
-    instance.app.unmount()
-    instance.container.remove()
+    render(null, instance)
   }
   delete el[INSTANCE]
 }

@@ -134,6 +134,9 @@ export default {
       addClass(el, IN_CLASS)
     })
   },
+  // unmounted() {
+  //   console.log('unmounted')
+  // },
   methods: {
     getTotalHeightOfQueue(queue, lastIndex = queue.length) {
       let totalHeight = this.offsetY

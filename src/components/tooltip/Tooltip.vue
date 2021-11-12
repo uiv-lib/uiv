@@ -25,6 +25,9 @@ export default {
       return this.text
     },
   },
+  // beforeUnmount() {
+  //   console.log('unmount')
+  // },
   methods: {
     isNotEmpty() {
       return this.text
