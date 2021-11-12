@@ -11,24 +11,23 @@ export default {
   },
   render() {
     return h(this.tag, [
-      this.$slots.default(),
+      this.$slots.default && this.$slots.default(),
       h(
         'div',
         {
           ref: 'popup',
-          attrs: {
-            role: 'tooltip',
-          },
-          on: {
-            mouseleave: this.hideOnLeave,
-          },
+          role: 'tooltip',
+          onMouseleave: this.hideOnLeave,
         },
         [
           h('div', { class: 'tooltip-arrow' }),
-          h('div', {
-            class: 'tooltip-inner',
-            domProps: { innerHTML: this.text },
-          }),
+          h(
+            'div',
+            {
+              class: 'tooltip-inner',
+            },
+            this.text
+          ),
         ]
       ),
     ])

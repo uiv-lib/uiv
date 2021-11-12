@@ -139,7 +139,7 @@ export default {
           this.triggerEl = trigger
         } else {
           // use the first child
-          const firstChild = this.$el.firstChild
+          const firstChild = this.$el.querySelector('*')
           this.triggerEl = firstChild === this.$refs.popup ? null : firstChild
         }
       }

@@ -1,5 +1,5 @@
-import Tooltip from '../../components/tooltip/Tooltip.js'
 import { createApp } from 'vue'
+import Tooltip from '../../components/tooltip/Tooltip.js'
 import { hasOwnProperty } from '../../utils/object.utils'
 
 const INSTANCE = '_uiv_tooltip_instance'
@@ -7,6 +7,23 @@ const INSTANCE = '_uiv_tooltip_instance'
 const bind = (el, binding) => {
   // console.log('bind')
   unbind(el)
+  const options = []
+  for (const key in binding.modifiers) {
+    if (hasOwnProperty(binding.modifiers, key) && binding.modifiers[key]) {
+      options.push(key)
+    }
+  }
+  let placement, trigger, enterable
+  options.forEach((option) => {
+    if (/(top)|(left)|(right)|(bottom)/.test(option)) {
+      placement = option
+    } else if (/(hover)|(focus)|(click)/.test(option)) {
+      trigger = option
+    } else if (/unenterable/.test(option)) {
+      enterable = false
+    }
+  })
+
   const app = createApp(Tooltip, {
     target: el,
     appendTo: binding.arg && '#' + binding.arg,
@@ -28,32 +45,24 @@ const bind = (el, binding) => {
       binding.value.customClass.toString(),
     showDelay: binding.value && binding.value.showDelay,
     hideDelay: binding.value && binding.value.hideDelay,
+    enterable,
+    placement,
+    trigger,
   })
-
-  const options = []
-  for (const key in binding.modifiers) {
-    if (hasOwnProperty(binding.modifiers, key) && binding.modifiers[key]) {
-      options.push(key)
-    }
+  const container = document.createElement('div')
+  // document.body.appendChild(container)
+  el[INSTANCE] = {
+    vm: app.mount(container),
+    container,
   }
-  const vm = app.mount('body')
-  options.forEach((option) => {
-    if (/(top)|(left)|(right)|(bottom)/.test(option)) {
-      vm.placement = option
-    } else if (/(hover)|(focus)|(click)/.test(option)) {
-      vm.trigger = option
-    } else if (/unenterable/.test(option)) {
-      vm.enterable = false
-    }
-  })
-  el[INSTANCE] = vm
 }
 
 const unbind = (el) => {
   // console.log('unbind')
-  const vm = el[INSTANCE]
-  if (vm) {
-    vm.$destroy()
+  const instance = el[INSTANCE]
+  if (instance) {
+    instance.vm.unmount()
+    instance.container.remove()
   }
   delete el[INSTANCE]
 }
@@ -65,4 +74,4 @@ const update = (el, binding) => {
   }
 }
 
-export default { beforeMount: bind, unmounted: unbind, updated: update }
+export default { mounted: bind, unmounted: unbind, updated: update }
