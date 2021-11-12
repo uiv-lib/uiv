@@ -1,5 +1,5 @@
 import Tooltip from '../../components/tooltip/Tooltip.js'
-import Vue from 'vue'
+import { createApp } from 'vue'
 import { hasOwnProperty } from '../../utils/object.utils'
 
 const INSTANCE = '_uiv_tooltip_instance'
@@ -7,39 +7,36 @@ const INSTANCE = '_uiv_tooltip_instance'
 const bind = (el, binding) => {
   // console.log('bind')
   unbind(el)
-  const Constructor = Vue.extend(Tooltip)
-  const vm = new Constructor({
-    propsData: {
-      target: el,
-      appendTo: binding.arg && '#' + binding.arg,
-      text:
-        typeof binding.value === 'string'
-          ? binding.value && binding.value.toString()
-          : binding.value &&
-            binding.value.text &&
-            binding.value.text.toString(),
-      positionBy:
-        binding.value &&
-        binding.value.positionBy &&
-        binding.value.positionBy.toString(),
-      viewport:
-        binding.value &&
-        binding.value.viewport &&
-        binding.value.viewport.toString(),
-      customClass:
-        binding.value &&
-        binding.value.customClass &&
-        binding.value.customClass.toString(),
-      showDelay: binding.value && binding.value.showDelay,
-      hideDelay: binding.value && binding.value.hideDelay,
-    },
+  const app = createApp(Tooltip, {
+    target: el,
+    appendTo: binding.arg && '#' + binding.arg,
+    text:
+      typeof binding.value === 'string'
+        ? binding.value && binding.value.toString()
+        : binding.value && binding.value.text && binding.value.text.toString(),
+    positionBy:
+      binding.value &&
+      binding.value.positionBy &&
+      binding.value.positionBy.toString(),
+    viewport:
+      binding.value &&
+      binding.value.viewport &&
+      binding.value.viewport.toString(),
+    customClass:
+      binding.value &&
+      binding.value.customClass &&
+      binding.value.customClass.toString(),
+    showDelay: binding.value && binding.value.showDelay,
+    hideDelay: binding.value && binding.value.hideDelay,
   })
+
   const options = []
   for (const key in binding.modifiers) {
     if (hasOwnProperty(binding.modifiers, key) && binding.modifiers[key]) {
       options.push(key)
     }
   }
+  const vm = app.mount('body')
   options.forEach((option) => {
     if (/(top)|(left)|(right)|(bottom)/.test(option)) {
       vm.placement = option
@@ -49,7 +46,6 @@ const bind = (el, binding) => {
       vm.enterable = false
     }
   })
-  vm.$mount()
   el[INSTANCE] = vm
 }
 
@@ -69,4 +65,4 @@ const update = (el, binding) => {
   }
 }
 
-export default { bind, unbind, update }
+export default { beforeMount: bind, unmounted: unbind, updated: update }

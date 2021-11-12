@@ -1,5 +1,6 @@
 import { TRIGGERS } from '../../utils/dom.utils'
 import popupMixin from '../../mixins/popup.mixin'
+import { h } from 'vue'
 
 export default {
   mixins: [popupMixin],
@@ -8,9 +9,9 @@ export default {
       name: 'tooltip',
     }
   },
-  render(h) {
+  render() {
     return h(this.tag, [
-      this.$slots.default,
+      this.$slots.default(),
       h(
         'div',
         {

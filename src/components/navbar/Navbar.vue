@@ -26,7 +26,7 @@ import Collapse from '../collapse/Collapse.js'
 export default {
   components: { Collapse },
   props: {
-    value: Boolean,
+    modelValue: Boolean,
     fluid: {
       type: Boolean,
       default: true,
@@ -36,6 +36,7 @@ export default {
     staticTop: Boolean,
     inverse: Boolean,
   },
+  emits: ['update:modalValue'],
   data() {
     return {
       show: false,
@@ -64,7 +65,7 @@ export default {
   methods: {
     toggle() {
       this.show = !this.show
-      this.$emit('input', this.show)
+      this.$emit('update:modalValue', this.show)
     },
   },
 }

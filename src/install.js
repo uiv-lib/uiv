@@ -1,5 +1,5 @@
 import * as components from './components'
-// import * as directives from './directives'
+import * as directives from './directives'
 // import * as services from './services'
 import locale from './locale'
 
@@ -13,10 +13,10 @@ const install = (Vue, options = {}) => {
     Vue.component(_key, components[key])
   })
   // Register directives
-  // Object.keys(directives).forEach((key) => {
-  //   const _key = options.prefix ? options.prefix + '-' + key : key
-  //   Vue.directive(_key, directives[key])
-  // })
+  Object.keys(directives).forEach((key) => {
+    const _key = options.prefix ? options.prefix + '-' + key : key
+    Vue.directive(_key, directives[key])
+  })
   // // Register services
   // Object.keys(services).forEach((key) => {
   //   const service = services[key]
