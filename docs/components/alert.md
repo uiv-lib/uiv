@@ -1,3 +1,10 @@
+<script setup>
+import Example from '../.vitepress/components/alert/example.vue';
+import Dismissible from '../.vitepress/components/alert/dismissible.vue';
+import AutoDismissing from '../.vitepress/components/alert/auto-dismissing.vue';
+import WithCollapse from '../.vitepress/components/alert/with-collapse.vue';
+</script>
+
 # Alert
 
 > Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.
@@ -6,7 +13,7 @@
 
 Wrap any text or HTML in `<alert>` and use one of the four alert types (`success` / `info` / `warning` / `danger`) for basic alert messages.
 
-<alert-example/>
+<example/>
 
 <<< @/.vitepress/components/alert/example.vue
 
@@ -14,7 +21,7 @@ Wrap any text or HTML in `<alert>` and use one of the four alert types (`success
 
 Use `dismissible` to allow user to dismiss alerts.
 
-<alert-dismissible/>
+<dismissible/>
 
 <<< @/.vitepress/components/alert/dismissible.vue
 
@@ -22,13 +29,13 @@ Use `dismissible` to allow user to dismiss alerts.
 
 Use `duration` in milliseconds to auto dismiss alert. It can be used together with `dismissible`.
 
-<alert-auto-dismissing/>
+<auto-dismissing/>
 
 <<< @/.vitepress/components/alert/auto-dismissing.vue
 
 ## Use with collapse
 
-<alert-with-collapse/>
+<with-collapse/>
 
 <<< @/.vitepress/components/alert/with-collapse.vue
 

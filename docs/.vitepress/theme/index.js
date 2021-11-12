@@ -1,5 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
 import * as uiv from '../../../src/index'
+import './theme.less'
 
 export default {
   ...DefaultTheme,
