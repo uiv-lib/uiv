@@ -6,11 +6,12 @@ import {
   focus,
 } from '../../utils/dom.utils'
 import { isBoolean } from '../../utils/object.utils'
+import { h } from 'vue'
 
 const DEFAULT_TAG = 'div'
 
 export default {
-  render(h) {
+  render() {
     return h(
       this.tag,
       {
@@ -22,7 +23,7 @@ export default {
         },
       },
       [
-        this.$slots.default,
+        this.$slots.default(),
         h(
           'ul',
           {
@@ -32,7 +33,7 @@ export default {
             },
             ref: 'dropdown',
           },
-          [this.$slots.dropdown]
+          [this.$slots.dropdown()]
         ),
       ]
     )
@@ -46,7 +47,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    value: Boolean,
+    modelValue: Boolean,
     dropup: {
       type: Boolean,
       default: false,
@@ -69,7 +70,7 @@ export default {
     }
   },
   watch: {
-    value(v) {
+    modelValue(v) {
       this.toggle(v)
     },
   },
@@ -82,7 +83,7 @@ export default {
     on(this.$refs.dropdown, EVENTS.KEY_DOWN, this.onKeyPress)
     on(window, EVENTS.CLICK, this.windowClicked)
     on(window, EVENTS.TOUCH_END, this.windowClicked)
-    if (this.value) {
+    if (this.modelValue) {
       this.toggle(true)
     }
   },
@@ -163,7 +164,7 @@ export default {
       if (this.appendToBody) {
         this.show ? this.appendDropdownToBody() : this.removeDropdownFromBody()
       }
-      this.$emit('input', this.show)
+      this.$emit('update:modelValue', this.show)
     },
     windowClicked(event) {
       const target = event.target

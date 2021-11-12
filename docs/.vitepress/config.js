@@ -70,6 +70,9 @@ export default {
   //     description: '基于 Vue 2 的 Bootstrap 3 组件库',
   //   },
   // },
+  // markdown: {
+  //   toc: { includeLevel: [1, 2] },
+  // },
   themeConfig: {
     logo: '/assets/image/logo.png',
     lastUpdated: 'Last Updated',
