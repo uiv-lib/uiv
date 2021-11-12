@@ -47,7 +47,7 @@ describe('Popover', () => {
     vm.$refs.popover.transitionTimeoutId = 3
     vm.$refs.popover.autoTimeoutId = 4
     await vm.$nextTick()
-    vm.$refs.popover.$destroy()
+    wrapper.unmount()
     await vm.$nextTick()
     expect(vm.$refs.popover.hideTimeoutId).toEqual(0)
     expect(vm.$refs.popover.showTimeoutId).toEqual(0)

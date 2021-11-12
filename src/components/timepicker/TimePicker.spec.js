@@ -426,7 +426,6 @@ describe('TimePicker', () => {
     await vm.$nextTick()
     const timeAfterAgain = new Date(vm.time)
     expect(timeAfterAgain.getTime()).toEqual(timeBefore.getTime())
-    vm.$destroy()
   })
 
   it('should be able to select input content on mouseup', async () => {

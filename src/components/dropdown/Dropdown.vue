@@ -215,7 +215,7 @@ export default {
             },
             ref: 'dropdown',
           },
-          [this.$slots.dropdown()]
+          [this.$slots.dropdown && this.$slots.dropdown()]
         ),
       ]
     )
