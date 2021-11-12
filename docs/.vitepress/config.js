@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   description: 'Bootstrap 3 components implemented by Vue 2.',
   head: [
     [
@@ -94,10 +94,13 @@ module.exports = {
         {
           text: 'Usage',
           collapsable: false,
-          children: [{ text: 'Getting Started', link: '/usage/getting-started' }, {
-            text: 'i18n',
-            link: '/usage/i18n'
-          }],
+          children: [
+            { text: 'Getting Started', link: '/usage/getting-started' },
+            {
+              text: 'i18n',
+              link: '/usage/i18n',
+            },
+          ],
         },
         {
           text: 'Components',
@@ -173,7 +176,7 @@ module.exports = {
           text: 'Funding',
           link: '/funding/',
         },
-      ]
+      ],
     },
   },
-};
+}
