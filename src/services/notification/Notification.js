@@ -10,7 +10,7 @@ import {
 } from '../../utils/object.utils'
 import Notification from '../../components/notification/Notification.vue'
 import { PLACEMENTS } from '../../constants/notification.constants'
-import Vue from 'vue'
+import { createApp } from 'vue'
 
 const queues = {
   [PLACEMENTS.TOP_LEFT]: [],
@@ -19,14 +19,15 @@ const queues = {
   [PLACEMENTS.BOTTOM_RIGHT]: [],
 }
 
-const destroy = (queue, instance) => {
+const destroy = (queue, { app, container }) => {
   // console.log('destroyNotification')
-  removeFromDom(instance.$el)
-  instance.$destroy()
-  spliceIfExist(queue, instance)
+  removeFromDom(container)
+  app.unmount()
+  spliceIfExist(queue, app)
 }
 
 const init = (options, cb, resolve = null, reject = null) => {
+  const container = document.createElement('div')
   const placement = options.placement
   const queue = queues[placement]
   // check if placement is valid
@@ -38,22 +39,23 @@ const init = (options, cb, resolve = null, reject = null) => {
   if (options.type === 'error') {
     options.type = 'danger'
   }
-  const instance = new Vue({
+  const app = createApp(Notification, {
     extends: Notification,
-    propsData: assign({}, { queue, placement }, options, {
-      cb(msg) {
-        destroy(queue, instance)
-        if (isFunction(cb)) {
-          cb(msg)
-        } else if (resolve && reject) {
-          resolve(msg)
-        }
-      },
-    }),
+    queue,
+    placement,
+    ...options,
+    cb(msg) {
+      destroy(queue, { app, container })
+      if (isFunction(cb)) {
+        cb(msg)
+      } else if (resolve && reject) {
+        resolve(msg)
+      }
+    },
   })
-  instance.$mount()
-  document.body.appendChild(instance.$el)
-  queue.push(instance)
+  const vm = app.mount(container)
+  document.body.appendChild(vm.$el)
+  queue.push(app)
 }
 
 // eslint-disable-next-line default-param-last

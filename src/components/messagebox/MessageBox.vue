@@ -78,7 +78,7 @@
 import { TYPES } from '../../constants/messagebox.constants'
 import Local from '../../mixins/locale.mixin'
 import Modal from '../../components/modal/Modal.vue'
-import Btn from '../../components/button/Btn'
+import Btn from '../../components/button/Btn.vue'
 import { isExist } from '../../utils/object.utils'
 
 export default {
@@ -136,7 +136,7 @@ export default {
   data() {
     return {
       TYPES,
-      show: false,
+      show: true,
       input: '',
       dirty: false,
     }
