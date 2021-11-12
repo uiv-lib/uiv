@@ -1,19 +1,20 @@
 import { addClass, removeClass } from '../../utils/dom.utils'
+import { h } from 'vue'
 
 const COLLAPSE = 'collapse'
 const IN = 'in'
 const COLLAPSING = 'collapsing'
 
 export default {
-  render(h) {
-    return h(this.tag, {}, this.$slots.default)
+  render() {
+    return h(this.tag, {}, this.$slots.default())
   },
   props: {
     tag: {
       type: String,
       default: 'div',
     },
-    value: {
+    modelValue: {
       type: Boolean,
       default: false,
     },
@@ -28,14 +29,14 @@ export default {
     }
   },
   watch: {
-    value(show) {
+    modelValue(show) {
       this.toggle(show)
     },
   },
   mounted() {
     const el = this.$el
     addClass(el, COLLAPSE)
-    if (this.value) {
+    if (this.modelValue) {
       addClass(el, IN)
     }
   },

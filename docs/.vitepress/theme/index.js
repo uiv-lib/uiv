@@ -1,6 +1,7 @@
 import DefaultTheme from 'vitepress/theme'
 import * as uiv from '../../../src/index'
 import './theme.less'
+import RouterLink from '../stubs/RouterLink.vue'
 
 const modules = import.meta.globEager('../components/**/*.vue')
 const components = []
@@ -20,5 +21,7 @@ export default {
     components.forEach((component) => {
       app.component(component.name, component)
     })
+
+    app.component('RouterLink', RouterLink)
   },
 }
