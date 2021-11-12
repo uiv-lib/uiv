@@ -60,7 +60,7 @@
 
 <script>
 import Local from '../../mixins/locale.mixin'
-import Btn from './../button/Btn'
+import Btn from './../button/Btn.vue'
 import {
   EVENTS,
   on,
@@ -81,7 +81,7 @@ export default {
   components: { Btn },
   mixins: [Local],
   props: {
-    value: {
+    modelValue: {
       type: Boolean,
       default: false,
     },
@@ -139,6 +139,7 @@ export default {
       default: 'block',
     },
   },
+  emits: ['update:modelValue', 'show', 'hide'],
   data() {
     return {
       msg: '',
@@ -152,7 +153,7 @@ export default {
     },
   },
   watch: {
-    value(v) {
+    modelValue(v) {
       this.$toggle(v)
     },
   },
@@ -160,7 +161,7 @@ export default {
     removeFromDom(this.$refs.backdrop)
     on(window, EVENTS.MOUSE_DOWN, this.suppressBackgroundClose)
     on(window, EVENTS.KEY_UP, this.onKeyPress)
-    if (this.value) {
+    if (this.modelValue) {
       this.$toggle(true)
     }
   },
@@ -177,7 +178,7 @@ export default {
   },
   methods: {
     onKeyPress(event) {
-      if (this.keyboard && this.value && event.keyCode === 27) {
+      if (this.keyboard && this.modelValue && event.keyCode === 27) {
         const thisModal = this.$refs.backdrop
         let thisZIndex = thisModal.style.zIndex
         thisZIndex =
@@ -211,7 +212,7 @@ export default {
           // Skip the hiding while show===false
           if (!show && shouldClose) {
             this.msg = msg
-            this.$emit('input', show)
+            this.$emit('update:modelValue', show)
           }
         })
       } else {
@@ -222,7 +223,7 @@ export default {
         }
 
         this.msg = msg
-        this.$emit('input', show)
+        this.$emit('update:modelValue', show)
       }
     },
     $toggle(show) {

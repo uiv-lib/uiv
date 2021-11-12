@@ -2,7 +2,7 @@
 // export { default as Slide } from './carousel/Slide.vue'
 export { default as Collapse } from './collapse/Collapse.js'
 export { default as Dropdown } from './dropdown/Dropdown.js'
-// export { default as Modal } from './modal/Modal.vue'
+export { default as Modal } from './modal/Modal.vue'
 // export { default as Tab } from './tabs/Tab.vue'
 // export { default as Tabs } from './tabs/Tabs.vue'
 // export { default as DatePicker } from './datepicker/DatePicker.vue'
