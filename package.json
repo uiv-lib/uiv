@@ -64,7 +64,7 @@
     "jest-serializer-vue": "2.0.2",
     "lodash": "4.17.21",
     "prettier": "2.4.1",
-    "rollup": "2.59.0",
+    "rollup": "2.60.0",
     "rollup-plugin-filesize": "9.1.1",
     "rollup-plugin-strip-code": "0.2.7",
     "rollup-plugin-uglify": "6.0.4",
