@@ -50,9 +50,9 @@ const bind = (el, binding) => {
     trigger,
   })
   const container = document.createElement('div')
-  // document.body.appendChild(container)
+  app.mount(container)
   el[INSTANCE] = {
-    vm: app.mount(container),
+    app,
     container,
   }
 }
@@ -61,7 +61,7 @@ const unbind = (el) => {
   // console.log('unbind')
   const instance = el[INSTANCE]
   if (instance) {
-    instance.vm.unmount()
+    instance.app.unmount()
     instance.container.remove()
   }
   delete el[INSTANCE]

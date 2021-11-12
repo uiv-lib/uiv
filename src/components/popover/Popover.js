@@ -1,5 +1,6 @@
 import { TRIGGERS } from '../../utils/dom.utils'
 import popupMixin from '../../mixins/popup.mixin'
+import { h } from 'vue'
 
 export default {
   mixins: [popupMixin],
@@ -8,9 +9,9 @@ export default {
       name: 'popover',
     }
   },
-  render(h) {
+  render() {
     return h(this.tag, [
-      this.$slots.default,
+      this.$slots.default && this.$slots.default(),
       h(
         'div',
         {
@@ -18,22 +19,22 @@ export default {
             display: 'block',
           },
           ref: 'popup',
-          on: {
-            mouseleave: this.hideOnLeave,
-          },
+          onMouseleave: this.hideOnLeave,
         },
         [
           h('div', { class: 'arrow' }),
-          h(
-            'h3',
-            {
-              class: 'popover-title',
-              directives: [{ name: 'show', value: this.title }],
-            },
-            this.title
-          ),
+          this.title
+            ? h(
+                'h3',
+                {
+                  class: 'popover-title',
+                  directives: [{ name: 'show', value: this.title }],
+                },
+                this.title
+              )
+            : null,
           h('div', { class: 'popover-content' }, [
-            this.content || this.$slots.popover,
+            this.content || (this.$slots.popover && this.$slots.popover()),
           ]),
         ]
       ),
