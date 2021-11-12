@@ -23,7 +23,7 @@ export default {
         },
       },
       [
-        this.$slots.default(),
+        this.$slots.default && this.$slots.default(),
         h(
           'ul',
           {

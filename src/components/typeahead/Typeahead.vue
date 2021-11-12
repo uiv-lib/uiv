@@ -45,7 +45,7 @@ import Dropdown from '../dropdown/Dropdown.js'
 export default {
   components: { Dropdown },
   props: {
-    value: {
+    modelValue: {
       required: true,
     },
     data: Array,
@@ -97,6 +97,13 @@ export default {
       default: true,
     },
   },
+  emits: [
+    'update:modelValue',
+    'loading',
+    'loaded',
+    'loaded-error',
+    'selected-item-changed',
+  ],
   data() {
     return {
       inputEl: null,
@@ -126,7 +133,7 @@ export default {
       this.initInputElByTarget(el)
       this.initListeners()
     },
-    value(value) {
+    modelValue(value) {
       this.setInputTextByValue(value)
     },
     activeIndex(index) {
@@ -141,8 +148,8 @@ export default {
       this.dropdownMenuEl =
         this.$refs.dropdown.$el.querySelector('.dropdown-menu')
       // set input text if v-model not empty
-      if (this.value) {
-        this.setInputTextByValue(this.value)
+      if (this.modelValue) {
+        this.setInputTextByValue(this.modelValue)
       }
     })
   },
@@ -257,7 +264,7 @@ export default {
     inputChanged() {
       const value = this.inputEl.value
       this.fetchItems(value, this.debounce)
-      this.$emit('input', this.forceSelect ? undefined : value)
+      this.$emit('update:modelValue', this.forceSelect ? undefined : value)
     },
     inputFocused() {
       if (this.openOnFocus) {
@@ -271,7 +278,7 @@ export default {
       }
       if (this.inputEl && this.forceClear) {
         this.$nextTick(() => {
-          if (typeof this.value === 'undefined') {
+          if (typeof this.modelValue === 'undefined') {
             this.inputEl.value = ''
           }
         })
@@ -305,7 +312,7 @@ export default {
       }
     },
     selectItem(item) {
-      this.$emit('input', item)
+      this.$emit('update:modelValue', item)
       this.open = false
     },
     highlight(item) {

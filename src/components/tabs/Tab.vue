@@ -1,7 +1,7 @@
 <template>
   <div class="tab-pane" :class="{ fade: transition > 0 }" role="tabpanel">
     <slot></slot>
-    <teleport :to="_uid.toString()">
+    <teleport v-if="isMounted && $slots.title" :to="'#' + uid.toString()">
       <slot name="title" />
     </teleport>
   </div>
@@ -13,6 +13,8 @@ import { addClass, removeClass } from '../../utils/dom.utils'
 
 const ACTIVE_CLASS = 'active'
 const IN_CLASS = 'in'
+
+let id = 0
 
 export default {
   props: {
@@ -42,8 +44,10 @@ export default {
   },
   data() {
     return {
-      active: true,
+      active: null,
       transition: 150,
+      uid: `tab_${++id}`,
+      isMounted: false,
     }
   },
   watch: {
@@ -73,6 +77,9 @@ export default {
     } catch (e) {
       throw new Error('<tab> parent must be <tabs>.')
     }
+  },
+  mounted() {
+    this.isMounted = true
   },
   beforeUnmount() {
     const tabs = this.$parent && this.$parent.tabs

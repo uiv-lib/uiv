@@ -85,7 +85,7 @@
 
 <script>
 import Locale from '../../mixins/locale.mixin'
-import Btn from './../button/Btn'
+import Btn from './../button/Btn.vue'
 import { daysInMonth, getWeekNumber } from '../../utils/date.utils'
 import { isExist, isFunction } from '../../utils/object.utils'
 

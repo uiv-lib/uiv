@@ -11,7 +11,7 @@
     <div
       class="form-control dropdown-toggle clearfix"
       :class="selectClasses"
-      :disabled="disabled"
+      :disabled="disabled ? true : undefined"
       tabindex="0"
       data-role="trigger"
       @focus="$emit('focus', $event)"
@@ -101,7 +101,7 @@ export default {
   components: { Dropdown },
   mixins: [Local],
   props: {
-    value: {
+    modelValue: {
       type: Array,
       required: true,
     },
@@ -159,6 +159,7 @@ export default {
     },
     itemSelectedClass: String,
   },
+  emits: ['focus', 'blur', 'visible-change', 'update:modelValue', 'change'],
   data() {
     return {
       showDropdown: false,
@@ -216,18 +217,18 @@ export default {
     },
     selectTextClasses() {
       return {
-        'text-muted': this.value.length === 0,
+        'text-muted': this.modelValue.length === 0,
       }
     },
     labelValue() {
       const optionsByValue = this.options.map((v) => v[this.valueKey])
-      return this.value.map((v) => {
+      return this.modelValue.map((v) => {
         const index = optionsByValue.indexOf(v)
         return index >= 0 ? this.options[index][this.labelKey] : v
       })
     },
     selectedText() {
-      if (this.value.length) {
+      if (this.modelValue.length) {
         const labelValue = this.labelValue
         if (this.collapseSelected) {
           let str = labelValue[0]
@@ -300,28 +301,28 @@ export default {
       return result
     },
     isItemSelected(item) {
-      return this.value.indexOf(item[this.valueKey]) >= 0
+      return this.modelValue.indexOf(item[this.valueKey]) >= 0
     },
     toggle(item) {
       if (item.disabled) {
         return
       }
       const value = item[this.valueKey]
-      const index = this.value.indexOf(value)
+      const index = this.modelValue.indexOf(value)
       if (this.limit === 1) {
         const newValue = index >= 0 ? [] : [value]
-        this.$emit('input', newValue)
+        this.$emit('update:modelValue', newValue)
         this.$emit('change', newValue)
       } else {
         if (index >= 0) {
-          const newVal = this.value.slice()
+          const newVal = this.modelValue.slice()
           newVal.splice(index, 1)
-          this.$emit('input', newVal)
+          this.$emit('update:modelValue', newVal)
           this.$emit('change', newVal)
-        } else if (this.limit === 0 || this.value.length < this.limit) {
-          const newVal = this.value.slice()
+        } else if (this.limit === 0 || this.modelValue.length < this.limit) {
+          const newVal = this.modelValue.slice()
           newVal.push(value)
-          this.$emit('input', newVal)
+          this.$emit('update:modelValue', newVal)
           this.$emit('change', newVal)
         } else {
           this.$emit('limit-exceed')

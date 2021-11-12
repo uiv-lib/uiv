@@ -33,7 +33,7 @@
         >
           <a
             v-if="tab.$slots.title"
-            :id="tab._uid.toString()"
+            :id="tab.uid"
             role="tab"
             href="#"
             @click.prevent="select(tabs.indexOf(tab))"
@@ -88,7 +88,7 @@ export default {
     customNavClass: null,
     customContentClass: null,
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'change', 'changed', BEFORE_CHANGE_EVENT],
   data() {
     return {
       tabs: [],
@@ -169,14 +169,11 @@ export default {
     },
   },
   watch: {
-    modelValue: {
-      immediate: true,
-      handler(value) {
-        if (isNumber(value)) {
-          this.activeIndex = value
-          this.selectCurrent()
-        }
-      },
+    modelValue(value) {
+      if (isNumber(value)) {
+        this.activeIndex = value
+        this.selectCurrent()
+      }
     },
     tabs(tabs) {
       tabs.forEach((tab, index) => {
@@ -187,6 +184,9 @@ export default {
       })
       this.selectCurrent()
     },
+  },
+  mounted() {
+    this.selectCurrent()
   },
   methods: {
     getTabClasses(tab, isSubTab = false) {

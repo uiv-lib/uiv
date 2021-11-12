@@ -62,7 +62,7 @@
 
 <script>
 import Locale from '../../mixins/locale.mixin'
-import Btn from './../button/Btn'
+import Btn from './../button/Btn.vue'
 import { isExist } from '../../utils/object.utils'
 
 export default {
