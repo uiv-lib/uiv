@@ -149,12 +149,12 @@ describe('Modal', () => {
       }
     )
     await nextTick()
-    const modal1 = wrapper.findAll('.modal').at(0)
-    const modal2 = wrapper.findAll('.modal').at(1)
-    const modal3 = wrapper.findAll('.modal').at(2)
-    const trigger = wrapper.findAll('.btn').at(0)
-    const trigger2 = wrapper.findAll('.modal .modal-body .btn').at(0)
-    const trigger3 = wrapper.findAll('.modal .modal-body .btn').at(1)
+    const modal1 = wrapper.findAll('.modal')[0]
+    const modal2 = wrapper.findAll('.modal')[1]
+    const modal3 = wrapper.findAll('.modal')[2]
+    const trigger = wrapper.findAll('.btn')[0]
+    const trigger2 = wrapper.findAll('.modal .modal-body .btn')[0]
+    const trigger3 = wrapper.findAll('.modal .modal-body .btn')[1]
     expect(getBackdropsNum()).toEqual(0)
     // open modal 1
     await trigger.trigger('click')
@@ -164,9 +164,9 @@ describe('Modal', () => {
     expect(modal3.classes()).not.toContain('in')
     expect(getBackdropsNum()).toEqual(1)
     expect(modal1.element.style.zIndex).toEqual('')
-    expect(
-      wrapper.findAll('.modal-backdrop').at(0).element.style.zIndex
-    ).toEqual('')
+    expect(wrapper.findAll('.modal-backdrop')[0].element.style.zIndex).toEqual(
+      ''
+    )
     expectBodyOverflow(false)
     // open modal 2
     await trigger2.trigger('click')
@@ -176,9 +176,9 @@ describe('Modal', () => {
     expect(modal3.classes()).not.toContain('in')
     expect(getBackdropsNum()).toEqual(2)
     expect(modal2.element.style.zIndex).toEqual('1070')
-    expect(
-      wrapper.findAll('.modal-backdrop').at(1).element.style.zIndex
-    ).toEqual('1060')
+    expect(wrapper.findAll('.modal-backdrop')[1].element.style.zIndex).toEqual(
+      '1060'
+    )
     expectBodyOverflow(false)
     // open modal 3
     await trigger3.trigger('click')
@@ -188,9 +188,9 @@ describe('Modal', () => {
     expect(modal3.classes()).toContain('in')
     expect(getBackdropsNum()).toEqual(3)
     expect(modal3.element.style.zIndex).toEqual('1090')
-    expect(
-      wrapper.findAll('.modal-backdrop').at(2).element.style.zIndex
-    ).toEqual('1080')
+    expect(wrapper.findAll('.modal-backdrop')[2].element.style.zIndex).toEqual(
+      '1080'
+    )
     expectBodyOverflow(false)
     // dismiss modal 3
     await modal3.find('.btn-primary').trigger('click')
@@ -253,12 +253,12 @@ describe('Modal', () => {
     )
     await nextTick()
     // console.log(document.body.innerHTML)
-    const modal1 = wrapper.findAll('.modal').at(0)
-    const modal2 = wrapper.findAll('.modal').at(1)
-    const modal3 = wrapper.findAll('.modal').at(2)
-    const trigger = wrapper.findAll('.btn').at(0)
-    const trigger2 = wrapper.findAll('.modal .modal-body .btn').at(0)
-    const trigger3 = wrapper.findAll('.modal .modal-body .btn').at(1)
+    const modal1 = wrapper.findAll('.modal')[0]
+    const modal2 = wrapper.findAll('.modal')[1]
+    const modal3 = wrapper.findAll('.modal')[2]
+    const trigger = wrapper.findAll('.btn')[0]
+    const trigger2 = wrapper.findAll('.modal .modal-body .btn')[0]
+    const trigger3 = wrapper.findAll('.modal .modal-body .btn')[1]
     expect(getBackdropsNum()).toEqual(0)
     // open modal 1
     await trigger.trigger('click')
@@ -268,9 +268,9 @@ describe('Modal', () => {
     expect(modal3.classes()).not.toContain('in')
     expect(getBackdropsNum()).toEqual(1)
     expect(modal1.element.style.zIndex).toEqual('')
-    expect(
-      wrapper.findAll('.modal-backdrop').at(0).element.style.zIndex
-    ).toEqual('')
+    expect(wrapper.findAll('.modal-backdrop')[0].element.style.zIndex).toEqual(
+      ''
+    )
     expectBodyOverflow(false)
     // open modal 2
     await trigger2.trigger('click')
@@ -280,9 +280,9 @@ describe('Modal', () => {
     expect(modal3.classes()).not.toContain('in')
     expect(getBackdropsNum()).toEqual(2)
     expect(modal2.element.style.zIndex).toEqual('1070')
-    expect(
-      wrapper.findAll('.modal-backdrop').at(1).element.style.zIndex
-    ).toEqual('1060')
+    expect(wrapper.findAll('.modal-backdrop')[1].element.style.zIndex).toEqual(
+      '1060'
+    )
     expectBodyOverflow(false)
     // open modal 3
     await trigger3.trigger('click')
@@ -294,7 +294,7 @@ describe('Modal', () => {
     expect(modal3.element.style.zIndex).toEqual('1090')
     // todo: why failed?
     // expect(
-    //   wrapper.findAll('.modal-backdrop').at(2).element.style.zIndex
+    //   wrapper.findAll('.modal-backdrop')[2].element.style.zIndex
     // ).toEqual('1080')
     expectBodyOverflow(false)
     // dismiss modal 3
@@ -307,7 +307,7 @@ describe('Modal', () => {
     // body overflow should be still disabled, because modal 1 & 2 is still open
     expectBodyOverflow(false)
     // dismiss modal 2
-    await modal2.findAll('.btn-primary').at(1).trigger('click')
+    await modal2.findAll('.btn-primary')[1].trigger('click')
     await sleep(transition)
     expect(modal1.classes()).toContain('in')
     // expect(modal2.classes()).not.toContain('in')
@@ -316,7 +316,7 @@ describe('Modal', () => {
     // body overflow should be still disabled, because modal 1 is still open
     expectBodyOverflow(false)
     // dismiss modal 1
-    await modal1.findAll('.btn-primary').at(2).trigger('click')
+    await modal1.findAll('.btn-primary')[2].trigger('click')
     await sleep(transition)
     expect(modal1.classes()).not.toContain('in')
     expect(modal2.classes()).not.toContain('in')
@@ -353,8 +353,8 @@ describe('Modal', () => {
       }
     )
     await nextTick()
-    const modal1 = wrapper.findAll('.modal').at(0)
-    const trigger = wrapper.findAll('.btn').at(0)
+    const modal1 = wrapper.findAll('.modal')[0]
+    const trigger = wrapper.findAll('.btn')[0]
     expect(getBackdropsNum()).toEqual(0)
     // open modal 1
     trigger.trigger('click')
@@ -386,23 +386,23 @@ describe('Modal', () => {
 
   it('should be able to open modal 1', async () => {
     const wrapper = baseVm()
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
     expect(document.querySelector('.modal-backdrop')).toBeDefined()
-    expect(wrapper.findAll('.modal').at(0).classes()).toContain('in')
-    expect(wrapper.findAll('.modal-title').at(0).text()).toEqual('Modal 1')
+    expect(wrapper.findAll('.modal')[0].classes()).toContain('in')
+    expect(wrapper.findAll('.modal-title')[0].text()).toEqual('Modal 1')
   })
 
   it('should be able to close by esc key click', async () => {
     const wrapper = baseVm()
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).toBeDefined()
-    expect(wrapper.findAll('.modal').at(0).classes()).toContain('in')
-    expect(wrapper.findAll('.modal-title').at(0).text()).toEqual('Modal 1')
+    expect(wrapper.findAll('.modal')[0].classes()).toContain('in')
+    expect(wrapper.findAll('.modal-title')[0].text()).toEqual('Modal 1')
     wrapper.vm.$refs.modal.onKeyPress({ keyCode: 28 }) // not a esc key
     await nextTick()
     expect(wrapper.vm.open).toEqual(true)
@@ -413,17 +413,17 @@ describe('Modal', () => {
 
   it('should be able to close modal 1 and fire callback', async () => {
     const wrapper = baseVm()
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).toBeDefined()
-    expect(wrapper.findAll('.modal').at(0).classes()).toContain('in')
-    expect(wrapper.findAll('.modal-title').at(0).text()).toEqual('Modal 1')
-    await triggerEvent(wrapper.findAll('button.close').at(0), 'click')
+    expect(wrapper.findAll('.modal')[0].classes()).toContain('in')
+    expect(wrapper.findAll('.modal-title')[0].text()).toEqual('Modal 1')
+    await triggerEvent(wrapper.findAll('button.close')[0], 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).toBeNull()
-    expect(wrapper.findAll('.modal').at(0).classes()).not.toContain('in')
+    expect(wrapper.findAll('.modal')[0].classes()).not.toContain('in')
     expect(document.querySelector('.alert')).toBeDefined()
     expect(
       document.querySelector('.alert .media-body > div').textContent
@@ -432,17 +432,17 @@ describe('Modal', () => {
 
   it('should be able to close modal 1 with ok option and fire callback', async () => {
     const wrapper = baseVm()
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).toBeDefined()
-    expect(wrapper.findAll('.modal').at(0).classes()).toContain('in')
-    expect(wrapper.findAll('.modal-title').at(0).text()).toEqual('Modal 1')
-    await triggerEvent(wrapper.findAll('.modal-footer button').at(1), 'click')
+    expect(wrapper.findAll('.modal')[0].classes()).toContain('in')
+    expect(wrapper.findAll('.modal-title')[0].text()).toEqual('Modal 1')
+    await triggerEvent(wrapper.findAll('.modal-footer button')[1], 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).toBeNull()
-    expect(wrapper.findAll('.modal').at(0).classes()).not.toContain('in')
+    expect(wrapper.findAll('.modal')[0].classes()).not.toContain('in')
     expect(document.querySelector('.alert')).toBeDefined()
     expect(
       document.querySelector('.alert .media-body > div').textContent
@@ -461,7 +461,7 @@ describe('Modal', () => {
         open1: false,
       }
     )
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
@@ -485,7 +485,7 @@ describe('Modal', () => {
         open2: false,
       }
     )
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
@@ -510,7 +510,7 @@ describe('Modal', () => {
         open1: false,
       }
     )
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
@@ -532,7 +532,7 @@ describe('Modal', () => {
         open2: false,
       }
     )
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
@@ -559,7 +559,7 @@ describe('Modal', () => {
         open1: false,
       }
     )
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
@@ -581,7 +581,7 @@ describe('Modal', () => {
         open2: false,
       }
     )
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
@@ -608,7 +608,7 @@ describe('Modal', () => {
         open1: false,
       }
     )
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
@@ -636,17 +636,17 @@ describe('Modal', () => {
         open: false,
       }
     )
-    const trigger = wrapper.findAll('.btn').at(0)
-    const modal = wrapper.findAll('.modal').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
+    const modal = wrapper.findAll('.modal')[0]
     await triggerEvent(trigger, 'click')
     await sleep(transition)
     expect(document.querySelector('.modal-backdrop')).toBeDefined()
     expect(modal.classes()).toContain('in')
     const btns = modal.findAll('.modal-footer button')
-    expect(btns.at(0).text()).toEqual('No way!')
-    expect(btns.at(0).classes()).toContain('btn-warning')
-    expect(btns.at(1).text()).toEqual('Yes, please')
-    expect(btns.at(1).classes()).toContain('btn-danger')
+    expect(btns[0].text()).toEqual('No way!')
+    expect(btns[0].classes()).toContain('btn-warning')
+    expect(btns[1].text()).toEqual('Yes, please')
+    expect(btns[1].classes()).toContain('btn-danger')
   })
 
   it('should be able to auto-focus on ok btn', async () => {
@@ -661,7 +661,7 @@ describe('Modal', () => {
         open: false,
       }
     )
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
     await sleep(transition + 100)
@@ -684,7 +684,7 @@ describe('Modal', () => {
         open: false,
       }
     )
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
     await sleep(transition + 100)
@@ -695,7 +695,7 @@ describe('Modal', () => {
 
   it('should be able to close modal on backdrop click', async () => {
     const wrapper = baseVm()
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
@@ -720,7 +720,7 @@ describe('Modal', () => {
         open: false,
       }
     )
-    const trigger = wrapper.findAll('.btn').at(0)
+    const trigger = wrapper.findAll('.btn')[0]
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0]
     expect(document.querySelector('.modal-backdrop')).toBeNull()
     await triggerEvent(trigger, 'click')
@@ -959,12 +959,12 @@ describe('Modal', () => {
       }
     )
     await nextTick()
-    const modal1 = wrapper.findAll('.modal').at(0)
-    const modal2 = wrapper.findAll('.modal').at(1)
-    const modal3 = wrapper.findAll('.modal').at(2)
-    const trigger = wrapper.findAll('.btn').at(0)
-    const trigger2 = wrapper.findAll('.modal .modal-body .btn').at(0)
-    const trigger3 = wrapper.findAll('.modal .modal-body .btn').at(1)
+    const modal1 = wrapper.findAll('.modal')[0]
+    const modal2 = wrapper.findAll('.modal')[1]
+    const modal3 = wrapper.findAll('.modal')[2]
+    const trigger = wrapper.findAll('.btn')[0]
+    const trigger2 = wrapper.findAll('.modal .modal-body .btn')[0]
+    const trigger3 = wrapper.findAll('.modal .modal-body .btn')[1]
     expect(getBackdropsNum()).toEqual(0)
     // open modal 1
     trigger.trigger('click')

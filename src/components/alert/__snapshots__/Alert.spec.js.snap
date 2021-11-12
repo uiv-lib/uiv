@@ -5,7 +5,9 @@ exports[`Alert renders correctly 1`] = `
   class="alert alert-info"
   role="alert"
 >
-  <!---->
-   EMT YES
+  <!--v-if-->
+  
+  EMT YES
+  
 </div>
 `;

@@ -5,7 +5,6 @@ const resolve = require('@rollup/plugin-node-resolve').nodeResolve
 const commonjs = require('@rollup/plugin-commonjs')
 const buble = require('@rollup/plugin-buble')
 const alias = require('@rollup/plugin-alias')
-const strip = require('rollup-plugin-strip-code')
 
 const dist = path.join(__dirname, '..', 'dist')
 

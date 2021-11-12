@@ -14,13 +14,13 @@ describe('Breadcrumbs', () => {
 
     const links = wrapper.findAll('li')
     expect(links.length).toEqual(3)
-    const $link1 = links.at(0).find('a')
+    const $link1 = links[0].find('a')
     expect($link1.attributes('href')).toEqual('#')
     expect($link1.text()).toEqual('Home')
-    const $link2 = links.at(1).find('a')
+    const $link2 = links[1].find('a')
     expect($link2.attributes('href')).toEqual('#')
     expect($link2.text()).toEqual('Library')
-    const $nav3 = links.at(2)
+    const $nav3 = links[2]
     expect($nav3.attributes('class')).toContain('active')
     expect($nav3.findAll('a').length).toEqual(0)
     expect($nav3.text()).toEqual('Data')
@@ -36,15 +36,15 @@ describe('Breadcrumbs', () => {
       `)
     const links = wrapper.findAll('li')
     expect(links.length).toEqual(3)
-    const $link1 = links.at(0).find('a')
+    const $link1 = links[0].find('a')
     expect($link1.attributes('href')).toEqual('#')
     const $b = $link1.findAll('b')
     expect($b.length).toEqual(1)
-    expect($b.at(0).text()).toEqual('Home')
-    const $link2 = links.at(1).find('a')
+    expect($b[0].text()).toEqual('Home')
+    const $link2 = links[1].find('a')
     expect($link2.attributes('href')).toEqual('#')
     expect($link2.text()).toEqual('Library')
-    const $nav3 = links.at(2)
+    const $nav3 = links[2]
     expect($nav3.attributes('class')).toContain('active')
     expect($nav3.findAll('a').length).toEqual(0)
     expect($nav3.text()).toEqual('Data')
@@ -57,7 +57,7 @@ describe('Breadcrumbs', () => {
         { text: 'Breadcrumbs', to: '/breadcrumbs' },
       ],
     })
-    expect(wrapper.findAllComponents(RouterLinkStub).at(0).props('to')).toEqual(
+    expect(wrapper.findAllComponents(RouterLinkStub)[0].props('to')).toEqual(
       '/'
     )
     expect(wrapper.findAllComponents(RouterLinkStub).length).toEqual(1)
@@ -72,7 +72,7 @@ describe('Breadcrumbs', () => {
     )
     const $li = wrapper.findAll('li')
     expect($li.length).toEqual(1)
-    const $link1 = $li.at(0).find('a')
+    const $link1 = $li[0].find('a')
     expect($link1.attributes('href')).toEqual('#')
     expect($link1.text()).toEqual('test')
     expect(wrapper.findAll('.active').length).toEqual(0)

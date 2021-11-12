@@ -1,4 +1,6 @@
-import { enableAutoDestroy } from '@vue/test-utils'
+import { enableAutoUnmount, config } from '@vue/test-utils'
+
+config.renderStubDefaultSlot = true
 
 window.scrollTo = (x, y) => {
   document.documentElement.scrollTop = y
@@ -8,7 +10,7 @@ window.scrollTo = (x, y) => {
   window.dispatchEvent(new Event('resize'))
 }
 
-enableAutoDestroy(afterEach)
+enableAutoUnmount(afterEach)
 
 afterEach(() => {
   document.body.innerHTML = ''

@@ -34,6 +34,7 @@
     "lint:fix": "pnpm lint -- --fix"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.16.0",
     "@rollup/plugin-alias": "3.1.8",
     "@rollup/plugin-buble": "0.21.3",
     "@rollup/plugin-commonjs": "21.0.1",
@@ -41,11 +42,12 @@
     "@rollup/plugin-node-resolve": "13.0.6",
     "@rollup/plugin-replace": "3.0.0",
     "@vue/compiler-sfc": "^3.2.21",
-    "@vue/test-utils": "1.2.2",
+    "@vue/test-utils": "2.0.0-rc.16",
+    "@vue/vue3-jest": "27.0.0-alpha.3",
     "axios": "0.24.0",
-    "babel-core": "6.26.3",
+    "babel-core": "7.0.0-bridge.0",
     "babel-jest": "27.3.1",
-    "babel-preset-env": "1.7.0",
+    "babel-preset-env": "^1.7.0",
     "bootstrap": "3.4.1",
     "cross-env": "7.0.3",
     "es6-object-assign": "1.1.0",
@@ -65,14 +67,12 @@
     "prettier": "2.4.1",
     "rollup": "2.59.0",
     "rollup-plugin-filesize": "9.1.1",
-    "rollup-plugin-strip-code": "0.2.7",
     "rollup-plugin-uglify": "6.0.4",
     "rollup-plugin-vue": "6.0.0",
     "sinon": "12.0.1",
     "vitepress": "^0.20.1",
     "vue": "^3",
-    "vue-jest": "3.0.7",
-    "vue-template-compiler": "2.6.14"
+    "vue-jest": "5.0.0-alpha.10"
   },
   "peerDependencies": {
     "vue": "^3"
@@ -96,7 +96,7 @@
       "vue"
     ],
     "transform": {
-      ".*\\.(vue)$": "vue-jest",
+      ".*\\.(vue)$": "@vue/vue3-jest",
       "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
     },
     "snapshotSerializers": [

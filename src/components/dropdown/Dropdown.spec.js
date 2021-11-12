@@ -147,7 +147,7 @@ describe('Dropdown', () => {
     await triggerEvent(trigger, 'click')
     expect(dropdown.classes()).toContain('open')
     await assertKeyboardNav(trigger, dropdown, 0, 'down')
-    const spy = jest.spyOn(dropdown.findAll('li > a').at(0).element, 'click')
+    const spy = jest.spyOn(dropdown.findAll('li > a')[0].element, 'click')
     await triggerEvent(trigger, 'keydown.enter')
     expect(spy).toBeCalled()
   })
@@ -282,7 +282,7 @@ describe('Dropdown', () => {
 
   it('should be able to open dropdown append to body & menu-right on trigger click', async () => {
     const wrapper = appendToBodyVm()
-    const dropdown = wrapper.findAll('.dropdown').at(1)
+    const dropdown = wrapper.findAll('.dropdown')[1]
     const trigger = dropdown.find('button')
     expect(dropdown.classes()).not.toContain('open')
     expect(dropdown.findAll('.dropdown-menu-right').length).toEqual(1)
