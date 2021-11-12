@@ -27,7 +27,7 @@ export default {
   functional: true,
   components: { BreadcrumbItem },
   props: {
-    items: Array,
+    items: { type: Array, default: () => [] },
   },
   methods: {
     hasOwnProperty,

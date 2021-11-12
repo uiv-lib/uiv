@@ -40,7 +40,7 @@
     <tbody>
       <tr v-for="(row, i) in rows" :key="i">
         <td
-          v-for="(month, j) in row"
+          v-for="(m, j) in row"
           :key="`${i}_${j}`"
           colspan="2"
           width="33.333333%"
@@ -52,7 +52,7 @@
             :type="getBtnClass(i * 3 + j)"
             @click="changeView(i * 3 + j)"
           >
-            <span>{{ tCell(month) }}</span>
+            <span>{{ tCell(m) }}</span>
           </btn>
         </td>
       </tr>
@@ -69,11 +69,12 @@ export default {
   components: { Btn },
   mixins: [Locale],
   props: {
-    month: Number,
-    year: Number,
-    iconControlLeft: String,
-    iconControlRight: String,
+    month: { type: Number, default: undefined },
+    year: { type: Number, default: undefined },
+    iconControlLeft: { type: String, default: undefined },
+    iconControlRight: { type: String, default: undefined },
   },
+  emits: ['year-change', 'month-change', 'view-change'],
   data() {
     return {
       rows: [],

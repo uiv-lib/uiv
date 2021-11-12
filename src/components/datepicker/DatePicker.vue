@@ -81,7 +81,7 @@ export default {
   components: { DateView, MonthView, YearView, Btn },
   mixins: [Locale],
   props: {
-    modelValue: null,
+    modelValue: { type: null, required: true },
     width: {
       type: Number,
       default: 270,
@@ -98,8 +98,8 @@ export default {
       type: Boolean,
       default: true,
     },
-    limitFrom: null,
-    limitTo: null,
+    limitFrom: { type: null, default: undefined },
+    limitTo: { type: null, default: undefined },
     format: {
       type: String,
       default: 'yyyy-MM-dd',
@@ -112,8 +112,8 @@ export default {
       type: Function,
       default: Date.parse,
     },
-    dateClass: Function,
-    yearMonthFormatter: Function,
+    dateClass: { type: Function, default: undefined },
+    yearMonthFormatter: { type: Function, default: undefined },
     weekStartsWith: {
       type: Number,
       default: 0,

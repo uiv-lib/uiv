@@ -107,8 +107,8 @@ export default {
       type: Boolean,
       default: true,
     },
-    size: String,
-    align: String,
+    size: { type: String, default: undefined },
+    align: { type: String, default: undefined },
     totalPage: {
       type: Number,
       required: true,

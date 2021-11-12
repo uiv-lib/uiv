@@ -18,8 +18,8 @@ export default {
       },
       default: 0,
     },
-    labelText: String,
-    type: String,
+    labelText: { type: String, default: undefined },
+    type: { type: String, default: undefined },
     label: {
       type: Boolean,
       default: false,

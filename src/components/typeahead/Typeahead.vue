@@ -40,16 +40,17 @@ import {
   EVENTS,
   getElementBySelectorOrRef,
 } from '../../utils/dom.utils'
-import Dropdown from '../dropdown/Dropdown.js'
+import Dropdown from '../dropdown/Dropdown.vue'
 
 export default {
   components: { Dropdown },
   props: {
     modelValue: {
+      type: null,
       required: true,
     },
-    data: Array,
-    itemKey: String,
+    data: { type: Array, default: () => [] },
+    itemKey: { type: String, default: undefined },
     appendToBody: {
       type: Boolean,
       default: false,
@@ -74,9 +75,9 @@ export default {
       type: Number,
       default: 10,
     },
-    asyncSrc: String,
-    asyncKey: String,
-    asyncFunction: Function,
+    asyncSrc: { type: String, default: undefined },
+    asyncKey: { type: String, default: undefined },
+    asyncFunction: { type: Function, default: undefined },
     debounce: {
       type: Number,
       default: 200,
@@ -91,6 +92,7 @@ export default {
     },
     target: {
       required: true,
+      type: null,
     },
     preselect: {
       type: Boolean,

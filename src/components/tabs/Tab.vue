@@ -32,7 +32,7 @@ export default {
         return {}
       },
     },
-    group: String,
+    group: { type: String, default: undefined },
     pullRight: {
       type: Boolean,
       default: false,

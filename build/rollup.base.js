@@ -24,9 +24,5 @@ module.exports = {
     resolve(),
     commonjs(),
     buble(),
-    strip({
-      start_comment: 'START.TESTS_ONLY',
-      end_comment: 'END.TESTS_ONLY',
-    }),
   ],
 }

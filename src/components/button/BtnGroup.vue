@@ -16,7 +16,7 @@
 <script>
 export default {
   props: {
-    size: String,
+    size: { type: String, default: undefined },
     vertical: {
       type: Boolean,
       default: false,

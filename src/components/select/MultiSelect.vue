@@ -94,7 +94,7 @@
 
 <script>
 import Local from '../../mixins/locale.mixin'
-import Dropdown from '../dropdown/Dropdown.js'
+import Dropdown from '../dropdown/Dropdown.vue'
 import { onlyUnique } from '../../utils/array.utils'
 
 export default {
@@ -121,8 +121,8 @@ export default {
       type: Number,
       default: 0,
     },
-    size: String,
-    placeholder: String,
+    size: { type: String, default: undefined },
+    placeholder: { type: String, default: undefined },
     split: {
       type: String,
       default: ', ',
@@ -151,15 +151,23 @@ export default {
       type: Boolean,
       default: true,
     },
-    filterFunction: Function,
-    filterPlaceholder: String,
+    filterFunction: { type: Function, default: undefined },
+    filterPlaceholder: { type: String, default: undefined },
     selectedIcon: {
       type: String,
       default: 'glyphicon glyphicon-ok',
     },
-    itemSelectedClass: String,
+    itemSelectedClass: { type: String, default: undefined },
   },
-  emits: ['focus', 'blur', 'visible-change', 'update:modelValue', 'change'],
+  emits: [
+    'focus',
+    'blur',
+    'visible-change',
+    'update:modelValue',
+    'change',
+    'limit-exceed',
+    'search',
+  ],
   data() {
     return {
       showDropdown: false,

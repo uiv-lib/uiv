@@ -1,7 +1,7 @@
 export { default as Carousel } from './carousel/Carousel.vue'
 export { default as Slide } from './carousel/Slide.vue'
 export { default as Collapse } from './collapse/Collapse.js'
-export { default as Dropdown } from './dropdown/Dropdown.js'
+export { default as Dropdown } from './dropdown/Dropdown.vue'
 export { default as Modal } from './modal/Modal.vue'
 export { default as Tab } from './tabs/Tab.vue'
 export { default as Tabs } from './tabs/Tabs.vue'

@@ -37,8 +37,8 @@ const TRANSITION_DURATION = 300
 export default {
   components: { Alert },
   props: {
-    title: String,
-    content: String,
+    title: { type: String, default: undefined },
+    content: { type: String, default: undefined },
     html: {
       type: Boolean,
       default: false,
@@ -51,10 +51,10 @@ export default {
       type: Boolean,
       default: true,
     },
-    type: String,
-    placement: String,
-    icon: String,
-    customClass: null,
+    type: { type: String, default: undefined },
+    placement: { type: String, default: undefined },
+    icon: { type: String, default: undefined },
+    customClass: { type: null, default: undefined },
     cb: {
       type: Function,
       required: true,

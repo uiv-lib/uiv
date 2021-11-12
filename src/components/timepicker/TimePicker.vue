@@ -127,8 +127,8 @@ export default {
       type: Boolean,
       default: true,
     },
-    min: null,
-    max: null,
+    min: { type: null, default: undefined },
+    max: { type: null, default: undefined },
     hourStep: {
       type: Number,
       default: 1,

@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import Tooltip from '../../components/tooltip/Tooltip.js'
+import Tooltip from '../../components/tooltip/Tooltip.vue'
 import { hasOwnProperty } from '../../utils/object.utils'
 
 const INSTANCE = '_uiv_tooltip_instance'

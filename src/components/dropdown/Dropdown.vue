@@ -1,3 +1,4 @@
+<script>
 import {
   setDropdownPosition,
   on,
@@ -11,33 +12,6 @@ import { h } from 'vue'
 const DEFAULT_TAG = 'div'
 
 export default {
-  render() {
-    return h(
-      this.tag,
-      {
-        class: {
-          'btn-group': this.tag === DEFAULT_TAG,
-          dropdown: !this.dropup,
-          dropup: this.dropup,
-          open: this.show,
-        },
-      },
-      [
-        this.$slots.default && this.$slots.default(),
-        h(
-          'ul',
-          {
-            class: {
-              'dropdown-menu': true,
-              'dropdown-menu-right': this.menuRight,
-            },
-            ref: 'dropdown',
-          },
-          [this.$slots.dropdown()]
-        ),
-      ]
-    )
-  },
   props: {
     tag: {
       type: String,
@@ -60,9 +34,10 @@ export default {
       type: Boolean,
       default: false,
     },
-    notCloseElements: Array,
-    positionElement: null,
+    notCloseElements: { type: Array, default: () => [] },
+    positionElement: { type: null, default: undefined },
   },
+  emits: ['update:modelValue'],
   data() {
     return {
       show: false,
@@ -87,7 +62,7 @@ export default {
       this.toggle(true)
     }
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.removeDropdownFromBody()
     if (this.triggerEl) {
       off(this.triggerEl, EVENTS.CLICK, this.toggle)
@@ -100,13 +75,6 @@ export default {
   methods: {
     getFocusItem() {
       const dropdownEl = this.$refs.dropdown
-      /* START.TESTS_ONLY */
-      /* istanbul ignore else */
-      if (typeof window.__karma__ !== 'undefined') {
-        return dropdownEl.querySelector('li > a[focus=true]')
-      }
-      /* END.TESTS_ONLY */
-      /* istanbul ignore next */
       return dropdownEl.querySelector('li > a:focus')
     },
     onKeyPress(event) {
@@ -225,4 +193,32 @@ export default {
       }
     },
   },
+  render() {
+    return h(
+      this.tag,
+      {
+        class: {
+          'btn-group': this.tag === DEFAULT_TAG,
+          dropdown: !this.dropup,
+          dropup: this.dropup,
+          open: this.show,
+        },
+      },
+      [
+        this.$slots.default && this.$slots.default(),
+        h(
+          'ul',
+          {
+            class: {
+              'dropdown-menu': true,
+              'dropdown-menu-right': this.menuRight,
+            },
+            ref: 'dropdown',
+          },
+          [this.$slots.dropdown()]
+        ),
+      ]
+    )
+  },
 }
+</script>

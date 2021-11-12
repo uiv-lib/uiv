@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import Dropdown from '../dropdown/Dropdown.js'
+import Dropdown from '../dropdown/Dropdown.vue'
 import {
   isNumber,
   isFunction,
@@ -85,8 +85,8 @@ export default {
     justified: Boolean,
     pills: Boolean,
     stacked: Boolean,
-    customNavClass: null,
-    customContentClass: null,
+    customNavClass: { type: null, default: undefined },
+    customContentClass: { type: null, default: undefined },
   },
   emits: ['update:modelValue', 'change', 'changed', BEFORE_CHANGE_EVENT],
   data() {

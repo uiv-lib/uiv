@@ -85,8 +85,8 @@ export default {
       type: Boolean,
       default: false,
     },
-    title: String,
-    size: String,
+    title: { type: String, default: undefined },
+    size: { type: String, default: undefined },
     backdrop: {
       type: Boolean,
       default: true,
@@ -99,12 +99,12 @@ export default {
       type: Boolean,
       default: true,
     },
-    cancelText: String,
+    cancelText: { type: String, default: undefined },
     cancelType: {
       type: String,
       default: 'default',
     },
-    okText: String,
+    okText: { type: String, default: undefined },
     okType: {
       type: String,
       default: 'primary',
@@ -125,7 +125,7 @@ export default {
       type: Boolean,
       default: true,
     },
-    beforeClose: Function,
+    beforeClose: { type: Function, default: undefined },
     zOffset: {
       type: Number,
       default: 20,
@@ -263,10 +263,6 @@ export default {
               const btn = this.$el.querySelector('[data-action="auto-focus"]')
               if (btn) {
                 btn.focus()
-                /* START.TESTS_ONLY */
-                /* istanbul ignore next */
-                btn.setAttribute('data-focused', 'true')
-                /* END.TESTS_ONLY */
               }
             }
             this.$emit('show')
