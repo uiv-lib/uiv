@@ -18,8 +18,8 @@ export default {
 }
 </script>
 <style lang="less">
-.btn-sunday.btn-default,
-.btn-sunday.btn-primary {
+.uiv .btn-sunday.btn-default,
+.uiv .btn-sunday.btn-primary {
   background-color: #46bd87;
   color: #fff;
   border-radius: 0;

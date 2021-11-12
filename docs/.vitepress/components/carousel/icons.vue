@@ -32,7 +32,7 @@ export default {
 </script>
 <style>
 /* Using custom icons may require some additional CSS declarations */
-.carousel-control .my-icon {
+.uiv .carousel-control .my-icon {
   position: absolute;
   top: 50%;
   margin-top: -10px;

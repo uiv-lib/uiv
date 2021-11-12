@@ -56,13 +56,12 @@
 <script>
 import linkMixin from '../../mixins/link.mixin'
 import BtnGroup from './BtnGroup.vue'
-import { RouterLink } from 'vue-router'
 
 const INPUT_TYPE_CHECKBOX = 'checkbox'
 const INPUT_TYPE_RADIO = 'radio'
 
 export default {
-  components: { BtnGroup, RouterLink },
+  components: { BtnGroup },
   mixins: [linkMixin],
   props: {
     justified: {

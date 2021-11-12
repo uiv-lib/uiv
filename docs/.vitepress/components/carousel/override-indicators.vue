@@ -41,9 +41,9 @@ export default {
   },
 }
 </script>
-<style scoped>
-.custom-carousel-indicators li,
-.custom-carousel-indicators li.active {
+<style>
+.uiv .custom-carousel-indicators li,
+.uiv .custom-carousel-indicators li.active {
   width: 50px;
   height: 8px;
   margin: 0 3px;

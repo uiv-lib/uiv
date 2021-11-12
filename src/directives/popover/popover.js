@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import Popover from '../../components/popover/Popover'
+import Popover from '../../components/popover/Popover.vue'
 import { hasOwnProperty } from '../../utils/object.utils'
 
 const INSTANCE = '_uiv_popover_instance'

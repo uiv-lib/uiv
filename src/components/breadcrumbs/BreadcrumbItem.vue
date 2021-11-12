@@ -16,10 +16,8 @@
 
 <script>
 import linkMixin from '../../mixins/link.mixin'
-import { RouterLink } from 'vue-router'
 
 export default {
-  components: { RouterLink },
   mixins: [linkMixin],
   props: {
     active: {

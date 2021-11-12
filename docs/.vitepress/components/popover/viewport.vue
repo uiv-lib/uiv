@@ -59,7 +59,7 @@
 <style scoped>
 #popover-viewport {
   display: inline-block;
-  padding: 20px;
+  padding: 50px;
   background-color: #eee;
 }
 </style>

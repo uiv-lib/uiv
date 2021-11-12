@@ -100,7 +100,7 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style>
 #scrollspy-example {
   position: relative;
   height: 200px;

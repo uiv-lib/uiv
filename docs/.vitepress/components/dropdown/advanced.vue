@@ -49,8 +49,8 @@ export default {
   },
 }
 </script>
-<style scope>
-.dropdown-form .dropdown-menu {
+<style>
+.uiv .dropdown-form .dropdown-menu {
   padding: 10px;
 }
 </style>
