@@ -23,7 +23,7 @@ const destroy = (queue, { app, container }) => {
   // console.log('destroyNotification')
   removeFromDom(container)
   app.unmount()
-  spliceIfExist(queue, app)
+  spliceIfExist(queue, app.vm)
 }
 
 const init = (options, cb, resolve = null, reject = null) => {
@@ -40,7 +40,6 @@ const init = (options, cb, resolve = null, reject = null) => {
     options.type = 'danger'
   }
   const app = createApp(Notification, {
-    extends: Notification,
     queue,
     placement,
     ...options,
@@ -54,8 +53,9 @@ const init = (options, cb, resolve = null, reject = null) => {
     },
   })
   const vm = app.mount(container)
+  app.vm = vm
   document.body.appendChild(vm.$el)
-  queue.push(app)
+  queue.push(vm)
 }
 
 // eslint-disable-next-line default-param-last
