@@ -51,9 +51,9 @@ import { isExist } from '../../utils/object.utils'
 
 export default {
   props: {
-    value: {
+    modelValue: {
       type: Number,
-      default: 0,
+      default: undefined,
     },
     indicators: {
       type: Boolean,
@@ -76,6 +76,7 @@ export default {
       default: 'glyphicon glyphicon-chevron-right',
     },
   },
+  emits: ['update:modelValue', 'change'],
   data() {
     return {
       slides: [],
@@ -88,14 +89,14 @@ export default {
     interval() {
       this.startInterval()
     },
-    value(index, oldValue) {
+    modelValue(index, oldValue) {
       this.run(index, oldValue)
       this.activeIndex = index
     },
   },
   mounted() {
-    if (isExist(this.value)) {
-      this.activeIndex = this.value
+    if (isExist(this.modelValue)) {
+      this.activeIndex = this.modelValue
     }
     if (this.slides.length > 0) {
       this.$select(this.activeIndex)
@@ -161,8 +162,8 @@ export default {
       if (this.timeoutId !== 0 || index === this.activeIndex) {
         return
       }
-      if (isExist(this.value)) {
-        this.$emit('input', index)
+      if (isExist(this.modelValue)) {
+        this.$emit('update:modelValue', index)
       } else {
         this.run(index, this.activeIndex)
         this.activeIndex = index

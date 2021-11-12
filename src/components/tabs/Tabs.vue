@@ -31,10 +31,9 @@
           role="presentation"
           :class="getTabClasses(tab)"
         >
-          <portal-target
+          <a
             v-if="tab.$slots.title"
-            :name="tab._uid.toString()"
-            tag="a"
+            :id="tab._uid.toString()"
             role="tab"
             href="#"
             @click.prevent="select(tabs.indexOf(tab))"
@@ -60,7 +59,6 @@
 
 <script>
 import Dropdown from '../dropdown/Dropdown.js'
-import { PortalTarget } from 'portal-vue'
 import {
   isNumber,
   isFunction,
@@ -73,12 +71,12 @@ import {
 const BEFORE_CHANGE_EVENT = 'before-change'
 
 export default {
-  components: { Dropdown, PortalTarget },
+  components: { Dropdown },
   props: {
-    value: {
+    modelValue: {
       type: Number,
       validator: (v) => v >= 0,
-      default: 0,
+      default: undefined,
     },
     transition: {
       type: Number,
@@ -90,6 +88,7 @@ export default {
     customNavClass: null,
     customContentClass: null,
   },
+  emits: ['update:modelValue'],
   data() {
     return {
       tabs: [],
@@ -170,7 +169,7 @@ export default {
     },
   },
   watch: {
-    value: {
+    modelValue: {
       immediate: true,
       handler(value) {
         if (isNumber(value)) {
@@ -231,8 +230,8 @@ export default {
       }
     },
     $select(index) {
-      if (isNumber(this.value)) {
-        this.$emit('input', index)
+      if (isNumber(this.modelValue)) {
+        this.$emit('update:modelValue', index)
       } else {
         this.activeIndex = index
         this.selectCurrent()

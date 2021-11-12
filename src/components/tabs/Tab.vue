@@ -1,22 +1,20 @@
 <template>
   <div class="tab-pane" :class="{ fade: transition > 0 }" role="tabpanel">
     <slot></slot>
-    <portal :to="_uid.toString()">
+    <teleport :to="_uid.toString()">
       <slot name="title" />
-    </portal>
+    </teleport>
   </div>
 </template>
 
 <script>
 import { spliceIfExist } from '../../utils/array.utils'
 import { addClass, removeClass } from '../../utils/dom.utils'
-import { Portal } from 'portal-vue'
 
 const ACTIVE_CLASS = 'active'
 const IN_CLASS = 'in'
 
 export default {
-  components: { Portal },
   props: {
     title: {
       type: String,
