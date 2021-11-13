@@ -41,6 +41,7 @@ specifiers:
   sinon: 12.0.1
   vitepress: ^0.20.1
   vue: ^3
+  vue-i18n: ^9.2.0-beta.17
   vue-jest: 5.0.0-alpha.10
 
 devDependencies:
@@ -84,6 +85,7 @@ devDependencies:
   sinon: 12.0.1
   vitepress: registry.npmmirror.com/vitepress/0.20.1_less@4.1.2
   vue: registry.npmmirror.com/vue/3.2.21
+  vue-i18n: registry.npmjs.org/vue-i18n/9.2.0-beta.17_vue@3.2.21
   vue-jest: 5.0.0-alpha.10_4aca51e47cc90529780e69a16f920b6a
 
 packages:
@@ -7572,6 +7574,60 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  registry.npmjs.org/@intlify/core-base/9.2.0-beta.17:
+    resolution: {integrity: sha512-Mgo7dHA/Dk4YC8G5RIqSLVz7eg1OJGsRbr/JCTJoiKJ7KaECelcnJusAjbTNGTeWGDXdentuK3oybtL674/A5w==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@intlify/core-base/-/core-base-9.2.0-beta.17.tgz}
+    name: '@intlify/core-base'
+    version: 9.2.0-beta.17
+    engines: {node: '>= 12'}
+    dependencies:
+      '@intlify/devtools-if': registry.npmjs.org/@intlify/devtools-if/9.2.0-beta.17
+      '@intlify/message-compiler': registry.npmjs.org/@intlify/message-compiler/9.2.0-beta.17
+      '@intlify/shared': registry.npmjs.org/@intlify/shared/9.2.0-beta.17
+      '@intlify/vue-devtools': registry.npmjs.org/@intlify/vue-devtools/9.2.0-beta.17
+    dev: true
+
+  registry.npmjs.org/@intlify/devtools-if/9.2.0-beta.17:
+    resolution: {integrity: sha512-uI9OLQM1FbM4ZM96gduj7OB3/RWL6t0teTU+JV8DetHrDQ4Zut4k7/MEnRb4G41L5vblK9fjOs7BWQjg71oZkw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@intlify/devtools-if/-/devtools-if-9.2.0-beta.17.tgz}
+    name: '@intlify/devtools-if'
+    version: 9.2.0-beta.17
+    engines: {node: '>= 12'}
+    dependencies:
+      '@intlify/shared': registry.npmjs.org/@intlify/shared/9.2.0-beta.17
+    dev: true
+
+  registry.npmjs.org/@intlify/message-compiler/9.2.0-beta.17:
+    resolution: {integrity: sha512-8H9luyStGuf4CKKxZKtTqKCHlZjn5prNu9m+KArzUvTyMm/pGQp3vgBORaNw1/r5Ml1iM16b+zQUVKjeVPpn4A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@intlify/message-compiler/-/message-compiler-9.2.0-beta.17.tgz}
+    name: '@intlify/message-compiler'
+    version: 9.2.0-beta.17
+    engines: {node: '>= 12'}
+    dependencies:
+      '@intlify/shared': registry.npmjs.org/@intlify/shared/9.2.0-beta.17
+      source-map: registry.npmjs.org/source-map/0.6.1
+    dev: true
+
+  registry.npmjs.org/@intlify/shared/9.2.0-beta.17:
+    resolution: {integrity: sha512-40lZgkvwHH9l0o94Aw6NDxJUn7pvbwFDSskYYcSCh93kzLEAQFL2HnPmdYFcM6aAQbHiGgaqadbGXfYiG98glg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@intlify/shared/-/shared-9.2.0-beta.17.tgz}
+    name: '@intlify/shared'
+    version: 9.2.0-beta.17
+    engines: {node: '>= 12'}
+    dev: true
+
+  registry.npmjs.org/@intlify/vue-devtools/9.2.0-beta.17:
+    resolution: {integrity: sha512-M/71dGf+aohFj5k0Y8ZokC3SGZ9q/OTRPG798OFpcJpAfSbQd+mSooqShmOdE4qAbIQW71tcfZWNBXP+3UvjKw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@intlify/vue-devtools/-/vue-devtools-9.2.0-beta.17.tgz}
+    name: '@intlify/vue-devtools'
+    version: 9.2.0-beta.17
+    engines: {node: '>= 12'}
+    dependencies:
+      '@intlify/core-base': registry.npmjs.org/@intlify/core-base/9.2.0-beta.17
+      '@intlify/shared': registry.npmjs.org/@intlify/shared/9.2.0-beta.17
+    dev: true
+
+  registry.npmjs.org/@vue/devtools-api/6.0.0-beta.20.1:
+    resolution: {integrity: sha512-R2rfiRY+kZugzWh9ZyITaovx+jpU4vgivAEAiz80kvh3yviiTU3CBuGuyWpSwGz9/C7TkSWVM/FtQRGlZ16n8Q==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@vue/devtools-api/-/devtools-api-6.0.0-beta.20.1.tgz}
+    name: '@vue/devtools-api'
+    version: 6.0.0-beta.20.1
+    dev: true
+
   registry.npmjs.org/encoding/0.1.13:
     resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/encoding/-/encoding-0.1.13.tgz}
     name: encoding
@@ -7885,12 +7941,27 @@ packages:
     version: 0.6.1
     engines: {node: '>=0.10.0'}
     dev: true
-    optional: true
 
   registry.npmjs.org/sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz}
     name: sourcemap-codec
     version: 1.4.8
+    dev: true
+
+  registry.npmjs.org/vue-i18n/9.2.0-beta.17_vue@3.2.21:
+    resolution: {integrity: sha512-m8Bfq6Mg1nUQICAiz30CPDd0kTukckj+aGWCA+YgchO3awf0HtTan5jAA3k8LD9P7mYNk3+5nQFR8qqiM9X88w==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/vue-i18n/-/vue-i18n-9.2.0-beta.17.tgz}
+    id: registry.npmjs.org/vue-i18n/9.2.0-beta.17
+    name: vue-i18n
+    version: 9.2.0-beta.17
+    engines: {node: '>= 12'}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@intlify/core-base': registry.npmjs.org/@intlify/core-base/9.2.0-beta.17
+      '@intlify/shared': registry.npmjs.org/@intlify/shared/9.2.0-beta.17
+      '@intlify/vue-devtools': registry.npmjs.org/@intlify/vue-devtools/9.2.0-beta.17
+      '@vue/devtools-api': registry.npmjs.org/@vue/devtools-api/6.0.0-beta.20.1
+      vue: registry.npmmirror.com/vue/3.2.21
     dev: true
 
   registry.npmmirror.com/@algolia/cache-browser-local-storage/4.11.0:

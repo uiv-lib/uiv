@@ -7,7 +7,9 @@
   "module": "dist/uiv.esm.js",
   "unpkg": "dist/uiv.min.js",
   "jsdelivr": "dist/uiv.min.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uiv-lib/uiv.git"
@@ -75,6 +77,7 @@
     "sinon": "12.0.1",
     "vitepress": "^0.20.1",
     "vue": "^3",
+    "vue-i18n": "^9.2.0-beta.17",
     "vue-jest": "5.0.0-alpha.10"
   },
   "peerDependencies": {

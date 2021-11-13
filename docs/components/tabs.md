@@ -78,7 +78,7 @@ An example that generate closable tabs using `v-for`:
 
 ## Validate before change
 
-In case you need to validate something inside a tab before it being switch, a sample implementation using `before-change` event:
+In case you need to validate something inside a tab before it being switch, a sample implementation using `before-change` prop:
 
 <tabs-before-change/>
 
@@ -99,6 +99,7 @@ Name                  | Type       | Default  | Required | Description
 `transition`          | Number     | 150      |          | The tabs show / hide transition time in ms. Use 0 to disable transitions.
 `custom-nav-class`    |            |          |          | Apply custom classes to the tab nav, could be Object or String.
 `custom-content-class`|            |          |          | Apply custom classes to the tab content, could be Object or String.
+`before-change`       | function(indexFrom, indexTo, done) |||Trigger before active tab change. Calling `done()` will allow the change. Calling `done(err)`, where `err` is any value, will prevent it. Note that this callback will only trigger on tab clicking.
 
 #### Slots
 
@@ -112,7 +113,6 @@ Name        | Description
 Name            | Params                   | Description
 --------------- | -----------              | ---------------
 `change`        | index                    | Trigger after active tab changed, with the active index.
-`before-change` | indexFrom, indexTo, done | Trigger before active tab change. Calling `done()` will allow the change. Calling `done(err)`, where `err` is any value, will prevent it. Note that this callback will only trigger on tab clicking.
 `changed`       | index                    | Trigger after tab changed and transition finished, with the active index.
 
 ### [Tab](https://github.com/uiv-lib/uiv/blob/1.x/src/components/tabs/Tab.vue)

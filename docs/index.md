@@ -8,8 +8,8 @@ actionLink: /usage/getting-started
 features:
 - title: Lightweight
   details: All components ~20KB Gziped.
-- title: Compatible
-  details: IE 9+ & modern browsers supported.
+- title: Vue 3
+  details: Vue 3 supported.
 - title: SSR
   details: Server-side rendering supported.
 footer: MIT Licensed | Designed and built by @wxsm
@@ -27,18 +27,22 @@ footer: MIT Licensed | Designed and built by @wxsm
 ### Install
 
 ```shell script
-$ yarn add uiv
+$ npm i uiv --save
 ```
 
 ### Usage
 
 ```javascript
+// main.js
 import 'bootstrap/dist/css/bootstrap.min.css'
-
-import Vue from 'vue'
+import { createApp } from 'vue'
 import * as uiv from 'uiv'
 
-Vue.use(uiv)
+const app = createApp({ ... })
+
+app.use(uiv)
+
+app.mount(...)
 ```
 
 <br/>

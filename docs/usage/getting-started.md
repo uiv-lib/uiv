@@ -6,7 +6,7 @@
   * All components **~20KB** Gziped.
   * No extra CSS file.
   * Individually import supported.
-* IE 9+ & modern browsers supported.
+* **Vue 3** supported.
 * **SSR** (server-side rendering) supported.
 * All env supported:
   * UMD build `uiv.min.js` can be used in all environments (including browser)
@@ -17,16 +17,8 @@
 
 If you are using module bundlers such as Webpack, you can directly include package into your project via:
 
-**NPM**:
-
 ```bash
-$ npm install uiv --save
-```
-
-or **Yarn**:
-
-```bash
-$ yarn add uiv
+$ npm i uiv --save
 ```
 
 Then register uiv components and directives all at once in your app's entry:
@@ -34,11 +26,14 @@ Then register uiv components and directives all at once in your app's entry:
 ```javascript
 // main.js
 import 'bootstrap/dist/css/bootstrap.min.css'
-
-import Vue from 'vue'
+import { createApp } from 'vue'
 import * as uiv from 'uiv'
 
-Vue.use(uiv)
+const app = createApp({ ... })
+
+app.use(uiv)
+
+app.mount(...)
 ```
 
 That's it. Happy coding!
@@ -70,11 +65,12 @@ import { Alert } from 'uiv'
 // or
 // import Alert from 'uiv/dist/Alert'
 
-new Vue({
+export default {
   components: {
     Alert
-  }
-})
+  },
+  ...
+}
 ```
 
 ::: tip
@@ -95,34 +91,6 @@ This will simply load the latest version of `uiv.min.js` into your page. For det
 * [https://unpkg.com](https://unpkg.com)
 * [https://www.jsdelivr.com](https://www.jsdelivr.com/)
 * [https://cdnjs.com/libraries/uiv](https://cdnjs.com/libraries/uiv)
-
-### Complete usage example
-
-```html
-<!-- index.html -->
-<html>
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script type="text/javascript" src="//vuejs.org/js/vue.min.js"></script>
-  <script type="text/javascript" src="//unpkg.com/uiv/dist/uiv.min.js"></script>
-</head>
-<body>
-<div id="app">
-  <tabs>
-    <tab>Tab content 1.</tab>
-    <tab>Tab content 2.</tab>
-  </tabs>
-</div>
-<script>
-  // No need to install uiv, we already do this for you after script loaded.
-  // Define `window.__uiv_options` before script loaded if you need install options.
-  new Vue().$mount('#app')
-</script>
-</body>
-</html>
-```
-
-This will create a working [Tabs](/components/tabs.html) component on your page.
 
 ## Browser compatibility
 
