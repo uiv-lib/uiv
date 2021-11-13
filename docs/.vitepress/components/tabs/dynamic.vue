@@ -33,7 +33,7 @@ export default {
     close() {
       this.tabs.splice(this.index, 1)
       // select prev tab if the closed tab is the last one
-      if (this.index === this.tabs.length && this.index > 0) {
+      if (this.index > 0) {
         --this.index
       }
     },

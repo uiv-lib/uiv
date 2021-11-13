@@ -1,6 +1,6 @@
 <template>
   <section class="uiv">
-    <tabs v-model="index" @before-change="onBeforeChange">
+    <tabs v-model="index" :before-change="onBeforeChange">
       <tab title="Home">
         <div>
           <br />

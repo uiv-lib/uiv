@@ -68,8 +68,6 @@ import {
   hasOwnProperty,
 } from '../../utils/object.utils'
 
-const BEFORE_CHANGE_EVENT = 'before-change'
-
 export default {
   components: { Dropdown },
   props: {
@@ -87,8 +85,9 @@ export default {
     stacked: Boolean,
     customNavClass: { type: null, default: undefined },
     customContentClass: { type: null, default: undefined },
+    beforeChange: { type: Function, default: undefined },
   },
-  emits: ['update:modelValue', 'change', 'changed', BEFORE_CHANGE_EVENT],
+  emits: ['update:modelValue', 'change', 'changed'],
   data() {
     return {
       tabs: [],
@@ -214,8 +213,8 @@ export default {
       }
     },
     selectValidate(index) {
-      if (isFunction(this.$attrs[BEFORE_CHANGE_EVENT])) {
-        this.$emit(BEFORE_CHANGE_EVENT, this.activeIndex, index, (result) => {
+      if (isFunction(this.beforeChange)) {
+        this.beforeChange(this.activeIndex, index, (result) => {
           if (!isExist(result)) {
             this.$select(index)
           }
