@@ -68,6 +68,7 @@
     "prettier": "2.4.1",
     "rollup": "2.59.0",
     "rollup-plugin-filesize": "9.1.1",
+    "rollup-plugin-strip-code": "^0.2.7",
     "rollup-plugin-uglify": "6.0.4",
     "rollup-plugin-vue": "6.0.0",
     "sinon": "12.0.1",

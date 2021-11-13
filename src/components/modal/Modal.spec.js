@@ -164,9 +164,9 @@ describe('Modal', () => {
     expect(modal3.classes()).not.toContain('in')
     expect(getBackdropsNum()).toEqual(1)
     expect(modal1.element.style.zIndex).toEqual('')
-    expect(wrapper.findAll('.modal-backdrop')[0].element.style.zIndex).toEqual(
-      ''
-    )
+    expect(
+      document.querySelectorAll('.modal-backdrop')[0].style.zIndex
+    ).toEqual('')
     expectBodyOverflow(false)
     // open modal 2
     await trigger2.trigger('click')
@@ -176,9 +176,9 @@ describe('Modal', () => {
     expect(modal3.classes()).not.toContain('in')
     expect(getBackdropsNum()).toEqual(2)
     expect(modal2.element.style.zIndex).toEqual('1070')
-    expect(wrapper.findAll('.modal-backdrop')[1].element.style.zIndex).toEqual(
-      '1060'
-    )
+    expect(
+      document.querySelectorAll('.modal-backdrop')[1].style.zIndex
+    ).toEqual('1060')
     expectBodyOverflow(false)
     // open modal 3
     await trigger3.trigger('click')
@@ -188,9 +188,9 @@ describe('Modal', () => {
     expect(modal3.classes()).toContain('in')
     expect(getBackdropsNum()).toEqual(3)
     expect(modal3.element.style.zIndex).toEqual('1090')
-    expect(wrapper.findAll('.modal-backdrop')[2].element.style.zIndex).toEqual(
-      '1080'
-    )
+    expect(
+      document.querySelectorAll('.modal-backdrop')[2].style.zIndex
+    ).toEqual('1080')
     expectBodyOverflow(false)
     // dismiss modal 3
     await modal3.find('.btn-primary').trigger('click')
@@ -268,9 +268,9 @@ describe('Modal', () => {
     expect(modal3.classes()).not.toContain('in')
     expect(getBackdropsNum()).toEqual(1)
     expect(modal1.element.style.zIndex).toEqual('')
-    expect(wrapper.findAll('.modal-backdrop')[0].element.style.zIndex).toEqual(
-      ''
-    )
+    expect(
+      document.querySelectorAll('.modal-backdrop')[0].style.zIndex
+    ).toEqual('')
     expectBodyOverflow(false)
     // open modal 2
     await trigger2.trigger('click')
@@ -280,9 +280,9 @@ describe('Modal', () => {
     expect(modal3.classes()).not.toContain('in')
     expect(getBackdropsNum()).toEqual(2)
     expect(modal2.element.style.zIndex).toEqual('1070')
-    expect(wrapper.findAll('.modal-backdrop')[1].element.style.zIndex).toEqual(
-      '1060'
-    )
+    expect(
+      document.querySelectorAll('.modal-backdrop')[1].style.zIndex
+    ).toEqual('1060')
     expectBodyOverflow(false)
     // open modal 3
     await trigger3.trigger('click')
@@ -307,7 +307,7 @@ describe('Modal', () => {
     // body overflow should be still disabled, because modal 1 & 2 is still open
     expectBodyOverflow(false)
     // dismiss modal 2
-    await modal2.findAll('.btn-primary')[1].trigger('click')
+    await modal2.findAll('.btn-primary')[0].trigger('click')
     await sleep(transition)
     expect(modal1.classes()).toContain('in')
     // expect(modal2.classes()).not.toContain('in')
@@ -316,7 +316,7 @@ describe('Modal', () => {
     // body overflow should be still disabled, because modal 1 is still open
     expectBodyOverflow(false)
     // dismiss modal 1
-    await modal1.findAll('.btn-primary')[2].trigger('click')
+    await modal1.findAll('.btn-primary')[0].trigger('click')
     await sleep(transition)
     expect(modal1.classes()).not.toContain('in')
     expect(modal2.classes()).not.toContain('in')
@@ -548,11 +548,11 @@ describe('Modal', () => {
     <btn type="primary" @click="open1=true">Custom Footer</btn>
     <modal v-model="open1" title="Modal Title">
       <p>This is a modal with custom footer.</p>
-      <div slot="footer">
-        <btn @click="open1=false">Cancel</btn>
+      <template #footer>
+         <btn @click="open1=false">Cancel</btn>
         <btn type="warning">Warning Action</btn>
         <btn type="danger">Danger Action</btn>
-      </div>
+      </template>
     </modal>
   </section>`,
       {
@@ -597,11 +597,11 @@ describe('Modal', () => {
     <btn type="primary" @click="open1=true">Custom Footer</btn>
     <modal v-model="open1" title="Modal Title">
       <p>This is a modal with custom footer.</p>
-      <div slot="footer">
+      <template #footer>
         <btn @click="open1=false">Cancel</btn>
         <btn type="warning">Warning Action</btn>
         <btn type="danger">Danger Action</btn>
-      </div>
+      </template>
     </modal>
   </section>`,
       {
@@ -677,7 +677,7 @@ describe('Modal', () => {
       `<section>
     <btn type="primary" @click="open=true">Auto Focus</btn>
     <modal v-model="open" title="Modal Title" auto-focus>
-      <div slot="footer"><button>ok</button></div>
+      <template #footer><button>ok</button></template>
     </modal>
   </section>`,
       {

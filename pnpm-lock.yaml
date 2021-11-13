@@ -35,6 +35,7 @@ specifiers:
   prettier: 2.4.1
   rollup: 2.59.0
   rollup-plugin-filesize: 9.1.1
+  rollup-plugin-strip-code: ^0.2.7
   rollup-plugin-uglify: 6.0.4
   rollup-plugin-vue: 6.0.0
   sinon: 12.0.1
@@ -77,6 +78,7 @@ devDependencies:
   prettier: 2.4.1
   rollup: 2.59.0
   rollup-plugin-filesize: 9.1.1
+  rollup-plugin-strip-code: registry.npmjs.org/rollup-plugin-strip-code/0.2.7
   rollup-plugin-uglify: 6.0.4_rollup@2.59.0
   rollup-plugin-vue: registry.nlark.com/rollup-plugin-vue/6.0.0_@vue+compiler-sfc@3.2.21
   sinon: 12.0.1
@@ -1721,7 +1723,7 @@ packages:
   /@types/buble/0.19.2:
     resolution: {integrity: sha512-uUD8zIfXMKThmFkahTXDGI3CthFH1kMg2dOm3KLi4GlC5cbARA64bEcUMbbWdWdE73eoc/iBB9PiTMqH0dNS2Q==}
     dependencies:
-      magic-string: 0.25.7
+      magic-string: registry.npmjs.org/magic-string/0.25.7
     dev: true
 
   /@types/estree/0.0.39:
@@ -2548,7 +2550,7 @@ packages:
       acorn-dynamic-import: 4.0.0_acorn@6.4.2
       acorn-jsx: 5.3.2_acorn@6.4.2
       chalk: mirrors.tencent.com/chalk/2.4.2
-      magic-string: 0.25.7
+      magic-string: registry.npmjs.org/magic-string/0.25.7
       minimist: 1.2.5
       regexpu-core: 4.5.4
     dev: true
@@ -7768,6 +7770,12 @@ packages:
     dev: true
     optional: true
 
+  registry.npmjs.org/estree-walker/0.6.1:
+    resolution: {integrity: sha512-SqmZANLWS0mnatqbSfRP5g8OXZC12Fgg1IwNtLsyHDzJizORW4khDfjPqJZsemPWBB2uqykUah5YpQ6epsqC/w==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/estree-walker/-/estree-walker-0.6.1.tgz}
+    name: estree-walker
+    version: 0.6.1
+    dev: true
+
   registry.npmjs.org/fsevents/2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz}
     name: fsevents
@@ -7794,6 +7802,22 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  registry.npmjs.org/magic-string/0.25.3:
+    resolution: {integrity: sha512-6QK0OpF/phMz0Q2AxILkX2mFhi7m+WMwTRg0LQKq/WBB0cDP4rYH3Wp4/d3OTXlrPLVJT/RFqj8tFeAR4nk8AA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/magic-string/-/magic-string-0.25.3.tgz}
+    name: magic-string
+    version: 0.25.3
+    dependencies:
+      sourcemap-codec: registry.npmjs.org/sourcemap-codec/1.4.8
+    dev: true
+
+  registry.npmjs.org/magic-string/0.25.7:
+    resolution: {integrity: sha512-4CrMT5DOHTDk4HYDlzmwu4FVCcIYI8gauveasrdCu2IKIFOJ3f0v/8MDGJCDL9oD2ppz/Av1b0Nj345H9M+XIA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/magic-string/-/magic-string-0.25.7.tgz}
+    name: magic-string
+    version: 0.25.7
+    dependencies:
+      sourcemap-codec: registry.npmjs.org/sourcemap-codec/1.4.8
+    dev: true
 
   registry.npmjs.org/make-dir/2.1.0:
     resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/make-dir/-/make-dir-2.1.0.tgz}
@@ -7836,6 +7860,23 @@ packages:
     requiresBuild: true
     dev: true
 
+  registry.npmjs.org/rollup-plugin-strip-code/0.2.7:
+    resolution: {integrity: sha512-+5t9u/VrHPSfiRWWKMVin+KOtFwFak337FAZxeTjxYDjB3DDoHBQRkXHQvBn713eAfW81t41mGuysqsMXiuTjw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/rollup-plugin-strip-code/-/rollup-plugin-strip-code-0.2.7.tgz}
+    name: rollup-plugin-strip-code
+    version: 0.2.7
+    dependencies:
+      magic-string: registry.npmjs.org/magic-string/0.25.3
+      rollup-pluginutils: registry.npmjs.org/rollup-pluginutils/2.8.1
+    dev: true
+
+  registry.npmjs.org/rollup-pluginutils/2.8.1:
+    resolution: {integrity: sha512-J5oAoysWar6GuZo0s+3bZ6sVZAC0pfqKz68De7ZgDi5z63jOVZn1uJL/+z1jeKHNbGII8kAyHF5q8LnxSX5lQg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/rollup-pluginutils/-/rollup-pluginutils-2.8.1.tgz}
+    name: rollup-pluginutils
+    version: 2.8.1
+    dependencies:
+      estree-walker: registry.npmjs.org/estree-walker/0.6.1
+    dev: true
+
   registry.npmjs.org/source-map/0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz}
     name: source-map
@@ -7843,6 +7884,12 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
     optional: true
+
+  registry.npmjs.org/sourcemap-codec/1.4.8:
+    resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz}
+    name: sourcemap-codec
+    version: 1.4.8
+    dev: true
 
   registry.npmmirror.com/@algolia/cache-browser-local-storage/4.11.0:
     resolution: {integrity: sha1-HBaK3QCzmKhg22yGA54zsoQ6lCU=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@algolia/cache-browser-local-storage/download/@algolia/cache-browser-local-storage-4.11.0.tgz}
@@ -8137,7 +8184,7 @@ packages:
       '@vue/compiler-core': registry.npmmirror.com/@vue/compiler-core/3.2.21
       '@vue/shared': registry.npmmirror.com/@vue/shared/3.2.21
       estree-walker: registry.nlark.com/estree-walker/2.0.2
-      magic-string: registry.nlark.com/magic-string/0.25.7
+      magic-string: registry.npmjs.org/magic-string/0.25.7
     dev: true
 
   registry.npmmirror.com/@vue/runtime-core/3.2.21:

@@ -5,6 +5,7 @@ const resolve = require('@rollup/plugin-node-resolve').nodeResolve
 const commonjs = require('@rollup/plugin-commonjs')
 const buble = require('@rollup/plugin-buble')
 const alias = require('@rollup/plugin-alias')
+const strip = require('rollup-plugin-strip-code')
 
 const dist = path.join(__dirname, '..', 'dist')
 
@@ -24,6 +25,10 @@ module.exports = {
     commonjs(),
     buble({
       objectAssign: 'Object.assign',
+    }),
+    strip({
+      start_comment: 'START.TESTS_ONLY',
+      end_comment: 'END.TESTS_ONLY',
     }),
   ],
 }

@@ -263,6 +263,10 @@ export default {
               const btn = this.$el.querySelector('[data-action="auto-focus"]')
               if (btn) {
                 btn.focus()
+                /* START.TESTS_ONLY */
+                /* istanbul ignore next */
+                btn.setAttribute('data-focused', 'true')
+                /* END.TESTS_ONLY */
               }
             }
             this.$emit('show')
