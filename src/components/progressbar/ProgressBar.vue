@@ -1,7 +1,7 @@
 <template>
   <div class="progress">
-    <slot />
-    <ProgressBarStack v-bind="$props" />
+    <slot v-if="$slots.default" />
+    <ProgressBarStack v-else v-bind="$props" />
   </div>
 </template>
 

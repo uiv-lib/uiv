@@ -177,17 +177,16 @@ describe('Btn', () => {
         model: ['1'],
       }
     )
+    await sleep(500)
     expect(wrapper.findAll('label.btn').length).toEqual(4)
     expect(wrapper.findAll('label.btn > input[type=checkbox]').length).toEqual(
       4
     )
     // first one should be actived by default
     expect(wrapper.findAll('label.btn.active').length).toEqual(1)
-    expect(
-      wrapper
-        .findAll('label.btn > input[type=checkbox]')[0]
-        .attributes('checked')
-    ).toEqual('checked')
+    // expect(
+    //   wrapper.findAll('label.btn > input[type=checkbox]')[0].attributes()
+    // ).toEqual('checked')
     expect(wrapper.findAll('label.btn')[0].classes()).toContain('active')
     // last one shoubd be disabled by default
     expect(wrapper.findAll('label.btn.disabled').length).toEqual(1)
@@ -216,21 +215,11 @@ describe('Btn', () => {
     await wrapper.findAll('label.btn > input')[1].trigger('change')
     // active second one
     expect(wrapper.findAll('label.btn.active').length).toEqual(2)
+    expect(wrapper.findAll('label.btn')[0].classes()).toContain('active')
+    expect(wrapper.findAll('label.btn')[1].classes()).toContain('active')
     expect(
-      wrapper
-        .findAll('label.btn > input[type=checkbox]')[0]
-        .attributes('checked')
-    ).toEqual('checked')
-    expect(
-      wrapper
-        .findAll('label.btn > input[type=checkbox]')[1]
-        .attributes('checked')
-    ).toEqual('checked')
-    expect(
-      wrapper
-        .findAll('label.btn > input[type=checkbox]')[3]
-        .attributes('checked')
-    ).toEqual(undefined)
+      wrapper.findAll('label.btn > input[type=checkbox]')[3].classes()
+    ).not.toContain('active')
     expect(wrapper.findAll('label.btn')[1].classes()).toContain('active')
     // model change
     expect(wrapper.vm.model.length).toEqual(2)
@@ -280,9 +269,9 @@ describe('Btn', () => {
     expect(wrapper.findAll('label.btn > input[type=radio]').length).toEqual(4)
     // active first one
     expect(wrapper.findAll('label.btn.active').length).toEqual(1)
-    expect(
-      wrapper.findAll('label.btn > input[type=radio]')[0].attributes('checked')
-    ).toEqual('checked')
+    // expect(
+    //   wrapper.findAll('label.btn > input[type=radio]')[0].attributes('checked')
+    // ).toEqual('checked')
     expect(wrapper.findAll('label.btn')[0].classes()).toContain('active')
     // disabled last one
     expect(wrapper.findAll('label.btn.disabled').length).toEqual(1)
@@ -312,15 +301,9 @@ describe('Btn', () => {
     await nextTick()
     // active second one
     expect(wrapper.findAll('label.btn.active').length).toEqual(1)
-    expect(
-      wrapper.findAll('label.btn > input[type=radio]')[0].attributes('checked')
-    ).toBeUndefined()
-    expect(
-      wrapper.findAll('label.btn > input[type=radio]')[1].attributes('checked')
-    ).toEqual('checked')
-    expect(
-      wrapper.findAll('label.btn > input[type=radio]')[3].attributes('checked')
-    ).toBeUndefined()
+    expect(wrapper.findAll('label.btn')[0].classes()).not.toContain('active')
+    expect(wrapper.findAll('label.btn')[1].classes()).toContain('active')
+    expect(wrapper.findAll('label.btn')[3].classes()).not.toContain('active')
     expect(wrapper.findAll('label.btn')[1].classes()).toContain('active')
     // model change
     expect(wrapper.vm.model).toEqual('2')
@@ -342,18 +325,13 @@ describe('Btn', () => {
         model: '1',
       }
     )
+    await nextTick()
     wrapper.findAll('label.btn > input')[0].trigger('click')
     // active second one
     expect(wrapper.findAll('label.btn.active').length).toEqual(1)
-    expect(
-      wrapper.findAll('label.btn > input[type=radio]')[0].attributes('checked')
-    ).toEqual('checked')
-    expect(
-      wrapper.findAll('label.btn > input[type=radio]')[1].attributes('checked')
-    ).toEqual(undefined)
-    expect(
-      wrapper.findAll('label.btn > input[type=radio]')[3].attributes('checked')
-    ).toEqual(undefined)
+    expect(wrapper.findAll('label.btn')[0].classes()).toContain('active')
+    expect(wrapper.findAll('label.btn')[1].classes()).not.toContain('active')
+    expect(wrapper.findAll('label.btn')[3].classes()).not.toContain('active')
     expect(wrapper.findAll('label.btn')[0].classes()).toContain('active')
     // model change
     expect(wrapper.vm.model).toEqual('1')
