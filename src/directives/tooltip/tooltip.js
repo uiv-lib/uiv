@@ -59,7 +59,9 @@ const unbind = (el) => {
   // console.log('unbind', el[INSTANCE])
   const instance = el[INSTANCE]
   if (instance) {
-    removeFromDom(instance.vNode.component.ctx.$refs.popup)
+    try {
+      removeFromDom(instance.vNode.component.ctx.$refs.popup)
+    } catch (_) {}
     render(null, instance.container)
   }
   delete el[INSTANCE]

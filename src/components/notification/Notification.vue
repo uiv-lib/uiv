@@ -95,7 +95,7 @@ export default {
   computed: {
     styles() {
       const queue = this.queue
-      const thisIndex = queue.findIndex((vm) => vm.$.uid === this.$.uid)
+      const thisIndex = queue.findIndex((vm) => vm._.uid === this._.uid)
       return {
         position: 'fixed',
         [this.vertical]: `${this.getTotalHeightOfQueue(queue, thisIndex)}px`,
