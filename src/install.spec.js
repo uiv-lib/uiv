@@ -12,6 +12,8 @@ describe('install', () => {
     // console.log(key)
   }
 
+  Vue.config.globalProperties = {}
+
   let cSpy, dSpy
 
   beforeEach(() => {
@@ -29,7 +31,9 @@ describe('install', () => {
     expect(dSpy).toBeCalledWith('uiv-tooltip', expect.any(Object))
     expect(dSpy).toBeCalledWith('uiv-scrollspy', expect.any(Object))
     // methods
-    expect(Vue.prototype.$uiv_alert).toEqual(expect.any(Function))
-    expect(Vue.prototype.$uiv_notify).toEqual(expect.any(Function))
+    expect(Vue.config.globalProperties.$uiv_alert).toEqual(expect.any(Function))
+    expect(Vue.config.globalProperties.$uiv_notify).toEqual(
+      expect.any(Function)
+    )
   })
 })

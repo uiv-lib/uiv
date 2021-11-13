@@ -1,6 +1,7 @@
 import { h, render } from 'vue'
 import Tooltip from '../../components/tooltip/Tooltip.vue'
 import { hasOwnProperty } from '../../utils/object.utils'
+import { removeFromDom } from '../../utils/dom.utils'
 
 const INSTANCE = '_uiv_tooltip_instance'
 
@@ -51,20 +52,21 @@ const bind = (el, binding) => {
   })
   const container = document.createElement('div')
   render(vNode, container)
-  el[INSTANCE] = container
+  el[INSTANCE] = { container, vNode }
 }
 
 const unbind = (el) => {
-  // console.log('unbind')
+  // console.log('unbind', el[INSTANCE])
   const instance = el[INSTANCE]
   if (instance) {
-    render(null, instance)
+    removeFromDom(instance.vNode.component.ctx.$refs.popup)
+    render(null, instance.container)
   }
   delete el[INSTANCE]
 }
 
 const update = (el, binding) => {
-  // console.log('update')
+  // console.log('update', binding.oldValue, '->', binding.value)
   if (binding.value !== binding.oldValue) {
     bind(el, binding)
   }
