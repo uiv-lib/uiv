@@ -6,12 +6,12 @@
     :append-to-body="appendToBody"
     :disabled="disabled"
     :style="containerStyles"
-    @keydown.native.esc="showDropdown = false"
+    @keydown.esc="showDropdown = false"
   >
     <div
       class="form-control dropdown-toggle clearfix"
       :class="selectClasses"
-      :disabled="disabled"
+      :disabled="disabled ? true : undefined"
       tabindex="0"
       data-role="trigger"
       @focus="$emit('focus', $event)"
@@ -33,7 +33,7 @@
         v-text="selectedText"
       ></div>
     </div>
-    <template slot="dropdown">
+    <template #dropdown>
       <li v-if="filterable" style="padding: 4px 8px">
         <input
           ref="filterInput"
@@ -57,9 +57,8 @@
           class="dropdown-header"
           v-text="item.$group"
         ></li>
-        <template v-for="(_item, j) in item.options">
+        <template v-for="(_item, j) in item.options" :key="`${i}_${j}`">
           <li
-            :key="`${i}_${j}`"
             :class="itemClasses(_item)"
             style="outline: 0"
             @keydown.prevent.stop.down="goNextOption"
@@ -95,14 +94,14 @@
 
 <script>
 import Local from '../../mixins/locale.mixin'
-import Dropdown from '../dropdown/Dropdown.js'
+import Dropdown from '../dropdown/Dropdown.vue'
 import { onlyUnique } from '../../utils/array.utils'
 
 export default {
   components: { Dropdown },
   mixins: [Local],
   props: {
-    value: {
+    modelValue: {
       type: Array,
       required: true,
     },
@@ -122,8 +121,8 @@ export default {
       type: Number,
       default: 0,
     },
-    size: String,
-    placeholder: String,
+    size: { type: String, default: undefined },
+    placeholder: { type: String, default: undefined },
     split: {
       type: String,
       default: ', ',
@@ -152,14 +151,23 @@ export default {
       type: Boolean,
       default: true,
     },
-    filterFunction: Function,
-    filterPlaceholder: String,
+    filterFunction: { type: Function, default: undefined },
+    filterPlaceholder: { type: String, default: undefined },
     selectedIcon: {
       type: String,
       default: 'glyphicon glyphicon-ok',
     },
-    itemSelectedClass: String,
+    itemSelectedClass: { type: String, default: undefined },
   },
+  emits: [
+    'focus',
+    'blur',
+    'visible-change',
+    'update:modelValue',
+    'change',
+    'limit-exceed',
+    'search',
+  ],
   data() {
     return {
       showDropdown: false,
@@ -217,18 +225,18 @@ export default {
     },
     selectTextClasses() {
       return {
-        'text-muted': this.value.length === 0,
+        'text-muted': this.modelValue.length === 0,
       }
     },
     labelValue() {
       const optionsByValue = this.options.map((v) => v[this.valueKey])
-      return this.value.map((v) => {
+      return this.modelValue.map((v) => {
         const index = optionsByValue.indexOf(v)
         return index >= 0 ? this.options[index][this.labelKey] : v
       })
     },
     selectedText() {
-      if (this.value.length) {
+      if (this.modelValue.length) {
         const labelValue = this.labelValue
         if (this.collapseSelected) {
           let str = labelValue[0]
@@ -245,7 +253,7 @@ export default {
       }
     },
     customOptionsVisible() {
-      return !!this.$slots.option || !!this.$scopedSlots.option
+      return !!this.$slots.option || !!this.$slots.option
     },
   },
   watch: {
@@ -301,28 +309,28 @@ export default {
       return result
     },
     isItemSelected(item) {
-      return this.value.indexOf(item[this.valueKey]) >= 0
+      return this.modelValue.indexOf(item[this.valueKey]) >= 0
     },
     toggle(item) {
       if (item.disabled) {
         return
       }
       const value = item[this.valueKey]
-      const index = this.value.indexOf(value)
+      const index = this.modelValue.indexOf(value)
       if (this.limit === 1) {
         const newValue = index >= 0 ? [] : [value]
-        this.$emit('input', newValue)
+        this.$emit('update:modelValue', newValue)
         this.$emit('change', newValue)
       } else {
         if (index >= 0) {
-          const newVal = this.value.slice()
+          const newVal = this.modelValue.slice()
           newVal.splice(index, 1)
-          this.$emit('input', newVal)
+          this.$emit('update:modelValue', newVal)
           this.$emit('change', newVal)
-        } else if (this.limit === 0 || this.value.length < this.limit) {
-          const newVal = this.value.slice()
+        } else if (this.limit === 0 || this.modelValue.length < this.limit) {
+          const newVal = this.modelValue.slice()
           newVal.push(value)
-          this.$emit('input', newVal)
+          this.$emit('update:modelValue', newVal)
           this.$emit('change', newVal)
         } else {
           this.$emit('limit-exceed')

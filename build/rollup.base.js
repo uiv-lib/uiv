@@ -23,7 +23,9 @@ module.exports = {
     vue(),
     resolve(),
     commonjs(),
-    buble(),
+    buble({
+      objectAssign: 'Object.assign',
+    }),
     strip({
       start_comment: 'START.TESTS_ONLY',
       end_comment: 'END.TESTS_ONLY',

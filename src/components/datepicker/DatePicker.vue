@@ -73,7 +73,7 @@ import Locale from '../../mixins/locale.mixin'
 import DateView from './DateView.vue'
 import MonthView from './MonthView.vue'
 import YearView from './YearView.vue'
-import Btn from './../button/Btn'
+import Btn from './../button/Btn.vue'
 import { stringify, convertDateToUTC } from '../../utils/date.utils'
 import { isNumber } from '../../utils/object.utils'
 
@@ -81,7 +81,7 @@ export default {
   components: { DateView, MonthView, YearView, Btn },
   mixins: [Locale],
   props: {
-    value: null,
+    modelValue: { type: null, required: true },
     width: {
       type: Number,
       default: 270,
@@ -98,8 +98,8 @@ export default {
       type: Boolean,
       default: true,
     },
-    limitFrom: null,
-    limitTo: null,
+    limitFrom: { type: null, default: undefined },
+    limitTo: { type: null, default: undefined },
     format: {
       type: String,
       default: 'yyyy-MM-dd',
@@ -112,8 +112,8 @@ export default {
       type: Function,
       default: Date.parse,
     },
-    dateClass: Function,
-    yearMonthFormatter: Function,
+    dateClass: { type: Function, default: undefined },
+    yearMonthFormatter: { type: Function, default: undefined },
     weekStartsWith: {
       type: Number,
       default: 0,
@@ -131,6 +131,7 @@ export default {
       default: 'glyphicon glyphicon-chevron-right',
     },
   },
+  emits: ['update:modelValue'],
   data() {
     return {
       show: false,
@@ -142,7 +143,7 @@ export default {
   },
   computed: {
     valueDateObj() {
-      const ts = this.dateParser(this.value)
+      const ts = this.dateParser(this.modelValue)
       if (isNaN(ts)) {
         return null
       } else {
@@ -188,13 +189,13 @@ export default {
     },
   },
   watch: {
-    value(val, oldVal) {
+    modelValue(val, oldVal) {
       this.setMonthAndYearByValue(val, oldVal)
     },
   },
   mounted() {
-    if (this.value) {
-      this.setMonthAndYearByValue(this.value)
+    if (this.modelValue) {
+      this.setMonthAndYearByValue(this.modelValue)
     } else {
       this.currentMonth = this.now.getMonth()
       this.currentYear = this.now.getFullYear()
@@ -214,7 +215,7 @@ export default {
           ((this.limit.from && date < this.limit.from) ||
             (this.limit.to && date >= this.limit.to))
         ) {
-          this.$emit('input', oldVal || '')
+          this.$emit('update:modelValue', oldVal || '')
         } else {
           this.currentMonth = date.getMonth()
           this.currentYear = date.getFullYear()
@@ -236,13 +237,16 @@ export default {
         isNumber(date.year)
       ) {
         const _date = new Date(date.year, date.month, date.date)
-        this.$emit('input', this.format ? stringify(_date, this.format) : _date)
+        this.$emit(
+          'update:modelValue',
+          this.format ? stringify(_date, this.format) : _date
+        )
         // if the input event trigger nothing (same value)
         // manually correct
         this.currentMonth = date.month
         this.currentYear = date.year
       } else {
-        this.$emit('input', '')
+        this.$emit('update:modelValue', '')
       }
     },
     onViewChange(view) {

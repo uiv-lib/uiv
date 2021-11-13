@@ -29,7 +29,7 @@
         <span v-show="inputNotValid" class="help-block">{{ inputError }}</span>
       </div>
     </div>
-    <template v-if="type === TYPES.ALERT" slot="footer">
+    <template v-if="type === TYPES.ALERT" #footer>
       <btn
         :type="okType"
         :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
@@ -37,7 +37,7 @@
         v-text="okBtnText"
       />
     </template>
-    <template v-else slot="footer">
+    <template v-else #footer>
       <template v-if="reverseButtons">
         <btn
           v-if="type === TYPES.CONFIRM"
@@ -78,26 +78,26 @@
 import { TYPES } from '../../constants/messagebox.constants'
 import Local from '../../mixins/locale.mixin'
 import Modal from '../../components/modal/Modal.vue'
-import Btn from '../../components/button/Btn'
+import Btn from '../../components/button/Btn.vue'
 import { isExist } from '../../utils/object.utils'
 
 export default {
   components: { Modal, Btn },
   mixins: [Local],
   props: {
-    backdrop: null,
-    title: String,
-    content: String,
+    backdrop: { type: null, default: undefined },
+    title: { type: String, default: undefined },
+    content: { type: String, default: undefined },
     html: {
       type: Boolean,
       default: false,
     },
-    okText: String,
+    okText: { type: String, default: undefined },
     okType: {
       type: String,
       default: 'primary',
     },
-    cancelText: String,
+    cancelText: { type: String, default: undefined },
     cancelType: {
       type: String,
       default: 'default',
@@ -118,8 +118,8 @@ export default {
       type: Function,
       default: () => null,
     },
-    customClass: null,
-    defaultValue: String,
+    customClass: { type: null, default: undefined },
+    defaultValue: { type: String, default: undefined },
     inputType: {
       type: String,
       default: 'text',
@@ -136,7 +136,7 @@ export default {
   data() {
     return {
       TYPES,
-      show: false,
+      show: true,
       input: '',
       dirty: false,
     }
@@ -167,6 +167,9 @@ export default {
       this.input = this.defaultValue
     }
   },
+  // unmounted() {
+  //   console.log('unmounted')
+  // },
   methods: {
     toggle(show, msg) {
       this.$refs.modal.toggle(show, msg)

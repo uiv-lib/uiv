@@ -107,7 +107,7 @@
 
 <script>
 import Local from '../../mixins/locale.mixin'
-import Btn from './../button/Btn'
+import Btn from './../button/Btn.vue'
 import { pad } from '../../utils/string.utils'
 
 const maxHours = 23
@@ -119,7 +119,7 @@ export default {
   components: { Btn },
   mixins: [Local],
   props: {
-    value: {
+    modelValue: {
       type: Date,
       required: true,
     },
@@ -127,8 +127,8 @@ export default {
       type: Boolean,
       default: true,
     },
-    min: null,
-    max: null,
+    min: { type: null, default: undefined },
+    max: { type: null, default: undefined },
     hourStep: {
       type: Number,
       default: 1,
@@ -158,6 +158,7 @@ export default {
       default: 50,
     },
   },
+  emits: ['update:modelValue'],
   data() {
     return {
       hours: 0,
@@ -175,7 +176,7 @@ export default {
     },
   },
   watch: {
-    value(value) {
+    modelValue(value) {
       this.updateByValue(value)
     },
     showMeridian(value) {
@@ -214,7 +215,7 @@ export default {
     },
   },
   mounted() {
-    this.updateByValue(this.value)
+    this.updateByValue(this.modelValue)
   },
   methods: {
     updateByValue(value) {
@@ -306,7 +307,7 @@ export default {
       }
     },
     setTime() {
-      let time = this.value
+      let time = this.modelValue
       if (isNaN(time.getTime())) {
         time = new Date()
         time.setHours(0)
@@ -326,7 +327,7 @@ export default {
         min.setMinutes(this.min.getMinutes())
         time = time < min ? min : time
       }
-      this.$emit('input', new Date(time))
+      this.$emit('update:modelValue', new Date(time))
     },
     selectInputValue(e) {
       // mouseup should be prevented!

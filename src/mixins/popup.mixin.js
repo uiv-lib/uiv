@@ -19,7 +19,7 @@ const SHOW_CLASS = 'in'
 
 export default {
   props: {
-    value: {
+    modelValue: {
       type: Boolean,
       default: false,
     },
@@ -77,7 +77,7 @@ export default {
     }
   },
   watch: {
-    value(v) {
+    modelValue(v) {
       v ? this.show() : this.hide()
     },
     trigger() {
@@ -118,7 +118,7 @@ export default {
     this.$nextTick(() => {
       this.initTriggerElByTarget(this.target)
       this.initListeners()
-      if (this.value) {
+      if (this.modelValue) {
         this.show()
       }
     })
@@ -139,7 +139,7 @@ export default {
           this.triggerEl = trigger
         } else {
           // use the first child
-          const firstChild = this.$el.firstChild
+          const firstChild = this.$el.querySelector('*')
           this.triggerEl = firstChild === this.$refs.popup ? null : firstChild
         }
       }
@@ -268,7 +268,7 @@ export default {
               this.resetPosition()
             }
             addClass(popup, SHOW_CLASS)
-            this.$emit('input', true)
+            this.$emit('update:modelValue', true)
             this.$emit('show')
           }
         }, this.showDelay)
@@ -310,7 +310,7 @@ export default {
           this.transitionTimeoutId = setTimeout(() => {
             this.transitionTimeoutId = 0
             removeFromDom(this.$refs.popup)
-            this.$emit('input', false)
+            this.$emit('update:modelValue', false)
             this.$emit('hide')
           }, this.transition)
         }, this.hideDelay)

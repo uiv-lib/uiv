@@ -52,18 +52,18 @@ describe('DatePicker.vue', () => {
     )
     await nextTick()
     const now = new Date()
-    expect(wrapper.findAll('.btn').at(1).text()).toEqual(
+    expect(wrapper.findAll('.btn')[1].text()).toEqual(
       now.getFullYear() + ' ' + now.getMonth()
     )
   })
 
   it('should be able to render date view', async () => {
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     expect(picker).toBeDefined()
-    const dateView = picker.findAll('table').at(0)
+    const dateView = picker.findAll('table')[0]
     expect(dateView.attributes('style')).not.toContain('display')
-    const yearMonthBtn = dateView.findAll('button').at(1)
+    const yearMonthBtn = dateView.findAll('button')[1]
     const now = new Date()
     expect(yearMonthBtn.text()).toContain(
       `${now.getFullYear()} ${now.toDateString().split(' ')[1]}`
@@ -85,14 +85,14 @@ describe('DatePicker.vue', () => {
       }
     }
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     expect(picker).toBeDefined()
-    const dateView = picker.findAll('table').at(0)
+    const dateView = picker.findAll('table')[0]
     await goPrev(
       24,
-      dateView.findAll('button').at(0),
+      dateView.findAll('button')[0],
       new Date(),
-      dateView.findAll('button').at(1)
+      dateView.findAll('button')[1]
     )
   })
 
@@ -113,49 +113,49 @@ describe('DatePicker.vue', () => {
       }
     }
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     expect(picker).toBeDefined()
-    const dateView = picker.findAll('table').at(0)
+    const dateView = picker.findAll('table')[0]
     await goNext(
       24,
-      dateView.findAll('button').at(2),
+      dateView.findAll('button')[2],
       new Date(),
-      dateView.findAll('button').at(1)
+      dateView.findAll('button')[1]
     )
   })
 
   it('should be able to switch to month view from date view', async () => {
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     expect(picker).toBeDefined()
-    const dateView = picker.findAll('table').at(0)
-    const yearMonthBtn = dateView.findAll('button').at(1)
-    const monthView = picker.findAll('table').at(1)
+    const dateView = picker.findAll('table')[0]
+    const yearMonthBtn = dateView.findAll('button')[1]
+    const monthView = picker.findAll('table')[1]
     expect(dateView.attributes('style')).not.toContain('display')
     expect(monthView.attributes('style')).toContain('display: none')
     await triggerEvent(yearMonthBtn, 'click')
     expect(dateView.attributes('style')).toContain('display: none')
     expect(monthView.attributes('style')).not.toContain('display')
     const now = new Date()
-    expect(monthView.findAll('button').at(1).text()).toEqual(
+    expect(monthView.findAll('button')[1].text()).toEqual(
       now.getFullYear().toString()
     )
   })
 
   it('should be able to switch to date view from month view', async () => {
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     expect(picker).toBeDefined()
-    const dateView = picker.findAll('table').at(0)
-    let yearMonthBtn = dateView.findAll('button').at(1)
-    const monthView = picker.findAll('table').at(1)
+    const dateView = picker.findAll('table')[0]
+    let yearMonthBtn = dateView.findAll('button')[1]
+    const monthView = picker.findAll('table')[1]
     triggerEvent(yearMonthBtn, 'click')
     await nextTick()
     triggerEvent(monthView.find('tbody').find('button'), 'click')
     await nextTick()
     expect(dateView.attributes('style')).not.toContain('display')
     expect(monthView.attributes('style')).toContain('display: none')
-    yearMonthBtn = dateView.findAll('button').at(1)
+    yearMonthBtn = dateView.findAll('button')[1]
     let now = new Date()
     now = new Date(now.getFullYear(), 0, 1)
     expect(yearMonthBtn.text()).toContain(
@@ -165,35 +165,35 @@ describe('DatePicker.vue', () => {
 
   it('should be able to go prev year', async () => {
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     expect(picker).toBeDefined()
-    const monthView = picker.findAll('table').at(1)
+    const monthView = picker.findAll('table')[1]
     await triggerEvent(monthView.find('button'), 'click')
     const now = new Date()
-    expect(monthView.findAll('button').at(1).text()).toEqual(
+    expect(monthView.findAll('button')[1].text()).toEqual(
       now.getFullYear() - 1 + ''
     )
   })
 
   it('should be able to go next year', async () => {
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     expect(picker).toBeDefined()
-    const monthView = picker.findAll('table').at(1)
-    await triggerEvent(monthView.findAll('button').at(2), 'click')
+    const monthView = picker.findAll('table')[1]
+    await triggerEvent(monthView.findAll('button')[2], 'click')
     const now = new Date()
-    expect(monthView.findAll('button').at(1).text()).toEqual(
+    expect(monthView.findAll('button')[1].text()).toEqual(
       now.getFullYear() + 1 + ''
     )
   })
 
   it('should be able to switch to year view from month view', async () => {
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     expect(picker).toBeDefined()
-    const yearView = picker.findAll('table').at(2)
-    const monthView = picker.findAll('table').at(1)
-    const yearBtn = monthView.findAll('button').at(1)
+    const yearView = picker.findAll('table')[2]
+    const monthView = picker.findAll('table')[1]
+    const yearBtn = monthView.findAll('button')[1]
     expect(yearView.attributes('style')).toContain('display: none')
     await triggerEvent(yearBtn, 'click')
     expect(monthView.attributes('style')).toContain('display: none')
@@ -201,15 +201,15 @@ describe('DatePicker.vue', () => {
     const now = new Date()
     const start = now.getFullYear() - (now.getFullYear() % 20)
     const yearStr = `${start} ~ ${start + 19}`
-    expect(yearView.findAll('button').at(1).text()).toEqual(yearStr)
+    expect(yearView.findAll('button')[1].text()).toEqual(yearStr)
   })
 
   it('should be able to switch to month view from year view', async () => {
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     expect(picker).toBeDefined()
-    const yearView = picker.findAll('table').at(2)
-    const monthView = picker.findAll('table').at(1)
+    const yearView = picker.findAll('table')[2]
+    const monthView = picker.findAll('table')[1]
     expect(monthView.attributes('style')).toContain('display: none')
     triggerEvent(yearView.find('tbody').find('button'), 'click')
     await nextTick()
@@ -217,38 +217,38 @@ describe('DatePicker.vue', () => {
     expect(yearView.attributes('style')).toContain('display: none')
     const now = new Date()
     const year = now.getFullYear() - (now.getFullYear() % 20)
-    expect(monthView.findAll('button').at(1).text()).toEqual(year.toString())
+    expect(monthView.findAll('button')[1].text()).toEqual(year.toString())
   })
 
   it('should be able to go prev year group', async () => {
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     expect(picker).toBeDefined()
-    const yearView = picker.findAll('table').at(2)
+    const yearView = picker.findAll('table')[2]
     await triggerEvent(yearView.find('button'), 'click')
     const now = new Date()
     const start = now.getFullYear() - (now.getFullYear() % 20)
     const yearStr = `${start - 20} ~ ${start - 20 + 19}`
-    expect(yearView.findAll('button').at(1).text()).toEqual(yearStr)
+    expect(yearView.findAll('button')[1].text()).toEqual(yearStr)
   })
 
   it('should be able to go next year group', async () => {
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     expect(picker).toBeDefined()
-    const yearView = picker.findAll('table').at(2)
-    await triggerEvent(yearView.findAll('button').at(2), 'click')
+    const yearView = picker.findAll('table')[2]
+    await triggerEvent(yearView.findAll('button')[2], 'click')
     const now = new Date()
     const start = now.getFullYear() - (now.getFullYear() % 20)
     const yearStr = `${start + 20} ~ ${start + 20 + 19}`
-    expect(yearView.findAll('button').at(1).text()).toEqual(yearStr)
+    expect(yearView.findAll('button')[1].text()).toEqual(yearStr)
   })
 
   it('should be able to select date', async () => {
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
-    const dateView = picker.findAll('table').at(0)
-    const dateBtn = dateView.find('tbody').findAll('button').at(15)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
+    const dateView = picker.findAll('table')[0]
+    const dateBtn = dateView.find('tbody').findAll('button')[15]
     await triggerEvent(dateBtn, 'click')
     expect(dateBtn.classes()).toContain('btn-primary')
   })
@@ -275,7 +275,7 @@ describe('DatePicker.vue', () => {
       }
     )
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     const dropdown = wrapper.find('.dropdown')
     const trigger = dropdown.find('button')
     expect(dropdown.classes()).not.toContain('open')
@@ -287,10 +287,10 @@ describe('DatePicker.vue', () => {
 
   it('should be able to use today btn', async () => {
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
-    const dateView = picker.findAll('table').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
+    const dateView = picker.findAll('table')[0]
     await triggerEvent(
-      picker.find('.text-center').findAll('button').at(0),
+      picker.find('.text-center').findAll('button')[0],
       'click'
     )
     expect(dateView.find('tbody').find('.btn-primary').text()).toEqual(
@@ -300,11 +300,11 @@ describe('DatePicker.vue', () => {
 
   it('should be able to use clear btn', async () => {
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
-    const dateView = picker.findAll('table').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
+    const dateView = picker.findAll('table')[0]
     const btns = picker.find('.text-center').findAll('button')
-    await triggerEvent(btns.at(0), 'click')
-    await triggerEvent(btns.at(1), 'click')
+    await triggerEvent(btns[0], 'click')
+    await triggerEvent(btns[1], 'click')
     expect(dateView.find('tbody').findAll('.btn-primary').length).toEqual(0)
   })
 
@@ -339,7 +339,7 @@ describe('DatePicker.vue', () => {
     )
     wrapper.vm.date = '2018-01-01'
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     let btnDisabled = picker.find('tbody').findAll('button:disabled')
     expect(btnDisabled.length).toEqual(1)
     wrapper.vm.date = '2018-12-31'
@@ -392,10 +392,10 @@ describe('DatePicker.vue', () => {
     <date-picker icon-control-left="glyphicon glyphicon-triangle-left" icon-control-right="glyphicon glyphicon-triangle-right"/>
   </section>`)
     const $tr = wrapper.find('table:first-child tr:first-child')
-    expect($tr.findAll('td:first-child > .btn > i').at(0).classes()).toContain(
+    expect($tr.findAll('td:first-child > .btn > i')[0].classes()).toContain(
       'glyphicon-triangle-left'
     )
-    expect($tr.findAll('td:last-child > .btn > i').at(0).classes()).toContain(
+    expect($tr.findAll('td:last-child > .btn > i')[0].classes()).toContain(
       'glyphicon-triangle-right'
     )
   })
@@ -415,9 +415,9 @@ describe('DatePicker.vue', () => {
       }
     )
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     expect(picker).toBeDefined()
-    const dateView = picker.findAll('table').at(0)
+    const dateView = picker.findAll('table')[0]
     expect(dateView.attributes('style')).not.toContain('display')
     const sundayBtn = dateView.findAll('.btn-sunday')
     expect(sundayBtn.length).toEqual(6)
@@ -435,9 +435,9 @@ describe('DatePicker.vue', () => {
     )
     const locale = newLocale.uiv.datePicker
     await nextTick()
-    const picker = wrapper.findAll('[data-role="date-picker"]').at(0)
+    const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     expect(picker).toBeDefined()
-    const dateView = picker.findAll('table').at(0)
+    const dateView = picker.findAll('table')[0]
     const yearMonthBtn = dateView.find(
       'thead tr:first-child td:nth-child(2) button'
     )
@@ -446,7 +446,7 @@ describe('DatePicker.vue', () => {
     const weekdays = dateView.findAll('thead tr:last-child td')
     const weekdayNames = []
     for (let i = 0; i < weekdays.length; i++)
-      weekdayNames.push(weekdays.at(i).text())
+      weekdayNames.push(weekdays[i].text())
     const { week1, week2, week3, week4, week5, week6, week7 } = locale
     expect(weekdayNames).toEqual([
       week7,

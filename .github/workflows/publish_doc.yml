@@ -25,5 +25,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           target_branch: gh-pages
-          build_dir: docs/.vuepress/dist
+          build_dir: docs/.vitepress/dist
           jekyll: false

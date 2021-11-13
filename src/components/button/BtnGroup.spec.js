@@ -59,15 +59,9 @@ describe('BtnGroup', () => {
   </btn-group>
 </div>`)
     expect(wrapper.findAll('.btn-group').length).toEqual(4)
-    expect(wrapper.findAll('.btn-group').at(0).classes()).toContain(
-      'btn-group-lg'
-    )
-    expect(wrapper.findAll('.btn-group').at(2).classes()).toContain(
-      'btn-group-sm'
-    )
-    expect(wrapper.findAll('.btn-group').at(3).classes()).toContain(
-      'btn-group-xs'
-    )
+    expect(wrapper.findAll('.btn-group')[0].classes()).toContain('btn-group-lg')
+    expect(wrapper.findAll('.btn-group')[2].classes()).toContain('btn-group-sm')
+    expect(wrapper.findAll('.btn-group')[3].classes()).toContain('btn-group-xs')
   })
 
   it('should be able to render nesting btn group', () => {

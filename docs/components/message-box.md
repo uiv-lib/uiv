@@ -12,7 +12,7 @@ An alert example using callback:
 
 <message-box-alert/>
 
-<<< @/docs/.vuepress/components/message-box/alert.vue
+<<< @/.vitepress/components/message-box/alert.vue
 
 ## Confirm
 
@@ -22,7 +22,7 @@ A confirm example using `Promise`:
 
 <message-box-confirm/>
 
-<<< @/docs/.vuepress/components/message-box/confirm.vue
+<<< @/.vitepress/components/message-box/confirm.vue
 
 ## Prompt
 
@@ -30,11 +30,11 @@ Displays a dialog with an optional message prompting the user to input some text
 
 <message-box-prompt/>
 
-<<< @/docs/.vuepress/components/message-box/prompt.vue
+<<< @/.vitepress/components/message-box/prompt.vue
 
 ## Global methods
 
-Following global methods for `Vue.prototype` will be added **if uiv is installed**:
+Following global methods for `app.config.globalProperties` will be added **if uiv is installed**:
 
 * `$alert(options, callback(msg))`
 * `$confirm(options, callback(err, msg))`
@@ -68,10 +68,9 @@ You **CAN NOT** use MessageBox individually like this if you're also using `vue-
 :::
 
 ```javascript
-import Vue from 'vue'
 import { MessageBox } from 'uiv'
 
-Vue.prototype.$alert = MessageBox.alert
+app.config.globalProperties = MessageBox.alert
 // ...
 ```
 

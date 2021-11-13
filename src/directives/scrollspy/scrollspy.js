@@ -183,4 +183,9 @@ const update = (el, binding) => {
   }
 }
 
-export default { bind, unbind, update, inserted }
+export default {
+  beforeMount: bind,
+  unmounted: unbind,
+  updated: update,
+  mounted: inserted,
+}

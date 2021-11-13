@@ -13,39 +13,42 @@
 
 If this project has helped you out, please support it with a star :star2:.
 
-[中文文档](https://uiv.wxsm.space/zh/)
-
 ## Introduction
 
-**uiv** is a Bootstrap 3 component lib implemented by Vue 2.
+**uiv** is a Bootstrap 3 component lib implemented by Vue.
 
 * **Lightweight**
   * All components **~20KB** Gziped.
   * No extra CSS file.
   * Individually import supported.
-* IE 9+ & modern browsers supported.
+* Vue 3 supported.
 * **SSR** (server-side rendering) supported.
 
-## Documentation
+## Versions
 
-To check out live examples and documents, visit [https://uiv.wxsm.space](https://uiv.wxsm.space).
+uiv version | Vue.js version | document
+----------- | -------        | -----------
+2.x         | 3.x            | [https://uiv.wxsm.space](https://uiv.wxsm.space)
+1.x         | 2.x            | [https://uiv-v1.wxsm.space](https://uiv-v1.wxsm.space)
+0.x         | 2.x            | [https://uiv-v0.wxsm.space](https://uiv-v0.wxsm.space)
 
 ## Quick start
 
 ```bash
-$ npm install uiv --save
-# or
-$ yarn add uiv
+$ npm i uiv --save
 ```
 
 ```javascript
 // main.js
 import 'bootstrap/dist/css/bootstrap.min.css'
-
-import Vue from 'vue'
+import { createApp } from 'vue'
 import * as uiv from 'uiv'
 
-Vue.use(uiv)
+const app = createApp({ ... })
+
+app.use(uiv)
+
+app.mount(...)
 ```
 
 For more information, pls visit [https://uiv.wxsm.space/usage/getting-started.html](https://uiv.wxsm.space/usage/getting-started.html)

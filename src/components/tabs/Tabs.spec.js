@@ -1,7 +1,7 @@
 import { createWrapper, sleep, triggerEvent } from '../../__test__/utils'
 
 function baseVm() {
-  return createWrapper(`<div><tabs>
+  return createWrapper(`<tabs>
   <tab title="Home">
     <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
   </tab>
@@ -14,7 +14,7 @@ function baseVm() {
   <tab title="@bootstrap" group="Dropdown">
     <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>
   </tab>
-</tabs></div>`)
+</tabs>`)
 }
 
 function dynamicVm() {
@@ -25,7 +25,7 @@ function dynamicVm() {
         <p>Dynamic {{tab}}</p>
         <btn type="danger" @click="close">Close this tab</btn>
       </tab>
-      <template slot="nav-right">
+      <template #nav-right>
         <btn size="sm" @click="push">
           <i class="glyphicon glyphicon-plus"></i> Add
         </btn>
@@ -48,8 +48,7 @@ function dynamicVm() {
         },
         close() {
           this.tabs.splice(this.index, 1)
-          // select prev tab if the closed tab is the last one
-          if (this.index === this.tabs.length && this.index > 0) {
+          if (this.index > 0) {
             --this.index
           }
         },
@@ -109,14 +108,6 @@ describe('Tabs', () => {
     ).toEqual('none')
   })
 
-  it('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {
-    expect(
-      createWrapper.bind(null, '<tabs><tab><tab>{{ msg }}</tab></tab></tabs>', {
-        msg: 'hello',
-      })
-    ).toThrow('<tab> parent must be <tabs>.')
-  })
-
   it('should be able to add String `customNavClass`', () => {
     const wrapper = createWrapper(
       '<tabs custom-nav-class="custom-nav-class"><tab>123</tab></tabs>'
@@ -147,8 +138,7 @@ describe('Tabs', () => {
     const wrapper = baseVm()
     const vm = wrapper.vm
     const $el = vm.$el
-    await vm.$nextTick()
-    await vm.$nextTick()
+    await sleep(500)
     const nav = $el.querySelector('.nav-tabs')
     const content = $el.querySelector('.tab-content')
     const activeTab = nav.querySelectorAll('.active')
@@ -165,7 +155,7 @@ describe('Tabs', () => {
     const wrapper = baseVm()
     const vm = wrapper.vm
     const $el = vm.$el
-    await vm.$nextTick()
+    await sleep(100)
     const nav = $el.querySelector('.nav-tabs')
     const content = $el.querySelector('.tab-content')
     const tab = nav.querySelectorAll('li')[1].querySelector('a')
@@ -350,20 +340,20 @@ describe('Tabs', () => {
     const wrapper = dynamicVm()
     const vm = wrapper.vm
     const $el = vm.$el
-    await vm.$nextTick()
-    await vm.$nextTick()
-    const nav = $el.querySelector('.nav-tabs')
-    const content = $el.querySelector('.tab-content')
+    await sleep(500)
+    const nav = wrapper.find('.nav-tabs')
+    const content = wrapper.find('.tab-content')
     // 1 tab + 1 btn
-    expect(nav.querySelectorAll('li').length).toEqual(1 + 1)
+    expect(nav.findAll('li').length).toEqual(1 + 1)
     // check active tab
-    const activeTab = nav.querySelectorAll('.active')
+    const activeTab = nav.findAll('.active')
     expect(activeTab.length).toEqual(1)
-    expect(activeTab[0].querySelector('a').textContent).toEqual('Tab 1')
+    expect(activeTab[0].find('a').text()).toEqual('Tab 1')
     // check active content
-    const activeContent = content.querySelectorAll('.tab-pane.active')
+    // console.log($el.innerHTML)
+    const activeContent = content.findAll('.tab-pane.active')
     expect(activeContent.length).toEqual(1)
-    expect(activeContent[0].textContent).toContain('Tab 1')
+    expect(activeContent[0].text()).toContain('Tab 1')
   })
 
   it('should be able to push tab', async () => {
@@ -420,64 +410,56 @@ describe('Tabs', () => {
 
   it('should be able to select dynamic tab', async () => {
     const wrapper = dynamicVm()
-    const vm = wrapper.vm
-    const $el = vm.$el
-    const nav = $el.querySelector('.nav-tabs')
-    const content = $el.querySelector('.tab-content')
-    const pushBtn = nav.querySelector('.btn')
-    await vm.$nextTick()
-    await vm.$nextTick()
+    await sleep(500)
+    const nav = wrapper.find('.nav-tabs')
+    const content = wrapper.find('.tab-content')
+    const pushBtn = nav.find('.btn')
     // Add a tab
-    triggerEvent(pushBtn, 'click')
-    await vm.$nextTick()
-    triggerEvent(pushBtn, 'click')
-    await vm.$nextTick()
-    triggerEvent(pushBtn, 'click')
-    await vm.$nextTick()
+    await triggerEvent(pushBtn, 'click')
+    await triggerEvent(pushBtn, 'click')
+    await triggerEvent(pushBtn, 'click')
     await sleep(350)
-    expect(nav.querySelectorAll('li').length).toEqual(4 + 1)
-    vm.index = 1
-    await vm.$nextTick()
+    expect(nav.findAll('li').length).toEqual(4 + 1)
+    await wrapper.setData({ index: 1 })
     await sleep(350)
     // check active tab
-    let activeTab = nav.querySelectorAll('.active')
+    let activeTab = nav.findAll('.active')
     expect(activeTab.length).toEqual(1)
-    expect(activeTab[0].querySelector('a').textContent).toEqual('Tab 2')
+    expect(activeTab[0].find('a').text()).toEqual('Tab 2')
     // check active content
-    let activeContent = content.querySelectorAll('.tab-pane.active')
+    let activeContent = content.findAll('.tab-pane.active')
     expect(activeContent.length).toEqual(1)
-    expect(activeContent[0].textContent).toContain('Tab 2')
-    triggerEvent(content.querySelector('.tab-pane.active .btn'), 'click')
-    await vm.$nextTick()
-    await sleep(350)
-    expect(nav.querySelectorAll('li').length).toEqual(3 + 1)
+    expect(activeContent[0].text()).toContain('Tab 2')
+
+    await triggerEvent(content.find('.tab-pane.active .btn'), 'click')
+    await sleep(500)
+    expect(nav.findAll('li').length).toEqual(3 + 1)
     // check active tab
-    activeTab = nav.querySelectorAll('.active')
+    activeTab = nav.findAll('.active')
     expect(activeTab.length).toEqual(1)
-    expect(activeTab[0].querySelector('a').textContent).toEqual('Tab 3')
+    expect(activeTab[0].find('a').text()).toEqual('Tab 1')
     // check active content
-    activeContent = content.querySelectorAll('.tab-pane.active')
+    activeContent = content.findAll('.tab-pane.active')
     expect(activeContent.length).toEqual(1)
-    expect(activeContent[0].textContent).toContain('Tab 3')
+    expect(activeContent[0].text()).toContain('Tab 1')
     // switch tab
-    const tab2 = nav.querySelectorAll('li')[2]
-    triggerEvent(tab2.querySelector('a'), 'click')
-    await vm.$nextTick()
-    await sleep(350)
+    const tab2 = nav.findAll('li')[2]
+    await triggerEvent(tab2.find('a'), 'click')
+    await sleep(500)
     // check active tab
-    activeTab = nav.querySelectorAll('.active')
+    activeTab = nav.findAll('.active')
     expect(activeTab.length).toEqual(1)
-    expect(activeTab[0].querySelector('a').textContent).toEqual('Tab 4')
+    expect(activeTab[0].find('a').text()).toEqual('Tab 4')
     // check active content
-    activeContent = content.querySelectorAll('.tab-pane.active')
+    activeContent = content.findAll('.tab-pane.active')
     expect(activeContent.length).toEqual(1)
-    expect(activeContent[0].textContent).toContain('Tab 4')
+    expect(activeContent[0].text()).toContain('Tab 4')
   })
 
   it('should not display tab if before-change callback return false', async () => {
     const wrapper = createWrapper(
       `<section>
-    <tabs v-model="index" @before-change="onBeforeChange">
+    <tabs v-model="index" :before-change="onBeforeChange">
       <tab title="Home">
         <div>
           <br/>
@@ -517,8 +499,7 @@ describe('Tabs', () => {
     const vm = wrapper.vm
     const $el = vm.$el
     const nav = $el.querySelector('.nav-tabs')
-    await vm.$nextTick()
-    await vm.$nextTick()
+    await sleep(500)
     expect(nav.querySelectorAll('li').length).toEqual(3)
     // check active tab
     let activeTab = nav.querySelectorAll('.active')
@@ -543,5 +524,13 @@ describe('Tabs', () => {
     activeTab = nav.querySelectorAll('.active')
     expect(activeTab.length).toEqual(1)
     expect(activeTab[0].querySelector('a').textContent).toEqual('Profile')
+  })
+
+  it.skip('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {
+    expect(
+      createWrapper.bind(null, '<tabs><tab><tab>{{ msg }}</tab></tab></tabs>', {
+        msg: 'hello',
+      })
+    ).toThrow('<tab> parent must be <tabs>.')
   })
 })

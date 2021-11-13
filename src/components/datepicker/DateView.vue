@@ -60,21 +60,21 @@
             getWeekNumber(row[weekStartsWith])
           }}</small>
         </td>
-        <td v-for="(date, j) in row" :key="`${i}_${j}`">
+        <td v-for="(d, j) in row" :key="`${i}_${j}`">
           <btn
             block
             size="sm"
             style="border: none"
             data-action="select"
-            :class="date.classes"
-            :type="getBtnType(date)"
-            :disabled="date.disabled"
-            @click="select(date)"
+            :class="d.classes"
+            :type="getBtnType(d)"
+            :disabled="d.disabled"
+            @click="select(d)"
           >
             <span
               data-action="select"
-              :class="{ 'text-muted': month !== date.month }"
-              >{{ date.date }}</span
+              :class="{ 'text-muted': month !== d.month }"
+              >{{ d.date }}</span
             >
           </btn>
         </td>
@@ -85,7 +85,7 @@
 
 <script>
 import Locale from '../../mixins/locale.mixin'
-import Btn from './../button/Btn'
+import Btn from './../button/Btn.vue'
 import { daysInMonth, getWeekNumber } from '../../utils/date.utils'
 import { isExist, isFunction } from '../../utils/object.utils'
 
@@ -93,18 +93,19 @@ export default {
   components: { Btn },
   mixins: [Locale],
   props: {
-    month: Number,
-    year: Number,
-    date: Date,
-    today: Date,
-    limit: Object,
-    weekStartsWith: Number,
-    iconControlLeft: String,
-    iconControlRight: String,
-    dateClass: Function,
-    yearMonthFormatter: Function,
+    month: { type: Number, default: undefined },
+    year: { type: Number, default: undefined },
+    date: { type: Date, default: undefined },
+    today: { type: Date, default: undefined },
+    limit: { type: Object, default: undefined },
+    weekStartsWith: { type: Number, default: undefined },
+    iconControlLeft: { type: String, default: undefined },
+    iconControlRight: { type: String, default: undefined },
+    dateClass: { type: Function, default: undefined },
+    yearMonthFormatter: { type: Function, default: undefined },
     weekNumbers: Boolean,
   },
+  emits: ['date-change', 'year-change', 'month-change', 'view-change'],
   computed: {
     weekDays() {
       const days = []

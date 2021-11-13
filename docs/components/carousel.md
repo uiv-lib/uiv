@@ -6,17 +6,15 @@
 
 <carousel-example/>
 
-<<< @/docs/.vuepress/components/carousel/example.vue
+<<< @/.vitepress/components/carousel/example.vue
 
 ## Override indicators
 
-Use the `indicators` slot to override default Bootstrap indicators. 
-
-This is a scoped slot, use `slot-scope="props"` in Vue 2.5+, otherwise `scope="props"`.
+Use the `indicators` slot to override default Bootstrap indicators.
 
 <carousel-override-indicators/>
 
-<<< @/docs/.vuepress/components/carousel/override-indicators.vue
+<<< @/.vitepress/components/carousel/override-indicators.vue
 
 ## Custom icons
 
@@ -31,7 +29,7 @@ Here is an example using `glyphicon-arrow-left` and `glyphicon-arrow-right`.
 
 <carousel-icons/>
 
-<<< @/docs/.vuepress/components/carousel/icons.vue
+<<< @/.vitepress/components/carousel/icons.vue
 
 ## API Reference
 

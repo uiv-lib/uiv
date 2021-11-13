@@ -1,11 +1,10 @@
 <template>
   <section>
     <ul :class="navClasses" role="tablist">
-      <template v-for="(tab, i) in groupedTabs">
+      <template v-for="(tab, i) in groupedTabs" :key="i">
         <dropdown
           v-if="tab.tabs"
           v-show="!tab.hidden"
-          :key="i"
           role="presentation"
           tag="li"
           :class="getTabClasses(tab)"
@@ -13,7 +12,7 @@
           <a class="dropdown-toggle" role="tab" href="#" @click.prevent
             >{{ tab.group }} <span class="caret"></span
           ></a>
-          <template slot="dropdown">
+          <template #dropdown>
             <li
               v-for="(subTab, j) in tab.tabs"
               v-show="!subTab.hidden"
@@ -29,17 +28,15 @@
         <li
           v-else
           v-show="!tab.hidden"
-          :key="i"
           role="presentation"
           :class="getTabClasses(tab)"
         >
-          <portal-target
+          <a
             v-if="tab.$slots.title"
-            :name="tab._uid.toString()"
-            tag="a"
+            :id="tab.uid"
             role="tab"
             href="#"
-            @click.native.prevent="select(tabs.indexOf(tab))"
+            @click.prevent="select(tabs.indexOf(tab))"
           />
           <a
             v-else
@@ -61,8 +58,7 @@
 </template>
 
 <script>
-import Dropdown from '../dropdown/Dropdown.js'
-import { PortalTarget } from 'portal-vue'
+import Dropdown from '../dropdown/Dropdown.vue'
 import {
   isNumber,
   isFunction,
@@ -72,14 +68,13 @@ import {
   hasOwnProperty,
 } from '../../utils/object.utils'
 
-const BEFORE_CHANGE_EVENT = 'before-change'
-
 export default {
-  components: { Dropdown, PortalTarget },
+  components: { Dropdown },
   props: {
-    value: {
+    modelValue: {
       type: Number,
       validator: (v) => v >= 0,
+      default: undefined,
     },
     transition: {
       type: Number,
@@ -88,9 +83,11 @@ export default {
     justified: Boolean,
     pills: Boolean,
     stacked: Boolean,
-    customNavClass: null,
-    customContentClass: null,
+    customNavClass: { type: null, default: undefined },
+    customContentClass: { type: null, default: undefined },
+    beforeChange: { type: Function, default: undefined },
   },
+  emits: ['update:modelValue', 'change', 'changed'],
   data() {
     return {
       tabs: [],
@@ -171,14 +168,11 @@ export default {
     },
   },
   watch: {
-    value: {
-      immediate: true,
-      handler(value) {
-        if (isNumber(value)) {
-          this.activeIndex = value
-          this.selectCurrent()
-        }
-      },
+    modelValue(value) {
+      if (isNumber(value)) {
+        this.activeIndex = value
+        this.selectCurrent()
+      }
     },
     tabs(tabs) {
       tabs.forEach((tab, index) => {
@@ -189,6 +183,9 @@ export default {
       })
       this.selectCurrent()
     },
+  },
+  mounted() {
+    this.selectCurrent()
   },
   methods: {
     getTabClasses(tab, isSubTab = false) {
@@ -216,8 +213,8 @@ export default {
       }
     },
     selectValidate(index) {
-      if (isFunction(this.$listeners[BEFORE_CHANGE_EVENT])) {
-        this.$emit(BEFORE_CHANGE_EVENT, this.activeIndex, index, (result) => {
+      if (isFunction(this.beforeChange)) {
+        this.beforeChange(this.activeIndex, index, (result) => {
           if (!isExist(result)) {
             this.$select(index)
           }
@@ -232,8 +229,8 @@ export default {
       }
     },
     $select(index) {
-      if (isNumber(this.value)) {
-        this.$emit('input', index)
+      if (isNumber(this.modelValue)) {
+        this.$emit('update:modelValue', index)
       } else {
         this.activeIndex = index
         this.selectCurrent()

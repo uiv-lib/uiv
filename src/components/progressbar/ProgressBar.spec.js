@@ -1,14 +1,4 @@
-import newLocale from '../../locale/lang/zh-CN'
-import {
-  createWrapper,
-  keyCodes,
-  nextTick,
-  sleep,
-  transition,
-  triggerEvent,
-} from '../../__test__/utils'
-import { RouterLinkStub } from '@vue/test-utils'
-import _ from 'lodash'
+import { createWrapper } from '../../__test__/utils'
 
 describe('ProgressBar', () => {
   it('should be able to render default', async () => {
@@ -158,6 +148,7 @@ describe('ProgressBar', () => {
     const vm = wrapper.vm
     await vm.$nextTick()
     const bars = vm.$el.querySelectorAll('.progress')
+    // console.log(document.body.innerHTML)
     expect(bars[0].querySelectorAll('.progress-bar').length).toEqual(3)
   })
 })

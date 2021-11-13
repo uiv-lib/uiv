@@ -7,7 +7,7 @@
     :not-close-elements="elements"
     :position-element="inputEl"
   >
-    <template slot="dropdown">
+    <template #dropdown>
       <slot
         name="item"
         :items="items"
@@ -40,16 +40,17 @@ import {
   EVENTS,
   getElementBySelectorOrRef,
 } from '../../utils/dom.utils'
-import Dropdown from '../dropdown/Dropdown.js'
+import Dropdown from '../dropdown/Dropdown.vue'
 
 export default {
   components: { Dropdown },
   props: {
-    value: {
+    modelValue: {
+      type: null,
       required: true,
     },
-    data: Array,
-    itemKey: String,
+    data: { type: Array, default: () => [] },
+    itemKey: { type: String, default: undefined },
     appendToBody: {
       type: Boolean,
       default: false,
@@ -74,9 +75,9 @@ export default {
       type: Number,
       default: 10,
     },
-    asyncSrc: String,
-    asyncKey: String,
-    asyncFunction: Function,
+    asyncSrc: { type: String, default: undefined },
+    asyncKey: { type: String, default: undefined },
+    asyncFunction: { type: Function, default: undefined },
     debounce: {
       type: Number,
       default: 200,
@@ -91,12 +92,20 @@ export default {
     },
     target: {
       required: true,
+      type: null,
     },
     preselect: {
       type: Boolean,
       default: true,
     },
   },
+  emits: [
+    'update:modelValue',
+    'loading',
+    'loaded',
+    'loaded-error',
+    'selected-item-changed',
+  ],
   data() {
     return {
       inputEl: null,
@@ -126,7 +135,7 @@ export default {
       this.initInputElByTarget(el)
       this.initListeners()
     },
-    value(value) {
+    modelValue(value) {
       this.setInputTextByValue(value)
     },
     activeIndex(index) {
@@ -141,12 +150,12 @@ export default {
       this.dropdownMenuEl =
         this.$refs.dropdown.$el.querySelector('.dropdown-menu')
       // set input text if v-model not empty
-      if (this.value) {
-        this.setInputTextByValue(this.value)
+      if (this.modelValue) {
+        this.setInputTextByValue(this.modelValue)
       }
     })
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.removeListeners()
   },
   methods: {
@@ -163,7 +172,7 @@ export default {
       }
     },
     hasEmptySlot() {
-      return !!this.$slots.empty || !!this.$scopedSlots.empty
+      return !!this.$slots.empty || !!this.$slots.empty
     },
     initInputElByTarget(target) {
       if (!target) {
@@ -257,7 +266,7 @@ export default {
     inputChanged() {
       const value = this.inputEl.value
       this.fetchItems(value, this.debounce)
-      this.$emit('input', this.forceSelect ? undefined : value)
+      this.$emit('update:modelValue', this.forceSelect ? undefined : value)
     },
     inputFocused() {
       if (this.openOnFocus) {
@@ -271,7 +280,7 @@ export default {
       }
       if (this.inputEl && this.forceClear) {
         this.$nextTick(() => {
-          if (typeof this.value === 'undefined') {
+          if (typeof this.modelValue === 'undefined') {
             this.inputEl.value = ''
           }
         })
@@ -305,7 +314,7 @@ export default {
       }
     },
     selectItem(item) {
-      this.$emit('input', item)
+      this.$emit('update:modelValue', item)
       this.open = false
     },
     highlight(item) {

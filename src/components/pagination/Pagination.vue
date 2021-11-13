@@ -1,7 +1,10 @@
 <template>
   <nav aria-label="Page navigation" :class="navClasses">
     <ul class="pagination" :class="classes">
-      <li v-if="boundaryLinks" :class="{ disabled: value <= 1 || disabled }">
+      <li
+        v-if="boundaryLinks"
+        :class="{ disabled: modelValue <= 1 || disabled }"
+      >
         <a
           href="#"
           role="button"
@@ -11,12 +14,15 @@
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
-      <li v-if="directionLinks" :class="{ disabled: value <= 1 || disabled }">
+      <li
+        v-if="directionLinks"
+        :class="{ disabled: modelValue <= 1 || disabled }"
+      >
         <a
           href="#"
           role="button"
           aria-label="Previous"
-          @click.prevent="onPageChange(value - 1)"
+          @click.prevent="onPageChange(modelValue - 1)"
         >
           <span aria-hidden="true">&lsaquo;</span>
         </a>
@@ -34,7 +40,7 @@
       <li
         v-for="item in sliceArray"
         :key="item"
-        :class="{ active: value === item + 1, disabled: disabled }"
+        :class="{ active: modelValue === item + 1, disabled: disabled }"
       >
         <a href="#" role="button" @click.prevent="onPageChange(item + 1)">{{
           item + 1
@@ -55,7 +61,7 @@
       </li>
       <li
         v-if="directionLinks"
-        :class="{ disabled: value >= totalPage || disabled }"
+        :class="{ disabled: modelValue >= totalPage || disabled }"
       >
         <a
           href="#"
@@ -68,7 +74,7 @@
       </li>
       <li
         v-if="boundaryLinks"
-        :class="{ disabled: value >= totalPage || disabled }"
+        :class="{ disabled: modelValue >= totalPage || disabled }"
       >
         <a
           href="#"
@@ -88,7 +94,7 @@ import { range } from '../../utils/array.utils'
 
 export default {
   props: {
-    value: {
+    modelValue: {
       type: Number,
       required: true,
       validator: (v) => v >= 1,
@@ -101,8 +107,8 @@ export default {
       type: Boolean,
       default: true,
     },
-    size: String,
-    align: String,
+    size: { type: String, default: undefined },
+    align: { type: String, default: undefined },
     totalPage: {
       type: Number,
       required: true,
@@ -115,6 +121,7 @@ export default {
     },
     disabled: Boolean,
   },
+  emits: ['update:modelValue', 'change'],
   data() {
     return {
       sliceStart: 0,
@@ -140,7 +147,7 @@ export default {
   },
   created() {
     this.$watch(
-      (vm) => [vm.value, vm.maxSize, vm.totalPage].join(),
+      (vm) => [vm.modelValue, vm.maxSize, vm.totalPage].join(),
       this.calculateSliceStart,
       {
         immediate: true,
@@ -149,7 +156,7 @@ export default {
   },
   methods: {
     calculateSliceStart() {
-      const currentPage = this.value
+      const currentPage = this.modelValue
       const chunkSize = this.maxSize
       const currentChunkStart = this.sliceStart
       const currentChunkEnd = currentChunkStart + chunkSize
@@ -173,9 +180,9 @@ export default {
         !this.disabled &&
         page > 0 &&
         page <= this.totalPage &&
-        page !== this.value
+        page !== this.modelValue
       ) {
-        this.$emit('input', page)
+        this.$emit('update:modelValue', page)
         this.$emit('change', page)
       }
     },

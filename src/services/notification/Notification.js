@@ -1,4 +1,3 @@
-import { removeFromDom } from '../../utils/dom.utils'
 import { spliceIfExist } from '../../utils/array.utils'
 import {
   isFunction,
@@ -10,23 +9,23 @@ import {
 } from '../../utils/object.utils'
 import Notification from '../../components/notification/Notification.vue'
 import { PLACEMENTS } from '../../constants/notification.constants'
-import Vue from 'vue'
+import { h, render, reactive } from 'vue'
 
-const queues = {
+const queues = reactive({
   [PLACEMENTS.TOP_LEFT]: [],
   [PLACEMENTS.TOP_RIGHT]: [],
   [PLACEMENTS.BOTTOM_LEFT]: [],
   [PLACEMENTS.BOTTOM_RIGHT]: [],
-}
+})
 
-const destroy = (queue, instance) => {
+const destroy = (queue, { vNode, container }) => {
   // console.log('destroyNotification')
-  removeFromDom(instance.$el)
-  instance.$destroy()
-  spliceIfExist(queue, instance)
+  render(null, container)
+  spliceIfExist(queue, vNode.component.ctx)
 }
 
 const init = (options, cb, resolve = null, reject = null) => {
+  const container = document.createElement('div')
   const placement = options.placement
   const queue = queues[placement]
   // check if placement is valid
@@ -38,22 +37,22 @@ const init = (options, cb, resolve = null, reject = null) => {
   if (options.type === 'error') {
     options.type = 'danger'
   }
-  const instance = new Vue({
-    extends: Notification,
-    propsData: assign({}, { queue, placement }, options, {
-      cb(msg) {
-        destroy(queue, instance)
-        if (isFunction(cb)) {
-          cb(msg)
-        } else if (resolve && reject) {
-          resolve(msg)
-        }
-      },
-    }),
+  const vNode = h(Notification, {
+    queue,
+    placement,
+    ...options,
+    cb(msg) {
+      destroy(queue, { vNode, container })
+      if (isFunction(cb)) {
+        cb(msg)
+      } else if (resolve && reject) {
+        resolve(msg)
+      }
+    },
   })
-  instance.$mount()
-  document.body.appendChild(instance.$el)
-  queue.push(instance)
+  render(vNode, container)
+  document.body.appendChild(container.firstElementChild)
+  queue.push(vNode.component.ctx)
 }
 
 // eslint-disable-next-line default-param-last

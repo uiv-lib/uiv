@@ -1,21 +1,13 @@
-// https://github.com/ElemeFE/element/blob/dev/src/locale/index.js
-import { isFunction, isExist } from '../utils/object.utils'
+import { isExist } from '../utils/object.utils'
 import defaultLang from './lang/en-US'
 
 let lang = defaultLang
 
 let i18nHandler = function () {
-  const vuei18n = Object.getPrototypeOf(this).$t
-  /* istanbul ignore else */
-  /* istanbul ignore next */
-  if (isFunction(vuei18n)) {
-    /* istanbul ignore next */
-    try {
-      return vuei18n.apply(this, arguments)
-    } catch (err) {
-      return this.$t.apply(this, arguments)
-    }
+  if ('$t' in this) {
+    return this.$t.apply(this, arguments)
   }
+  return null
 }
 
 export const t = function (path, options) {

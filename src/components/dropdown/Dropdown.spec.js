@@ -1,18 +1,10 @@
-import newLocale from '../../locale/lang/zh-CN'
-import {
-  createWrapper,
-  keyCodes,
-  nextTick,
-  sleep,
-  triggerEvent,
-} from '../../__test__/utils'
-import { RouterLinkStub } from '@vue/test-utils'
+import { createWrapper, nextTick, triggerEvent } from '../../__test__/utils'
 import Dropdown from './Dropdown'
 
 function appendToBodyVm() {
   return createWrapper(`<div><dropdown append-to-body>
   <btn class="dropdown-toggle">Dropdown <span class="caret"></span></btn>
-  <template slot="dropdown">
+  <template #dropdown>
     <li><a role="button">Action</a></li>
     <li><a role="button">Another action</a></li>
     <li><a role="button">Something else here</a></li>
@@ -23,7 +15,7 @@ function appendToBodyVm() {
 <!-- dropdown with append-to-body + menu-right -->
 <dropdown append-to-body menu-right>
   <btn class="dropdown-toggle">Menu-Right <span class="caret"></span></btn>
-  <template slot="dropdown">
+  <template #dropdown>
     <li><a role="button">Action</a></li>
     <li><a role="button">Another action</a></li>
     <li><a role="button">Something else here</a></li>
@@ -34,7 +26,7 @@ function appendToBodyVm() {
 <!-- dropdown with append-to-body + dropup -->
 <dropdown append-to-body dropup>
   <btn class="dropdown-toggle">Dropup <span class="caret"></span></btn>
-  <template slot="dropdown">
+  <template #dropdown>
     <li><a role="button">Action</a></li>
     <li><a role="button">Another action</a></li>
     <li><a role="button">Something else here</a></li>
@@ -47,7 +39,7 @@ function appendToBodyVm() {
 function baseVm() {
   return createWrapper(`<div><dropdown ref="dropdown">
   <btn type="primary" class="dropdown-toggle">Dropdown <span class="caret"></span></btn>
-  <template slot="dropdown">
+  <template #dropdown>
     <li><a role="button">Action</a></li>
     <li><a role="button">Another action</a></li>
     <li><a role="button">Something else here</a></li>
@@ -58,7 +50,7 @@ function baseVm() {
 <dropdown>
   <btn type="info">Split Button</btn>
   <btn type="info" class="dropdown-toggle"><span class="caret"></span></btn>
-  <template slot="dropdown">
+  <template #dropdown>
     <li><a role="button">Action</a></li>
     <li><a role="button">Another action</a></li>
     <li><a role="button">Something else here</a></li>
@@ -75,7 +67,7 @@ async function assertKeyboardNav(
   keyCode,
   called = true
 ) {
-  const spy = jest.spyOn(wrapper.findAll('li > a').at(index).element, 'focus')
+  const spy = jest.spyOn(wrapper.findAll('li > a')[index].element, 'focus')
   await triggerEvent(trigger, `keydown.${keyCode}`)
   if (called) {
     expect(spy).toBeCalled()
@@ -147,7 +139,7 @@ describe('Dropdown', () => {
     await triggerEvent(trigger, 'click')
     expect(dropdown.classes()).toContain('open')
     await assertKeyboardNav(trigger, dropdown, 0, 'down')
-    const spy = jest.spyOn(dropdown.findAll('li > a').at(0).element, 'click')
+    const spy = jest.spyOn(dropdown.findAll('li > a')[0].element, 'click')
     await triggerEvent(trigger, 'keydown.enter')
     expect(spy).toBeCalled()
   })
@@ -196,7 +188,7 @@ describe('Dropdown', () => {
   <button class="btn btn-default dropdown-toggle" type="button">
     <span>Dropdown 1</span><span class="caret"></span>
   </button>
-  <template slot="dropdown">
+  <template #dropdown>
     <li ref="li1"><a href="#">Action</a></li>
     <li ref="li2"><a href="#">Action2</a></li>
   </template>
@@ -236,10 +228,11 @@ describe('Dropdown', () => {
     const dropdown = wrapper.find('.dropdown')
     const trigger = dropdown.find('button')
     expect(dropdown.classes()).not.toContain('open')
+    // console.log(wrapper.html())
     expect(dropdown.find('.dropdown-menu')).toBeDefined()
     await triggerEvent(trigger, 'click')
     expect(dropdown.classes()).toContain('open')
-    expect(dropdown.findAll('.dropdown-menu').length).toEqual(1)
+    expect(document.querySelectorAll('body>.dropdown-menu').length).toEqual(1)
     await triggerEvent(trigger, 'click')
     expect(dropdown.classes()).not.toContain('open')
     expect(dropdown.find('.dropdown-menu')).toBeDefined()
@@ -248,7 +241,7 @@ describe('Dropdown', () => {
   it('should be able to use dropup style', async () => {
     const wrapper = createWrapper(`<div><dropdown dropup>
   <btn class="dropdown-toggle">Dropup <span class="caret"></span></btn>
-  <template slot="dropdown">
+  <template #dropdown>
     <li><a role="button">Action</a></li>
     <li><a role="button">Another action</a></li>
     <li><a role="button">Something else here</a></li>
@@ -265,7 +258,7 @@ describe('Dropdown', () => {
   it('should be able to use menu-right style', async () => {
     const wrapper = createWrapper(`<div><dropdown menu-right>
   <btn class="dropdown-toggle">Menu-Right <span class="caret"></span></btn>
-  <template slot="dropdown">
+  <template #dropdown>
     <li><a role="button">Action</a></li>
     <li><a role="button">Another action</a></li>
     <li><a role="button">Something else here</a></li>
@@ -282,13 +275,15 @@ describe('Dropdown', () => {
 
   it('should be able to open dropdown append to body & menu-right on trigger click', async () => {
     const wrapper = appendToBodyVm()
-    const dropdown = wrapper.findAll('.dropdown').at(1)
+    const dropdown = wrapper.findAll('.dropdown')[1]
     const trigger = dropdown.find('button')
     expect(dropdown.classes()).not.toContain('open')
     expect(dropdown.findAll('.dropdown-menu-right').length).toEqual(1)
     await triggerEvent(trigger, 'click')
     expect(dropdown.classes()).toContain('open')
-    expect(dropdown.findAll('.dropdown-menu-right').length).toEqual(1)
+    expect(
+      document.querySelectorAll('body > .dropdown-menu-right').length
+    ).toEqual(1)
     await triggerEvent(trigger, 'click')
     expect(dropdown.classes()).not.toContain('open')
     expect(dropdown.find('.dropdown-menu-right')).toBeDefined()
@@ -302,7 +297,7 @@ describe('Dropdown', () => {
     expect(dropdown.findAll('.dropdown-menu').length).toEqual(1)
     await triggerEvent(trigger, 'click')
     expect(dropdown.classes()).toContain('open')
-    expect(dropdown.findAll('.dropdown-menu').length).toEqual(1)
+    expect(document.querySelectorAll('body>.dropdown-menu').length).toEqual(1)
     await triggerEvent(trigger, 'click')
     expect(dropdown.classes()).not.toContain('open')
     expect(dropdown.find('.dropdown-menu')).toBeDefined()
@@ -310,7 +305,7 @@ describe('Dropdown', () => {
 
   it('should be able to open dropdown on init', async () => {
     const wrapper = createWrapper(
-      '<dropdown v-model="show"><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template slot="dropdown"><li><a href="#">Action</a></li></template></dropdown>',
+      '<dropdown v-model="show"><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template #dropdown><li><a href="#">Action</a></li></template></dropdown>',
       {
         show: true,
       }
@@ -322,7 +317,7 @@ describe('Dropdown', () => {
 
   it('should be able to disable dropdown', async () => {
     const wrapper = createWrapper(
-      '<dropdown v-model="show" disabled><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template slot="dropdown"><li><a href="#">Action</a></li></template></dropdown>',
+      '<dropdown v-model="show" disabled><button class="btn btn-default dropdown-toggle" type="button"><span>Dropdown 1</span><span class="caret"></span></button><template #dropdown><li><a href="#">Action</a></li></template></dropdown>',
       {
         show: true,
       }

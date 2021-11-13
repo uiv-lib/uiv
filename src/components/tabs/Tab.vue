@@ -1,22 +1,22 @@
 <template>
   <div class="tab-pane" :class="{ fade: transition > 0 }" role="tabpanel">
     <slot></slot>
-    <portal :to="_uid.toString()">
+    <teleport v-if="isMounted && $slots.title" :to="'#' + uid.toString()">
       <slot name="title" />
-    </portal>
+    </teleport>
   </div>
 </template>
 
 <script>
 import { spliceIfExist } from '../../utils/array.utils'
 import { addClass, removeClass } from '../../utils/dom.utils'
-import { Portal } from 'portal-vue'
 
 const ACTIVE_CLASS = 'active'
 const IN_CLASS = 'in'
 
+let id = 0
+
 export default {
-  components: { Portal },
   props: {
     title: {
       type: String,
@@ -32,7 +32,7 @@ export default {
         return {}
       },
     },
-    group: String,
+    group: { type: String, default: undefined },
     pullRight: {
       type: Boolean,
       default: false,
@@ -44,8 +44,10 @@ export default {
   },
   data() {
     return {
-      active: true,
+      active: null,
       transition: 150,
+      uid: `tab_${++id}`,
+      isMounted: false,
     }
   },
   watch: {
@@ -76,7 +78,10 @@ export default {
       throw new Error('<tab> parent must be <tabs>.')
     }
   },
-  beforeDestroy() {
+  mounted() {
+    this.isMounted = true
+  },
+  beforeUnmount() {
     const tabs = this.$parent && this.$parent.tabs
     spliceIfExist(tabs, this)
   },

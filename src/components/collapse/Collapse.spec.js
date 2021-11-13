@@ -23,8 +23,8 @@ describe('Collapse', () => {
         show: false,
       }
     )
-    const trigger = wrapper.findAll('button').at(0)
-    const collapse = wrapper.findAll('.collapse').at(0)
+    const trigger = wrapper.findAll('button')[0]
+    const collapse = wrapper.findAll('.collapse')[0]
     expect(collapse.classes()).toEqual(['collapse'])
     await triggerEvent(trigger, 'click')
     await sleep(400)
@@ -78,7 +78,7 @@ describe('Collapse', () => {
         methods: {
           toggleAccordion(index) {
             if (this.showAccordion[index]) {
-              this.$set(this.showAccordion, index, false)
+              this.showAccordion[index] = false
             } else {
               this.showAccordion = this.showAccordion.map((v, i) => i === index)
             }
@@ -88,14 +88,14 @@ describe('Collapse', () => {
     )
     const triggers = wrapper.findAll('.panel-heading')
     const collapse = wrapper.findAll('.collapse')
-    expect(collapse.at(0).classes()).toEqual(['collapse', 'in'])
-    expect(collapse.at(1).classes()).toEqual(['collapse'])
-    await triggerEvent(triggers.at(1), 'click')
+    expect(collapse[0].classes()).toEqual(['collapse', 'in'])
+    expect(collapse[1].classes()).toEqual(['collapse'])
+    await triggerEvent(triggers[1], 'click')
     await sleep(400)
-    expect(collapse.at(0).classes()).toEqual(['collapse'])
-    expect(collapse.at(1).classes()).toEqual(['collapse', 'in'])
-    await triggerEvent(triggers.at(1), 'click')
+    expect(collapse[0].classes()).toEqual(['collapse'])
+    expect(collapse[1].classes()).toEqual(['collapse', 'in'])
+    await triggerEvent(triggers[1], 'click')
     await sleep(400)
-    expect(collapse.at(1).classes()).toEqual(['collapse'])
+    expect(collapse[1].classes()).toEqual(['collapse'])
   })
 })

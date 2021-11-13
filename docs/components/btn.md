@@ -8,7 +8,7 @@ Use any of the available button types to quickly create a styled button.
 
 <btn-example/>
 
-<<< @/docs/.vuepress/components/btn/example.vue
+<<< @/.vitepress/components/btn/example.vue
 
 ## Links
 
@@ -16,7 +16,7 @@ Buttons with `href` or `to` prop will render as link tag.
 
 <btn-links/>
 
-<<< @/docs/.vuepress/components/btn/links.vue
+<<< @/.vitepress/components/btn/links.vue
 
 ## Sizes
 
@@ -24,13 +24,13 @@ Fancy larger or smaller buttons? Add size `lg`, `sm`, or `xs` for additional siz
 
 <btn-sizes/>
 
-<<< @/docs/.vuepress/components/btn/sizes.vue
+<<< @/.vitepress/components/btn/sizes.vue
 
 Create block level buttons—those that span the full width of a parent — by adding `block`.
 
 <btn-block/>
 
-<<< @/docs/.vuepress/components/btn/block.vue
+<<< @/.vitepress/components/btn/block.vue
 
 ## Active state
 
@@ -38,7 +38,7 @@ Add `active` to make buttons appear pressed (with a darker background, darker bo
 
 <btn-active/>
 
-<<< @/docs/.vuepress/components/btn/active.vue
+<<< @/.vitepress/components/btn/active.vue
 
 ## Disabled state
 
@@ -46,7 +46,7 @@ Add `disabled` to make buttons unclickable.
 
 <btn-disabled/>
 
-<<< @/docs/.vuepress/components/btn/disabled.vue
+<<< @/.vitepress/components/btn/disabled.vue
 
 ## Checkbox / Radio
 
@@ -62,7 +62,7 @@ This needed to work with [`btn-group`](/components/btn-group.html) for correct s
 
 <btn-checkbox/>
 
-<<< @/docs/.vuepress/components/btn/checkbox.vue
+<<< @/.vitepress/components/btn/checkbox.vue
 
 ### Radio example
 
@@ -70,7 +70,7 @@ This needed to work with [`btn-group`](/components/btn-group.html) for correct s
 
 <btn-radio/>
 
-<<< @/docs/.vuepress/components/btn/radio.vue
+<<< @/.vitepress/components/btn/radio.vue
 
 ## API Reference
 

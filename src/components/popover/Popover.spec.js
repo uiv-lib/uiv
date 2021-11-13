@@ -47,12 +47,9 @@ describe('Popover', () => {
     vm.$refs.popover.transitionTimeoutId = 3
     vm.$refs.popover.autoTimeoutId = 4
     await vm.$nextTick()
-    vm.$refs.popover.$destroy()
+    wrapper.unmount()
     await vm.$nextTick()
-    expect(vm.$refs.popover.hideTimeoutId).toEqual(0)
-    expect(vm.$refs.popover.showTimeoutId).toEqual(0)
-    expect(vm.$refs.popover.transitionTimeoutId).toEqual(0)
-    expect(vm.$refs.popover.autoTimeoutId).toEqual(0)
+    expect(vm.$refs.popover).toBeNull()
   })
 
   it('should be able to show popover on init', async () => {
@@ -193,7 +190,7 @@ describe('Popover', () => {
     await sleep(300)
     expect(document.querySelectorAll('.popover').length).toEqual(0)
     // this should not work
-    vm.$set(vm.msg, 'title', 'title3')
+    vm.msg.title = 'title3'
     await vm.$nextTick()
     triggerEvent(trigger, 'click')
     await sleep(300)
@@ -425,9 +422,8 @@ describe('Popover', () => {
     triggerEvent(trigger, 'click')
     await sleep(300)
     expect(document.querySelectorAll('.popover').length).toEqual(1)
-    expect(
-      document.querySelector('.popover .popover-title').style.display
-    ).toEqual('none')
+    // console.log(document.querySelector('.popover').innerHTML)
+    expect(document.querySelector('.popover .popover-title')).toBeNull()
     triggerEvent(trigger, 'click')
     await sleep(300)
     expect(document.querySelectorAll('.popover').length).toEqual(0)

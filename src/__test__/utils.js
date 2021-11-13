@@ -1,10 +1,8 @@
-import Vue from 'vue'
-import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
-import { install } from '../install'
+import { nextTick as n } from 'vue'
+import { mount, RouterLinkStub } from '@vue/test-utils'
+import * as uiv from '../install'
 
 export const createWrapper = (template, _data, _options) => {
-  const localVue = createLocalVue()
-  localVue.use(install)
   return mount(
     {
       data() {
@@ -16,12 +14,14 @@ export const createWrapper = (template, _data, _options) => {
       template: template,
     },
     {
-      localVue,
-      attachTo: document.body,
-      stubs: {
-        RouterLink: RouterLinkStub,
-        'router-link': RouterLinkStub,
+      global: {
+        plugins: [uiv],
+        stubs: {
+          RouterLink: RouterLinkStub,
+          'router-link': RouterLinkStub,
+        },
       },
+      attachTo: document.body,
     }
   )
 }
@@ -34,7 +34,7 @@ export const sleep = (time) => {
 
 export async function nextTick(times = 5) {
   for (let i = 0; i < times; ++i) {
-    await Vue.prototype.$nextTick()
+    await n()
   }
 }
 

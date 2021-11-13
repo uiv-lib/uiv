@@ -38,15 +38,15 @@
     </thead>
     <tbody>
       <tr v-for="(row, i) in rows" :key="i">
-        <td v-for="(year, j) in row" :key="`${i}_${j}`" width="20%">
+        <td v-for="(y, j) in row" :key="`${i}_${j}`" width="20%">
           <btn
             block
             size="sm"
             style="border: none"
-            :type="getBtnClass(year)"
-            @click="changeView(year)"
+            :type="getBtnClass(y)"
+            @click="changeView(y)"
           >
-            <span>{{ year }}</span>
+            <span>{{ y }}</span>
           </btn>
         </td>
       </tr>
@@ -55,15 +55,16 @@
 </template>
 
 <script>
-import Btn from './../button/Btn'
+import Btn from './../button/Btn.vue'
 
 export default {
   components: { Btn },
   props: {
-    year: Number,
-    iconControlLeft: String,
-    iconControlRight: String,
+    year: { type: Number, default: undefined },
+    iconControlLeft: { type: String, default: undefined },
+    iconControlRight: { type: String, default: undefined },
   },
+  emits: ['year-change', 'view-change'],
   computed: {
     rows() {
       const rows = []

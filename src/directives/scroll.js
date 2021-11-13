@@ -29,4 +29,4 @@ const update = (el, binding) => {
   }
 }
 
-export default { bind, unbind, update }
+export default { mounted: bind, unmounted: unbind, updated: update }
