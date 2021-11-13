@@ -53,7 +53,7 @@ where `2000` can be any value that bigger than the modal z-index.
 
 ## Global method
 
-`$notify(options, callback)` global method for `Vue.prototype` will be added **if uiv is installed**.
+`$notify(options, callback)` global method for `app.config.globalProperties` will be added **if uiv is installed**.
 
 Note that the dismissed callback is optional.
 

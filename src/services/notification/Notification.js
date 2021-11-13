@@ -1,4 +1,3 @@
-import { removeFromDom } from '../../utils/dom.utils'
 import { spliceIfExist } from '../../utils/array.utils'
 import {
   isFunction,
@@ -10,14 +9,14 @@ import {
 } from '../../utils/object.utils'
 import Notification from '../../components/notification/Notification.vue'
 import { PLACEMENTS } from '../../constants/notification.constants'
-import { h, render } from 'vue'
+import { h, render, reactive } from 'vue'
 
-const queues = {
+const queues = reactive({
   [PLACEMENTS.TOP_LEFT]: [],
   [PLACEMENTS.TOP_RIGHT]: [],
   [PLACEMENTS.BOTTOM_LEFT]: [],
   [PLACEMENTS.BOTTOM_RIGHT]: [],
-}
+})
 
 const destroy = (queue, { vNode, container }) => {
   // console.log('destroyNotification')

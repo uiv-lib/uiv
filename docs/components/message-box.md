@@ -34,7 +34,7 @@ Displays a dialog with an optional message prompting the user to input some text
 
 ## Global methods
 
-Following global methods for `Vue.prototype` will be added **if uiv is installed**:
+Following global methods for `app.config.globalProperties` will be added **if uiv is installed**:
 
 * `$alert(options, callback(msg))`
 * `$confirm(options, callback(err, msg))`
@@ -68,10 +68,9 @@ You **CAN NOT** use MessageBox individually like this if you're also using `vue-
 :::
 
 ```javascript
-import Vue from 'vue'
 import { MessageBox } from 'uiv'
 
-Vue.prototype.$alert = MessageBox.alert
+app.config.globalProperties = MessageBox.alert
 // ...
 ```
 
