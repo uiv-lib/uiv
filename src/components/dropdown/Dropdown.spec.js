@@ -67,7 +67,7 @@ async function assertKeyboardNav(
   keyCode,
   called = true
 ) {
-  const spy = jest.spyOn(wrapper.findAll('li > a').at(index).element, 'focus')
+  const spy = jest.spyOn(wrapper.findAll('li > a')[index].element, 'focus')
   await triggerEvent(trigger, `keydown.${keyCode}`)
   if (called) {
     expect(spy).toBeCalled()

@@ -248,7 +248,7 @@ describe('DatePicker.vue', () => {
     await nextTick()
     const picker = wrapper.findAll('[data-role="date-picker"]')[0]
     const dateView = picker.findAll('table')[0]
-    const dateBtn = dateView.find('tbody').findAll('button').at(15)
+    const dateBtn = dateView.find('tbody').findAll('button')[15]
     await triggerEvent(dateBtn, 'click')
     expect(dateBtn.classes()).toContain('btn-primary')
   })
@@ -446,7 +446,7 @@ describe('DatePicker.vue', () => {
     const weekdays = dateView.findAll('thead tr:last-child td')
     const weekdayNames = []
     for (let i = 0; i < weekdays.length; i++)
-      weekdayNames.push(weekdays.at(i).text())
+      weekdayNames.push(weekdays[i].text())
     const { week1, week2, week3, week4, week5, week6, week7 } = locale
     expect(weekdayNames).toEqual([
       week7,
