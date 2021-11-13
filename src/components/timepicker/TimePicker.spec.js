@@ -1,4 +1,9 @@
-import { createWrapper, nextTick, triggerEvent } from '../../__test__/utils'
+import {
+  createWrapper,
+  nextTick,
+  sleep,
+  triggerEvent,
+} from '../../__test__/utils'
 
 function baseVm(d = new Date()) {
   return createWrapper('<div><time-picker v-model="time"/></div>', {
@@ -17,11 +22,10 @@ function h24Vm(d = new Date()) {
 
 describe('TimePicker', () => {
   it('should be able to toggle meridian', async () => {
-    const wrapper = baseVm()
+    const d = new Date()
+    d.setHours(9)
+    const wrapper = baseVm(d)
     const vm = wrapper.vm
-    vm.time.setHours(9)
-    vm.time = new Date(vm.time)
-    await vm.$nextTick()
     const toggleBtn = vm.$el.querySelector('[data-action="toggleMeridian"]')
     const meridianText = toggleBtn.textContent
     expect(meridianText).toEqual('AM')
