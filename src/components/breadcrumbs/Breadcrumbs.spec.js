@@ -21,7 +21,8 @@ describe('Breadcrumbs', () => {
     expect($link2.attributes('href')).toEqual('#')
     expect($link2.text()).toEqual('Library')
     const $nav3 = links[2]
-    expect($nav3.attributes('class')).toContain('active')
+    // console.log(wrapper.html())
+    expect($nav3.classes()).toContain('active')
     expect($nav3.findAll('a').length).toEqual(0)
     expect($nav3.text()).toEqual('Data')
   })
@@ -45,7 +46,7 @@ describe('Breadcrumbs', () => {
     expect($link2.attributes('href')).toEqual('#')
     expect($link2.text()).toEqual('Library')
     const $nav3 = links[2]
-    expect($nav3.attributes('class')).toContain('active')
+    expect($nav3.classes()).toContain('active')
     expect($nav3.findAll('a').length).toEqual(0)
     expect($nav3.text()).toEqual('Data')
   })

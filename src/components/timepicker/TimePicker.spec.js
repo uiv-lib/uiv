@@ -1,27 +1,16 @@
-import newLocale from '../../locale/lang/zh-CN'
-import {
-  createWrapper,
-  keyCodes,
-  nextTick,
-  sleep,
-  transition,
-  triggerEvent,
-  triggerKey,
-} from '../../__test__/utils'
-import { RouterLinkStub } from '@vue/test-utils'
-import _ from 'lodash'
+import { createWrapper, nextTick, triggerEvent } from '../../__test__/utils'
 
-function baseVm() {
+function baseVm(d = new Date()) {
   return createWrapper('<div><time-picker v-model="time"/></div>', {
-    time: new Date(),
+    time: d,
   })
 }
 
-function h24Vm() {
+function h24Vm(d = new Date()) {
   return createWrapper(
     '<div><time-picker v-model="time" :show-meridian="false"/></div>',
     {
-      time: new Date(),
+      time: d,
     }
   )
 }
@@ -137,11 +126,11 @@ describe('TimePicker', () => {
   })
 
   it('should be able to display correctly when hour = 0', async () => {
-    const wrapper = baseVm()
+    const d = new Date()
+    d.setHours(0)
+    const wrapper = baseVm(d)
     const vm = wrapper.vm
-    vm.time.setHours(0)
-    vm.time = new Date(vm.time)
-    await vm.$nextTick()
+    await nextTick()
     const hourText = vm.$el.querySelectorAll('input')[0].value
     const toggleBtn = vm.$el.querySelector('[data-action="toggleMeridian"]')
     expect(parseInt(hourText)).toEqual(12)
@@ -149,11 +138,11 @@ describe('TimePicker', () => {
   })
 
   it('should be able to display correctly when hour = 12', async () => {
-    const wrapper = baseVm()
+    const d = new Date()
+    d.setHours(12)
+    const wrapper = baseVm(d)
+    await nextTick()
     const vm = wrapper.vm
-    vm.time.setHours(12)
-    vm.time = new Date(vm.time)
-    await vm.$nextTick()
     const hourText = vm.$el.querySelectorAll('input')[0].value
     const toggleBtn = vm.$el.querySelector('[data-action="toggleMeridian"]')
     expect(parseInt(hourText)).toEqual(12)
@@ -176,10 +165,10 @@ describe('TimePicker', () => {
   })
 
   it('should be able to set hour using input in 12h mode', async () => {
-    const wrapper = baseVm()
+    const d = new Date()
+    d.setHours(12)
+    const wrapper = baseVm(d)
     const vm = wrapper.vm
-    vm.time.setHours(12)
-    vm.time = new Date(vm.time)
     await vm.$nextTick()
     const hoursInput = vm.$el.querySelectorAll('input')[0]
     expect(parseInt(hoursInput.value)).toEqual(12)
@@ -189,11 +178,11 @@ describe('TimePicker', () => {
   })
 
   it('should be able to set minute using input', async () => {
-    const wrapper = baseVm()
+    const d = new Date()
+    d.setHours(12)
+    d.setMinutes(0)
+    const wrapper = baseVm(d)
     const vm = wrapper.vm
-    vm.time.setHours(12)
-    vm.time.setMinutes(0)
-    vm.time = new Date(vm.time)
     await vm.$nextTick()
     const minutesInput = vm.$el.querySelectorAll('input')[1]
     expect(parseInt(minutesInput.value)).toEqual(0)
@@ -203,11 +192,11 @@ describe('TimePicker', () => {
   })
 
   it('should add hour when minute is 60', async () => {
-    const wrapper = baseVm()
+    const d = new Date()
+    d.setHours(12)
+    d.setMinutes(59)
+    const wrapper = baseVm(d)
     const vm = wrapper.vm
-    vm.time.setHours(9)
-    vm.time.setMinutes(59)
-    vm.time = new Date(vm.time)
     await vm.$nextTick()
     const beforeHourText = vm.$el.querySelectorAll('input')[0].value
     const minutesPlus = vm.$el.querySelectorAll('tr td button')[1]
@@ -215,16 +204,16 @@ describe('TimePicker', () => {
     await vm.$nextTick()
     const afterHourText = vm.$el.querySelectorAll('input')[0].value
     const afterMinutesText = vm.$el.querySelectorAll('input')[1].value
-    expect(parseInt(afterHourText)).toEqual(parseInt(beforeHourText) + 1)
+    expect(parseInt(afterHourText)).toEqual(1)
     expect(parseInt(afterMinutesText)).toEqual(0)
   })
 
   it('should minus hour when minute is -1', async () => {
-    const wrapper = baseVm()
+    const d = new Date()
+    d.setHours(9)
+    d.setMinutes(0)
+    const wrapper = baseVm(d)
     const vm = wrapper.vm
-    vm.time.setHours(9)
-    vm.time.setMinutes(0)
-    vm.time = new Date(vm.time)
     await vm.$nextTick()
     const beforeHourText = vm.$el.querySelectorAll('input')[0].value
     const minutesMinus = vm.$el
@@ -239,11 +228,11 @@ describe('TimePicker', () => {
   })
 
   it('can be set to 9:00', async () => {
-    const wrapper = baseVm()
+    const d = new Date()
+    d.setHours(9)
+    d.setMinutes(0)
+    const wrapper = baseVm(d)
     const vm = wrapper.vm
-    vm.time.setHours(9)
-    vm.time.setMinutes(0)
-    vm.time = new Date(vm.time)
     await vm.$nextTick()
     const hourText = vm.$el.querySelectorAll('input')[0].value
     const minutesText = vm.$el.querySelectorAll('input')[1].value
@@ -254,17 +243,17 @@ describe('TimePicker', () => {
   })
 
   it('should not be able to update time bigger than max', async () => {
+    const d = new Date()
+    d.setHours(20)
     const wrapper = createWrapper(
       '<div><time-picker v-model="time" :max="max" :min="min"/></div>',
       {
-        time: new Date(),
+        time: d,
         min: new Date('2017/01/01 8:00'), // date doesn't matter
         max: new Date('2017/01/01 20:00'),
       }
     )
     const vm = wrapper.vm
-    vm.time.setHours(20)
-    vm.time = new Date(vm.time)
     await vm.$nextTick()
     const hourText = vm.$el.querySelectorAll('input')[0]
     const hourPlus = vm.$el.querySelectorAll('td')[0].querySelector('button')
@@ -275,18 +264,18 @@ describe('TimePicker', () => {
   })
 
   it('should not be able to update time smaller than min', async () => {
+    const d = new Date()
+    d.setHours(8)
+    d.setMinutes(30)
     const wrapper = createWrapper(
       '<div><time-picker v-model="time" :max="max" :min="min"/></div>',
       {
-        time: new Date(),
+        time: d,
         min: new Date('2017/01/01 8:00'), // date doesn't matter
         max: new Date('2017/01/01 20:00'),
       }
     )
     const vm = wrapper.vm
-    vm.time.setHours(8)
-    vm.time.setMinutes(30)
-    vm.time = new Date(vm.time)
     await vm.$nextTick()
     const hourText = vm.$el.querySelectorAll('input')[0]
     expect(hourText.value).toEqual('08')
