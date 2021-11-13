@@ -1,5 +1,6 @@
 import * as utils from './dom.utils'
 import { createWrapper, nextTick } from '../__test__/utils'
+import { Navbar } from '../components'
 
 describe('dom.utils', () => {
   describe('#isElement', () => {
@@ -85,7 +86,7 @@ describe('dom.utils', () => {
 
     it('should be able to toggle fixed top nav padding right as well', async () => {
       const wrapper = createWrapper('<navbar fixed-top/>')
-      const nav = wrapper.findComponent({ name: 'navbar' })
+      const nav = wrapper.findComponent(Navbar)
       expect(nav.classes()).toContain('navbar-fixed-top')
       document.body.style.overflowY = 'scroll'
       utils.toggleBodyOverflow(false)
@@ -97,7 +98,7 @@ describe('dom.utils', () => {
 
     it('should be able to toggle fixed bottom nav padding right as well', async () => {
       const wrapper = createWrapper('<navbar fixed-bottom/>')
-      const nav = wrapper.findComponent({ name: 'navbar' })
+      const nav = wrapper.findComponent(Navbar)
       expect(nav.classes()).toContain('navbar-fixed-bottom')
       document.body.style.overflowY = 'scroll'
       utils.toggleBodyOverflow(false)

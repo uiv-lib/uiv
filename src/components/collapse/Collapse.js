@@ -7,7 +7,7 @@ const COLLAPSING = 'collapsing'
 
 export default {
   render() {
-    return h(this.tag, {}, this.$slots.default())
+    return h(this.tag, {}, this.$slots.default && this.$slots.default())
   },
   props: {
     tag: {

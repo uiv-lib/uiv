@@ -78,7 +78,7 @@ describe('Collapse', () => {
         methods: {
           toggleAccordion(index) {
             if (this.showAccordion[index]) {
-              this.$set(this.showAccordion, index, false)
+              this.showAccordion[index] = false
             } else {
               this.showAccordion = this.showAccordion.map((v, i) => i === index)
             }

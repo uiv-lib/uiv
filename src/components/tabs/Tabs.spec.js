@@ -1,7 +1,7 @@
 import { createWrapper, sleep, triggerEvent } from '../../__test__/utils'
 
 function baseVm() {
-  return createWrapper(`<div><tabs>
+  return createWrapper(`<tabs>
   <tab title="Home">
     <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
   </tab>
@@ -14,7 +14,7 @@ function baseVm() {
   <tab title="@bootstrap" group="Dropdown">
     <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>
   </tab>
-</tabs></div>`)
+</tabs>`)
 }
 
 function dynamicVm() {
@@ -108,14 +108,6 @@ describe('Tabs', () => {
     ).toEqual('none')
   })
 
-  it('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {
-    expect(
-      createWrapper.bind(null, '<tabs><tab><tab>{{ msg }}</tab></tab></tabs>', {
-        msg: 'hello',
-      })
-    ).toThrow('<tab> parent must be <tabs>.')
-  })
-
   it('should be able to add String `customNavClass`', () => {
     const wrapper = createWrapper(
       '<tabs custom-nav-class="custom-nav-class"><tab>123</tab></tabs>'
@@ -146,7 +138,7 @@ describe('Tabs', () => {
     const wrapper = baseVm()
     const vm = wrapper.vm
     const $el = vm.$el
-    await sleep(100)
+    await sleep(500)
     const nav = $el.querySelector('.nav-tabs')
     const content = $el.querySelector('.tab-content')
     const activeTab = nav.querySelectorAll('.active')
@@ -532,5 +524,13 @@ describe('Tabs', () => {
     activeTab = nav.querySelectorAll('.active')
     expect(activeTab.length).toEqual(1)
     expect(activeTab[0].querySelector('a').textContent).toEqual('Profile')
+  })
+
+  it.skip('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {
+    expect(
+      createWrapper.bind(null, '<tabs><tab><tab>{{ msg }}</tab></tab></tabs>', {
+        msg: 'hello',
+      })
+    ).toThrow('<tab> parent must be <tabs>.')
   })
 })

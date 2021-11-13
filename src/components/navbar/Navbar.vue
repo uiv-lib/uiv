@@ -55,12 +55,12 @@ export default {
     },
   },
   watch: {
-    value(v) {
+    modelValue(v) {
       this.show = v
     },
   },
   mounted() {
-    this.show = !!this.value
+    this.show = !!this.modelValue
   },
   methods: {
     toggle() {

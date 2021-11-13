@@ -1,18 +1,9 @@
-import newLocale from '../../locale/lang/zh-CN'
-import {
-  createWrapper,
-  keyCodes,
-  nextTick,
-  sleep,
-  transition,
-  triggerEvent,
-} from '../../__test__/utils'
-import { RouterLinkStub } from '@vue/test-utils'
+import { createWrapper, sleep } from '../../__test__/utils'
 
 function baseVm() {
   return createWrapper(`<div><navbar>
-  <a class="navbar-brand" slot="brand" href="#">Brand</a>
-  <template slot="collapse">
+    <template #brand><a class="navbar-brand" href="#">Brand</a></template>
+  <template #collapse>
     <navbar-nav>
       <li class="active"><a role="button">Link <span class="sr-only">(current)</span></a></li>
       <li><a role="button">Link</a></li>
@@ -27,7 +18,7 @@ function baseVm() {
       <li><a role="button">Link</a></li>
       <dropdown tag="li">
         <a class="dropdown-toggle" role="button">Dropdown <span class="caret"></span></a>
-        <template slot="dropdown">
+        <template #dropdown>
           <li><a role="button">Action</a></li>
           <li><a role="button">Another action</a></li>
           <li><a role="button">Something else here</a></li>
@@ -60,7 +51,7 @@ describe('Navbar', () => {
 
   it('should be able to render nav-text', async () => {
     const wrapper = createWrapper(`<div><navbar>
-  <a class="navbar-brand" slot="brand" href="#">Brand</a>
+      <template #brand><a class="navbar-brand" href="#">Brand</a></template>
   <navbar-text>Signed in as wxsm</navbar-text>
 </navbar></div>`)
     const nav = wrapper.vm.$el.querySelector('nav')
@@ -72,7 +63,7 @@ describe('Navbar', () => {
 
   it('should be able to render static top', async () => {
     const wrapper = createWrapper(`<div><navbar static-top>
-  <a class="navbar-brand" slot="brand" href="#">Brand</a>
+      <template #brand><a class="navbar-brand" href="#">Brand</a></template>
 </navbar></div>`)
     const nav = wrapper.vm.$el.querySelector('nav')
     expect(nav.className).toContain('navbar-static-top')
@@ -80,8 +71,8 @@ describe('Navbar', () => {
 
   it('should be able to render inverse', async () => {
     const wrapper = createWrapper(`<div><navbar inverse>
-  <a class="navbar-brand" slot="brand" href="#">Brand</a>
-  <template slot="collapse">
+      <template #brand><a class="navbar-brand" href="#">Brand</a></template>
+  <template #collapse>
     <navbar-nav>
       <li class="active"><a role="button">Link <span class="sr-only">(current)</span></a></li>
       <li><a role="button">Link</a></li>
