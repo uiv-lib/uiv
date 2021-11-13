@@ -7,6 +7,7 @@
   "module": "dist/uiv.esm.js",
   "unpkg": "dist/uiv.min.js",
   "jsdelivr": "dist/uiv.min.js",
+  "files": ["dist"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uiv-lib/uiv.git"
@@ -66,7 +67,7 @@
     "lodash": "4.17.21",
     "patch-vue-directive-ssr": "^0.0.1",
     "prettier": "2.4.1",
-    "rollup": "2.59.0",
+    "rollup": "2.60.0",
     "rollup-plugin-filesize": "9.1.1",
     "rollup-plugin-strip-code": "^0.2.7",
     "rollup-plugin-uglify": "6.0.4",
