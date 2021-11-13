@@ -13,6 +13,14 @@
   * ES Module build `uiv.esm.js` is for modern bundlers like [webpack 2](https://webpack.js.org) or [rollup](https://rollupjs.org)
   * CommonJS build `uiv.common.js` is for older bundlers like [browserify](http://browserify.org) or [webpack 1](https://webpack.github.io).
 
+## Versions
+
+uiv version | Vue.js version | document
+----------- | -------        | -----------
+2.x         | 3.x            | [https://uiv.wxsm.space](https://uiv.wxsm.space)
+1.x         | 2.x            | [https://uiv-v1.wxsm.space](https://uiv-v1.wxsm.space)
+0.x         | 2.x            | [https://uiv-v0.wxsm.space](https://uiv-v0.wxsm.space)
+
 ## Install
 
 If you are using module bundlers such as Webpack, you can directly include package into your project via:

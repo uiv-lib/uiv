@@ -15,6 +15,10 @@ features:
 footer: MIT Licensed | Designed and built by @wxsm
 ---
 
+:::tip
+This version of uiv is for **Vue.js v3**, if you're looking for the old one for v2, please visit [uiv-v1.wxsm.space](https://uiv-v1.wxsm.space/).
+:::
+
 <p align="center">
 <a href="https://github.com/uiv-lib/uiv"><img src="https://github.com/uiv-lib/uiv/workflows/CI/badge.svg" alt="Build Status"></a>
 <a href="https://coveralls.io/github/uiv-lib/uiv?branch=dev"> <img src="https://coveralls.io/repos/github/uiv-lib/uiv/badge.svg?branch=dev" alt="Coverage Status"></a>
