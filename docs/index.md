@@ -2,7 +2,7 @@
 home: true
 heroImage: /assets/image/logo.png
 heroText: uiv
-tagline: Bootstrap 3 Components implemented by Vue 2.
+tagline: Bootstrap 3 Components implemented by Vue.
 actionText: Getting Started
 actionLink: /usage/getting-started
 features:

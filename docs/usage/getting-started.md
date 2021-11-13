@@ -1,6 +1,6 @@
 # Getting Started
 
-**uiv** is a Bootstrap 3 component lib implemented by Vue 2.
+**uiv** is a Bootstrap 3 component lib implemented by Vue.
 
 * **Lightweight**
   * All components **~20KB** Gziped.
@@ -126,8 +126,4 @@ This will create a working [Tabs](/components/tabs.html) component on your page.
 
 ## Browser compatibility
 
-All browsers supported by [Vue 2](https://github.com/vuejs/vue) and [Bootstrap 3 CSS](https://github.com/twbs/bootstrap) are suppose to be also supported by this lib.
-
-::: warning
-IE8 and below are not supported.
-:::
+All browsers supported by [Vue](https://github.com/vuejs/vue-next) and [Bootstrap 3 CSS](https://github.com/twbs/bootstrap) are supposed to be also supported by this lib.

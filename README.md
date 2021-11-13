@@ -13,17 +13,21 @@
 
 If this project has helped you out, please support it with a star :star2:.
 
-[中文文档](https://uiv.wxsm.space/zh/)
-
 ## Introduction
 
-**uiv** is a Bootstrap 3 component lib implemented by Vue 2.
+**uiv** is a Bootstrap 3 component lib implemented by Vue.
+
+Vue version | uiv version | document
+----------- | -------     | -----------
+3.x         | 2.x         | [https://uiv.wxsm.space](https://uiv.wxsm.space)
+2.x         | 1.x/0.x     | [https://uiv-v1.wxsm.space](https://uiv.wxsm.space)
+
 
 * **Lightweight**
   * All components **~20KB** Gziped.
   * No extra CSS file.
   * Individually import supported.
-* IE 9+ & modern browsers supported.
+* Vue 3 supported.
 * **SSR** (server-side rendering) supported.
 
 ## Documentation

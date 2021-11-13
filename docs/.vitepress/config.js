@@ -1,5 +1,5 @@
 export default {
-  description: 'Bootstrap 3 components implemented by Vue 2.',
+  description: 'Bootstrap 3 components implemented by Vue.',
   head: [
     [
       'meta',

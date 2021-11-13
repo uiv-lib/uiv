@@ -1,7 +1,7 @@
 {
   "name": "uiv",
   "version": "1.4.1",
-  "description": "Bootstrap 3 components implemented by Vue 2.",
+  "description": "Bootstrap 3 components implemented by Vue.",
   "author": "wxsm",
   "main": "dist/uiv.common.js",
   "module": "dist/uiv.esm.js",
@@ -126,7 +126,7 @@
     "Directives",
     "Vue",
     "VueJS",
-    "Vue2",
+    "Vue3",
     "WebComponents",
     "vue-strap",
     "vuestrap",

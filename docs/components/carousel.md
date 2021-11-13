@@ -10,9 +10,7 @@
 
 ## Override indicators
 
-Use the `indicators` slot to override default Bootstrap indicators. 
-
-This is a scoped slot, use `slot-scope="props"` in Vue 2.5+, otherwise `scope="props"`.
+Use the `indicators` slot to override default Bootstrap indicators.
 
 <carousel-override-indicators/>
 

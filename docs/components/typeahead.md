@@ -68,7 +68,7 @@ An example using `async-src`:
 
 Use the `item` scoped slot to override the typeahead item's template.
 
-* Use `slot-scope="props"` in Vue 2.5+, otherwise `scope="props"`.
+* Use `scope="props"`.
 * The items list will be `props.items`.
 * The current active item index will be `props.activeIndex`.
 * Use `props.select(item)` to select item.
