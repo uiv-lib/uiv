@@ -22,6 +22,8 @@ module.exports = {
     vue(),
     resolve(),
     commonjs(),
-    buble(),
+    buble({
+      objectAssign: 'Object.assign',
+    }),
   ],
 }
