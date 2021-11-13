@@ -64,6 +64,7 @@
     "less": "4.1.2",
     "less-loader": "7.3.0",
     "lodash": "4.17.21",
+    "patch-vue-directive-ssr": "^0.0.1",
     "prettier": "2.4.1",
     "rollup": "2.59.0",
     "rollup-plugin-filesize": "9.1.1",
