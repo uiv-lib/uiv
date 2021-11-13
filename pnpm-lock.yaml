@@ -33,7 +33,7 @@ specifiers:
   lodash: 4.17.21
   patch-vue-directive-ssr: ^0.0.1
   prettier: 2.4.1
-  rollup: 2.59.0
+  rollup: 2.60.0
   rollup-plugin-filesize: 9.1.1
   rollup-plugin-strip-code: ^0.2.7
   rollup-plugin-uglify: 6.0.4
@@ -45,12 +45,12 @@ specifiers:
 
 devDependencies:
   '@babel/preset-env': 7.16.0
-  '@rollup/plugin-alias': 3.1.8_rollup@2.59.0
-  '@rollup/plugin-buble': 0.21.3_rollup@2.59.0
-  '@rollup/plugin-commonjs': 21.0.1_rollup@2.59.0
-  '@rollup/plugin-json': 4.1.0_rollup@2.59.0
-  '@rollup/plugin-node-resolve': 13.0.6_rollup@2.59.0
-  '@rollup/plugin-replace': 3.0.0_rollup@2.59.0
+  '@rollup/plugin-alias': 3.1.8_rollup@2.60.0
+  '@rollup/plugin-buble': 0.21.3_rollup@2.60.0
+  '@rollup/plugin-commonjs': 21.0.1_rollup@2.60.0
+  '@rollup/plugin-json': 4.1.0_rollup@2.60.0
+  '@rollup/plugin-node-resolve': 13.0.6_rollup@2.60.0
+  '@rollup/plugin-replace': 3.0.0_rollup@2.60.0
   '@vue/compiler-sfc': registry.npmmirror.com/@vue/compiler-sfc/3.2.21
   '@vue/test-utils': 2.0.0-rc.16_vue@3.2.21
   '@vue/vue3-jest': 27.0.0-alpha.3_4aca51e47cc90529780e69a16f920b6a
@@ -76,10 +76,10 @@ devDependencies:
   lodash: 4.17.21
   patch-vue-directive-ssr: registry.npmjs.org/patch-vue-directive-ssr/0.0.1
   prettier: 2.4.1
-  rollup: 2.59.0
+  rollup: registry.npmjs.org/rollup/2.60.0
   rollup-plugin-filesize: 9.1.1
   rollup-plugin-strip-code: registry.npmjs.org/rollup-plugin-strip-code/0.2.7
-  rollup-plugin-uglify: 6.0.4_rollup@2.59.0
+  rollup-plugin-uglify: 6.0.4_rollup@2.60.0
   rollup-plugin-vue: registry.nlark.com/rollup-plugin-vue/6.0.0_@vue+compiler-sfc@3.2.21
   sinon: 12.0.1
   vitepress: registry.npmmirror.com/vitepress/0.20.1_less@4.1.2
@@ -1572,79 +1572,79 @@ packages:
       read-package-json-fast: 2.0.3
     dev: true
 
-  /@rollup/plugin-alias/3.1.8_rollup@2.59.0:
+  /@rollup/plugin-alias/3.1.8_rollup@2.60.0:
     resolution: {integrity: sha512-tf7HeSs/06wO2LPqKNY3Ckbvy0JRe7Jyn98bXnt/gfrxbe+AJucoNJlsEVi9sdgbQtXemjbakCpO/76JVgnHpA==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
       rollup: ^1.20.0||^2.0.0
     dependencies:
-      rollup: 2.59.0
+      rollup: registry.npmjs.org/rollup/2.60.0
       slash: mirrors.tencent.com/slash/3.0.0
     dev: true
 
-  /@rollup/plugin-buble/0.21.3_rollup@2.59.0:
+  /@rollup/plugin-buble/0.21.3_rollup@2.60.0:
     resolution: {integrity: sha512-Iv8cCuFPnMdqV4pcyU+OrfjOfagPArRQ1PyQjx5KgHk3dARedI+8PNTLSMpJts0lQJr8yF2pAU4GxpxCBJ9HYw==}
     engines: {node: '>= 8.0.0'}
     peerDependencies:
       rollup: ^1.20.0||^2.0.0
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.59.0
+      '@rollup/pluginutils': 3.1.0_rollup@2.60.0
       '@types/buble': 0.19.2
       buble: 0.20.0
-      rollup: 2.59.0
+      rollup: registry.npmjs.org/rollup/2.60.0
     dev: true
 
-  /@rollup/plugin-commonjs/21.0.1_rollup@2.59.0:
+  /@rollup/plugin-commonjs/21.0.1_rollup@2.60.0:
     resolution: {integrity: sha512-EA+g22lbNJ8p5kuZJUYyhhDK7WgJckW5g4pNN7n4mAFUM96VuwUnNT3xr2Db2iCZPI1pJPbGyfT5mS9T1dHfMg==}
     engines: {node: '>= 8.0.0'}
     peerDependencies:
       rollup: ^2.38.3
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.59.0
+      '@rollup/pluginutils': 3.1.0_rollup@2.60.0
       commondir: 1.0.1
       estree-walker: 2.0.2
       glob: 7.2.0
       is-reference: 1.2.1
       magic-string: 0.25.7
       resolve: mirrors.tencent.com/resolve/1.20.0
-      rollup: 2.59.0
+      rollup: registry.npmjs.org/rollup/2.60.0
     dev: true
 
-  /@rollup/plugin-json/4.1.0_rollup@2.59.0:
+  /@rollup/plugin-json/4.1.0_rollup@2.60.0:
     resolution: {integrity: sha512-yfLbTdNS6amI/2OpmbiBoW12vngr5NW2jCJVZSBEz+H5KfUJZ2M7sDjk0U6GOOdCWFVScShte29o9NezJ53TPw==}
     peerDependencies:
       rollup: ^1.20.0 || ^2.0.0
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.59.0
-      rollup: 2.59.0
+      '@rollup/pluginutils': 3.1.0_rollup@2.60.0
+      rollup: registry.npmjs.org/rollup/2.60.0
     dev: true
 
-  /@rollup/plugin-node-resolve/13.0.6_rollup@2.59.0:
+  /@rollup/plugin-node-resolve/13.0.6_rollup@2.60.0:
     resolution: {integrity: sha512-sFsPDMPd4gMqnh2gS0uIxELnoRUp5kBl5knxD2EO0778G1oOJv4G1vyT2cpWz75OU2jDVcXhjVUuTAczGyFNKA==}
     engines: {node: '>= 10.0.0'}
     peerDependencies:
       rollup: ^2.42.0
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.59.0
+      '@rollup/pluginutils': 3.1.0_rollup@2.60.0
       '@types/resolve': 1.17.1
       builtin-modules: 3.2.0
       deepmerge: mirrors.tencent.com/deepmerge/4.2.2
       is-module: 1.0.0
       resolve: mirrors.tencent.com/resolve/1.20.0
-      rollup: 2.59.0
+      rollup: registry.npmjs.org/rollup/2.60.0
     dev: true
 
-  /@rollup/plugin-replace/3.0.0_rollup@2.59.0:
+  /@rollup/plugin-replace/3.0.0_rollup@2.60.0:
     resolution: {integrity: sha512-3c7JCbMuYXM4PbPWT4+m/4Y6U60SgsnDT/cCyAyUKwFHg7pTSfsSQzIpETha3a3ig6OdOKzZz87D9ZXIK3qsDg==}
     peerDependencies:
       rollup: ^1.20.0 || ^2.0.0
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.59.0
+      '@rollup/pluginutils': 3.1.0_rollup@2.60.0
       magic-string: 0.25.7
-      rollup: 2.59.0
+      rollup: registry.npmjs.org/rollup/2.60.0
     dev: true
 
-  /@rollup/pluginutils/3.1.0_rollup@2.59.0:
+  /@rollup/pluginutils/3.1.0_rollup@2.60.0:
     resolution: {integrity: sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==}
     engines: {node: '>= 8.0.0'}
     peerDependencies:
@@ -1653,7 +1653,7 @@ packages:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
       picomatch: 2.3.0
-      rollup: 2.59.0
+      rollup: registry.npmjs.org/rollup/2.60.0
     dev: true
 
   /@sinonjs/commons/1.8.3:
@@ -4597,24 +4597,16 @@ packages:
       - supports-color
     dev: true
 
-  /rollup-plugin-uglify/6.0.4_rollup@2.59.0:
+  /rollup-plugin-uglify/6.0.4_rollup@2.60.0:
     resolution: {integrity: sha512-ddgqkH02klveu34TF0JqygPwZnsbhHVI6t8+hGTcYHngPkQb5MIHI0XiztXIN/d6V9j+efwHAqEL7LspSxQXGw==}
     peerDependencies:
       rollup: '>=0.66.0 <2'
     dependencies:
       '@babel/code-frame': 7.16.0
       jest-worker: 24.9.0
-      rollup: 2.59.0
+      rollup: registry.npmjs.org/rollup/2.60.0
       serialize-javascript: 2.1.2
       uglify-js: 3.14.3
-    dev: true
-
-  /rollup/2.59.0:
-    resolution: {integrity: sha512-l7s90JQhCQ6JyZjKgo7Lq1dKh2RxatOM+Jr6a9F7WbS9WgKbocyUSeLmZl8evAse7y96Ae98L2k1cBOwWD8nHw==}
-    engines: {node: '>=10.0.0'}
-    hasBin: true
-    optionalDependencies:
-      fsevents: registry.npmjs.org/fsevents/2.3.2
     dev: true
 
   /saxes/5.0.1:
@@ -7877,6 +7869,16 @@ packages:
       estree-walker: registry.npmjs.org/estree-walker/0.6.1
     dev: true
 
+  registry.npmjs.org/rollup/2.60.0:
+    resolution: {integrity: sha512-cHdv9GWd58v58rdseC8e8XIaPUo8a9cgZpnCMMDGZFDZKEODOiPPEQFXLriWr/TjXzhPPmG5bkAztPsOARIcGQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/rollup/-/rollup-2.60.0.tgz}
+    name: rollup
+    version: 2.60.0
+    engines: {node: '>=10.0.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: registry.npmjs.org/fsevents/2.3.2
+    dev: true
+
   registry.npmjs.org/source-map/0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz}
     name: source-map
@@ -8612,16 +8614,6 @@ packages:
       uuid: registry.npmmirror.com/uuid/3.4.0
     dev: true
 
-  registry.npmmirror.com/rollup/2.59.0:
-    resolution: {integrity: sha1-EIxhsPoKN+vI0fFk8oFiIFbw21k=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/rollup/download/rollup-2.59.0.tgz}
-    name: rollup
-    version: 2.59.0
-    engines: {node: '>=10.0.0'}
-    hasBin: true
-    optionalDependencies:
-      fsevents: registry.npmjs.org/fsevents/2.3.2
-    dev: true
-
   registry.npmmirror.com/signal-exit/3.0.5:
     resolution: {integrity: sha1-nj6MwMdamUcrRDIQM6dwLnc4JS8=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/signal-exit/download/signal-exit-3.0.5.tgz}
     name: signal-exit
@@ -8722,7 +8714,7 @@ packages:
       less: registry.npmmirror.com/less/4.1.2
       postcss: registry.npmmirror.com/postcss/8.3.11
       resolve: registry.nlark.com/resolve/1.20.0
-      rollup: registry.npmmirror.com/rollup/2.59.0
+      rollup: registry.npmjs.org/rollup/2.60.0
     optionalDependencies:
       fsevents: registry.npmjs.org/fsevents/2.3.2
     dev: true
