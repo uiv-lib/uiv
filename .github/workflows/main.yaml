@@ -1,42 +1,52 @@
-name: CI
+name: lint and test
 
 on:
-  push:
-    branches:
-      - dev
-  pull_request:
-    branches:
-      - dev
+  - push
+  - pull_request
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: c-hive/gha-yarn-cache@v1
-      - run: yarn --frozen-lockfile
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: latest
+      - run: pnpm i --frozen-lockfile
       - name: Lint
-        run: npm run lint
+        run: pnpm run lint
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: c-hive/gha-yarn-cache@v1
-      - run: yarn --frozen-lockfile
-      - name: Unit tests
-        uses: ianwalter/puppeteer-container@v4.0.0
+      - uses: pnpm/action-setup@v2.0.1
         with:
-          args: npm run test
+          version: latest
+      - run: pnpm i --frozen-lockfile
+      - name: Unit tests
+        run: pnpm run test
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ./test/coverage/lcov.info
+          path-to-lcov: ./coverage/lcov.info
   dist:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: c-hive/gha-yarn-cache@v1
-      - run: yarn --frozen-lockfile
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: latest
+      - run: pnpm i --frozen-lockfile
       - name: Build dist
-        run: npm run dist
+        run: pnpm run dist
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: latest
+      - run: pnpm i --frozen-lockfile
+      - name: Build dist
+        run: pnpm run docs:build

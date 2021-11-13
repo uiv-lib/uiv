@@ -1,15 +1,15 @@
 import { isFunction, isExist, hasOwnProperty } from './object.utils'
 
-export function request (url, method = 'GET') {
+export function request(url, method = 'GET') {
   const request = new window.XMLHttpRequest()
   const data = {}
   const p = {
     then: (fn1, fn2) => p.done(fn1).fail(fn2),
     catch: (fn) => p.fail(fn),
-    always: (fn) => p.done(fn).fail(fn)
+    always: (fn) => p.done(fn).fail(fn),
   }
   const statuses = ['done', 'fail']
-  statuses.forEach(name => {
+  statuses.forEach((name) => {
     data[name] = []
     p[name] = (fn) => {
       if (fn instanceof Function) data[name].push(fn)
@@ -32,7 +32,7 @@ export function request (url, method = 'GET') {
           }
         }
       } else {
-        data.fail.forEach(fail => fail(e))
+        data.fail.forEach((fail) => fail(e))
       }
     }
   }

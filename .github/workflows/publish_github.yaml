@@ -1,0 +1,29 @@
+name: publish github
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish_github:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+      - uses: actions/checkout@v2
+      - name: change package name
+        uses: deef0000dragon1/json-edit-action@v1
+        env:
+          KEY: name
+          VALUE: "@uiv-lib/uiv"
+          FILE: package.json
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: latest
+      - run: pnpm i --frozen-lockfile
+      - name: Build dist
+        run: pnpm run dist
+      - run: echo //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }} >> .npmrc
+      - run: npm publish --registry=https://npm.pkg.github.com

@@ -2,7 +2,7 @@ export default {
   uiv: {
     datePicker: {
       clear: 'Effacer',
-      today: 'Aujourd\'hui',
+      today: "Aujourd'hui",
       month: 'Mois',
       month1: 'Janvier',
       month2: 'Février',
@@ -23,15 +23,15 @@ export default {
       week4: 'Jeu',
       week5: 'Ven',
       week6: 'Sam',
-      week7: 'Dim'
+      week7: 'Dim',
     },
     timePicker: {
       am: 'Matin',
-      pm: 'Après-midi'
+      pm: 'Après-midi',
     },
     modal: {
       cancel: 'Annuler',
-      ok: 'OK'
-    }
-  }
+      ok: 'OK',
+    },
+  },
 }

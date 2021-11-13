@@ -23,19 +23,19 @@ export default {
       week4: '四',
       week5: '五',
       week6: '六',
-      week7: '日'
+      week7: '日',
     },
     timePicker: {
       am: '上午',
-      pm: '下午'
+      pm: '下午',
     },
     modal: {
       cancel: '取消',
-      ok: '确认'
+      ok: '确认',
     },
     multiSelect: {
       placeholder: '选择...',
-      filterPlaceholder: '搜索...'
-    }
-  }
+      filterPlaceholder: '搜索...',
+    },
+  },
 }

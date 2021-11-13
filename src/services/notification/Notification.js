@@ -1,6 +1,13 @@
 import { removeFromDom } from '../../utils/dom.utils'
 import { spliceIfExist } from '../../utils/array.utils'
-import { isFunction, isExist, isString, isPromiseSupported, assign, hasOwnProperty } from '../../utils/object.utils'
+import {
+  isFunction,
+  isExist,
+  isString,
+  isPromiseSupported,
+  assign,
+  hasOwnProperty,
+} from '../../utils/object.utils'
 import Notification from '../../components/notification/Notification.vue'
 import { PLACEMENTS } from '../../constants/notification.constants'
 import Vue from 'vue'
@@ -9,7 +16,7 @@ const queues = {
   [PLACEMENTS.TOP_LEFT]: [],
   [PLACEMENTS.TOP_RIGHT]: [],
   [PLACEMENTS.BOTTOM_LEFT]: [],
-  [PLACEMENTS.BOTTOM_RIGHT]: []
+  [PLACEMENTS.BOTTOM_RIGHT]: [],
 }
 
 const destroy = (queue, instance) => {
@@ -34,26 +41,27 @@ const init = (options, cb, resolve = null, reject = null) => {
   const instance = new Vue({
     extends: Notification,
     propsData: assign({}, { queue, placement }, options, {
-      cb (msg) {
+      cb(msg) {
         destroy(queue, instance)
         if (isFunction(cb)) {
           cb(msg)
         } else if (resolve && reject) {
           resolve(msg)
         }
-      }
-    })
+      },
+    }),
   })
   instance.$mount()
   document.body.appendChild(instance.$el)
   queue.push(instance)
 }
 
+// eslint-disable-next-line default-param-last
 const _notify = (options = {}, cb) => {
   // simplify usage: pass string as option.content
   if (isString(options)) {
     options = {
-      content: options
+      content: options,
     }
   }
   // set default placement as top-right
@@ -69,16 +77,18 @@ const _notify = (options = {}, cb) => {
   }
 }
 
-function _notify2 (type, args) {
+function _notify2(type, args) {
   if (isString(args)) {
     _notify({
       content: args,
-      type
+      type,
     })
   } else {
-    _notify(assign({}, args, {
-      type
-    }))
+    _notify(
+      assign({}, args, {
+        type,
+      })
+    )
   }
 }
 
@@ -86,52 +96,52 @@ const notify = Object.defineProperties(_notify, {
   success: {
     configurable: false,
     writable: false,
-    value (args) {
+    value(args) {
       _notify2('success', args)
-    }
+    },
   },
   info: {
     configurable: false,
     writable: false,
-    value (args) {
+    value(args) {
       _notify2('info', args)
-    }
+    },
   },
   warning: {
     configurable: false,
     writable: false,
-    value (args) {
+    value(args) {
       _notify2('warning', args)
-    }
+    },
   },
   danger: {
     configurable: false,
     writable: false,
-    value (args) {
+    value(args) {
       _notify2('danger', args)
-    }
+    },
   },
   error: {
     configurable: false,
     writable: false,
-    value (args) {
+    value(args) {
       _notify2('danger', args)
-    }
+    },
   },
   dismissAll: {
     configurable: false,
     writable: false,
-    value () {
+    value() {
       for (const key in queues) {
         /* istanbul ignore else */
         if (hasOwnProperty(queues, key)) {
-          queues[key].forEach(instance => {
+          queues[key].forEach((instance) => {
             instance.onDismissed()
           })
         }
       }
-    }
-  }
+    },
+  },
 })
 
 export default { notify }

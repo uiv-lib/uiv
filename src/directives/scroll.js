@@ -11,13 +11,13 @@ const bind = (el, binding) => {
   }
   unbind(el)
   el[HANDLER] = callback
-  events.forEach(event => {
+  events.forEach((event) => {
     on(window, event, el[HANDLER])
   })
 }
 
 const unbind = (el) => {
-  events.forEach(event => {
+  events.forEach((event) => {
     off(window, event, el[HANDLER])
   })
   delete el[HANDLER]

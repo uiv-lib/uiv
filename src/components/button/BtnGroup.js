@@ -2,7 +2,7 @@ import { mergeData } from 'vue-functional-data-merge'
 
 export default {
   functional: true,
-  render (h, { props, children, data }) {
+  render(h, { props, children, data }) {
     return h(
       'div',
       mergeData(data, {
@@ -10,12 +10,12 @@ export default {
           'btn-group': !props.vertical,
           'btn-group-vertical': props.vertical,
           'btn-group-justified': props.justified,
-          [`btn-group-${props.size}`]: props.size
+          [`btn-group-${props.size}`]: props.size,
         },
         attrs: {
           role: 'group',
-          'data-toggle': 'buttons'
-        }
+          'data-toggle': 'buttons',
+        },
       }),
       children
     )
@@ -24,11 +24,11 @@ export default {
     size: String,
     vertical: {
       type: Boolean,
-      default: false
+      default: false,
     },
     justified: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 }

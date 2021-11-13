@@ -3,55 +3,53 @@ import popupMixin from '../../mixins/popup.mixin'
 
 export default {
   mixins: [popupMixin],
-  data () {
+  data() {
     return {
-      name: 'tooltip'
+      name: 'tooltip',
     }
   },
-  render (h) {
-    return h(
-      this.tag,
-      [
-        this.$slots.default,
-        h('div',
-          {
-            ref: 'popup',
-            attrs: {
-              role: 'tooltip'
-            },
-            on: {
-              mouseleave: this.hideOnLeave
-            }
+  render(h) {
+    return h(this.tag, [
+      this.$slots.default,
+      h(
+        'div',
+        {
+          ref: 'popup',
+          attrs: {
+            role: 'tooltip',
           },
-          [
-            h('div', { class: 'tooltip-arrow' }),
-            h('div', {
-              class: 'tooltip-inner',
-              domProps: { innerHTML: this.text }
-            })
-          ]
-        )
-      ]
-    )
+          on: {
+            mouseleave: this.hideOnLeave,
+          },
+        },
+        [
+          h('div', { class: 'tooltip-arrow' }),
+          h('div', {
+            class: 'tooltip-inner',
+            domProps: { innerHTML: this.text },
+          }),
+        ]
+      ),
+    ])
   },
   props: {
     text: {
       type: String,
-      default: ''
+      default: '',
     },
     trigger: {
       type: String,
-      default: TRIGGERS.HOVER_FOCUS
-    }
+      default: TRIGGERS.HOVER_FOCUS,
+    },
   },
   computed: {
-    allContent () {
+    allContent() {
       return this.text
-    }
+    },
   },
   methods: {
-    isNotEmpty () {
+    isNotEmpty() {
       return this.text
-    }
-  }
+    },
+  },
 }

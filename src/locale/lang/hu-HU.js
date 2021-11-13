@@ -23,19 +23,19 @@ export default {
       week4: 'Cs.',
       week5: 'P.',
       week6: 'Szo.',
-      week7: 'V.'
+      week7: 'V.',
     },
     timePicker: {
       am: 'AM',
-      pm: 'PM'
+      pm: 'PM',
     },
     modal: {
       cancel: 'Mégse',
-      ok: 'OK'
+      ok: 'OK',
     },
     multiSelect: {
       placeholder: 'Válassz...',
-      filterPlaceholder: 'Keresés...'
-    }
-  }
+      filterPlaceholder: 'Keresés...',
+    },
+  },
 }

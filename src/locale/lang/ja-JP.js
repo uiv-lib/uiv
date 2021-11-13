@@ -23,15 +23,15 @@ export default {
       week4: '木曜日',
       week5: '金曜日',
       week6: '土曜日',
-      week7: '日曜日'
+      week7: '日曜日',
     },
     timePicker: {
       am: '午前',
-      pm: '午後'
+      pm: '午後',
     },
     modal: {
       cancel: 'キャンセル',
-      ok: 'OK'
-    }
-  }
+      ok: 'OK',
+    },
+  },
 }

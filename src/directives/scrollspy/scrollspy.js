@@ -6,12 +6,12 @@ import {
   off,
   getViewportSize,
   getClosest,
-  getParents
+  getParents,
 } from '../../utils/dom.utils'
 import { nodeListToArray } from '../../utils/array.utils'
 import { assign } from '../../utils/object.utils'
 
-function ScrollSpy (element, target = 'body', options = {}) {
+function ScrollSpy(element, target = 'body', options = {}) {
   this.el = element
   this.opts = assign({}, ScrollSpy.DEFAULTS, options)
   this.opts.target = target
@@ -33,11 +33,14 @@ function ScrollSpy (element, target = 'body', options = {}) {
 
 ScrollSpy.DEFAULTS = {
   offset: 10,
-  callback: (ele) => 0
+  callback: (ele) => 0,
 }
 
 ScrollSpy.prototype.getScrollHeight = function () {
-  return this.scrollElement.scrollHeight || Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
+  return (
+    this.scrollElement.scrollHeight ||
+    Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
+  )
 }
 
 ScrollSpy.prototype.refresh = function () {
@@ -47,20 +50,22 @@ ScrollSpy.prototype.refresh = function () {
   const list = nodeListToArray(this.el.querySelectorAll(this.selector))
   const isWindow = this.scrollElement === window
   list
-    .map(ele => {
+    .map((ele) => {
       const href = ele.getAttribute('href')
       if (/^#./.test(href)) {
         const rootEl = isWindow ? document : this.scrollElement
         const hrefEl = rootEl.querySelector(`[id='${href.slice(1)}']`)
-        const offset = isWindow ? hrefEl.getBoundingClientRect().top : hrefEl.offsetTop
+        const offset = isWindow
+          ? hrefEl.getBoundingClientRect().top
+          : hrefEl.offsetTop
         return [offset, href]
       } else {
         return null
       }
     })
-    .filter(item => item)
+    .filter((item) => item)
     .sort((a, b) => a[0] - b[0])
-    .forEach(item => {
+    .forEach((item) => {
       this.offsets.push(item[0])
       this.targets.push(item[1])
     })
@@ -69,9 +74,13 @@ ScrollSpy.prototype.refresh = function () {
 
 ScrollSpy.prototype.process = function () {
   const isWindow = this.scrollElement === window
-  const scrollTop = (isWindow ? window.pageYOffset : this.scrollElement.scrollTop) + this.opts.offset
+  const scrollTop =
+    (isWindow ? window.pageYOffset : this.scrollElement.scrollTop) +
+    this.opts.offset
   const scrollHeight = this.getScrollHeight()
-  const scrollElementHeight = isWindow ? getViewportSize().height : this.scrollElement.getBoundingClientRect().height
+  const scrollElementHeight = isWindow
+    ? getViewportSize().height
+    : this.scrollElement.getBoundingClientRect().height
   const maxScroll = this.opts.offset + scrollHeight - scrollElementHeight
   const offsets = this.offsets
   const targets = this.targets
@@ -81,34 +90,41 @@ ScrollSpy.prototype.process = function () {
     this.refresh()
   }
   if (scrollTop >= maxScroll) {
-    return activeTarget !== (i = targets[targets.length - 1]) && this.activate(i)
+    return (
+      activeTarget !== (i = targets[targets.length - 1]) && this.activate(i)
+    )
   }
   if (activeTarget && scrollTop < offsets[0]) {
     this.activeTarget = null
     return this.clear()
   }
-  for (i = offsets.length; i--;) {
+  for (i = offsets.length; i--; ) {
     activeTarget !== targets[i] &&
-    scrollTop >= offsets[i] &&
-    (offsets[i + 1] === undefined || scrollTop < offsets[i + 1]) &&
-    this.activate(targets[i])
+      scrollTop >= offsets[i] &&
+      (offsets[i + 1] === undefined || scrollTop < offsets[i + 1]) &&
+      this.activate(targets[i])
   }
 }
 
 ScrollSpy.prototype.activate = function (target) {
   this.activeTarget = target
   this.clear()
-  const selector = this.selector +
-    '[data-target="' + target + '"],' +
-    this.selector + '[href="' + target + '"]'
+  const selector =
+    this.selector +
+    '[data-target="' +
+    target +
+    '"],' +
+    this.selector +
+    '[href="' +
+    target +
+    '"]'
   const activeCallback = this.opts.callback
   const active = nodeListToArray(this.el.querySelectorAll(selector))
-  active.forEach(ele => {
-    getParents(ele, 'li')
-      .forEach(item => {
-        addClass(item, 'active')
-        activeCallback(item)
-      })
+  active.forEach((ele) => {
+    getParents(ele, 'li').forEach((item) => {
+      addClass(item, 'active')
+      activeCallback(item)
+    })
     if (getParents(ele, '.dropdown-menu').length) {
       addClass(getClosest(ele, 'li.dropdown'), 'active')
     }
@@ -117,8 +133,8 @@ ScrollSpy.prototype.activate = function (target) {
 
 ScrollSpy.prototype.clear = function () {
   const list = nodeListToArray(this.el.querySelectorAll(this.selector))
-  list.forEach(ele => {
-    getParents(ele, '.active', this.opts.target).forEach(item => {
+  list.forEach((ele) => {
+    getParents(ele, '.active', this.opts.target).forEach((item) => {
       removeClass(item, 'active')
     })
   })
@@ -139,7 +155,7 @@ const inserted = (el, binding) => {
     scrollSpy.handler = () => {
       scrollSpy.process()
     }
-    events.forEach(event => {
+    events.forEach((event) => {
       on(scrollSpy.scrollElement, event, scrollSpy.handler)
     })
   }
@@ -150,7 +166,7 @@ const unbind = (el) => {
   // console.log('unbind')
   const instance = el[INSTANCE]
   if (instance && instance.scrollElement) {
-    events.forEach(event => {
+    events.forEach((event) => {
       off(instance.scrollElement, event, instance.handler)
     })
     delete el[INSTANCE]

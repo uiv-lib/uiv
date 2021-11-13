@@ -2,18 +2,18 @@ import { mergeData } from 'vue-functional-data-merge'
 
 export default {
   functional: true,
-  render (h, { children, data }) {
+  render(h, { children, data }) {
     return h(
       'div',
       mergeData(data, {
         class: {
-          'btn-toolbar': true
+          'btn-toolbar': true,
         },
         attrs: {
-          role: 'toolbar'
-        }
+          role: 'toolbar',
+        },
       }),
       children
     )
-  }
+  },
 }

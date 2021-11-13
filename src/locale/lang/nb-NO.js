@@ -23,15 +23,15 @@ export default {
       week4: 'tor',
       week5: 'fre',
       week6: 'lør',
-      week7: 'søn'
+      week7: 'søn',
     },
     timePicker: {
       am: 'AM',
-      pm: 'PM'
+      pm: 'PM',
     },
     modal: {
       cancel: 'Avbryt',
-      ok: 'OK'
-    }
-  }
+      ok: 'OK',
+    },
+  },
 }

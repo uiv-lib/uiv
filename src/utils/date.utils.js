@@ -12,7 +12,7 @@ const monthNames = [
   'September',
   'October',
   'November',
-  'December'
+  'December',
 ]
 
 /**
@@ -25,11 +25,11 @@ const monthNames = [
  * @param year
  * @returns {number}
  */
-export function daysInMonth (month, year) {
+export function daysInMonth(month, year) {
   return new Date(year, month + 1, 0).getDate()
 }
 
-export function stringify (date, format) {
+export function stringify(date, format) {
   try {
     const year = date.getFullYear()
     const month = date.getMonth() + 1
@@ -49,8 +49,15 @@ export function stringify (date, format) {
   }
 }
 
-export function convertDateToUTC (date) {
-  return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds())
+export function convertDateToUTC(date) {
+  return new Date(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate(),
+    date.getUTCHours(),
+    date.getUTCMinutes(),
+    date.getUTCSeconds()
+  )
 }
 
 /**
@@ -74,7 +81,7 @@ export function convertDateToUTC (date) {
  * @param {number} d.date date of date
  * @returns {number}
  */
-export function getWeekNumber (d) {
+export function getWeekNumber(d) {
   // Copy date so don't modify original
   const _d = new Date(Date.UTC(d.year, d.month, d.date))
   // Set to nearest Thursday: current date + 4 - current day number
@@ -83,5 +90,5 @@ export function getWeekNumber (d) {
   // Get first day of year
   const yearStart = new Date(Date.UTC(_d.getUTCFullYear(), 0, 1))
   // Calculate full weeks to nearest Thursday
-  return Math.ceil((((_d - yearStart) / 86400000) + 1) / 7)
+  return Math.ceil(((_d - yearStart) / 86400000 + 1) / 7)
 }
