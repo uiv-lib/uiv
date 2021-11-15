@@ -15,7 +15,7 @@ const files = [
   'components/button/BtnToolbar.vue',
   'components/carousel/Carousel.vue',
   'components/carousel/Slide.vue',
-  'components/collapse/Collapse.js',
+  'components/collapse/Collapse.vue',
   'components/datepicker/DatePicker.vue',
   'components/dropdown/Dropdown.vue',
   'components/modal/Modal.vue',
@@ -41,6 +41,7 @@ function e(command, options) {
       if (error) {
         console.error(`exec error: ${error}`)
         reject(error)
+        process.exit(1)
       }
       console.log(`stdout: ${stdout}`)
       console.error(`stderr: ${stderr}`)
