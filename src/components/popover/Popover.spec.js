@@ -1,14 +1,4 @@
-import newLocale from '../../locale/lang/zh-CN'
-import {
-  createWrapper,
-  keyCodes,
-  nextTick,
-  sleep,
-  transition,
-  triggerEvent,
-} from '../../__test__/utils'
-import { RouterLinkStub } from '@vue/test-utils'
-import _ from 'lodash'
+import { createWrapper, sleep, triggerEvent } from '../../__test__/utils'
 
 describe('Popover', () => {
   beforeEach(() => {

@@ -1,5 +1,4 @@
 import * as utils from './array.utils'
-import _ from 'lodash'
 
 describe('array.utils', () => {
   describe('#spliceIfExist', () => {
@@ -30,17 +29,17 @@ describe('array.utils', () => {
   describe('#range', () => {
     it('should be able to get range array', () => {
       const b = utils.range(5)
-      expect(_.isEqual(b, [0, 1, 2, 3, 4])).toBeTruthy()
+      expect(b).toEqual([0, 1, 2, 3, 4])
     })
 
     it('should be able to get range array with start', () => {
       const b = utils.range(5, 3, 1)
-      expect(_.isEqual(b, [3, 4])).toBeTruthy()
+      expect(b).toEqual([3, 4])
     })
 
     it('should be able to get range array with step', () => {
       const b = utils.range(5, 0, 2)
-      expect(_.isEqual(b, [0, 2, 4])).toBeTruthy()
+      expect(b).toEqual([0, 2, 4])
     })
   })
 
@@ -68,7 +67,7 @@ describe('array.utils', () => {
   describe('#onlyUnique', () => {
     it('should be able to uniq array', () => {
       const b = [0, 1, 2, 3, 3, 4, 4, 5].filter(utils.onlyUnique)
-      expect(_.isEqual(b, [0, 1, 2, 3, 4, 5])).toBeTruthy()
+      expect(b).toEqual([0, 1, 2, 3, 4, 5])
     })
   })
 })
