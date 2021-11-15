@@ -12,7 +12,6 @@ specifiers:
   babel-core: 7.0.0-bridge.0
   babel-jest: 27.3.1
   bootstrap: 3.4.1
-  cross-env: 7.0.3
   eslint: 8.2.0
   eslint-config-prettier: 8.3.0
   eslint-plugin-html: 6.2.0
@@ -44,7 +43,6 @@ devDependencies:
   babel-core: 7.0.0-bridge.0
   babel-jest: 27.3.1
   bootstrap: 3.4.1
-  cross-env: 7.0.3
   eslint: mirrors.tencent.com/eslint/8.2.0
   eslint-config-prettier: 8.3.0_eslint@8.2.0
   eslint-plugin-html: 6.2.0
@@ -1256,14 +1254,6 @@ packages:
     resolution: {integrity: sha512-+OQdjP49zViI/6i7nIJpA8rAl4sV/JdPfU9nZs3VqOwGIgizICvuN2ru6fMd+4llL0tar18UYJXfZ/TWtmhUjA==}
     dependencies:
       safe-buffer: registry.nlark.com/safe-buffer/5.1.2
-    dev: true
-
-  /cross-env/7.0.3:
-    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
-    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
-    hasBin: true
-    dependencies:
-      cross-spawn: mirrors.tencent.com/cross-spawn/7.0.3
     dev: true
 
   /css/2.2.4:
