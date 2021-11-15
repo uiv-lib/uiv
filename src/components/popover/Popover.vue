@@ -1,7 +1,6 @@
-<script>
+<script lang="jsx">
 import { TRIGGERS } from '../../utils/dom.utils'
 import popupMixin from '../../mixins/popup.mixin'
-import { h } from 'vue'
 
 export default {
   mixins: [popupMixin],
@@ -38,35 +37,25 @@ export default {
     },
   },
   render() {
-    return h(this.tag, [
-      this.$slots.default && this.$slots.default(),
-      h(
-        'div',
-        {
-          style: {
+    const Tag = this.tag
+    return (
+      <Tag>
+        {this.$slots.default?.()}
+        <div
+          style={{
             display: 'block',
-          },
-          ref: 'popup',
-          onMouseleave: this.hideOnLeave,
-        },
-        [
-          h('div', { class: 'arrow' }),
-          this.title
-            ? h(
-                'h3',
-                {
-                  class: 'popover-title',
-                  directives: [{ name: 'show', value: this.title }],
-                },
-                this.title
-              )
-            : null,
-          h('div', { class: 'popover-content' }, [
-            this.content || (this.$slots.popover && this.$slots.popover()),
-          ]),
-        ]
-      ),
-    ])
+          }}
+          ref="popup"
+          onMouseleave={this.hideOnLeave}
+        >
+          <div class="arrow" />
+          {this.title ? <h3 class="popover-title">{this.title}</h3> : null}
+          <div className="popover-content">
+            {this.content || this.$slots.popover?.()}
+          </div>
+        </div>
+      </Tag>
+    )
   },
 }
 </script>

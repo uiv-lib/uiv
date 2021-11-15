@@ -1,14 +1,11 @@
+<script lang="jsx">
 import { addClass, removeClass } from '../../utils/dom.utils'
-import { h } from 'vue'
 
 const COLLAPSE = 'collapse'
 const IN = 'in'
 const COLLAPSING = 'collapsing'
 
 export default {
-  render() {
-    return h(this.tag, {}, this.$slots.default && this.$slots.default())
-  },
   props: {
     tag: {
       type: String,
@@ -23,6 +20,7 @@ export default {
       default: 350,
     },
   },
+  emits: ['show', 'shown', 'hide', 'hidden'],
   data() {
     return {
       timeoutId: 0,
@@ -79,4 +77,9 @@ export default {
       }
     },
   },
+  render() {
+    const Tag = this.tag
+    return <Tag>{this.$slots.default?.()}</Tag>
+  },
 }
+</script>
