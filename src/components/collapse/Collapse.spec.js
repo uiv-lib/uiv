@@ -1,11 +1,5 @@
-import {
-  createWrapper,
-  nextTick,
-  sleep,
-  triggerEvent,
-} from '../../__test__/utils'
-import { RouterLinkStub } from '@vue/test-utils'
-import Collapse from './Collapse'
+import { createWrapper, sleep, triggerEvent } from '../../__test__/utils'
+import Collapse from './Collapse.vue'
 
 describe('Collapse', () => {
   it('should be able to toggle collapse on trigger click', async () => {
