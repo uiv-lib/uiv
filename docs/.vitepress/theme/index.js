@@ -1,5 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
 import * as uiv from '../../../src/index'
+// import * as uiv from '../../../dist/uiv.es'
 import zh from '../../../src/locale/lang/zh-CN'
 import en from '../../../src/locale/lang/en-US'
 import './theme.less'

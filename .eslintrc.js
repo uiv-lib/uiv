@@ -9,7 +9,12 @@ module.exports = {
   extends: ['plugin:vue/vue3-recommended', 'plugin:prettier/recommended'],
   // required to lint *.vue files
   plugins: ['html'],
-
+  parserOptions: {
+    ecmaVersion: 2020,
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
   // add your custom rules here
   rules: {
     // allow paren-less arrow functions

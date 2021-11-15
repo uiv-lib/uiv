@@ -1,4 +1,4 @@
-<script>
+<script lang="jsx">
 import {
   setDropdownPosition,
   on,
@@ -194,30 +194,27 @@ export default {
     },
   },
   render() {
-    return h(
-      this.tag,
-      {
-        class: {
+    const Tag = this.tag
+    return (
+      <Tag
+        class={{
           'btn-group': this.tag === DEFAULT_TAG,
           dropdown: !this.dropup,
           dropup: this.dropup,
           open: this.show,
-        },
-      },
-      [
-        this.$slots.default && this.$slots.default(),
-        h(
-          'ul',
-          {
-            class: {
-              'dropdown-menu': true,
-              'dropdown-menu-right': this.menuRight,
-            },
-            ref: 'dropdown',
-          },
-          [this.$slots.dropdown && this.$slots.dropdown()]
-        ),
-      ]
+        }}
+      >
+        {this.$slots.default?.()}
+        <ul
+          ref="dropdown"
+          class={{
+            'dropdown-menu': true,
+            'dropdown-menu-right': this.menuRight,
+          }}
+        >
+          {this.$slots.dropdown?.()}
+        </ul>
+      </Tag>
     )
   },
 }

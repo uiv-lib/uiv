@@ -1,3 +1,5 @@
+import vueJsx from '@vitejs/plugin-vue-jsx'
+
 export default {
   description: 'Bootstrap 3 components implemented by Vue.',
   head: [
@@ -121,5 +123,8 @@ export default {
         },
       ],
     },
+  },
+  vite: {
+    plugins: [vueJsx()],
   },
 }

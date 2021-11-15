@@ -5,6 +5,7 @@ import path from 'path'
 import { name } from '../package.json'
 import esbuild from 'rollup-plugin-esbuild'
 import filesize from 'rollup-plugin-filesize'
+import vueJsx from 'rollup-plugin-vue-jsx-compat'
 
 function genBaseConfig({ SSR = false, minify = false } = {}) {
   return {
@@ -17,28 +18,29 @@ function genBaseConfig({ SSR = false, minify = false } = {}) {
         start_comment: 'START.TESTS_ONLY',
         end_comment: 'END.TESTS_ONLY',
       }),
-      esbuild({
-        // All options are optional
-        sourceMap: true, // default
-        minify: minify,
-        target: 'es2015', // default, or 'es20XX', 'esnext'
-        jsx: 'transform', // default, or 'preserve'
-        jsxFactory: 'React.createElement',
-        jsxFragment: 'React.Fragment',
-        // Like @rollup/plugin-replace
-        define: {
-          // __VERSION__: '"x.y.z"',
-        },
-        tsconfig: 'tsconfig.json', // default
-        // Add extra loaders
-        loaders: {
-          // Add .json files support
-          // require @rollup/plugin-commonjs
-          // '.json': 'json',
-          // Enable JSX in .js files too
-          // '.js': 'jsx',
-        },
-      }),
+      // vueJsx(),
+      // esbuild({
+      //   // All options are optional
+      //   sourceMap: true, // default
+      //   minify: minify,
+      //   target: 'es2015', // default, or 'es20XX', 'esnext'
+      //   jsx: 'transform', // default, or 'preserve'
+      //   jsxFactory: 'vueJsxCompat',
+      //   jsxFragment: '',
+      //   // Like @rollup/plugin-replace
+      //   define: {
+      //     // __VERSION__: '"x.y.z"',
+      //   },
+      //   tsconfig: 'tsconfig.json', // default
+      //   // Add extra loaders
+      //   loaders: {
+      //     // Add .json files support
+      //     // require @rollup/plugin-commonjs
+      //     // '.json': 'json',
+      //     // Enable JSX in .js files too
+      //     // '.js': 'jsx',
+      //   },
+      // }),
       filesize(),
     ],
   }
