@@ -113,27 +113,6 @@ export function removeFromDom(el) {
   isElement(el) && isElement(el.parentNode) && el.parentNode.removeChild(el)
 }
 
-export function ensureElementMatchesFunction() {
-  /* istanbul ignore next */
-  if (!Element.prototype.matches) {
-    Element.prototype.matches =
-      Element.prototype.matchesSelector ||
-      Element.prototype.mozMatchesSelector ||
-      Element.prototype.msMatchesSelector ||
-      Element.prototype.oMatchesSelector ||
-      Element.prototype.webkitMatchesSelector ||
-      function (s) {
-        const matches = (this.document || this.ownerDocument).querySelectorAll(
-          s
-        )
-        let i = matches.length
-        // eslint-disable-next-line no-empty
-        while (--i >= 0 && matches.item(i) !== this) {}
-        return i > -1
-      }
-  }
-}
-
 export function addClass(el, className) {
   if (!isElement(el)) {
     return
@@ -405,7 +384,6 @@ export function toggleBodyOverflow(enable) {
 }
 
 export function getClosest(el, selector) {
-  ensureElementMatchesFunction()
   let parent
   let _el = el
   while (_el) {
@@ -419,7 +397,6 @@ export function getClosest(el, selector) {
 }
 
 export function getParents(el, selector, until = null) {
-  ensureElementMatchesFunction()
   const parents = []
   let parent = el.parentElement
   while (parent) {

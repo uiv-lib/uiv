@@ -1,6 +1,5 @@
 import {
   PLACEMENTS,
-  ensureElementMatchesFunction,
   on,
   off,
   EVENTS,
@@ -113,7 +112,6 @@ export default {
     },
   },
   mounted() {
-    ensureElementMatchesFunction()
     removeFromDom(this.$refs.popup)
     this.$nextTick(() => {
       this.initTriggerElByTarget(this.target)

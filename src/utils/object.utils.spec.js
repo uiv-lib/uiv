@@ -1,35 +1,6 @@
 import * as utils from './object.utils'
 
 describe('object.utils', () => {
-  describe('#assign', () => {
-    it('should be able to merge objects', () => {
-      expect(utils.assign({}, { a: 1 }, { a: 2, b: 3 })).toEqual({
-        a: 2,
-        b: 3,
-      })
-    })
-
-    it('should be able to handle null target', () => {
-      expect(utils.assign.bind(this, null, {})).toThrow(
-        'Cannot convert undefined or null to object'
-      )
-    })
-
-    it('should be able to handle null or undefined source', () => {
-      expect(
-        utils.assign({}, { a: 1 }, null, undefined, { a: 2, b: 3 })
-      ).toEqual({ a: 2, b: 3 })
-    })
-
-    it('should be able to avoid prototype properties', () => {
-      // eslint-disable-next-line no-new-func
-      const a = new Function()
-      a.prototype.b = 1
-      a.c = 2
-      expect(utils.assign({}, a)).toEqual({ c: 2 })
-    })
-  })
-
   describe('#isExist ', () => {
     it('should be able return false if null', () => {
       expect(utils.isExist(null)).toBeFalsy()

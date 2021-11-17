@@ -36,7 +36,6 @@ import { isString } from '../../utils/object.utils'
 import {
   on,
   off,
-  ensureElementMatchesFunction,
   EVENTS,
   getElementBySelectorOrRef,
 } from '../../utils/dom.utils'
@@ -49,7 +48,7 @@ export default {
       type: null,
       required: true,
     },
-    data: { type: Array, default: () => [] },
+    data: { type: Array, default: undefined },
     itemKey: { type: String, default: undefined },
     appendToBody: {
       type: Boolean,
@@ -143,7 +142,6 @@ export default {
     },
   },
   mounted() {
-    ensureElementMatchesFunction()
     this.$nextTick(() => {
       this.initInputElByTarget(this.target)
       this.initListeners()

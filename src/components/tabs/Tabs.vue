@@ -64,7 +64,6 @@ import {
   isFunction,
   isExist,
   isString,
-  assign,
   hasOwnProperty,
 } from '../../utils/object.utils'
 
@@ -106,11 +105,15 @@ export default {
       const customNavClass = this.customNavClass
       if (isExist(customNavClass)) {
         if (isString(customNavClass)) {
-          return assign({}, tabClasses, {
+          return {
+            ...tabClasses,
             [customNavClass]: true,
-          })
+          }
         } else {
-          return assign({}, tabClasses, customNavClass)
+          return {
+            ...tabClasses,
+            ...customNavClass,
+          }
         }
       } else {
         return tabClasses
@@ -123,11 +126,9 @@ export default {
       const customContentClass = this.customContentClass
       if (isExist(customContentClass)) {
         if (isString(customContentClass)) {
-          return assign({}, contentClasses, {
-            [customContentClass]: true,
-          })
+          return { ...contentClasses, [customContentClass]: true }
         } else {
-          return assign({}, contentClasses, customContentClass)
+          return { ...contentClasses, ...customContentClass }
         }
       } else {
         return contentClasses
@@ -196,7 +197,7 @@ export default {
       }
 
       // return with new classes added to tab
-      return assign(defaultClasses, tab.tabClasses)
+      return { ...defaultClasses, ...tab.tabClasses }
     },
     selectCurrent() {
       let found = false
