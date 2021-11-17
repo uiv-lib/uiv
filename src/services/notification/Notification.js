@@ -4,7 +4,6 @@ import {
   isExist,
   isString,
   isPromiseSupported,
-  assign,
   hasOwnProperty,
 } from '../../utils/object.utils'
 import Notification from '../../components/notification/Notification.vue'
@@ -83,11 +82,7 @@ function _notify2(type, args) {
       type,
     })
   } else {
-    _notify(
-      assign({}, args, {
-        type,
-      })
-    )
+    _notify({ ...args, type })
   }
 }
 
