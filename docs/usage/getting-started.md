@@ -9,9 +9,9 @@
 * **Vue 3** supported.
 * **SSR** (server-side rendering) supported.
 * All env supported:
-  * UMD build `uiv.min.js` can be used in all environments (including browser)
-  * ES Module build `uiv.esm.js` is for modern bundlers like [webpack 2](https://webpack.js.org) or [rollup](https://rollupjs.org)
-  * CommonJS build `uiv.common.js` is for older bundlers like [browserify](http://browserify.org) or [webpack 1](https://webpack.github.io).
+  * UMD build `uiv.umd.js` can be used in all environments (including browser)
+  * ES Module build `uiv.es.js` is for modern bundlers like [webpack 2](https://webpack.js.org) or [rollup](https://rollupjs.org)
+  * CommonJS build `uiv.cjs.js` is for older bundlers like [browserify](http://browserify.org) or [webpack 1](https://webpack.github.io).
 
 ## Versions
 
@@ -94,7 +94,7 @@ You can load & install uiv package directly in browsers. For example:
 <script src="//unpkg.com/uiv"></script>
 ```
 
-This will simply load the latest version of `uiv.min.js` into your page. For detail usages (e.g. load specify version, IMPORTANT in production mode) and different CDN providers, you can visit:
+This will simply load the latest version of `uiv.umd.js` into your page. For detail usages (e.g. load specify version, IMPORTANT in production mode) and different CDN providers, you can visit:
 
 * [https://unpkg.com](https://unpkg.com)
 * [https://www.jsdelivr.com](https://www.jsdelivr.com/)
