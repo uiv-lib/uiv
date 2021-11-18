@@ -31,25 +31,25 @@
   </section>
 </template>
 <script>
-import axios from 'axios' // https://github.com/axios/axios
+import axios from 'axios'; // https://github.com/axios/axios
 
 export default {
   data() {
     return {
       model: '',
-    }
+    };
   },
   methods: {
     queryFunction(query, done) {
       axios
         .get('https://api.github.com/search/users?q=' + query)
         .then((res) => {
-          done(res.data.items)
+          done(res.data.items);
         })
         .catch((err) => {
           // any error handler
-        })
+        });
     },
   },
-}
+};
 </script>

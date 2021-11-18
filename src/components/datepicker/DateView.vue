@@ -84,10 +84,10 @@
 </template>
 
 <script>
-import Locale from '../../mixins/locale.mixin'
-import Btn from './../button/Btn.vue'
-import { daysInMonth, getWeekNumber } from '../../utils/date.utils'
-import { isExist, isFunction } from '../../utils/object.utils'
+import Locale from '../../mixins/locale.mixin';
+import Btn from './../button/Btn.vue';
+import { daysInMonth, getWeekNumber } from '../../utils/date.utils';
+import { isExist, isFunction } from '../../utils/object.utils';
 
 export default {
   components: { Btn },
@@ -108,94 +108,94 @@ export default {
   emits: ['date-change', 'year-change', 'month-change', 'view-change'],
   computed: {
     weekDays() {
-      const days = []
-      let firstDay = this.weekStartsWith
+      const days = [];
+      let firstDay = this.weekStartsWith;
       while (days.length < 7) {
-        days.push(firstDay++)
+        days.push(firstDay++);
         if (firstDay > 6) {
-          firstDay = 0
+          firstDay = 0;
         }
       }
-      return days
+      return days;
     },
     yearMonthStr() {
       if (this.yearMonthFormatter) {
-        return this.yearMonthFormatter(this.year, this.month)
+        return this.yearMonthFormatter(this.year, this.month);
       } else {
         return isExist(this.month)
           ? `${this.year} ${this.t(`uiv.datePicker.month${this.month + 1}`)}`
-          : this.year
+          : this.year;
       }
     },
     monthDayRows() {
-      const rows = []
-      const firstDay = new Date(this.year, this.month, 1)
-      const prevMonthLastDate = new Date(this.year, this.month, 0).getDate()
-      const startIndex = firstDay.getDay()
+      const rows = [];
+      const firstDay = new Date(this.year, this.month, 1);
+      const prevMonthLastDate = new Date(this.year, this.month, 0).getDate();
+      const startIndex = firstDay.getDay();
       // console.log(startIndex)
-      const daysNum = daysInMonth(this.month, this.year)
-      let weekOffset = 0
+      const daysNum = daysInMonth(this.month, this.year);
+      let weekOffset = 0;
       if (this.weekStartsWith > startIndex) {
-        weekOffset = 7 - this.weekStartsWith
+        weekOffset = 7 - this.weekStartsWith;
       } else {
-        weekOffset = 0 - this.weekStartsWith
+        weekOffset = 0 - this.weekStartsWith;
       }
       // console.log(prevMonthLastDate, startIndex, daysNum)
       for (let i = 0; i < 6; i++) {
-        rows.push([])
+        rows.push([]);
         for (let j = 0 - weekOffset; j < 7 - weekOffset; j++) {
-          const currentIndex = i * 7 + j
-          const date = { year: this.year, disabled: false }
+          const currentIndex = i * 7 + j;
+          const date = { year: this.year, disabled: false };
           // date in and not in current month
           if (currentIndex < startIndex) {
-            date.date = prevMonthLastDate - startIndex + currentIndex + 1
+            date.date = prevMonthLastDate - startIndex + currentIndex + 1;
             if (this.month > 0) {
-              date.month = this.month - 1
+              date.month = this.month - 1;
             } else {
-              date.month = 11
-              date.year--
+              date.month = 11;
+              date.year--;
             }
           } else if (currentIndex < startIndex + daysNum) {
-            date.date = currentIndex - startIndex + 1
-            date.month = this.month
+            date.date = currentIndex - startIndex + 1;
+            date.month = this.month;
           } else {
-            date.date = currentIndex - startIndex - daysNum + 1
+            date.date = currentIndex - startIndex - daysNum + 1;
             if (this.month < 11) {
-              date.month = this.month + 1
+              date.month = this.month + 1;
             } else {
-              date.month = 0
-              date.year++
+              date.month = 0;
+              date.year++;
             }
           }
           // process limit dates
-          const dateObj = new Date(date.year, date.month, date.date)
-          let afterFrom = true
-          let beforeTo = true
+          const dateObj = new Date(date.year, date.month, date.date);
+          let afterFrom = true;
+          let beforeTo = true;
           if (this.limit && this.limit.from) {
-            afterFrom = dateObj >= this.limit.from
+            afterFrom = dateObj >= this.limit.from;
           }
           if (this.limit && this.limit.to) {
-            beforeTo = dateObj < this.limit.to
+            beforeTo = dateObj < this.limit.to;
           }
-          date.disabled = !afterFrom || !beforeTo
+          date.disabled = !afterFrom || !beforeTo;
           if (isFunction(this.dateClass)) {
             date.classes = this.dateClass(dateObj, {
               currentMonth: this.month,
               currentYear: this.year,
-            })
+            });
           } else {
-            date.classes = ''
+            date.classes = '';
           }
-          rows[i].push(date)
+          rows[i].push(date);
         }
       }
-      return rows
+      return rows;
     },
   },
   methods: {
     getWeekNumber,
     tWeekName(index) {
-      return this.t(`uiv.datePicker.week${index}`)
+      return this.t(`uiv.datePicker.week${index}`);
     },
     getBtnType(date) {
       if (
@@ -204,47 +204,47 @@ export default {
         date.month === this.date.getMonth() &&
         date.year === this.date.getFullYear()
       ) {
-        return 'primary'
+        return 'primary';
       } else if (
         date.date === this.today.getDate() &&
         date.month === this.today.getMonth() &&
         date.year === this.today.getFullYear()
       ) {
-        return 'info'
+        return 'info';
       } else {
-        return 'default'
+        return 'default';
       }
     },
     select(date) {
-      this.$emit('date-change', date)
+      this.$emit('date-change', date);
     },
     goPrevMonth() {
-      let month = this.month
-      let year = this.year
+      let month = this.month;
+      let year = this.year;
       if (this.month > 0) {
-        month--
+        month--;
       } else {
-        month = 11
-        year--
-        this.$emit('year-change', year)
+        month = 11;
+        year--;
+        this.$emit('year-change', year);
       }
-      this.$emit('month-change', month)
+      this.$emit('month-change', month);
     },
     goNextMonth() {
-      let month = this.month
-      let year = this.year
+      let month = this.month;
+      let year = this.year;
       if (this.month < 11) {
-        month++
+        month++;
       } else {
-        month = 0
-        year++
-        this.$emit('year-change', year)
+        month = 0;
+        year++;
+        this.$emit('year-change', year);
       }
-      this.$emit('month-change', month)
+      this.$emit('month-change', month);
     },
     changeView() {
-      this.$emit('view-change', 'm')
+      this.$emit('view-change', 'm');
     },
   },
-}
+};
 </script>

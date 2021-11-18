@@ -93,9 +93,9 @@
 </template>
 
 <script>
-import Local from '../../mixins/locale.mixin'
-import Dropdown from '../dropdown/Dropdown.vue'
-import { onlyUnique } from '../../utils/array.utils'
+import Local from '../../mixins/locale.mixin';
+import Dropdown from '../dropdown/Dropdown.vue';
+import { onlyUnique } from '../../utils/array.utils';
 
 export default {
   components: { Dropdown },
@@ -174,30 +174,30 @@ export default {
       els: [],
       filterInput: '',
       currentActive: -1,
-    }
+    };
   },
   computed: {
     containerStyles() {
       return {
         width: this.block ? '100%' : '',
-      }
+      };
     },
     filteredOptions() {
       if (this.filterable && this.filterInput) {
         if (this.filterFunction) {
-          return this.filterFunction(this.filterInput)
+          return this.filterFunction(this.filterInput);
         } else {
-          const filterInput = this.filterInput.toLowerCase()
+          const filterInput = this.filterInput.toLowerCase();
           return this.options.filter(
             (v) =>
               v[this.valueKey].toString().toLowerCase().indexOf(filterInput) >=
                 0 ||
               v[this.labelKey].toString().toLowerCase().indexOf(filterInput) >=
                 0
-          )
+          );
         }
       } else {
-        return this.options
+        return this.options;
       }
     },
     groupedOptions() {
@@ -207,139 +207,139 @@ export default {
         .map((v) => ({
           options: this.filteredOptions.filter((option) => option.group === v),
           $group: v,
-        }))
+        }));
     },
     flattenGroupedOptions() {
-      return [].concat(...this.groupedOptions.map((v) => v.options))
+      return [].concat(...this.groupedOptions.map((v) => v.options));
     },
     selectClasses() {
       return {
         [`input-${this.size}`]: this.size,
-      }
+      };
     },
     selectedIconClasses() {
       return {
         [this.selectedIcon]: true,
         'pull-right': true,
-      }
+      };
     },
     selectTextClasses() {
       return {
         'text-muted': this.modelValue.length === 0,
-      }
+      };
     },
     labelValue() {
-      const optionsByValue = this.options.map((v) => v[this.valueKey])
+      const optionsByValue = this.options.map((v) => v[this.valueKey]);
       return this.modelValue.map((v) => {
-        const index = optionsByValue.indexOf(v)
-        return index >= 0 ? this.options[index][this.labelKey] : v
-      })
+        const index = optionsByValue.indexOf(v);
+        return index >= 0 ? this.options[index][this.labelKey] : v;
+      });
     },
     selectedText() {
       if (this.modelValue.length) {
-        const labelValue = this.labelValue
+        const labelValue = this.labelValue;
         if (this.collapseSelected) {
-          let str = labelValue[0]
+          let str = labelValue[0];
           str +=
             labelValue.length > 1
               ? `${this.split}+${labelValue.length - 1}`
-              : ''
-          return str
+              : '';
+          return str;
         } else {
-          return labelValue.join(this.split)
+          return labelValue.join(this.split);
         }
       } else {
-        return this.placeholder || this.t('uiv.multiSelect.placeholder')
+        return this.placeholder || this.t('uiv.multiSelect.placeholder');
       }
     },
     customOptionsVisible() {
-      return !!this.$slots.option || !!this.$slots.option
+      return !!this.$slots.option || !!this.$slots.option;
     },
   },
   watch: {
     showDropdown(v) {
       // clear filter input when dropdown toggles
-      this.filterInput = ''
-      this.currentActive = -1
-      this.$emit('visible-change', v)
+      this.filterInput = '';
+      this.currentActive = -1;
+      this.$emit('visible-change', v);
       if (v && this.filterable && this.filterAutoFocus) {
         this.$nextTick(() => {
-          this.$refs.filterInput.focus()
-        })
+          this.$refs.filterInput.focus();
+        });
       }
     },
   },
   mounted() {
-    this.els = [this.$el]
+    this.els = [this.$el];
   },
   methods: {
     goPrevOption() {
       if (!this.showDropdown) {
-        return
+        return;
       }
       this.currentActive > 0
         ? this.currentActive--
-        : (this.currentActive = this.flattenGroupedOptions.length - 1)
+        : (this.currentActive = this.flattenGroupedOptions.length - 1);
     },
     goNextOption() {
       if (!this.showDropdown) {
-        return
+        return;
       }
       this.currentActive < this.flattenGroupedOptions.length - 1
         ? this.currentActive++
-        : (this.currentActive = 0)
+        : (this.currentActive = 0);
     },
     selectOption() {
-      const index = this.currentActive
-      const options = this.flattenGroupedOptions
+      const index = this.currentActive;
+      const options = this.flattenGroupedOptions;
       if (!this.showDropdown) {
-        this.showDropdown = true
+        this.showDropdown = true;
       } else if (index >= 0 && index < options.length) {
-        this.toggle(options[index])
+        this.toggle(options[index]);
       }
     },
     itemClasses(item) {
       const result = {
         disabled: item.disabled,
         active: this.currentActive === this.flattenGroupedOptions.indexOf(item),
-      }
+      };
       if (this.itemSelectedClass) {
-        result[this.itemSelectedClass] = this.isItemSelected(item)
+        result[this.itemSelectedClass] = this.isItemSelected(item);
       }
-      return result
+      return result;
     },
     isItemSelected(item) {
-      return this.modelValue.indexOf(item[this.valueKey]) >= 0
+      return this.modelValue.indexOf(item[this.valueKey]) >= 0;
     },
     toggle(item) {
       if (item.disabled) {
-        return
+        return;
       }
-      const value = item[this.valueKey]
-      const index = this.modelValue.indexOf(value)
+      const value = item[this.valueKey];
+      const index = this.modelValue.indexOf(value);
       if (this.limit === 1) {
-        const newValue = index >= 0 ? [] : [value]
-        this.$emit('update:modelValue', newValue)
-        this.$emit('change', newValue)
+        const newValue = index >= 0 ? [] : [value];
+        this.$emit('update:modelValue', newValue);
+        this.$emit('change', newValue);
       } else {
         if (index >= 0) {
-          const newVal = this.modelValue.slice()
-          newVal.splice(index, 1)
-          this.$emit('update:modelValue', newVal)
-          this.$emit('change', newVal)
+          const newVal = this.modelValue.slice();
+          newVal.splice(index, 1);
+          this.$emit('update:modelValue', newVal);
+          this.$emit('change', newVal);
         } else if (this.limit === 0 || this.modelValue.length < this.limit) {
-          const newVal = this.modelValue.slice()
-          newVal.push(value)
-          this.$emit('update:modelValue', newVal)
-          this.$emit('change', newVal)
+          const newVal = this.modelValue.slice();
+          newVal.push(value);
+          this.$emit('update:modelValue', newVal);
+          this.$emit('change', newVal);
         } else {
-          this.$emit('limit-exceed')
+          this.$emit('limit-exceed');
         }
       }
     },
     searchClicked() {
-      this.$emit('search', this.filterInput)
+      this.$emit('search', this.filterInput);
     },
   },
-}
+};
 </script>

@@ -69,13 +69,13 @@
 </template>
 
 <script>
-import Locale from '../../mixins/locale.mixin'
-import DateView from './DateView.vue'
-import MonthView from './MonthView.vue'
-import YearView from './YearView.vue'
-import Btn from './../button/Btn.vue'
-import { stringify, convertDateToUTC } from '../../utils/date.utils'
-import { isNumber } from '../../utils/object.utils'
+import Locale from '../../mixins/locale.mixin';
+import DateView from './DateView.vue';
+import MonthView from './MonthView.vue';
+import YearView from './YearView.vue';
+import Btn from './../button/Btn.vue';
+import { stringify, convertDateToUTC } from '../../utils/date.utils';
+import { isNumber } from '../../utils/object.utils';
 
 export default {
   components: { DateView, MonthView, YearView, Btn },
@@ -118,7 +118,7 @@ export default {
       type: Number,
       default: 0,
       validator(value) {
-        return value >= 0 && value <= 6
+        return value >= 0 && value <= 6;
       },
     },
     weekNumbers: Boolean,
@@ -139,25 +139,25 @@ export default {
       currentMonth: 0,
       currentYear: 0,
       view: 'd',
-    }
+    };
   },
   computed: {
     valueDateObj() {
-      const ts = this.dateParser(this.modelValue)
+      const ts = this.dateParser(this.modelValue);
       if (isNaN(ts)) {
-        return null
+        return null;
       } else {
-        let date = new Date(ts)
+        let date = new Date(ts);
         if (date.getHours() !== 0) {
-          date = new Date(ts + date.getTimezoneOffset() * 60 * 1000)
+          date = new Date(ts + date.getTimezoneOffset() * 60 * 1000);
         }
-        return date
+        return date;
       }
     },
     pickerStyle() {
       return {
         width: this.width + 'px',
-      }
+      };
     },
     pickerClass() {
       return {
@@ -165,69 +165,69 @@ export default {
         'uiv-datepicker-date': this.view === 'd',
         'uiv-datepicker-month': this.view === 'm',
         'uiv-datepicker-year': this.view === 'y',
-      }
+      };
     },
     limit() {
-      const limit = {}
+      const limit = {};
       if (this.limitFrom) {
-        let limitFrom = this.dateParser(this.limitFrom)
+        let limitFrom = this.dateParser(this.limitFrom);
         if (!isNaN(limitFrom)) {
-          limitFrom = convertDateToUTC(new Date(limitFrom))
-          limitFrom.setHours(0, 0, 0, 0)
-          limit.from = limitFrom
+          limitFrom = convertDateToUTC(new Date(limitFrom));
+          limitFrom.setHours(0, 0, 0, 0);
+          limit.from = limitFrom;
         }
       }
       if (this.limitTo) {
-        let limitTo = this.dateParser(this.limitTo)
+        let limitTo = this.dateParser(this.limitTo);
         if (!isNaN(limitTo)) {
-          limitTo = convertDateToUTC(new Date(limitTo))
-          limitTo.setHours(0, 0, 0, 0)
-          limit.to = limitTo
+          limitTo = convertDateToUTC(new Date(limitTo));
+          limitTo.setHours(0, 0, 0, 0);
+          limit.to = limitTo;
         }
       }
-      return limit
+      return limit;
     },
   },
   watch: {
     modelValue(val, oldVal) {
-      this.setMonthAndYearByValue(val, oldVal)
+      this.setMonthAndYearByValue(val, oldVal);
     },
   },
   mounted() {
     if (this.modelValue) {
-      this.setMonthAndYearByValue(this.modelValue)
+      this.setMonthAndYearByValue(this.modelValue);
     } else {
-      this.currentMonth = this.now.getMonth()
-      this.currentYear = this.now.getFullYear()
-      this.view = this.initialView
+      this.currentMonth = this.now.getMonth();
+      this.currentYear = this.now.getFullYear();
+      this.view = this.initialView;
     }
   },
   methods: {
     setMonthAndYearByValue(val, oldVal) {
-      const ts = this.dateParser(val)
+      const ts = this.dateParser(val);
       if (!isNaN(ts)) {
-        let date = new Date(ts)
+        let date = new Date(ts);
         if (date.getHours() !== 0) {
-          date = new Date(ts + date.getTimezoneOffset() * 60 * 1000)
+          date = new Date(ts + date.getTimezoneOffset() * 60 * 1000);
         }
         if (
           this.limit &&
           ((this.limit.from && date < this.limit.from) ||
             (this.limit.to && date >= this.limit.to))
         ) {
-          this.$emit('update:modelValue', oldVal || '')
+          this.$emit('update:modelValue', oldVal || '');
         } else {
-          this.currentMonth = date.getMonth()
-          this.currentYear = date.getFullYear()
+          this.currentMonth = date.getMonth();
+          this.currentYear = date.getFullYear();
         }
       }
     },
     onMonthChange(month) {
-      this.currentMonth = month
+      this.currentMonth = month;
     },
     onYearChange(year) {
-      this.currentYear = year
-      this.currentMonth = undefined
+      this.currentYear = year;
+      this.currentMonth = undefined;
     },
     onDateChange(date) {
       if (
@@ -236,44 +236,44 @@ export default {
         isNumber(date.month) &&
         isNumber(date.year)
       ) {
-        const _date = new Date(date.year, date.month, date.date)
+        const _date = new Date(date.year, date.month, date.date);
         this.$emit(
           'update:modelValue',
           this.format ? stringify(_date, this.format) : _date
-        )
+        );
         // if the input event trigger nothing (same value)
         // manually correct
-        this.currentMonth = date.month
-        this.currentYear = date.year
+        this.currentMonth = date.month;
+        this.currentYear = date.year;
       } else {
-        this.$emit('update:modelValue', '')
+        this.$emit('update:modelValue', '');
       }
     },
     onViewChange(view) {
-      this.view = view
+      this.view = view;
     },
     selectToday() {
-      this.view = 'd'
+      this.view = 'd';
       this.onDateChange({
         date: this.now.getDate(),
         month: this.now.getMonth(),
         year: this.now.getFullYear(),
-      })
+      });
     },
     clearSelect() {
-      this.currentMonth = this.now.getMonth()
-      this.currentYear = this.now.getFullYear()
-      this.view = this.initialView
-      this.onDateChange()
+      this.currentMonth = this.now.getMonth();
+      this.currentYear = this.now.getFullYear();
+      this.view = this.initialView;
+      this.onDateChange();
     },
     onPickerClick(event) {
       if (
         event.target.getAttribute('data-action') !== 'select' ||
         !this.closeOnSelected
       ) {
-        event.stopPropagation()
+        event.stopPropagation();
       }
     },
   },
-}
+};
 </script>

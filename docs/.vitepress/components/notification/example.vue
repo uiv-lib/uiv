@@ -12,8 +12,8 @@ export default {
     notify() {
       this.$notify('This is a simple notify msg.', () => {
         // callback after dismissed
-        console.log('dismissed')
-      })
+        console.log('dismissed');
+      });
     },
     // example with Promise and options
     notify2() {
@@ -23,9 +23,9 @@ export default {
         duration: 0,
       }).then(() => {
         // resolve after dismissed
-        console.log('dismissed')
-      })
+        console.log('dismissed');
+      });
     },
   },
-}
+};
 </script>

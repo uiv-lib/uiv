@@ -17,5 +17,5 @@ export default {
     left: Boolean,
     right: Boolean,
   },
-}
+};
 </script>

@@ -1,5 +1,5 @@
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import { defineConfig } from 'vitepress'
+import vueJsx from '@vitejs/plugin-vue-jsx';
+import { defineConfig } from 'vitepress';
 
 export default defineConfig({
   description: 'Bootstrap 3 components implemented by Vue.',
@@ -41,7 +41,7 @@ export default defineConfig({
   vite: {
     plugins: [vueJsx()],
   },
-})
+});
 
 function navbar() {
   return [
@@ -60,7 +60,7 @@ function navbar() {
     { text: '0.x', link: 'https://uiv-v0.wxsm.space' },
     { text: 'Funding', link: '/funding/' },
     { text: 'Changelog', link: 'https://github.com/uiv-lib/uiv/releases' },
-  ]
+  ];
 }
 
 function usageSidebar() {
@@ -70,7 +70,7 @@ function usageSidebar() {
       text: 'i18n',
       link: '/usage/i18n',
     },
-  ]
+  ];
 }
 
 function componentSidebar() {
@@ -132,5 +132,5 @@ function componentSidebar() {
         { text: 'Scroll Spy', link: '/components/scroll-spy' },
       ],
     },
-  ]
+  ];
 }

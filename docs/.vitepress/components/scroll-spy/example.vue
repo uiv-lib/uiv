@@ -96,9 +96,9 @@ export default {
   data() {
     return {
       show: false,
-    }
+    };
   },
-}
+};
 </script>
 <style>
 #scrollspy-example {

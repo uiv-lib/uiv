@@ -14,10 +14,10 @@ export default {
         },
         (msg) => {
           // callback after modal dismissed
-          this.$notify(`You selected ${msg}.`)
+          this.$notify(`You selected ${msg}.`);
         }
-      )
+      );
     },
   },
-}
+};
 </script>

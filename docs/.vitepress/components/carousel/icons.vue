@@ -26,9 +26,9 @@ export default {
         { title: 'Slide 3' },
         { title: 'Slide 4' },
       ],
-    }
+    };
   },
-}
+};
 </script>
 <style>
 /* Using custom icons may require some additional CSS declarations */

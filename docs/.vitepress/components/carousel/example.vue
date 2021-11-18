@@ -51,12 +51,12 @@ export default {
         { title: 'Slide 3' },
         { title: 'Slide 4' },
       ],
-    }
+    };
   },
   methods: {
     pushSlide() {
-      this.slides.push({ title: `Slide ${this.slides.length + 1}` })
+      this.slides.push({ title: `Slide ${this.slides.length + 1}` });
     },
   },
-}
+};
 </script>

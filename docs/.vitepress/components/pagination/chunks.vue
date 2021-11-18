@@ -15,7 +15,7 @@ export default {
     return {
       totalPage: 10,
       currentPage: 1,
-    }
+    };
   },
-}
+};
 </script>

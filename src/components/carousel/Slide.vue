@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { spliceIfExist } from '../../utils/array.utils'
+import { spliceIfExist } from '../../utils/array.utils';
 
 export default {
   data() {
@@ -17,18 +17,18 @@ export default {
         left: false,
         right: false,
       },
-    }
+    };
   },
   created() {
     try {
-      this.$parent.slides.push(this)
+      this.$parent.slides.push(this);
     } catch (e) {
-      throw new Error('Slide parent must be Carousel.')
+      throw new Error('Slide parent must be Carousel.');
     }
   },
   beforeUnmount() {
-    const slides = this.$parent && this.$parent.slides
-    spliceIfExist(slides, this)
+    const slides = this.$parent && this.$parent.slides;
+    spliceIfExist(slides, this);
   },
-}
+};
 </script>

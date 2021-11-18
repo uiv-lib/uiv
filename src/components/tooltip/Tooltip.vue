@@ -1,6 +1,6 @@
 <script lang="jsx">
-import { TRIGGERS } from '../../utils/dom.utils'
-import popupMixin from '../../mixins/popup.mixin'
+import { TRIGGERS } from '../../utils/dom.utils';
+import popupMixin from '../../mixins/popup.mixin';
 
 export default {
   mixins: [popupMixin],
@@ -17,11 +17,11 @@ export default {
   data() {
     return {
       name: 'tooltip',
-    }
+    };
   },
   computed: {
     allContent() {
-      return this.text
+      return this.text;
     },
   },
   // beforeUnmount() {
@@ -29,11 +29,11 @@ export default {
   // },
   methods: {
     isNotEmpty() {
-      return this.text
+      return this.text;
     },
   },
   render() {
-    const Tag = this.tag
+    const Tag = this.tag;
     return (
       <Tag>
         {this.$slots.default?.()}
@@ -42,7 +42,7 @@ export default {
           <div class="tooltip-inner">{this.text}</div>
         </div>
       </Tag>
-    )
+    );
   },
-}
+};
 </script>

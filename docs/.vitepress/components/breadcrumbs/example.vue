@@ -12,7 +12,7 @@ export default {
         { text: 'Library', href: '#' },
         { text: 'Data', href: '#' },
       ],
-    }
+    };
   },
-}
+};
 </script>

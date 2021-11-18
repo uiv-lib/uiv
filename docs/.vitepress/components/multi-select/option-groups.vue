@@ -15,7 +15,7 @@ export default {
         { value: 4, label: 'Red', group: 'Color' },
         { value: 5, label: 'Green', group: 'Color' },
       ],
-    }
+    };
   },
-}
+};
 </script>

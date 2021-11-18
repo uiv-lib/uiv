@@ -16,14 +16,14 @@
   </section>
 </template>
 <script>
-import states from './states.json'
+import states from './states.json';
 
 export default {
   data() {
     return {
       model: '',
       states: states.data,
-    }
+    };
   },
-}
+};
 </script>

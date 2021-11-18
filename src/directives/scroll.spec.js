@@ -1,4 +1,4 @@
-import scroll from './scroll'
+import scroll from './scroll';
 import {
   createWrapper,
   keyCodes,
@@ -6,9 +6,9 @@ import {
   sleep,
   transition,
   triggerEvent,
-} from '../__test__/utils'
+} from '../__test__/utils';
 
-const HANDLER = '_uiv_scroll_handler'
+const HANDLER = '_uiv_scroll_handler';
 
 describe('scroll directive', () => {
   it('should be able to bind scroll function', async () => {
@@ -25,11 +25,11 @@ describe('scroll directive', () => {
           },
         },
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    expect(vm.$el[HANDLER]).toEqual(vm.onScroll)
-  })
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    expect(vm.$el[HANDLER]).toEqual(vm.onScroll);
+  });
 
   it('should not bind non-function value', async () => {
     const wrapper = createWrapper(
@@ -40,11 +40,11 @@ describe('scroll directive', () => {
       {
         directives: { scroll },
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    expect(vm.$el[HANDLER]).not.toBeDefined()
-  })
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    expect(vm.$el[HANDLER]).not.toBeDefined();
+  });
 
   it('should be able to get with fail callback', async () => {
     const wrapper = createWrapper(
@@ -55,12 +55,12 @@ describe('scroll directive', () => {
       {
         directives: { scroll },
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    expect(vm.$el[HANDLER]).not.toBeDefined()
-    vm.msg = 'test'
-    await vm.$nextTick()
-    expect(vm.$el[HANDLER]).not.toBeDefined()
-  })
-})
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    expect(vm.$el[HANDLER]).not.toBeDefined();
+    vm.msg = 'test';
+    await vm.$nextTick();
+    expect(vm.$el[HANDLER]).not.toBeDefined();
+  });
+});

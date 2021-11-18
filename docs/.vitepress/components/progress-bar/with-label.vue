@@ -18,7 +18,7 @@ export default {
     return {
       progress1: 1,
       progress: 66,
-    }
+    };
   },
-}
+};
 </script>

@@ -1,11 +1,11 @@
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import { defineConfig } from 'vite'
-import { resolve } from 'path'
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+import { defineConfig } from 'vite';
+import { resolve } from 'path';
 
-const { UIV_ENTRY, UIV_FILENAME } = process.env
+const { UIV_ENTRY, UIV_FILENAME } = process.env;
 
-console.log('env:', UIV_ENTRY, UIV_FILENAME)
+console.log('env:', UIV_ENTRY, UIV_FILENAME);
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -31,4 +31,4 @@ export default defineConfig({
       },
     },
   },
-})
+});

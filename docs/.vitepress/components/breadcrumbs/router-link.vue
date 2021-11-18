@@ -11,7 +11,7 @@ export default {
         { text: 'Home', to: '/', exact: true },
         { text: 'Breadcrumbs', to: '/breadcrumbs' },
       ],
-    }
+    };
   },
-}
+};
 </script>

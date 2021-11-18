@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       timeout: 0,
-    }
+    };
   },
   computed: {
     alertClass() {
@@ -41,22 +41,22 @@ export default {
         alert: true,
         [`alert-${this.type}`]: Boolean(this.type),
         'alert-dismissible': this.dismissible,
-      }
+      };
     },
   },
   mounted() {
     if (this.duration > 0) {
-      this.timeout = setTimeout(this.closeAlert, this.duration)
+      this.timeout = setTimeout(this.closeAlert, this.duration);
     }
   },
   unmounted() {
-    clearTimeout(this.timeout)
+    clearTimeout(this.timeout);
   },
   methods: {
     closeAlert() {
-      clearTimeout(this.timeout)
-      this.$emit('dismissed')
+      clearTimeout(this.timeout);
+      this.$emit('dismissed');
     },
   },
-}
+};
 </script>

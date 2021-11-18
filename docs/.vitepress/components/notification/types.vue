@@ -15,20 +15,20 @@ export default {
         title: 'Heads up!',
         content:
           "This alert needs your attention, but it's not super important.",
-      })
+      });
     },
     success() {
       this.$notify({
         type: 'success',
         title: 'Well done!',
         content: 'You successfully read this important alert message.',
-      })
+      });
     },
     warning() {
       // simple warning with content only
       this.$notify.warning(
         "Better check yourself, you're not looking too good."
-      )
+      );
     },
     danger() {
       // error msg with title and content (other options available too)
@@ -36,8 +36,8 @@ export default {
       this.$notify.error({
         title: 'Oh snap!',
         content: 'Change a few things up and try submitting again.',
-      })
+      });
     },
   },
-}
+};
 </script>

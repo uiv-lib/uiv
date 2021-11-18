@@ -1,6 +1,6 @@
 <script lang="jsx">
-import { TRIGGERS } from '../../utils/dom.utils'
-import popupMixin from '../../mixins/popup.mixin'
+import { TRIGGERS } from '../../utils/dom.utils';
+import popupMixin from '../../mixins/popup.mixin';
 
 export default {
   mixins: [popupMixin],
@@ -21,11 +21,11 @@ export default {
   data() {
     return {
       name: 'popover',
-    }
+    };
   },
   computed: {
     allContent() {
-      return this.title + this.content
+      return this.title + this.content;
     },
   },
   // beforeUnmount() {
@@ -33,11 +33,11 @@ export default {
   // },
   methods: {
     isNotEmpty() {
-      return this.title || this.content || this.$slots.popover
+      return this.title || this.content || this.$slots.popover;
     },
   },
   render() {
-    const Tag = this.tag
+    const Tag = this.tag;
     return (
       <Tag>
         {this.$slots.default?.()}
@@ -55,7 +55,7 @@ export default {
           </div>
         </div>
       </Tag>
-    )
+    );
   },
-}
+};
 </script>

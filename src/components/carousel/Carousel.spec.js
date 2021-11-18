@@ -3,11 +3,11 @@ import {
   nextTick,
   sleep,
   triggerEvent,
-} from '../../__test__/utils'
-import Carousel from './Carousel'
+} from '../../__test__/utils';
+import Carousel from './Carousel';
 
 describe('Carousel', () => {
-  let wrapper
+  let wrapper;
 
   beforeEach(async () => {
     wrapper = createWrapper(
@@ -48,13 +48,13 @@ describe('Carousel', () => {
       {
         methods: {
           pushSlide() {
-            this.slides.push({ title: `Slide ${this.slides.length + 1}` })
+            this.slides.push({ title: `Slide ${this.slides.length + 1}` });
           },
         },
       }
-    )
-    await nextTick()
-  })
+    );
+    await nextTick();
+  });
 
   it('should be able to work with v-model', async () => {
     const wrapper = createWrapper(
@@ -62,138 +62,138 @@ describe('Carousel', () => {
       {
         index: 1,
       }
-    )
-    await nextTick()
-    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1)
+    );
+    await nextTick();
+    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-inner .item')[1].classes()).toContain(
       'active'
-    )
-    wrapper.findAll('.carousel-control.right')[0].trigger('click')
-    await sleep(700)
-    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1)
+    );
+    wrapper.findAll('.carousel-control.right')[0].trigger('click');
+    await sleep(700);
+    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-inner .item')[0].classes()).toContain(
       'active'
-    )
-    expect(wrapper.vm.index).toEqual(0)
-  })
+    );
+    expect(wrapper.vm.index).toEqual(0);
+  });
 
   it('should be ok if no <slide> present in <carousel>', () => {
     const wrapper = createWrapper('<carousel>{{msg}}</carousel>', {
       msg: 'hello',
-    })
-  })
+    });
+  });
 
   it('should be able to render correct contents on init', async () => {
-    expect(wrapper.findAll('.carousel-inner .item').length).toEqual(4)
-    expect(wrapper.findAll('.carousel-indicators li').length).toEqual(4)
-    expect(wrapper.findAll('.carousel-control').length).toEqual(2)
+    expect(wrapper.findAll('.carousel-inner .item').length).toEqual(4);
+    expect(wrapper.findAll('.carousel-indicators li').length).toEqual(4);
+    expect(wrapper.findAll('.carousel-control').length).toEqual(2);
     expect(wrapper.findAll('.carousel-inner .item')[0].classes()).toContain(
       'active'
-    )
-  })
+    );
+  });
 
   it('should be able to go next on right control click', async () => {
-    wrapper.findAll('.carousel-control.right')[0].trigger('click')
-    await sleep(700)
-    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1)
+    wrapper.findAll('.carousel-control.right')[0].trigger('click');
+    await sleep(700);
+    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-inner .item')[1].classes()).toContain(
       'active'
-    )
-  })
+    );
+  });
 
   it('should be able to go prev on left control click', async () => {
-    await triggerEvent(wrapper.findAll('.carousel-control.left')[0], 'click')
-    await sleep(700)
-    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1)
+    await triggerEvent(wrapper.findAll('.carousel-control.left')[0], 'click');
+    await sleep(700);
+    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-inner .item')[3].classes()).toContain(
       'active'
-    )
-    await triggerEvent(wrapper.findAll('.carousel-control.left')[0], 'click')
-    await sleep(700)
-    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1)
+    );
+    await triggerEvent(wrapper.findAll('.carousel-control.left')[0], 'click');
+    await sleep(700);
+    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-inner .item')[2].classes()).toContain(
       'active'
-    )
-  })
+    );
+  });
 
   it('should be able to go index on indicator click', async () => {
-    const $indicators = wrapper.findAll('.carousel-indicators li')
-    await triggerEvent($indicators[1], 'click')
-    await sleep(700)
-    expect(wrapper.findAll('.carousel-indicators .active').length).toEqual(1)
-    expect($indicators[1].classes()).toContain('active')
-    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1)
+    const $indicators = wrapper.findAll('.carousel-indicators li');
+    await triggerEvent($indicators[1], 'click');
+    await sleep(700);
+    expect(wrapper.findAll('.carousel-indicators .active').length).toEqual(1);
+    expect($indicators[1].classes()).toContain('active');
+    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-inner .item')[1].classes()).toContain(
       'active'
-    )
-    await triggerEvent($indicators[0], 'click')
-    await sleep(700)
-    expect(wrapper.findAll('.carousel-indicators .active').length).toEqual(1)
-    expect($indicators[0].classes()).toContain('active')
-    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1)
+    );
+    await triggerEvent($indicators[0], 'click');
+    await sleep(700);
+    expect(wrapper.findAll('.carousel-indicators .active').length).toEqual(1);
+    expect($indicators[0].classes()).toContain('active');
+    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-inner .item')[0].classes()).toContain(
       'active'
-    )
-  })
+    );
+  });
 
   it('should be able to hide indicators', async () => {
-    await triggerEvent(wrapper.findAll('form button')[0], 'click')
-    expect(wrapper.findAll('.carousel-indicators').length).toEqual(0)
-  })
+    await triggerEvent(wrapper.findAll('form button')[0], 'click');
+    expect(wrapper.findAll('.carousel-indicators').length).toEqual(0);
+  });
 
   it('should be able to use custom icons', async () => {
-    const leftControlClass = 'my-custom-left-class'
+    const leftControlClass = 'my-custom-left-class';
     const wrapper = createWrapper(
       '<carousel :icon-control-left="customLeftIcon" icon-control-right="custom-css-class"></carousel>',
       {
         customLeftIcon: leftControlClass,
       }
-    )
+    );
     expect(
       wrapper.findAll('.left.carousel-control > span')[0].classes()
-    ).toContain(leftControlClass)
+    ).toContain(leftControlClass);
     expect(
       wrapper.findAll('.right.carousel-control > span')[0].classes()
-    ).toContain('custom-css-class')
-  })
+    ).toContain('custom-css-class');
+  });
 
   it('should be able to hide controls', async () => {
-    await triggerEvent(wrapper.findAll('form button')[1], 'click')
-    expect(wrapper.findAll('.carousel-control').length).toEqual(0)
-  })
+    await triggerEvent(wrapper.findAll('form button')[1], 'click');
+    expect(wrapper.findAll('.carousel-control').length).toEqual(0);
+  });
 
   it('should be able to push slide', async () => {
-    await triggerEvent(wrapper.findAll('form button')[2], 'click')
-    expect(wrapper.findAll('.carousel-indicators li').length).toEqual(5)
-    expect(wrapper.findAll('.carousel-inner .item').length).toEqual(5)
-  })
+    await triggerEvent(wrapper.findAll('form button')[2], 'click');
+    expect(wrapper.findAll('.carousel-indicators li').length).toEqual(5);
+    expect(wrapper.findAll('.carousel-inner .item').length).toEqual(5);
+  });
 
   it('should be able to change interval', async () => {
-    wrapper.vm.interval = 500
-    await nextTick()
-    await sleep(1200)
-    expect(wrapper.findAll('.carousel-indicators .active').length).toEqual(1)
+    wrapper.vm.interval = 500;
+    await nextTick();
+    await sleep(1200);
+    expect(wrapper.findAll('.carousel-indicators .active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-indicators li')[1].classes()).toContain(
       'active'
-    )
-    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1)
+    );
+    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-inner .item')[1].classes()).toContain(
       'active'
-    )
-  })
+    );
+  });
 
   it('should be able to stop interval', async () => {
-    wrapper.vm.interval = 0
-    await sleep(1200)
-    expect(wrapper.findAll('.carousel-indicators .active').length).toEqual(1)
+    wrapper.vm.interval = 0;
+    await sleep(1200);
+    expect(wrapper.findAll('.carousel-indicators .active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-indicators li')[0].classes()).toContain(
       'active'
-    )
-    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1)
+    );
+    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-inner .item')[0].classes()).toContain(
       'active'
-    )
-  })
+    );
+  });
 
   it.skip('should not be able to work if not using <carousel><slide>...</slide></carousel>', () => {
     expect(
@@ -204,6 +204,6 @@ describe('Carousel', () => {
           msg: 'hello',
         }
       )
-    ).toThrow('Slide parent must be Carousel.')
-  })
-})
+    ).toThrow('Slide parent must be Carousel.');
+  });
+});

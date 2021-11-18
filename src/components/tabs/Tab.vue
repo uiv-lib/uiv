@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import { spliceIfExist } from '../../utils/array.utils'
-import { addClass, removeClass } from '../../utils/dom.utils'
+import { spliceIfExist } from '../../utils/array.utils';
+import { addClass, removeClass } from '../../utils/dom.utils';
 
-const ACTIVE_CLASS = 'active'
-const IN_CLASS = 'in'
+const ACTIVE_CLASS = 'active';
+const IN_CLASS = 'in';
 
-let id = 0
+let id = 0;
 
 export default {
   props: {
@@ -29,7 +29,7 @@ export default {
     tabClasses: {
       type: Object,
       default: () => {
-        return {}
+        return {};
       },
     },
     group: { type: String, default: undefined },
@@ -48,50 +48,50 @@ export default {
       transition: 150,
       uid: `tab_${++id}`,
       isMounted: false,
-    }
+    };
   },
   watch: {
     active(active) {
       if (active) {
         setTimeout(() => {
-          addClass(this.$el, ACTIVE_CLASS)
-          this.$el.offsetHeight
-          addClass(this.$el, IN_CLASS)
+          addClass(this.$el, ACTIVE_CLASS);
+          this.$el.offsetHeight;
+          addClass(this.$el, IN_CLASS);
           try {
-            this.$parent.$emit('changed', this.$parent.activeIndex)
+            this.$parent.$emit('changed', this.$parent.activeIndex);
           } catch (e) {
-            throw new Error('<tab> parent must be <tabs>.')
+            throw new Error('<tab> parent must be <tabs>.');
           }
-        }, this.transition)
+        }, this.transition);
       } else {
-        removeClass(this.$el, IN_CLASS)
+        removeClass(this.$el, IN_CLASS);
         setTimeout(() => {
-          removeClass(this.$el, ACTIVE_CLASS)
-        }, this.transition)
+          removeClass(this.$el, ACTIVE_CLASS);
+        }, this.transition);
       }
     },
   },
   created() {
     try {
-      this.$parent.tabs.push(this)
+      this.$parent.tabs.push(this);
     } catch (e) {
-      throw new Error('<tab> parent must be <tabs>.')
+      throw new Error('<tab> parent must be <tabs>.');
     }
   },
   mounted() {
-    this.isMounted = true
+    this.isMounted = true;
   },
   beforeUnmount() {
-    const tabs = this.$parent && this.$parent.tabs
-    spliceIfExist(tabs, this)
+    const tabs = this.$parent && this.$parent.tabs;
+    spliceIfExist(tabs, this);
   },
   methods: {
     show() {
       this.$nextTick(() => {
-        addClass(this.$el, ACTIVE_CLASS)
-        addClass(this.$el, IN_CLASS)
-      })
+        addClass(this.$el, ACTIVE_CLASS);
+        addClass(this.$el, IN_CLASS);
+      });
     },
   },
-}
+};
 </script>

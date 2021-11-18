@@ -1,22 +1,22 @@
-import DefaultTheme from 'vitepress/theme'
-import * as uiv from '../../../src/index'
+import DefaultTheme from 'vitepress/theme';
+import * as uiv from '../../../src/index';
 // import * as uiv from '../../../dist/uiv.es'
-import zh from '../../../src/locale/lang/zh-CN'
-import en from '../../../src/locale/lang/en-US'
-import './theme.less'
-import RouterLink from '../stubs/RouterLink.vue'
-import { createI18n } from 'vue-i18n'
+import zh from '../../../src/locale/lang/zh-CN';
+import en from '../../../src/locale/lang/en-US';
+import './theme.less';
+import RouterLink from '../stubs/RouterLink.vue';
+import { createI18n } from 'vue-i18n';
 
-const enableI18n = false
+const enableI18n = false;
 
-const modules = import.meta.globEager('../components/**/*.vue')
-const components = []
+const modules = import.meta.globEager('../components/**/*.vue');
+const components = [];
 
 for (const path in modules) {
-  const component = modules[path].default
-  const split = path.split('/')
-  component.name = `${split[2]}-${split[3].replace('.vue', '')}`
-  components.push(modules[path].default)
+  const component = modules[path].default;
+  const split = path.split('/');
+  component.name = `${split[2]}-${split[3].replace('.vue', '')}`;
+  components.push(modules[path].default);
 }
 
 export default {
@@ -40,15 +40,15 @@ export default {
             ...zh,
           },
         },
-      })
-      app.use(i18n)
+      });
+      app.use(i18n);
     }
-    app.use(uiv)
+    app.use(uiv);
     // register example components
     components.forEach((component) => {
-      app.component(component.name, component)
-    })
+      app.component(component.name, component);
+    });
 
-    app.component('RouterLink', RouterLink)
+    app.component('RouterLink', RouterLink);
   },
-}
+};

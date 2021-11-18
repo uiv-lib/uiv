@@ -23,7 +23,7 @@ export default {
     return {
       open1: false,
       open2: false,
-    }
+    };
   },
-}
+};
 </script>

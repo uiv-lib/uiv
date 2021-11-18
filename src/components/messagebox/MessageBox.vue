@@ -75,11 +75,11 @@
 </template>
 
 <script>
-import { TYPES } from '../../constants/messagebox.constants'
-import Local from '../../mixins/locale.mixin'
-import Modal from '../../components/modal/Modal.vue'
-import Btn from '../../components/button/Btn.vue'
-import { isExist } from '../../utils/object.utils'
+import { TYPES } from '../../constants/messagebox.constants';
+import Local from '../../mixins/locale.mixin';
+import Modal from '../../components/modal/Modal.vue';
+import Btn from '../../components/button/Btn.vue';
+import { isExist } from '../../utils/object.utils';
 
 export default {
   components: { Modal, Btn },
@@ -139,7 +139,7 @@ export default {
       show: true,
       input: '',
       dirty: false,
-    }
+    };
   },
   computed: {
     closeOnBackdropClick() {
@@ -147,24 +147,24 @@ export default {
       // otherwise, only not available if render as alert
       return isExist(this.backdrop)
         ? Boolean(this.backdrop)
-        : this.type !== TYPES.ALERT
+        : this.type !== TYPES.ALERT;
     },
     inputError() {
-      return this.validator(this.input)
+      return this.validator(this.input);
     },
     inputNotValid() {
-      return this.dirty && this.inputError
+      return this.dirty && this.inputError;
     },
     okBtnText() {
-      return this.okText || this.t('uiv.modal.ok')
+      return this.okText || this.t('uiv.modal.ok');
     },
     cancelBtnText() {
-      return this.cancelText || this.t('uiv.modal.cancel')
+      return this.cancelText || this.t('uiv.modal.cancel');
     },
   },
   mounted() {
     if (this.defaultValue) {
-      this.input = this.defaultValue
+      this.input = this.defaultValue;
     }
   },
   // unmounted() {
@@ -172,14 +172,14 @@ export default {
   // },
   methods: {
     toggle(show, msg) {
-      this.$refs.modal.toggle(show, msg)
+      this.$refs.modal.toggle(show, msg);
     },
     validate() {
-      this.dirty = true
+      this.dirty = true;
       if (!isExist(this.inputError)) {
-        this.toggle(false, { value: this.input })
+        this.toggle(false, { value: this.input });
       }
     },
   },
-}
+};
 </script>

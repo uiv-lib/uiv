@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import Btn from './../button/Btn.vue'
+import Btn from './../button/Btn.vue';
 
 export default {
   components: { Btn },
@@ -67,39 +67,39 @@ export default {
   emits: ['year-change', 'view-change'],
   computed: {
     rows() {
-      const rows = []
-      const yearGroupStart = this.year - (this.year % 20)
+      const rows = [];
+      const yearGroupStart = this.year - (this.year % 20);
       for (let i = 0; i < 4; i++) {
-        rows.push([])
+        rows.push([]);
         for (let j = 0; j < 5; j++) {
-          rows[i].push(yearGroupStart + i * 5 + j)
+          rows[i].push(yearGroupStart + i * 5 + j);
         }
       }
-      return rows
+      return rows;
     },
     yearStr() {
-      const start = this.year - (this.year % 20)
-      return `${start} ~ ${start + 19}`
+      const start = this.year - (this.year % 20);
+      return `${start} ~ ${start + 19}`;
     },
   },
   methods: {
     getBtnClass(year) {
       if (year === this.year) {
-        return 'primary'
+        return 'primary';
       } else {
-        return 'default'
+        return 'default';
       }
     },
     goPrevYear() {
-      this.$emit('year-change', this.year - 20)
+      this.$emit('year-change', this.year - 20);
     },
     goNextYear() {
-      this.$emit('year-change', this.year + 20)
+      this.$emit('year-change', this.year + 20);
     },
     changeView(year) {
-      this.$emit('year-change', year)
-      this.$emit('view-change', 'm')
+      this.$emit('year-change', year);
+      this.$emit('view-change', 'm');
     },
   },
-}
+};
 </script>

@@ -1,5 +1,5 @@
-import { createWrapper, sleep, triggerEvent } from '../../__test__/utils'
-import Collapse from './Collapse.vue'
+import { createWrapper, sleep, triggerEvent } from '../../__test__/utils';
+import Collapse from './Collapse.vue';
 
 describe('Collapse', () => {
   it('should be able to toggle collapse on trigger click', async () => {
@@ -16,17 +16,17 @@ describe('Collapse', () => {
       {
         show: false,
       }
-    )
-    const trigger = wrapper.findAll('button')[0]
-    const collapse = wrapper.findAll('.collapse')[0]
-    expect(collapse.classes()).toEqual(['collapse'])
-    await triggerEvent(trigger, 'click')
-    await sleep(400)
-    expect(collapse.classes()).toEqual(['collapse', 'in'])
-    await triggerEvent(trigger, 'click')
-    await sleep(400)
-    expect(collapse.classes()).toEqual(['collapse'])
-  })
+    );
+    const trigger = wrapper.findAll('button')[0];
+    const collapse = wrapper.findAll('.collapse')[0];
+    expect(collapse.classes()).toEqual(['collapse']);
+    await triggerEvent(trigger, 'click');
+    await sleep(400);
+    expect(collapse.classes()).toEqual(['collapse', 'in']);
+    await triggerEvent(trigger, 'click');
+    await sleep(400);
+    expect(collapse.classes()).toEqual(['collapse']);
+  });
 
   it('should be able to toggle accordion', async () => {
     const wrapper = createWrapper(
@@ -72,24 +72,26 @@ describe('Collapse', () => {
         methods: {
           toggleAccordion(index) {
             if (this.showAccordion[index]) {
-              this.showAccordion[index] = false
+              this.showAccordion[index] = false;
             } else {
-              this.showAccordion = this.showAccordion.map((v, i) => i === index)
+              this.showAccordion = this.showAccordion.map(
+                (v, i) => i === index
+              );
             }
           },
         },
       }
-    )
-    const triggers = wrapper.findAll('.panel-heading')
-    const collapse = wrapper.findAll('.collapse')
-    expect(collapse[0].classes()).toEqual(['collapse', 'in'])
-    expect(collapse[1].classes()).toEqual(['collapse'])
-    await triggerEvent(triggers[1], 'click')
-    await sleep(400)
-    expect(collapse[0].classes()).toEqual(['collapse'])
-    expect(collapse[1].classes()).toEqual(['collapse', 'in'])
-    await triggerEvent(triggers[1], 'click')
-    await sleep(400)
-    expect(collapse[1].classes()).toEqual(['collapse'])
-  })
-})
+    );
+    const triggers = wrapper.findAll('.panel-heading');
+    const collapse = wrapper.findAll('.collapse');
+    expect(collapse[0].classes()).toEqual(['collapse', 'in']);
+    expect(collapse[1].classes()).toEqual(['collapse']);
+    await triggerEvent(triggers[1], 'click');
+    await sleep(400);
+    expect(collapse[0].classes()).toEqual(['collapse']);
+    expect(collapse[1].classes()).toEqual(['collapse', 'in']);
+    await triggerEvent(triggers[1], 'click');
+    await sleep(400);
+    expect(collapse[1].classes()).toEqual(['collapse']);
+  });
+});

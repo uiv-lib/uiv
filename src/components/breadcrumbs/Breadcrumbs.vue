@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import BreadcrumbItem from './BreadcrumbItem.vue'
-import { hasOwnProperty } from '../../utils/object.utils'
+import BreadcrumbItem from './BreadcrumbItem.vue';
+import { hasOwnProperty } from '../../utils/object.utils';
 
 export default {
   functional: true,
@@ -32,5 +32,5 @@ export default {
   methods: {
     hasOwnProperty,
   },
-}
+};
 </script>

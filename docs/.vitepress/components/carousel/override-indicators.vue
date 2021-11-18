@@ -37,9 +37,9 @@ export default {
         { title: 'Slide 3' },
         { title: 'Slide 4' },
       ],
-    }
+    };
   },
-}
+};
 </script>
 <style>
 .uiv .custom-carousel-indicators li,

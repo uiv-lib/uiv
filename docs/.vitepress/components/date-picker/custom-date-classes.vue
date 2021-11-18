@@ -8,14 +8,14 @@ export default {
   data() {
     return {
       date: null,
-    }
+    };
   },
   methods: {
     dateClass(date) {
-      return date.getDay() === 0 ? 'btn-sunday' : ''
+      return date.getDay() === 0 ? 'btn-sunday' : '';
     },
   },
-}
+};
 </script>
 <style lang="less">
 .uiv .btn-sunday.btn-default,

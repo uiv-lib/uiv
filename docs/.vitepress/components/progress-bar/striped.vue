@@ -14,7 +14,7 @@ export default {
       progress40: 40,
       progress60: 60,
       progress80: 80,
-    }
+    };
   },
-}
+};
 </script>

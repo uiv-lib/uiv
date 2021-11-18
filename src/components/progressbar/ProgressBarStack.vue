@@ -26,7 +26,7 @@ export default {
       type: Number,
       required: true,
       validator(value) {
-        return value >= 0 && value <= 100
+        return value >= 0 && value <= 100;
       },
     },
     labelText: { type: String, default: undefined },
@@ -48,5 +48,5 @@ export default {
       default: false,
     },
   },
-}
+};
 </script>

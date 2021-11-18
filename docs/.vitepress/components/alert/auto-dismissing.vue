@@ -20,12 +20,12 @@ export default {
     return {
       alerts: [],
       duration: 2000,
-    }
+    };
   },
   methods: {
     addAutoDismissAlert() {
-      this.alerts.push({ key: new Date().getTime() })
+      this.alerts.push({ key: new Date().getTime() });
     },
   },
-}
+};
 </script>

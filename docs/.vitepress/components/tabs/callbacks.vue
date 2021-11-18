@@ -21,9 +21,9 @@ export default {
   methods: {
     onChange(index) {
       if (index === 2) {
-        window.alert('You clicked on a tab that has callback function!')
+        window.alert('You clicked on a tab that has callback function!');
       }
     },
   },
-}
+};
 </script>

@@ -18,7 +18,7 @@
   </section>
 </template>
 <script>
-import states from './states.json'
+import states from './states.json';
 
 export default {
   data() {
@@ -26,10 +26,10 @@ export default {
       model: '',
       target: null,
       states: states.data,
-    }
+    };
   },
   mounted() {
-    this.target = this.$refs.input
+    this.target = this.$refs.input;
   },
-}
+};
 </script>

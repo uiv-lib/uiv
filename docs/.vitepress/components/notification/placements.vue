@@ -14,8 +14,8 @@ export default {
         placement, // equal to `placement: placement` in ES6
         title: 'Title',
         content: `This is a notify msg at ${placement}.`,
-      })
+      });
     },
   },
-}
+};
 </script>

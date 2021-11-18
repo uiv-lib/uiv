@@ -20,23 +20,23 @@ export default {
       tabs: ['Tab 1'],
       count: 1,
       index: 0,
-    }
+    };
   },
   methods: {
     push() {
-      this.tabs.push(`Tab ${++this.count}`)
+      this.tabs.push(`Tab ${++this.count}`);
       // open the new tab after created
       this.$nextTick(() => {
-        this.index = this.tabs.length - 1
-      })
+        this.index = this.tabs.length - 1;
+      });
     },
     close() {
-      this.tabs.splice(this.index, 1)
+      this.tabs.splice(this.index, 1);
       // select prev tab if the closed tab is the last one
       if (this.index > 0) {
-        --this.index
+        --this.index;
       }
     },
   },
-}
+};
 </script>

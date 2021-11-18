@@ -4,10 +4,10 @@ import {
   sleep,
   triggerEvent,
   triggerKey,
-} from '../../__test__/utils'
-import { request } from '../../utils/http.utils'
-import states from '../../__test__/states.json'
-import sinon from 'sinon'
+} from '../../__test__/utils';
+import { request } from '../../utils/http.utils';
+import states from '../../__test__/states.json';
+import sinon from 'sinon';
 
 function baseVm() {
   return createWrapper(
@@ -27,203 +27,203 @@ function baseVm() {
       model: '',
       states: states.data,
     }
-  )
+  );
 }
 
 describe('Typeahead', () => {
-  let xhr, server
+  let xhr, server;
 
   beforeEach(() => {
-    xhr = sinon.useFakeXMLHttpRequest()
-    window.XMLHttpRequest = xhr
-    server = sinon.fakeServer.create()
-  })
+    xhr = sinon.useFakeXMLHttpRequest();
+    window.XMLHttpRequest = xhr;
+    server = sinon.fakeServer.create();
+  });
 
   afterEach(() => {
-    xhr.restore()
-    server.restore()
-  })
+    xhr.restore();
+    server.restore();
+  });
 
   it('should be able to set and clear typeahead model manually', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const setBtn = vm.$el.querySelectorAll('.btn')[0]
-    const clearBtn = vm.$el.querySelectorAll('.btn')[1]
-    const input = vm.$el.querySelector('input')
-    setBtn.click()
-    await vm.$nextTick()
-    expect(input.value).toEqual('Alabama')
-    expect(vm.model.name).toEqual('Alabama')
-    expect(vm.model.abbreviation).toEqual('AL')
-    clearBtn.click()
-    await vm.$nextTick()
-    expect(input.value).toEqual('')
-    expect(vm.model).toBeNull()
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const setBtn = vm.$el.querySelectorAll('.btn')[0];
+    const clearBtn = vm.$el.querySelectorAll('.btn')[1];
+    const input = vm.$el.querySelector('input');
+    setBtn.click();
+    await vm.$nextTick();
+    expect(input.value).toEqual('Alabama');
+    expect(vm.model.name).toEqual('Alabama');
+    expect(vm.model.abbreviation).toEqual('AL');
+    clearBtn.click();
+    await vm.$nextTick();
+    expect(input.value).toEqual('');
+    expect(vm.model).toBeNull();
+  });
 
   it('should be able to open typeahead when input change', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'ala'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    expect(dropdown.querySelectorAll('li').length).toEqual(3)
-    const selected = dropdown.querySelector('li.active a')
-    expect(selected.textContent).toEqual('Alabama')
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'ala';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    expect(dropdown.querySelectorAll('li').length).toEqual(3);
+    const selected = dropdown.querySelector('li.active a');
+    expect(selected.textContent).toEqual('Alabama');
+  });
 
   it('should be able to open typeahead on input focus', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'ala'
-    triggerEvent(input, 'focus')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    expect(dropdown.querySelectorAll('li').length).toEqual(3)
-    const selected = dropdown.querySelector('li.active a')
-    expect(selected.textContent).toEqual('Alabama')
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'ala';
+    triggerEvent(input, 'focus');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    expect(dropdown.querySelectorAll('li').length).toEqual(3);
+    const selected = dropdown.querySelector('li.active a');
+    expect(selected.textContent).toEqual('Alabama');
+  });
 
   it('should be able to keep open on input click', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'ala'
-    triggerEvent(input, 'focus')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    input.click()
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'ala';
+    triggerEvent(input, 'focus');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    input.click();
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+  });
 
   it('should be able to close typeahead on input blur', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'ala'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    triggerEvent(input, 'blur')
-    await vm.$nextTick()
-    expect(dropdown.className).not.toContain('open')
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'ala';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    triggerEvent(input, 'blur');
+    await vm.$nextTick();
+    expect(dropdown.className).not.toContain('open');
+  });
 
   it('should be able to close typeahead on input esc key', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'ala'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    triggerKey(input, keyCodes.esc)
-    await vm.$nextTick()
-    expect(dropdown.className).not.toContain('open')
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'ala';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    triggerKey(input, keyCodes.esc);
+    await vm.$nextTick();
+    expect(dropdown.className).not.toContain('open');
+  });
 
   it('should not close typeahead on input click', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'ala'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    triggerEvent(input, 'click')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'ala';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    triggerEvent(input, 'click');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+  });
 
   it('should be able to close typeahead when input changed to empty', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'ala'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    input.value = ''
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).not.toContain('open')
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'ala';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    input.value = '';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).not.toContain('open');
+  });
 
   it('should be able to slice item length', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'a'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    expect(dropdown.querySelectorAll('li').length).toEqual(10)
-    const selected = dropdown.querySelector('li.active a')
-    expect(selected.textContent).toEqual('Alabama')
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'a';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    expect(dropdown.querySelectorAll('li').length).toEqual(10);
+    const selected = dropdown.querySelector('li.active a');
+    expect(selected.textContent).toEqual('Alabama');
+  });
 
   it('should not open dropdown if nothing match', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'asdasdasdasd'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).not.toContain('open')
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'asdasdasdasd';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).not.toContain('open');
+  });
 
   it('should be able to select item', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'ala'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    expect(dropdown.querySelectorAll('li').length).toEqual(3)
-    const selected = dropdown.querySelector('li.active a')
-    expect(selected.textContent).toEqual('Alabama')
-    selected.click()
-    await vm.$nextTick()
-    expect(dropdown.className).not.toContain('open')
-    expect(input.value).toEqual('Alabama')
-    expect(vm.model.name).toEqual('Alabama')
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'ala';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    expect(dropdown.querySelectorAll('li').length).toEqual(3);
+    const selected = dropdown.querySelector('li.active a');
+    expect(selected.textContent).toEqual('Alabama');
+    selected.click();
+    await vm.$nextTick();
+    expect(dropdown.className).not.toContain('open');
+    expect(input.value).toEqual('Alabama');
+    expect(vm.model.name).toEqual('Alabama');
+  });
 
   it('should be able to use force select', async () => {
     const wrapper = createWrapper(
@@ -240,121 +240,121 @@ describe('Typeahead', () => {
         model: '',
         states: states.data,
       }
-    )
-    const vm = wrapper.vm
-    vm.forceSelect = true
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'ala'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(vm.model).toBeUndefined()
-    expect(dropdown.className).toContain('open')
-    expect(dropdown.querySelectorAll('li').length).toEqual(3)
-    const selected = dropdown.querySelector('li.active a')
-    expect(selected.textContent).toEqual('Alabama')
-    selected.click()
-    await vm.$nextTick()
-    expect(dropdown.className).not.toContain('open')
-    expect(input.value).toEqual('Alabama')
-    expect(vm.model.name).toEqual('Alabama')
-  })
+    );
+    const vm = wrapper.vm;
+    vm.forceSelect = true;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'ala';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(vm.model).toBeUndefined();
+    expect(dropdown.className).toContain('open');
+    expect(dropdown.querySelectorAll('li').length).toEqual(3);
+    const selected = dropdown.querySelector('li.active a');
+    expect(selected.textContent).toEqual('Alabama');
+    selected.click();
+    await vm.$nextTick();
+    expect(dropdown.className).not.toContain('open');
+    expect(input.value).toEqual('Alabama');
+    expect(vm.model.name).toEqual('Alabama');
+  });
 
   it('should not be able to select item using keyboard while dropdown not open', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    triggerKey(input, keyCodes.enter, 'down')
-    await vm.$nextTick()
-    expect(dropdown.className).not.toContain('open')
-    expect(input.value).toEqual('')
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    triggerKey(input, keyCodes.enter, 'down');
+    await vm.$nextTick();
+    expect(dropdown.className).not.toContain('open');
+    expect(input.value).toEqual('');
+  });
 
   it('should be able to select item using keyboard', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'ala'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    expect(dropdown.querySelectorAll('li').length).toEqual(3)
-    const selected = dropdown.querySelector('li.active a')
-    expect(selected.textContent).toEqual('Alabama')
-    triggerKey(input, 13)
-    await vm.$nextTick()
-    expect(dropdown.className).not.toContain('open')
-    expect(input.value).toEqual('Alabama')
-    expect(vm.model.name).toEqual('Alabama')
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'ala';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    expect(dropdown.querySelectorAll('li').length).toEqual(3);
+    const selected = dropdown.querySelector('li.active a');
+    expect(selected.textContent).toEqual('Alabama');
+    triggerKey(input, 13);
+    await vm.$nextTick();
+    expect(dropdown.className).not.toContain('open');
+    expect(input.value).toEqual('Alabama');
+    expect(vm.model.name).toEqual('Alabama');
+  });
 
   it('should be able use keyboard nav to go next', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'ala'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    expect(dropdown.querySelectorAll('li').length).toEqual(3)
-    let selected = dropdown.querySelector('li.active a')
-    expect(selected.textContent).toEqual('Alabama')
-    triggerKey(input, 40)
-    await vm.$nextTick()
-    selected = dropdown.querySelector('li.active a')
-    expect(selected.textContent).toEqual('Alaska')
-    triggerKey(input, 40)
-    await vm.$nextTick()
-    triggerKey(input, 40)
-    await vm.$nextTick()
-    selected = dropdown.querySelector('li.active a')
-    expect(selected.textContent).toEqual('Palau')
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'ala';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    expect(dropdown.querySelectorAll('li').length).toEqual(3);
+    let selected = dropdown.querySelector('li.active a');
+    expect(selected.textContent).toEqual('Alabama');
+    triggerKey(input, 40);
+    await vm.$nextTick();
+    selected = dropdown.querySelector('li.active a');
+    expect(selected.textContent).toEqual('Alaska');
+    triggerKey(input, 40);
+    await vm.$nextTick();
+    triggerKey(input, 40);
+    await vm.$nextTick();
+    selected = dropdown.querySelector('li.active a');
+    expect(selected.textContent).toEqual('Palau');
+  });
 
   it('should be able use keyboard nav to go prev', async () => {
-    const wrapper = baseVm()
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'ala'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    expect(dropdown.querySelectorAll('li').length).toEqual(3)
-    let selected = dropdown.querySelector('li.active a')
-    expect(selected.textContent).toEqual('Alabama')
-    triggerKey(input, 40)
-    await vm.$nextTick()
-    triggerKey(input, 40)
-    await vm.$nextTick()
-    triggerKey(input, 40)
-    await vm.$nextTick()
-    selected = dropdown.querySelector('li.active a')
-    expect(selected.textContent).toEqual('Palau')
-    triggerKey(input, 38)
-    await vm.$nextTick()
-    selected = dropdown.querySelector('li.active a')
-    expect(selected.textContent).toEqual('Alaska')
-    triggerKey(input, 38)
-    await vm.$nextTick()
-    triggerKey(input, 38)
-    await vm.$nextTick()
-    selected = dropdown.querySelector('li.active a')
-    expect(selected.textContent).toEqual('Alabama')
-  })
+    const wrapper = baseVm();
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'ala';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    expect(dropdown.querySelectorAll('li').length).toEqual(3);
+    let selected = dropdown.querySelector('li.active a');
+    expect(selected.textContent).toEqual('Alabama');
+    triggerKey(input, 40);
+    await vm.$nextTick();
+    triggerKey(input, 40);
+    await vm.$nextTick();
+    triggerKey(input, 40);
+    await vm.$nextTick();
+    selected = dropdown.querySelector('li.active a');
+    expect(selected.textContent).toEqual('Palau');
+    triggerKey(input, 38);
+    await vm.$nextTick();
+    selected = dropdown.querySelector('li.active a');
+    expect(selected.textContent).toEqual('Alaska');
+    triggerKey(input, 38);
+    await vm.$nextTick();
+    triggerKey(input, 38);
+    await vm.$nextTick();
+    selected = dropdown.querySelector('li.active a');
+    expect(selected.textContent).toEqual('Alabama');
+  });
 
   it('should be able to match start', async () => {
     const wrapper = createWrapper(
@@ -371,19 +371,19 @@ describe('Typeahead', () => {
         model: '',
         states: states.data,
       }
-    )
-    const vm = wrapper.vm
-    vm.matchStart = true
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'ala'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    expect(dropdown.querySelectorAll('li').length).toEqual(2)
-  })
+    );
+    const vm = wrapper.vm;
+    vm.matchStart = true;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'ala';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    expect(dropdown.querySelectorAll('li').length).toEqual(2);
+  });
 
   it.skip('should be able to use async typeahead', async () => {
     const wrapper = createWrapper(
@@ -397,31 +397,31 @@ describe('Typeahead', () => {
       {
         model: '',
       }
-    )
-    await sleep(500)
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
+    );
+    await sleep(500);
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
     // matches don't work in here
-    const savedMatches = Element.prototype.matches
-    Element.prototype.matches = () => true
-    input.value = 'wxsm'
-    triggerEvent(input, 'input')
-    await sleep(600)
+    const savedMatches = Element.prototype.matches;
+    Element.prototype.matches = () => true;
+    input.value = 'wxsm';
+    triggerEvent(input, 'input');
+    await sleep(600);
     server.requests[0].respond(
       200,
       { 'Content-Type': 'application/json' },
       JSON.stringify({ items: [{ login: 'wxsms' }] })
-    )
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    expect(dropdown.querySelectorAll('li').length).toEqual(1)
-    const selected = dropdown.querySelector('li.active a span')
-    expect(selected.textContent).toEqual('wxsms')
-    Element.prototype.matches = savedMatches
-  })
+    );
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    expect(dropdown.querySelectorAll('li').length).toEqual(1);
+    const selected = dropdown.querySelector('li.active a span');
+    expect(selected.textContent).toEqual('wxsms');
+    Element.prototype.matches = savedMatches;
+  });
 
   it('should be able to use component target', async () => {
     const wrapper = createWrapper(
@@ -435,14 +435,14 @@ describe('Typeahead', () => {
       },
       {
         mounted() {
-          this.ele = this.$refs.input
+          this.ele = this.$refs.input;
         },
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    expect(vm.$refs.typeahead.inputEl).toEqual(vm.ele.$el)
-  })
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    expect(vm.$refs.typeahead.inputEl).toEqual(vm.ele.$el);
+  });
 
   it('should be ok if target invalid', async () => {
     const wrapper = createWrapper(
@@ -453,11 +453,11 @@ describe('Typeahead', () => {
         ele: { a: 1 },
         model: null,
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    expect(vm.$refs.typeahead.inputEl).toBeNull()
-  })
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    expect(vm.$refs.typeahead.inputEl).toBeNull();
+  });
 
   it.skip('should be able to use string arr async returns', async () => {
     const wrapper = createWrapper(
@@ -471,33 +471,33 @@ describe('Typeahead', () => {
       },
       {
         mounted() {
-          this.ele = this.$refs.input
+          this.ele = this.$refs.input;
         },
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
     // matches don't work in here
-    const savedMatches = Element.prototype.matches
-    Element.prototype.matches = () => true
-    input.value = 'a'
-    triggerEvent(input, 'input')
-    await sleep(600)
+    const savedMatches = Element.prototype.matches;
+    Element.prototype.matches = () => true;
+    input.value = 'a';
+    triggerEvent(input, 'input');
+    await sleep(600);
     server.requests[0].respond(
       200,
       { 'Content-Type': 'application/json' },
       JSON.stringify(['aa', 'ab', 'ac'])
-    )
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    expect(dropdown.querySelectorAll('li').length).toEqual(3)
-    const selected = dropdown.querySelector('li.active a span')
-    expect(selected.textContent).toEqual('aa')
-    Element.prototype.matches = savedMatches
-  })
+    );
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    expect(dropdown.querySelectorAll('li').length).toEqual(3);
+    const selected = dropdown.querySelector('li.active a span');
+    expect(selected.textContent).toEqual('aa');
+    Element.prototype.matches = savedMatches;
+  });
 
   it.skip('should be able to handel async typeahead error', async () => {
     const wrapper = createWrapper(
@@ -512,37 +512,37 @@ describe('Typeahead', () => {
       },
       {
         mounted() {
-          this.ele = this.$refs.input
+          this.ele = this.$refs.input;
         },
         methods: {
           onErr() {
-            this.err = 'error'
+            this.err = 'error';
           },
         },
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    expect(vm.err).toBeNull()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    expect(vm.err).toBeNull();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
     // matches don't work in here
-    const savedMatches = Element.prototype.matches
-    Element.prototype.matches = () => true
-    input.value = 'wxsm'
-    triggerEvent(input, 'input')
-    await sleep(600)
+    const savedMatches = Element.prototype.matches;
+    Element.prototype.matches = () => true;
+    input.value = 'wxsm';
+    triggerEvent(input, 'input');
+    await sleep(600);
     server.requests[0].respond(
       500,
       { 'Content-Type': 'application/json' },
       JSON.stringify([{ id: 1, text: 'Provide examples', done: true }])
-    )
-    await vm.$nextTick()
-    expect(dropdown.className).not.toContain('open')
-    expect(vm.err).toBeDefined()
-    Element.prototype.matches = savedMatches
-  })
+    );
+    await vm.$nextTick();
+    expect(dropdown.className).not.toContain('open');
+    expect(vm.err).toBeDefined();
+    Element.prototype.matches = savedMatches;
+  });
 
   it('should be able to bind string data', async () => {
     const wrapper = createWrapper(
@@ -557,31 +557,31 @@ describe('Typeahead', () => {
       },
       {
         mounted() {
-          this.ele = this.$refs.input
+          this.ele = this.$refs.input;
         },
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'a'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    expect(dropdown.querySelectorAll('li').length).toEqual(2)
-    const selected = dropdown.querySelector('li.active a')
-    expect(selected.textContent).toEqual('aa')
-    selected.click()
-    await vm.$nextTick()
-    expect(vm.model).toEqual('aa')
-    expect(input.value).toEqual('aa')
-    vm.model = 'bb'
-    await vm.$nextTick()
-    expect(vm.model).toEqual('bb')
-    expect(input.value).toEqual('bb')
-  })
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'a';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    expect(dropdown.querySelectorAll('li').length).toEqual(2);
+    const selected = dropdown.querySelector('li.active a');
+    expect(selected.textContent).toEqual('aa');
+    selected.click();
+    await vm.$nextTick();
+    expect(vm.model).toEqual('aa');
+    expect(input.value).toEqual('aa');
+    vm.model = 'bb';
+    await vm.$nextTick();
+    expect(vm.model).toEqual('bb');
+    expect(input.value).toEqual('bb');
+  });
 
   it('should be able to disable preselect', async () => {
     const wrapper = createWrapper(
@@ -596,38 +596,38 @@ describe('Typeahead', () => {
       },
       {
         mounted() {
-          this.ele = this.$refs.input
+          this.ele = this.$refs.input;
         },
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
-    input.value = 'a'
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    expect(dropdown.className).toContain('open')
-    expect(dropdown.querySelectorAll('li').length).toEqual(2)
-    expect(dropdown.querySelector('li.active a')).toBeNull()
-    triggerKey(input, keyCodes.enter)
-    await vm.$nextTick()
-    expect(dropdown.className).not.toContain('open')
-    expect(vm.model).toEqual('a')
-    expect(input.value).toEqual('a')
-    triggerEvent(input, 'input')
-    await vm.$nextTick()
-    triggerKey(input, keyCodes.down)
-    await vm.$nextTick()
-    expect(dropdown.querySelector('li.active a')).toBeDefined()
-    expect(dropdown.querySelector('li.active a').textContent).toEqual('aa')
-    dropdown.querySelector('li.active a').click()
-    await vm.$nextTick()
-    expect(vm.model).toEqual('aa')
-    expect(input.value).toEqual('aa')
-    expect(dropdown.className).not.toContain('open')
-  })
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
+    input.value = 'a';
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    expect(dropdown.className).toContain('open');
+    expect(dropdown.querySelectorAll('li').length).toEqual(2);
+    expect(dropdown.querySelector('li.active a')).toBeNull();
+    triggerKey(input, keyCodes.enter);
+    await vm.$nextTick();
+    expect(dropdown.className).not.toContain('open');
+    expect(vm.model).toEqual('a');
+    expect(input.value).toEqual('a');
+    triggerEvent(input, 'input');
+    await vm.$nextTick();
+    triggerKey(input, keyCodes.down);
+    await vm.$nextTick();
+    expect(dropdown.querySelector('li.active a')).toBeDefined();
+    expect(dropdown.querySelector('li.active a').textContent).toEqual('aa');
+    dropdown.querySelector('li.active a').click();
+    await vm.$nextTick();
+    expect(vm.model).toEqual('aa');
+    expect(input.value).toEqual('aa');
+    expect(dropdown.className).not.toContain('open');
+  });
 
   it.skip('should be able to use async-function and custom template', async () => {
     const wrapper = createWrapper(
@@ -655,36 +655,36 @@ describe('Typeahead', () => {
           queryFunction(query, done) {
             request('https://api.github.com/search/users?q=' + query)
               .then((data) => {
-                done(data.items)
+                done(data.items);
               })
               .catch((err) => {
-                console.log(err)
-              })
+                console.log(err);
+              });
           },
         },
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const input = vm.$el.querySelector('input')
-    const dropdown = vm.$el.querySelector('.dropdown')
-    expect(dropdown.className).not.toContain('open')
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const input = vm.$el.querySelector('input');
+    const dropdown = vm.$el.querySelector('.dropdown');
+    expect(dropdown.className).not.toContain('open');
     // matches don't work in here
-    const savedMatches = Element.prototype.matches
-    Element.prototype.matches = () => true
-    input.value = 'wxsm'
-    triggerEvent(input, 'input')
-    await sleep(600)
+    const savedMatches = Element.prototype.matches;
+    Element.prototype.matches = () => true;
+    input.value = 'wxsm';
+    triggerEvent(input, 'input');
+    await sleep(600);
     server.requests[0].respond(
       200,
       { 'Content-Type': 'application/json' },
       JSON.stringify({ items: [{ login: 'wxsms' }] })
-    )
-    await sleep(200)
-    expect(dropdown.className).toContain('open')
-    expect(dropdown.querySelectorAll('li').length).toEqual(1)
-    const selected = dropdown.querySelector('li.active a span')
-    expect(selected.textContent).toEqual('wxsms')
-    Element.prototype.matches = savedMatches
-  })
-})
+    );
+    await sleep(200);
+    expect(dropdown.className).toContain('open');
+    expect(dropdown.querySelectorAll('li').length).toEqual(1);
+    const selected = dropdown.querySelector('li.active a span');
+    expect(selected.textContent).toEqual('wxsms');
+    Element.prototype.matches = savedMatches;
+  });
+});

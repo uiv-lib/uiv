@@ -24,12 +24,12 @@ export default {
     return {
       show: true,
       alerts: [],
-    }
+    };
   },
   methods: {
     addDismissibleAlert() {
-      this.alerts.push({ key: new Date().getTime() })
+      this.alerts.push({ key: new Date().getTime() });
     },
   },
-}
+};
 </script>

@@ -42,12 +42,12 @@ export default {
       show: false,
       ele: [],
       selected: [],
-    }
+    };
   },
   mounted() {
-    this.ele.push(this.$refs.dropdown.$el)
+    this.ele.push(this.$refs.dropdown.$el);
   },
-}
+};
 </script>
 <style>
 .uiv .dropdown-form .dropdown-menu {

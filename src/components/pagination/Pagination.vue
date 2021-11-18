@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import { range } from '../../utils/array.utils'
+import { range } from '../../utils/array.utils';
 
 export default {
   props: {
@@ -125,24 +125,24 @@ export default {
   data() {
     return {
       sliceStart: 0,
-    }
+    };
   },
   computed: {
     navClasses() {
       return {
         [`text-${this.align}`]: Boolean(this.align),
-      }
+      };
     },
     classes() {
       return {
         [`pagination-${this.size}`]: Boolean(this.size),
-      }
+      };
     },
     sliceArray() {
       return range(this.totalPage).slice(
         this.sliceStart,
         this.sliceStart + this.maxSize
-      )
+      );
     },
   },
   created() {
@@ -152,26 +152,26 @@ export default {
       {
         immediate: true,
       }
-    )
+    );
   },
   methods: {
     calculateSliceStart() {
-      const currentPage = this.modelValue
-      const chunkSize = this.maxSize
-      const currentChunkStart = this.sliceStart
-      const currentChunkEnd = currentChunkStart + chunkSize
+      const currentPage = this.modelValue;
+      const chunkSize = this.maxSize;
+      const currentChunkStart = this.sliceStart;
+      const currentChunkEnd = currentChunkStart + chunkSize;
       if (currentPage > currentChunkEnd) {
-        const lastChunkStart = this.totalPage - chunkSize
+        const lastChunkStart = this.totalPage - chunkSize;
         if (currentPage > lastChunkStart) {
-          this.sliceStart = lastChunkStart
+          this.sliceStart = lastChunkStart;
         } else {
-          this.sliceStart = currentPage - 1
+          this.sliceStart = currentPage - 1;
         }
       } else if (currentPage < currentChunkStart + 1) {
         if (currentPage > chunkSize) {
-          this.sliceStart = currentPage - chunkSize
+          this.sliceStart = currentPage - chunkSize;
         } else {
-          this.sliceStart = 0
+          this.sliceStart = 0;
         }
       }
     },
@@ -182,28 +182,28 @@ export default {
         page <= this.totalPage &&
         page !== this.modelValue
       ) {
-        this.$emit('update:modelValue', page)
-        this.$emit('change', page)
+        this.$emit('update:modelValue', page);
+        this.$emit('change', page);
       }
     },
     toPage(pre) {
       if (this.disabled) {
-        return
+        return;
       }
-      const chunkSize = this.maxSize
-      const currentChunkStart = this.sliceStart
-      const lastChunkStart = this.totalPage - chunkSize
+      const chunkSize = this.maxSize;
+      const currentChunkStart = this.sliceStart;
+      const lastChunkStart = this.totalPage - chunkSize;
       const start = pre
         ? currentChunkStart - chunkSize
-        : currentChunkStart + chunkSize
+        : currentChunkStart + chunkSize;
       if (start < 0) {
-        this.sliceStart = 0
+        this.sliceStart = 0;
       } else if (start > lastChunkStart) {
-        this.sliceStart = lastChunkStart
+        this.sliceStart = lastChunkStart;
       } else {
-        this.sliceStart = start
+        this.sliceStart = start;
       }
     },
   },
-}
+};
 </script>

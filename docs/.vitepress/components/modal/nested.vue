@@ -31,7 +31,7 @@ export default {
       open1: false,
       open2: false,
       open3: false,
-    }
+    };
   },
-}
+};
 </script>

@@ -43,16 +43,16 @@ export default {
   data() {
     return {
       showAccordion: [true, false, false],
-    }
+    };
   },
   methods: {
     toggleAccordion(index) {
       if (this.showAccordion[index]) {
-        this.showAccordion[index] = false
+        this.showAccordion[index] = false;
       } else {
-        this.showAccordion = this.showAccordion.map((v, i) => i === index)
+        this.showAccordion = this.showAccordion.map((v, i) => i === index);
       }
     },
   },
-}
+};
 </script>

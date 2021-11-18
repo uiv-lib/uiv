@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import linkMixin from '../../mixins/link.mixin'
+import linkMixin from '../../mixins/link.mixin';
 
 export default {
   mixins: [linkMixin],
@@ -24,5 +24,5 @@ export default {
       default: false,
     },
   },
-}
+};
 </script>

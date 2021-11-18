@@ -1,29 +1,29 @@
-import { h, render } from 'vue'
-import Tooltip from '../../components/tooltip/Tooltip.vue'
-import { hasOwnProperty } from '../../utils/object.utils'
-import { removeFromDom } from '../../utils/dom.utils'
+import { h, render } from 'vue';
+import Tooltip from '../../components/tooltip/Tooltip.vue';
+import { hasOwnProperty } from '../../utils/object.utils';
+import { removeFromDom } from '../../utils/dom.utils';
 
-const INSTANCE = '_uiv_tooltip_instance'
+const INSTANCE = '_uiv_tooltip_instance';
 
 const bind = (el, binding) => {
   // console.log('bind')
-  unbind(el)
-  const options = []
+  unbind(el);
+  const options = [];
   for (const key in binding.modifiers) {
     if (hasOwnProperty(binding.modifiers, key) && binding.modifiers[key]) {
-      options.push(key)
+      options.push(key);
     }
   }
-  let placement, trigger, enterable
+  let placement, trigger, enterable;
   options.forEach((option) => {
     if (/(top)|(left)|(right)|(bottom)/.test(option)) {
-      placement = option
+      placement = option;
     } else if (/(hover)|(focus)|(click)/.test(option)) {
-      trigger = option
+      trigger = option;
     } else if (/unenterable/.test(option)) {
-      enterable = false
+      enterable = false;
     }
-  })
+  });
 
   const vNode = h(Tooltip, {
     target: el,
@@ -49,29 +49,29 @@ const bind = (el, binding) => {
     enterable,
     placement,
     trigger,
-  })
-  const container = document.createElement('div')
-  render(vNode, container)
-  el[INSTANCE] = { container, vNode }
-}
+  });
+  const container = document.createElement('div');
+  render(vNode, container);
+  el[INSTANCE] = { container, vNode };
+};
 
 const unbind = (el) => {
   // console.log('unbind', el[INSTANCE])
-  const instance = el[INSTANCE]
+  const instance = el[INSTANCE];
   if (instance) {
     try {
-      removeFromDom(instance.vNode.component.ctx.$refs.popup)
+      removeFromDom(instance.vNode.component.ctx.$refs.popup);
     } catch (_) {}
-    render(null, instance.container)
+    render(null, instance.container);
   }
-  delete el[INSTANCE]
-}
+  delete el[INSTANCE];
+};
 
 const update = (el, binding) => {
   // console.log('update', binding.oldValue, '->', binding.value)
   if (binding.value !== binding.oldValue) {
-    bind(el, binding)
+    bind(el, binding);
   }
-}
+};
 
-export default { mounted: bind, unmounted: unbind, updated: update }
+export default { mounted: bind, unmounted: unbind, updated: update };

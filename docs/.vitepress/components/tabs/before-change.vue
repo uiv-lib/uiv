@@ -33,17 +33,17 @@ export default {
     return {
       index: 0,
       input: '',
-    }
+    };
   },
   methods: {
     onBeforeChange(indexFrom, indexTo, done) {
       if (indexFrom === 0 && this.input === '') {
-        this.$notify('Please fill your name first.')
-        done(1)
+        this.$notify('Please fill your name first.');
+        done(1);
       } else {
-        done()
+        done();
       }
     },
   },
-}
+};
 </script>

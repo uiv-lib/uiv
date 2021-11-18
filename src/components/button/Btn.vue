@@ -54,11 +54,11 @@
 </template>
 
 <script>
-import linkMixin from '../../mixins/link.mixin'
-import BtnGroup from './BtnGroup.vue'
+import linkMixin from '../../mixins/link.mixin';
+import BtnGroup from './BtnGroup.vue';
 
-const INPUT_TYPE_CHECKBOX = 'checkbox'
-const INPUT_TYPE_RADIO = 'radio'
+const INPUT_TYPE_CHECKBOX = 'checkbox';
+const INPUT_TYPE_RADIO = 'radio';
 
 export default {
   components: { BtnGroup },
@@ -104,7 +104,7 @@ export default {
     inputType: {
       type: String,
       validator(value) {
-        return value === INPUT_TYPE_CHECKBOX || value === INPUT_TYPE_RADIO
+        return value === INPUT_TYPE_CHECKBOX || value === INPUT_TYPE_RADIO;
       },
       default: undefined,
     },
@@ -114,7 +114,7 @@ export default {
     isInputActive() {
       return this.inputType === INPUT_TYPE_CHECKBOX
         ? this.modelValue.indexOf(this.inputValue) >= 0
-        : this.modelValue === this.inputValue
+        : this.modelValue === this.inputValue;
     },
     classes() {
       return {
@@ -124,31 +124,31 @@ export default {
         'btn-block': this.block,
         [`btn-${this.type}`]: Boolean(this.type),
         [`btn-${this.size}`]: Boolean(this.size),
-      }
+      };
     },
   },
   methods: {
     onClick(e) {
       if (this.disabled && e instanceof Event) {
-        e.preventDefault()
-        e.stopPropagation()
+        e.preventDefault();
+        e.stopPropagation();
       }
     },
     onInputChange() {
       if (this.inputType === INPUT_TYPE_CHECKBOX) {
-        const valueCopied = this.modelValue.slice()
+        const valueCopied = this.modelValue.slice();
         if (this.isInputActive) {
-          valueCopied.splice(valueCopied.indexOf(this.inputValue), 1)
+          valueCopied.splice(valueCopied.indexOf(this.inputValue), 1);
         } else {
-          valueCopied.push(this.inputValue)
+          valueCopied.push(this.inputValue);
         }
-        this.$emit('update:modelValue', valueCopied)
+        this.$emit('update:modelValue', valueCopied);
       } else {
-        this.$emit('update:modelValue', this.inputValue)
+        this.$emit('update:modelValue', this.inputValue);
       }
     },
   },
-}
+};
 </script>
 
 <style scoped></style>

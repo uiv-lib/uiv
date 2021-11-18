@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ProgressBarStack from './ProgressBarStack.vue'
+import ProgressBarStack from './ProgressBarStack.vue';
 
 export default {
   components: { ProgressBarStack },
@@ -14,7 +14,7 @@ export default {
     modelValue: {
       type: Number,
       validator(value) {
-        return value >= 0 && value <= 100
+        return value >= 0 && value <= 100;
       },
       default: 0,
     },
@@ -37,5 +37,5 @@ export default {
       default: false,
     },
   },
-}
+};
 </script>

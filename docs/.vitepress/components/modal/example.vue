@@ -81,12 +81,12 @@ export default {
   data() {
     return {
       open: false,
-    }
+    };
   },
   methods: {
     callback(msg) {
-      this.$notify(`Modal dismissed with msg '${msg}'.`)
+      this.$notify(`Modal dismissed with msg '${msg}'.`);
     },
   },
-}
+};
 </script>

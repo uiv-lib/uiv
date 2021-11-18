@@ -1,4 +1,4 @@
-import { pad } from './string.utils'
+import { pad } from './string.utils';
 
 const monthNames = [
   'January',
@@ -13,7 +13,7 @@ const monthNames = [
   'October',
   'November',
   'December',
-]
+];
 
 /**
  * Get total days number in a month.
@@ -26,15 +26,15 @@ const monthNames = [
  * @returns {number}
  */
 export function daysInMonth(month, year) {
-  return new Date(year, month + 1, 0).getDate()
+  return new Date(year, month + 1, 0).getDate();
 }
 
 export function stringify(date, format) {
   try {
-    const year = date.getFullYear()
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    const monthName = monthNames[month - 1]
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const monthName = monthNames[month - 1];
     return format
       .replace(/yyyy/g, year)
       .replace(/MMMM/g, monthName)
@@ -43,9 +43,9 @@ export function stringify(date, format) {
       .replace(/dd/g, pad(day, 2))
       .replace(/yy/g, year)
       .replace(/M(?!a)/g, month)
-      .replace(/d/g, day)
+      .replace(/d/g, day);
   } catch (e) {
-    return ''
+    return '';
   }
 }
 
@@ -57,7 +57,7 @@ export function convertDateToUTC(date) {
     date.getUTCHours(),
     date.getUTCMinutes(),
     date.getUTCSeconds()
-  )
+  );
 }
 
 /**
@@ -83,12 +83,12 @@ export function convertDateToUTC(date) {
  */
 export function getWeekNumber(d) {
   // Copy date so don't modify original
-  const _d = new Date(Date.UTC(d.year, d.month, d.date))
+  const _d = new Date(Date.UTC(d.year, d.month, d.date));
   // Set to nearest Thursday: current date + 4 - current day number
   // Make Sunday's day number 7
-  _d.setUTCDate(_d.getUTCDate() + 4 - (_d.getUTCDay() || 7))
+  _d.setUTCDate(_d.getUTCDate() + 4 - (_d.getUTCDay() || 7));
   // Get first day of year
-  const yearStart = new Date(Date.UTC(_d.getUTCFullYear(), 0, 1))
+  const yearStart = new Date(Date.UTC(_d.getUTCFullYear(), 0, 1));
   // Calculate full weeks to nearest Thursday
-  return Math.ceil(((_d - yearStart) / 86400000 + 1) / 7)
+  return Math.ceil(((_d - yearStart) / 86400000 + 1) / 7);
 }

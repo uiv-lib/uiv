@@ -15,19 +15,19 @@ export default {
         validator(value) {
           return /\S+@\S+\.\S+/.test(value)
             ? null
-            : 'Email address is not valid!'
+            : 'Email address is not valid!';
         },
       })
         .then((value) => {
           this.$notify({
             type: 'success',
             content: `You email address is ${value}`,
-          })
+          });
         })
         .catch(() => {
-          this.$notify('Input canceled.')
-        })
+          this.$notify('Input canceled.');
+        });
     },
   },
-}
+};
 </script>

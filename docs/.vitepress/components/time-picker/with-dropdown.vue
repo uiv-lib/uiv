@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       time: new Date(),
-    }
+    };
   },
-}
+};
 </script>

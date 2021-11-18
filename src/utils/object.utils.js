@@ -1,27 +1,27 @@
 export function isExist(obj) {
-  return typeof obj !== 'undefined' && obj !== null
+  return typeof obj !== 'undefined' && obj !== null;
 }
 
 export function isFunction(obj) {
-  return typeof obj === 'function'
+  return typeof obj === 'function';
 }
 
 export function isNumber(obj) {
-  return typeof obj === 'number'
+  return typeof obj === 'number';
 }
 
 export function isString(obj) {
-  return typeof obj === 'string'
+  return typeof obj === 'string';
 }
 
 export function isBoolean(obj) {
-  return typeof obj === 'boolean'
+  return typeof obj === 'boolean';
 }
 
 export function isPromiseSupported() {
-  return typeof window !== 'undefined' && isExist(window.Promise)
+  return typeof window !== 'undefined' && isExist(window.Promise);
 }
 
 export function hasOwnProperty(o, k) {
-  return Object.prototype.hasOwnProperty.call(o, k)
+  return Object.prototype.hasOwnProperty.call(o, k);
 }

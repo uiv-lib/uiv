@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import Collapse from '../collapse/Collapse.vue'
+import Collapse from '../collapse/Collapse.vue';
 
 export default {
   components: { Collapse },
@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       show: false,
-    }
+    };
   },
   computed: {
     navClasses() {
@@ -51,22 +51,22 @@ export default {
         'navbar-static-top': this.staticTop,
         'navbar-fixed-bottom': this.fixedBottom,
         'navbar-fixed-top': this.fixedTop,
-      }
+      };
     },
   },
   watch: {
     modelValue(v) {
-      this.show = v
+      this.show = v;
     },
   },
   mounted() {
-    this.show = !!this.modelValue
+    this.show = !!this.modelValue;
   },
   methods: {
     toggle() {
-      this.show = !this.show
-      this.$emit('update:modalValue', this.show)
+      this.show = !this.show;
+      this.$emit('update:modalValue', this.show);
     },
   },
-}
+};
 </script>

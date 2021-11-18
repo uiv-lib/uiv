@@ -29,7 +29,7 @@ export default {
         { value: 4, label: 'Option4' },
         { value: 5, label: 'Option5' },
       ],
-    }
+    };
   },
-}
+};
 </script>

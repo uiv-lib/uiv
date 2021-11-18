@@ -1,28 +1,28 @@
-import { h, render } from 'vue'
-import Popover from '../../components/popover/Popover.vue'
-import { hasOwnProperty } from '../../utils/object.utils'
+import { h, render } from 'vue';
+import Popover from '../../components/popover/Popover.vue';
+import { hasOwnProperty } from '../../utils/object.utils';
 
-const INSTANCE = '_uiv_popover_instance'
+const INSTANCE = '_uiv_popover_instance';
 
 const bind = (el, binding) => {
   // console.log('bind')
-  unbind(el)
-  const options = []
+  unbind(el);
+  const options = [];
   for (const key in binding.modifiers) {
     if (hasOwnProperty(binding.modifiers, key) && binding.modifiers[key]) {
-      options.push(key)
+      options.push(key);
     }
   }
-  let placement, trigger, enterable
+  let placement, trigger, enterable;
   options.forEach((option) => {
     if (/(top)|(left)|(right)|(bottom)/.test(option)) {
-      placement = option
+      placement = option;
     } else if (/(hover)|(focus)|(click)/.test(option)) {
-      trigger = option
+      trigger = option;
     } else if (/unenterable/.test(option)) {
-      enterable = false
+      enterable = false;
     }
-  })
+  });
   const vNode = h(Popover, {
     target: el,
     appendTo: binding.arg && '#' + binding.arg,
@@ -47,27 +47,27 @@ const bind = (el, binding) => {
     enterable,
     placement,
     trigger,
-  })
+  });
 
-  const container = document.createElement('div')
-  render(vNode, container)
-  el[INSTANCE] = container
-}
+  const container = document.createElement('div');
+  render(vNode, container);
+  el[INSTANCE] = container;
+};
 
 const unbind = (el) => {
   // console.log('unbind')
-  const instance = el[INSTANCE]
+  const instance = el[INSTANCE];
   if (instance) {
-    render(null, instance)
+    render(null, instance);
   }
-  delete el[INSTANCE]
-}
+  delete el[INSTANCE];
+};
 
 const update = (el, binding) => {
   // console.log('update')
   if (binding.value !== binding.oldValue) {
-    bind(el, binding)
+    bind(el, binding);
   }
-}
+};
 
-export default { mounted: bind, unmounted: unbind, updated: update }
+export default { mounted: bind, unmounted: unbind, updated: update };

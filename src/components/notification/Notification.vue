@@ -24,15 +24,15 @@
 </template>
 
 <script>
-import { addClass, removeClass } from '../../utils/dom.utils'
-import { isString } from '../../utils/object.utils'
-import Alert from '../alert/Alert.vue'
-import { TYPES, PLACEMENTS } from '../../constants/notification.constants'
+import { addClass, removeClass } from '../../utils/dom.utils';
+import { isString } from '../../utils/object.utils';
+import Alert from '../alert/Alert.vue';
+import { TYPES, PLACEMENTS } from '../../constants/notification.constants';
 
-const IN_CLASS = 'in'
-const ICON = 'glyphicon'
-const WIDTH = 300
-const TRANSITION_DURATION = 300
+const IN_CLASS = 'in';
+const ICON = 'glyphicon';
+const WIDTH = 300;
+const TRANSITION_DURATION = 300;
 
 export default {
   components: { Alert },
@@ -90,65 +90,65 @@ export default {
         this.placement === PLACEMENTS.TOP_RIGHT
           ? 'top'
           : 'bottom',
-    }
+    };
   },
   computed: {
     styles() {
-      const queue = this.queue
-      const thisIndex = queue.findIndex((vm) => vm._.uid === this._.uid)
+      const queue = this.queue;
+      const thisIndex = queue.findIndex((vm) => vm._.uid === this._.uid);
       return {
         position: 'fixed',
         [this.vertical]: `${this.getTotalHeightOfQueue(queue, thisIndex)}px`,
         width: `${WIDTH}px`,
         transition: `all ${TRANSITION_DURATION / 1000}s ease-in-out`,
-      }
+      };
     },
     icons() {
       if (isString(this.icon)) {
-        return this.icon
+        return this.icon;
       }
       switch (this.type) {
         case TYPES.INFO:
         case TYPES.WARNING:
-          return `${ICON} ${ICON}-info-sign`
+          return `${ICON} ${ICON}-info-sign`;
         case TYPES.SUCCESS:
-          return `${ICON} ${ICON}-ok-sign`
+          return `${ICON} ${ICON}-ok-sign`;
         case TYPES.DANGER:
-          return `${ICON} ${ICON}-remove-sign`
+          return `${ICON} ${ICON}-remove-sign`;
         default:
-          return null
+          return null;
       }
     },
   },
   created() {
     // get prev notifications total height in the queue
-    this.top = this.getTotalHeightOfQueue(this.queue)
+    this.top = this.getTotalHeightOfQueue(this.queue);
   },
   mounted() {
-    const el = this.$el
-    el.style[this.vertical] = this.top + 'px'
+    const el = this.$el;
+    el.style[this.vertical] = this.top + 'px';
     this.$nextTick(() => {
-      el.style[this.horizontal] = `-${WIDTH}px`
-      this.height = el.offsetHeight
-      el.style[this.horizontal] = `${this.offsetX}px`
-      addClass(el, IN_CLASS)
-    })
+      el.style[this.horizontal] = `-${WIDTH}px`;
+      this.height = el.offsetHeight;
+      el.style[this.horizontal] = `${this.offsetX}px`;
+      addClass(el, IN_CLASS);
+    });
   },
   // unmounted() {
   //   console.log('unmounted')
   // },
   methods: {
     getTotalHeightOfQueue(queue, lastIndex = queue.length) {
-      let totalHeight = this.offsetY
+      let totalHeight = this.offsetY;
       for (let i = 0; i < lastIndex; i++) {
-        totalHeight += queue[i].height + this.offset
+        totalHeight += queue[i].height + this.offset;
       }
-      return totalHeight
+      return totalHeight;
     },
     onDismissed() {
-      removeClass(this.$el, IN_CLASS)
-      setTimeout(this.cb, TRANSITION_DURATION)
+      removeClass(this.$el, IN_CLASS);
+      setTimeout(this.cb, TRANSITION_DURATION);
     },
   },
-}
+};
 </script>

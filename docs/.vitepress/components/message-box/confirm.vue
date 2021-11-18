@@ -15,12 +15,12 @@ export default {
           this.$notify({
             type: 'success',
             content: 'Delete completed.',
-          })
+          });
         })
         .catch(() => {
-          this.$notify('Delete canceled.')
-        })
+          this.$notify('Delete canceled.');
+        });
     },
   },
-}
+};
 </script>

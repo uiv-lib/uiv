@@ -106,14 +106,14 @@
 </template>
 
 <script>
-import Local from '../../mixins/locale.mixin'
-import Btn from './../button/Btn.vue'
-import { pad } from '../../utils/string.utils'
+import Local from '../../mixins/locale.mixin';
+import Btn from './../button/Btn.vue';
+import { pad } from '../../utils/string.utils';
 
-const maxHours = 23
-const zero = 0
-const maxMinutes = 59
-const cutUpAmAndPm = 12
+const maxHours = 23;
+const zero = 0;
+const maxMinutes = 59;
+const cutUpAmAndPm = 12;
 
 export default {
   components: { Btn },
@@ -166,174 +166,174 @@ export default {
       meridian: true,
       hoursText: '',
       minutesText: '',
-    }
+    };
   },
   computed: {
     inputStyles() {
       return {
         width: `${this.inputWidth}px`,
-      }
+      };
     },
   },
   watch: {
     modelValue(value) {
-      this.updateByValue(value)
+      this.updateByValue(value);
     },
     showMeridian(value) {
-      this.setTime()
+      this.setTime();
     },
     hoursText(value) {
       if (this.hours === 0 && value === '') {
         // Prevent a runtime reset from being overwritten
-        return
+        return;
       }
-      const hour = parseInt(value)
+      const hour = parseInt(value);
       if (this.showMeridian) {
         if (hour >= 1 && hour <= cutUpAmAndPm) {
           if (this.meridian) {
-            this.hours = hour === cutUpAmAndPm ? 0 : hour
+            this.hours = hour === cutUpAmAndPm ? 0 : hour;
           } else {
             this.hours =
-              hour === cutUpAmAndPm ? cutUpAmAndPm : hour + cutUpAmAndPm
+              hour === cutUpAmAndPm ? cutUpAmAndPm : hour + cutUpAmAndPm;
           }
         }
       } else if (hour >= zero && hour <= maxHours) {
-        this.hours = hour
+        this.hours = hour;
       }
-      this.setTime()
+      this.setTime();
     },
     minutesText(value) {
       if (this.minutes === 0 && value === '') {
         // Prevent a runtime reset from being overwritten
-        return
+        return;
       }
-      const minutesStr = parseInt(value)
+      const minutesStr = parseInt(value);
       if (minutesStr >= zero && minutesStr <= maxMinutes) {
-        this.minutes = minutesStr
+        this.minutes = minutesStr;
       }
-      this.setTime()
+      this.setTime();
     },
   },
   mounted() {
-    this.updateByValue(this.modelValue)
+    this.updateByValue(this.modelValue);
   },
   methods: {
     updateByValue(value) {
       if (isNaN(value.getTime())) {
-        this.hours = 0
-        this.minutes = 0
-        this.hoursText = ''
-        this.minutesText = ''
-        this.meridian = true
-        return
+        this.hours = 0;
+        this.minutes = 0;
+        this.hoursText = '';
+        this.minutesText = '';
+        this.meridian = true;
+        return;
       }
-      this.hours = value.getHours()
-      this.minutes = value.getMinutes()
+      this.hours = value.getHours();
+      this.minutes = value.getMinutes();
       if (!this.showMeridian) {
-        this.hoursText = pad(this.hours, 2)
+        this.hoursText = pad(this.hours, 2);
       } else {
         if (this.hours >= cutUpAmAndPm) {
           if (this.hours === cutUpAmAndPm) {
-            this.hoursText = this.hours + ''
+            this.hoursText = this.hours + '';
           } else {
-            this.hoursText = pad(this.hours - cutUpAmAndPm, 2)
+            this.hoursText = pad(this.hours - cutUpAmAndPm, 2);
           }
-          this.meridian = false
+          this.meridian = false;
         } else {
           if (this.hours === zero) {
-            this.hoursText = cutUpAmAndPm.toString()
+            this.hoursText = cutUpAmAndPm.toString();
           } else {
-            this.hoursText = pad(this.hours, 2)
+            this.hoursText = pad(this.hours, 2);
           }
-          this.meridian = true
+          this.meridian = true;
         }
       }
-      this.minutesText = pad(this.minutes, 2)
+      this.minutesText = pad(this.minutes, 2);
       // lazy model won't update when using keyboard up/down
-      this.$refs.hoursInput.value = this.hoursText
-      this.$refs.minutesInput.value = this.minutesText
+      this.$refs.hoursInput.value = this.hoursText;
+      this.$refs.minutesInput.value = this.minutesText;
     },
     addHour(step) {
-      step = step || this.hourStep
-      this.hours = this.hours >= maxHours ? zero : this.hours + step
+      step = step || this.hourStep;
+      this.hours = this.hours >= maxHours ? zero : this.hours + step;
     },
     reduceHour(step) {
-      step = step || this.hourStep
-      this.hours = this.hours <= zero ? maxHours : this.hours - step
+      step = step || this.hourStep;
+      this.hours = this.hours <= zero ? maxHours : this.hours - step;
     },
     addMinute() {
       if (this.minutes >= maxMinutes) {
-        this.minutes = zero
-        this.addHour(1)
+        this.minutes = zero;
+        this.addHour(1);
       } else {
-        this.minutes += this.minStep
+        this.minutes += this.minStep;
       }
     },
     reduceMinute() {
       if (this.minutes <= zero) {
-        this.minutes = maxMinutes + 1 - this.minStep
-        this.reduceHour(1)
+        this.minutes = maxMinutes + 1 - this.minStep;
+        this.reduceHour(1);
       } else {
-        this.minutes -= this.minStep
+        this.minutes -= this.minStep;
       }
     },
     changeTime(isHour, isPlus) {
       if (!this.readonly) {
         if (isHour && isPlus) {
-          this.addHour()
+          this.addHour();
         } else if (isHour && !isPlus) {
-          this.reduceHour()
+          this.reduceHour();
         } else if (!isHour && isPlus) {
-          this.addMinute()
+          this.addMinute();
         } else {
-          this.reduceMinute()
+          this.reduceMinute();
         }
-        this.setTime()
+        this.setTime();
       }
     },
     toggleMeridian() {
-      this.meridian = !this.meridian
+      this.meridian = !this.meridian;
       if (this.meridian) {
-        this.hours -= cutUpAmAndPm
+        this.hours -= cutUpAmAndPm;
       } else {
-        this.hours += cutUpAmAndPm
+        this.hours += cutUpAmAndPm;
       }
-      this.setTime()
+      this.setTime();
     },
     onWheel(e, isHour) {
       if (!this.readonly) {
-        e.preventDefault()
-        this.changeTime(isHour, e.deltaY < 0)
+        e.preventDefault();
+        this.changeTime(isHour, e.deltaY < 0);
       }
     },
     setTime() {
-      let time = this.modelValue
+      let time = this.modelValue;
       if (isNaN(time.getTime())) {
-        time = new Date()
-        time.setHours(0)
-        time.setMinutes(0)
+        time = new Date();
+        time.setHours(0);
+        time.setMinutes(0);
       }
-      time.setHours(this.hours)
-      time.setMinutes(this.minutes)
+      time.setHours(this.hours);
+      time.setMinutes(this.minutes);
       if (this.max instanceof Date) {
-        const max = new Date(time)
-        max.setHours(this.max.getHours())
-        max.setMinutes(this.max.getMinutes())
-        time = time > max ? max : time
+        const max = new Date(time);
+        max.setHours(this.max.getHours());
+        max.setMinutes(this.max.getMinutes());
+        time = time > max ? max : time;
       }
       if (this.min instanceof Date) {
-        const min = new Date(time)
-        min.setHours(this.min.getHours())
-        min.setMinutes(this.min.getMinutes())
-        time = time < min ? min : time
+        const min = new Date(time);
+        min.setHours(this.min.getHours());
+        min.setMinutes(this.min.getMinutes());
+        time = time < min ? min : time;
       }
-      this.$emit('update:modelValue', new Date(time))
+      this.$emit('update:modelValue', new Date(time));
     },
     selectInputValue(e) {
       // mouseup should be prevented!
       // See various comments in https://stackoverflow.com/questions/3272089/programmatically-selecting-text-in-an-input-field-on-ios-devices-mobile-safari
-      e.target.setSelectionRange(0, 2)
+      e.target.setSelectionRange(0, 2);
     },
   },
-}
+};
 </script>

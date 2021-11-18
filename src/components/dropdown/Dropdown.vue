@@ -5,11 +5,11 @@ import {
   off,
   EVENTS,
   focus,
-} from '../../utils/dom.utils'
-import { isBoolean } from '../../utils/object.utils'
-import { h } from 'vue'
+} from '../../utils/dom.utils';
+import { isBoolean } from '../../utils/object.utils';
+import { h } from 'vue';
 
-const DEFAULT_TAG = 'div'
+const DEFAULT_TAG = 'div';
 
 export default {
   props: {
@@ -42,70 +42,70 @@ export default {
     return {
       show: false,
       triggerEl: undefined,
-    }
+    };
   },
   watch: {
     modelValue(v) {
-      this.toggle(v)
+      this.toggle(v);
     },
   },
   mounted() {
-    this.initTrigger()
+    this.initTrigger();
     if (this.triggerEl) {
-      on(this.triggerEl, EVENTS.CLICK, this.toggle)
-      on(this.triggerEl, EVENTS.KEY_DOWN, this.onKeyPress)
+      on(this.triggerEl, EVENTS.CLICK, this.toggle);
+      on(this.triggerEl, EVENTS.KEY_DOWN, this.onKeyPress);
     }
-    on(this.$refs.dropdown, EVENTS.KEY_DOWN, this.onKeyPress)
-    on(window, EVENTS.CLICK, this.windowClicked)
-    on(window, EVENTS.TOUCH_END, this.windowClicked)
+    on(this.$refs.dropdown, EVENTS.KEY_DOWN, this.onKeyPress);
+    on(window, EVENTS.CLICK, this.windowClicked);
+    on(window, EVENTS.TOUCH_END, this.windowClicked);
     if (this.modelValue) {
-      this.toggle(true)
+      this.toggle(true);
     }
   },
   beforeUnmount() {
-    this.removeDropdownFromBody()
+    this.removeDropdownFromBody();
     if (this.triggerEl) {
-      off(this.triggerEl, EVENTS.CLICK, this.toggle)
-      off(this.triggerEl, EVENTS.KEY_DOWN, this.onKeyPress)
+      off(this.triggerEl, EVENTS.CLICK, this.toggle);
+      off(this.triggerEl, EVENTS.KEY_DOWN, this.onKeyPress);
     }
-    off(this.$refs.dropdown, EVENTS.KEY_DOWN, this.onKeyPress)
-    off(window, EVENTS.CLICK, this.windowClicked)
-    off(window, EVENTS.TOUCH_END, this.windowClicked)
+    off(this.$refs.dropdown, EVENTS.KEY_DOWN, this.onKeyPress);
+    off(window, EVENTS.CLICK, this.windowClicked);
+    off(window, EVENTS.TOUCH_END, this.windowClicked);
   },
   methods: {
     getFocusItem() {
-      const dropdownEl = this.$refs.dropdown
-      return dropdownEl.querySelector('li > a:focus')
+      const dropdownEl = this.$refs.dropdown;
+      return dropdownEl.querySelector('li > a:focus');
     },
     onKeyPress(event) {
       if (this.show) {
-        const dropdownEl = this.$refs.dropdown
-        const keyCode = event.keyCode
+        const dropdownEl = this.$refs.dropdown;
+        const keyCode = event.keyCode;
         if (keyCode === 27) {
           // esc
-          this.toggle(false)
-          this.triggerEl && this.triggerEl.focus()
+          this.toggle(false);
+          this.triggerEl && this.triggerEl.focus();
         } else if (keyCode === 13) {
           // enter
-          const currentFocus = this.getFocusItem()
-          currentFocus && currentFocus.click()
+          const currentFocus = this.getFocusItem();
+          currentFocus && currentFocus.click();
         } else if (keyCode === 38 || keyCode === 40) {
           // up || down
-          event.preventDefault()
-          event.stopPropagation()
-          const currentFocus = this.getFocusItem()
-          const items = dropdownEl.querySelectorAll('li:not(.disabled) > a')
+          event.preventDefault();
+          event.stopPropagation();
+          const currentFocus = this.getFocusItem();
+          const items = dropdownEl.querySelectorAll('li:not(.disabled) > a');
           if (!currentFocus) {
-            focus(items[0])
+            focus(items[0]);
           } else {
             for (let i = 0; i < items.length; i++) {
               if (currentFocus === items[i]) {
                 if (keyCode === 38 && i < items.length > 0) {
-                  focus(items[i - 1])
+                  focus(items[i - 1]);
                 } else if (keyCode === 40 && i < items.length - 1) {
-                  focus(items[i + 1])
+                  focus(items[i + 1]);
                 }
-                break
+                break;
               }
             }
           }
@@ -116,85 +116,85 @@ export default {
       const trigger =
         this.$el.querySelector('[data-role="trigger"]') ||
         this.$el.querySelector('.dropdown-toggle') ||
-        this.$el.firstChild
+        this.$el.firstChild;
       this.triggerEl =
-        trigger && trigger !== this.$refs.dropdown ? trigger : null
+        trigger && trigger !== this.$refs.dropdown ? trigger : null;
     },
     toggle(show) {
       if (this.disabled) {
-        return
+        return;
       }
       if (isBoolean(show)) {
-        this.show = show
+        this.show = show;
       } else {
-        this.show = !this.show
+        this.show = !this.show;
       }
       if (this.appendToBody) {
-        this.show ? this.appendDropdownToBody() : this.removeDropdownFromBody()
+        this.show ? this.appendDropdownToBody() : this.removeDropdownFromBody();
       }
-      this.$emit('update:modelValue', this.show)
+      this.$emit('update:modelValue', this.show);
     },
     windowClicked(event) {
-      const target = event.target
+      const target = event.target;
       if (this.show && target) {
-        let targetInNotCloseElements = false
+        let targetInNotCloseElements = false;
         if (this.notCloseElements) {
           for (let i = 0, l = this.notCloseElements.length; i < l; i++) {
-            const isTargetInElement = this.notCloseElements[i].contains(target)
-            let shouldBreak = isTargetInElement
+            const isTargetInElement = this.notCloseElements[i].contains(target);
+            let shouldBreak = isTargetInElement;
             /* istanbul ignore else */
             if (this.appendToBody) {
-              const isTargetInDropdown = this.$refs.dropdown.contains(target)
+              const isTargetInDropdown = this.$refs.dropdown.contains(target);
               const isElInElements =
-                this.notCloseElements.indexOf(this.$el) >= 0
+                this.notCloseElements.indexOf(this.$el) >= 0;
               shouldBreak =
-                isTargetInElement || (isTargetInDropdown && isElInElements)
+                isTargetInElement || (isTargetInDropdown && isElInElements);
             }
             if (shouldBreak) {
-              targetInNotCloseElements = true
-              break
+              targetInNotCloseElements = true;
+              break;
             }
           }
         }
-        const targetInDropdownBody = this.$refs.dropdown.contains(target)
+        const targetInDropdownBody = this.$refs.dropdown.contains(target);
         const targetInTrigger =
-          this.$el.contains(target) && !targetInDropdownBody
+          this.$el.contains(target) && !targetInDropdownBody;
         // normally, a dropdown select event is handled by @click that trigger after @touchend
         // then @touchend event have to be ignore in this case
         const targetInDropdownAndIsTouchEvent =
-          targetInDropdownBody && event.type === 'touchend'
+          targetInDropdownBody && event.type === 'touchend';
         if (
           !targetInTrigger &&
           !targetInNotCloseElements &&
           !targetInDropdownAndIsTouchEvent
         ) {
-          this.toggle(false)
+          this.toggle(false);
         }
       }
     },
     appendDropdownToBody() {
       try {
-        const el = this.$refs.dropdown
-        el.style.display = 'block'
-        document.body.appendChild(el)
-        const positionElement = this.positionElement || this.$el
-        setDropdownPosition(el, positionElement, this)
+        const el = this.$refs.dropdown;
+        el.style.display = 'block';
+        document.body.appendChild(el);
+        const positionElement = this.positionElement || this.$el;
+        setDropdownPosition(el, positionElement, this);
       } catch (e) {
         // Silent
       }
     },
     removeDropdownFromBody() {
       try {
-        const el = this.$refs.dropdown
-        el.removeAttribute('style')
-        this.$el.appendChild(el)
+        const el = this.$refs.dropdown;
+        el.removeAttribute('style');
+        this.$el.appendChild(el);
       } catch (e) {
         // Silent
       }
     },
   },
   render() {
-    const Tag = this.tag
+    const Tag = this.tag;
     return (
       <Tag
         class={{
@@ -215,7 +215,7 @@ export default {
           {this.$slots.dropdown?.()}
         </ul>
       </Tag>
-    )
+    );
   },
-}
+};
 </script>

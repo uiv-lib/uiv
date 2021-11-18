@@ -1,81 +1,81 @@
-import { TYPES } from '../../constants/messagebox.constants'
+import { TYPES } from '../../constants/messagebox.constants';
 import {
   isFunction,
   isExist,
   isString,
   isPromiseSupported,
-} from '../../utils/object.utils'
-import MessageBox from '../../components/messagebox/MessageBox.vue'
-import { render, h } from 'vue'
+} from '../../utils/object.utils';
+import MessageBox from '../../components/messagebox/MessageBox.vue';
+import { render, h } from 'vue';
 
 const destroy = (container) => {
   // console.log('destroyModal')
-  render(null, container)
-}
+  render(null, container);
+};
 
 // handle cancel or ok for confirm & prompt
 const shallResolve = (type, msg) => {
   if (type === TYPES.CONFIRM) {
     // is confirm
-    return msg === 'ok'
+    return msg === 'ok';
   } else {
     // is prompt
-    return isExist(msg) && isString(msg.value)
+    return isExist(msg) && isString(msg.value);
   }
-}
+};
 
 const init = function (type, options, cb, resolve = null, reject = null) {
   // const i18n = this.$i18n
-  const container = document.createElement('div')
+  const container = document.createElement('div');
   const vNode = h(MessageBox, {
     type,
     ...options,
     cb(msg) {
-      destroy(container)
+      destroy(container);
       if (isFunction(cb)) {
         if (type === TYPES.CONFIRM) {
-          shallResolve(type, msg) ? cb(null, msg) : cb(msg)
+          shallResolve(type, msg) ? cb(null, msg) : cb(msg);
         } else if (type === TYPES.PROMPT) {
-          shallResolve(type, msg) ? cb(null, msg.value) : cb(msg)
+          shallResolve(type, msg) ? cb(null, msg.value) : cb(msg);
         } else {
-          cb(msg)
+          cb(msg);
         }
       } else if (resolve && reject) {
         if (type === TYPES.CONFIRM) {
-          shallResolve(type, msg) ? resolve(msg) : reject(msg)
+          shallResolve(type, msg) ? resolve(msg) : reject(msg);
         } else if (type === TYPES.PROMPT) {
-          shallResolve(type, msg) ? resolve(msg.value) : reject(msg)
+          shallResolve(type, msg) ? resolve(msg.value) : reject(msg);
         } else {
-          resolve(msg)
+          resolve(msg);
         }
       }
     },
-  })
-  render(vNode, container)
-  document.body.appendChild(container.firstElementChild)
-}
+  });
+  render(vNode, container);
+  document.body.appendChild(container.firstElementChild);
+};
 
 // eslint-disable-next-line default-param-last
 const initModal = function (type, options = {}, cb) {
   if (isPromiseSupported()) {
     return new Promise((resolve, reject) => {
-      init.apply(this, [type, options, cb, resolve, reject])
-    })
+      init.apply(this, [type, options, cb, resolve, reject]);
+    });
   } else {
-    init.apply(this, [type, options, cb])
+    init.apply(this, [type, options, cb]);
   }
-}
+};
 
 const alert = function (options, cb) {
-  return initModal.apply(this, [TYPES.ALERT, options, cb])
-}
+  return initModal.apply(this, [TYPES.ALERT, options, cb]);
+};
 
 const confirm = function (options, cb) {
-  return initModal.apply(this, [TYPES.CONFIRM, options, cb])
-}
+  return initModal.apply(this, [TYPES.CONFIRM, options, cb]);
+};
 
 const prompt = function (options, cb) {
-  return initModal.apply(this, [TYPES.PROMPT, options, cb])
-}
+  return initModal.apply(this, [TYPES.PROMPT, options, cb]);
+};
 
-export default { alert, confirm, prompt }
+export default { alert, confirm, prompt };

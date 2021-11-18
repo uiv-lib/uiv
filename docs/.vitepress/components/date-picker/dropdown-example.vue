@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       date: null,
-    }
+    };
   },
-}
+};
 </script>

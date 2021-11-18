@@ -1,15 +1,15 @@
-import { createWrapper } from '../../__test__/utils'
+import { createWrapper } from '../../__test__/utils';
 
 describe('ProgressBar', () => {
   it('should be able to render default', async () => {
     const wrapper = createWrapper('<progress-bar v-model="progress"/>', {
       progress: 66,
-    })
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const bars = vm.$el
-    expect(bars.querySelector('.progress-bar').style.width).toEqual('66%')
-  })
+    });
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const bars = vm.$el;
+    expect(bars.querySelector('.progress-bar').style.width).toEqual('66%');
+  });
 
   it('should be able to render label', async () => {
     const wrapper = createWrapper(
@@ -18,12 +18,12 @@ describe('ProgressBar', () => {
         progress1: 1,
         progress: 66,
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const bars = vm.$el.querySelectorAll('.progress')
-    expect(bars[0].querySelector('.progress-bar').textContent).toEqual('66%')
-  })
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const bars = vm.$el.querySelectorAll('.progress');
+    expect(bars[0].querySelector('.progress-bar').textContent).toEqual('66%');
+  });
 
   it('should be able to render custom label', async () => {
     const wrapper = createWrapper(
@@ -32,14 +32,14 @@ describe('ProgressBar', () => {
         progress1: 1,
         progress: 66,
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const bars = vm.$el.querySelectorAll('.progress')
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const bars = vm.$el.querySelectorAll('.progress');
     expect(bars[0].querySelector('.progress-bar').textContent).toContain(
       'Loading...'
-    )
-  })
+    );
+  });
 
   it('should be able to render label with min width', async () => {
     const wrapper = createWrapper(
@@ -48,12 +48,14 @@ describe('ProgressBar', () => {
         progress1: 1,
         progress: 66,
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const bars = vm.$el.querySelectorAll('.progress')
-    expect(bars[0].querySelector('.progress-bar').style.minWidth).toEqual('2em')
-  })
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const bars = vm.$el.querySelectorAll('.progress');
+    expect(bars[0].querySelector('.progress-bar').style.minWidth).toEqual(
+      '2em'
+    );
+  });
 
   it('should be able to render different types', async () => {
     const wrapper = createWrapper(
@@ -69,23 +71,23 @@ describe('ProgressBar', () => {
         progress60: 60,
         progress80: 80,
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const bars = vm.$el.querySelectorAll('.progress')
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const bars = vm.$el.querySelectorAll('.progress');
     expect(bars[0].querySelector('.progress-bar').className).toContain(
       'progress-bar-success'
-    )
+    );
     expect(bars[1].querySelector('.progress-bar').className).toContain(
       'progress-bar-info'
-    )
+    );
     expect(bars[2].querySelector('.progress-bar').className).toContain(
       'progress-bar-warning'
-    )
+    );
     expect(bars[3].querySelector('.progress-bar').className).toContain(
       'progress-bar-danger'
-    )
-  })
+    );
+  });
 
   it('should be able to render striped', async () => {
     const wrapper = createWrapper(
@@ -101,23 +103,23 @@ describe('ProgressBar', () => {
         progress60: 60,
         progress80: 80,
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const bars = vm.$el.querySelectorAll('.progress')
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const bars = vm.$el.querySelectorAll('.progress');
     expect(bars[0].querySelector('.progress-bar').className).toContain(
       'progress-bar-striped'
-    )
+    );
     expect(bars[1].querySelector('.progress-bar').className).toContain(
       'progress-bar-striped'
-    )
+    );
     expect(bars[2].querySelector('.progress-bar').className).toContain(
       'progress-bar-striped'
-    )
+    );
     expect(bars[3].querySelector('.progress-bar').className).toContain(
       'progress-bar-striped'
-    )
-  })
+    );
+  });
 
   it('should be able to render animation', async () => {
     const wrapper = createWrapper(
@@ -125,12 +127,14 @@ describe('ProgressBar', () => {
       {
         progress: 40,
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const bars = vm.$el.querySelectorAll('.progress')
-    expect(bars[0].querySelector('.progress-bar').className).toContain('active')
-  })
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const bars = vm.$el.querySelectorAll('.progress');
+    expect(bars[0].querySelector('.progress-bar').className).toContain(
+      'active'
+    );
+  });
 
   it('should be able to render stacked', async () => {
     const wrapper = createWrapper(
@@ -144,11 +148,11 @@ describe('ProgressBar', () => {
         progress35: 35,
         progress10: 10,
       }
-    )
-    const vm = wrapper.vm
-    await vm.$nextTick()
-    const bars = vm.$el.querySelectorAll('.progress')
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const bars = vm.$el.querySelectorAll('.progress');
     // console.log(document.body.innerHTML)
-    expect(bars[0].querySelectorAll('.progress-bar').length).toEqual(3)
-  })
-})
+    expect(bars[0].querySelectorAll('.progress-bar').length).toEqual(3);
+  });
+});

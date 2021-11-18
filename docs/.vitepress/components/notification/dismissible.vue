@@ -13,8 +13,8 @@ export default {
         title: 'Title',
         content: 'This is a notification without dismiss btn.',
         dismissible: false,
-      })
+      });
     },
   },
-}
+};
 </script>

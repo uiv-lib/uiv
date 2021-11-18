@@ -9,7 +9,7 @@ export default {
     return {
       totalPage: 18,
       currentPage: 1,
-    }
+    };
   },
-}
+};
 </script>

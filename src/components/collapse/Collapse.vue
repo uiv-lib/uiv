@@ -1,9 +1,9 @@
 <script lang="jsx">
-import { addClass, removeClass } from '../../utils/dom.utils'
+import { addClass, removeClass } from '../../utils/dom.utils';
 
-const COLLAPSE = 'collapse'
-const IN = 'in'
-const COLLAPSING = 'collapsing'
+const COLLAPSE = 'collapse';
+const IN = 'in';
+const COLLAPSING = 'collapsing';
 
 export default {
   props: {
@@ -24,62 +24,62 @@ export default {
   data() {
     return {
       timeoutId: 0,
-    }
+    };
   },
   watch: {
     modelValue(show) {
-      this.toggle(show)
+      this.toggle(show);
     },
   },
   mounted() {
-    const el = this.$el
-    addClass(el, COLLAPSE)
+    const el = this.$el;
+    addClass(el, COLLAPSE);
     if (this.modelValue) {
-      addClass(el, IN)
+      addClass(el, IN);
     }
   },
   methods: {
     toggle(show) {
-      clearTimeout(this.timeoutId)
-      const el = this.$el
+      clearTimeout(this.timeoutId);
+      const el = this.$el;
       if (show) {
-        this.$emit('show')
-        removeClass(el, COLLAPSE)
-        el.style.height = 'auto'
-        const height = window.getComputedStyle(el).height
-        el.style.height = null
-        addClass(el, COLLAPSING)
-        el.offsetHeight // force repaint
-        el.style.height = height
+        this.$emit('show');
+        removeClass(el, COLLAPSE);
+        el.style.height = 'auto';
+        const height = window.getComputedStyle(el).height;
+        el.style.height = null;
+        addClass(el, COLLAPSING);
+        el.offsetHeight; // force repaint
+        el.style.height = height;
         this.timeoutId = setTimeout(() => {
-          removeClass(el, COLLAPSING)
-          addClass(el, COLLAPSE)
-          addClass(el, IN)
-          el.style.height = null
-          this.timeoutId = 0
-          this.$emit('shown')
-        }, this.transition)
+          removeClass(el, COLLAPSING);
+          addClass(el, COLLAPSE);
+          addClass(el, IN);
+          el.style.height = null;
+          this.timeoutId = 0;
+          this.$emit('shown');
+        }, this.transition);
       } else {
-        this.$emit('hide')
-        el.style.height = window.getComputedStyle(el).height
-        removeClass(el, IN)
-        removeClass(el, COLLAPSE)
-        el.offsetHeight
-        el.style.height = null
-        addClass(el, COLLAPSING)
+        this.$emit('hide');
+        el.style.height = window.getComputedStyle(el).height;
+        removeClass(el, IN);
+        removeClass(el, COLLAPSE);
+        el.offsetHeight;
+        el.style.height = null;
+        addClass(el, COLLAPSING);
         this.timeoutId = setTimeout(() => {
-          addClass(el, COLLAPSE)
-          removeClass(el, COLLAPSING)
-          el.style.height = null
-          this.timeoutId = 0
-          this.$emit('hidden')
-        }, this.transition)
+          addClass(el, COLLAPSE);
+          removeClass(el, COLLAPSING);
+          el.style.height = null;
+          this.timeoutId = 0;
+          this.$emit('hidden');
+        }, this.transition);
       }
     },
   },
   render() {
-    const Tag = this.tag
-    return <Tag>{this.$slots.default?.()}</Tag>
+    const Tag = this.tag;
+    return <Tag>{this.$slots.default?.()}</Tag>;
   },
-}
+};
 </script>

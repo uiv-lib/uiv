@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import scroll from './../../directives/scroll'
+import scroll from './../../directives/scroll';
 
 export default {
   directives: {
@@ -22,18 +22,18 @@ export default {
   data() {
     return {
       affixed: false,
-    }
+    };
   },
   computed: {
     classes() {
       return {
         affix: this.affixed,
-      }
+      };
     },
     styles() {
       return {
         top: this.affixed ? this.offset + 'px' : null,
-      }
+      };
     },
   },
   methods: {
@@ -47,31 +47,31 @@ export default {
           this.$el.getClientRects().length
         )
       ) {
-        return
+        return;
       }
       // get window scroll and element position to detect if have to be normal or affixed
-      const scroll = {}
-      const element = {}
-      const rect = this.$el.getBoundingClientRect()
-      const body = document.body
-      const types = ['Top', 'Left']
+      const scroll = {};
+      const element = {};
+      const rect = this.$el.getBoundingClientRect();
+      const body = document.body;
+      const types = ['Top', 'Left'];
       types.forEach((type) => {
-        const t = type.toLowerCase()
-        scroll[t] = window['page' + (type === 'Top' ? 'Y' : 'X') + 'Offset']
+        const t = type.toLowerCase();
+        scroll[t] = window['page' + (type === 'Top' ? 'Y' : 'X') + 'Offset'];
         element[t] =
           scroll[t] +
           rect[t] -
-          (this.$el['client' + type] || body['client' + type] || 0)
-      })
-      const fix = scroll.top > element.top - this.offset
+          (this.$el['client' + type] || body['client' + type] || 0);
+      });
+      const fix = scroll.top > element.top - this.offset;
       if (this.affixed !== fix) {
-        this.affixed = fix
-        this.$emit(this.affixed ? 'affix' : 'unfix')
+        this.affixed = fix;
+        this.$emit(this.affixed ? 'affix' : 'unfix');
         this.$nextTick(() => {
-          this.$emit(this.affixed ? 'affixed' : 'unfixed')
-        })
+          this.$emit(this.affixed ? 'affixed' : 'unfixed');
+        });
       }
     },
   },
-}
+};
 </script>

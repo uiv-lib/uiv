@@ -1,4 +1,4 @@
-const { exec } = require('child_process')
+const { exec } = require('child_process');
 
 const files = [
   'services/notification/Notification.js',
@@ -33,26 +33,26 @@ const files = [
   'components/timepicker/TimePicker.vue',
   'components/tooltip/Tooltip.vue',
   'components/typeahead/Typeahead.vue',
-]
+];
 
 function e(command, options) {
   return new Promise((resolve, reject) => {
     exec(command, options, (error, stdout, stderr) => {
       if (error) {
-        console.error(`exec error: ${error}`)
-        reject(error)
-        process.exit(1)
+        console.error(`exec error: ${error}`);
+        reject(error);
+        process.exit(1);
       }
-      console.log(`stdout: ${stdout}`)
-      console.error(`stderr: ${stderr}`)
-      resolve()
-    })
-  })
+      console.log(`stdout: ${stdout}`);
+      console.error(`stderr: ${stderr}`);
+      resolve();
+    });
+  });
 }
 
-;(async function () {
+(async function () {
   for (const file of files) {
-    const prefix = file.startsWith('directives') ? 'v_' : ''
+    const prefix = file.startsWith('directives') ? 'v_' : '';
 
     await e('npx vite build -c build/vite.config.js', {
       env: {
@@ -60,6 +60,6 @@ function e(command, options) {
         UIV_ENTRY: file,
         UIV_FILENAME: `${prefix + file.split('/').pop().split('.')[0]}.js`,
       },
-    })
+    });
   }
-})()
+})();

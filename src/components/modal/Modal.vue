@@ -59,8 +59,8 @@
 </template>
 
 <script>
-import Local from '../../mixins/locale.mixin'
-import Btn from './../button/Btn.vue'
+import Local from '../../mixins/locale.mixin';
+import Btn from './../button/Btn.vue';
 import {
   EVENTS,
   on,
@@ -72,10 +72,10 @@ import {
   getComputedStyle,
   getOpenModals,
   getOpenModalNum,
-} from '../../utils/dom.utils'
-import { isFunction, isPromiseSupported } from '../../utils/object.utils'
+} from '../../utils/dom.utils';
+import { isFunction, isPromiseSupported } from '../../utils/object.utils';
 
-const IN = 'in'
+const IN = 'in';
 
 export default {
   components: { Btn },
@@ -143,66 +143,66 @@ export default {
   data() {
     return {
       msg: '',
-    }
+    };
   },
   computed: {
     modalSizeClass() {
       return {
         [`modal-${this.size}`]: Boolean(this.size),
-      }
+      };
     },
   },
   watch: {
     modelValue(v) {
-      this.$toggle(v)
+      this.$toggle(v);
     },
   },
   mounted() {
-    removeFromDom(this.$refs.backdrop)
-    on(window, EVENTS.MOUSE_DOWN, this.suppressBackgroundClose)
-    on(window, EVENTS.KEY_UP, this.onKeyPress)
+    removeFromDom(this.$refs.backdrop);
+    on(window, EVENTS.MOUSE_DOWN, this.suppressBackgroundClose);
+    on(window, EVENTS.KEY_UP, this.onKeyPress);
     if (this.modelValue) {
-      this.$toggle(true)
+      this.$toggle(true);
     }
   },
   beforeUnmount() {
-    clearTimeout(this.timeoutId)
-    removeFromDom(this.$refs.backdrop)
-    removeFromDom(this.$el)
+    clearTimeout(this.timeoutId);
+    removeFromDom(this.$refs.backdrop);
+    removeFromDom(this.$el);
     if (getOpenModalNum() === 0) {
-      toggleBodyOverflow(true)
+      toggleBodyOverflow(true);
     }
-    off(window, EVENTS.MOUSE_DOWN, this.suppressBackgroundClose)
-    off(window, EVENTS.MOUSE_UP, this.unsuppressBackgroundClose)
-    off(window, EVENTS.KEY_UP, this.onKeyPress)
+    off(window, EVENTS.MOUSE_DOWN, this.suppressBackgroundClose);
+    off(window, EVENTS.MOUSE_UP, this.unsuppressBackgroundClose);
+    off(window, EVENTS.KEY_UP, this.onKeyPress);
   },
   methods: {
     onKeyPress(event) {
       if (this.keyboard && this.modelValue && event.keyCode === 27) {
-        const thisModal = this.$refs.backdrop
-        let thisZIndex = thisModal.style.zIndex
+        const thisModal = this.$refs.backdrop;
+        let thisZIndex = thisModal.style.zIndex;
         thisZIndex =
-          thisZIndex && thisZIndex !== 'auto' ? parseInt(thisZIndex) : 0
+          thisZIndex && thisZIndex !== 'auto' ? parseInt(thisZIndex) : 0;
         // Find out if this modal is the top most one.
-        const modals = getOpenModals()
-        const modalsLength = modals.length
+        const modals = getOpenModals();
+        const modalsLength = modals.length;
         for (let i = 0; i < modalsLength; i++) {
           if (modals[i] !== thisModal) {
-            let zIndex = modals[i].style.zIndex
-            zIndex = zIndex && zIndex !== 'auto' ? parseInt(zIndex) : 0
+            let zIndex = modals[i].style.zIndex;
+            zIndex = zIndex && zIndex !== 'auto' ? parseInt(zIndex) : 0;
             // if any existing modal has higher zIndex, ignore
             if (zIndex > thisZIndex) {
-              return
+              return;
             }
           }
         }
-        this.toggle(false)
+        this.toggle(false);
       }
     },
     toggle(show, msg) {
-      let shouldClose = true
+      let shouldClose = true;
       if (isFunction(this.beforeClose)) {
-        shouldClose = this.beforeClose(msg)
+        shouldClose = this.beforeClose(msg);
       }
 
       if (isPromiseSupported()) {
@@ -211,110 +211,110 @@ export default {
         Promise.resolve(shouldClose).then((shouldClose) => {
           // Skip the hiding while show===false
           if (!show && shouldClose) {
-            this.msg = msg
-            this.$emit('update:modelValue', show)
+            this.msg = msg;
+            this.$emit('update:modelValue', show);
           }
-        })
+        });
       } else {
         // Fallback to old version if promise is not supported
         // skip the hiding while show===false & beforeClose returning falsely value
         if (!show && !shouldClose) {
-          return
+          return;
         }
 
-        this.msg = msg
-        this.$emit('update:modelValue', show)
+        this.msg = msg;
+        this.$emit('update:modelValue', show);
       }
     },
     $toggle(show) {
-      const modal = this.$el
-      const backdrop = this.$refs.backdrop
-      clearTimeout(this.timeoutId)
+      const modal = this.$el;
+      const backdrop = this.$refs.backdrop;
+      clearTimeout(this.timeoutId);
       if (show) {
         // If two modals share the same v-if condition the calculated z-index is incorrect,
         // resulting in popover misbehaviour.
         // solved by adding a nextTick.
         // https://github.com/uiv-lib/uiv/issues/342
         this.$nextTick(() => {
-          const alreadyOpenModalNum = getOpenModalNum()
-          document.body.appendChild(backdrop)
+          const alreadyOpenModalNum = getOpenModalNum();
+          document.body.appendChild(backdrop);
           if (this.appendToBody) {
-            document.body.appendChild(modal)
+            document.body.appendChild(modal);
           }
-          modal.style.display = this.displayStyle
-          modal.scrollTop = 0
-          backdrop.offsetHeight // force repaint
-          toggleBodyOverflow(false)
-          addClass(backdrop, IN)
-          addClass(modal, IN)
+          modal.style.display = this.displayStyle;
+          modal.scrollTop = 0;
+          backdrop.offsetHeight; // force repaint
+          toggleBodyOverflow(false);
+          addClass(backdrop, IN);
+          addClass(modal, IN);
           // fix z-index for nested modals
           // no need to calculate if no modal is already open
           if (alreadyOpenModalNum > 0) {
-            const modalBaseZ = parseInt(getComputedStyle(modal).zIndex) || 1050 // 1050 is default modal z-Index
+            const modalBaseZ = parseInt(getComputedStyle(modal).zIndex) || 1050; // 1050 is default modal z-Index
             const backdropBaseZ =
-              parseInt(getComputedStyle(backdrop).zIndex) || 1040 // 1040 is default backdrop z-Index
-            const offset = alreadyOpenModalNum * this.zOffset
-            modal.style.zIndex = `${modalBaseZ + offset}`
-            backdrop.style.zIndex = `${backdropBaseZ + offset}`
+              parseInt(getComputedStyle(backdrop).zIndex) || 1040; // 1040 is default backdrop z-Index
+            const offset = alreadyOpenModalNum * this.zOffset;
+            modal.style.zIndex = `${modalBaseZ + offset}`;
+            backdrop.style.zIndex = `${backdropBaseZ + offset}`;
           }
           // z-index fix end
           this.timeoutId = setTimeout(() => {
             if (this.autoFocus) {
-              const btn = this.$el.querySelector('[data-action="auto-focus"]')
+              const btn = this.$el.querySelector('[data-action="auto-focus"]');
               if (btn) {
-                btn.focus()
+                btn.focus();
                 /* START.TESTS_ONLY */
                 /* istanbul ignore next */
-                btn.setAttribute('data-focused', 'true')
+                btn.setAttribute('data-focused', 'true');
                 /* END.TESTS_ONLY */
               }
             }
-            this.$emit('show')
-            this.timeoutId = 0
-          }, this.transition)
-        })
+            this.$emit('show');
+            this.timeoutId = 0;
+          }, this.transition);
+        });
       } else {
-        removeClass(backdrop, IN)
-        removeClass(modal, IN)
+        removeClass(backdrop, IN);
+        removeClass(modal, IN);
         this.timeoutId = setTimeout(() => {
-          modal.style.display = 'none'
-          removeFromDom(backdrop)
+          modal.style.display = 'none';
+          removeFromDom(backdrop);
           if (this.appendToBody) {
-            removeFromDom(modal)
+            removeFromDom(modal);
           }
           if (getOpenModalNum() === 0) {
-            toggleBodyOverflow(true)
+            toggleBodyOverflow(true);
           }
-          this.$emit('hide', this.msg || 'dismiss')
-          this.msg = ''
-          this.timeoutId = 0
+          this.$emit('hide', this.msg || 'dismiss');
+          this.msg = '';
+          this.timeoutId = 0;
           // restore z-index for nested modals
-          modal.style.zIndex = ''
-          backdrop.style.zIndex = ''
+          modal.style.zIndex = '';
+          backdrop.style.zIndex = '';
           // z-index fix end
-        }, this.transition)
+        }, this.transition);
       }
     },
     suppressBackgroundClose(event) {
       if (event && event.target === this.$el) {
-        return
+        return;
       }
-      this.isCloseSuppressed = true
-      on(window, 'mouseup', this.unsuppressBackgroundClose)
+      this.isCloseSuppressed = true;
+      on(window, 'mouseup', this.unsuppressBackgroundClose);
     },
     unsuppressBackgroundClose() {
       if (this.isCloseSuppressed) {
-        off(window, 'mouseup', this.unsuppressBackgroundClose)
+        off(window, 'mouseup', this.unsuppressBackgroundClose);
         setTimeout(() => {
-          this.isCloseSuppressed = false
-        }, 1)
+          this.isCloseSuppressed = false;
+        }, 1);
       }
     },
     backdropClicked(event) {
       if (this.backdrop && !this.isCloseSuppressed) {
-        this.toggle(false)
+        this.toggle(false);
       }
     },
   },
-}
+};
 </script>

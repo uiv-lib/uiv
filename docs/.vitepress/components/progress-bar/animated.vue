@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       progress: 40,
-    }
+    };
   },
-}
+};
 </script>
