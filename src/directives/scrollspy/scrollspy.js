@@ -141,12 +141,12 @@ ScrollSpy.prototype.clear = function () {
 const INSTANCE = '_uiv_scrollspy_instance';
 const events = [EVENTS.RESIZE, EVENTS.SCROLL];
 
-const bind = (el, binding) => {
+const beforeMount = (el, binding) => {
   // console.log('bind')
-  unbind(el);
+  unmounted(el);
 };
 
-const inserted = (el, binding) => {
+const mounted = (el, binding) => {
   // console.log('inserted')
   const scrollSpy = new ScrollSpy(el, binding.arg, binding.value);
   if (scrollSpy.scrollElement) {
@@ -160,7 +160,7 @@ const inserted = (el, binding) => {
   el[INSTANCE] = scrollSpy;
 };
 
-const unbind = (el) => {
+const unmounted = (el) => {
   // console.log('unbind')
   const instance = el[INSTANCE];
   if (instance && instance.scrollElement) {
@@ -171,19 +171,19 @@ const unbind = (el) => {
   }
 };
 
-const update = (el, binding) => {
+const updated = (el, binding) => {
   // console.log('update')
   const isArgUpdated = binding.arg !== binding.oldArg;
   const isValueUpdated = binding.value !== binding.oldValue;
   if (isArgUpdated || isValueUpdated) {
-    bind(el, binding);
-    inserted(el, binding);
+    beforeMount(el, binding);
+    mounted(el, binding);
   }
 };
 
 export default {
-  beforeMount: bind,
-  unmounted: unbind,
-  updated: update,
-  mounted: inserted,
+  beforeMount,
+  mounted,
+  updated,
+  unmounted,
 };

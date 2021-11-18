@@ -4,9 +4,9 @@ import { hasOwnProperty } from '../../utils/object.utils';
 
 const INSTANCE = '_uiv_popover_instance';
 
-const bind = (el, binding) => {
+const mounted = (el, binding) => {
   // console.log('bind')
-  unbind(el);
+  unmounted(el);
   const options = [];
   for (const key in binding.modifiers) {
     if (hasOwnProperty(binding.modifiers, key) && binding.modifiers[key]) {
@@ -54,7 +54,7 @@ const bind = (el, binding) => {
   el[INSTANCE] = container;
 };
 
-const unbind = (el) => {
+const unmounted = (el) => {
   // console.log('unbind')
   const instance = el[INSTANCE];
   if (instance) {
@@ -63,11 +63,11 @@ const unbind = (el) => {
   delete el[INSTANCE];
 };
 
-const update = (el, binding) => {
+const updated = (el, binding) => {
   // console.log('update')
   if (binding.value !== binding.oldValue) {
-    bind(el, binding);
+    mounted(el, binding);
   }
 };
 
-export default { mounted: bind, unmounted: unbind, updated: update };
+export default { mounted, unmounted, updated };

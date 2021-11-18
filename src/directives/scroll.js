@@ -4,29 +4,29 @@ import { isFunction } from '../utils/object.utils';
 const HANDLER = '_uiv_scroll_handler';
 const events = [EVENTS.RESIZE, EVENTS.SCROLL];
 
-const bind = (el, binding) => {
+const mounted = (el, binding) => {
   const callback = binding.value;
   if (!isFunction(callback)) {
     return;
   }
-  unbind(el);
+  unmounted(el);
   el[HANDLER] = callback;
   events.forEach((event) => {
     on(window, event, el[HANDLER]);
   });
 };
 
-const unbind = (el) => {
+const unmounted = (el) => {
   events.forEach((event) => {
     off(window, event, el[HANDLER]);
   });
   delete el[HANDLER];
 };
 
-const update = (el, binding) => {
+const updated = (el, binding) => {
   if (binding.value !== binding.oldValue) {
-    bind(el, binding);
+    mounted(el, binding);
   }
 };
 
-export default { mounted: bind, unmounted: unbind, updated: update };
+export default { mounted, unmounted, updated };
