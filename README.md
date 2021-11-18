@@ -10,8 +10,10 @@
 <a href="https://github.com/uiv-lib/uiv"><img src="https://badgen.net/github/license/uiv-lib/uiv" alt="License"></a>
 </p>
 
+## Maintainers wanted!
 
-If this project has helped you out, please support it with a star :star2:.
+See https://github.com/uiv-lib/uiv/issues/653
+
 
 ## Introduction
 
@@ -23,6 +25,8 @@ If this project has helped you out, please support it with a star :star2:.
   * Individually import supported.
 * Vue 3 supported.
 * **SSR** (server-side rendering) supported.
+
+If this project has helped you out, please support it with a star :star2:.
 
 ## Versions
 
