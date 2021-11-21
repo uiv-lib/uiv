@@ -18,18 +18,13 @@
     >
   </section>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      show: true,
-      alerts: [],
-    };
-  },
-  methods: {
-    addDismissibleAlert() {
-      this.alerts.push({ key: new Date().getTime() });
-    },
-  },
-};
+<script setup>
+import { reactive, ref } from 'vue';
+
+const show = ref(true);
+const alerts = reactive([]);
+
+function addDismissibleAlert() {
+  alerts.push({ key: new Date().getTime() });
+}
 </script>

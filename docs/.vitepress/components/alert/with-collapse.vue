@@ -9,12 +9,8 @@
     </collapse>
   </section>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      show: true,
-    };
-  },
-};
+<script setup>
+import { ref } from 'vue';
+
+const show = ref(true);
 </script>

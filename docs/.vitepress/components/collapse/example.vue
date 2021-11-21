@@ -9,12 +9,8 @@
     </collapse>
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      show: false,
-    };
-  },
-};
+<script setup>
+import { ref } from 'vue';
+
+const show = ref(false);
 </script>

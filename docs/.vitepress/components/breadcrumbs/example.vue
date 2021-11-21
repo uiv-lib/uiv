@@ -3,16 +3,12 @@
     <breadcrumbs :items="items" />
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      items: [
-        { text: 'Home', href: '#' },
-        { text: 'Library', href: '#' },
-        { text: 'Data', href: '#' },
-      ],
-    };
-  },
-};
+<script setup>
+import { ref } from 'vue';
+
+const items = ref([
+  { text: 'Home', href: '#' },
+  { text: 'Library', href: '#' },
+  { text: 'Data', href: '#' },
+]);
 </script>

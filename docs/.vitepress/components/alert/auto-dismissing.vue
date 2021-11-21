@@ -14,18 +14,13 @@
     >
   </section>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      alerts: [],
-      duration: 2000,
-    };
-  },
-  methods: {
-    addAutoDismissAlert() {
-      this.alerts.push({ key: new Date().getTime() });
-    },
-  },
-};
+<script setup>
+import { reactive } from 'vue';
+
+const alerts = reactive([]);
+const duration = 2000;
+
+function addAutoDismissAlert() {
+  alerts.push({ key: new Date().getTime() });
+}
 </script>

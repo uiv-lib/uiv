@@ -12,12 +12,8 @@
     <alert>Selected: {{ model }}</alert>
   </section>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      model: '1',
-    };
-  },
-};
+<script setup>
+import { ref } from 'vue';
+
+const model = ref('1');
 </script>
