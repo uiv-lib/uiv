@@ -8,7 +8,7 @@
 
 <script setup>
 import vScroll from './../../directives/scroll';
-import { computed, defineProps, ref, nextTick } from 'vue';
+import { computed, ref, nextTick } from 'vue';
 
 const props = defineProps({
   offset: {

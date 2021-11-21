@@ -13,50 +13,46 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    dismissible: {
-      type: Boolean,
-      default: false,
-    },
-    duration: {
-      type: Number,
-      default: 0,
-    },
-    type: {
-      type: String,
-      default: 'info',
-    },
+<script setup>
+import { computed, onMounted, onUnmounted } from 'vue';
+
+const props = defineProps({
+  dismissible: {
+    type: Boolean,
+    default: false,
   },
-  emits: ['dismissed'],
-  data() {
-    return {
-      timeout: 0,
-    };
+  duration: {
+    type: Number,
+    default: 0,
   },
-  computed: {
-    alertClass() {
-      return {
-        alert: true,
-        [`alert-${this.type}`]: Boolean(this.type),
-        'alert-dismissible': this.dismissible,
-      };
-    },
+  type: {
+    type: String,
+    default: 'info',
   },
-  mounted() {
-    if (this.duration > 0) {
-      this.timeout = setTimeout(this.closeAlert, this.duration);
-    }
-  },
-  unmounted() {
-    clearTimeout(this.timeout);
-  },
-  methods: {
-    closeAlert() {
-      clearTimeout(this.timeout);
-      this.$emit('dismissed');
-    },
-  },
-};
+});
+
+const emit = defineEmits(['dismissed']);
+
+let timeout = 0;
+
+const alertClass = computed(() => ({
+  alert: true,
+  [`alert-${props.type}`]: !!props.type,
+  'alert-dismissible': props.dismissible,
+}));
+
+function closeAlert() {
+  clearTimeout(timeout);
+  emit('dismissed');
+}
+
+onMounted(() => {
+  if (props.duration > 0) {
+    timeout = setTimeout(closeAlert, props.duration);
+  }
+});
+
+onUnmounted(() => {
+  clearTimeout(timeout);
+});
 </script>

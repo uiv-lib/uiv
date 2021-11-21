@@ -1,28 +1,28 @@
 <template>
   <li :class="{ active }">
     <slot v-if="active" />
-    <router-link
+    <RouterLink
       v-else-if="to"
       :to="to"
       :replace="replace"
       :append="append"
       :exact="exact"
       ><slot
-    /></router-link>
+    /></RouterLink>
     <a v-else :href="href" :target="target"><slot /></a>
   </li>
 </template>
 
-<script>
-import linkMixin from '../../mixins/link.mixin';
-
-export default {
-  mixins: [linkMixin],
-  props: {
-    active: {
-      type: Boolean,
-      default: false,
-    },
-  },
-};
+<script setup>
+defineProps({
+  // <a> props
+  href: { type: String, default: undefined },
+  target: { type: String, default: undefined },
+  // <router-link> props
+  to: { type: null, default: undefined },
+  replace: { type: Boolean, default: false },
+  append: { type: Boolean, default: false },
+  exact: { type: Boolean, default: false },
+  active: { type: Boolean, default: false },
+});
 </script>
