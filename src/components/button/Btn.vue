@@ -9,7 +9,7 @@
   >
     <slot />
   </a>
-  <router-link
+  <RouterLink
     v-else-if="to"
     :to="to"
     :class="classes"
@@ -20,7 +20,7 @@
     role="button"
     @click="onClick"
     ><slot
-  /></router-link>
+  /></RouterLink>
   <label v-else-if="inputType" :class="classes" @click="onClick">
     <input
       autocomplete="off"
@@ -53,102 +53,72 @@
   </button>
 </template>
 
-<script>
-import linkMixin from '../../mixins/link.mixin';
+<script setup>
 import BtnGroup from './BtnGroup.vue';
+import { computed } from 'vue';
 
-const INPUT_TYPE_CHECKBOX = 'checkbox';
-const INPUT_TYPE_RADIO = 'radio';
+const props = defineProps({
+  // <a> props
+  href: { type: String, default: undefined },
+  target: { type: String, default: undefined },
+  // <router-link> props
+  to: { type: null, default: undefined },
+  replace: { type: Boolean, default: false },
+  append: { type: Boolean, default: false },
+  exact: { type: Boolean, default: false },
+  justified: { type: Boolean, default: false },
+  type: { type: String, default: 'default' },
+  nativeType: { type: String, default: 'button' },
+  size: { type: String, default: undefined },
+  block: { type: Boolean, default: false },
+  active: { type: Boolean, default: false },
+  disabled: { type: Boolean, default: false },
+  // <input> props
+  modelValue: { type: null, default: null },
+  inputValue: { type: null, default: null },
+  inputType: {
+    type: String,
+    validator(value) {
+      return value === 'checkbox' || value === 'radio';
+    },
+    default: undefined,
+  },
+});
 
-export default {
-  components: { BtnGroup },
-  mixins: [linkMixin],
-  props: {
-    justified: {
-      type: Boolean,
-      default: false,
-    },
-    type: {
-      type: String,
-      default: 'default',
-    },
-    nativeType: {
-      type: String,
-      default: 'button',
-    },
-    size: {
-      type: String,
-      default: undefined,
-    },
-    block: {
-      type: Boolean,
-      default: false,
-    },
-    active: {
-      type: Boolean,
-      default: false,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    // <input> props
-    modelValue: {
-      type: null,
-      default: null,
-    },
-    inputValue: {
-      type: null,
-      default: null,
-    },
-    inputType: {
-      type: String,
-      validator(value) {
-        return value === INPUT_TYPE_CHECKBOX || value === INPUT_TYPE_RADIO;
-      },
-      default: undefined,
-    },
-  },
-  emits: ['update:modelValue'],
-  computed: {
-    isInputActive() {
-      return this.inputType === INPUT_TYPE_CHECKBOX
-        ? this.modelValue.indexOf(this.inputValue) >= 0
-        : this.modelValue === this.inputValue;
-    },
-    classes() {
-      return {
-        btn: true,
-        active: this.inputType ? this.isInputActive : this.active,
-        disabled: this.disabled,
-        'btn-block': this.block,
-        [`btn-${this.type}`]: Boolean(this.type),
-        [`btn-${this.size}`]: Boolean(this.size),
-      };
-    },
-  },
-  methods: {
-    onClick(e) {
-      if (this.disabled && e instanceof Event) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    },
-    onInputChange() {
-      if (this.inputType === INPUT_TYPE_CHECKBOX) {
-        const valueCopied = this.modelValue.slice();
-        if (this.isInputActive) {
-          valueCopied.splice(valueCopied.indexOf(this.inputValue), 1);
-        } else {
-          valueCopied.push(this.inputValue);
-        }
-        this.$emit('update:modelValue', valueCopied);
-      } else {
-        this.$emit('update:modelValue', this.inputValue);
-      }
-    },
-  },
-};
+const emit = defineEmits(['update:modelValue']);
+
+const isInputActive = computed(() =>
+  props.inputType === 'checkbox'
+    ? props.modelValue.indexOf(props.inputValue) >= 0
+    : props.modelValue === props.inputValue
+);
+const classes = computed(() => ({
+  btn: true,
+  active: props.inputType ? isInputActive.value : props.active,
+  disabled: props.disabled,
+  'btn-block': props.block,
+  [`btn-${props.type}`]: Boolean(props.type),
+  [`btn-${props.size}`]: Boolean(props.size),
+}));
+
+function onClick(e) {
+  if (props.disabled && e instanceof Event) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+}
+
+function onInputChange() {
+  if (props.inputType === 'checkbox') {
+    const valueCopied = props.modelValue.slice();
+    if (isInputActive.value) {
+      valueCopied.splice(valueCopied.indexOf(props.inputValue), 1);
+    } else {
+      valueCopied.push(props.inputValue);
+    }
+    emit('update:modelValue', valueCopied);
+  } else {
+    emit('update:modelValue', props.inputValue);
+  }
+}
 </script>
-
-<style scoped></style>

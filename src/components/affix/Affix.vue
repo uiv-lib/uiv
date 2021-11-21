@@ -11,10 +11,7 @@ import vScroll from './../../directives/scroll';
 import { computed, ref, nextTick } from 'vue';
 
 const props = defineProps({
-  offset: {
-    type: Number,
-    default: 0,
-  },
+  offset: { type: Number, default: 0 },
 });
 
 const emit = defineEmits(['affix', 'affixed', 'unfix', 'unfixed']);

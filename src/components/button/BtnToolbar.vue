@@ -3,3 +3,7 @@
     <slot />
   </div>
 </template>
+
+<script setup>
+// nothing
+</script>

@@ -17,18 +17,9 @@
 import { computed, onMounted, onUnmounted } from 'vue';
 
 const props = defineProps({
-  dismissible: {
-    type: Boolean,
-    default: false,
-  },
-  duration: {
-    type: Number,
-    default: 0,
-  },
-  type: {
-    type: String,
-    default: 'info',
-  },
+  dismissible: { type: Boolean, default: false },
+  duration: { type: Number, default: 0 },
+  type: { type: String, default: 'info' },
 });
 
 const emit = defineEmits(['dismissed']);

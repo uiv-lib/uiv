@@ -13,18 +13,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    size: { type: String, default: undefined },
-    vertical: {
-      type: Boolean,
-      default: false,
-    },
-    justified: {
-      type: Boolean,
-      default: false,
-    },
-  },
-};
+<script setup>
+defineProps({
+  size: { type: String, default: undefined },
+  vertical: { type: Boolean, default: false },
+  justified: { type: Boolean, default: false },
+});
 </script>
