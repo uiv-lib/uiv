@@ -108,7 +108,3 @@ Name      | Description
 Name        | Params | Description
 ----------- | ------ | ---------------
 `click`     |        | Click event of button / link.
-
-::: tip
-Use the `.native` modifier to capture browser native events such as: `@click.native="..."`, `@mouseover.native="..."`, etc.
-:::

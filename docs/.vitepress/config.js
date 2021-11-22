@@ -45,7 +45,6 @@ export default defineConfig({
 
 function navbar() {
   return [
-    { text: 'Home', link: '/' },
     {
       text: 'Usage',
       link: '/usage/getting-started',
@@ -56,9 +55,14 @@ function navbar() {
       link: '/components/btn',
       activeMatch: '^/components/',
     },
-    { text: '1.x', link: 'https://uiv-v1.wxsm.space' },
-    { text: '0.x', link: 'https://uiv-v0.wxsm.space' },
     { text: 'Funding', link: '/funding/' },
+    {
+      text: 'Versions',
+      items: [
+        { text: '1.x', link: 'https://uiv-v1.wxsm.space' },
+        { text: '0.x', link: 'https://uiv-v0.wxsm.space' },
+      ],
+    },
     { text: 'Changelog', link: 'https://github.com/uiv-lib/uiv/releases' },
   ];
 }
