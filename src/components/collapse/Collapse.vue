@@ -16,9 +16,11 @@ export default defineComponent({
     let timeoutId = 0;
     const element = ref(null);
 
-    function toggle(show) {
-      clearTimeout(timeoutId);
+    function toggle() {
+      const show = props.modelValue;
       const el = element.value;
+      // console.log('toggle', el, show);
+      clearTimeout(timeoutId);
       if (!el) {
         return;
       }
@@ -57,18 +59,10 @@ export default defineComponent({
       }
     }
 
-    watchEffect(() => {
-      toggle(props.modelValue);
-    });
+    watchEffect(toggle);
 
-    onMounted(() => {
-      addClass(element.value, COLLAPSE);
-      if (props.modelValue) {
-        addClass(element.value, IN);
-      }
-    });
-
-    return () => h(props.tag, { ref: element }, slots.default?.());
+    return () =>
+      h(props.tag, { ref: element, class: COLLAPSE }, slots.default?.());
   },
 });
 </script>
