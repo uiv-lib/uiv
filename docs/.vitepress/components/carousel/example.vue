@@ -38,25 +38,20 @@
     </form>
   </section>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      interval: 5000,
-      indicators: true,
-      controls: true,
-      slides: [
-        { title: 'Slide 1' },
-        { title: 'Slide 2' },
-        { title: 'Slide 3' },
-        { title: 'Slide 4' },
-      ],
-    };
-  },
-  methods: {
-    pushSlide() {
-      this.slides.push({ title: `Slide ${this.slides.length + 1}` });
-    },
-  },
-};
+<script setup>
+import { reactive, ref } from 'vue';
+
+const interval = ref(5000);
+const indicators = ref(true);
+const controls = ref(true);
+const slides = reactive([
+  { title: 'Slide 1' },
+  { title: 'Slide 2' },
+  { title: 'Slide 3' },
+  { title: 'Slide 4' },
+]);
+
+function pushSlide() {
+  slides.push({ title: `Slide ${slides.length + 1}` });
+}
 </script>

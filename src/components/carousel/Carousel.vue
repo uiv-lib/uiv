@@ -46,139 +46,145 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { isExist } from '../../utils/object.utils';
+import {
+  onBeforeUnmount,
+  onMounted,
+  reactive,
+  ref,
+  watch,
+  nextTick,
+} from 'vue';
 
-export default {
-  props: {
-    modelValue: {
-      type: Number,
-      default: undefined,
-    },
-    indicators: {
-      type: Boolean,
-      default: true,
-    },
-    controls: {
-      type: Boolean,
-      default: true,
-    },
-    interval: {
-      type: Number,
-      default: 5000,
-    },
-    iconControlLeft: {
-      type: String,
-      default: 'glyphicon glyphicon-chevron-left',
-    },
-    iconControlRight: {
-      type: String,
-      default: 'glyphicon glyphicon-chevron-right',
-    },
+const props = defineProps({
+  modelValue: { type: Number, default: undefined },
+  indicators: { type: Boolean, default: true },
+  controls: { type: Boolean, default: true },
+  interval: { type: Number, default: 5000 },
+  iconControlLeft: {
+    type: String,
+    default: 'glyphicon glyphicon-chevron-left',
   },
-  emits: ['update:modelValue', 'change'],
-  data() {
-    return {
-      slides: [],
-      activeIndex: 0, // Make v-model not required
-      timeoutId: 0,
-      intervalId: 0,
-    };
+  iconControlRight: {
+    type: String,
+    default: 'glyphicon glyphicon-chevron-right',
   },
-  watch: {
-    interval() {
-      this.startInterval();
-    },
-    modelValue(index, oldValue) {
-      this.run(index, oldValue);
-      this.activeIndex = index;
-    },
-  },
-  mounted() {
-    if (isExist(this.modelValue)) {
-      this.activeIndex = this.modelValue;
-    }
-    if (this.slides.length > 0) {
-      this.$select(this.activeIndex);
-    }
-    this.startInterval();
-  },
-  beforeUnmount() {
-    this.stopInterval();
-  },
-  methods: {
-    run(newIndex, oldIndex) {
-      const currentActiveIndex = oldIndex || 0;
-      let direction;
-      if (newIndex > currentActiveIndex) {
-        direction = ['next', 'left'];
-      } else {
-        direction = ['prev', 'right'];
+});
+
+const emit = defineEmits(['update:modelValue', 'change']);
+
+let activeIndex = ref(0);
+let timeoutId = 0;
+let intervalId = 0;
+const slides = reactive([]);
+
+function run(newIndex, oldIndex) {
+  const currentActiveIndex = oldIndex || 0;
+  let direction;
+  if (newIndex > currentActiveIndex) {
+    direction = ['next', 'left'];
+  } else {
+    direction = ['prev', 'right'];
+  }
+  slides[newIndex].exposed.slideClass[direction[0]] = true;
+  nextTick(() => {
+    slides[newIndex].vnode.el.offsetHeight;
+    slides.forEach((slide, i) => {
+      if (i === currentActiveIndex) {
+        slide.exposed.slideClass.active = true;
+        slide.exposed.slideClass[direction[1]] = true;
+      } else if (i === newIndex) {
+        slide.exposed.slideClass[direction[1]] = true;
       }
-      this.slides[newIndex].slideClass[direction[0]] = true;
-      this.$nextTick(() => {
-        this.slides[newIndex].$el.offsetHeight;
-        this.slides.forEach((slide, i) => {
-          if (i === currentActiveIndex) {
-            slide.slideClass.active = true;
-            slide.slideClass[direction[1]] = true;
-          } else if (i === newIndex) {
-            slide.slideClass[direction[1]] = true;
-          }
-        });
-        this.timeoutId = setTimeout(() => {
-          this.$select(newIndex);
-          this.$emit('change', newIndex);
-          this.timeoutId = 0;
-        }, 600);
-      });
-    },
-    startInterval() {
-      this.stopInterval();
-      if (this.interval > 0) {
-        this.intervalId = setInterval(() => {
-          this.next();
-        }, this.interval);
-      }
-    },
-    stopInterval() {
-      clearInterval(this.intervalId);
-      this.intervalId = 0;
-    },
-    resetAllSlideClass() {
-      this.slides.forEach((slide) => {
-        slide.slideClass.active = false;
-        slide.slideClass.left = false;
-        slide.slideClass.right = false;
-        slide.slideClass.next = false;
-        slide.slideClass.prev = false;
-      });
-    },
-    $select(index) {
-      this.resetAllSlideClass();
-      this.slides[index].slideClass.active = true;
-    },
-    select(index) {
-      if (this.timeoutId !== 0 || index === this.activeIndex) {
-        return;
-      }
-      if (isExist(this.modelValue)) {
-        this.$emit('update:modelValue', index);
-      } else {
-        this.run(index, this.activeIndex);
-        this.activeIndex = index;
-      }
-    },
-    prev() {
-      this.select(
-        this.activeIndex === 0 ? this.slides.length - 1 : this.activeIndex - 1
-      );
-    },
-    next() {
-      this.select(
-        this.activeIndex === this.slides.length - 1 ? 0 : this.activeIndex + 1
-      );
-    },
-  },
-};
+    });
+    timeoutId = setTimeout(() => {
+      _select(newIndex);
+      emit('change', newIndex);
+      timeoutId = 0;
+    }, 600);
+  });
+}
+
+function startInterval() {
+  stopInterval();
+  if (props.interval > 0) {
+    intervalId = setInterval(() => {
+      next();
+    }, props.interval);
+  }
+}
+
+function stopInterval() {
+  clearInterval(intervalId);
+  intervalId = 0;
+}
+
+function resetAllSlideClass() {
+  slides.forEach((slide) => {
+    slide.exposed.slideClass.active = false;
+    slide.exposed.slideClass.left = false;
+    slide.exposed.slideClass.right = false;
+    slide.exposed.slideClass.next = false;
+    slide.exposed.slideClass.prev = false;
+  });
+}
+
+function _select(index) {
+  resetAllSlideClass();
+  slides[index].exposed.slideClass.active = true;
+}
+
+function select(index) {
+  if (timeoutId !== 0 || index === activeIndex.value) {
+    return;
+  }
+  if (isExist(props.modelValue)) {
+    emit('update:modelValue', index);
+  } else {
+    run(index, activeIndex.value);
+    activeIndex.value = index;
+  }
+}
+
+function prev() {
+  select(activeIndex.value === 0 ? slides.length - 1 : activeIndex.value - 1);
+}
+
+function next() {
+  select(activeIndex.value === slides.length - 1 ? 0 : activeIndex.value + 1);
+}
+
+watch(
+  () => props.interval,
+  () => {
+    startInterval();
+  }
+);
+
+watch(
+  () => props.modelValue,
+  (index, oldValue) => {
+    run(index, oldValue);
+    activeIndex.value = index;
+  }
+);
+
+onMounted(() => {
+  if (isExist(props.modelValue)) {
+    activeIndex.value = props.modelValue;
+  }
+  if (slides.length > 0) {
+    _select(activeIndex.value);
+  }
+  startInterval();
+});
+
+onBeforeUnmount(() => {
+  stopInterval();
+});
+
+defineExpose({
+  slides,
+});
 </script>

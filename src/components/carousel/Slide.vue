@@ -4,31 +4,34 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { spliceIfExist } from '../../utils/array.utils';
+import {
+  onBeforeMount,
+  onBeforeUnmount,
+  getCurrentInstance,
+  reactive,
+} from 'vue';
 
-export default {
-  data() {
-    return {
-      slideClass: {
-        active: false,
-        prev: false,
-        next: false,
-        left: false,
-        right: false,
-      },
-    };
-  },
-  created() {
-    try {
-      this.$parent.slides.push(this);
-    } catch (e) {
-      throw new Error('Slide parent must be Carousel.');
-    }
-  },
-  beforeUnmount() {
-    const slides = this.$parent && this.$parent.slides;
-    spliceIfExist(slides, this);
-  },
-};
+const instance = getCurrentInstance();
+
+const slideClass = reactive({
+  active: false,
+  prev: false,
+  next: false,
+  left: false,
+  right: false,
+});
+
+onBeforeMount(() => {
+  instance.parent?.exposed?.slides?.push(instance);
+});
+
+onBeforeUnmount(() => {
+  spliceIfExist(instance.parent?.exposed?.slides, instance);
+});
+
+defineExpose({
+  slideClass,
+});
 </script>

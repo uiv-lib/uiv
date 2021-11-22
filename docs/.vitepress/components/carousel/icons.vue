@@ -16,19 +16,15 @@
     </carousel>
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      slides: [
-        { title: 'Slide 1' },
-        { title: 'Slide 2' },
-        { title: 'Slide 3' },
-        { title: 'Slide 4' },
-      ],
-    };
-  },
-};
+<script setup>
+import { reactive } from 'vue';
+
+const slides = reactive([
+  { title: 'Slide 1' },
+  { title: 'Slide 2' },
+  { title: 'Slide 3' },
+  { title: 'Slide 4' },
+]);
 </script>
 <style>
 /* Using custom icons may require some additional CSS declarations */

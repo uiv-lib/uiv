@@ -27,26 +27,22 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      slides: [
-        { title: 'Slide 1' },
-        { title: 'Slide 2' },
-        { title: 'Slide 3' },
-        { title: 'Slide 4' },
-      ],
-    };
-  },
-};
+<script setup>
+import { reactive } from 'vue';
+
+const slides = reactive([
+  { title: 'Slide 1' },
+  { title: 'Slide 2' },
+  { title: 'Slide 3' },
+  { title: 'Slide 4' },
+]);
 </script>
 <style>
 .uiv .custom-carousel-indicators li,
 .uiv .custom-carousel-indicators li.active {
-  width: 50px;
-  height: 8px;
-  margin: 0 3px;
-  border-radius: 0;
+  width: 50px !important;
+  height: 8px !important;
+  margin: 0 3px !important;
+  border-radius: 0 !important;
 }
 </style>
