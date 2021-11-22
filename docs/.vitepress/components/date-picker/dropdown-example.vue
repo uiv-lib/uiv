@@ -17,12 +17,8 @@
     </dropdown>
   </form>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      date: null,
-    };
-  },
-};
+<script setup>
+import { ref } from 'vue';
+
+const date = ref(null);
 </script>

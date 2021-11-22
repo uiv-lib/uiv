@@ -3,18 +3,14 @@
     <date-picker v-model="date" :limit-from="limitFrom" :limit-to="limitTo" />
   </div>
 </template>
-<script>
-export default {
-  data() {
-    const today = new Date();
-    const nextWeek = new Date();
-    nextWeek.setDate(nextWeek.getDate() + 7);
+<script setup>
+import { ref } from 'vue';
 
-    return {
-      date: null,
-      limitFrom: today,
-      limitTo: nextWeek,
-    };
-  },
-};
+const date = ref(null);
+
+const today = new Date();
+const nextWeek = new Date();
+nextWeek.setDate(nextWeek.getDate() + 7);
+const limitFrom = ref(today);
+const limitTo = ref(nextWeek);
 </script>

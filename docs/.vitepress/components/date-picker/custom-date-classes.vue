@@ -3,20 +3,17 @@
     <date-picker v-model="date" :date-class="dateClass" />
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      date: null,
-    };
-  },
-  methods: {
-    dateClass(date) {
-      return date.getDay() === 0 ? 'btn-sunday' : '';
-    },
-  },
-};
+
+<script setup>
+import { ref } from 'vue';
+
+const date = ref(null);
+
+function dateClass(d) {
+  return d.getDay() === 0 ? 'btn-sunday' : '';
+}
 </script>
+
 <style lang="less">
 .uiv .btn-sunday.btn-default,
 .uiv .btn-sunday.btn-primary {

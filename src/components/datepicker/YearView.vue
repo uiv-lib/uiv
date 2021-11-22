@@ -54,52 +54,53 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import Btn from './../button/Btn.vue';
+import { computed } from 'vue';
 
-export default {
-  components: { Btn },
-  props: {
-    year: { type: Number, default: undefined },
-    iconControlLeft: { type: String, default: undefined },
-    iconControlRight: { type: String, default: undefined },
-  },
-  emits: ['year-change', 'view-change'],
-  computed: {
-    rows() {
-      const rows = [];
-      const yearGroupStart = this.year - (this.year % 20);
-      for (let i = 0; i < 4; i++) {
-        rows.push([]);
-        for (let j = 0; j < 5; j++) {
-          rows[i].push(yearGroupStart + i * 5 + j);
-        }
-      }
-      return rows;
-    },
-    yearStr() {
-      const start = this.year - (this.year % 20);
-      return `${start} ~ ${start + 19}`;
-    },
-  },
-  methods: {
-    getBtnClass(year) {
-      if (year === this.year) {
-        return 'primary';
-      } else {
-        return 'default';
-      }
-    },
-    goPrevYear() {
-      this.$emit('year-change', this.year - 20);
-    },
-    goNextYear() {
-      this.$emit('year-change', this.year + 20);
-    },
-    changeView(year) {
-      this.$emit('year-change', year);
-      this.$emit('view-change', 'm');
-    },
-  },
-};
+const props = defineProps({
+  year: { type: Number, default: undefined },
+  iconControlLeft: { type: String, default: undefined },
+  iconControlRight: { type: String, default: undefined },
+});
+
+const emit = defineEmits(['year-change', 'view-change']);
+
+function getBtnClass(year) {
+  if (year === props.year) {
+    return 'primary';
+  } else {
+    return 'default';
+  }
+}
+
+function goPrevYear() {
+  emit('year-change', props.year - 20);
+}
+
+function goNextYear() {
+  emit('year-change', props.year + 20);
+}
+
+function changeView(year) {
+  emit('year-change', year);
+  emit('view-change', 'm');
+}
+
+const rows = computed(() => {
+  const rows = [];
+  const yearGroupStart = props.year - (props.year % 20);
+  for (let i = 0; i < 4; i++) {
+    rows.push([]);
+    for (let j = 0; j < 5; j++) {
+      rows[i].push(yearGroupStart + i * 5 + j);
+    }
+  }
+  return rows;
+});
+
+const yearStr = computed(() => {
+  const start = props.year - (props.year % 20);
+  return `${start} ~ ${start + 19}`;
+});
 </script>

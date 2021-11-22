@@ -1,12 +1,5 @@
 import newLocale from '../../locale/lang/zh-CN';
-import {
-  createWrapper,
-  nextTick,
-  sleep,
-  triggerEvent,
-} from '../../__test__/utils';
-import { RouterLinkStub } from '@vue/test-utils';
-import DatePicker from './DatePicker';
+import { createWrapper, nextTick, triggerEvent } from '../../__test__/utils';
 
 describe('DatePicker.vue', () => {
   let wrapper;
@@ -32,8 +25,7 @@ describe('DatePicker.vue', () => {
       }
     );
     await nextTick();
-    expect(wrapper.vm.$refs.datepicker.currentMonth).toEqual(7);
-    expect(wrapper.vm.$refs.datepicker.currentYear).toEqual(1991);
+    expect(wrapper.find('.uiv-datepicker-title').text()).toEqual('1991 August');
   });
 
   it('should be able to render custom year month str', async () => {
@@ -421,46 +413,5 @@ describe('DatePicker.vue', () => {
     expect(dateView.attributes('style')).not.toContain('display');
     const sundayBtn = dateView.findAll('.btn-sunday');
     expect(sundayBtn.length).toEqual(6);
-  });
-
-  it('should be able to use locale for custom translations', async () => {
-    const wrapper = createWrapper(
-      `<section>
-    <date-picker :locale="locale" v-model="date"/>
-  </section>`,
-      {
-        date: null,
-        locale: newLocale,
-      }
-    );
-    const locale = newLocale.uiv.datePicker;
-    await nextTick();
-    const picker = wrapper.findAll('[data-role="date-picker"]')[0];
-    expect(picker).toBeDefined();
-    const dateView = picker.findAll('table')[0];
-    const yearMonthBtn = dateView.find(
-      'thead tr:first-child td:nth-child(2) button'
-    );
-    const now = new Date();
-    expect(yearMonthBtn.text()).toContain(locale[`month${now.getMonth() + 1}`]);
-    const weekdays = dateView.findAll('thead tr:last-child td');
-    const weekdayNames = [];
-    for (let i = 0; i < weekdays.length; i++)
-      weekdayNames.push(weekdays[i].text());
-    const { week1, week2, week3, week4, week5, week6, week7 } = locale;
-    expect(weekdayNames).toEqual([
-      week7,
-      week1,
-      week2,
-      week3,
-      week4,
-      week5,
-      week6,
-    ]);
-    const { today, clear } = locale;
-    const todayBtn = picker.find('.text-center .btn-info');
-    expect(todayBtn.text()).toEqual(today);
-    const clearBtn = picker.find('.text-center .btn-default');
-    expect(clearBtn.text()).toEqual(clear);
   });
 });

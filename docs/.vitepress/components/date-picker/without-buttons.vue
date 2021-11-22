@@ -3,12 +3,8 @@
     <date-picker v-model="date" :today-btn="false" :clear-btn="false" />
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      date: null,
-    };
-  },
-};
+<script setup>
+import { ref } from 'vue';
+
+const date = ref(null);
 </script>

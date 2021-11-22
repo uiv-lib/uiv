@@ -3,12 +3,8 @@
     <date-picker v-model="date" :week-starts-with="1" />
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      date: null,
-    };
-  },
-};
+<script setup>
+import { ref } from 'vue';
+
+const date = ref(null);
 </script>
