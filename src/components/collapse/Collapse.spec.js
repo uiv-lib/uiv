@@ -82,6 +82,7 @@ describe('Collapse', () => {
         },
       }
     );
+    await sleep(400);
     const triggers = wrapper.findAll('.panel-heading');
     const collapse = wrapper.findAll('.collapse');
     expect(collapse[0].classes()).toEqual(['collapse', 'in']);
