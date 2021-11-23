@@ -93,70 +93,30 @@
 </template>
 
 <script>
-import Local from '../../mixins/locale.mixin';
+import { t } from '../../locale';
 import Dropdown from '../dropdown/Dropdown.vue';
 import { onlyUnique } from '../../utils/array.utils';
 
 export default {
   components: { Dropdown },
-  mixins: [Local],
   props: {
-    modelValue: {
-      type: Array,
-      required: true,
-    },
-    options: {
-      type: Array,
-      required: true,
-    },
-    labelKey: {
-      type: String,
-      default: 'label',
-    },
-    valueKey: {
-      type: String,
-      default: 'value',
-    },
-    limit: {
-      type: Number,
-      default: 0,
-    },
+    modelValue: { type: Array, required: true },
+    options: { type: Array, required: true },
+    labelKey: { type: String, default: 'label' },
+    valueKey: { type: String, default: 'value' },
+    limit: { type: Number, default: 0 },
     size: { type: String, default: undefined },
     placeholder: { type: String, default: undefined },
-    split: {
-      type: String,
-      default: ', ',
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    appendToBody: {
-      type: Boolean,
-      default: false,
-    },
-    block: {
-      type: Boolean,
-      default: false,
-    },
-    collapseSelected: {
-      type: Boolean,
-      default: false,
-    },
-    filterable: {
-      type: Boolean,
-      default: false,
-    },
-    filterAutoFocus: {
-      type: Boolean,
-      default: true,
-    },
+    split: { type: String, default: ', ' },
+    disabled: { type: Boolean, default: false },
+    appendToBody: { type: Boolean, default: false },
+    block: { type: Boolean, default: false },
+    collapseSelected: { type: Boolean, default: false },
+    filterable: { type: Boolean, default: false },
+    filterAutoFocus: { type: Boolean, default: true },
     filterFunction: { type: Function, default: undefined },
     filterPlaceholder: { type: String, default: undefined },
-    selectedIcon: {
-      type: String,
-      default: 'glyphicon glyphicon-ok',
-    },
+    selectedIcon: { type: String, default: 'glyphicon glyphicon-ok' },
     itemSelectedClass: { type: String, default: undefined },
   },
   emits: [
@@ -273,6 +233,7 @@ export default {
     this.els = [this.$el];
   },
   methods: {
+    t,
     goPrevOption() {
       if (!this.showDropdown) {
         return;

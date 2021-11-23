@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import Local from '../../mixins/locale.mixin';
+import { t } from '../../locale';
 import Btn from './../button/Btn.vue';
 import {
   EVENTS,
@@ -79,65 +79,25 @@ const IN = 'in';
 
 export default {
   components: { Btn },
-  mixins: [Local],
   props: {
-    modelValue: {
-      type: Boolean,
-      default: false,
-    },
+    modelValue: { type: Boolean, default: false },
     title: { type: String, default: undefined },
     size: { type: String, default: undefined },
-    backdrop: {
-      type: Boolean,
-      default: true,
-    },
-    footer: {
-      type: Boolean,
-      default: true,
-    },
-    header: {
-      type: Boolean,
-      default: true,
-    },
+    backdrop: { type: Boolean, default: true },
+    footer: { type: Boolean, default: true },
+    header: { type: Boolean, default: true },
     cancelText: { type: String, default: undefined },
-    cancelType: {
-      type: String,
-      default: 'default',
-    },
+    cancelType: { type: String, default: 'default' },
     okText: { type: String, default: undefined },
-    okType: {
-      type: String,
-      default: 'primary',
-    },
-    dismissBtn: {
-      type: Boolean,
-      default: true,
-    },
-    transition: {
-      type: Number,
-      default: 150,
-    },
-    autoFocus: {
-      type: Boolean,
-      default: false,
-    },
-    keyboard: {
-      type: Boolean,
-      default: true,
-    },
+    okType: { type: String, default: 'primary' },
+    dismissBtn: { type: Boolean, default: true },
+    transition: { type: Number, default: 150 },
+    autoFocus: { type: Boolean, default: false },
+    keyboard: { type: Boolean, default: true },
     beforeClose: { type: Function, default: undefined },
-    zOffset: {
-      type: Number,
-      default: 20,
-    },
-    appendToBody: {
-      type: Boolean,
-      default: false,
-    },
-    displayStyle: {
-      type: String,
-      default: 'block',
-    },
+    zOffset: { type: Number, default: 20 },
+    appendToBody: { type: Boolean, default: false },
+    displayStyle: { type: String, default: 'block' },
   },
   emits: ['update:modelValue', 'show', 'hide'],
   data() {
@@ -177,6 +137,7 @@ export default {
     off(window, EVENTS.KEY_UP, this.onKeyPress);
   },
   methods: {
+    t,
     onKeyPress(event) {
       if (this.keyboard && this.modelValue && event.keyCode === 27) {
         const thisModal = this.$refs.backdrop;

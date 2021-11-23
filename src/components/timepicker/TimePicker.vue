@@ -106,7 +106,7 @@
 </template>
 
 <script>
-import Local from '../../mixins/locale.mixin';
+import { t } from '../../locale';
 import Btn from './../button/Btn.vue';
 import { pad } from '../../utils/string.utils';
 
@@ -117,46 +117,21 @@ const cutUpAmAndPm = 12;
 
 export default {
   components: { Btn },
-  mixins: [Local],
   props: {
-    modelValue: {
-      type: Date,
-      required: true,
-    },
-    showMeridian: {
-      type: Boolean,
-      default: true,
-    },
+    modelValue: { type: Date, required: true },
+    showMeridian: { type: Boolean, default: true },
     min: { type: null, default: undefined },
     max: { type: null, default: undefined },
-    hourStep: {
-      type: Number,
-      default: 1,
-    },
-    minStep: {
-      type: Number,
-      default: 1,
-    },
-    readonly: {
-      type: Boolean,
-      default: false,
-    },
-    controls: {
-      type: Boolean,
-      default: true,
-    },
-    iconControlUp: {
-      type: String,
-      default: 'glyphicon glyphicon-chevron-up',
-    },
+    hourStep: { type: Number, default: 1 },
+    minStep: { type: Number, default: 1 },
+    readonly: { type: Boolean, default: false },
+    controls: { type: Boolean, default: true },
+    iconControlUp: { type: String, default: 'glyphicon glyphicon-chevron-up' },
     iconControlDown: {
       type: String,
       default: 'glyphicon glyphicon-chevron-down',
     },
-    inputWidth: {
-      type: Number,
-      default: 50,
-    },
+    inputWidth: { type: Number, default: 50 },
   },
   emits: ['update:modelValue'],
   data() {
@@ -218,6 +193,7 @@ export default {
     this.updateByValue(this.modelValue);
   },
   methods: {
+    t,
     updateByValue(value) {
       if (isNaN(value.getTime())) {
         this.hours = 0;

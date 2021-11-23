@@ -76,62 +76,34 @@
 
 <script>
 import { TYPES } from '../../constants/messagebox.constants';
-import Local from '../../mixins/locale.mixin';
+import { t } from '../../locale';
 import Modal from '../../components/modal/Modal.vue';
 import Btn from '../../components/button/Btn.vue';
 import { isExist } from '../../utils/object.utils';
 
 export default {
   components: { Modal, Btn },
-  mixins: [Local],
   props: {
     backdrop: { type: null, default: undefined },
     title: { type: String, default: undefined },
     content: { type: String, default: undefined },
-    html: {
-      type: Boolean,
-      default: false,
-    },
+    html: { type: Boolean, default: false },
     okText: { type: String, default: undefined },
-    okType: {
-      type: String,
-      default: 'primary',
-    },
+    okType: { type: String, default: 'primary' },
     cancelText: { type: String, default: undefined },
-    cancelType: {
-      type: String,
-      default: 'default',
-    },
-    type: {
-      type: Number,
-      default: TYPES.ALERT,
-    },
-    size: {
-      type: String,
-      default: 'sm',
-    },
-    cb: {
-      type: Function,
-      required: true,
-    },
+    cancelType: { type: String, default: 'default' },
+    type: { type: Number, default: TYPES.ALERT },
+    size: { type: String, default: 'sm' },
+    cb: { type: Function, required: true },
     validator: {
       type: Function,
       default: () => null,
     },
     customClass: { type: null, default: undefined },
     defaultValue: { type: String, default: undefined },
-    inputType: {
-      type: String,
-      default: 'text',
-    },
-    autoFocus: {
-      type: String,
-      default: 'ok',
-    },
-    reverseButtons: {
-      type: Boolean,
-      default: false,
-    },
+    inputType: { type: String, default: 'text' },
+    autoFocus: { type: String, default: 'ok' },
+    reverseButtons: { type: Boolean, default: false },
   },
   data() {
     return {
@@ -171,6 +143,7 @@ export default {
   //   console.log('unmounted')
   // },
   methods: {
+    t,
     toggle(show, msg) {
       this.$refs.modal.toggle(show, msg);
     },
