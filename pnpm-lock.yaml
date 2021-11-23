@@ -3,7 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@babel/preset-env': 7.16.4
   '@vitejs/plugin-vue': 1.10.0
-  '@vitejs/plugin-vue-jsx': 1.2.0
+  '@vitejs/plugin-vue-jsx': 1.3.0
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.22
   '@vue/test-utils': 2.0.0-rc.17
@@ -34,7 +34,7 @@ specifiers:
 devDependencies:
   '@babel/preset-env': 7.16.4
   '@vitejs/plugin-vue': 1.10.0_vite@2.6.14
-  '@vitejs/plugin-vue-jsx': 1.2.0
+  '@vitejs/plugin-vue-jsx': 1.3.0
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.22
   '@vue/test-utils': 2.0.0-rc.17_vue@3.2.22
@@ -172,7 +172,7 @@ packages:
     dependencies:
       '@babel/code-frame': 7.16.0
       '@babel/generator': 7.16.0
-      '@babel/helper-compilation-targets': 7.16.0_@babel+core@7.16.0
+      '@babel/helper-compilation-targets': 7.16.3_@babel+core@7.16.0
       '@babel/helper-module-transforms': 7.16.0
       '@babel/helpers': 7.16.0
       '@babel/parser': 7.16.2
@@ -213,19 +213,6 @@ packages:
       '@babel/types': 7.16.0
     dev: true
 
-  /@babel/helper-compilation-targets/7.16.0_@babel+core@7.16.0:
-    resolution: {integrity: sha512-S7iaOT1SYlqK0sQaCi21RX4+13hmdmnxIEAnQUB/eh7GeAnRjOUgTYpLkUOiRXzD+yog1JxP0qyAQZ7ZxVxLVg==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0
-    dependencies:
-      '@babel/compat-data': 7.16.4
-      '@babel/core': 7.16.0
-      '@babel/helper-validator-option': 7.14.5
-      browserslist: 4.17.6
-      semver: 6.3.0
-    dev: true
-
   /@babel/helper-compilation-targets/7.16.3:
     resolution: {integrity: sha512-vKsoSQAyBmxS35JUOOt+07cLc6Nk/2ljLIHwmq2/NM6hdioUaqEXq/S+nXvbvXbZkNDlWOymPanJGOc4CBjSJA==}
     engines: {node: '>=6.9.0'}
@@ -233,6 +220,19 @@ packages:
       '@babel/core': ^7.0.0
     dependencies:
       '@babel/compat-data': 7.16.4
+      '@babel/helper-validator-option': 7.14.5
+      browserslist: 4.17.6
+      semver: 6.3.0
+    dev: true
+
+  /@babel/helper-compilation-targets/7.16.3_@babel+core@7.16.0:
+    resolution: {integrity: sha512-vKsoSQAyBmxS35JUOOt+07cLc6Nk/2ljLIHwmq2/NM6hdioUaqEXq/S+nXvbvXbZkNDlWOymPanJGOc4CBjSJA==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0
+    dependencies:
+      '@babel/compat-data': 7.16.4
+      '@babel/core': 7.16.0
       '@babel/helper-validator-option': 7.14.5
       browserslist: 4.17.6
       semver: 6.3.0
@@ -1835,8 +1835,8 @@ packages:
       '@types/yargs-parser': 20.2.1
     dev: true
 
-  /@vitejs/plugin-vue-jsx/1.2.0:
-    resolution: {integrity: sha512-Y4Er2bn8bHNiUziJizcVT1yQKTq6oOJeBrKkxvjo2yKT/RTSK1ZlkP/qnzchxxuBkx0tYG4Aaxbb9xuVnNNDEA==}
+  /@vitejs/plugin-vue-jsx/1.3.0:
+    resolution: {integrity: sha512-mm2jT63s/DWapVWT62t7xsMmwqsLNj5LUpokSXWnlUv9oxPfZsAymhHs6byWxvuvC5jo3zzFMO7rs8ax4PcyxA==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@babel/core': 7.16.0
@@ -2463,7 +2463,7 @@ packages:
   /convert-source-map/1.8.0:
     resolution: {integrity: sha512-+OQdjP49zViI/6i7nIJpA8rAl4sV/JdPfU9nZs3VqOwGIgizICvuN2ru6fMd+4llL0tar18UYJXfZ/TWtmhUjA==}
     dependencies:
-      safe-buffer: registry.nlark.com/safe-buffer/5.1.2
+      safe-buffer: 5.1.2
     dev: true
 
   /core-js-compat/3.19.1:
@@ -4397,6 +4397,10 @@ packages:
       fsevents: 2.3.2
     dev: true
 
+  /safe-buffer/5.1.2:
+    resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==}
+    dev: true
+
   /saxes/5.0.1:
     resolution: {integrity: sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==}
     engines: {node: '>=10'}
@@ -4881,7 +4885,7 @@ packages:
     name: convert-source-map
     version: 1.8.0
     dependencies:
-      safe-buffer: mirrors.tencent.com/safe-buffer/5.1.2
+      safe-buffer: 5.1.2
     dev: true
 
   mirrors.tencent.com/decode-uri-component/0.2.0:
@@ -5008,12 +5012,6 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.0
-    dev: true
-
-  mirrors.tencent.com/safe-buffer/5.1.2:
-    resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: http://mirrors.tencent.com/npm/safe-buffer/-/safe-buffer-5.1.2.tgz}
-    name: safe-buffer
-    version: 5.1.2
     dev: true
 
   mirrors.tencent.com/slash/3.0.0:
@@ -5411,7 +5409,7 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
     dependencies:
-      minimist: registry.nlark.com/minimist/1.2.5
+      minimist: 1.2.5
     dev: true
 
   registry.nlark.com/kind-of/3.2.2:
@@ -5440,12 +5438,6 @@ packages:
     dependencies:
       braces: registry.nlark.com/braces/3.0.2
       picomatch: 2.3.0
-    dev: true
-
-  registry.nlark.com/minimist/1.2.5:
-    resolution: {integrity: sha1-Z9ZgFLZqaoqqDAg8X9WN9OTpdgI=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/minimist/download/minimist-1.2.5.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fminimist%2Fdownload%2Fminimist-1.2.5.tgz}
-    name: minimist
-    version: 1.2.5
     dev: true
 
   registry.nlark.com/nopt/5.0.0:
@@ -5537,12 +5529,6 @@ packages:
     name: require-directory
     version: 2.1.1
     engines: {node: '>=0.10.0'}
-    dev: true
-
-  registry.nlark.com/safe-buffer/5.1.2:
-    resolution: {integrity: sha1-mR7GnSluAxN0fVm9/St0XDX4go0=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/safe-buffer/download/safe-buffer-5.1.2.tgz}
-    name: safe-buffer
-    version: 5.1.2
     dev: true
 
   registry.nlark.com/safer-buffer/2.1.2:
