@@ -6,8 +6,14 @@ import {
   EVENTS,
   focus,
 } from '../../utils/dom.utils';
-import { isBoolean } from '../../utils/object.utils';
-import { defineComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import {
+  defineComponent,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch,
+  Teleport,
+} from 'vue';
 
 const DEFAULT_TAG = 'div';
 
@@ -80,13 +86,19 @@ export default defineComponent({
       if (props.disabled) {
         return;
       }
-      if (isBoolean(s)) {
+      if (typeof s === 'boolean') {
         show.value = s;
       } else {
         show.value = !show.value;
       }
       if (props.appendToBody) {
-        show.value ? appendDropdownToBody() : removeDropdownFromBody();
+        if (show.value) {
+          dropdown.value.style.display = 'block';
+          const positionElement = props.positionElement || element.value;
+          setDropdownPosition(dropdown.value, positionElement, props);
+        } else {
+          dropdown.value?.removeAttribute('style');
+        }
       }
       emit('update:modelValue', show.value);
     }
@@ -131,23 +143,6 @@ export default defineComponent({
       }
     }
 
-    function appendDropdownToBody() {
-      try {
-        const el = dropdown.value;
-        el.style.display = 'block';
-        document.body.appendChild(el);
-        const positionElement = props.positionElement || element.value;
-        setDropdownPosition(el, positionElement, props);
-      } catch (e) {
-        // Silent
-      }
-    }
-
-    function removeDropdownFromBody() {
-      dropdown.value?.removeAttribute('style');
-      element.value?.appendChild(dropdown.value);
-    }
-
     onMounted(() => {
       initTrigger();
       if (triggerEl.value) {
@@ -163,7 +158,6 @@ export default defineComponent({
     });
 
     onBeforeUnmount(() => {
-      removeDropdownFromBody();
       if (triggerEl.value) {
         off(triggerEl.value, EVENTS.CLICK, toggle);
         off(triggerEl.value, EVENTS.KEY_DOWN, onKeyPress);
@@ -193,15 +187,17 @@ export default defineComponent({
           }}
         >
           {slots.default?.()}
-          <ul
-            ref={dropdown}
-            class={{
-              'dropdown-menu': true,
-              'dropdown-menu-right': props.menuRight,
-            }}
-          >
-            {slots.dropdown?.()}
-          </ul>
+          <Teleport to="body" disabled={!props.appendToBody || !show.value}>
+            <ul
+              ref={dropdown}
+              class={{
+                'dropdown-menu': true,
+                'dropdown-menu-right': props.menuRight,
+              }}
+            >
+              {slots.dropdown?.()}
+            </ul>
+          </Teleport>
         </Tag>
       );
     };
