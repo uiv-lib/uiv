@@ -36,16 +36,25 @@
   </section>
 </template>
 <script>
+import { onMounted, ref } from 'vue';
+
 export default {
-  data() {
+  setup() {
+    const show = ref(false);
+    const dropdown = ref(null);
+    const ele = ref([]);
+    const selected = ref([]);
+
+    onMounted(() => {
+      ele.value.push(dropdown.value.$el);
+    });
+
     return {
-      show: false,
-      ele: [],
-      selected: [],
+      ele,
+      dropdown,
+      show,
+      selected,
     };
-  },
-  mounted() {
-    this.ele.push(this.$refs.dropdown.$el);
   },
 };
 </script>

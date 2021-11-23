@@ -7,93 +7,48 @@ import {
   focus,
 } from '../../utils/dom.utils';
 import { isBoolean } from '../../utils/object.utils';
-import { h } from 'vue';
+import { defineComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 const DEFAULT_TAG = 'div';
 
-export default {
+export default defineComponent({
   props: {
-    tag: {
-      type: String,
-      default: DEFAULT_TAG,
-    },
-    appendToBody: {
-      type: Boolean,
-      default: false,
-    },
+    tag: { type: String, default: DEFAULT_TAG },
+    appendToBody: { type: Boolean, default: false },
     modelValue: Boolean,
-    dropup: {
-      type: Boolean,
-      default: false,
-    },
-    menuRight: {
-      type: Boolean,
-      default: false,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
+    dropup: { type: Boolean, default: false },
+    menuRight: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
     notCloseElements: { type: Array, default: () => [] },
     positionElement: { type: null, default: undefined },
   },
   emits: ['update:modelValue'],
-  data() {
-    return {
-      show: false,
-      triggerEl: undefined,
-    };
-  },
-  watch: {
-    modelValue(v) {
-      this.toggle(v);
-    },
-  },
-  mounted() {
-    this.initTrigger();
-    if (this.triggerEl) {
-      on(this.triggerEl, EVENTS.CLICK, this.toggle);
-      on(this.triggerEl, EVENTS.KEY_DOWN, this.onKeyPress);
+  setup(props, { emit, slots }) {
+    const show = ref(false);
+    const triggerEl = ref(undefined);
+    const dropdown = ref(null);
+    const element = ref(null);
+
+    function getFocusItem() {
+      return dropdown.value?.querySelector('li > a:focus');
     }
-    on(this.$refs.dropdown, EVENTS.KEY_DOWN, this.onKeyPress);
-    on(window, EVENTS.CLICK, this.windowClicked);
-    on(window, EVENTS.TOUCH_END, this.windowClicked);
-    if (this.modelValue) {
-      this.toggle(true);
-    }
-  },
-  beforeUnmount() {
-    this.removeDropdownFromBody();
-    if (this.triggerEl) {
-      off(this.triggerEl, EVENTS.CLICK, this.toggle);
-      off(this.triggerEl, EVENTS.KEY_DOWN, this.onKeyPress);
-    }
-    off(this.$refs.dropdown, EVENTS.KEY_DOWN, this.onKeyPress);
-    off(window, EVENTS.CLICK, this.windowClicked);
-    off(window, EVENTS.TOUCH_END, this.windowClicked);
-  },
-  methods: {
-    getFocusItem() {
-      const dropdownEl = this.$refs.dropdown;
-      return dropdownEl.querySelector('li > a:focus');
-    },
-    onKeyPress(event) {
-      if (this.show) {
-        const dropdownEl = this.$refs.dropdown;
+
+    function onKeyPress(event) {
+      if (show.value) {
+        const dropdownEl = dropdown.value;
         const keyCode = event.keyCode;
         if (keyCode === 27) {
           // esc
-          this.toggle(false);
-          this.triggerEl && this.triggerEl.focus();
+          toggle(false);
+          triggerEl.value?.focus();
         } else if (keyCode === 13) {
           // enter
-          const currentFocus = this.getFocusItem();
-          currentFocus && currentFocus.click();
+          getFocusItem()?.click();
         } else if (keyCode === 38 || keyCode === 40) {
           // up || down
           event.preventDefault();
           event.stopPropagation();
-          const currentFocus = this.getFocusItem();
+          const currentFocus = getFocusItem();
           const items = dropdownEl.querySelectorAll('li:not(.disabled) > a');
           if (!currentFocus) {
             focus(items[0]);
@@ -111,42 +66,45 @@ export default {
           }
         }
       }
-    },
-    initTrigger() {
+    }
+
+    function initTrigger() {
       const trigger =
-        this.$el.querySelector('[data-role="trigger"]') ||
-        this.$el.querySelector('.dropdown-toggle') ||
-        this.$el.firstChild;
-      this.triggerEl =
-        trigger && trigger !== this.$refs.dropdown ? trigger : null;
-    },
-    toggle(show) {
-      if (this.disabled) {
+        element.value?.querySelector('[data-role="trigger"]') ||
+        element.value?.querySelector('.dropdown-toggle') ||
+        element.value?.firstChild;
+      triggerEl.value = trigger && trigger !== dropdown.value ? trigger : null;
+    }
+
+    function toggle(s) {
+      if (props.disabled) {
         return;
       }
-      if (isBoolean(show)) {
-        this.show = show;
+      if (isBoolean(s)) {
+        show.value = s;
       } else {
-        this.show = !this.show;
+        show.value = !show.value;
       }
-      if (this.appendToBody) {
-        this.show ? this.appendDropdownToBody() : this.removeDropdownFromBody();
+      if (props.appendToBody) {
+        show.value ? appendDropdownToBody() : removeDropdownFromBody();
       }
-      this.$emit('update:modelValue', this.show);
-    },
-    windowClicked(event) {
+      emit('update:modelValue', show.value);
+    }
+
+    function windowClicked(event) {
       const target = event.target;
-      if (this.show && target) {
+      if (show.value && target) {
         let targetInNotCloseElements = false;
-        if (this.notCloseElements) {
-          for (let i = 0, l = this.notCloseElements.length; i < l; i++) {
-            const isTargetInElement = this.notCloseElements[i].contains(target);
+        if (props.notCloseElements) {
+          for (let i = 0, l = props.notCloseElements.length; i < l; i++) {
+            const isTargetInElement =
+              props.notCloseElements[i].contains(target);
             let shouldBreak = isTargetInElement;
             /* istanbul ignore else */
-            if (this.appendToBody) {
-              const isTargetInDropdown = this.$refs.dropdown.contains(target);
+            if (props.appendToBody) {
+              const isTargetInDropdown = dropdown.value?.contains(target);
               const isElInElements =
-                this.notCloseElements.indexOf(this.$el) >= 0;
+                props.notCloseElements.indexOf(element.value) >= 0;
               shouldBreak =
                 isTargetInElement || (isTargetInDropdown && isElInElements);
             }
@@ -156,9 +114,9 @@ export default {
             }
           }
         }
-        const targetInDropdownBody = this.$refs.dropdown.contains(target);
+        const targetInDropdownBody = dropdown.value?.contains(target);
         const targetInTrigger =
-          this.$el.contains(target) && !targetInDropdownBody;
+          element.value?.contains(target) && !targetInDropdownBody;
         // normally, a dropdown select event is handled by @click that trigger after @touchend
         // then @touchend event have to be ignore in this case
         const targetInDropdownAndIsTouchEvent =
@@ -168,54 +126,85 @@ export default {
           !targetInNotCloseElements &&
           !targetInDropdownAndIsTouchEvent
         ) {
-          this.toggle(false);
+          toggle(false);
         }
       }
-    },
-    appendDropdownToBody() {
+    }
+
+    function appendDropdownToBody() {
       try {
-        const el = this.$refs.dropdown;
+        const el = dropdown.value;
         el.style.display = 'block';
         document.body.appendChild(el);
-        const positionElement = this.positionElement || this.$el;
-        setDropdownPosition(el, positionElement, this);
+        const positionElement = props.positionElement || element.value;
+        setDropdownPosition(el, positionElement, props);
       } catch (e) {
         // Silent
       }
-    },
-    removeDropdownFromBody() {
-      try {
-        const el = this.$refs.dropdown;
-        el.removeAttribute('style');
-        this.$el.appendChild(el);
-      } catch (e) {
-        // Silent
+    }
+
+    function removeDropdownFromBody() {
+      dropdown.value?.removeAttribute('style');
+      element.value?.appendChild(dropdown.value);
+    }
+
+    onMounted(() => {
+      initTrigger();
+      if (triggerEl.value) {
+        on(triggerEl.value, EVENTS.CLICK, toggle);
+        on(triggerEl.value, EVENTS.KEY_DOWN, onKeyPress);
       }
-    },
-  },
-  render() {
-    const Tag = this.tag;
-    return (
-      <Tag
-        class={{
-          'btn-group': this.tag === DEFAULT_TAG,
-          dropdown: !this.dropup,
-          dropup: this.dropup,
-          open: this.show,
-        }}
-      >
-        {this.$slots.default?.()}
-        <ul
-          ref="dropdown"
+      on(dropdown.value, EVENTS.KEY_DOWN, onKeyPress);
+      on(window, EVENTS.CLICK, windowClicked);
+      on(window, EVENTS.TOUCH_END, windowClicked);
+      if (props.modelValue) {
+        toggle(true);
+      }
+    });
+
+    onBeforeUnmount(() => {
+      removeDropdownFromBody();
+      if (triggerEl.value) {
+        off(triggerEl.value, EVENTS.CLICK, toggle);
+        off(triggerEl.value, EVENTS.KEY_DOWN, onKeyPress);
+      }
+      off(dropdown.value, EVENTS.KEY_DOWN, onKeyPress);
+      off(window, EVENTS.CLICK, windowClicked);
+      off(window, EVENTS.TOUCH_END, windowClicked);
+    });
+
+    watch(
+      () => props.modelValue,
+      (value) => {
+        toggle(value);
+      }
+    );
+
+    return () => {
+      const Tag = props.tag;
+      return (
+        <Tag
+          ref={element}
           class={{
-            'dropdown-menu': true,
-            'dropdown-menu-right': this.menuRight,
+            'btn-group': props.tag === DEFAULT_TAG,
+            dropdown: !props.dropup,
+            dropup: props.dropup,
+            open: show.value,
           }}
         >
-          {this.$slots.dropdown?.()}
-        </ul>
-      </Tag>
-    );
+          {slots.default?.()}
+          <ul
+            ref={dropdown}
+            class={{
+              'dropdown-menu': true,
+              'dropdown-menu-right': props.menuRight,
+            }}
+          >
+            {slots.dropdown?.()}
+          </ul>
+        </Tag>
+      );
+    };
   },
-};
+});
 </script>

@@ -1,4 +1,9 @@
-import { createWrapper, nextTick, triggerEvent } from '../../__test__/utils';
+import {
+  createWrapper,
+  nextTick,
+  triggerEvent,
+  windowClick,
+} from '../../__test__/utils';
 import Dropdown from './Dropdown';
 
 function appendToBodyVm() {
@@ -176,8 +181,7 @@ describe('Dropdown', () => {
     expect(dropdown.classes()).not.toContain('open');
     await triggerEvent(trigger, 'click');
     expect(dropdown.classes()).toContain('open');
-    // Simulate a window click
-    wrapper.vm.$refs.dropdown.windowClicked({ target: document.body });
+    windowClick(document.body);
     await nextTick();
     expect(dropdown.classes()).not.toContain('open');
   });
@@ -207,18 +211,15 @@ describe('Dropdown', () => {
     const dropdown = wrapper;
     expect(dropdown.element.tagName.toLowerCase()).toEqual('div');
     expect(dropdown.classes()).toContain('open');
-    // Simulate a window click
-    wrapper.vm.$refs.test.windowClicked({ target: wrapper.vm.$refs.li1 });
+    windowClick(wrapper.vm.$refs.li1);
     await nextTick();
     expect(dropdown.classes()).toContain('open');
-    // Simulate a window click
-    wrapper.vm.$refs.test.windowClicked({ target: document.body });
+    windowClick(document.body);
     await nextTick();
     expect(dropdown.classes()).not.toContain('open');
     wrapper.vm.show = true;
     await nextTick();
-    // Simulate a window click
-    wrapper.vm.$refs.test.windowClicked({ target: wrapper.vm.$refs.li2 });
+    windowClick(wrapper.vm.$refs.li2);
     await nextTick();
     expect(dropdown.classes()).not.toContain('open');
   });
