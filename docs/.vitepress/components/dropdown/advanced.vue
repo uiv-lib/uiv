@@ -1,15 +1,15 @@
 <template>
   <section class="uiv">
-    <alert>You selected: {{ selected }}</alert>
-    <dropdown
+    <Alert>You selected: {{ selected }}</Alert>
+    <Dropdown
       ref="dropdown"
       v-model="show"
       :not-close-elements="ele"
       class="dropdown-form"
     >
-      <btn type="primary" class="dropdown-toggle"
+      <Btn type="primary" class="dropdown-toggle"
         >Dropdown Form <span class="caret"></span
-      ></btn>
+      ></Btn>
       <template #dropdown>
         <li class="checkbox">
           <label>
@@ -29,35 +29,26 @@
           </label>
         </li>
         <li>
-          <btn block type="primary" @click="show = false">Apply</btn>
+          <Btn block type="primary" @click="show = false">Apply</Btn>
         </li>
       </template>
-    </dropdown>
+    </Dropdown>
   </section>
 </template>
-<script>
+
+<script setup>
 import { onMounted, ref } from 'vue';
 
-export default {
-  setup() {
-    const show = ref(false);
-    const dropdown = ref(null);
-    const ele = ref([]);
-    const selected = ref([]);
+const show = ref(false);
+const dropdown = ref(null);
+const ele = ref([]);
+const selected = ref([]);
 
-    onMounted(() => {
-      ele.value.push(dropdown.value.$el);
-    });
-
-    return {
-      ele,
-      dropdown,
-      show,
-      selected,
-    };
-  },
-};
+onMounted(() => {
+  ele.value.push(dropdown.value.$el);
+});
 </script>
+
 <style>
 .uiv .dropdown-form .dropdown-menu {
   padding: 10px;
