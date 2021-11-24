@@ -1,6 +1,6 @@
 <script>
 import { addClass, removeClass } from '../../utils/dom.utils';
-import { onMounted, ref, watchEffect, defineComponent, h } from 'vue';
+import { onMounted, ref, defineComponent, h, watch } from 'vue';
 
 export default defineComponent({
   props: {
@@ -59,7 +59,18 @@ export default defineComponent({
       }
     }
 
-    watchEffect(toggle);
+    watch(
+      () => props.modelValue,
+      () => {
+        toggle();
+      }
+    );
+
+    onMounted(() => {
+      if (props.modelValue) {
+        addClass(element.value, IN);
+      }
+    });
 
     return () =>
       h(props.tag, { ref: element, class: COLLAPSE }, slots.default?.());
