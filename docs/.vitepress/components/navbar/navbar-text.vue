@@ -1,10 +1,14 @@
 <template>
   <div class="uiv">
-    <navbar>
+    <Navbar>
       <template #brand>
         <a class="navbar-brand" href="#">Brand</a>
       </template>
-      <navbar-text>Signed in as wxsm</navbar-text>
-    </navbar>
+      <NavbarText>Signed in as wxsm</NavbarText>
+    </Navbar>
   </div>
 </template>
+
+<script setup>
+import { Navbar, NavbarText } from 'uiv';
+</script>

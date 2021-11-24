@@ -1,7 +1,7 @@
 <template>
   <section class="uiv">
-    <btn type="primary" @click="open = true">Launch Demo Modal</btn>
-    <modal
+    <Btn type="primary" @click="open = true">Launch Demo Modal</Btn>
+    <Modal
       id="modal-demo"
       ref="modal"
       v-model="open"
@@ -73,20 +73,23 @@
         magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
         ullamcorper nulla non metus auctor fringilla.
       </p>
-    </modal>
+    </Modal>
   </section>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      open: false,
-    };
-  },
-  methods: {
-    callback(msg) {
-      this.$notify(`Modal dismissed with msg '${msg}'.`);
-    },
-  },
-};
+
+<script setup>
+import {
+  Modal,
+  Btn,
+  Notification,
+  popover as vPopover,
+  tooltip as vTooltip,
+} from 'uiv';
+import { ref } from 'vue';
+
+const open = ref(false);
+
+function callback(msg) {
+  Notification.notify(`Modal dismissed with msg '${msg}'.`);
+}
 </script>

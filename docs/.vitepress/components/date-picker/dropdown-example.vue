@@ -1,24 +1,25 @@
 <template>
   <form class="form-inline uiv">
-    <dropdown class="form-group">
+    <Dropdown class="form-group">
       <div class="input-group">
         <input v-model="date" class="form-control" type="text" />
         <div class="input-group-btn">
-          <btn class="dropdown-toggle"
+          <Btn class="dropdown-toggle"
             ><i class="glyphicon glyphicon-calendar"></i
-          ></btn>
+          ></Btn>
         </div>
       </div>
       <template #dropdown>
         <li>
-          <date-picker v-model="date" />
+          <DatePicker v-model="date" />
         </li>
       </template>
-    </dropdown>
+    </Dropdown>
   </form>
 </template>
 <script setup>
 import { ref } from 'vue';
+import { DatePicker, Dropdown, Btn } from 'uiv';
 
 const date = ref(null);
 </script>

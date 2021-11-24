@@ -1,25 +1,25 @@
 <template>
   <div class="uiv">
-    <navbar>
+    <Navbar>
       <template #brand>
         <a class="navbar-brand" href="#">Brand</a>
       </template>
       <template #collapse>
-        <navbar-nav>
+        <NavbarNav>
           <li class="active">
             <a role="button">Link <span class="sr-only">(current)</span></a>
           </li>
           <li><a role="button">Link</a></li>
-        </navbar-nav>
-        <navbar-form left>
+        </NavbarNav>
+        <NavbarForm left>
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Search" />
           </div>
-          <btn>Submit</btn>
-        </navbar-form>
-        <navbar-nav right>
+          <Btn>Submit</Btn>
+        </NavbarForm>
+        <NavbarNav right>
           <li><a role="button">Link</a></li>
-          <dropdown tag="li">
+          <Dropdown tag="li">
             <a class="dropdown-toggle" role="button"
               >Dropdown <span class="caret"></span
             ></a>
@@ -30,9 +30,13 @@
               <li role="separator" class="divider"></li>
               <li><a role="button">Separated link</a></li>
             </template>
-          </dropdown>
-        </navbar-nav>
+          </Dropdown>
+        </NavbarNav>
       </template>
-    </navbar>
+    </Navbar>
   </div>
 </template>
+
+<script setup>
+import { Navbar, NavbarNav, Dropdown, NavbarForm, Btn } from 'uiv';
+</script>

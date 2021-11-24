@@ -4,7 +4,7 @@
       <li role="presentation" class="active">
         <a href="javascript:void(0)">Regular link</a>
       </li>
-      <dropdown tag="li">
+      <Dropdown tag="li">
         <a class="dropdown-toggle" role="button"
           >Dropdown <span class="caret"></span
         ></a>
@@ -15,8 +15,8 @@
           <li role="separator" class="divider"></li>
           <li><a role="button">Separated link</a></li>
         </template>
-      </dropdown>
-      <dropdown tag="li">
+      </Dropdown>
+      <Dropdown tag="li">
         <a class="dropdown-toggle" role="button"
           >Dropdown <span class="caret"></span
         ></a>
@@ -27,7 +27,11 @@
           <li role="separator" class="divider"></li>
           <li><a role="button">Separated link</a></li>
         </template>
-      </dropdown>
+      </Dropdown>
     </ul>
   </div>
 </template>
+
+<script setup>
+import { Dropdown } from 'uiv';
+</script>

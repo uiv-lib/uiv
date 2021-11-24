@@ -1,16 +1,17 @@
 <template>
   <div class="uiv">
     <div>
-      <btn type="primary" @click="show = !show">Click me!</btn>
+      <Btn type="primary" @click="show = !show">Click me!</Btn>
     </div>
     <br />
-    <collapse v-model="show">
+    <Collapse v-model="show">
       <div class="well" style="margin-bottom: 0">Hi there.</div>
-    </collapse>
+    </Collapse>
   </div>
 </template>
 <script setup>
 import { ref } from 'vue';
+import { Collapse, Btn } from 'uiv';
 
 const show = ref(false);
 </script>

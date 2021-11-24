@@ -1,15 +1,13 @@
 <template>
   <div class="uiv">
-    <pagination v-model="currentPage" :total-page="totalPage" boundary-links />
+    <Pagination v-model="currentPage" :total-page="totalPage" boundary-links />
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      totalPage: 18,
-      currentPage: 1,
-    };
-  },
-};
+
+<script setup>
+import { Pagination } from 'uiv';
+import { ref } from 'vue';
+
+const totalPage = ref(18);
+const currentPage = ref(1);
 </script>

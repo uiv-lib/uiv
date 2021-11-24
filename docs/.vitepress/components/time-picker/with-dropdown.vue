@@ -1,6 +1,6 @@
 <template>
   <form class="form-inline uiv">
-    <dropdown class="form-group">
+    <Dropdown class="form-group">
       <div class="input-group">
         <input
           class="form-control"
@@ -9,25 +9,23 @@
           readonly="readonly"
         />
         <div class="input-group-btn">
-          <btn class="dropdown-toggle"
+          <Btn class="dropdown-toggle"
             ><i class="glyphicon glyphicon-time"></i
-          ></btn>
+          ></Btn>
         </div>
       </div>
       <template #dropdown>
         <li style="padding: 10px">
-          <time-picker v-model="time" :show-meridian="false" />
+          <TimePicker v-model="time" :show-meridian="false" />
         </li>
       </template>
-    </dropdown>
+    </Dropdown>
   </form>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      time: new Date(),
-    };
-  },
-};
+
+<script setup>
+import { TimePicker, Dropdown, Btn } from 'uiv';
+import { ref } from 'vue';
+
+const time = ref(new Date());
 </script>

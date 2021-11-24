@@ -1,12 +1,12 @@
 <template>
   <section class="uiv">
-    <carousel
+    <Carousel
       ref="carousel"
       :indicators="indicators"
       :controls="controls"
       :interval="interval"
     >
-      <slide v-for="(slide, index) in slides" :key="index">
+      <Slide v-for="(slide, index) in slides" :key="index">
         <div
           style="width: 100%; height: 400px"
           :style="{ background: index % 2 === 0 ? '#99a9bf' : '#d3dce6' }"
@@ -14,13 +14,13 @@
         <div class="carousel-caption">
           <h3>This is {{ slide.title }}</h3>
         </div>
-      </slide>
-    </carousel>
+      </Slide>
+    </Carousel>
     <br />
     <form class="form-inline">
-      <btn @click="indicators = !indicators">Toggle Indicators</btn>
-      <btn @click="controls = !controls">Toggle Controls</btn>
-      <btn @click="pushSlide">Push Slide</btn>
+      <Btn @click="indicators = !indicators">Toggle Indicators</Btn>
+      <Btn @click="controls = !controls">Toggle Controls</Btn>
+      <Btn @click="pushSlide">Push Slide</Btn>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon">Interval</span>
@@ -38,8 +38,10 @@
     </form>
   </section>
 </template>
+
 <script setup>
 import { reactive, ref } from 'vue';
+import { Carousel, Slide, Btn } from 'uiv';
 
 const interval = ref(5000);
 const indicators = ref(true);

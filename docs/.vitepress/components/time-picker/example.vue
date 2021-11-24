@@ -1,14 +1,12 @@
 <template>
   <div class="uiv">
-    <time-picker v-model="time" />
+    <TimePicker v-model="time" />
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      time: new Date(),
-    };
-  },
-};
+
+<script setup>
+import { TimePicker } from 'uiv';
+import { ref } from 'vue';
+
+const time = ref(new Date());
 </script>

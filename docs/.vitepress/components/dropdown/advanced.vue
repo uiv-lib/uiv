@@ -38,6 +38,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
+import { Alert, Dropdown, Btn } from 'uiv';
 
 const show = ref(false);
 const dropdown = ref(null);

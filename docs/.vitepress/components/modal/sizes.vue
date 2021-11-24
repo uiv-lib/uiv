@@ -1,22 +1,20 @@
 <template>
   <section class="uiv">
-    <btn type="primary" @click="open1 = true">Large Modal</btn>
-    <btn type="primary" @click="open2 = true">Small Modal</btn>
-    <modal v-model="open1" title="Modal Title" size="lg">
+    <Btn type="primary" @click="open1 = true">Large Modal</Btn>
+    <Btn type="primary" @click="open2 = true">Small Modal</Btn>
+    <Modal v-model="open1" title="Modal Title" size="lg">
       <p>This is a large modal.</p>
-    </modal>
-    <modal v-model="open2" title="Modal Title" size="sm">
+    </Modal>
+    <Modal v-model="open2" title="Modal Title" size="sm">
       <p>This is a small modal.</p>
-    </modal>
+    </Modal>
   </section>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      open1: false,
-      open2: false,
-    };
-  },
-};
+
+<script setup>
+import { Modal, Btn } from 'uiv';
+import { ref } from 'vue';
+
+const open1 = ref(false);
+const open2 = ref(false);
 </script>

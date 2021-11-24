@@ -7,7 +7,7 @@
       type="text"
       placeholder="Type to search..."
     />
-    <typeahead
+    <Typeahead
       v-model="model"
       target="#input-2"
       match-start
@@ -15,18 +15,14 @@
       item-key="name"
     />
     <br />
-    <alert v-show="model">You selected {{ model }}</alert>
+    <Alert v-show="model">You selected {{ model }}</Alert>
   </section>
 </template>
-<script>
-import states from './states.json';
 
-export default {
-  data() {
-    return {
-      model: '',
-      states: states.data,
-    };
-  },
-};
+<script setup>
+import { ref } from 'vue';
+import { Alert, Typeahead } from 'uiv';
+import { data as states } from './states.json';
+
+const model = ref('');
 </script>

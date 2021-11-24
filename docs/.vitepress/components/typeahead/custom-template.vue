@@ -7,7 +7,7 @@
       type="text"
       placeholder="Type to search..."
     />
-    <typeahead
+    <Typeahead
       v-model="model"
       target="#input-5"
       :async-function="queryFunction"
@@ -25,31 +25,27 @@
           </a>
         </li>
       </template>
-    </typeahead>
+    </Typeahead>
     <br />
-    <alert v-show="model">You selected {{ model }}</alert>
+    <Alert v-show="model">You selected {{ model }}</Alert>
   </section>
 </template>
-<script>
+
+<script setup>
+import { ref } from 'vue';
+import { Alert, Typeahead } from 'uiv';
 import axios from 'axios'; // https://github.com/axios/axios
 
-export default {
-  data() {
-    return {
-      model: '',
-    };
-  },
-  methods: {
-    queryFunction(query, done) {
-      axios
-        .get('https://api.github.com/search/users?q=' + query)
-        .then((res) => {
-          done(res.data.items);
-        })
-        .catch((err) => {
-          // any error handler
-        });
-    },
-  },
-};
+const model = ref('');
+
+function queryFunction(query, done) {
+  axios
+    .get('https://api.github.com/search/users?q=' + query)
+    .then((res) => {
+      done(res.data.items);
+    })
+    .catch((err) => {
+      // any error handler
+    });
+}
 </script>

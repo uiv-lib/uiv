@@ -1,18 +1,22 @@
 <template>
   <div class="uiv">
-    <tabs>
-      <tab title="Home">
+    <Tabs>
+      <Tab title="Home">
         <p>Home tab.</p>
-      </tab>
-      <tab title="Profile" disabled>
+      </Tab>
+      <Tab title="Profile" disabled>
         <p>Profile tab.</p>
-      </tab>
-      <tab title="@vue" group="Dropdown">
+      </Tab>
+      <Tab title="@vue" group="Dropdown">
         <p>@vue tab.</p>
-      </tab>
-      <tab title="@bootstrap" group="Dropdown" disabled>
+      </Tab>
+      <Tab title="@bootstrap" group="Dropdown" disabled>
         <p>@bootstrap tab.</p>
-      </tab>
-    </tabs>
+      </Tab>
+    </Tabs>
   </div>
 </template>
+
+<script setup>
+import { Tab, Tabs } from 'uiv';
+</script>

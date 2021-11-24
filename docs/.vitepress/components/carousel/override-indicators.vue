@@ -1,7 +1,7 @@
 <template>
   <div class="uiv">
-    <carousel>
-      <slide v-for="(slide, index) in slides" :key="index">
+    <Carousel>
+      <Slide v-for="(slide, index) in slides" :key="index">
         <div
           style="width: 100%; height: 400px"
           :style="{ background: index % 2 === 0 ? '#99a9bf' : '#d3dce6' }"
@@ -9,7 +9,7 @@
         <div class="carousel-caption">
           <h3>This is {{ slide.title }}</h3>
         </div>
-      </slide>
+      </Slide>
       <!-- Use this slot for custom indicators -->
       <template #indicators="props">
         <ol class="carousel-indicators custom-carousel-indicators">
@@ -23,12 +23,13 @@
           </li>
         </ol>
       </template>
-    </carousel>
+    </Carousel>
   </div>
 </template>
 
 <script setup>
 import { reactive } from 'vue';
+import { Carousel, Slide } from 'uiv';
 
 const slides = reactive([
   { title: 'Slide 1' },
@@ -37,6 +38,7 @@ const slides = reactive([
   { title: 'Slide 4' },
 ]);
 </script>
+
 <style>
 .uiv .custom-carousel-indicators li,
 .uiv .custom-carousel-indicators li.active {

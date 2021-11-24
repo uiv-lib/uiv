@@ -1,14 +1,12 @@
 <template>
   <div class="uiv">
-    <progress-bar v-model="progress" striped active />
+    <ProgressBar v-model="progress" striped active />
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      progress: 40,
-    };
-  },
-};
+
+<script setup>
+import { ProgressBar } from 'uiv';
+import { ref } from 'vue';
+
+const progress = ref(40);
 </script>

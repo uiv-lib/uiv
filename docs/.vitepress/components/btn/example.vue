@@ -1,11 +1,15 @@
 <template>
   <div class="uiv">
-    <btn>Default</btn>
-    <btn type="primary">Primary</btn>
-    <btn type="success">Success</btn>
-    <btn type="info">Info</btn>
-    <btn type="warning">Warning</btn>
-    <btn type="danger">Danger</btn>
-    <btn type="link">Link</btn>
+    <Btn>Default</Btn>
+    <Btn type="primary">Primary</Btn>
+    <Btn type="success">Success</Btn>
+    <Btn type="info">Info</Btn>
+    <Btn type="warning">Warning</Btn>
+    <Btn type="danger">Danger</Btn>
+    <Btn type="link">Link</Btn>
   </div>
 </template>
+
+<script setup>
+import { Btn } from 'uiv';
+</script>

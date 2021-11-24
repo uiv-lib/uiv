@@ -1,7 +1,7 @@
 <template>
   <section class="uiv">
-    <btn type="primary" @click="open = true">Custom Button Text and Type</btn>
-    <modal
+    <Btn type="primary" @click="open = true">Custom Button Text and Type</Btn>
+    <Modal
       v-model="open"
       title="Are you sure?"
       ok-text="Yes, please"
@@ -10,15 +10,13 @@
       cancel-type="warning"
     >
       <p>Do you really want to destroy this item?</p>
-    </modal>
+    </Modal>
   </section>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      open: false,
-    };
-  },
-};
+
+<script setup>
+import { Modal, Btn } from 'uiv';
+import { ref } from 'vue';
+
+const open = ref(false);
 </script>

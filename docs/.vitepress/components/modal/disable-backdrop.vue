@@ -1,18 +1,15 @@
 <template>
   <section class="uiv">
-    <btn type="primary" @click="open = true">Disable Backdrop</btn>
-    <modal v-model="open" title="Modal Title" :backdrop="false">
+    <Btn type="primary" @click="open = true">Disable Backdrop</Btn>
+    <Modal v-model="open" title="Modal Title" :backdrop="false">
       <p>This is a modal that can not close by backdrop click.</p>
-    </modal>
+    </Modal>
   </section>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      open: false,
-    };
-  },
-};
+<script setup>
+import { Modal, Btn } from 'uiv';
+import { ref } from 'vue';
+
+const open = ref(false);
 </script>

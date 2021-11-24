@@ -1,23 +1,21 @@
 <template>
   <div class="uiv">
-    <btn type="primary" @click="alert">Click to open an alert modal</btn>
+    <Btn type="primary" @click="alert">Click to open an alert modal</Btn>
   </div>
 </template>
-<script>
-export default {
-  methods: {
-    alert() {
-      this.$alert(
-        {
-          title: 'Title',
-          content: 'This is an alert message.',
-        },
-        (msg) => {
-          // callback after modal dismissed
-          this.$notify(`You selected ${msg}.`);
-        }
-      );
+<script setup>
+import { Btn, MessageBox, Notification } from 'uiv';
+
+function alert() {
+  MessageBox.alert(
+    {
+      title: 'Title',
+      content: 'This is an alert message.',
     },
-  },
-};
+    (msg) => {
+      // callback after modal dismissed
+      Notification.notify(`You selected ${msg}.`);
+    }
+  );
+}
 </script>

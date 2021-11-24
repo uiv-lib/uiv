@@ -1,13 +1,17 @@
 <template>
   <div class="uiv">
-    <btn v-tooltip="'Static tooltip content'" type="primary"
-      >Hover-Focus (Default)</btn
-    >
-    <btn v-tooltip.hover="'Static tooltip content'" type="primary">Hover</btn>
-    <btn v-tooltip.focus="'Static tooltip content'" type="primary">Focus</btn>
-    <btn v-tooltip.click="'Static tooltip content'" type="primary">Click</btn>
-    <btn v-tooltip.outside-click="'Static tooltip content'" type="primary"
-      >Outside-Click</btn
-    >
+    <Btn v-tooltip="'Static tooltip content'" type="primary">
+      Hover-Focus (Default)
+    </Btn>
+    <Btn v-tooltip.hover="'Static tooltip content'" type="primary">Hover</Btn>
+    <Btn v-tooltip.focus="'Static tooltip content'" type="primary">Focus</Btn>
+    <Btn v-tooltip.click="'Static tooltip content'" type="primary">Click</Btn>
+    <Btn v-tooltip.outside-click="'Static tooltip content'" type="primary">
+      Outside-Click
+    </Btn>
   </div>
 </template>
+
+<script setup>
+import { Btn, tooltip as vTooltip } from 'uiv';
+</script>

@@ -1,19 +1,23 @@
 <template>
   <div class="uiv">
-    <alert type="success"
+    <Alert type="success"
       ><b>Well done!</b> You successfully read this important alert
-      message.</alert
+      message.</Alert
     >
-    <alert type="info"
+    <Alert type="info"
       ><b>Heads up!</b> This alert needs your attention, but it's not super
-      important.</alert
+      important.</Alert
     >
-    <alert type="warning"
+    <Alert type="warning"
       ><b>Warning!</b> Better check yourself, you're not looking too
-      good.</alert
+      good.</Alert
     >
-    <alert type="danger"
-      ><b>Oh snap!</b> Change this and that and try again.</alert
+    <Alert type="danger"
+      ><b>Oh snap!</b> Change this and that and try again.</Alert
     >
   </div>
 </template>
+
+<script setup>
+import { Alert } from 'uiv';
+</script>

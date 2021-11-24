@@ -1,22 +1,20 @@
 <template>
   <section class="uiv">
-    <tooltip
+    <Tooltip
       v-model="show"
       text="Static tooltip content goes here"
       trigger="manual"
     >
       <btn>You Can't Trigger Tooltip Here...</btn>
-    </tooltip>
+    </Tooltip>
     <hr />
-    <btn type="primary" @click="show = !show">Toggle Tooltip</btn>
+    <Btn type="primary" @click="show = !show">Toggle Tooltip</Btn>
   </section>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      show: false,
-    };
-  },
-};
+
+<script setup>
+import { Btn, Tooltip } from 'uiv';
+import { ref } from 'vue';
+
+const show = ref(false);
 </script>

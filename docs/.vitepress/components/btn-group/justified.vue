@@ -1,16 +1,16 @@
 <template>
   <div class="uiv">
-    <btn-group justified>
-      <btn href="javascript:;">Left</btn>
-      <btn href="javascript:;">Middle</btn>
-      <btn href="javascript:;">Right</btn>
-    </btn-group>
+    <BtnGroup justified>
+      <Btn href="javascript:;">Left</Btn>
+      <Btn href="javascript:;">Middle</Btn>
+      <Btn href="javascript:;">Right</Btn>
+    </BtnGroup>
     <br />
-    <btn-group justified>
-      <btn justified>Left</btn>
-      <btn justified>Middle</btn>
-      <dropdown>
-        <btn class="dropdown-toggle">Dropdown <span class="caret"></span></btn>
+    <BtnGroup justified>
+      <Btn justified>Left</Btn>
+      <Btn justified>Middle</Btn>
+      <Dropdown>
+        <Btn class="dropdown-toggle">Dropdown <span class="caret"></span></Btn>
         <template #dropdown>
           <li><a role="button">Action</a></li>
           <li><a role="button">Another action</a></li>
@@ -18,7 +18,11 @@
           <li role="separator" class="divider"></li>
           <li><a role="button">Separated link</a></li>
         </template>
-      </dropdown>
-    </btn-group>
+      </Dropdown>
+    </BtnGroup>
   </div>
 </template>
+
+<script setup>
+import { Btn, BtnGroup, Dropdown } from 'uiv';
+</script>

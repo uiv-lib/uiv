@@ -1,29 +1,38 @@
 <template>
   <div class="uiv">
-    <btn
+    <Btn
       v-popover="{ title: 'Title', content: 'Popover content' }"
       type="primary"
-      >Outside-Click (Default)</btn
     >
-    <btn
+      Outside-Click (Default)
+    </Btn>
+    <Btn
       v-popover.hover="{ title: 'Title', content: 'Popover content' }"
       type="primary"
-      >Hover</btn
     >
-    <btn
+      Hover
+    </Btn>
+    <Btn
       v-popover.focus="{ title: 'Title', content: 'Popover content' }"
       type="primary"
-      >Focus</btn
     >
-    <btn
+      Focus
+    </Btn>
+    <Btn
       v-popover.hover-focus="{ title: 'Title', content: 'Popover content' }"
       type="primary"
-      >Hover-Focus</btn
     >
-    <btn
+      Hover-Focus
+    </Btn>
+    <Btn
       v-popover.click="{ title: 'Title', content: 'Popover content' }"
       type="primary"
-      >Click</btn
     >
+      Click
+    </Btn>
   </div>
 </template>
+
+<script setup>
+import { popover as vPopover, Btn } from 'uiv';
+</script>

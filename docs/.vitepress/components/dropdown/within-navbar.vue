@@ -1,12 +1,12 @@
 <template>
   <div class="uiv">
-    <navbar>
+    <Navbar>
       <template #brand>
         <a class="navbar-brand" role="button">Brand</a>
       </template>
       <template #collapse>
         <navbar-nav>
-          <dropdown tag="li">
+          <Dropdown tag="li">
             <a class="dropdown-toggle" role="button"
               >Dropdown 1<span class="caret"></span
             ></a>
@@ -17,8 +17,8 @@
               <li role="separator" class="divider"></li>
               <li><a role="button">Separated link</a></li>
             </template>
-          </dropdown>
-          <dropdown tag="li">
+          </Dropdown>
+          <Dropdown tag="li">
             <a class="dropdown-toggle" role="button"
               >Dropdown 2<span class="caret"></span
             ></a>
@@ -29,10 +29,10 @@
               <li role="separator" class="divider"></li>
               <li><a role="button">Separated link</a></li>
             </template>
-          </dropdown>
+          </Dropdown>
         </navbar-nav>
-        <navbar-nav right>
-          <dropdown tag="li">
+        <NavbarNav right>
+          <Dropdown tag="li">
             <a class="dropdown-toggle" role="button"
               >Dropdown 3<span class="caret"></span
             ></a>
@@ -43,9 +43,13 @@
               <li role="separator" class="divider"></li>
               <li><a role="button">Separated link</a></li>
             </template>
-          </dropdown>
-        </navbar-nav>
+          </Dropdown>
+        </NavbarNav>
       </template>
-    </navbar>
+    </Navbar>
   </div>
 </template>
+
+<script setup>
+import { Navbar, NavbarNav, Dropdown, Btn } from 'uiv';
+</script>

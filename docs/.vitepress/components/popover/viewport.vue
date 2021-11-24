@@ -1,61 +1,72 @@
 <template>
   <div id="popover-viewport" class="uiv">
-    <btn
+    <Btn
       v-popover="{
         title: 'Title',
         content: 'Popover auto',
         viewport: '#popover-viewport',
       }"
       type="primary"
-      >Auto</btn
     >
-    <btn
+      Auto
+    </Btn>
+    <Btn
       v-popover.left="{
         title: 'Title',
         content: 'Popover on left',
         viewport: '#popover-viewport',
       }"
       type="primary"
-      >Left</btn
     >
-    <btn
+      Left
+    </Btn>
+    <Btn
       v-popover.top="{
         title: 'Title',
         content: 'Popover on top',
         viewport: '#popover-viewport',
       }"
       type="primary"
-      >Top</btn
     >
-    <btn
+      Top
+    </Btn>
+    <Btn
       v-popover.bottom="{
         title: 'Title',
         content: 'Popover on bottom',
         viewport: '#popover-viewport',
       }"
       type="primary"
-      >Bottom</btn
     >
-    <btn
+      Bottom
+    </Btn>
+    <Btn
       v-popover.right="{
         title: 'Title',
         content: 'Popover on right',
         viewport: '#popover-viewport',
       }"
       type="primary"
-      >Right</btn
     >
-    <btn
+      Right
+    </Btn>
+    <Btn
       v-popover="{
         title: 'Title',
         content: 'Popover auto',
         viewport: '#popover-viewport',
       }"
       type="primary"
-      >Auto</btn
     >
+      Auto
+    </Btn>
   </div>
 </template>
+
+<script setup>
+import { popover as vPopover, Btn } from 'uiv';
+</script>
+
 <style scoped>
 #popover-viewport {
   display: inline-block;

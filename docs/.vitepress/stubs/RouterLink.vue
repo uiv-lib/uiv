@@ -4,10 +4,8 @@
   </a>
 </template>
 
-<script>
-export default {
-  props: {
-    to: { type: String, default: '/' },
-  },
-};
+<script setup>
+defineProps({
+  to: { type: String, default: '/' },
+});
 </script>

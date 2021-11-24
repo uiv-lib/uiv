@@ -1,17 +1,15 @@
 <template>
   <section class="uiv">
-    <btn type="primary" @click="open = true">Auto Focus</btn>
-    <modal v-model="open" title="Modal Title" auto-focus>
+    <Btn type="primary" @click="open = true">Auto Focus</Btn>
+    <Modal v-model="open" title="Modal Title" auto-focus>
       <p>Check this out! The OK button is focused now.</p>
-    </modal>
+    </Modal>
   </section>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      open: false,
-    };
-  },
-};
+
+<script setup>
+import { Modal, Btn } from 'uiv';
+import { ref } from 'vue';
+
+const open = ref(false);
 </script>

@@ -1,11 +1,12 @@
 <template>
   <div class="uiv">
-    <date-picker v-model="date" :date-class="dateClass" />
+    <DatePicker v-model="date" :date-class="dateClass" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { DatePicker } from 'uiv';
 
 const date = ref(null);
 

@@ -1,10 +1,11 @@
 <template>
   <div class="uiv">
-    <date-picker v-model="date" :limit-from="limitFrom" :limit-to="limitTo" />
+    <DatePicker v-model="date" :limit-from="limitFrom" :limit-to="limitTo" />
   </div>
 </template>
 <script setup>
 import { ref } from 'vue';
+import { DatePicker } from 'uiv';
 
 const date = ref(null);
 

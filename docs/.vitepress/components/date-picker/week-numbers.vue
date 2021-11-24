@@ -1,15 +1,15 @@
 <template>
   <section class="uiv">
-    <date-picker v-model="date" week-numbers />
+    <DatePicker v-model="date" week-numbers />
     <br />
-    <alert v-show="date" type="info"
-      >You selected <b>{{ date }}</b
-      >.</alert
-    >
+    <Alert v-show="date" type="info">
+      You selected <b>{{ date }}.</b>
+    </Alert>
   </section>
 </template>
 <script setup>
 import { ref } from 'vue';
+import { DatePicker, Alert } from 'uiv';
 
 const date = ref(null);
 </script>

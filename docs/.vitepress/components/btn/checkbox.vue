@@ -1,25 +1,26 @@
 <template>
   <section class="uiv">
-    <btn-group>
-      <btn v-model="model" input-type="checkbox" input-value="1"
-        >Checkbox 1</btn
+    <BtnGroup>
+      <Btn v-model="model" input-type="checkbox" input-value="1"
+        >Checkbox 1</Btn
       >
-      <btn v-model="model" input-type="checkbox" input-value="2"
-        >Checkbox 2</btn
+      <Btn v-model="model" input-type="checkbox" input-value="2"
+        >Checkbox 2</Btn
       >
-      <btn v-model="model" input-type="checkbox" input-value="3"
-        >Checkbox 3</btn
+      <Btn v-model="model" input-type="checkbox" input-value="3"
+        >Checkbox 3</Btn
       >
-      <btn v-model="model" input-type="checkbox" input-value="4" disabled
-        >Checkbox 4 (Disabled)</btn
+      <Btn v-model="model" input-type="checkbox" input-value="4" disabled
+        >Checkbox 4 (Disabled)</Btn
       >
-    </btn-group>
+    </BtnGroup>
     <hr />
-    <alert>Selected: {{ model }}</alert>
+    <Alert>Selected: {{ model }}</Alert>
   </section>
 </template>
 <script setup>
 import { ref } from 'vue';
+import { Btn, BtnGroup, Alert } from 'uiv';
 
 const model = ref(['1']);
 </script>

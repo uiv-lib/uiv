@@ -1,20 +1,19 @@
 <template>
   <div class="uiv">
-    <btn type="primary" @click="notify"
-      >Notification Without Dismiss Button</btn
+    <Btn type="primary" @click="notify"
+      >Notification Without Dismiss Button</Btn
     >
   </div>
 </template>
-<script>
-export default {
-  methods: {
-    notify() {
-      this.$notify({
-        title: 'Title',
-        content: 'This is a notification without dismiss btn.',
-        dismissible: false,
-      });
-    },
-  },
-};
+
+<script setup>
+import { Notification, Btn } from 'uiv';
+
+function notify() {
+  Notification.notify({
+    title: 'Title',
+    content: 'This is a notification without dismiss btn.',
+    dismissible: false,
+  });
+}
 </script>

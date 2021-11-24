@@ -1,18 +1,15 @@
 <template>
   <section class="uiv">
-    <btn type="primary" @click="open = true">Disable Animation</btn>
-    <modal v-model="open" title="Modal Title" :transition="0">
+    <Btn type="primary" @click="open = true">Disable Animation</Btn>
+    <Modal v-model="open" title="Modal Title" :transition="0">
       <p>This is a modal that has no transition effect.</p>
-    </modal>
+    </Modal>
   </section>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      open: false,
-    };
-  },
-};
+<script setup>
+import { Modal, Btn } from 'uiv';
+import { ref } from 'vue';
+
+const open = ref(false);
 </script>

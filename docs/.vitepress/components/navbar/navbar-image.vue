@@ -1,6 +1,6 @@
 <template>
   <div class="uiv">
-    <navbar>
+    <Navbar>
       <template #brand>
         <a class="navbar-brand" href="#">
           <img
@@ -10,6 +10,10 @@
           />
         </a>
       </template>
-    </navbar>
+    </Navbar>
   </div>
 </template>
+
+<script setup>
+import { Navbar } from 'uiv';
+</script>

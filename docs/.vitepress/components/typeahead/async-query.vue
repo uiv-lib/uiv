@@ -7,7 +7,7 @@
       type="text"
       placeholder="Type to search..."
     />
-    <typeahead
+    <Typeahead
       v-model="model"
       target="#input-4"
       async-src="https://api.github.com/search/users?q="
@@ -15,15 +15,13 @@
       item-key="login"
     />
     <br />
-    <alert v-show="model">You selected {{ model }}</alert>
+    <Alert v-show="model">You selected {{ model }}</Alert>
   </section>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      model: '',
-    };
-  },
-};
+
+<script setup>
+import { ref } from 'vue';
+import { Alert, Typeahead } from 'uiv';
+
+const model = ref('');
 </script>

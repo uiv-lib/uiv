@@ -1,21 +1,19 @@
 <template>
   <div class="uiv">
-    <pagination v-model="currentPage" :total-page="totalPage" :max-size="3" />
-    <pagination v-model="currentPage" :total-page="totalPage" />
-    <pagination
+    <Pagination v-model="currentPage" :total-page="totalPage" :max-size="3" />
+    <Pagination v-model="currentPage" :total-page="totalPage" />
+    <Pagination
       v-model="currentPage"
       :total-page="totalPage"
       :max-size="totalPage"
     />
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      totalPage: 10,
-      currentPage: 1,
-    };
-  },
-};
+
+<script setup>
+import { Pagination } from 'uiv';
+import { ref } from 'vue';
+
+const totalPage = ref(10);
+const currentPage = ref(1);
 </script>

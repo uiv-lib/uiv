@@ -1,19 +1,20 @@
 <template>
   <section class="uiv">
-    <btn-group>
-      <btn v-model="model" input-type="radio" input-value="1">Radio 1</btn>
-      <btn v-model="model" input-type="radio" input-value="2">Radio 2</btn>
-      <btn v-model="model" input-type="radio" input-value="3">Radio 3</btn>
-      <btn v-model="model" input-type="radio" input-value="4" disabled
-        >Radio 4 (Disabled)</btn
+    <BtnGroup>
+      <Btn v-model="model" input-type="radio" input-value="1">Radio 1</Btn>
+      <Btn v-model="model" input-type="radio" input-value="2">Radio 2</Btn>
+      <Btn v-model="model" input-type="radio" input-value="3">Radio 3</Btn>
+      <Btn v-model="model" input-type="radio" input-value="4" disabled
+        >Radio 4 (Disabled)</Btn
       >
-    </btn-group>
+    </BtnGroup>
     <hr />
-    <alert>Selected: {{ model }}</alert>
+    <Alert>Selected: {{ model }}</Alert>
   </section>
 </template>
 <script setup>
 import { ref } from 'vue';
+import { Btn, BtnGroup, Alert } from 'uiv';
 
 const model = ref('1');
 </script>

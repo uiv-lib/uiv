@@ -18,11 +18,11 @@
           </button>
           <a role="button" class="navbar-brand">Project Name</a>
         </div>
-        <collapse v-model="show" class="navbar-collapse">
+        <Collapse v-model="show" class="navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#vue">@vue</a></li>
             <li class=""><a href="#bootstrap">@bootstrap</a></li>
-            <dropdown tag="li">
+            <Dropdown tag="li">
               <a class="dropdown-toggle" role="button"
                 >Dropdown <span class="caret"></span
               ></a>
@@ -32,9 +32,9 @@
                 <li role="separator" class="divider"></li>
                 <li><a href="#three">three</a></li>
               </template>
-            </dropdown>
+            </Dropdown>
           </ul>
-        </collapse>
+        </Collapse>
       </div>
     </nav>
     <div id="scrollspy-example" ref="target">
@@ -91,15 +91,14 @@
     </div>
   </section>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      show: false,
-    };
-  },
-};
+
+<script setup>
+import { ref } from 'vue';
+import { scrollspy as vScrollspy, Collapse, Dropdown } from 'uiv';
+
+const show = ref(false);
 </script>
+
 <style>
 #scrollspy-example {
   position: relative;

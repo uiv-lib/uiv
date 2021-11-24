@@ -1,20 +1,24 @@
 <template>
   <div class="uiv">
-    <btn-toolbar>
-      <btn-group>
-        <btn>1</btn>
-        <btn>2</btn>
-        <btn>3</btn>
-        <btn>4</btn>
-      </btn-group>
-      <btn-group>
-        <btn>5</btn>
-        <btn>6</btn>
-        <btn>7</btn>
-      </btn-group>
-      <btn-group>
-        <btn>8</btn>
-      </btn-group>
-    </btn-toolbar>
+    <BtnToolbar>
+      <BtnGroup>
+        <Btn>1</Btn>
+        <Btn>2</Btn>
+        <Btn>3</Btn>
+        <Btn>4</Btn>
+      </BtnGroup>
+      <BtnGroup>
+        <Btn>5</Btn>
+        <Btn>6</Btn>
+        <Btn>7</Btn>
+      </BtnGroup>
+      <BtnGroup>
+        <Btn>8</Btn>
+      </BtnGroup>
+    </BtnToolbar>
   </div>
 </template>
+
+<script setup>
+import { Btn, BtnGroup, BtnToolbar } from 'uiv';
+</script>

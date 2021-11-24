@@ -1,10 +1,10 @@
 <template>
   <div class="uiv">
-    <carousel
+    <Carousel
       icon-control-left="my-icon glyphicon glyphicon-arrow-left"
       icon-control-right="my-icon glyphicon glyphicon-arrow-right"
     >
-      <slide v-for="(slide, index) in slides" :key="index">
+      <Slide v-for="(slide, index) in slides" :key="index">
         <div
           style="width: 100%; height: 400px"
           :style="{ background: index % 2 === 0 ? '#99a9bf' : '#d3dce6' }"
@@ -12,12 +12,14 @@
         <div class="carousel-caption">
           <h3>This is {{ slide.title }}</h3>
         </div>
-      </slide>
-    </carousel>
+      </Slide>
+    </Carousel>
   </div>
 </template>
+
 <script setup>
 import { reactive } from 'vue';
+import { Carousel, Slide } from 'uiv';
 
 const slides = reactive([
   { title: 'Slide 1' },
@@ -26,6 +28,7 @@ const slides = reactive([
   { title: 'Slide 4' },
 ]);
 </script>
+
 <style>
 /* Using custom icons may require some additional CSS declarations */
 .uiv .carousel-control .my-icon {

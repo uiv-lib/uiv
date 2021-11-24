@@ -67,7 +67,7 @@
           href="#"
           role="button"
           aria-label="Next"
-          @click.prevent="onPageChange(value + 1)"
+          @click.prevent="onPageChange(modelValue + 1)"
         >
           <span aria-hidden="true">&rsaquo;</span>
         </a>

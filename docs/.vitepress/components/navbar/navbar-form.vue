@@ -1,15 +1,19 @@
 <template>
   <div class="uiv">
-    <navbar>
+    <Navbar>
       <template #brand>
         <a class="navbar-brand" href="#">Brand</a>
       </template>
-      <navbar-form left>
+      <NavbarForm left>
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" />
         </div>
-        <btn>Submit</btn>
-      </navbar-form>
-    </navbar>
+        <Btn>Submit</Btn>
+      </NavbarForm>
+    </Navbar>
   </div>
 </template>
+
+<script setup>
+import { Navbar, NavbarForm, Btn } from 'uiv';
+</script>

@@ -1,12 +1,12 @@
 <template>
   <div class="uiv">
-    <tabs>
-      <tab title="Home">
+    <Tabs>
+      <Tab title="Home">
         <p>Home tab.</p>
-      </tab>
-      <tab title="Profile">
+      </Tab>
+      <Tab title="Profile">
         <p>Profile tab.</p>
-      </tab>
+      </Tab>
       <template #nav-right>
         <form>
           <select
@@ -18,9 +18,13 @@
             <option>option3</option>
             <option>option4</option>
           </select>
-          <btn type="success">Button</btn>
+          <Btn type="success">Button</Btn>
         </form>
       </template>
-    </tabs>
+    </Tabs>
   </div>
 </template>
+
+<script setup>
+import { Tab, Tabs, Btn } from 'uiv';
+</script>

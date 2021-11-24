@@ -1,7 +1,7 @@
 <template>
   <section class="uiv">
-    <btn type="primary" @click="model = states[0]">Set to Alabama</btn>
-    <btn @click="model = null">Clear</btn>
+    <Btn type="primary" @click="model = states[0]">Set to Alabama</Btn>
+    <Btn @click="model = null">Clear</Btn>
     <hr />
     <label for="input">States of America:</label>
     <input
@@ -10,20 +10,16 @@
       type="text"
       placeholder="Type to search..."
     />
-    <typeahead v-model="model" target="#input" :data="states" item-key="name" />
+    <Typeahead v-model="model" target="#input" :data="states" item-key="name" />
     <br />
-    <alert v-show="model">You selected {{ model }}</alert>
+    <Alert v-show="model">You selected {{ model }}</Alert>
   </section>
 </template>
-<script>
-import states from './states.json';
 
-export default {
-  data() {
-    return {
-      model: '',
-      states: states.data,
-    };
-  },
-};
+<script setup>
+import { ref } from 'vue';
+import { Alert, Typeahead, Btn } from 'uiv';
+import { data as states } from './states.json';
+
+const model = ref('');
 </script>

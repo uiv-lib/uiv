@@ -1,5 +1,6 @@
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import { defineConfig } from 'vitepress';
+import { resolve } from 'path';
 
 export default defineConfig({
   description: 'Bootstrap 3 components implemented by Vue.',
@@ -40,6 +41,11 @@ export default defineConfig({
   },
   vite: {
     plugins: [vueJsx()],
+    resolve: {
+      alias: {
+        uiv: resolve(__dirname, '../../src/index.js'),
+      },
+    },
   },
 });
 

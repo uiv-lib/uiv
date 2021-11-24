@@ -1,7 +1,7 @@
 <template>
   <div class="uiv">
-    <dropdown dropup>
-      <btn class="dropdown-toggle">Dropup <span class="caret"></span></btn>
+    <Dropdown dropup>
+      <Btn class="dropdown-toggle">Dropup <span class="caret"></span></Btn>
       <template #dropdown>
         <li><a role="button">Action</a></li>
         <li><a role="button">Another action</a></li>
@@ -9,6 +9,10 @@
         <li role="separator" class="divider"></li>
         <li><a role="button">Separated link</a></li>
       </template>
-    </dropdown>
+    </Dropdown>
   </div>
 </template>
+
+<script setup>
+import { Dropdown, Btn } from 'uiv';
+</script>

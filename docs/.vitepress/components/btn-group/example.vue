@@ -1,9 +1,13 @@
 <template>
   <div class="uiv">
-    <btn-group>
-      <btn>Left</btn>
-      <btn>Middle</btn>
-      <btn>Right</btn>
-    </btn-group>
+    <BtnGroup>
+      <Btn>Left</Btn>
+      <Btn>Middle</Btn>
+      <Btn>Right</Btn>
+    </BtnGroup>
   </div>
 </template>
+
+<script setup>
+import { Btn, BtnGroup } from 'uiv';
+</script>

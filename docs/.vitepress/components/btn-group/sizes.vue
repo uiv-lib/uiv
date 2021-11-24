@@ -1,32 +1,36 @@
 <template>
   <div class="uiv">
     <p>
-      <btn-group size="lg">
-        <btn>Left</btn>
-        <btn>Middle</btn>
-        <btn>Right</btn>
-      </btn-group>
+      <BtnGroup size="lg">
+        <Btn>Left</Btn>
+        <Btn>Middle</Btn>
+        <Btn>Right</Btn>
+      </BtnGroup>
     </p>
     <p>
-      <btn-group>
-        <btn>Left</btn>
-        <btn>Middle</btn>
-        <btn>Right</btn>
-      </btn-group>
+      <BtnGroup>
+        <Btn>Left</Btn>
+        <Btn>Middle</Btn>
+        <Btn>Right</Btn>
+      </BtnGroup>
     </p>
     <p>
-      <btn-group size="sm">
-        <btn>Left</btn>
-        <btn>Middle</btn>
-        <btn>Right</btn>
-      </btn-group>
+      <BtnGroup size="sm">
+        <Btn>Left</Btn>
+        <Btn>Middle</Btn>
+        <Btn>Right</Btn>
+      </BtnGroup>
     </p>
     <p>
-      <btn-group size="xs">
-        <btn>Left</btn>
-        <btn>Middle</btn>
-        <btn>Right</btn>
-      </btn-group>
+      <BtnGroup size="xs">
+        <Btn>Left</Btn>
+        <Btn>Middle</Btn>
+        <Btn>Right</Btn>
+      </BtnGroup>
     </p>
   </div>
 </template>
+
+<script setup>
+import { Btn, BtnGroup } from 'uiv';
+</script>

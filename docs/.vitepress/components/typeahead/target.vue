@@ -7,29 +7,17 @@
       type="text"
       placeholder="Type to search..."
     />
-    <typeahead
-      v-model="model"
-      :target="target"
-      :data="states"
-      item-key="name"
-    />
+    <Typeahead v-model="model" :target="input" :data="states" item-key="name" />
     <br />
-    <alert v-show="model">You selected {{ model }}</alert>
+    <Alert v-show="model">You selected {{ model }}</Alert>
   </section>
 </template>
-<script>
-import states from './states.json';
 
-export default {
-  data() {
-    return {
-      model: '',
-      target: null,
-      states: states.data,
-    };
-  },
-  mounted() {
-    this.target = this.$refs.input;
-  },
-};
+<script setup>
+import { onMounted, ref } from 'vue';
+import { Alert, Typeahead } from 'uiv';
+import { data as states } from './states.json';
+
+const input = ref(null);
+const model = ref('');
 </script>

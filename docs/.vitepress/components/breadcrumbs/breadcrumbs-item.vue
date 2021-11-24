@@ -1,9 +1,13 @@
 <template>
   <div class="uiv">
-    <breadcrumbs>
-      <breadcrumb-item href="#"><b>Home</b></breadcrumb-item>
-      <breadcrumb-item href="#">Library</breadcrumb-item>
-      <breadcrumb-item active>Data</breadcrumb-item>
-    </breadcrumbs>
+    <Breadcrumbs>
+      <BreadcrumbItem href="#"><b>Home</b></BreadcrumbItem>
+      <BreadcrumbItem href="#">Library</BreadcrumbItem>
+      <BreadcrumbItem active>Data</BreadcrumbItem>
+    </Breadcrumbs>
   </div>
 </template>
+
+<script setup>
+import { Breadcrumbs, BreadcrumbItem } from 'uiv';
+</script>

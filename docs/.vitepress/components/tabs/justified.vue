@@ -1,15 +1,19 @@
 <template>
   <div class="uiv">
-    <tabs justified>
-      <tab title="Home">
+    <Tabs justified>
+      <Tab title="Home">
         <p>Home tab.</p>
-      </tab>
-      <tab title="Profile">
+      </Tab>
+      <Tab title="Profile">
         <p>Profile tab.</p>
-      </tab>
-      <tab title="Others">
+      </Tab>
+      <Tab title="Others">
         <p>Others tab.</p>
-      </tab>
-    </tabs>
+      </Tab>
+    </Tabs>
   </div>
 </template>
+
+<script setup>
+import { Tab, Tabs } from 'uiv';
+</script>
