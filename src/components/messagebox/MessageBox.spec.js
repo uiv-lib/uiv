@@ -1,13 +1,10 @@
-import newLocale from '../../locale/lang/zh-CN';
 import {
   createWrapper,
-  keyCodes,
   nextTick,
   sleep,
   transition,
   triggerEvent,
 } from '../../__test__/utils';
-import { RouterLinkStub } from '@vue/test-utils';
 
 function alertVm() {
   return createWrapper(

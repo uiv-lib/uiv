@@ -17,7 +17,6 @@
     <div v-if="type === TYPES.PROMPT">
       <div class="form-group" :class="{ 'has-error': inputNotValid }">
         <input
-          ref="input"
           v-model="input"
           :type="inputType"
           class="form-control"
@@ -74,85 +73,58 @@
   </modal>
 </template>
 
-<script>
+<script setup>
 import { TYPES } from '../../constants/messagebox.constants';
 import { t } from '../../locale';
 import Modal from '../../components/modal/Modal.vue';
 import Btn from '../../components/button/Btn.vue';
 import { isExist } from '../../utils/object.utils';
+import { computed, ref } from 'vue';
 
-export default {
-  components: { Modal, Btn },
-  props: {
-    backdrop: { type: null, default: undefined },
-    title: { type: String, default: undefined },
-    content: { type: String, default: undefined },
-    html: { type: Boolean, default: false },
-    okText: { type: String, default: undefined },
-    okType: { type: String, default: 'primary' },
-    cancelText: { type: String, default: undefined },
-    cancelType: { type: String, default: 'default' },
-    type: { type: Number, default: TYPES.ALERT },
-    size: { type: String, default: 'sm' },
-    cb: { type: Function, required: true },
-    validator: {
-      type: Function,
-      default: () => null,
-    },
-    customClass: { type: null, default: undefined },
-    defaultValue: { type: String, default: undefined },
-    inputType: { type: String, default: 'text' },
-    autoFocus: { type: String, default: 'ok' },
-    reverseButtons: { type: Boolean, default: false },
+const props = defineProps({
+  backdrop: { type: null, default: undefined },
+  title: { type: String, default: undefined },
+  content: { type: String, default: undefined },
+  html: { type: Boolean, default: false },
+  okText: { type: String, default: undefined },
+  okType: { type: String, default: 'primary' },
+  cancelText: { type: String, default: undefined },
+  cancelType: { type: String, default: 'default' },
+  type: { type: Number, default: 0 },
+  size: { type: String, default: 'sm' },
+  cb: { type: Function, required: true },
+  validator: {
+    type: Function,
+    default: () => null,
   },
-  data() {
-    return {
-      TYPES,
-      show: true,
-      input: '',
-      dirty: false,
-    };
-  },
-  computed: {
-    closeOnBackdropClick() {
-      // use backdrop prop if exist
-      // otherwise, only not available if render as alert
-      return isExist(this.backdrop)
-        ? Boolean(this.backdrop)
-        : this.type !== TYPES.ALERT;
-    },
-    inputError() {
-      return this.validator(this.input);
-    },
-    inputNotValid() {
-      return this.dirty && this.inputError;
-    },
-    okBtnText() {
-      return this.okText || this.t('uiv.modal.ok');
-    },
-    cancelBtnText() {
-      return this.cancelText || this.t('uiv.modal.cancel');
-    },
-  },
-  mounted() {
-    if (this.defaultValue) {
-      this.input = this.defaultValue;
-    }
-  },
-  // unmounted() {
-  //   console.log('unmounted')
-  // },
-  methods: {
-    t,
-    toggle(show, msg) {
-      this.$refs.modal.toggle(show, msg);
-    },
-    validate() {
-      this.dirty = true;
-      if (!isExist(this.inputError)) {
-        this.toggle(false, { value: this.input });
-      }
-    },
-  },
-};
+  customClass: { type: null, default: undefined },
+  defaultValue: { type: String, default: undefined },
+  inputType: { type: String, default: 'text' },
+  autoFocus: { type: String, default: 'ok' },
+  reverseButtons: { type: Boolean, default: false },
+});
+
+const show = ref(true);
+const input = ref(props.defaultValue ?? '');
+const dirty = ref(false);
+const modal = ref(null);
+
+const closeOnBackdropClick = computed(() =>
+  isExist(props.backdrop) ? Boolean(props.backdrop) : props.type !== TYPES.ALERT
+);
+const inputError = computed(() => props.validator(input.value));
+const inputNotValid = computed(() => dirty.value && inputError.value);
+const okBtnText = computed(() => props.okText || t('uiv.modal.ok'));
+const cancelBtnText = computed(() => props.cancelText || t('uiv.modal.cancel'));
+
+function toggle(show, msg) {
+  modal.value?.toggle(show, msg);
+}
+
+function validate() {
+  dirty.value = true;
+  if (!isExist(inputError.value)) {
+    toggle(false, { value: input.value });
+  }
+}
 </script>
