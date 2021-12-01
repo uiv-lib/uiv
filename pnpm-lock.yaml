@@ -7,7 +7,7 @@ specifiers:
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.23
   '@vue/test-utils': 2.0.0-rc.17
-  '@vue/vue3-jest': 27.0.0-alpha.3
+  '@vue/vue3-jest': 27.0.0-alpha.4
   axios: 0.24.0
   babel-core: 7.0.0-bridge.0
   babel-jest: 27.4.2
@@ -38,7 +38,7 @@ devDependencies:
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.23
   '@vue/test-utils': 2.0.0-rc.17_vue@3.2.23
-  '@vue/vue3-jest': 27.0.0-alpha.3_dc9e60692fc64a5a047f6495c97359ee
+  '@vue/vue3-jest': 27.0.0-alpha.4_dc9e60692fc64a5a047f6495c97359ee
   axios: registry.npmmirror.com/axios/0.24.0
   babel-core: 7.0.0-bridge.0
   babel-jest: 27.4.2
@@ -2007,8 +2007,8 @@ packages:
       vue: 3.2.23
     dev: true
 
-  /@vue/vue3-jest/27.0.0-alpha.3_dc9e60692fc64a5a047f6495c97359ee:
-    resolution: {integrity: sha512-q6Ij39J/qPMkMHhttq0r4Yx/leaN1rMnUrwicLwad9YuVO6sPAbiaiUa+A5jbcHcHGMhXcJ69oGIf4dj7oGidg==}
+  /@vue/vue3-jest/27.0.0-alpha.4_dc9e60692fc64a5a047f6495c97359ee:
+    resolution: {integrity: sha512-RgEwjNvwdWmRngHqgt957fLT6riOkv/Kyl0ra8jo0Z8Dgosmu17dNqgBzLn9fTgNlTbHv4TQQdLRjczr+z2mlA==}
     peerDependencies:
       '@babel/core': 7.x
       babel-jest: 27.x
@@ -2024,11 +2024,11 @@ packages:
     dependencies:
       '@babel/plugin-transform-modules-commonjs': 7.16.0
       babel-jest: 27.4.2
-      chalk: mirrors.tencent.com/chalk/2.4.2
-      convert-source-map: mirrors.tencent.com/convert-source-map/1.8.0
+      chalk: 2.4.2
+      convert-source-map: 1.8.0
       extract-from-css: 0.4.4
       jest: 27.4.2
-      source-map: mirrors.tencent.com/source-map/0.5.6
+      source-map: 0.5.6
       tsconfig: 7.0.0
       vue: 3.2.23
     transitivePeerDependencies:
@@ -2534,7 +2534,7 @@ packages:
     dependencies:
       inherits: 2.0.4
       source-map: 0.6.1
-      source-map-resolve: mirrors.tencent.com/source-map-resolve/0.5.3
+      source-map-resolve: 0.5.3
       urix: 0.1.0
     dev: true
 
@@ -2587,6 +2587,11 @@ packages:
 
   /decimal.js/10.3.1:
     resolution: {integrity: sha512-V0pfhfr8suzyPGOx3nmq4aHqabehUZn6Ch9kyFpV79TGDTWFmHqUqXdabR7QHqxzrYolF4+tVmJhUG4OURg5dQ==}
+    dev: true
+
+  /decode-uri-component/0.2.0:
+    resolution: {integrity: sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=}
+    engines: {node: '>=0.10'}
     dev: true
 
   /dedent/0.7.0:
@@ -4611,6 +4616,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /resolve-url/0.2.1:
+    resolution: {integrity: sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=}
+    deprecated: https://github.com/lydell/resolve-url#deprecated
+    dev: true
+
   /resolve.exports/1.1.0:
     resolution: {integrity: sha512-J1l+Zxxp4XK3LUDZ9m60LRJF/mAe4z6a4xyabPHk7pvK5t35dACV32iIjJDFeWZFfZlO29w6SZ67knR0tHzJtQ==}
     engines: {node: '>=10'}
@@ -4721,11 +4731,30 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /source-map-resolve/0.5.3:
+    resolution: {integrity: sha512-Htz+RnsXWk5+P2slx5Jh3Q66vhQj1Cllm0zvnaY98+NFx+Dv2CF/f5O/t8x+KaNdrdIAsruNzoh/KpialbqAnw==}
+    dependencies:
+      atob: 2.1.2
+      decode-uri-component: 0.2.0
+      resolve-url: 0.2.1
+      source-map-url: 0.4.1
+      urix: 0.1.0
+    dev: true
+
   /source-map-support/0.5.20:
     resolution: {integrity: sha512-n1lZZ8Ve4ksRqizaBQgxXDgKwttHDhyfQjA6YZZn8+AroHbsIz+JjwxQDxbp+7y5OYCI8t1Yk7etjD9CRd2hIw==}
     dependencies:
       buffer-from: 1.1.2
       source-map: 0.6.1
+    dev: true
+
+  /source-map-url/0.4.1:
+    resolution: {integrity: sha512-cPiFOTLUKvJFIg4SKVScy4ilPPW6rFgMgfuZJPNoDuMs3nC1HbMUycBoJw77xFIp6z1UJQJOfx6C9GMH80DiTw==}
+    dev: true
+
+  /source-map/0.5.6:
+    resolution: {integrity: sha1-dc449SvwczxafwwRjYEzSiu19BI=}
+    engines: {node: '>=0.10.0'}
     dev: true
 
   /source-map/0.5.7:
@@ -5245,32 +5274,6 @@ packages:
       yargs-parser: 20.2.9
     dev: true
 
-  mirrors.tencent.com/chalk/2.4.2:
-    resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://mirrors.tencent.com/npm/chalk/-/chalk-2.4.2.tgz}
-    name: chalk
-    version: 2.4.2
-    engines: {node: '>=4'}
-    dependencies:
-      ansi-styles: 3.2.1
-      escape-string-regexp: 1.0.5
-      supports-color: 5.5.0
-    dev: true
-
-  mirrors.tencent.com/convert-source-map/1.8.0:
-    resolution: {integrity: sha512-+OQdjP49zViI/6i7nIJpA8rAl4sV/JdPfU9nZs3VqOwGIgizICvuN2ru6fMd+4llL0tar18UYJXfZ/TWtmhUjA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://mirrors.tencent.com/npm/convert-source-map/-/convert-source-map-1.8.0.tgz}
-    name: convert-source-map
-    version: 1.8.0
-    dependencies:
-      safe-buffer: 5.1.2
-    dev: true
-
-  mirrors.tencent.com/decode-uri-component/0.2.0:
-    resolution: {integrity: sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://mirrors.tencent.com/npm/decode-uri-component/-/decode-uri-component-0.2.0.tgz}
-    name: decode-uri-component
-    version: 0.2.0
-    engines: {node: '>=0.10'}
-    dev: true
-
   mirrors.tencent.com/extend-shallow/2.0.1:
     resolution: {integrity: sha1-Ua99YUrZqfYQ6huvu5idaxxWiQ8=, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://mirrors.tencent.com/npm/extend-shallow/-/extend-shallow-2.0.1.tgz}
     name: extend-shallow
@@ -5293,31 +5296,6 @@ packages:
     version: 1.8.0
     dependencies:
       isarray: registry.nlark.com/isarray/0.0.1
-    dev: true
-
-  mirrors.tencent.com/resolve-url/0.2.1:
-    resolution: {integrity: sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://mirrors.tencent.com/npm/resolve-url/-/resolve-url-0.2.1.tgz}
-    name: resolve-url
-    version: 0.2.1
-    deprecated: https://github.com/lydell/resolve-url#deprecated
-    dev: true
-
-  mirrors.tencent.com/source-map-resolve/0.5.3:
-    resolution: {integrity: sha512-Htz+RnsXWk5+P2slx5Jh3Q66vhQj1Cllm0zvnaY98+NFx+Dv2CF/f5O/t8x+KaNdrdIAsruNzoh/KpialbqAnw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://mirrors.tencent.com/npm/source-map-resolve/-/source-map-resolve-0.5.3.tgz}
-    name: source-map-resolve
-    version: 0.5.3
-    dependencies:
-      atob: 2.1.2
-      decode-uri-component: mirrors.tencent.com/decode-uri-component/0.2.0
-      resolve-url: mirrors.tencent.com/resolve-url/0.2.1
-      source-map-url: mirrors.tencent.com/source-map-url/0.4.1
-      urix: 0.1.0
-    dev: true
-
-  mirrors.tencent.com/source-map-url/0.4.1:
-    resolution: {integrity: sha512-cPiFOTLUKvJFIg4SKVScy4ilPPW6rFgMgfuZJPNoDuMs3nC1HbMUycBoJw77xFIp6z1UJQJOfx6C9GMH80DiTw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://mirrors.tencent.com/npm/source-map-url/-/source-map-url-0.4.1.tgz}
-    name: source-map-url
-    version: 0.4.1
     dev: true
 
   mirrors.tencent.com/source-map/0.5.6:
