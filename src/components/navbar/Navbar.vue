@@ -20,53 +20,42 @@
   </nav>
 </template>
 
-<script>
+<script setup>
 import Collapse from '../collapse/Collapse.vue';
+import { computed, onMounted, ref, watch } from 'vue';
 
-export default {
-  components: { Collapse },
-  props: {
-    modelValue: Boolean,
-    fluid: {
-      type: Boolean,
-      default: true,
-    },
-    fixedTop: Boolean,
-    fixedBottom: Boolean,
-    staticTop: Boolean,
-    inverse: Boolean,
-  },
-  emits: ['update:modalValue'],
-  data() {
-    return {
-      show: false,
-    };
-  },
-  computed: {
-    navClasses() {
-      return {
-        navbar: true,
-        'navbar-default': !this.inverse,
-        'navbar-inverse': this.inverse,
-        'navbar-static-top': this.staticTop,
-        'navbar-fixed-bottom': this.fixedBottom,
-        'navbar-fixed-top': this.fixedTop,
-      };
-    },
-  },
-  watch: {
-    modelValue(v) {
-      this.show = v;
-    },
-  },
-  mounted() {
-    this.show = !!this.modelValue;
-  },
-  methods: {
-    toggle() {
-      this.show = !this.show;
-      this.$emit('update:modalValue', this.show);
-    },
-  },
-};
+const props = defineProps({
+  modelValue: Boolean,
+  fluid: { type: Boolean, default: true },
+  fixedTop: Boolean,
+  fixedBottom: Boolean,
+  staticTop: Boolean,
+  inverse: Boolean,
+});
+const emit = defineEmits(['update:modalValue']);
+const show = ref(false);
+const navClasses = computed(() => ({
+  navbar: true,
+  'navbar-default': !props.inverse,
+  'navbar-inverse': props.inverse,
+  'navbar-static-top': props.staticTop,
+  'navbar-fixed-bottom': props.fixedBottom,
+  'navbar-fixed-top': props.fixedTop,
+}));
+
+watch(
+  () => props.modelValue,
+  (v) => {
+    show.value = v;
+  }
+);
+
+onMounted(() => {
+  show.value = !!props.modelValue;
+});
+
+function toggle() {
+  show.value = !show.value;
+  emit('update:modalValue', show.value);
+}
 </script>

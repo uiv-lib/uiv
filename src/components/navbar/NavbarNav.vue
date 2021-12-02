@@ -11,11 +11,9 @@
   </ul>
 </template>
 
-<script>
-export default {
-  props: {
-    left: Boolean,
-    right: Boolean,
-  },
-};
+<script setup>
+defineProps({
+  left: Boolean,
+  right: Boolean,
+});
 </script>
