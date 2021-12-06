@@ -23,7 +23,7 @@ specifiers:
   less-loader: 7.3.0
   lodash: 4.17.21
   patch-vue-directive-ssr: 0.0.1
-  prettier: 2.5.0
+  prettier: 2.5.1
   sinon: 12.0.1
   vite: 2.6.14
   vitepress: 0.20.1
@@ -46,7 +46,7 @@ devDependencies:
   eslint: 8.3.0
   eslint-config-prettier: 8.3.0_eslint@8.3.0
   eslint-plugin-html: 6.2.0
-  eslint-plugin-prettier: 4.0.0_d8c6a2a4ba8850181fffb74d8e835cec
+  eslint-plugin-prettier: 4.0.0_6f438f3450fc1ceebe036a521fece809
   eslint-plugin-vue: 8.2.0_eslint@8.3.0
   jest: 27.4.3
   jest-serializer-vue: 2.0.2
@@ -54,7 +54,7 @@ devDependencies:
   less-loader: registry.npmmirror.com/less-loader/7.3.0_less@4.1.2
   lodash: 4.17.21
   patch-vue-directive-ssr: 0.0.1
-  prettier: 2.5.0
+  prettier: 2.5.1
   sinon: 12.0.1
   vite: 2.6.14_less@4.1.2
   vitepress: 0.20.1_less@4.1.2
@@ -2911,7 +2911,7 @@ packages:
       htmlparser2: 7.1.2
     dev: true
 
-  /eslint-plugin-prettier/4.0.0_d8c6a2a4ba8850181fffb74d8e835cec:
+  /eslint-plugin-prettier/4.0.0_6f438f3450fc1ceebe036a521fece809:
     resolution: {integrity: sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
@@ -2924,7 +2924,7 @@ packages:
     dependencies:
       eslint: 8.3.0
       eslint-config-prettier: 8.3.0_eslint@8.3.0
-      prettier: 2.5.0
+      prettier: 2.5.1
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -4451,8 +4451,8 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier/2.5.0:
-    resolution: {integrity: sha512-FM/zAKgWTxj40rH03VxzIPdXmj39SwSjwG0heUcNFwI+EMZJnY93yAiKXM3dObIKAM5TA88werc8T/EwhB45eg==}
+  /prettier/2.5.1:
+    resolution: {integrity: sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
