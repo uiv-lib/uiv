@@ -28,7 +28,7 @@ specifiers:
   vite: 2.6.14
   vitepress: 0.20.1
   vue: 3.2.23
-  vue-i18n: 9.2.0-beta.22
+  vue-i18n: 9.2.0-beta.23
   vue-jest: 5.0.0-alpha.10
 
 devDependencies:
@@ -59,7 +59,7 @@ devDependencies:
   vite: 2.6.14_less@4.1.2
   vitepress: 0.20.1_less@4.1.2
   vue: 3.2.23
-  vue-i18n: 9.2.0-beta.22_vue@3.2.23
+  vue-i18n: 9.2.0-beta.23_vue@3.2.23
   vue-jest: 5.0.0-alpha.10_37e5cf4480c9dbbfa7b370a8b52b0afa
 
 packages:
@@ -1466,42 +1466,42 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@intlify/core-base/9.2.0-beta.22:
-    resolution: {integrity: sha512-SqgQx+npGJ8XgY920FoHnvfo7Th4bEFPxOUrMquqHCHH7J/HSLV6Xppzf8wE1ZzCWjn1wmUHkavTW9ASNCXj0Q==}
+  /@intlify/core-base/9.2.0-beta.23:
+    resolution: {integrity: sha512-sNet9/RpU/qydW1bOwVICYzGIC/SWyV+1gakcSP12XD1tGEiaoI1Ln+6nHh4dICfegR/5XyaoJ7NC4/ukH7/Ew==}
     engines: {node: '>= 12'}
     dependencies:
-      '@intlify/devtools-if': 9.2.0-beta.22
-      '@intlify/message-compiler': 9.2.0-beta.22
-      '@intlify/shared': 9.2.0-beta.22
-      '@intlify/vue-devtools': 9.2.0-beta.22
+      '@intlify/devtools-if': 9.2.0-beta.23
+      '@intlify/message-compiler': 9.2.0-beta.23
+      '@intlify/shared': 9.2.0-beta.23
+      '@intlify/vue-devtools': 9.2.0-beta.23
     dev: true
 
-  /@intlify/devtools-if/9.2.0-beta.22:
-    resolution: {integrity: sha512-TRpig6P7hMZejDvmwTGygf+TbGUkeICnIMtNqKCMkAw78Yoc5FhgaKTCkK72Gjcmul7V9CdOF+ro/xtzY6MQGQ==}
+  /@intlify/devtools-if/9.2.0-beta.23:
+    resolution: {integrity: sha512-f2iY2LFRHTwPnBpT0R/kG8CwZbUWiSccMzfXYLwhjJC1irCcFCXmVtL9Mkz5gc0Elqvl+zOWxk5g9rwhah5bBQ==}
     engines: {node: '>= 12'}
     dependencies:
-      '@intlify/shared': 9.2.0-beta.22
+      '@intlify/shared': 9.2.0-beta.23
     dev: true
 
-  /@intlify/message-compiler/9.2.0-beta.22:
-    resolution: {integrity: sha512-+Nx8IpKcXBQ7L+f6UWLQf/iReD7rotBkV4oxUX1rKMQgaJToYB1ovrPYNoNDd6aK4rEQ9sJoM5nd2+ENmCs7dA==}
+  /@intlify/message-compiler/9.2.0-beta.23:
+    resolution: {integrity: sha512-qmGN8k5yGGdZ5St8yg8U4Tg2K9Sc6h3BhWCdJKAqQVs5jnfZG+nMtsLVgnJUWkDvhjzyg7/rEOhHm2uJcu4vjw==}
     engines: {node: '>= 12'}
     dependencies:
-      '@intlify/shared': 9.2.0-beta.22
+      '@intlify/shared': 9.2.0-beta.23
       source-map: 0.6.1
     dev: true
 
-  /@intlify/shared/9.2.0-beta.22:
-    resolution: {integrity: sha512-IyU9Trx1d5EZgAh6/3y0+efgko5xRw1iTwpM19qublZsTSnDSkHB8NnSyHVZrMARj+LgZgL7pKktsSO5os9k2A==}
+  /@intlify/shared/9.2.0-beta.23:
+    resolution: {integrity: sha512-3aELL2KTp1MWKGm2gIUKSagthgKzcK5hpQEFzOwkJ1SAthpTXR7BHeWGEaD+Lj+Pbiz3U8cspvp8s2lFWVbYxg==}
     engines: {node: '>= 12'}
     dev: true
 
-  /@intlify/vue-devtools/9.2.0-beta.22:
-    resolution: {integrity: sha512-CZwrIFGiXl9q6Rrqyqtb3P+wwG7f0FcMvbQqJf2CnCsT7rLi4O+qbSzY5ZjN5J0bsLTfL2a4UIhxIlim4Ea+hQ==}
+  /@intlify/vue-devtools/9.2.0-beta.23:
+    resolution: {integrity: sha512-5uGvrtUQhiyEqrMpDYh1FAU5uZviLaiEy1HAs+ypX46EdaDvyEYYpWvhezTWZ7hsDBsbsKJ9ICjgTvZxm6PDcw==}
     engines: {node: '>= 12'}
     dependencies:
-      '@intlify/core-base': 9.2.0-beta.22
-      '@intlify/shared': 9.2.0-beta.22
+      '@intlify/core-base': 9.2.0-beta.23
+      '@intlify/shared': 9.2.0-beta.23
     dev: true
 
   /@istanbuljs/load-nyc-config/1.1.0:
@@ -5057,15 +5057,15 @@ packages:
       - supports-color
     dev: true
 
-  /vue-i18n/9.2.0-beta.22_vue@3.2.23:
-    resolution: {integrity: sha512-XnkGLhC1ESZYiCpWnTkAsc3/z8p2ntu5dmQjp9M0hhOZi5w8JZ8VQieJiiq5MFlqjVeIxNkGMn6HM0hvC4xtFA==}
+  /vue-i18n/9.2.0-beta.23_vue@3.2.23:
+    resolution: {integrity: sha512-9zpylFVjhMDiNnSpa8pFf/lXiALKzxDKEo9QrSV906cN0m6jtyjvjCWw6dRx/7Q4ZJuwXYg0wi/UtUkgu0wkQw==}
     engines: {node: '>= 12'}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
-      '@intlify/core-base': 9.2.0-beta.22
-      '@intlify/shared': 9.2.0-beta.22
-      '@intlify/vue-devtools': 9.2.0-beta.22
+      '@intlify/core-base': 9.2.0-beta.23
+      '@intlify/shared': 9.2.0-beta.23
+      '@intlify/vue-devtools': 9.2.0-beta.23
       '@vue/devtools-api': 6.0.0-beta.20.1
       vue: 3.2.23
     dev: true
