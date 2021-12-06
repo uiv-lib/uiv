@@ -16,7 +16,7 @@ specifiers:
   eslint-config-prettier: 8.3.0
   eslint-plugin-html: 6.2.0
   eslint-plugin-prettier: 4.0.0
-  eslint-plugin-vue: 8.1.1
+  eslint-plugin-vue: 8.2.0
   jest: 27.4.3
   jest-serializer-vue: 2.0.2
   less: 4.1.2
@@ -47,7 +47,7 @@ devDependencies:
   eslint-config-prettier: 8.3.0_eslint@8.3.0
   eslint-plugin-html: 6.2.0
   eslint-plugin-prettier: 4.0.0_d8c6a2a4ba8850181fffb74d8e835cec
-  eslint-plugin-vue: 8.1.1_eslint@8.3.0
+  eslint-plugin-vue: 8.2.0_eslint@8.3.0
   jest: 27.4.3
   jest-serializer-vue: 2.0.2
   less: registry.npmmirror.com/less/4.1.2
@@ -2928,8 +2928,8 @@ packages:
       prettier-linter-helpers: 1.0.0
     dev: true
 
-  /eslint-plugin-vue/8.1.1_eslint@8.3.0:
-    resolution: {integrity: sha512-rx64IrlhdfPya6u2V5ukOGiLCTgaCBdMSpczLVqyo8A0l+Vbo+lzvIfEUfAQ2auj+MF6y0TwxLorzdCIzHunnw==}
+  /eslint-plugin-vue/8.2.0_eslint@8.3.0:
+    resolution: {integrity: sha512-cLIdTuOAMXyHeQ4drYKcZfoyzdwdBpH279X8/N0DgmotEI9yFKb5O/cAgoie/CkQZCH/MOmh0xw/KEfS90zY2A==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
@@ -2972,11 +2972,6 @@ packages:
   /eslint-visitor-keys/2.1.0:
     resolution: {integrity: sha512-0rSmRBzXgDzIsD6mGdJgevzgezI534Cer5L/vyMX0kHzT/jiB43jRhd9YUlMGYLQy2zprNmoT8qasCGtY+QaKw==}
     engines: {node: '>=10'}
-    dev: true
-
-  /eslint-visitor-keys/3.0.0:
-    resolution: {integrity: sha512-mJOZa35trBTb3IyRmo8xmKBZlxf+N7OnUl4+ZhJHs/r+0770Wh/LEACE2pqMGMe27G/4y8P2bYGk4J70IC5k1Q==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
   /eslint-visitor-keys/3.1.0:
@@ -3029,15 +3024,6 @@ packages:
       v8-compile-cache: 2.3.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /espree/9.0.0:
-    resolution: {integrity: sha512-r5EQJcYZ2oaGbeR0jR0fFVijGOcwai07/690YRXLINuhmVeRY4UKSAsQPe/0BNuDgwP7Ophoc1PRsr2E3tkbdQ==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dependencies:
-      acorn: 8.6.0
-      acorn-jsx: 5.3.2_acorn@8.6.0
-      eslint-visitor-keys: 3.0.0
     dev: true
 
   /espree/9.1.0:
@@ -5062,8 +5048,8 @@ packages:
       debug: 4.3.2
       eslint: 8.3.0
       eslint-scope: 6.0.0
-      eslint-visitor-keys: 3.0.0
-      espree: 9.0.0
+      eslint-visitor-keys: 3.1.0
+      espree: 9.1.0
       esquery: 1.4.0
       lodash: 4.17.21
       semver: 7.3.5

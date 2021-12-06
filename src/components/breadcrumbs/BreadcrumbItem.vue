@@ -13,11 +13,9 @@
   </li>
 </template>
 
-<script>
-import { linkProps } from '../../props/link.props';
-</script>
-
 <script setup>
+import { linkProps } from '../../props/link.props';
+
 defineProps({
   ...linkProps,
   active: { type: Boolean, default: false },

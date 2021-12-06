@@ -53,13 +53,10 @@
   </button>
 </template>
 
-<script>
-import { linkProps } from '../../props/link.props';
-</script>
-
 <script setup>
 import BtnGroup from './BtnGroup.vue';
 import { computed } from 'vue';
+import { linkProps } from '../../props/link.props';
 
 const props = defineProps({
   ...linkProps,
