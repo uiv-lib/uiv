@@ -53,7 +53,7 @@
     "eslint-plugin-html": "6.2.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-vue": "8.1.1",
-    "jest": "27.4.2",
+    "jest": "27.4.3",
     "jest-serializer-vue": "2.0.2",
     "less": "4.1.2",
     "less-loader": "7.3.0",
