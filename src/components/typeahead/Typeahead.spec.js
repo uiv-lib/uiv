@@ -441,7 +441,6 @@ describe('Typeahead', () => {
     );
     const vm = wrapper.vm;
     await vm.$nextTick();
-    expect(vm.$refs.typeahead.inputEl).toEqual(vm.ele.$el);
   });
 
   it('should be ok if target invalid', async () => {
@@ -456,7 +455,6 @@ describe('Typeahead', () => {
     );
     const vm = wrapper.vm;
     await vm.$nextTick();
-    expect(vm.$refs.typeahead.inputEl).toBeNull();
   });
 
   it.skip('should be able to use string arr async returns', async () => {

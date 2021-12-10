@@ -6,6 +6,7 @@
       class="form-control"
       type="text"
       placeholder="Type to search..."
+      autocomplete="off"
     />
     <Typeahead v-model="model" :target="input" :data="states" item-key="name" />
     <br />
@@ -14,7 +15,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import { Alert, Typeahead } from 'uiv';
 import { data as states } from './states.json';
 

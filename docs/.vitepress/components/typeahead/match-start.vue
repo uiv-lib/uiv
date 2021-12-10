@@ -6,6 +6,7 @@
       class="form-control"
       type="text"
       placeholder="Type to search..."
+      autocomplete="off"
     />
     <Typeahead
       v-model="model"
