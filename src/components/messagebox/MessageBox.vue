@@ -110,7 +110,7 @@ const dirty = ref(false);
 const modal = ref(null);
 
 const closeOnBackdropClick = computed(() =>
-  isExist(props.backdrop) ? Boolean(props.backdrop) : props.type !== TYPES.ALERT
+  isExist(props.backdrop) ? !!props.backdrop : props.type !== TYPES.ALERT
 );
 const inputError = computed(() => props.validator(input.value));
 const inputNotValid = computed(() => dirty.value && inputError.value);

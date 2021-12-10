@@ -212,7 +212,7 @@ function fetchItems(value, debounce) {
     open.value = false;
   } else if (props.data) {
     prepareItems(props.data);
-    open.value = hasEmptySlot() || Boolean(items.value.length);
+    open.value = hasEmptySlot() || !!items.value.length;
   } else if (props.asyncSrc) {
     timeoutID = setTimeout(() => {
       emit('loading');
@@ -220,7 +220,7 @@ function fetchItems(value, debounce) {
         .then((data) => {
           if (inputEl.value.matches(':focus')) {
             prepareItems(props.asyncKey ? data[props.asyncKey] : data, true);
-            open.value = hasEmptySlot() || Boolean(items.value.length);
+            open.value = hasEmptySlot() || !!items.value.length;
           }
           emit('loaded');
         })
@@ -233,7 +233,7 @@ function fetchItems(value, debounce) {
     const cb = (data) => {
       if (inputEl.value.matches(':focus')) {
         prepareItems(data, true);
-        open.value = hasEmptySlot() || Boolean(items.value.length);
+        open.value = hasEmptySlot() || !!items.value.length;
       }
       emit('loaded');
     };

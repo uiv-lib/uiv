@@ -4,7 +4,7 @@
       'progress-bar': true,
       'progress-bar-striped': striped,
       active: striped && active,
-      [`progress-bar-${type}`]: Boolean(type),
+      [`progress-bar-${type}`]: !!type,
     }"
     :style="{
       minWidth: minWidth ? '2em' : null,
@@ -20,31 +20,9 @@
 </template>
 
 <script setup>
+import { progressBarProps } from '../../props/progress-bar.props';
+
 defineProps({
-  modelValue: {
-    type: Number,
-    required: true,
-    validator(value) {
-      return value >= 0 && value <= 100;
-    },
-  },
-  labelText: { type: String, default: undefined },
-  type: { type: String, default: undefined },
-  label: {
-    type: Boolean,
-    default: false,
-  },
-  minWidth: {
-    type: Boolean,
-    default: false,
-  },
-  striped: {
-    type: Boolean,
-    default: false,
-  },
-  active: {
-    type: Boolean,
-    default: false,
-  },
+  ...progressBarProps,
 });
 </script>

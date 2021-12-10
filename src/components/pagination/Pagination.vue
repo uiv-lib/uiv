@@ -108,10 +108,10 @@ const emit = defineEmits(['update:modelValue', 'change']);
 const sliceStart = ref(0);
 
 const navClasses = computed(() => ({
-  [`text-${props.align}`]: Boolean(props.align),
+  [`text-${props.align}`]: !!props.align,
 }));
 const classes = computed(() => ({
-  [`pagination-${props.size}`]: Boolean(props.size),
+  [`pagination-${props.size}`]: !!props.size,
 }));
 const sliceArray = computed(() =>
   range(props.totalPage).slice(

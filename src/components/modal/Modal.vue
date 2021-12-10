@@ -108,7 +108,7 @@ export default {
   computed: {
     modalSizeClass() {
       return {
-        [`modal-${this.size}`]: Boolean(this.size),
+        [`modal-${this.size}`]: !!this.size,
       };
     },
   },

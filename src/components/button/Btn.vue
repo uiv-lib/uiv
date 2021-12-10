@@ -91,8 +91,8 @@ const classes = computed(() => ({
   active: props.inputType ? isInputActive.value : props.active,
   disabled: props.disabled,
   'btn-block': props.block,
-  [`btn-${props.type}`]: Boolean(props.type),
-  [`btn-${props.size}`]: Boolean(props.size),
+  [`btn-${props.type}`]: !!props.type,
+  [`btn-${props.size}`]: !!props.size,
 }));
 
 function onClick(e) {
