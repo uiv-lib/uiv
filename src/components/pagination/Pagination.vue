@@ -89,121 +89,96 @@
   </nav>
 </template>
 
-<script>
+<script setup>
 import { range } from '../../utils/array.utils';
+import { computed, ref, watch } from 'vue';
 
-export default {
-  props: {
-    modelValue: {
-      type: Number,
-      required: true,
-      validator: (v) => v >= 1,
-    },
-    boundaryLinks: {
-      type: Boolean,
-      default: false,
-    },
-    directionLinks: {
-      type: Boolean,
-      default: true,
-    },
-    size: { type: String, default: undefined },
-    align: { type: String, default: undefined },
-    totalPage: {
-      type: Number,
-      required: true,
-      validator: (v) => v >= 0,
-    },
-    maxSize: {
-      type: Number,
-      default: 5,
-      validator: (v) => v >= 0,
-    },
-    disabled: Boolean,
+const props = defineProps({
+  modelValue: { type: Number, required: true, validator: (v) => v >= 1 },
+  boundaryLinks: { type: Boolean, default: false },
+  directionLinks: { type: Boolean, default: true },
+  size: { type: String, default: undefined },
+  align: { type: String, default: undefined },
+  totalPage: { type: Number, required: true, validator: (v) => v >= 0 },
+  maxSize: { type: Number, default: 5, validator: (v) => v >= 0 },
+  disabled: Boolean,
+});
+const emit = defineEmits(['update:modelValue', 'change']);
+
+const sliceStart = ref(0);
+
+const navClasses = computed(() => ({
+  [`text-${props.align}`]: Boolean(props.align),
+}));
+const classes = computed(() => ({
+  [`pagination-${props.size}`]: Boolean(props.size),
+}));
+const sliceArray = computed(() =>
+  range(props.totalPage).slice(
+    sliceStart.value,
+    sliceStart.value + props.maxSize
+  )
+);
+
+watch(
+  () => [props.modelValue, props.maxSize, props.totalPage],
+  () => {
+    calculateSliceStart();
   },
-  emits: ['update:modelValue', 'change'],
-  data() {
-    return {
-      sliceStart: 0,
-    };
-  },
-  computed: {
-    navClasses() {
-      return {
-        [`text-${this.align}`]: Boolean(this.align),
-      };
-    },
-    classes() {
-      return {
-        [`pagination-${this.size}`]: Boolean(this.size),
-      };
-    },
-    sliceArray() {
-      return range(this.totalPage).slice(
-        this.sliceStart,
-        this.sliceStart + this.maxSize
-      );
-    },
-  },
-  created() {
-    this.$watch(
-      (vm) => [vm.modelValue, vm.maxSize, vm.totalPage].join(),
-      this.calculateSliceStart,
-      {
-        immediate: true,
-      }
-    );
-  },
-  methods: {
-    calculateSliceStart() {
-      const currentPage = this.modelValue;
-      const chunkSize = this.maxSize;
-      const currentChunkStart = this.sliceStart;
-      const currentChunkEnd = currentChunkStart + chunkSize;
-      if (currentPage > currentChunkEnd) {
-        const lastChunkStart = this.totalPage - chunkSize;
-        if (currentPage > lastChunkStart) {
-          this.sliceStart = lastChunkStart;
-        } else {
-          this.sliceStart = currentPage - 1;
-        }
-      } else if (currentPage < currentChunkStart + 1) {
-        if (currentPage > chunkSize) {
-          this.sliceStart = currentPage - chunkSize;
-        } else {
-          this.sliceStart = 0;
-        }
-      }
-    },
-    onPageChange(page) {
-      if (
-        !this.disabled &&
-        page > 0 &&
-        page <= this.totalPage &&
-        page !== this.modelValue
-      ) {
-        this.$emit('update:modelValue', page);
-        this.$emit('change', page);
-      }
-    },
-    toPage(pre) {
-      if (this.disabled) {
-        return;
-      }
-      const chunkSize = this.maxSize;
-      const currentChunkStart = this.sliceStart;
-      const lastChunkStart = this.totalPage - chunkSize;
-      const start = pre
-        ? currentChunkStart - chunkSize
-        : currentChunkStart + chunkSize;
-      if (start < 0) {
-        this.sliceStart = 0;
-      } else if (start > lastChunkStart) {
-        this.sliceStart = lastChunkStart;
-      } else {
-        this.sliceStart = start;
-      }
-    },
-  },
-};
+  {
+    immediate: true,
+  }
+);
+
+function calculateSliceStart() {
+  const currentPage = props.modelValue;
+  const chunkSize = props.maxSize;
+  const currentChunkStart = sliceStart.value;
+  const currentChunkEnd = currentChunkStart + chunkSize;
+  if (currentPage > currentChunkEnd) {
+    const lastChunkStart = props.totalPage - chunkSize;
+    if (currentPage > lastChunkStart) {
+      sliceStart.value = lastChunkStart;
+    } else {
+      sliceStart.value = currentPage - 1;
+    }
+  } else if (currentPage < currentChunkStart + 1) {
+    if (currentPage > chunkSize) {
+      sliceStart.value = currentPage - chunkSize;
+    } else {
+      sliceStart.value = 0;
+    }
+  }
+}
+
+function onPageChange(page) {
+  if (
+    !props.disabled &&
+    page > 0 &&
+    page <= props.totalPage &&
+    page !== props.modelValue
+  ) {
+    emit('update:modelValue', page);
+    emit('change', page);
+  }
+}
+
+function toPage(pre) {
+  if (props.disabled) {
+    return;
+  }
+  const chunkSize = props.maxSize;
+  const currentChunkStart = sliceStart.value;
+  const lastChunkStart = props.totalPage - chunkSize;
+  const start = pre
+    ? currentChunkStart - chunkSize
+    : currentChunkStart + chunkSize;
+  if (start < 0) {
+    sliceStart.value = 0;
+  } else if (start > lastChunkStart) {
+    sliceStart.value = lastChunkStart;
+  } else {
+    sliceStart.value = start;
+  }
+}
 </script>
