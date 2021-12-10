@@ -75,20 +75,20 @@ use `not-close-elements` to prevent dropdown close on menu body click if needed.
 
 #### Props
 
-Name                 | Type       | Default  | Required | Description
-----------------     | ---------- | -------- | -------- | -----------------------
-`v-model`            | Boolean    |          |          | Indicate the dropdown status (show / hide).
-`tag`                | String     | div      |          | The HTML tag that render the dropdown component.
-`append-to-body`     | Boolean    | false    |          | Append the dropdown slot to body.
-`dropup`             | Boolean    | false    |          | Use dropup style.
-`menu-right`         | Boolean    | false    |          | Use dropdown-menu-right style.
-`disabled`           | Boolean    | false    |          | Disable the dropdown.
-`not-close-elements` | Array      |          |          | Pass an array of element which the dropdown will not close on click.
-`position-element`   | Element    | this.$el |          | Pass an HTML element which the dropdown will be positioned by (in append-to-body mode).
+| Name                 | Type    | Default  | Required | Description                                                                             |
+|----------------------|---------|----------|----------|-----------------------------------------------------------------------------------------|
+| `v-model`            | Boolean |          |          | Indicate the dropdown status (show / hide).                                             |
+| `tag`                | String  | div      |          | The HTML tag that render the dropdown component.                                        |
+| `append-to-body`     | Boolean | false    |          | Append the dropdown slot to body.                                                       |
+| `dropup`             | Boolean | false    |          | Use dropup style.                                                                       |
+| `menu-right`         | Boolean | false    |          | Use dropdown-menu-right style.                                                          |
+| `disabled`           | Boolean | false    |          | Disable the dropdown.                                                                   |
+| `not-close-elements` | Array   |          |          | Pass an array of element which the dropdown will not close on click.                    |
+| `position-element`   | Element | this.$el |          | Pass an HTML element which the dropdown will be positioned by (in append-to-body mode). |
 
 #### Slots
 
-Name      | Description
---------- | -----------------------
-`dropdown` | Replace as the dropdown body.
-`default` | Replace as the rest of the component (e.g. trigger stuffs).
+| Name       | Description                                                 |
+|------------|-------------------------------------------------------------|
+| `dropdown` | Replace as the dropdown body.                               |
+| `default`  | Replace as the rest of the component (e.g. trigger stuffs). |

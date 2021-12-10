@@ -83,27 +83,27 @@ These props are used as `options` in the methods above.
 
 #### Props
 
-Name           | Type       | Default   | Required | Description
-----------     | ---------- | --------  | -------- | -----------------------
-`title`        | String     |           |          | The notification title.
-`content`      | String     |           |          | The notification content.
-`html`         | Boolean    | `false`   |          | Allow HTML in content.
-`type`         | String     |           |          | Support: `info` / `success` / `warning` / `danger`.
-`duration`     | Number     | 5000      |          | Dismiss after milliseconds, use 0 to prevent self-closing.
-`dismissible`  | Boolean    | true      |          | Show dismiss button.
-`placement`    | String     | top-right |          | Support: `top-right` / `top-left` / `bottom-right` / `bottom-left`.
-`icon`         | String     |           |          | Custom icon class, use an empty string to disable icon.
-`customClass`  |            |           |          | Custom classes to alert, anything that can work with `v-bind:class` or `:class`.
-`offset`       | Number     | 15        |          | The space in px between notifications.
-`offsetX`      | Number     | 15        |          | The horizontal offset in px while displaying notification.
-`offsetY`      | Number     | 15        |          | The vertical offset in px while displaying notification.
+| Name          | Type    | Default   | Required | Description                                                                      |
+|---------------|---------|-----------|----------|----------------------------------------------------------------------------------|
+| `title`       | String  |           |          | The notification title.                                                          |
+| `content`     | String  |           |          | The notification content.                                                        |
+| `html`        | Boolean | `false`   |          | Allow HTML in content.                                                           |
+| `type`        | String  |           |          | Support: `info` / `success` / `warning` / `danger`.                              |
+| `duration`    | Number  | 5000      |          | Dismiss after milliseconds, use 0 to prevent self-closing.                       |
+| `dismissible` | Boolean | true      |          | Show dismiss button.                                                             |
+| `placement`   | String  | top-right |          | Support: `top-right` / `top-left` / `bottom-right` / `bottom-left`.              |
+| `icon`        | String  |           |          | Custom icon class, use an empty string to disable icon.                          |
+| `customClass` |         |           |          | Custom classes to alert, anything that can work with `v-bind:class` or `:class`. |
+| `offset`      | Number  | 15        |          | The space in px between notifications.                                           |
+| `offsetX`     | Number  | 15        |          | The horizontal offset in px while displaying notification.                       |
+| `offsetY`     | Number  | 15        |          | The vertical offset in px while displaying notification.                         |
 
 #### Methods
 
 You can call a method by `$notify` or `Notification`, for example `this.$notify.dismissAll()`.
 
-Name                                                | Params           | Description
---------------------------------------------------- | ----------       | -----------------------
-`dismissAll`                                        |                  | Dismiss all notifications.
-`info` / `success` / `warning` / `danger` (`error`) | String or Object | Display a corresponding notification.
+| Name                                                | Params           | Description                           |
+|-----------------------------------------------------|------------------|---------------------------------------|
+| `dismissAll`                                        |                  | Dismiss all notifications.            |
+| `info` / `success` / `warning` / `danger` (`error`) | String or Object | Display a corresponding notification. |
 

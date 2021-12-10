@@ -66,21 +66,21 @@ Place multiple `<progress-bar-stack>` into the same `<progress-bar>` to stack th
 
 #### Props
 
-Name             | Type       | Default  | Required | Description
----------------- | ---------- | -------- | -------- | -----------------------
-`v-model`        | Number     |          | &#10004; | Current progress (0 ~ 100).
-`label`          | Boolean    | false    |          | Show label on progress bar.
-`label-text`     | String     |          |          | Custom label text.
-`min-width`      | Boolean    | false    |          | Apply a minimum width to the progress bar, useful when showing label and small current value.
-`type`           | String     |          |          | Progress bar type, support success / info / warning / danger. Or you can add custom types.
-`striped`        | Boolean    | false    |          | Apply striped style.
-`active`         | Boolean    | false    |          | Apply active to striped style.
+| Name         | Type    | Default | Required | Description                                                                                   |
+|--------------|---------|---------|----------|-----------------------------------------------------------------------------------------------|
+| `v-model`    | Number  |         | &#10004; | Current progress (0 ~ 100).                                                                   |
+| `label`      | Boolean | false   |          | Show label on progress bar.                                                                   |
+| `label-text` | String  |         |          | Custom label text.                                                                            |
+| `min-width`  | Boolean | false   |          | Apply a minimum width to the progress bar, useful when showing label and small current value. |
+| `type`       | String  |         |          | Progress bar type, support success / info / warning / danger. Or you can add custom types.    |
+| `striped`    | Boolean | false   |          | Apply striped style.                                                                          |
+| `active`     | Boolean | false   |          | Apply active to striped style.                                                                |
 
 #### Slots
 
-Name      | Description
---------- | -----------------------
-`default` | Use this slot if need stacked progress bar, see example in the code panel above.
+| Name      | Description                                                                      |
+|-----------|----------------------------------------------------------------------------------|
+| `default` | Use this slot if need stacked progress bar, see example in the code panel above. |
 
 ### [ProgressBarStack](https://github.com/uiv-lib/uiv/blob/1.x/src/components/progressbar/ProgressBarStack.js)
 

@@ -24,23 +24,23 @@ Extend the default collapse behavior to create an accordion with the panel compo
 
 #### Props
 
-Name                  | Type       | Default  | Required | Description
-----------------      | ---------- | -------- | -------- | -----------------------
-`v-model`             | Boolean    | false    | &#10004; | Show / hide the component.
-`tag`                 | String     | div      |          | The HTML tag that render the collapse component.
-`transition` | Number     | 350      |          | Collapse transition speed. Use 0 to disable transition.
+| Name         | Type    | Default | Required | Description                                             |
+|--------------|---------|---------|----------|---------------------------------------------------------|
+| `v-model`    | Boolean | false   | &#10004; | Show / hide the component.                              |
+| `tag`        | String  | div     |          | The HTML tag that render the collapse component.        |
+| `transition` | Number  | 350     |          | Collapse transition speed. Use 0 to disable transition. |
 
 #### Slots
 
-Name      | Description
---------- | -----------------------
-`default` | Replace as the collapse body.
+| Name      | Description                   |
+|-----------|-------------------------------|
+| `default` | Replace as the collapse body. |
 
 #### Events
 
-Name        | Params | Description
------------ | ------ | ---------------
-`show`      |        | This event fires immediately when the v-model prop is set to true.
-`shown`     |        | This event is fired when a collapse element has been made visible to the user (will wait for CSS transitions to complete).
-`hide`      |        | 	This event is fired immediately when the v-model prop is set to false.
-`hidden`    |        | This event is fired when a collapse element has been hidden from the user (will wait for CSS transitions to complete).
+| Name     | Params | Description                                                                                                                |
+|----------|--------|----------------------------------------------------------------------------------------------------------------------------|
+| `show`   |        | This event fires immediately when the v-model prop is set to true.                                                         |
+| `shown`  |        | This event is fired when a collapse element has been made visible to the user (will wait for CSS transitions to complete). |
+| `hide`   |        | 	This event is fired immediately when the v-model prop is set to false.                                                    |
+| `hidden` |        | This event is fired when a collapse element has been hidden from the user (will wait for CSS transitions to complete).     |

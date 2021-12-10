@@ -38,20 +38,20 @@ Use `duration` in milliseconds to auto dismiss alert. It can be used together wi
 
 #### Props
 
-Name             | Type       | Default  | Required | Description
----------------- | ---------- | -------- | -------- | -----------------------
-`dismissible`    | Boolean    | false    |          | Show dismiss button in alert.
-`type`           | String     | info     |          | Alert type (success, info, warning, danger).
-`duration`       | Number     | 0        |          | Dismiss after milliseconds, use 0 to prevent self-closing.
+| Name          | Type    | Default | Required | Description                                                |
+|---------------|---------|---------|----------|------------------------------------------------------------|
+| `dismissible` | Boolean | false   |          | Show dismiss button in alert.                              |
+| `type`        | String  | info    |          | Alert type (success, info, warning, danger).               |
+| `duration`    | Number  | 0       |          | Dismiss after milliseconds, use 0 to prevent self-closing. |
 
 #### Slots
 
-Name      | Description
---------- | -----------------------
-`default` | The alert body.
+| Name      | Description     |
+|-----------|-----------------|
+| `default` | The alert body. |
 
 #### Events
 
-Name        | Params | Description
------------ | ------ | ---------------
-`dismissed` |        | Fire after the alert dismissed. Note: you have to hide / destroy the alert using `v-if` / `v-show` / `v-for` manually due to child components can't change state of parent component.
+| Name        | Params | Description                                                                                                                                                                           |
+|-------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `dismissed` |        | Fire after the alert dismissed. Note: you have to hide / destroy the alert using `v-if` / `v-show` / `v-for` manually due to child components can't change state of parent component. |

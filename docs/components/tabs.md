@@ -90,46 +90,46 @@ In case you need to validate something inside a tab before it being switch, a sa
 
 #### Props
 
-Name                  | Type       | Default  | Required | Description
-----------------      | ---------- | -------- | -------- | -----------------------
-`v-model`             | Number     |          |          | The current tab index, use this to manual change tab index.
-`justified`           | Boolean    | false    |          | Use justified style.
-`pills`               | Boolean    | false    |          | Use pills style.
-`stacked`             | Boolean    | false    |          | Use stacked style, note that this have to work with `pills`.
-`transition`          | Number     | 150      |          | The tabs show / hide transition time in ms. Use 0 to disable transitions.
-`custom-nav-class`    |            |          |          | Apply custom classes to the tab nav, could be Object or String.
-`custom-content-class`|            |          |          | Apply custom classes to the tab content, could be Object or String.
-`before-change`       | function(indexFrom, indexTo, done) |||Trigger before active tab change. Calling `done()` will allow the change. Calling `done(err)`, where `err` is any value, will prevent it. Note that this callback will only trigger on tab clicking.
+| Name                   | Type                               | Default                                                                                                                                                                                              | Required | Description                                                               |
+|------------------------|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------------------------------------------------------------------------|
+| `v-model`              | Number                             |                                                                                                                                                                                                      |          | The current tab index, use this to manual change tab index.               |
+| `justified`            | Boolean                            | false                                                                                                                                                                                                |          | Use justified style.                                                      |
+| `pills`                | Boolean                            | false                                                                                                                                                                                                |          | Use pills style.                                                          |
+| `stacked`              | Boolean                            | false                                                                                                                                                                                                |          | Use stacked style, note that this have to work with `pills`.              |
+| `transition`           | Number                             | 150                                                                                                                                                                                                  |          | The tabs show / hide transition time in ms. Use 0 to disable transitions. |
+| `custom-nav-class`     |                                    |                                                                                                                                                                                                      |          | Apply custom classes to the tab nav, could be Object or String.           |
+| `custom-content-class` |                                    |                                                                                                                                                                                                      |          | Apply custom classes to the tab content, could be Object or String.       |
+| `before-change`        | function(indexFrom, indexTo, done) ||| Trigger before active tab change. Calling `done()` will allow the change. Calling `done(err)`, where `err` is any value, will prevent it. Note that this callback will only trigger on tab clicking. |     |     |
 
 #### Slots
 
-Name        | Description
----------   | -----------------------
-`default`   | The tabs content.
-`nav-right` | The snip at right side of tab nav. Note: it won't display if using justified style.
+| Name        | Description                                                                         |
+|-------------|-------------------------------------------------------------------------------------|
+| `default`   | The tabs content.                                                                   |
+| `nav-right` | The snip at right side of tab nav. Note: it won't display if using justified style. |
 
 #### Events
 
-Name            | Params                   | Description
---------------- | -----------              | ---------------
-`change`        | index                    | Trigger after active tab changed, with the active index.
-`changed`       | index                    | Trigger after tab changed and transition finished, with the active index.
+| Name      | Params | Description                                                               |
+|-----------|--------|---------------------------------------------------------------------------|
+| `change`  | index  | Trigger after active tab changed, with the active index.                  |
+| `changed` | index  | Trigger after tab changed and transition finished, with the active index. |
 
 ### [Tab](https://github.com/uiv-lib/uiv/blob/1.x/src/components/tabs/Tab.vue)
 
 #### Props
 
-Name             | Type       | Default  | Required | Description
----------------- | ---------- | -------- | -------- | -----------------------
-`title`          | String     |          |          | The tab title.
-`tab-classes`    | Object     | {}       |          | Object where keys represent class and value is interpreted as a boolean to indicate whether the class should be shown
-`disabled`       | Boolean    | false    |          | Disable the tab.
-`group`          | String     |          |          | Tabs nav with same group will in a dropdown list.
-`pull-right`     | Boolean    | false    |          | Add `pull-right` class to the tab nav. A grouped tab will be pull to right if one of its sub-tabs has this prop set to `true`.
-`hidden`         | Boolean    | false    |          | Hide the tab, use this prop because `v-show` doesn't work on Tab component.
+| Name          | Type    | Default | Required | Description                                                                                                                    |
+|---------------|---------|---------|----------|--------------------------------------------------------------------------------------------------------------------------------|
+| `title`       | String  |         |          | The tab title.                                                                                                                 |
+| `tab-classes` | Object  | {}      |          | Object where keys represent class and value is interpreted as a boolean to indicate whether the class should be shown          |
+| `disabled`    | Boolean | false   |          | Disable the tab.                                                                                                               |
+| `group`       | String  |         |          | Tabs nav with same group will in a dropdown list.                                                                              |
+| `pull-right`  | Boolean | false   |          | Add `pull-right` class to the tab nav. A grouped tab will be pull to right if one of its sub-tabs has this prop set to `true`. |
+| `hidden`      | Boolean | false   |          | Hide the tab, use this prop because `v-show` doesn't work on Tab component.                                                    |
 
 #### Slots
 
-Name        | Description
----------   | -----------------------
-`title`     | Title slot. This will override `title` or `html-title` prop if exist.
+| Name    | Description                                                           |
+|---------|-----------------------------------------------------------------------|
+| `title` | Title slot. This will override `title` or `html-title` prop if exist. |

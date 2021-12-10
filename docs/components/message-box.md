@@ -82,20 +82,20 @@ These props are used as `options` in the methods above.
 
 #### Props
 
-Name             | Type       | Default  | Required | Description
-----------       | ---------- | -------- | -------- | -----------------------
-`size`           | String     | sm       |          | The alternative modal sizes. Support: `lg` / `md` / `sm`.
-`title`          | String     |          |          | The modal title.
-`content`        | String     |          |          | The modal content.
-`html`           | Boolean    | `false`  |          | Allow HTML in content.
-`okText`         | String     |          |          | Text of ok button.
-`okType`         | String     | primary  |          | Button type of ok button.
-`cancelText`     | String     |          |          | Text of cancel button.
-`cancelType`     | String     | default  |          | Button type of cancel button.
-`customClass`    |            |          |          | Custom classes to modal, anything that can work with `v-bind:class` or `:class`.
-`backdrop`       | Boolean    | `false` if type is alert, otherwise `true` |          | Dismiss the modal by backdrop click.
-`validator`      | Function   |          |          | Custom validator function for prompt. Accepts the input value as param, returns the err msg (not valid) or null (valid)
-`defaultValue`   | String     |          |          | The default value to fill in prompt box.
-`inputType`      | String     | text     |          | The default input type of prompt box.
-`autoFocus`      | String     | ok       |          | Focus on button while message box open. Can be `ok` / `cancel`, or empty String to disable the feature.
-`reverseButtons` | Boolean    | false    |          | Reverse the order of `ok` and `cancel` button.
+| Name             | Type     | Default                                    | Required | Description                                                                                                             |
+|------------------|----------|--------------------------------------------|----------|-------------------------------------------------------------------------------------------------------------------------|
+| `size`           | String   | sm                                         |          | The alternative modal sizes. Support: `lg` / `md` / `sm`.                                                               |
+| `title`          | String   |                                            |          | The modal title.                                                                                                        |
+| `content`        | String   |                                            |          | The modal content.                                                                                                      |
+| `html`           | Boolean  | `false`                                    |          | Allow HTML in content.                                                                                                  |
+| `okText`         | String   |                                            |          | Text of ok button.                                                                                                      |
+| `okType`         | String   | primary                                    |          | Button type of ok button.                                                                                               |
+| `cancelText`     | String   |                                            |          | Text of cancel button.                                                                                                  |
+| `cancelType`     | String   | default                                    |          | Button type of cancel button.                                                                                           |
+| `customClass`    |          |                                            |          | Custom classes to modal, anything that can work with `v-bind:class` or `:class`.                                        |
+| `backdrop`       | Boolean  | `false` if type is alert, otherwise `true` |          | Dismiss the modal by backdrop click.                                                                                    |
+| `validator`      | Function |                                            |          | Custom validator function for prompt. Accepts the input value as param, returns the err msg (not valid) or null (valid) |
+| `defaultValue`   | String   |                                            |          | The default value to fill in prompt box.                                                                                |
+| `inputType`      | String   | text                                       |          | The default input type of prompt box.                                                                                   |
+| `autoFocus`      | String   | ok                                         |          | Focus on button while message box open. Can be `ok` / `cancel`, or empty String to disable the feature.                 |
+| `reverseButtons` | Boolean  | false                                      |          | Reverse the order of `ok` and `cancel` button.                                                                          |

@@ -72,39 +72,39 @@ By default, options are filtered by item value and label (case ignored), use a c
 
 #### Props
 
-Name                    | Type       | Default                | Required | Description
-----------------        | ---------- | ---------------------- | -------- | -----------------------
-`v-model`               | Array      |                        | &#10004; | The selected values.
-`options`               | Array      |                        | &#10004; | The select options.
-`label-key`             | String     | label                  |          | Identity key name for label.
-`value-key`             | String     | value                  |          | Identity key name for value.
-`limit`                 | Boolean    | 0                      |          | Maximum number of options user can select, no limit when set to `0`.
-`size`                  | String     |                        |          | Optional sizes, supported: `sm` / `lg`.
-`block`                 | Boolean    | false                  |          | Apply block level style.
-`placeholder`           | String     | Select...              |          | The default text displayed when no options are selected.
-`split`                 | String     | ,                      |          | The options display spliter.
-`filterable`            | Boolean    | false                  |          | Append filter input before options (default is filter by item value and label, case ignored).
-`filter-placeholder`    | String     | Search...              |          | The default text displayed in filter input.
-`filter-auto-focus`     | Boolean    | true                   |          | Auto focus on filter input.
-`filter-function`       | Function   |                        |          | Custom filter function, with one param as input string, and returns the filtered array.
-`disabled`              | Boolean    | false                  |          | Disable the select component.
-`collapse-selected`     | Boolean    | false                  |          | Collapse multiple selected items into a text.
-`append-to-body`        | Boolean    | false                  |          | Append the dropdown to `body`.
-`selected-icon`         | String     | glyphicon glyphicon-ok |          | Icon displayed in option while selected.
-`item-selected-class`   | String     |                        |          | The class applied to the selected list item.
+| Name                  | Type     | Default                | Required | Description                                                                                   |
+|-----------------------|----------|------------------------|----------|-----------------------------------------------------------------------------------------------|
+| `v-model`             | Array    |                        | &#10004; | The selected values.                                                                          |
+| `options`             | Array    |                        | &#10004; | The select options.                                                                           |
+| `label-key`           | String   | label                  |          | Identity key name for label.                                                                  |
+| `value-key`           | String   | value                  |          | Identity key name for value.                                                                  |
+| `limit`               | Boolean  | 0                      |          | Maximum number of options user can select, no limit when set to `0`.                          |
+| `size`                | String   |                        |          | Optional sizes, supported: `sm` / `lg`.                                                       |
+| `block`               | Boolean  | false                  |          | Apply block level style.                                                                      |
+| `placeholder`         | String   | Select...              |          | The default text displayed when no options are selected.                                      |
+| `split`               | String   | ,                      |          | The options display spliter.                                                                  |
+| `filterable`          | Boolean  | false                  |          | Append filter input before options (default is filter by item value and label, case ignored). |
+| `filter-placeholder`  | String   | Search...              |          | The default text displayed in filter input.                                                   |
+| `filter-auto-focus`   | Boolean  | true                   |          | Auto focus on filter input.                                                                   |
+| `filter-function`     | Function |                        |          | Custom filter function, with one param as input string, and returns the filtered array.       |
+| `disabled`            | Boolean  | false                  |          | Disable the select component.                                                                 |
+| `collapse-selected`   | Boolean  | false                  |          | Collapse multiple selected items into a text.                                                 |
+| `append-to-body`      | Boolean  | false                  |          | Append the dropdown to `body`.                                                                |
+| `selected-icon`       | String   | glyphicon glyphicon-ok |          | Icon displayed in option while selected.                                                      |
+| `item-selected-class` | String   |                        |          | The class applied to the selected list item.                                                  |
 
 #### Events
 
-Name             | Params                            | Description
------------      | ------                            | ---------------
-`change`         | value                             | Triggers when the selected value changes.
-`visible-change` | the visible status (true / false) | Triggers when the dropdown toggles.
-`limit-exceed`   |                                   | Triggers when the selected value length exceeded limit.
-`focus`          | event                             | Triggers when input focuses.
-`blur`           | event                             | Triggers when input blurs.
+| Name             | Params                            | Description                                             |
+|------------------|-----------------------------------|---------------------------------------------------------|
+| `change`         | value                             | Triggers when the selected value changes.               |
+| `visible-change` | the visible status (true / false) | Triggers when the dropdown toggles.                     |
+| `limit-exceed`   |                                   | Triggers when the selected value length exceeded limit. |
+| `focus`          | event                             | Triggers when input focuses.                            |
+| `blur`           | event                             | Triggers when input blurs.                              |
 
 #### Slots
 
-Name      | Description
---------- | -----------------------
-`option`  | The option scoped slot, with `item` prop.
+| Name     | Description                               |
+|----------|-------------------------------------------|
+| `option` | The option scoped slot, with `item` prop. |

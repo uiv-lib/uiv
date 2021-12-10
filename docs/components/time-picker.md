@@ -63,16 +63,16 @@ All input methods are all disabled in readonly mode.
 
 #### Props
 
-Name                | Type       | Default                          | Required | Description
-------------------- | ---------- | -------------------------------- | -------- | -----------------------
-`v-model`           | Date       |                                  | &#10004; | The selected time.
-`show-meridian`     | Boolean    | true                             |          | Use 12H or 24H mode.
-`hour-step`         | Number     | 1                                |          | Hours to increase or decrease when using a button.
-`min-step`          | Number     | 1                                |          | Minutes to increase or decrease when using a button.
-`readonly`          | Boolean    | false                            |          |
-`max`               | Date       |                                  |          | The maximum time that user can select or input.
-`min`               | Date       |                                  |          | The minimum time that user can select or input.
-`icon-control-up`   | String     | glyphicon glyphicon-chevron-up   |          | The arrow icon shown inside the `increase` button.
-`icon-control-down` | String     | glyphicon glyphicon-chevron-down |          | The arrow icon shown inside the `decrease` button.
-`controls`          | Boolean    | true                             |          | Hide the up/down `controls` if set to `false`.
-`input-width`       | Number     | 50                               |          | The width in pixels of the `hours` and `minutes` inputs.
+| Name                | Type    | Default                          | Required | Description                                              |
+|---------------------|---------|----------------------------------|----------|----------------------------------------------------------|
+| `v-model`           | Date    |                                  | &#10004; | The selected time.                                       |
+| `show-meridian`     | Boolean | true                             |          | Use 12H or 24H mode.                                     |
+| `hour-step`         | Number  | 1                                |          | Hours to increase or decrease when using a button.       |
+| `min-step`          | Number  | 1                                |          | Minutes to increase or decrease when using a button.     |
+| `readonly`          | Boolean | false                            |          |                                                          |
+| `max`               | Date    |                                  |          | The maximum time that user can select or input.          |
+| `min`               | Date    |                                  |          | The minimum time that user can select or input.          |
+| `icon-control-up`   | String  | glyphicon glyphicon-chevron-up   |          | The arrow icon shown inside the `increase` button.       |
+| `icon-control-down` | String  | glyphicon glyphicon-chevron-down |          | The arrow icon shown inside the `decrease` button.       |
+| `controls`          | Boolean | true                             |          | Hide the up/down `controls` if set to `false`.           |
+| `input-width`       | Number  | 50                               |          | The width in pixels of the `hours` and `minutes` inputs. |

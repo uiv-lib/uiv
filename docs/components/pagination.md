@@ -64,19 +64,19 @@ Use `max-size` to define the maximum chunk size of pagers (default is 5). And if
 
 #### Props
 
-Name              | Type       | Default  | Required | Description
-----------------  | ---------- | -------- | -------- | -----------------------
-`v-model`         | Number     |          | &#10004; | The current page (1-based).
-`total-page`      | Number     |          | &#10004; | Total number of pages.
-`max-size`        | Number     | 5        |          | Maximum number of pagers per chunk.
-`boundary-links`  | Boolean    | false    |          | Display First / Last buttons.
-`direction-links` | Boolean    | true     |          | Display Previous / Next buttons.
-`size`            | String     |          |          | Optional pagination sizes, support: `sm` / `lg`
-`align`           | String     |          |          | Optional pagination alignment, support: `left` / `center` / `right`
-`disabled`        | Boolean    | false    |          | Disable the pagination component.
+| Name              | Type    | Default | Required | Description                                                         |
+|-------------------|---------|---------|----------|---------------------------------------------------------------------|
+| `v-model`         | Number  |         | &#10004; | The current page (1-based).                                         |
+| `total-page`      | Number  |         | &#10004; | Total number of pages.                                              |
+| `max-size`        | Number  | 5       |          | Maximum number of pagers per chunk.                                 |
+| `boundary-links`  | Boolean | false   |          | Display First / Last buttons.                                       |
+| `direction-links` | Boolean | true    |          | Display Previous / Next buttons.                                    |
+| `size`            | String  |         |          | Optional pagination sizes, support: `sm` / `lg`                     |
+| `align`           | String  |         |          | Optional pagination alignment, support: `left` / `center` / `right` |
+| `disabled`        | Boolean | false   |          | Disable the pagination component.                                   |
 
 #### Events
 
-Name        | Params | Description
------------ | ------ | ---------------
-`change`    | index  | Fire after page changed, with the index number changed to.
+| Name     | Params | Description                                                |
+|----------|--------|------------------------------------------------------------|
+| `change` | index  | Fire after page changed, with the index number changed to. |

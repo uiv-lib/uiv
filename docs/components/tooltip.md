@@ -93,31 +93,31 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
 
 #### Props
 
-Name                  | Type       | Default       | Required | Description
-----------------      | ---------- | --------      | -------- | -----------------------
-`v-model`             | Boolean    |               |          | Show / hide the tooltip.
-`target`              |            |               |          | Tooltip trigger, can be a select or reference to Element / Component.
-`tag`                 | String     | span          |          | The HTML tag that render the component.
-`text`                | String     |               |          | The tooltip text.
-`enable`              | Boolean    | true          |          | Enable the tooltip.
-`enterable`           | Boolean    | true          |          | Whether mouse can enter the tooltip.
-`placement`           | String     | top           |          | The tooltip placement, support `top` / `bottom` / `left` / `right`.
-`auto-placement`      | Boolean    | true          |          | Try to auto adjust the placement if the set one does not have enough space to show.
-`trigger`             | String     | hover-focus   |          | The tooltip trigger event, support `hover` / `focus` / `hover-focus` / `click` / `outside-click` / `manual`
-`append-to`           | String     | body          |          | Element selector that the tooltip append to.
-`position-by`         | String     |               |          | (1.2.0+) Element selector that the tooltip position by, see [#410](https://github.com/uiv-lib/uiv/issues/410).
-`transition`          | Number     | 150           |          | The tooltip show / hide transition time in ms.
-`show-delay`          | Number     | 0             |          | Delay showing the tooltip (ms).
-`hide-delay`          | Number     | 0             |          | Delay hidding the tooltip (ms).
-`viewport`            | String or Function |       |          | Keeps the tooltip within the bounds of this element. Example: viewport: '#viewport'. If a function is given, it is called with the triggering element DOM node as its only argument.
-`custom-class`        | String     |               |          | Apply a custom css class to the tooltip.
+| Name             | Type               | Default     | Required | Description                                                                                                                                                                          |
+|------------------|--------------------|-------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `v-model`        | Boolean            |             |          | Show / hide the tooltip.                                                                                                                                                             |
+| `target`         |                    |             |          | Tooltip trigger, can be a select or reference to Element / Component.                                                                                                                |
+| `tag`            | String             | span        |          | The HTML tag that render the component.                                                                                                                                              |
+| `text`           | String             |             |          | The tooltip text.                                                                                                                                                                    |
+| `enable`         | Boolean            | true        |          | Enable the tooltip.                                                                                                                                                                  |
+| `enterable`      | Boolean            | true        |          | Whether mouse can enter the tooltip.                                                                                                                                                 |
+| `placement`      | String             | top         |          | The tooltip placement, support `top` / `bottom` / `left` / `right`.                                                                                                                  |
+| `auto-placement` | Boolean            | true        |          | Try to auto adjust the placement if the set one does not have enough space to show.                                                                                                  |
+| `trigger`        | String             | hover-focus |          | The tooltip trigger event, support `hover` / `focus` / `hover-focus` / `click` / `outside-click` / `manual`                                                                          |
+| `append-to`      | String             | body        |          | Element selector that the tooltip append to.                                                                                                                                         |
+| `position-by`    | String             |             |          | Element selector that the tooltip position by, see [#410](https://github.com/uiv-lib/uiv/issues/410).                                                                                |
+| `transition`     | Number             | 150         |          | The tooltip show / hide transition time in ms.                                                                                                                                       |
+| `show-delay`     | Number             | 0           |          | Delay showing the tooltip (ms).                                                                                                                                                      |
+| `hide-delay`     | Number             | 0           |          | Delay hidding the tooltip (ms).                                                                                                                                                      |
+| `viewport`       | String or Function |             |          | Keeps the tooltip within the bounds of this element. Example: viewport: '#viewport'. If a function is given, it is called with the triggering element DOM node as its only argument. |
+| `custom-class`   | String             |             |          | Apply a custom css class to the tooltip.                                                                                                                                             |
 
 #### Events
 
-Name        | Params | Description
------------ | ------ | ---------------
-`show`      |        | Fire after tooltip show.
-`hide`      |        | Fire after tooltip hide.
+| Name   | Params | Description              |
+|--------|--------|--------------------------|
+| `show` |        | Fire after tooltip show. |
+| `hide` |        | Fire after tooltip hide. |
 
 ### [Directive](https://github.com/uiv-lib/uiv/blob/1.x/src/directives/tooltip/tooltip.js)
 

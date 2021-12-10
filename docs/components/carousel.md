@@ -37,24 +37,24 @@ Here is an example using `glyphicon-arrow-left` and `glyphicon-arrow-right`.
 
 #### Props
 
-Name                 | Type       | Default                           | Required | Description
-----------------     | ---------- | --------------------------------- | -------- | -----------------------
-`v-model`            | Number     |                                   |          | The current slide index, use this to manual change slide index.
-`indicators`         | Boolean    | true                              |          | Show / hide the indicators.
-`controls`           | Boolean    | true                              |          | Show / hide the controls.
-`interval`           | Number     | 5000                              |          | Slides running interval time in ms. Use `0` to stop interval.
-`icon-control-left`  | String     | glyphicon glyphicon-chevron-left  |          | The left control icon font class.
-`icon-control-right` | String     | glyphicon glyphicon-chevron-right |          | The right control icon font class.
+| Name                 | Type    | Default                           | Required | Description                                                     |
+|----------------------|---------|-----------------------------------|----------|-----------------------------------------------------------------|
+| `v-model`            | Number  |                                   |          | The current slide index, use this to manual change slide index. |
+| `indicators`         | Boolean | true                              |          | Show / hide the indicators.                                     |
+| `controls`           | Boolean | true                              |          | Show / hide the controls.                                       |
+| `interval`           | Number  | 5000                              |          | Slides running interval time in ms. Use `0` to stop interval.   |
+| `icon-control-left`  | String  | glyphicon glyphicon-chevron-left  |          | The left control icon font class.                               |
+| `icon-control-right` | String  | glyphicon glyphicon-chevron-right |          | The right control icon font class.                              |
 
 #### Slots
 
-Name         | Description
----------    | -----------------------
-`default`    | The carousel body.
-`indicators` | Override indicators. This is a scoped slot with `activeIndex` prop and `select` method. See example section above for usage details.
+| Name         | Description                                                                                                                          |
+|--------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| `default`    | The carousel body.                                                                                                                   |
+| `indicators` | Override indicators. This is a scoped slot with `activeIndex` prop and `select` method. See example section above for usage details. |
 
 #### Events
 
-Name        | Params | Description
------------ | ------ | ---------------
-`change`    | index  | Fire after slide changed, with the index number changed to.
+| Name     | Params | Description                                                 |
+|----------|--------|-------------------------------------------------------------|
+| `change` | index  | Fire after slide changed, with the index number changed to. |

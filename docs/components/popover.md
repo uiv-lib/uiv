@@ -99,39 +99,39 @@ Set `trigger` prop to `manual` to disable all the event listeners, and controls 
 
 #### Props
 
-Name                  | Type       | Default       | Required | Description
-----------------      | ---------- | --------      | -------- | -----------------------
-`v-model`             | Boolean    |               |          | Show / hide the popover.
-`target`              |            |               |          | Popover trigger, can be a select or reference to Element / Component.
-`tag`                 | String     | span          |          | The HTML tag that render the component.
-`title`               | String     |               |          | The popover title.
-`content`             | String     |               |          | The popover content text. Use `popover` slot instead if you need full control.
-`enable`              | Boolean    | true          |          | Enable the popover.
-`enterable`           | Boolean    | true          |          | Whether mouse can enter the popover.
-`placement`           | String     | top           |          | The popover placement, support `top` / `bottom` / `left` / `right`.
-`auto-placement`      | Boolean    | true          |          | Try to auto adjust the placement if the set one does not have enough space to show.
-`trigger`             | String     | outside-click |          | The popover trigger event, support `hover` / `focus` / `hover-focus` / `click` / `outside-click` / `manual`
-`append-to`           | String     | body          |          | Element selector that the popover append to.
-`position-by`         | String     |               |          | (1.2.0+) Element selector that the popover position by, see [#410](https://github.com/uiv-lib/uiv/issues/410).
-`transition`          | Number     | 150           |          | The popover show / hide transition time in ms.
-`show-delay`          | Number     | 0             |          | Delay showing the Popover (ms).
-`hide-delay`          | Number     | 0             |          | Delay hidding the Popover (ms).
-`viewport`            | String or Function |       |          | Keeps the popover within the bounds of this element. Example: viewport: '#viewport'. If a function is given, it is called with the triggering element DOM node as its only argument.
-`custom-class`        | String     |               |          | Apply a custom css class to the popover.
+| Name             | Type               | Default       | Required | Description                                                                                                                                                                          |
+|------------------|--------------------|---------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `v-model`        | Boolean            |               |          | Show / hide the popover.                                                                                                                                                             |
+| `target`         |                    |               |          | Popover trigger, can be a select or reference to Element / Component.                                                                                                                |
+| `tag`            | String             | span          |          | The HTML tag that render the component.                                                                                                                                              |
+| `title`          | String             |               |          | The popover title.                                                                                                                                                                   |
+| `content`        | String             |               |          | The popover content text. Use `popover` slot instead if you need full control.                                                                                                       |
+| `enable`         | Boolean            | true          |          | Enable the popover.                                                                                                                                                                  |
+| `enterable`      | Boolean            | true          |          | Whether mouse can enter the popover.                                                                                                                                                 |
+| `placement`      | String             | top           |          | The popover placement, support `top` / `bottom` / `left` / `right`.                                                                                                                  |
+| `auto-placement` | Boolean            | true          |          | Try to auto adjust the placement if the set one does not have enough space to show.                                                                                                  |
+| `trigger`        | String             | outside-click |          | The popover trigger event, support `hover` / `focus` / `hover-focus` / `click` / `outside-click` / `manual`                                                                          |
+| `append-to`      | String             | body          |          | Element selector that the popover append to.                                                                                                                                         |
+| `position-by`    | String             |               |          | Element selector that the popover position by, see [#410](https://github.com/uiv-lib/uiv/issues/410).                                                                                |
+| `transition`     | Number             | 150           |          | The popover show / hide transition time in ms.                                                                                                                                       |
+| `show-delay`     | Number             | 0             |          | Delay showing the Popover (ms).                                                                                                                                                      |
+| `hide-delay`     | Number             | 0             |          | Delay hidding the Popover (ms).                                                                                                                                                      |
+| `viewport`       | String or Function |               |          | Keeps the popover within the bounds of this element. Example: viewport: '#viewport'. If a function is given, it is called with the triggering element DOM node as its only argument. |
+| `custom-class`   | String             |               |          | Apply a custom css class to the popover.                                                                                                                                             |
 
 #### Slots
 
-Name      | Description
---------- | -----------------------
-`popover` | Replace as the popover body.
-`default` | Replace as the rest of the component (e.g. trigger stuffs).
+| Name      | Description                                                 |
+|-----------|-------------------------------------------------------------|
+| `popover` | Replace as the popover body.                                |
+| `default` | Replace as the rest of the component (e.g. trigger stuffs). |
 
 #### Events
 
-Name        | Params | Description
------------ | ------ | ---------------
-`show`      |        | Fire after popover show.
-`hide`      |        | Fire after popover hide.
+| Name   | Params | Description              |
+|--------|--------|--------------------------|
+| `show` |        | Fire after popover show. |
+| `hide` |        | Fire after popover hide. |
 
 ### [Directive](https://github.com/uiv-lib/uiv/blob/1.x/src/directives/popover/popover.js)
 

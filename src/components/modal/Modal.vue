@@ -73,7 +73,7 @@ import {
   getOpenModals,
   getOpenModalNum,
 } from '../../utils/dom.utils';
-import { isFunction, isPromiseSupported } from '../../utils/object.utils';
+import { isFunction } from '../../utils/object.utils';
 
 const IN = 'in';
 

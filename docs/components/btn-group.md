@@ -68,17 +68,17 @@ Due to Bootstrap limitation, `justified` prop on `<btn>` is needed while it is r
 
 #### Props
 
-Name             | Type       | Default  | Required | Description
----------------- | ---------- | -------- | -------- | -----------------------
-`size`           | String     |          |          | Optional button sizes. Supported: `lg`, `sm`, `xs`.
-`vertical`       | Boolean    | false    |          | Apply vertical style.
-`justified`      | Boolean    | false    |          | Apply justified style.
+| Name        | Type    | Default | Required | Description                                         |
+|-------------|---------|---------|----------|-----------------------------------------------------|
+| `size`      | String  |         |          | Optional button sizes. Supported: `lg`, `sm`, `xs`. |
+| `vertical`  | Boolean | false   |          | Apply vertical style.                               |
+| `justified` | Boolean | false   |          | Apply justified style.                              |
 
 #### Slots
 
-Name      | Description
---------- | -----------------------
-`default` | The button group body.
+| Name      | Description            |
+|-----------|------------------------|
+| `default` | The button group body. |
 
 ### [BtnToolbar](https://github.com/uiv-lib/uiv/blob/1.x/src/components/button/BtnToolbar.js)
 

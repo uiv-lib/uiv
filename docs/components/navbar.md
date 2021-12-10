@@ -95,47 +95,47 @@ Modify the look of the navbar by adding `inverse` prop.
 
 #### Props
 
-Name           | Type       | Default  | Required | Description
-------------   | ---------- | -------- | -------- | -----------------------
-`v-model`      | Boolean    |          |          | Indicate the collapse status of navbar.
-`fluid`        | Boolean    | true     |          | Use `.container-fluid` class in navbar container, `.container` otherwise.
-`fixed-top`    | Boolean    | false    |          | Apply fixed top style.
-`fixed-bottom` | Boolean    | false    |          | Apply fixed bottom style.
-`static-top`   | Boolean    | false    |          | Apply static top style.
-`inverse`      | Boolean    | false    |          | Apply inverse style.
+| Name           | Type    | Default | Required | Description                                                               |
+|----------------|---------|---------|----------|---------------------------------------------------------------------------|
+| `v-model`      | Boolean |         |          | Indicate the collapse status of navbar.                                   |
+| `fluid`        | Boolean | true    |          | Use `.container-fluid` class in navbar container, `.container` otherwise. |
+| `fixed-top`    | Boolean | false   |          | Apply fixed top style.                                                    |
+| `fixed-bottom` | Boolean | false   |          | Apply fixed bottom style.                                                 |
+| `static-top`   | Boolean | false   |          | Apply static top style.                                                   |
+| `inverse`      | Boolean | false   |          | Apply inverse style.                                                      |
 
 #### Slots
 
-Name             | Description
----------        | -----------------------
-`default`        | The navbar body (non-collapsable part).
-`collapse`       | The navbar body (collapsable part).
-`brand`          | The navbar brand.
-`collapse-btn`   | Use this slot to override the default collapse button.
+| Name           | Description                                            |
+|----------------|--------------------------------------------------------|
+| `default`      | The navbar body (non-collapsable part).                |
+| `collapse`     | The navbar body (collapsable part).                    |
+| `brand`        | The navbar brand.                                      |
+| `collapse-btn` | Use this slot to override the default collapse button. |
 
 ### [NavbarNav](https://github.com/uiv-lib/uiv/blob/1.x/src/components/navbar/NavbarNav.js)
 
 #### Props
 
-Name           | Type       | Default  | Required | Description
-------------   | ---------- | -------- | -------- | -----------------------
-`left`         | Boolean    | false    |          | Pull content to left.
-`right`        | Boolean    | false    |          | Pull content to right.
+| Name    | Type    | Default | Required | Description            |
+|---------|---------|---------|----------|------------------------|
+| `left`  | Boolean | false   |          | Pull content to left.  |
+| `right` | Boolean | false   |          | Pull content to right. |
 
 ### [NavbarForm](https://github.com/uiv-lib/uiv/blob/1.x/src/components/navbar/NavbarForm.js)
 
 #### Props
 
-Name           | Type       | Default  | Required | Description
-------------   | ---------- | -------- | -------- | -----------------------
-`left`         | Boolean    | false    |          | Pull content to left.
-`right`        | Boolean    | false    |          | Pull content to right.
+| Name    | Type    | Default | Required | Description            |
+|---------|---------|---------|----------|------------------------|
+| `left`  | Boolean | false   |          | Pull content to left.  |
+| `right` | Boolean | false   |          | Pull content to right. |
 
 ### [NavbarText](https://github.com/uiv-lib/uiv/blob/1.x/src/components/navbar/NavbarText.js)
 
 #### Props
 
-Name           | Type       | Default  | Required | Description
-------------   | ---------- | -------- | -------- | -----------------------
-`left`         | Boolean    | false    |          | Pull content to left.
-`right`        | Boolean    | false    |          | Pull content to right.
+| Name    | Type    | Default | Required | Description            |
+|---------|---------|---------|----------|------------------------|
+| `left`  | Boolean | false   |          | Pull content to left.  |
+| `right` | Boolean | false   |          | Pull content to right. |

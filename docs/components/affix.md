@@ -24,19 +24,19 @@ Try to scroll the page down and see what's happening to the alert:
 
 #### Props
 
-Name             | Type       | Default      | Required | Description
----------------- | ---------- | ------------ | -------- | -----------------------
-`offset`         | Number     | 0            |          | Pixels to offset from screen when calculating position of scroll.
+| Name     | Type   | Default | Required | Description                                                       |
+|----------|--------|---------|----------|-------------------------------------------------------------------|
+| `offset` | Number | 0       |          | Pixels to offset from screen when calculating position of scroll. |
 
 #### Slots
 
-Name      | Description
---------- | -----------------------
-`default` | The affix body.
+| Name      | Description     |
+|-----------|-----------------|
+| `default` | The affix body. |
 
 #### Events
 
-Name      | Description
---------- | -----------------------
-`affix`   | This event fires immediately before the element has been affixed.
-`affixed` | This event is fired after the element has been affixed.
+| Name      | Description                                                       |
+|-----------|-------------------------------------------------------------------|
+| `affix`   | This event fires immediately before the element has been affixed. |
+| `affixed` | This event is fired after the element has been affixed.           |
