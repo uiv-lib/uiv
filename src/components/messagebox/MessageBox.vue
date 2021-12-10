@@ -32,7 +32,7 @@
       <btn
         :type="okType"
         :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
-        @click="toggle(false, 'ok')"
+        @click="hide('ok')"
         v-text="okBtnText"
       />
     </template>
@@ -42,14 +42,14 @@
           v-if="type === TYPES.CONFIRM"
           :type="okType"
           :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
-          @click="toggle(false, 'ok')"
+          @click="hide('ok')"
           v-text="okBtnText"
         />
         <btn v-else :type="okType" @click="validate" v-text="okBtnText" />
         <btn
           :type="cancelType"
           :data-action="autoFocus === 'cancel' ? 'auto-focus' : ''"
-          @click="toggle(false, 'cancel')"
+          @click="hide('cancel')"
           v-text="cancelBtnText"
         />
       </template>
@@ -57,14 +57,14 @@
         <btn
           :type="cancelType"
           :data-action="autoFocus === 'cancel' ? 'auto-focus' : ''"
-          @click="toggle(false, 'cancel')"
+          @click="hide('cancel')"
           v-text="cancelBtnText"
         />
         <btn
           v-if="type === TYPES.CONFIRM"
           :type="okType"
           :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
-          @click="toggle(false, 'ok')"
+          @click="hide('ok')"
           v-text="okBtnText"
         />
         <btn v-else :type="okType" @click="validate" v-text="okBtnText" />
@@ -117,14 +117,14 @@ const inputNotValid = computed(() => dirty.value && inputError.value);
 const okBtnText = computed(() => props.okText || t('uiv.modal.ok'));
 const cancelBtnText = computed(() => props.cancelText || t('uiv.modal.cancel'));
 
-function toggle(show, msg) {
-  modal.value?.toggle(show, msg);
+function hide(msg) {
+  modal.value?.hideModal(msg);
 }
 
 function validate() {
   dirty.value = true;
   if (!isExist(inputError.value)) {
-    toggle(false, { value: input.value });
+    hide({ value: input.value });
   }
 }
 </script>

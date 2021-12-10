@@ -91,37 +91,37 @@ Otherwise, you can simply nest them logically, without any extra settings:
 
 #### Props
 
-Name                  | Type       | Default  | Required | Description
-----------------      | ---------- | -------- | -------- | -----------------------
-`v-model`             | Boolean    | false    | &#10004; | Show / hide the modal.
-`title`               | String     |          |          | The modal title (will be override if title slot exist).
-`size`                | String     |          |          | The alternative modal size. Support `lg` / `sm`.
-`backdrop`            | Boolean    | true     |          | Dismiss the modal by backdrop click.
-`footer`              | Boolean    | true     |          | Show modal footer.
-`header`              | Boolean    | true     |          | Show modal header.
-`dismiss-btn`         | Boolean    | true     |          | Display the dismiss button in header.
-`cancel-text`         | String     |          |          | Override the text of cancel button.
-`cancel-type`         | String     | default  |          | Button type of cancel button.
-`ok-text`             | String     |          |          | Override the text of ok button.
-`ok-type`             | String     | primary  |          | Button type of ok button.
-`transition`          | Number     | 150      |          | Transition time of the modal, set to 0 to disable animation.
-`auto-focus`          | Boolean    | false    |          | Focus on the action button that has `data-action="auto-focus"` attribute after modal open, by default it is the OK button.
-`keyboard`            | Boolean    | true     |          | Close the modal after `esc` key pressed.
-`append-to-body`      | Boolean    | false    |          | Append the modal element to `<body>`.
-`before-close`        | Function   |          |          | Call with the `msg` param, return `false` to interrupt the modal hiding process. Promise supported since 0.34.1.
+| Name             | Type     | Default | Required | Description                                                                                                   |
+|------------------|----------|---------|----------|---------------------------------------------------------------------------------------------------------------|
+| `v-model`        | Boolean  | false   | &#10004; | Show / hide the modal.                                                                                        |
+| `title`          | String   |         |          | The modal title (will be override if title slot exist).                                                       |
+| `size`           | String   |         |          | The alternative modal size. Support `lg` / `sm`.                                                              |
+| `backdrop`       | Boolean  | true    |          | Dismiss the modal by backdrop click.                                                                          |
+| `footer`         | Boolean  | true    |          | Show modal footer.                                                                                            |
+| `header`         | Boolean  | true    |          | Show modal header.                                                                                            |
+| `dismiss-btn`    | Boolean  | true    |          | Display the dismiss button in header.                                                                         |
+| `cancel-text`    | String   |         |          | Override the text of cancel button.                                                                           |
+| `cancel-type`    | String   | default |          | Button type of cancel button.                                                                                 |
+| `ok-text`        | String   |         |          | Override the text of ok button.                                                                               |
+| `ok-type`        | String   | primary |          | Button type of ok button.                                                                                     |
+| `transition`     | Number   | 150     |          | Transition time of the modal, set to 0 to disable animation.                                                  |
+| `auto-focus`     | Boolean  | false   |          | Focus on the button that has `data-action="auto-focus"` attribute after modal open, the OK button by default. |
+| `keyboard`       | Boolean  | true    |          | Close the modal after `esc` key pressed.                                                                      |
+| `append-to-body` | Boolean  | false   |          | Append the modal element to `<body>`.                                                                         |
+| `before-close`   | Function |         |          | Call with the `msg` param, return `false` to interrupt the modal hiding process. Promise supported.           |
 
 #### Slots
 
-Name      | Description
---------- | -----------------------
-`title`   | Replace as the modal title.
-`default` | Replace as the modal body.
-`header`  | Replace as the modal header. Note: this slot will override `title` slot since it is a completely replacement of header.
-`footer`  | Replace as the modal footer.
+| Name      | Description                                                                                                             |
+|-----------|-------------------------------------------------------------------------------------------------------------------------|
+| `title`   | Replace as the modal title.                                                                                             |
+| `default` | Replace as the modal body.                                                                                              |
+| `header`  | Replace as the modal header. Note: this slot will override `title` slot since it is a completely replacement of header. |
+| `footer`  | Replace as the modal footer.                                                                                            |
 
 #### Events
 
-Name        | Params | Description
------------ | ------ | ---------------
-`show`      |        | Fire after modal show.
-`hide`      | msg    | Fire after modal dismiss with message (if exist).
+| Name   | Params | Description                                       |
+|--------|--------|---------------------------------------------------|
+| `show` |        | Fire after modal show.                            |
+| `hide` | msg    | Fire after modal dismiss with message (if exist). |

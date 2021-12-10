@@ -1,10 +1,5 @@
 import { TYPES } from '../../constants/messagebox.constants';
-import {
-  isFunction,
-  isExist,
-  isString,
-  isPromiseSupported,
-} from '../../utils/object.utils';
+import { isFunction, isExist, isString } from '../../utils/object.utils';
 import MessageBox from '../../components/messagebox/MessageBox.vue';
 import { render, h } from 'vue';
 
@@ -55,15 +50,10 @@ const init = function (type, options, cb, resolve = null, reject = null) {
   document.body.appendChild(container.firstElementChild);
 };
 
-// eslint-disable-next-line default-param-last
 const initModal = function (type, options = {}, cb) {
-  if (isPromiseSupported()) {
-    return new Promise((resolve, reject) => {
-      init.apply(this, [type, options, cb, resolve, reject]);
-    });
-  } else {
-    init.apply(this, [type, options, cb]);
-  }
+  return new Promise((resolve, reject) => {
+    init.apply(this, [type, options, cb, resolve, reject]);
+  });
 };
 
 const alert = function (options, cb) {

@@ -3,7 +3,6 @@ import {
   isFunction,
   isExist,
   isString,
-  isPromiseSupported,
   hasOwnProperty,
 } from '../../utils/object.utils';
 import Notification from '../../components/notification/Notification.vue';
@@ -66,13 +65,9 @@ const _notify = (options = {}, cb) => {
   if (!isExist(options.placement)) {
     options.placement = PLACEMENTS.TOP_RIGHT;
   }
-  if (isPromiseSupported()) {
-    return new Promise((resolve, reject) => {
-      init(options, cb, resolve, reject);
-    });
-  } else {
-    init(options, cb);
-  }
+  return new Promise((resolve, reject) => {
+    init(options, cb, resolve, reject);
+  });
 };
 
 function _notify2(type, args) {

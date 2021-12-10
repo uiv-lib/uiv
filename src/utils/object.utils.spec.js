@@ -58,17 +58,4 @@ describe('object.utils', () => {
       expect(utils.isBoolean(false)).toBeTruthy();
     });
   });
-
-  describe('#isPromiseSupported ', () => {
-    it('should be able return true in chrome', () => {
-      expect(utils.isPromiseSupported()).toBeTruthy();
-    });
-
-    it('should be able return false if window.Promise is not valid', () => {
-      const saved = window.Promise;
-      window.Promise = undefined;
-      expect(utils.isPromiseSupported()).toBeFalsy();
-      window.Promise = saved;
-    });
-  });
 });

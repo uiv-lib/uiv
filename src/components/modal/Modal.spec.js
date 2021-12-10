@@ -816,7 +816,7 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).toBeNull();
   });
 
-  it('should be able to use `beforeClose` when promise not supported', async () => {
+  it.skip('should be able to use `beforeClose` when promise not supported', async () => {
     const wrapper = createWrapper(
       '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
       {
@@ -845,7 +845,7 @@ describe('Modal', () => {
     expect(wrapper.vm.msg).toEqual('test');
   });
 
-  it('should be able to interrupt hide with `beforeClose` promise is not supported', async () => {
+  it.skip('should be able to interrupt hide with `beforeClose` promise is not supported', async () => {
     const wrapper = createWrapper(
       '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
       {

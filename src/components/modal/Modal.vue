@@ -21,7 +21,7 @@
               class="close"
               aria-label="Close"
               style="position: relative; z-index: 1060"
-              @click="toggle(false)"
+              @click="hideModal()"
             >
               <!-- 1060 is bigger than dialog z-index 1050 because it got cover by title sometimes -->
               <span aria-hidden="true">×</span>
@@ -36,13 +36,13 @@
         </div>
         <div v-if="footer" class="modal-footer">
           <slot name="footer">
-            <btn :type="cancelType" @click="toggle(false, 'cancel')">
+            <btn :type="cancelType" @click="hideModal('cancel')">
               <span>{{ cancelText || t('uiv.modal.cancel') }}</span>
             </btn>
             <btn
               :type="okType"
               data-action="auto-focus"
-              @click="toggle(false, 'ok')"
+              @click="hideModal('ok')"
             >
               <span>{{ okText || t('uiv.modal.ok') }}</span>
             </btn>
@@ -157,35 +157,23 @@ export default {
             }
           }
         }
-        this.toggle(false);
+        this.hideModal();
       }
     },
-    toggle(show, msg) {
-      let shouldClose = true;
-      if (isFunction(this.beforeClose)) {
-        shouldClose = this.beforeClose(msg);
-      }
+    hideModal(msg) {
+      const shouldClose = isFunction(this.beforeClose)
+        ? this.beforeClose(msg)
+        : true;
 
-      if (isPromiseSupported()) {
-        // Skip the hiding when beforeClose returning falsely value or returned Promise resolves to falsely value
-        // Use Promise.resolve to accept both Boolean values and Promises
-        Promise.resolve(shouldClose).then((shouldClose) => {
-          // Skip the hiding while show===false
-          if (!show && shouldClose) {
-            this.msg = msg;
-            this.$emit('update:modelValue', show);
-          }
-        });
-      } else {
-        // Fallback to old version if promise is not supported
-        // skip the hiding while show===false & beforeClose returning falsely value
-        if (!show && !shouldClose) {
+      // Skip the hiding when beforeClose returning falsely value or returned Promise resolves to falsely value
+      // Use Promise.resolve to accept both Boolean values and Promises
+      Promise.resolve(shouldClose).then((_shouldClose) => {
+        if (!_shouldClose) {
           return;
         }
-
         this.msg = msg;
-        this.$emit('update:modelValue', show);
-      }
+        this.$emit('update:modelValue', false);
+      });
     },
     $toggle(show) {
       const modal = this.$el;
@@ -271,9 +259,9 @@ export default {
         }, 1);
       }
     },
-    backdropClicked(event) {
+    backdropClicked() {
       if (this.backdrop && !this.isCloseSuppressed) {
-        this.toggle(false);
+        this.hideModal();
       }
     },
   },
