@@ -11,6 +11,10 @@ describe('install', () => {
     dSpy = jest.spyOn(app, 'directive');
   });
 
+  it('should have install function', async () => {
+    expect(uiv.install).toEqual(expect.any(Function));
+  });
+
   it('should be able to install with prefix', () => {
     // simulate a Vue.use
     app.use(uiv, { prefix: 'uiv' });

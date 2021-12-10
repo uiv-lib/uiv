@@ -3,7 +3,7 @@ import * as directives from './directives';
 import * as services from './services';
 import locale from './locale';
 
-const install = (app, options = {}) => {
+export const install = (app, options = {}) => {
   // Setup language, en-US for default
   locale.use(options.locale);
   locale.i18n(options.i18n);
@@ -28,5 +28,3 @@ const install = (app, options = {}) => {
     });
   });
 };
-
-export { install };

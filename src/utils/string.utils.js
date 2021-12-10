@@ -1,7 +1,7 @@
 export function pad(value, num) {
-  value = value + '';
-  for (let i = num - value.length; i > 0; i--) {
-    value = '0' + value;
+  let res = value.toString();
+  for (let i = num - res.length; i > 0; i--) {
+    res = '0' + res;
   }
-  return value;
+  return res;
 }
