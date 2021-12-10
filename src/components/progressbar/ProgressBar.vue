@@ -6,6 +6,7 @@
 </template>
 
 <script setup>
+import ProgressBarStack from './ProgressBarStack.vue';
 import { progressBarProps } from '../../props/progress-bar.props';
 
 defineProps({
