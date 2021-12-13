@@ -30,11 +30,11 @@ If this project has helped you out, please support it with a star :star2:.
 
 ## Versions
 
-uiv version | Vue.js version | document
------------ | -------        | -----------
-2.x         | 3.x            | [https://uiv.wxsm.space](https://uiv.wxsm.space)
-1.x         | 2.x            | [https://uiv-v1.wxsm.space](https://uiv-v1.wxsm.space)
-0.x         | 2.x            | [https://uiv-v0.wxsm.space](https://uiv-v0.wxsm.space)
+| uiv version | Vue.js version | document                                               |
+|-------------|----------------|--------------------------------------------------------|
+| 2.x         | 3.x            | [https://uiv.wxsm.space](https://uiv.wxsm.space)       |
+| 1.x         | 2.x            | [https://uiv-v1.wxsm.space](https://uiv-v1.wxsm.space) |
+| 0.x         | 2.x            | [https://uiv-v0.wxsm.space](https://uiv-v0.wxsm.space) |
 
 ## Quick start
 
