@@ -2,7 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@babel/preset-env': 7.16.5
-  '@vitejs/plugin-vue': 2.0.0
+  '@vitejs/plugin-vue': 2.0.1
   '@vitejs/plugin-vue-jsx': 1.3.3
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.26
@@ -33,7 +33,7 @@ specifiers:
 
 devDependencies:
   '@babel/preset-env': 7.16.5
-  '@vitejs/plugin-vue': 2.0.0_vite@2.7.1+vue@3.2.26
+  '@vitejs/plugin-vue': 2.0.1_vite@2.7.1+vue@3.2.26
   '@vitejs/plugin-vue-jsx': 1.3.3
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.26
@@ -1938,8 +1938,8 @@ packages:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-vue/2.0.0_vite@2.7.1+vue@3.2.26:
-    resolution: {integrity: sha512-4Xn1h9OcaAf7KYrvz2oEi52fCCCLcCzyr3pDOrzYTWrs0DrzNOXt9fT5IiGb1f/uoNTdX3aAkXVGNXrGkzF/zw==}
+  /@vitejs/plugin-vue/2.0.1_vite@2.7.1+vue@3.2.26:
+    resolution: {integrity: sha512-wtdMnGVvys9K8tg+DxowU1ytTrdVveXr3LzdhaKakysgGXyrsfaeds2cDywtvujEASjWOwWL/OgWM+qoeM8Plg==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       vite: ^2.5.10
@@ -5118,7 +5118,7 @@ packages:
     dependencies:
       '@docsearch/css': 3.0.0-alpha.42
       '@docsearch/js': 3.0.0-alpha.42
-      '@vitejs/plugin-vue': 2.0.0_vite@2.7.1+vue@3.2.26
+      '@vitejs/plugin-vue': 2.0.1_vite@2.7.1+vue@3.2.26
       prismjs: 1.25.0
       vite: 2.7.1_less@4.1.2
       vue: 3.2.26
