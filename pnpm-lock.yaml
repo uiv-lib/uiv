@@ -6,7 +6,7 @@ specifiers:
   '@vitejs/plugin-vue-jsx': 1.3.3
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.26
-  '@vue/test-utils': 2.0.0-rc.17
+  '@vue/test-utils': 2.0.0-rc.18
   '@vue/vue3-jest': 27.0.0-alpha.4
   axios: 0.24.0
   babel-core: 7.0.0-bridge.0
@@ -37,7 +37,7 @@ devDependencies:
   '@vitejs/plugin-vue-jsx': 1.3.3
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.26
-  '@vue/test-utils': 2.0.0-rc.17_vue@3.2.26
+  '@vue/test-utils': 2.0.0-rc.18_vue@3.2.26
   '@vue/vue3-jest': 27.0.0-alpha.4_89a9f7220ad5e5dfb604442cbe1b0188
   axios: registry.npmmirror.com/axios/0.24.0
   babel-core: 7.0.0-bridge.0
@@ -2074,8 +2074,8 @@ packages:
     resolution: {integrity: sha512-vPV6Cq+NIWbH5pZu+V+2QHE9y1qfuTq49uNWw4f7FDEeZaDU2H2cx5jcUZOAKW7qTrUS4k6qZPbMy1x4N96nbA==}
     dev: true
 
-  /@vue/test-utils/2.0.0-rc.17_vue@3.2.26:
-    resolution: {integrity: sha512-7LHZKsFRV/HqDoMVY+cJamFzgHgsrmQFalROHC5FMWrzPzd+utG5e11krj1tVsnxYufGA2ABShX4nlcHXED+zQ==}
+  /@vue/test-utils/2.0.0-rc.18_vue@3.2.26:
+    resolution: {integrity: sha512-aifolXjVdsogjaLmDoZ0FU8vN+R67aWmg9OuVeED4w5Ij5GFQLrlhM19uhWe/r5xXUL4fXMk3pX5wW6FJP1NcQ==}
     peerDependencies:
       vue: ^3.0.1
     dependencies:
