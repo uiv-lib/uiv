@@ -8,7 +8,7 @@ specifiers:
   '@vue/compiler-sfc': 3.2.26
   '@vue/test-utils': 2.0.0-rc.18
   '@vue/vue3-jest': 27.0.0-alpha.4
-  axios: 0.24.0
+  axios: 0.25.0
   babel-core: 7.0.0-bridge.0
   babel-jest: 27.4.6
   bootstrap: 3.4.1
@@ -39,7 +39,7 @@ devDependencies:
   '@vue/compiler-sfc': 3.2.26
   '@vue/test-utils': 2.0.0-rc.18_vue@3.2.26
   '@vue/vue3-jest': 27.0.0-alpha.4_77c63699b8bfae404f608e7a8d4c1d2e
-  axios: registry.npmmirror.com/axios/0.24.0
+  axios: 0.25.0
   babel-core: 7.0.0-bridge.0
   babel-jest: 27.4.6
   bootstrap: 3.4.1
@@ -2342,6 +2342,14 @@ packages:
     hasBin: true
     dev: true
 
+  /axios/0.25.0:
+    resolution: {integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==}
+    dependencies:
+      follow-redirects: 1.14.7
+    transitivePeerDependencies:
+      - debug
+    dev: true
+
   /babel-core/7.0.0-bridge.0:
     resolution: {integrity: sha512-poPX9mZH/5CSanm50Q+1toVci6pv5KSRv/5TWCwtzQS5XEwn40BcCrgIeMFWP9CKKIniKXNxoIOnOq4VVlGXhg==}
     peerDependencies:
@@ -3366,6 +3374,16 @@ packages:
 
   /flatted/3.2.2:
     resolution: {integrity: sha512-JaTY/wtrcSyvXJl4IMFHPKyFur1sE9AUqc0QnhOaJ0CxHtAoIV8pYDzeEfAaNEtGkOfq4gr3LBFmdXW5mOQFnA==}
+    dev: true
+
+  /follow-redirects/1.14.7:
+    resolution: {integrity: sha512-+hbxoLbFMbRKDwohX8GkTataGqO6Jb7jGwpAlwgy2bIz25XtRm7KEzJM76R1WiNT5SwZkX4Y75SwBolkpmE7iQ==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
     dev: true
 
   /form-data/3.0.1:
@@ -5618,32 +5636,10 @@ packages:
     version: 2.3.1
     dev: true
 
-  registry.npmmirror.com/axios/0.24.0:
-    resolution: {integrity: sha1-gE5voeS5xSiFAd2d/1anoJQNINY=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/axios/download/axios-0.24.0.tgz}
-    name: axios
-    version: 0.24.0
-    dependencies:
-      follow-redirects: registry.npmmirror.com/follow-redirects/1.14.5
-    transitivePeerDependencies:
-      - debug
-    dev: true
-
   registry.npmmirror.com/commander/2.20.3:
     resolution: {integrity: sha1-/UhehMA+tIgcIHIrpIA16FMa6zM=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/commander/download/commander-2.20.3.tgz}
     name: commander
     version: 2.20.3
-    dev: true
-
-  registry.npmmirror.com/follow-redirects/1.14.5:
-    resolution: {integrity: sha1-8JpYSJgdPHcrU5Iwl3hSP42Fw4E=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/follow-redirects/download/follow-redirects-1.14.5.tgz}
-    name: follow-redirects
-    version: 1.14.5
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
     dev: true
 
   registry.npmmirror.com/is-what/3.14.1:
