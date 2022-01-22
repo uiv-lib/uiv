@@ -26,7 +26,7 @@ specifiers:
   prettier: 2.5.1
   sinon: 12.0.1
   vite: 2.7.13
-  vitepress: 0.21.4
+  vitepress: 0.21.6
   vue: 3.2.26
   vue-i18n: 9.2.0-beta.28
   vue-jest: 5.0.0-alpha.10
@@ -57,7 +57,7 @@ devDependencies:
   prettier: 2.5.1
   sinon: 12.0.1
   vite: 2.7.13_less@4.1.2
-  vitepress: 0.21.4_less@4.1.2
+  vitepress: 0.21.6_less@4.1.2
   vue: 3.2.26
   vue-i18n: 9.2.0-beta.28_vue@3.2.26
   vue-jest: 5.0.0-alpha.10_77c63699b8bfae404f608e7a8d4c1d2e
@@ -2043,6 +2043,17 @@ packages:
       vue: 3.2.26
     dev: true
 
+  /@vitejs/plugin-vue/2.1.0_vite@2.7.13+vue@3.2.28:
+    resolution: {integrity: sha512-AZ78WxvFMYd8JmM/GBV6a6SGGTU0GgN/0/4T+FnMMsLzFEzTeAUwuraapy50ifHZsC+G5SvWs86bvaCPTneFlA==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      vite: ^2.5.10
+      vue: ^3.2.25
+    dependencies:
+      vite: 2.7.13_less@4.1.2
+      vue: 3.2.28
+    dev: true
+
   /@vue/babel-helper-vue-transform-on/1.0.2:
     resolution: {integrity: sha512-hz4R8tS5jMn8lDq6iD+yWL6XNB699pGIVLk7WSJnn1dbpjaazsjZQkieJoRX6gW5zpYSCFqQ7jUquPNY65tQYA==}
     dev: true
@@ -2187,6 +2198,12 @@ packages:
       '@vue/shared': 3.2.26
     dev: true
 
+  /@vue/reactivity/3.2.28:
+    resolution: {integrity: sha512-WamM5LGv7JIarW+EYAzYFqYonZXjTnOjNW0sBO93jRE9I1ReAwfH8NvQXkPA3JZ3fuF6SGDdG8Y9/+dKjd/1Gw==}
+    dependencies:
+      '@vue/shared': 3.2.28
+    dev: true
+
   /@vue/runtime-core/3.2.26:
     resolution: {integrity: sha512-BcYi7qZ9Nn+CJDJrHQ6Zsmxei2hDW0L6AB4vPvUQGBm2fZyC0GXd/4nVbyA2ubmuhctD5RbYY8L+5GUJszv9mQ==}
     dependencies:
@@ -2194,11 +2211,26 @@ packages:
       '@vue/shared': 3.2.26
     dev: true
 
+  /@vue/runtime-core/3.2.28:
+    resolution: {integrity: sha512-sVbBMFUt42JatTlXbdH6tVcLPw1eEOrrVQWI+j6/nJVzR852RURaT6DhdR0azdYscxq4xmmBctE0VQmlibBOFw==}
+    dependencies:
+      '@vue/reactivity': 3.2.28
+      '@vue/shared': 3.2.28
+    dev: true
+
   /@vue/runtime-dom/3.2.26:
     resolution: {integrity: sha512-dY56UIiZI+gjc4e8JQBwAifljyexfVCkIAu/WX8snh8vSOt/gMSEGwPRcl2UpYpBYeyExV8WCbgvwWRNt9cHhQ==}
     dependencies:
       '@vue/runtime-core': 3.2.26
       '@vue/shared': 3.2.26
+      csstype: 2.6.18
+    dev: true
+
+  /@vue/runtime-dom/3.2.28:
+    resolution: {integrity: sha512-Jg7cxZanEXXGu1QnZILFLnDrM+MIFN8VAullmMZiJEZziHvhygRMpi0ahNy/8OqGwtTze1JNhLdHRBO+q2hbmg==}
+    dependencies:
+      '@vue/runtime-core': 3.2.28
+      '@vue/shared': 3.2.28
       csstype: 2.6.18
     dev: true
 
@@ -2210,6 +2242,16 @@ packages:
       '@vue/compiler-ssr': 3.2.26
       '@vue/shared': 3.2.26
       vue: 3.2.26
+    dev: true
+
+  /@vue/server-renderer/3.2.28_vue@3.2.28:
+    resolution: {integrity: sha512-S+MhurgkPabRvhdDl8R6efKBmniJqBbbWIYTXADaJIKFLFLQCW4gcYUTbxuebzk6j3z485vpekhrHHymTF52Pg==}
+    peerDependencies:
+      vue: 3.2.28
+    dependencies:
+      '@vue/compiler-ssr': 3.2.28
+      '@vue/shared': 3.2.28
+      vue: 3.2.28
     dev: true
 
   /@vue/shared/3.2.26:
@@ -5231,17 +5273,17 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/0.21.4_less@4.1.2:
-    resolution: {integrity: sha512-r7zAOp65T3/3tX6tD1QfQaqHnPzr2Xkq0Cw8gjXDk2MGZ7e3BMwow1wRn/k1D2lBZ2kEE2vQCC2/zfoCzrDRuw==}
+  /vitepress/0.21.6_less@4.1.2:
+    resolution: {integrity: sha512-OzwD2cTfvoK5VKV0UWSqu4XvUOz4vWFJ4Bdi0z8GoVkTFXkfmbFawEDVXAZwzu0Hn4/VLopgmEyooc91iGKFlg==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.0.0-alpha.42
       '@docsearch/js': 3.0.0-alpha.42
-      '@vitejs/plugin-vue': 2.1.0_vite@2.7.13+vue@3.2.26
+      '@vitejs/plugin-vue': 2.1.0_vite@2.7.13+vue@3.2.28
       prismjs: 1.25.0
       vite: 2.7.13_less@4.1.2
-      vue: 3.2.26
+      vue: 3.2.28
     transitivePeerDependencies:
       - '@algolia/client-search'
       - '@types/react'
@@ -5319,6 +5361,16 @@ packages:
       '@vue/runtime-dom': 3.2.26
       '@vue/server-renderer': 3.2.26_vue@3.2.26
       '@vue/shared': 3.2.26
+    dev: true
+
+  /vue/3.2.28:
+    resolution: {integrity: sha512-U+jBwVh3RQ9AgceLFdT7i2FFujoC+kYuGrKo5y8aLluWKZWPS40WgA2pyYHaiSX9ydCbEGr3rc/JzdqskzD95g==}
+    dependencies:
+      '@vue/compiler-dom': 3.2.28
+      '@vue/compiler-sfc': 3.2.28
+      '@vue/runtime-dom': 3.2.28
+      '@vue/server-renderer': 3.2.28_vue@3.2.28
+      '@vue/shared': 3.2.28
     dev: true
 
   /w3c-hr-time/1.0.2:
