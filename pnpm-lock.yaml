@@ -24,7 +24,7 @@ specifiers:
   lodash: 4.17.21
   patch-vue-directive-ssr: 0.0.1
   prettier: 2.5.1
-  sinon: 13.0.0
+  sinon: 13.0.1
   vite: 2.7.13
   vitepress: 0.21.6
   vue: 3.2.29
@@ -55,7 +55,7 @@ devDependencies:
   lodash: 4.17.21
   patch-vue-directive-ssr: 0.0.1
   prettier: 2.5.1
-  sinon: 13.0.0
+  sinon: 13.0.1
   vite: 2.7.13_less@4.1.2
   vitepress: 0.21.6_less@4.1.2
   vue: 3.2.29
@@ -1906,12 +1906,6 @@ packages:
     resolution: {integrity: sha512-xkNcLAn/wZaX14RPlwizcKicDk9G3F8m2nU3L7Ukm5zBgTwiT0wsoFAHx9Jq56fJA1z/7uKGtCRu16sOUCLIHQ==}
     dependencies:
       type-detect: 4.0.8
-    dev: true
-
-  /@sinonjs/fake-timers/7.1.2:
-    resolution: {integrity: sha512-iQADsW4LBMISqZ6Ci1dupJL9pprqwcVFTcOsEmQOEhW+KLCVn/Y4Jrvg2k19fIHCp+iFprriYPTdRcQR8NbUPg==}
-    dependencies:
-      '@sinonjs/commons': 1.8.3
     dev: true
 
   /@sinonjs/fake-timers/8.1.0:
@@ -4435,11 +4429,11 @@ packages:
     dev: true
     optional: true
 
-  /nise/5.1.0:
-    resolution: {integrity: sha512-W5WlHu+wvo3PaKLsJJkgPup2LrsXCcm7AWwyNZkUnn5rwPkuPBi3Iwk5SQtN0mv+K65k7nKKjwNQ30wg3wLAQQ==}
+  /nise/5.1.1:
+    resolution: {integrity: sha512-yr5kW2THW1AkxVmCnKEh4nbYkJdB3I7LUkiUgOvEkOp414mc2UMaHMA7pjq1nYowhdoJZGwEKGaQVbxfpWj10A==}
     dependencies:
       '@sinonjs/commons': 1.8.3
-      '@sinonjs/fake-timers': 7.1.2
+      '@sinonjs/fake-timers': 9.0.0
       '@sinonjs/text-encoding': 0.7.1
       just-extend: 4.2.1
       path-to-regexp: 1.8.0
@@ -4850,14 +4844,14 @@ packages:
     resolution: {integrity: sha512-KWcOiKeQj6ZyXx7zq4YxSMgHRlod4czeBQZrPb8OKcohcqAXShm7E20kEMle9WBt26hFcAf0qLOcp5zmY7kOqQ==}
     dev: true
 
-  /sinon/13.0.0:
-    resolution: {integrity: sha512-3tjMDB/tY04b06Bnb4aMKQfNrau2C9HET+R4HVWfv2KegDVLGg4wnBqjVepvxR7S7R1GTwDZzEv52tpFipt6yA==}
+  /sinon/13.0.1:
+    resolution: {integrity: sha512-8yx2wIvkBjIq/MGY1D9h1LMraYW+z1X0mb648KZnKSdvLasvDu7maa0dFaNYdTDczFgbjNw2tOmWdTk9saVfwQ==}
     dependencies:
       '@sinonjs/commons': 1.8.3
       '@sinonjs/fake-timers': 9.0.0
       '@sinonjs/samsam': 6.1.1
       diff: 5.0.0
-      nise: 5.1.0
+      nise: 5.1.1
       supports-color: 7.2.0
     dev: true
 
