@@ -5,3 +5,4 @@ coverage
 *.gz
 dist-docs/
 dist/
+.idea
