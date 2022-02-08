@@ -6,7 +6,7 @@
 
 <br/>
 
-<tabs-example/>
+<ClientOnly><tabs-example/></ClientOnly>
 
 <<< @/.vitepress/components/tabs/example.vue
 
@@ -14,7 +14,7 @@
 
 Add `disabled` to `<tab>` to disable it.
 
-<tabs-disabled/>
+<ClientOnly><tabs-disabled/></ClientOnly>
 
 <<< @/.vitepress/components/tabs/disabled.vue
 
@@ -22,7 +22,7 @@ Add `disabled` to `<tab>` to disable it.
 
 Add `pull-right` to `<tab>` to pull it right. A grouped tab will be pulled to right if one of its sub-tabs has this prop set to `true`.
 
-<tabs-pull-right/>
+<ClientOnly><tabs-pull-right/></ClientOnly>
 
 <<< @/.vitepress/components/tabs/pull-right.vue
 
@@ -30,7 +30,7 @@ Add `pull-right` to `<tab>` to pull it right. A grouped tab will be pulled to ri
 
 Add `justified` to `<tabs>` to apply justified style.
 
-<tabs-justified/>
+<ClientOnly><tabs-justified/></ClientOnly>
 
 <<< @/.vitepress/components/tabs/justified.vue
 
@@ -40,7 +40,7 @@ Add `pills` to `<tabs>` to apply pills style.
 
 Pills are also vertically stackable by adding `stacked`, but if you want the nav and content parts to have layout such as 2 column, you may need some custom CSS apply to them.
 
-<tabs-pills/>
+<ClientOnly><tabs-pills/></ClientOnly>
 
 <<< @/.vitepress/components/tabs/pills.vue
 
@@ -48,7 +48,7 @@ Pills are also vertically stackable by adding `stacked`, but if you want the nav
 
 With `title` slot you can place any content inside nav tabs.
 
-<tabs-custom-titles/>
+<ClientOnly><tabs-custom-titles/></ClientOnly>
 
 <<< @/.vitepress/components/tabs/custom-titles.vue
 
@@ -56,7 +56,7 @@ With `title` slot you can place any content inside nav tabs.
 
 <br/>
 
-<tabs-callbacks/>
+<ClientOnly><tabs-callbacks/></ClientOnly>
 
 <<< @/.vitepress/components/tabs/callbacks.vue
 
@@ -64,7 +64,7 @@ With `title` slot you can place any content inside nav tabs.
 
 <br/>
 
-<tabs-nav-right-slot/>
+<ClientOnly><tabs-nav-right-slot/></ClientOnly>
 
 <<< @/.vitepress/components/tabs/nav-right-slot.vue
 
@@ -72,7 +72,7 @@ With `title` slot you can place any content inside nav tabs.
 
 An example that generate closable tabs using `v-for`:
 
-<tabs-dynamic/>
+<ClientOnly><tabs-dynamic/></ClientOnly>
 
 <<< @/.vitepress/components/tabs/dynamic.vue
 
@@ -80,7 +80,7 @@ An example that generate closable tabs using `v-for`:
 
 In case you need to validate something inside a tab before it being switch, a sample implementation using `before-change` prop:
 
-<tabs-before-change/>
+<ClientOnly><tabs-before-change/></ClientOnly>
 
 <<< @/.vitepress/components/tabs/before-change.vue
 

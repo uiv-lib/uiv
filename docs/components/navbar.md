@@ -6,7 +6,7 @@
 
 Contents in `collapse` slot can be collapsed (and are toggleable) in mobile views and become horizontal as the available viewport width increases.
 
-<navbar-example/>
+<ClientOnly><navbar-example/></ClientOnly>
 
 <<< @/.vitepress/components/navbar/example.vue
 
@@ -14,7 +14,7 @@ Contents in `collapse` slot can be collapsed (and are toggleable) in mobile view
 
 Replace the navbar brand with your own image by swapping the text for an `<img>`. Since the `.navbar-brand` has its own padding and height, you may need to override some CSS depending on your image.
 
-<navbar-navbar-image/>
+<ClientOnly><navbar-navbar-image/></ClientOnly>
 
 <<< @/.vitepress/components/navbar/navbar-image.vue
 
@@ -22,7 +22,7 @@ Replace the navbar brand with your own image by swapping the text for an `<img>`
 
 Place form content within `<navbar-form>` for proper vertical alignment and collapsed behavior in narrow viewports. Use the alignment props `left` / `right` to decide where it resides within the navbar content.
 
-<navbar-navbar-form/>
+<ClientOnly><navbar-navbar-form/></ClientOnly>
 
 <<< @/.vitepress/components/navbar/navbar-form.vue
 
@@ -30,7 +30,7 @@ Place form content within `<navbar-form>` for proper vertical alignment and coll
 
 Add the `.navbar-btn` class to `<btn>` that not residing in a `<navbar-form>` to vertically center them in the navbar.
 
-<navbar-navbar-button/>
+<ClientOnly><navbar-navbar-button/></ClientOnly>
 
 <<< @/.vitepress/components/navbar/navbar-button.vue
 
@@ -38,7 +38,7 @@ Add the `.navbar-btn` class to `<btn>` that not residing in a `<navbar-form>` to
 
 Wrap strings of text in `<navbar-text>` tag for proper leading and color.
 
-<navbar-navbar-text/>
+<ClientOnly><navbar-navbar-text/></ClientOnly>
 
 <<< @/.vitepress/components/navbar/navbar-text.vue
 
@@ -46,7 +46,7 @@ Wrap strings of text in `<navbar-text>` tag for proper leading and color.
 
 For folks using standard links that are not within the regular navbar navigation component, use the `.navbar-link` class to add the proper colors for the default and inverse navbar options.
 
-<navbar-navbar-links/>
+<ClientOnly><navbar-navbar-links/></ClientOnly>
 
 <<< @/.vitepress/components/navbar/navbar-links.vue
 
@@ -85,7 +85,7 @@ Unlike fixed navbars, you do not need to change any padding on the `body`.
 
 Modify the look of the navbar by adding `inverse` prop.
 
-<navbar-inverse/>
+<ClientOnly><navbar-inverse/></ClientOnly>
 
 <<< @/.vitepress/components/navbar/inverse.vue
 

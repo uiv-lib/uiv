@@ -6,7 +6,7 @@
 
 Click the button below to show and hide another element.
 
-<collapse-example/>
+<ClientOnly><collapse-example/></ClientOnly>
 
 <<< @/.vitepress/components/collapse/example.vue
 
@@ -14,7 +14,7 @@ Click the button below to show and hide another element.
 
 Extend the default collapse behavior to create an accordion with the panel component.
 
-<collapse-accordion/>
+<ClientOnly><collapse-accordion/></ClientOnly>
 
 <<< @/.vitepress/components/collapse/accordion.vue
 

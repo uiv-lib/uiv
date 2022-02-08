@@ -4,7 +4,7 @@
 
 Use `v-model` to bind selected values, and `options` as select options.
 
-<multi-select-example/>
+<ClientOnly><multi-select-example/></ClientOnly>
 
 <<< @/.vitepress/components/multi-select/example.vue
 
@@ -12,7 +12,7 @@ Use `v-model` to bind selected values, and `options` as select options.
 
 Use `limit` to restrict the maximum number of options user can select, no limit when set to `0`.
 
-<multi-select-limit/>
+<ClientOnly><multi-select-limit/></ClientOnly>
 
 <<< @/.vitepress/components/multi-select/limit.vue
 
@@ -20,7 +20,7 @@ Use `limit` to restrict the maximum number of options user can select, no limit 
 
 Optional sizes `sm` and `lg` are supported. You can also add `block` prop to quickly apply `width: 100%` style to the component.
 
-<multi-select-sizes/>
+<ClientOnly><multi-select-sizes/></ClientOnly>
 
 <<< @/.vitepress/components/multi-select/sizes.vue
 
@@ -28,7 +28,7 @@ Optional sizes `sm` and `lg` are supported. You can also add `block` prop to qui
 
 Add `disabled: true` to an option to make it unselectable.
 
-<multi-select-disabled-options/>
+<ClientOnly><multi-select-disabled-options/></ClientOnly>
 
 <<< @/.vitepress/components/multi-select/disabled-options.vue
 
@@ -36,7 +36,7 @@ Add `disabled: true` to an option to make it unselectable.
 
 Add `disabled` to `<multi-select>` to disable the dropdown and click events.
 
-<multi-select-disabled-select/>
+<ClientOnly><multi-select-disabled-select/></ClientOnly>
 
 <<< @/.vitepress/components/multi-select/disabled-select.vue
 
@@ -44,7 +44,7 @@ Add `disabled` to `<multi-select>` to disable the dropdown and click events.
 
 Collapse multiple selected items into a text by using `collapse-selected` prop.
 
-<multi-select-collapse-selected/>
+<ClientOnly><multi-select-collapse-selected/></ClientOnly>
 
 <<< @/.vitepress/components/multi-select/collapse-selected.vue
 
@@ -52,7 +52,7 @@ Collapse multiple selected items into a text by using `collapse-selected` prop.
 
 If you need grouped options, simply add `group` (String) as the name to them.
 
-<multi-select-option-groups/>
+<ClientOnly><multi-select-option-groups/></ClientOnly>
 
 <<< @/.vitepress/components/multi-select/option-groups.vue
 
@@ -62,7 +62,7 @@ Add `filterable` to append filter input before options.
 
 By default, options are filtered by item value and label (case ignored), use a custom `filter-function` to override it if needed.
 
-<multi-select-filterable/>
+<ClientOnly><multi-select-filterable/></ClientOnly>
 
 <<< @/.vitepress/components/multi-select/filterable.vue
 

@@ -10,7 +10,7 @@ Displays an alert modal with the optional specified content and an OK (auto-focu
 
 An alert example using callback:
 
-<message-box-alert/>
+<ClientOnly><message-box-alert/></ClientOnly>
 
 <<< @/.vitepress/components/message-box/alert.vue
 
@@ -20,7 +20,7 @@ Displays a modal dialog with an optional message and two buttons, OK (auto-focus
 
 A confirm example using `Promise`:
 
-<message-box-confirm/>
+<ClientOnly><message-box-confirm/></ClientOnly>
 
 <<< @/.vitepress/components/message-box/confirm.vue
 
@@ -28,7 +28,7 @@ A confirm example using `Promise`:
 
 Displays a dialog with an optional message prompting the user to input some text.
 
-<message-box-prompt/>
+<ClientOnly><message-box-prompt/></ClientOnly>
 
 <<< @/.vitepress/components/message-box/prompt.vue
 

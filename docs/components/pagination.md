@@ -8,7 +8,7 @@ Simple pagination, great for apps and search results.
 
 Use `v-model` (1-based) to indicate the current page.
 
-<pagination-example/>
+<ClientOnly><pagination-example/></ClientOnly>
 
 <<< @/.vitepress/components/pagination/example.vue
 
@@ -16,7 +16,7 @@ Use `v-model` (1-based) to indicate the current page.
 
 Fancy larger or smaller pagination? Add `size="lg"` or `size="sm"` for additional sizes.
 
-<pagination-sizes/>
+<ClientOnly><pagination-sizes/></ClientOnly>
 
 <<< @/.vitepress/components/pagination/sizes.vue
 
@@ -24,7 +24,7 @@ Fancy larger or smaller pagination? Add `size="lg"` or `size="sm"` for additiona
 
 By default the pagination component is left aligned. Change the alignment to center or right by setting `align` to the appropriate value.
 
-<pagination-alignment/>
+<ClientOnly><pagination-alignment/></ClientOnly>
 
 <<< @/.vitepress/components/pagination/alignment.vue
 
@@ -32,7 +32,7 @@ By default the pagination component is left aligned. Change the alignment to cen
 
 By default `direction-links` are enabled, which allows users to nav to previous or next page.
 
-<pagination-direction-links/>
+<ClientOnly><pagination-direction-links/></ClientOnly>
 
 <<< @/.vitepress/components/pagination/direction-links.vue
 
@@ -40,7 +40,7 @@ By default `direction-links` are enabled, which allows users to nav to previous 
 
 Add `boundary-links` to allow fast nav to the first or last page.
 
-<pagination-boundary-links/>
+<ClientOnly><pagination-boundary-links/></ClientOnly>
 
 <<< @/.vitepress/components/pagination/boundary-links.vue
 
@@ -48,13 +48,13 @@ Add `boundary-links` to allow fast nav to the first or last page.
 
 Use `max-size` to define the maximum chunk size of pagers (default is 5). And if you don't like chunk pagers, just simply set `max-size` to equal as `total-page`.
 
-<pagination-chunks/>
+<ClientOnly><pagination-chunks/></ClientOnly>
 
 <<< @/.vitepress/components/pagination/chunks.vue
 
 ## Disabled
 
-<pagination-disabled/>
+<ClientOnly><pagination-disabled/></ClientOnly>
 
 <<< @/.vitepress/components/pagination/disabled.vue
 

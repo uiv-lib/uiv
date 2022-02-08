@@ -8,7 +8,7 @@ Use `v-model` to bind the input value, and `target` to point to the ideal input 
 
 If you want to clear the `v-model` of typeahead, simply set it to `null`, the corresponding input value will also be cleared.
 
-<typeahead-example/>
+<ClientOnly><typeahead-example/></ClientOnly>
 
 <<< @/.vitepress/components/typeahead/example.vue
 
@@ -26,7 +26,7 @@ If you use a component reference, the corresponding component's root element mus
 
 An example using element reference target:
 
-<typeahead-target/>
+<ClientOnly><typeahead-target/></ClientOnly>
 
 <<< @/.vitepress/components/typeahead/target.vue
 
@@ -38,7 +38,7 @@ Match from the head of item.
 Only work in local data query mode.
 :::
 
-<typeahead-match-start/>
+<ClientOnly><typeahead-match-start/></ClientOnly>
 
 <<< @/.vitepress/components/typeahead/match-start.vue
 
@@ -46,7 +46,7 @@ Only work in local data query mode.
 
 Force user to select from the options or the model will be empty.
 
-<typeahead-force-select/>
+<ClientOnly><typeahead-force-select/></ClientOnly>
 
 <<< @/.vitepress/components/typeahead/force-select.vue
 
@@ -60,7 +60,7 @@ You can simply use `async-src` to perform an AJAX query with built-in query func
 
 An example using `async-src`:
 
-<typeahead-async-query/>
+<ClientOnly><typeahead-async-query/></ClientOnly>
 
 <<< @/.vitepress/components/typeahead/async-query.vue
 
@@ -76,7 +76,7 @@ Use the `item` scoped slot to override the typeahead item's template.
 
 An example with custom template and `async-function`:
 
-<typeahead-custom-template/>
+<ClientOnly><typeahead-custom-template/></ClientOnly>
 
 <<< @/.vitepress/components/typeahead/custom-template.vue
 

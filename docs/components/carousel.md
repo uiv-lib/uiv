@@ -4,7 +4,7 @@
 
 ## Example
 
-<carousel-example/>
+<ClientOnly><carousel-example/></ClientOnly>
 
 <<< @/.vitepress/components/carousel/example.vue
 
@@ -12,7 +12,7 @@
 
 Use the `indicators` slot to override default Bootstrap indicators.
 
-<carousel-override-indicators/>
+<ClientOnly><carousel-override-indicators/></ClientOnly>
 
 <<< @/.vitepress/components/carousel/override-indicators.vue
 
@@ -27,7 +27,7 @@ Additional CSS may needed if you prefer other icons or font.
 
 Here is an example using `glyphicon-arrow-left` and `glyphicon-arrow-right`.
 
-<carousel-icons/>
+<ClientOnly><carousel-icons/></ClientOnly>
 
 <<< @/.vitepress/components/carousel/icons.vue
 

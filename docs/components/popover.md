@@ -10,7 +10,7 @@ Popovers whose both title and content are zero-length are never displayed.
 
 Click the button below to toggle popover:
 
-<popover-example/>
+<ClientOnly><popover-example/></ClientOnly>
 
 <<< @/.vitepress/components/popover/example.vue
 
@@ -32,7 +32,7 @@ A `target` can be:
 
 You can also simply use popovers via `v-popover` directive:
 
-<popover-directive/>
+<ClientOnly><popover-directive/></ClientOnly>
 
 <<< @/.vitepress/components/popover/directive.vue
 
@@ -40,7 +40,7 @@ You can also simply use popovers via `v-popover` directive:
 
 If you don't want the title of popover, just leave the `title` prop unset or blank.
 
-<popover-with-empty-title/>
+<ClientOnly><popover-with-empty-title/></ClientOnly>
 
 <<< @/.vitepress/components/popover/with-empty-title.vue
 
@@ -53,7 +53,7 @@ Supported placements:
 * **bottom**
 * **left**
 
-<popover-placements/>
+<ClientOnly><popover-placements/></ClientOnly>
 
 <<< @/.vitepress/components/popover/placements.vue
 
@@ -67,7 +67,7 @@ Popover will try to find the best placement for displaying while `auto-placement
 
 Keeps the popover within the bounds of this element.
 
-<popover-viewport/>
+<ClientOnly><popover-viewport/></ClientOnly>
 
 <<< @/.vitepress/components/popover/viewport.vue
 
@@ -81,7 +81,7 @@ Supported triggers:
 * `click` toggle on trigger click.
 * `outside-click` (Default) same as click, but not close on popover click and close on outside click.
 
-<popover-triggers/>
+<ClientOnly><popover-triggers/></ClientOnly>
 
 <<< @/.vitepress/components/popover/triggers.vue
 
@@ -89,7 +89,7 @@ Supported triggers:
 
 Set `trigger` prop to `manual` to disable all the event listeners, and controls popover show / hide only by `v-model` change.
 
-<popover-manual-trigger/>
+<ClientOnly><popover-manual-trigger/></ClientOnly>
 
 <<< @/.vitepress/components/popover/manual-trigger.vue
 

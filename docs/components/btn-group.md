@@ -10,7 +10,7 @@ When using tooltips or popovers on elements within a btn-group, make sure they'r
 
 Wrap a series of `<btn>` in `<btn-group>`.
 
-<btn-group-example/>
+<ClientOnly><btn-group-example/></ClientOnly>
 
 <<< @/.vitepress/components/btn-group/example.vue
 
@@ -18,7 +18,7 @@ Wrap a series of `<btn>` in `<btn-group>`.
 
 Combine sets of `<btn-group>` into a `<btn-toolbar>` for more complex components.
 
-<btn-group-toolbar/>
+<ClientOnly><btn-group-toolbar/></ClientOnly>
 
 <<< @/.vitepress/components/btn-group/toolbar.vue
 
@@ -26,7 +26,7 @@ Combine sets of `<btn-group>` into a `<btn-toolbar>` for more complex components
 
 Instead of applying button sizing classes to every button in a group, just add `size` to each `<btn-group>`, including when nesting multiple groups.
 
-<btn-group-sizes/>
+<ClientOnly><btn-group-sizes/></ClientOnly>
 
 <<< @/.vitepress/components/btn-group/sizes.vue
 
@@ -34,7 +34,7 @@ Instead of applying button sizing classes to every button in a group, just add `
 
 `btn-group` class will be automatically added to `<dropdown>` when you want dropdown menus mixed with a series of buttons.
 
-<btn-group-nesting/>
+<ClientOnly><btn-group-nesting/></ClientOnly>
 
 <<< @/.vitepress/components/btn-group/nesting.vue
 
@@ -46,7 +46,7 @@ Make a set of buttons appear vertically stacked rather than horizontally by addi
 Split button dropdowns are not supported here.
 :::
 
-<btn-group-vertical/>
+<ClientOnly><btn-group-vertical/></ClientOnly>
 
 <<< @/.vitepress/components/btn-group/vertical.vue
 
@@ -58,7 +58,7 @@ Make a group of buttons stretch at equal sizes to span the entire width of its p
 Due to Bootstrap limitation, `justified` prop on `<btn>` is needed while it is render as `button`.
 :::
 
-<btn-group-justified/>
+<ClientOnly><btn-group-justified/></ClientOnly>
 
 <<< @/.vitepress/components/btn-group/justified.vue
 

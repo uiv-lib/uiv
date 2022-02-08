@@ -12,7 +12,7 @@ Order to decide the dropdown trigger:
 
 Use `v-model` to indicate the dropdown status.
 
-<dropdown-example/>
+<ClientOnly><dropdown-example/></ClientOnly>
 
 <<< @/.vitepress/components/dropdown/example.vue
 
@@ -20,7 +20,7 @@ Use `v-model` to indicate the dropdown status.
 
 By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent. Add `menu-right` to a dropdown component to right align the dropdown menu.
 
-<dropdown-alignment/>
+<ClientOnly><dropdown-alignment/></ClientOnly>
 
 <<< @/.vitepress/components/dropdown/alignment.vue
 
@@ -28,7 +28,7 @@ By default, a dropdown menu is automatically positioned 100% from the top and al
 
 Dropdown menus can be changed to expand upwards (instead of downwards) by adding `dropup` to the dropdown component.
 
-<dropdown-dropup/>
+<ClientOnly><dropdown-dropup/></ClientOnly>
 
 <<< @/.vitepress/components/dropdown/dropup.vue
 
@@ -36,7 +36,7 @@ Dropdown menus can be changed to expand upwards (instead of downwards) by adding
 
 Use this option to avoid influence from the parent node by appending dropdown list to `<body>`.
 
-<dropdown-append-to-body/>
+<ClientOnly><dropdown-append-to-body/></ClientOnly>
 
 <<< @/.vitepress/components/dropdown/append-to-body.vue
 
@@ -44,7 +44,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
 
 <br/>
 
-<dropdown-within-navbar/>
+<ClientOnly><dropdown-within-navbar/></ClientOnly>
 
 <<< @/.vitepress/components/dropdown/within-navbar.vue
 
@@ -52,7 +52,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
 
 <br/>
 
-<dropdown-within-pills/>
+<ClientOnly><dropdown-within-pills/></ClientOnly>
 
 <<< @/.vitepress/components/dropdown/within-pills.vue
 
@@ -64,7 +64,7 @@ You can place anything you wish inside a dropdown, for example, a simple form wi
 use `not-close-elements` to prevent dropdown close on menu body click if needed.
 :::
 
-<dropdown-advanced/>
+<ClientOnly><dropdown-advanced/></ClientOnly>
 
 <<< @/.vitepress/components/dropdown/advanced.vue
 

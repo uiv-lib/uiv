@@ -12,7 +12,7 @@ Tooltips with zero-length texts are never displayed.
 
 Hover over the button below to toggle tooltips:
 
-<tooltip-example/>
+<ClientOnly><tooltip-example/></ClientOnly>
 
 <<< @/.vitepress/components/tooltip/example.vue
 
@@ -34,7 +34,7 @@ A `target` can be:
 
 You can also simply use tooltips via `v-tooltip` directive:
 
-<tooltip-directive/>
+<ClientOnly><tooltip-directive/></ClientOnly>
 
 <<< @/.vitepress/components/tooltip/directive.vue
 
@@ -47,7 +47,7 @@ Supported placements:
 * **bottom**
 * **left**
 
-<tooltip-placements/>
+<ClientOnly><tooltip-placements/></ClientOnly>
 
 <<< @/.vitepress/components/tooltip/placements.vue
 
@@ -61,7 +61,7 @@ Tooltips will try to find the best placement for displaying while `auto-placemen
 
 Keeps the tooltip within the bounds of this element.
 
-<tooltip-viewport/>
+<ClientOnly><tooltip-viewport/></ClientOnly>
 
 <<< @/.vitepress/components/tooltip/viewport.vue
 
@@ -75,7 +75,7 @@ Supported triggers:
 * `click` toggle on trigger click.
 * `outside-click` same as click, but not close on tooltip click and close on outside click.
 
-<tooltip-triggers/>
+<ClientOnly><tooltip-triggers/></ClientOnly>
 
 <<< @/.vitepress/components/tooltip/triggers.vue
 
@@ -83,7 +83,7 @@ Supported triggers:
 
 Set `trigger` prop to `manual` to disable all the event listeners, and controls tooltips show / hide only by `v-model` change.
 
-<tooltip-manual-trigger/>
+<ClientOnly><tooltip-manual-trigger/></ClientOnly>
 
 <<< @/.vitepress/components/tooltip/manual-trigger.vue
 

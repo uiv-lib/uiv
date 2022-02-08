@@ -6,7 +6,7 @@
 
 Use any of the available button types to quickly create a styled button.
 
-<btn-example/>
+<ClientOnly><btn-example/></ClientOnly>
 
 <<< @/.vitepress/components/btn/example.vue
 
@@ -14,7 +14,7 @@ Use any of the available button types to quickly create a styled button.
 
 Buttons with `href` or `to` prop will render as link tag.
 
-<btn-links/>
+<ClientOnly><btn-links/></ClientOnly>
 
 <<< @/.vitepress/components/btn/links.vue
 
@@ -22,13 +22,13 @@ Buttons with `href` or `to` prop will render as link tag.
 
 Fancy larger or smaller buttons? Add size `lg`, `sm`, or `xs` for additional sizes.
 
-<btn-sizes/>
+<ClientOnly><btn-sizes/></ClientOnly>
 
 <<< @/.vitepress/components/btn/sizes.vue
 
 Create block level buttons—those that span the full width of a parent — by adding `block`.
 
-<btn-block/>
+<ClientOnly><btn-block/></ClientOnly>
 
 <<< @/.vitepress/components/btn/block.vue
 
@@ -36,7 +36,7 @@ Create block level buttons—those that span the full width of a parent — by a
 
 Add `active` to make buttons appear pressed (with a darker background, darker border, and inset shadow).
 
-<btn-active/>
+<ClientOnly><btn-active/></ClientOnly>
 
 <<< @/.vitepress/components/btn/active.vue
 
@@ -44,7 +44,7 @@ Add `active` to make buttons appear pressed (with a darker background, darker bo
 
 Add `disabled` to make buttons unclickable.
 
-<btn-disabled/>
+<ClientOnly><btn-disabled/></ClientOnly>
 
 <<< @/.vitepress/components/btn/disabled.vue
 
@@ -60,7 +60,7 @@ This needed to work with [`btn-group`](/components/btn-group.html) for correct s
 
 <br/>
 
-<btn-checkbox/>
+<ClientOnly><btn-checkbox/></ClientOnly>
 
 <<< @/.vitepress/components/btn/checkbox.vue
 
@@ -68,7 +68,7 @@ This needed to work with [`btn-group`](/components/btn-group.html) for correct s
 
 <br/>
 
-<btn-radio/>
+<ClientOnly><btn-radio/></ClientOnly>
 
 <<< @/.vitepress/components/btn/radio.vue
 
