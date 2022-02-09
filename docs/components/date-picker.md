@@ -6,7 +6,7 @@
 
 Use `v-model` to bind the selected date.
 
-<ClientOnly><date-picker-example/></ClientOnly>
+<DemoWrapper><date-picker-example/></DemoWrapper>
 
 <<< @/.vitepress/components/date-picker/example.vue
 
@@ -29,7 +29,7 @@ Some browsers (e.g. IE) might not support all of these formats.
 If you need a special format that not supported by `Date.parse`, consider using `date-parser` option to override it.
 :::
 
-<ClientOnly><date-picker-formats/></ClientOnly>
+<DemoWrapper><date-picker-formats/></DemoWrapper>
 
 <<< @/.vitepress/components/date-picker/formats.vue
 
@@ -37,7 +37,7 @@ If you need a special format that not supported by `Date.parse`, consider using 
 
 Use `today-btn` and `clear-btn` to toggle visible of them.
 
-<ClientOnly><date-picker-without-buttons/></ClientOnly>
+<DemoWrapper><date-picker-without-buttons/></DemoWrapper>
 
 <<< @/.vitepress/components/date-picker/without-buttons.vue
 
@@ -45,7 +45,7 @@ Use `today-btn` and `clear-btn` to toggle visible of them.
 
 Example that limit date range from today, to next week:
 
-<ClientOnly><date-picker-range-limit/></ClientOnly>
+<DemoWrapper><date-picker-range-limit/></DemoWrapper>
 
 <<< @/.vitepress/components/date-picker/range-limit.vue
 
@@ -53,13 +53,13 @@ Example that limit date range from today, to next week:
 
 Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 
-<ClientOnly><date-picker-week-starts/></ClientOnly>
+<DemoWrapper><date-picker-week-starts/></DemoWrapper>
 
 <<< @/.vitepress/components/date-picker/week-starts.vue
 
 ## Week numbers
 
-<ClientOnly><date-picker-week-numbers/></ClientOnly>
+<DemoWrapper><date-picker-week-numbers/></DemoWrapper>
 
 <<< @/.vitepress/components/date-picker/week-numbers.vue
 
@@ -67,7 +67,7 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 
 <br/>
 
-<ClientOnly><date-picker-dropdown-example/></ClientOnly>
+<DemoWrapper><date-picker-dropdown-example/></DemoWrapper>
 
 <<< @/.vitepress/components/date-picker/dropdown-example.vue
 
@@ -81,7 +81,7 @@ Use `date-class` to apply custom classes to each date button, which should be an
 
 See below example for detail usage, which has all sunday highlighted:
 
-<ClientOnly><date-picker-custom-date-classes/></ClientOnly>
+<DemoWrapper><date-picker-custom-date-classes/></DemoWrapper>
 
 <<< @/.vitepress/components/date-picker/custom-date-classes.vue
 

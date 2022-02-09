@@ -6,7 +6,7 @@
 
 Wrap any text or HTML in `<alert>` and use one of the four alert types (`success` / `info` / `warning` / `danger`) for basic alert messages.
 
-<ClientOnly><alert-example/></ClientOnly>
+<DemoWrapper><alert-example/></DemoWrapper>
 
 <<< @/.vitepress/components/alert/example.vue
 
@@ -14,7 +14,7 @@ Wrap any text or HTML in `<alert>` and use one of the four alert types (`success
 
 Use `dismissible` to allow user to dismiss alerts.
 
-<ClientOnly><alert-dismissible/></ClientOnly>
+<DemoWrapper><alert-dismissible/></DemoWrapper>
 
 <<< @/.vitepress/components/alert/dismissible.vue
 
@@ -22,13 +22,13 @@ Use `dismissible` to allow user to dismiss alerts.
 
 Use `duration` in milliseconds to auto dismiss alert. It can be used together with `dismissible`.
 
-<ClientOnly><alert-auto-dismissing/></ClientOnly>
+<DemoWrapper><alert-auto-dismissing/></DemoWrapper>
 
 <<< @/.vitepress/components/alert/auto-dismissing.vue
 
 ## Use with collapse
 
-<ClientOnly><alert-with-collapse/></ClientOnly>
+<DemoWrapper><alert-with-collapse/></DemoWrapper>
 
 <<< @/.vitepress/components/alert/with-collapse.vue
 

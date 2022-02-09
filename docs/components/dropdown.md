@@ -12,7 +12,7 @@ Order to decide the dropdown trigger:
 
 Use `v-model` to indicate the dropdown status.
 
-<ClientOnly><dropdown-example/></ClientOnly>
+<DemoWrapper><dropdown-example/></DemoWrapper>
 
 <<< @/.vitepress/components/dropdown/example.vue
 
@@ -20,7 +20,7 @@ Use `v-model` to indicate the dropdown status.
 
 By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent. Add `menu-right` to a dropdown component to right align the dropdown menu.
 
-<ClientOnly><dropdown-alignment/></ClientOnly>
+<DemoWrapper><dropdown-alignment/></DemoWrapper>
 
 <<< @/.vitepress/components/dropdown/alignment.vue
 
@@ -28,7 +28,7 @@ By default, a dropdown menu is automatically positioned 100% from the top and al
 
 Dropdown menus can be changed to expand upwards (instead of downwards) by adding `dropup` to the dropdown component.
 
-<ClientOnly><dropdown-dropup/></ClientOnly>
+<DemoWrapper><dropdown-dropup/></DemoWrapper>
 
 <<< @/.vitepress/components/dropdown/dropup.vue
 
@@ -36,7 +36,7 @@ Dropdown menus can be changed to expand upwards (instead of downwards) by adding
 
 Use this option to avoid influence from the parent node by appending dropdown list to `<body>`.
 
-<ClientOnly><dropdown-append-to-body/></ClientOnly>
+<DemoWrapper><dropdown-append-to-body/></DemoWrapper>
 
 <<< @/.vitepress/components/dropdown/append-to-body.vue
 
@@ -44,7 +44,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
 
 <br/>
 
-<ClientOnly><dropdown-within-navbar/></ClientOnly>
+<DemoWrapper><dropdown-within-navbar/></DemoWrapper>
 
 <<< @/.vitepress/components/dropdown/within-navbar.vue
 
@@ -52,7 +52,7 @@ Use this option to avoid influence from the parent node by appending dropdown li
 
 <br/>
 
-<ClientOnly><dropdown-within-pills/></ClientOnly>
+<DemoWrapper><dropdown-within-pills/></DemoWrapper>
 
 <<< @/.vitepress/components/dropdown/within-pills.vue
 
@@ -64,7 +64,7 @@ You can place anything you wish inside a dropdown, for example, a simple form wi
 use `not-close-elements` to prevent dropdown close on menu body click if needed.
 :::
 
-<ClientOnly><dropdown-advanced/></ClientOnly>
+<DemoWrapper><dropdown-advanced/></DemoWrapper>
 
 <<< @/.vitepress/components/dropdown/advanced.vue
 

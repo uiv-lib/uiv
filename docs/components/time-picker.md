@@ -17,13 +17,13 @@ Make sure to update the `v-model` reference when trying to change it from outsid
 
 e.g. `time = new Date(time)`
 
-<ClientOnly><time-picker-example/></ClientOnly>
+<DemoWrapper><time-picker-example/></DemoWrapper>
 
 <<< @/.vitepress/components/time-picker/example.vue
 
 ## 24-hour
 
-<ClientOnly><time-picker-example-24/></ClientOnly>
+<DemoWrapper><time-picker-example-24/></DemoWrapper>
 
 <<< @/.vitepress/components/time-picker/example-24.vue
 
@@ -31,7 +31,7 @@ e.g. `time = new Date(time)`
 
 Example that limit time range from **8:00 AM** to **8:00 PM**:
 
-<ClientOnly><time-picker-limit/></ClientOnly>
+<DemoWrapper><time-picker-limit/></DemoWrapper>
 
 <<< @/.vitepress/components/time-picker/limit.vue
 
@@ -39,7 +39,7 @@ Example that limit time range from **8:00 AM** to **8:00 PM**:
 
 All input methods are all disabled in readonly mode.
 
-<ClientOnly><time-picker-readonly/></ClientOnly>
+<DemoWrapper><time-picker-readonly/></DemoWrapper>
 
 <<< @/.vitepress/components/time-picker/readonly.vue
 
@@ -47,13 +47,13 @@ All input methods are all disabled in readonly mode.
 
 <br/>
 
-<ClientOnly><time-picker-with-dropdown/></ClientOnly>
+<DemoWrapper><time-picker-with-dropdown/></DemoWrapper>
 
 <<< @/.vitepress/components/time-picker/with-dropdown.vue
 
 ## Without controls
 
-<ClientOnly><time-picker-no-controls/></ClientOnly>
+<DemoWrapper><time-picker-no-controls/></DemoWrapper>
 
 <<< @/.vitepress/components/time-picker/no-controls.vue
 

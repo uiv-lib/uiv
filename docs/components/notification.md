@@ -6,7 +6,7 @@
 
 Click on the button below to show a notification. By default, it is dismissible with a close button, and will dismiss automatically after 5000ms (both are configurable).
 
-<ClientOnly><notification-example/></ClientOnly>
+<DemoWrapper><notification-example/></DemoWrapper>
 
 <<< @/.vitepress/components/notification/example.vue
 
@@ -17,7 +17,7 @@ There're 4 optional types of notification: `info` / `success` / `warning` / `dan
 Notification with specific type will has a default icon on the left, you can also change or remove the icon by `icon` option.
 
 
-<ClientOnly><notification-types/></ClientOnly>
+<DemoWrapper><notification-types/></DemoWrapper>
 
 <<< @/.vitepress/components/notification/types.vue
 
@@ -27,7 +27,7 @@ Notifications can be placed on any corner on a page.
 
 The `position` prop defines which corner a notification will slide in. It can be `top-right` (default), `top-left`, `bottom-right` or `bottom-left`.
 
-<ClientOnly><notification-placements/></ClientOnly>
+<DemoWrapper><notification-placements/></DemoWrapper>
 
 <<< @/.vitepress/components/notification/placements.vue
 
@@ -35,7 +35,7 @@ The `position` prop defines which corner a notification will slide in. It can be
 
 By default a notification is dismissible with a close button, you can hide it by setting `dismissible` to `false`.
 
-<ClientOnly><notification-dismissible/></ClientOnly>
+<DemoWrapper><notification-dismissible/></DemoWrapper>
 
 <<< @/.vitepress/components/notification/dismissible.vue
 

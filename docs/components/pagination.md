@@ -8,7 +8,7 @@ Simple pagination, great for apps and search results.
 
 Use `v-model` (1-based) to indicate the current page.
 
-<ClientOnly><pagination-example/></ClientOnly>
+<DemoWrapper><pagination-example/></DemoWrapper>
 
 <<< @/.vitepress/components/pagination/example.vue
 
@@ -16,7 +16,7 @@ Use `v-model` (1-based) to indicate the current page.
 
 Fancy larger or smaller pagination? Add `size="lg"` or `size="sm"` for additional sizes.
 
-<ClientOnly><pagination-sizes/></ClientOnly>
+<DemoWrapper><pagination-sizes/></DemoWrapper>
 
 <<< @/.vitepress/components/pagination/sizes.vue
 
@@ -24,7 +24,7 @@ Fancy larger or smaller pagination? Add `size="lg"` or `size="sm"` for additiona
 
 By default the pagination component is left aligned. Change the alignment to center or right by setting `align` to the appropriate value.
 
-<ClientOnly><pagination-alignment/></ClientOnly>
+<DemoWrapper><pagination-alignment/></DemoWrapper>
 
 <<< @/.vitepress/components/pagination/alignment.vue
 
@@ -32,7 +32,7 @@ By default the pagination component is left aligned. Change the alignment to cen
 
 By default `direction-links` are enabled, which allows users to nav to previous or next page.
 
-<ClientOnly><pagination-direction-links/></ClientOnly>
+<DemoWrapper><pagination-direction-links/></DemoWrapper>
 
 <<< @/.vitepress/components/pagination/direction-links.vue
 
@@ -40,7 +40,7 @@ By default `direction-links` are enabled, which allows users to nav to previous 
 
 Add `boundary-links` to allow fast nav to the first or last page.
 
-<ClientOnly><pagination-boundary-links/></ClientOnly>
+<DemoWrapper><pagination-boundary-links/></DemoWrapper>
 
 <<< @/.vitepress/components/pagination/boundary-links.vue
 
@@ -48,13 +48,13 @@ Add `boundary-links` to allow fast nav to the first or last page.
 
 Use `max-size` to define the maximum chunk size of pagers (default is 5). And if you don't like chunk pagers, just simply set `max-size` to equal as `total-page`.
 
-<ClientOnly><pagination-chunks/></ClientOnly>
+<DemoWrapper><pagination-chunks/></DemoWrapper>
 
 <<< @/.vitepress/components/pagination/chunks.vue
 
 ## Disabled
 
-<ClientOnly><pagination-disabled/></ClientOnly>
+<DemoWrapper><pagination-disabled/></DemoWrapper>
 
 <<< @/.vitepress/components/pagination/disabled.vue
 

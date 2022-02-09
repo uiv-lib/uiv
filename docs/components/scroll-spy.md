@@ -6,7 +6,7 @@
 
 Scroll the area below the navbar and watch the active class change. The dropdown sub items will be highlighted as well:
 
-<ClientOnly><scroll-spy-example/></ClientOnly>
+<DemoWrapper><scroll-spy-example/></DemoWrapper>
 
 <<< @/.vitepress/components/scroll-spy/example.vue
 

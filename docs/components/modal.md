@@ -8,7 +8,7 @@ Toggle a modal by clicking the button below. It will slide down and fade in from
 
 A simple modal example with callback:
 
-<ClientOnly><modal-example/></ClientOnly>
+<DemoWrapper><modal-example/></DemoWrapper>
 
 <<< @/.vitepress/components/modal/example.vue
 
@@ -16,7 +16,7 @@ A simple modal example with callback:
 
 Modals have two optional sizes: `lg` and `sm`.
 
-<ClientOnly><modal-sizes/></ClientOnly>
+<DemoWrapper><modal-sizes/></DemoWrapper>
 
 <<< @/.vitepress/components/modal/sizes.vue
 
@@ -26,7 +26,7 @@ Modals have two optional sizes: `lg` and `sm`.
 * Set `header` prop to `false` to hide the modal header.
 * You can also use `header` slot to take full control of the modal header. Notice that this slot will override `title` slot since it is a completely replacement
 
-<ClientOnly><modal-custom-header/></ClientOnly>
+<DemoWrapper><modal-custom-header/></DemoWrapper>
 
 <<< @/.vitepress/components/modal/custom-header.vue
 
@@ -35,7 +35,7 @@ Modals have two optional sizes: `lg` and `sm`.
 * Use `footer` slot to customize the modal footer.
 * Set `footer` prop to `false` to hide the modal footer.
 
-<ClientOnly><modal-custom-footer/></ClientOnly>
+<DemoWrapper><modal-custom-footer/></DemoWrapper>
 
 <<< @/.vitepress/components/modal/custom-footer.vue
 
@@ -44,7 +44,7 @@ Modals have two optional sizes: `lg` and `sm`.
 * Use `ok-text` and `cancel-text` to customize button texts
 * Use `ok-type` and `cancel-type` to customize button types
 
-<ClientOnly><modal-custom-button-text-and-type/></ClientOnly>
+<DemoWrapper><modal-custom-button-text-and-type/></DemoWrapper>
 
 <<< @/.vitepress/components/modal/custom-button-text-and-type.vue
 
@@ -58,7 +58,7 @@ Auto focus on footer button with `data-action="auto-focus"` attribute after moda
 
 Set `backdrop` prop to `false` to disable the modal dismiss action on backdrop click.
 
-<ClientOnly><modal-disable-backdrop/></ClientOnly>
+<DemoWrapper><modal-disable-backdrop/></DemoWrapper>
 
 <<< @/.vitepress/components/modal/disable-backdrop.vue
 
@@ -66,7 +66,7 @@ Set `backdrop` prop to `false` to disable the modal dismiss action on backdrop c
 
 Set `transition` to `0` to disable modal animations.
 
-<ClientOnly><modal-disable-animation/></ClientOnly>
+<DemoWrapper><modal-disable-animation/></DemoWrapper>
 
 <<< @/.vitepress/components/modal/disable-animation.vue
 
@@ -74,13 +74,13 @@ Set `transition` to `0` to disable modal animations.
 
 Note that if you want modals to be real nested to each other, you have to add `append-to-body` prop to them. For example:
 
-<ClientOnly><modal-nested/></ClientOnly>
+<DemoWrapper><modal-nested/></DemoWrapper>
 
 <<< @/.vitepress/components/modal/nested.vue
 
 Otherwise, you can simply nest them logically, without any extra settings:
 
-<ClientOnly><modal-nested-logically/></ClientOnly>
+<DemoWrapper><modal-nested-logically/></DemoWrapper>
 
 <<< @/.vitepress/components/modal/nested-logically.vue
 

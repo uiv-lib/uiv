@@ -10,7 +10,7 @@ Popovers whose both title and content are zero-length are never displayed.
 
 Click the button below to toggle popover:
 
-<ClientOnly><popover-example/></ClientOnly>
+<DemoWrapper><popover-example/></DemoWrapper>
 
 <<< @/.vitepress/components/popover/example.vue
 
@@ -32,7 +32,7 @@ A `target` can be:
 
 You can also simply use popovers via `v-popover` directive:
 
-<ClientOnly><popover-directive/></ClientOnly>
+<DemoWrapper><popover-directive/></DemoWrapper>
 
 <<< @/.vitepress/components/popover/directive.vue
 
@@ -40,7 +40,7 @@ You can also simply use popovers via `v-popover` directive:
 
 If you don't want the title of popover, just leave the `title` prop unset or blank.
 
-<ClientOnly><popover-with-empty-title/></ClientOnly>
+<DemoWrapper><popover-with-empty-title/></DemoWrapper>
 
 <<< @/.vitepress/components/popover/with-empty-title.vue
 
@@ -53,7 +53,7 @@ Supported placements:
 * **bottom**
 * **left**
 
-<ClientOnly><popover-placements/></ClientOnly>
+<DemoWrapper><popover-placements/></DemoWrapper>
 
 <<< @/.vitepress/components/popover/placements.vue
 
@@ -67,7 +67,7 @@ Popover will try to find the best placement for displaying while `auto-placement
 
 Keeps the popover within the bounds of this element.
 
-<ClientOnly><popover-viewport/></ClientOnly>
+<DemoWrapper><popover-viewport/></DemoWrapper>
 
 <<< @/.vitepress/components/popover/viewport.vue
 
@@ -81,7 +81,7 @@ Supported triggers:
 * `click` toggle on trigger click.
 * `outside-click` (Default) same as click, but not close on popover click and close on outside click.
 
-<ClientOnly><popover-triggers/></ClientOnly>
+<DemoWrapper><popover-triggers/></DemoWrapper>
 
 <<< @/.vitepress/components/popover/triggers.vue
 
@@ -89,7 +89,7 @@ Supported triggers:
 
 Set `trigger` prop to `manual` to disable all the event listeners, and controls popover show / hide only by `v-model` change.
 
-<ClientOnly><popover-manual-trigger/></ClientOnly>
+<DemoWrapper><popover-manual-trigger/></DemoWrapper>
 
 <<< @/.vitepress/components/popover/manual-trigger.vue
 

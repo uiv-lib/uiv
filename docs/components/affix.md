@@ -14,7 +14,7 @@ Do not use affix on an element contained in a relatively positioned element, suc
 
 Try to scroll the page down and see what's happening to the alert:
 
-<ClientOnly><affix-example/></ClientOnly>
+<DemoWrapper><affix-example/></DemoWrapper>
 
 <<< @/.vitepress/components/affix/example.vue
 

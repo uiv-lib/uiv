@@ -1,0 +1,81 @@
+@import 'node_modules/bootstrap/less/variables';
+@import 'node_modules/bootstrap/less/mixins';
+// fix some body level styles
+@import 'node_modules/bootstrap/less/dropdowns';
+@import 'node_modules/bootstrap/less/modals';
+@import 'node_modules/bootstrap/less/alerts';
+@import 'node_modules/bootstrap/less/close';
+@import 'node_modules/bootstrap/less/buttons';
+@import 'node_modules/bootstrap/less/tooltip';
+@import 'node_modules/bootstrap/less/popovers';
+@import 'node_modules/bootstrap/less/component-animations';
+@import 'node_modules/bootstrap/less/forms';
+
+.form-control {
+  box-sizing: border-box;
+}
+
+.modal-open .modal {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.modal-backdrop.in {
+  filter: alpha(opacity=50);
+  opacity: 0.5 !important;
+}
+
+a[role='button'] {
+  cursor: pointer;
+}
+
+body > .alert {
+  z-index: 2000;
+}
+
+.uiv-demo {
+  @import (less) 'node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+  .btn, .btn-group.dropdown {
+    margin: 0 2px;
+  }
+
+  .btn-group .btn, .btn-group-vertical .btn, .uiv-datepicker .btn {
+    margin: 0;
+  }
+
+  table {
+    width: auto;
+
+    td,
+    th,
+    tr {
+      border: none;
+      background: transparent;
+    }
+
+    td:first-child {
+      width: auto;
+    }
+  }
+
+  .navbar {
+    padding: 0;
+    z-index: unset;
+    top: unset;
+    left: unset;
+    right: unset;
+    height: unset;
+    line-height: unset;
+  }
+
+  .pagination > li > a,
+  .pagination > li > span {
+    text-decoration: none !important;
+  }
+
+  + .language-vue {
+    margin-top: 0;
+    border-radius: 0 0 6px 6px;
+  }
+}

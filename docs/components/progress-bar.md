@@ -6,7 +6,7 @@
 
 Default progress bar.
 
-<ClientOnly><progress-bar-example/></ClientOnly>
+<DemoWrapper><progress-bar-example/></DemoWrapper>
 
 <<< @/.vitepress/components/progress-bar/example.vue
 
@@ -16,7 +16,7 @@ Default progress bar.
 To ensure that the label text remains legible even for low percentages, consider use `min-width` prop.
 :::
 
-<ClientOnly><progress-bar-with-label/></ClientOnly>
+<DemoWrapper><progress-bar-with-label/></DemoWrapper>
 
 <<< @/.vitepress/components/progress-bar/with-label.vue
 
@@ -24,7 +24,7 @@ To ensure that the label text remains legible even for low percentages, consider
 
 Progress bars use some of the same button and alert classes for consistent styles.
 
-<ClientOnly><progress-bar-contextual-alternatives/></ClientOnly>
+<DemoWrapper><progress-bar-contextual-alternatives/></DemoWrapper>
 
 <<< @/.vitepress/components/progress-bar/contextual-alternatives.vue
 
@@ -36,7 +36,7 @@ Uses a gradient to create a striped effect.
 Not available in IE9 and below.
 :::
 
-<ClientOnly><progress-bar-striped/></ClientOnly>
+<DemoWrapper><progress-bar-striped/></DemoWrapper>
 
 <<< @/.vitepress/components/progress-bar/striped.vue
 
@@ -48,7 +48,7 @@ Animate the stripes right to left.
 Not available in IE9 and below.
 :::
 
-<ClientOnly><progress-bar-animated/></ClientOnly>
+<DemoWrapper><progress-bar-animated/></DemoWrapper>
 
 <<< @/.vitepress/components/progress-bar/animated.vue
 
@@ -56,7 +56,7 @@ Not available in IE9 and below.
 
 Place multiple `<progress-bar-stack>` into the same `<progress-bar>` to stack them.
 
-<ClientOnly><progress-bar-stacked/></ClientOnly>
+<DemoWrapper><progress-bar-stacked/></DemoWrapper>
 
 <<< @/.vitepress/components/progress-bar/stacked.vue
 

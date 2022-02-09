@@ -6,7 +6,7 @@
 
 Use any of the available button types to quickly create a styled button.
 
-<ClientOnly><btn-example/></ClientOnly>
+<DemoWrapper><btn-example/></DemoWrapper>
 
 <<< @/.vitepress/components/btn/example.vue
 
@@ -14,7 +14,7 @@ Use any of the available button types to quickly create a styled button.
 
 Buttons with `href` or `to` prop will render as link tag.
 
-<ClientOnly><btn-links/></ClientOnly>
+<DemoWrapper><btn-links/></DemoWrapper>
 
 <<< @/.vitepress/components/btn/links.vue
 
@@ -22,13 +22,13 @@ Buttons with `href` or `to` prop will render as link tag.
 
 Fancy larger or smaller buttons? Add size `lg`, `sm`, or `xs` for additional sizes.
 
-<ClientOnly><btn-sizes/></ClientOnly>
+<DemoWrapper><btn-sizes/></DemoWrapper>
 
 <<< @/.vitepress/components/btn/sizes.vue
 
 Create block level buttons—those that span the full width of a parent — by adding `block`.
 
-<ClientOnly><btn-block/></ClientOnly>
+<DemoWrapper><btn-block/></DemoWrapper>
 
 <<< @/.vitepress/components/btn/block.vue
 
@@ -36,7 +36,7 @@ Create block level buttons—those that span the full width of a parent — by a
 
 Add `active` to make buttons appear pressed (with a darker background, darker border, and inset shadow).
 
-<ClientOnly><btn-active/></ClientOnly>
+<DemoWrapper><btn-active/></DemoWrapper>
 
 <<< @/.vitepress/components/btn/active.vue
 
@@ -44,7 +44,7 @@ Add `active` to make buttons appear pressed (with a darker background, darker bo
 
 Add `disabled` to make buttons unclickable.
 
-<ClientOnly><btn-disabled/></ClientOnly>
+<DemoWrapper><btn-disabled/></DemoWrapper>
 
 <<< @/.vitepress/components/btn/disabled.vue
 
@@ -60,7 +60,7 @@ This needed to work with [`btn-group`](/components/btn-group.html) for correct s
 
 <br/>
 
-<ClientOnly><btn-checkbox/></ClientOnly>
+<DemoWrapper><btn-checkbox/></DemoWrapper>
 
 <<< @/.vitepress/components/btn/checkbox.vue
 
@@ -68,7 +68,7 @@ This needed to work with [`btn-group`](/components/btn-group.html) for correct s
 
 <br/>
 
-<ClientOnly><btn-radio/></ClientOnly>
+<DemoWrapper><btn-radio/></DemoWrapper>
 
 <<< @/.vitepress/components/btn/radio.vue
 
