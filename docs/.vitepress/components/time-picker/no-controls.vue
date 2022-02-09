@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <TimePicker v-model="time" :controls="false" />
-  </div>
+  <TimePicker v-model="time" :controls="false" />
 </template>
 
 <script setup>

@@ -1,10 +1,8 @@
 <template>
-  <section class="uiv">
-    <Btn type="primary" @click="notify('top-right')">Top Right (Default)</Btn>
-    <Btn type="primary" @click="notify('bottom-right')">Bottom Right</Btn>
-    <Btn type="primary" @click="notify('bottom-left')">Bottom Left</Btn>
-    <Btn type="primary" @click="notify('top-left')">Top Left</Btn>
-  </section>
+  <Btn type="primary" @click="notify('top-right')">Top Right (Default)</Btn>
+  <Btn type="primary" @click="notify('bottom-right')">Bottom Right</Btn>
+  <Btn type="primary" @click="notify('bottom-left')">Bottom Left</Btn>
+  <Btn type="primary" @click="notify('top-left')">Top Left</Btn>
 </template>
 
 <script setup>

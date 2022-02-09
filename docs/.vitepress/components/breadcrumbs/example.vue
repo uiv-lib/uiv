@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <Breadcrumbs :items="items" />
-  </div>
+  <Breadcrumbs :items="items" />
 </template>
 <script setup>
 import { ref } from 'vue';

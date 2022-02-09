@@ -1,5 +1,5 @@
 <template>
-  <div id="tooltip-viewport" class="uiv">
+  <div id="tooltip-viewport">
     <Btn
       v-tooltip="{
         text: 'Tooltip content auto',

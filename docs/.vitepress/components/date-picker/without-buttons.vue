@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <DatePicker v-model="date" :today-btn="false" :clear-btn="false" />
-  </div>
+  <DatePicker v-model="date" :today-btn="false" :clear-btn="false" />
 </template>
 <script setup>
 import { ref } from 'vue';

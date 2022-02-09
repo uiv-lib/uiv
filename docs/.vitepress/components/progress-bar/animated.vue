@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <ProgressBar v-model="progress" striped active />
-  </div>
+  <ProgressBar v-model="progress" striped active />
 </template>
 
 <script setup>

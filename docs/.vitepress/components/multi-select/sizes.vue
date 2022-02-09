@@ -1,21 +1,19 @@
 <template>
-  <section class="uiv">
-    <div>
-      <MultiSelect v-model="selected" :options="options" size="sm" />
-    </div>
-    <br />
-    <div>
-      <MultiSelect v-model="selected" :options="options" />
-    </div>
-    <br />
-    <div>
-      <MultiSelect v-model="selected" :options="options" size="lg" />
-    </div>
-    <br />
-    <div>
-      <MultiSelect v-model="selected" :options="options" size="lg" block />
-    </div>
-  </section>
+  <div>
+    <MultiSelect v-model="selected" :options="options" size="sm" />
+  </div>
+  <br />
+  <div>
+    <MultiSelect v-model="selected" :options="options" />
+  </div>
+  <br />
+  <div>
+    <MultiSelect v-model="selected" :options="options" size="lg" />
+  </div>
+  <br />
+  <div>
+    <MultiSelect v-model="selected" :options="options" size="lg" block />
+  </div>
 </template>
 
 <script setup>

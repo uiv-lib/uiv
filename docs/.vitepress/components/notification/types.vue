@@ -1,10 +1,8 @@
 <template>
-  <section class="uiv">
-    <Btn type="info" @click="info">Info</Btn>
-    <Btn type="success" @click="success">Success</Btn>
-    <Btn type="warning" @click="warning">Warning</Btn>
-    <Btn type="danger" @click="danger">Danger</Btn>
-  </section>
+  <Btn type="info" @click="info">Info</Btn>
+  <Btn type="success" @click="success">Success</Btn>
+  <Btn type="warning" @click="warning">Warning</Btn>
+  <Btn type="danger" @click="danger">Danger</Btn>
 </template>
 
 <script setup>

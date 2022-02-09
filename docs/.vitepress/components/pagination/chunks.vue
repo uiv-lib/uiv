@@ -1,13 +1,11 @@
 <template>
-  <div class="uiv">
-    <Pagination v-model="currentPage" :total-page="totalPage" :max-size="3" />
-    <Pagination v-model="currentPage" :total-page="totalPage" />
-    <Pagination
-      v-model="currentPage"
-      :total-page="totalPage"
-      :max-size="totalPage"
-    />
-  </div>
+  <Pagination v-model="currentPage" :total-page="totalPage" :max-size="3" />
+  <Pagination v-model="currentPage" :total-page="totalPage" />
+  <Pagination
+    v-model="currentPage"
+    :total-page="totalPage"
+    :max-size="totalPage"
+  />
 </template>
 
 <script setup>

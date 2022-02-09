@@ -1,10 +1,8 @@
 <template>
-  <section class="uiv">
-    <Btn type="primary" @click="open = true">Disable Backdrop</Btn>
-    <Modal v-model="open" title="Modal Title" :backdrop="false">
-      <p>This is a modal that can not close by backdrop click.</p>
-    </Modal>
-  </section>
+  <Btn type="primary" @click="open = true">Disable Backdrop</Btn>
+  <Modal v-model="open" title="Modal Title" :backdrop="false">
+    <p>This is a modal that can not close by backdrop click.</p>
+  </Modal>
 </template>
 
 <script setup>

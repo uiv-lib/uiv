@@ -1,12 +1,10 @@
 <template>
-  <div class="uiv">
-    <Btn id="btn" type="primary">Popover</Btn>
-    <Popover title="Title" target="#btn">
-      <template #popover>
-        <h1>Hello world!</h1>
-      </template>
-    </Popover>
-  </div>
+  <Btn id="btn" type="primary">Popover</Btn>
+  <Popover title="Title" target="#btn">
+    <template #popover>
+      <h1>Hello world!</h1>
+    </template>
+  </Popover>
 </template>
 
 <script setup>

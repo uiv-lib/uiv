@@ -1,17 +1,15 @@
 <template>
-  <section class="uiv">
-    <label>States of America:</label>
-    <input
-      ref="input"
-      class="form-control"
-      type="text"
-      placeholder="Type to search..."
-      autocomplete="off"
-    />
-    <Typeahead v-model="model" :target="input" :data="states" item-key="name" />
-    <br />
-    <Alert v-show="model">You selected {{ model }}</Alert>
-  </section>
+  <label>States of America:</label>
+  <input
+    ref="input"
+    class="form-control"
+    type="text"
+    placeholder="Type to search..."
+    autocomplete="off"
+  />
+  <Typeahead v-model="model" :target="input" :data="states" item-key="name" />
+  <br />
+  <Alert v-show="model">You selected {{ model }}</Alert>
 </template>
 
 <script setup>

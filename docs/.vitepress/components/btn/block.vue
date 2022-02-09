@@ -1,8 +1,6 @@
 <template>
-  <div class="uiv">
-    <Btn block size="lg" type="primary">Block level button</Btn>
-    <Btn block size="lg">Block level button</Btn>
-  </div>
+  <Btn block size="lg" type="primary">Block level button</Btn>
+  <Btn block size="lg">Block level button</Btn>
 </template>
 
 <script setup>

@@ -1,12 +1,10 @@
 <template>
-  <section class="uiv">
-    <DatePicker v-model="date" />
-    <br />
-    <Alert v-show="date" type="info">
-      You selected
-      <b>{{ date }}.</b>
-    </Alert>
-  </section>
+  <DatePicker v-model="date" />
+  <br />
+  <Alert v-show="date" type="info">
+    You selected
+    <b>{{ date }}.</b>
+  </Alert>
 </template>
 <script setup>
 import { ref } from 'vue';

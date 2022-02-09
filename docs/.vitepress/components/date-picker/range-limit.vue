@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <DatePicker v-model="date" :limit-from="limitFrom" :limit-to="limitTo" />
-  </div>
+  <DatePicker v-model="date" :limit-from="limitFrom" :limit-to="limitTo" />
 </template>
 <script setup>
 import { ref } from 'vue';

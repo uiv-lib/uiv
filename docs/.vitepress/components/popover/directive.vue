@@ -1,12 +1,10 @@
 <template>
-  <div class="uiv">
-    <Btn
-      v-popover="{ title: 'Title', content: 'Popover content' }"
-      type="primary"
-    >
-      Popover
-    </Btn>
-  </div>
+  <Btn
+    v-popover="{ title: 'Title', content: 'Popover content' }"
+    type="primary"
+  >
+    Popover
+  </Btn>
 </template>
 
 <script setup>

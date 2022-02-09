@@ -1,8 +1,6 @@
 <template>
-  <section class="uiv">
-    <Btn type="primary" @click="notify">Simplest Notification</Btn>
-    <Btn type="primary" @click="notify2">No Auto-dismiss Notification</Btn>
-  </section>
+  <Btn type="primary" @click="notify">Simplest Notification</Btn>
+  <Btn type="primary" @click="notify2">No Auto-dismiss Notification</Btn>
 </template>
 
 <script setup>

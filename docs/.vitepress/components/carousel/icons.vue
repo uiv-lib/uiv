@@ -1,20 +1,18 @@
 <template>
-  <div class="uiv">
-    <Carousel
-      icon-control-left="my-icon glyphicon glyphicon-arrow-left"
-      icon-control-right="my-icon glyphicon glyphicon-arrow-right"
-    >
-      <Slide v-for="(slide, index) in slides" :key="index">
-        <div
-          style="width: 100%; height: 400px"
-          :style="{ background: index % 2 === 0 ? '#99a9bf' : '#d3dce6' }"
-        ></div>
-        <div class="carousel-caption">
-          <h3>This is {{ slide.title }}</h3>
-        </div>
-      </Slide>
-    </Carousel>
-  </div>
+  <Carousel
+    icon-control-left="my-icon glyphicon glyphicon-arrow-left"
+    icon-control-right="my-icon glyphicon glyphicon-arrow-right"
+  >
+    <Slide v-for="(slide, index) in slides" :key="index">
+      <div
+        style="width: 100%; height: 400px"
+        :style="{ background: index % 2 === 0 ? '#99a9bf' : '#d3dce6' }"
+      ></div>
+      <div class="carousel-caption">
+        <h3>This is {{ slide.title }}</h3>
+      </div>
+    </Slide>
+  </Carousel>
 </template>
 
 <script setup>

@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <TimePicker v-model="time" :max="max" :min="min" />
-  </div>
+  <TimePicker v-model="time" :max="max" :min="min" />
 </template>
 
 <script setup>

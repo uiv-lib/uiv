@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <DatePicker v-model="date" :week-starts-with="1" />
-  </div>
+  <DatePicker v-model="date" :week-starts-with="1" />
 </template>
 <script setup>
 import { ref } from 'vue';

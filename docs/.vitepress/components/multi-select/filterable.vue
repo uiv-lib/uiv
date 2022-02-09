@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <MultiSelect v-model="selected" :options="options" filterable />
-  </div>
+  <MultiSelect v-model="selected" :options="options" filterable />
 </template>
 
 <script setup>

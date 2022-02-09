@@ -1,11 +1,9 @@
 <template>
-  <div class="uiv">
-    <Breadcrumbs>
-      <BreadcrumbItem href="#"><b>Home</b></BreadcrumbItem>
-      <BreadcrumbItem href="#">Library</BreadcrumbItem>
-      <BreadcrumbItem active>Data</BreadcrumbItem>
-    </Breadcrumbs>
-  </div>
+  <Breadcrumbs>
+    <BreadcrumbItem href="#"><b>Home</b></BreadcrumbItem>
+    <BreadcrumbItem href="#">Library</BreadcrumbItem>
+    <BreadcrumbItem active>Data</BreadcrumbItem>
+  </Breadcrumbs>
 </template>
 
 <script setup>

@@ -1,18 +1,16 @@
 <template>
-  <section class="uiv">
-    <Alert
-      v-for="(item, index) in alerts"
-      :key="item.key"
-      :duration="duration"
-      @dismissed="alerts.splice(index, 1)"
-    >
-      This alert <b>will dismiss after {{ duration }}ms</b>.
-    </Alert>
-    <hr />
-    <Btn type="primary" @click="addAutoDismissAlert()"
-      >Add Auto Dismiss Alert</Btn
-    >
-  </section>
+  <Alert
+    v-for="(item, index) in alerts"
+    :key="item.key"
+    :duration="duration"
+    @dismissed="alerts.splice(index, 1)"
+  >
+    This alert <b>will dismiss after {{ duration }}ms</b>.
+  </Alert>
+  <hr />
+  <Btn type="primary" @click="addAutoDismissAlert()"
+    >Add Auto Dismiss Alert</Btn
+  >
 </template>
 
 <script setup>

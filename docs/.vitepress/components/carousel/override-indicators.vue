@@ -1,30 +1,28 @@
 <template>
-  <div class="uiv">
-    <Carousel>
-      <Slide v-for="(slide, index) in slides" :key="index">
-        <div
-          style="width: 100%; height: 400px"
-          :style="{ background: index % 2 === 0 ? '#99a9bf' : '#d3dce6' }"
-        ></div>
-        <div class="carousel-caption">
-          <h3>This is {{ slide.title }}</h3>
-        </div>
-      </Slide>
-      <!-- Use this slot for custom indicators -->
-      <template #indicators="props">
-        <ol class="carousel-indicators custom-carousel-indicators">
-          <li
-            v-for="(slide, index) in slides"
-            :key="index"
-            :class="{ active: index === props.activeIndex }"
-            @click="props.select(index)"
-          >
-            <!-- Anything you like here -->
-          </li>
-        </ol>
-      </template>
-    </Carousel>
-  </div>
+  <Carousel>
+    <Slide v-for="(slide, index) in slides" :key="index">
+      <div
+        style="width: 100%; height: 400px"
+        :style="{ background: index % 2 === 0 ? '#99a9bf' : '#d3dce6' }"
+      ></div>
+      <div class="carousel-caption">
+        <h3>This is {{ slide.title }}</h3>
+      </div>
+    </Slide>
+    <!-- Use this slot for custom indicators -->
+    <template #indicators="props">
+      <ol class="carousel-indicators custom-carousel-indicators">
+        <li
+          v-for="(slide, index) in slides"
+          :key="index"
+          :class="{ active: index === props.activeIndex }"
+          @click="props.select(index)"
+        >
+          <!-- Anything you like here -->
+        </li>
+      </ol>
+    </template>
+  </Carousel>
 </template>
 
 <script setup>

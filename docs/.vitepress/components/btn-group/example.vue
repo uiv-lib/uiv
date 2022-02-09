@@ -1,11 +1,9 @@
 <template>
-  <div class="uiv">
-    <BtnGroup>
-      <Btn>Left</Btn>
-      <Btn>Middle</Btn>
-      <Btn>Right</Btn>
-    </BtnGroup>
-  </div>
+  <BtnGroup>
+    <Btn>Left</Btn>
+    <Btn>Middle</Btn>
+    <Btn>Right</Btn>
+  </BtnGroup>
 </template>
 
 <script setup>

@@ -1,12 +1,10 @@
 <template>
-  <div class="uiv">
-    <Navbar>
-      <template #brand>
-        <a class="navbar-brand" href="#">Brand</a>
-      </template>
-      <Btn class="navbar-btn">Sign in</Btn>
-    </Navbar>
-  </div>
+  <Navbar>
+    <template #brand>
+      <a class="navbar-brand" href="#">Brand</a>
+    </template>
+    <Btn class="navbar-btn">Sign in</Btn>
+  </Navbar>
 </template>
 
 <script setup>

@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <Btn type="primary" @click="confirm">Click to open a confirm modal</Btn>
-  </div>
+  <Btn type="primary" @click="confirm">Click to open a confirm modal</Btn>
 </template>
 <script setup>
 import { Btn, MessageBox, Notification } from 'uiv';

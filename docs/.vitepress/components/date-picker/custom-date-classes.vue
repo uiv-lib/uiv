@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <DatePicker v-model="date" :date-class="dateClass" />
-  </div>
+  <DatePicker v-model="date" :date-class="dateClass" />
 </template>
 
 <script setup>

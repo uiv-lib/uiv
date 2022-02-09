@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <Pagination v-model="currentPage" :total-page="totalPage" />
-  </div>
+  <Pagination v-model="currentPage" :total-page="totalPage" />
 </template>
 
 <script setup>

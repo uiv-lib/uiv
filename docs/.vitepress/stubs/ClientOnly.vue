@@ -1,5 +1,7 @@
 <template>
-  <slot v-if="show" />
+  <div v-if="show" class="uiv">
+    <slot />
+  </div>
 </template>
 
 <script setup>

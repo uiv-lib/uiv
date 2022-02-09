@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <MultiSelect v-model="selected" :options="options" collapse-selected />
-  </div>
+  <MultiSelect v-model="selected" :options="options" collapse-selected />
 </template>
 
 <script setup>

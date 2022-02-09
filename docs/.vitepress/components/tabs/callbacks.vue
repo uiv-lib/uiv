@@ -1,20 +1,18 @@
 <template>
-  <div class="uiv">
-    <Tabs @change="onChange">
-      <Tab title="Home">
-        <p>Home tab.</p>
-      </Tab>
-      <Tab title="Profile">
-        <p>Profile tab.</p>
-      </Tab>
-      <Tab>
-        <template #title>
-          <div><i class="glyphicon glyphicon-bell"></i> Alert!</div>
-        </template>
-        <p>This tab has HTML title and callback function!</p>
-      </Tab>
-    </Tabs>
-  </div>
+  <Tabs @change="onChange">
+    <Tab title="Home">
+      <p>Home tab.</p>
+    </Tab>
+    <Tab title="Profile">
+      <p>Profile tab.</p>
+    </Tab>
+    <Tab>
+      <template #title>
+        <div><i class="glyphicon glyphicon-bell"></i> Alert!</div>
+      </template>
+      <p>This tab has HTML title and callback function!</p>
+    </Tab>
+  </Tabs>
 </template>
 
 <script setup>

@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <TimePicker v-model="time" readonly />
-  </div>
+  <TimePicker v-model="time" readonly />
 </template>
 
 <script setup>

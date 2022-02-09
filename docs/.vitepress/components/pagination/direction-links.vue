@@ -1,12 +1,10 @@
 <template>
-  <div class="uiv">
-    <Pagination v-model="currentPage" :total-page="totalPage" />
-    <Pagination
-      v-model="currentPage"
-      :total-page="totalPage"
-      :direction-links="false"
-    />
-  </div>
+  <Pagination v-model="currentPage" :total-page="totalPage" />
+  <Pagination
+    v-model="currentPage"
+    :total-page="totalPage"
+    :direction-links="false"
+  />
 </template>
 
 <script setup>

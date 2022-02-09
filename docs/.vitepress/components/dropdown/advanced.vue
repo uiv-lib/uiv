@@ -1,39 +1,37 @@
 <template>
-  <section class="uiv">
-    <Alert>You selected: {{ selected }}</Alert>
-    <Dropdown
-      ref="dropdown"
-      v-model="show"
-      :not-close-elements="ele"
-      class="dropdown-form"
-    >
-      <Btn type="primary" class="dropdown-toggle"
-        >Dropdown Form <span class="caret"></span
-      ></Btn>
-      <template #dropdown>
-        <li class="checkbox">
-          <label>
-            <input v-model="selected" type="checkbox" value="Vue" /> Vue
-          </label>
-        </li>
-        <li class="checkbox">
-          <label>
-            <input v-model="selected" type="checkbox" value="Bootstrap" />
-            Bootstrap
-          </label>
-        </li>
-        <li class="checkbox">
-          <label>
-            <input v-model="selected" type="checkbox" value="JavaScript" />
-            JavaScript
-          </label>
-        </li>
-        <li>
-          <Btn block type="primary" @click="show = false">Apply</Btn>
-        </li>
-      </template>
-    </Dropdown>
-  </section>
+  <Alert>You selected: {{ selected }}</Alert>
+  <Dropdown
+    ref="dropdown"
+    v-model="show"
+    :not-close-elements="ele"
+    class="dropdown-form"
+  >
+    <Btn type="primary" class="dropdown-toggle"
+      >Dropdown Form <span class="caret"></span
+    ></Btn>
+    <template #dropdown>
+      <li class="checkbox">
+        <label>
+          <input v-model="selected" type="checkbox" value="Vue" /> Vue
+        </label>
+      </li>
+      <li class="checkbox">
+        <label>
+          <input v-model="selected" type="checkbox" value="Bootstrap" />
+          Bootstrap
+        </label>
+      </li>
+      <li class="checkbox">
+        <label>
+          <input v-model="selected" type="checkbox" value="JavaScript" />
+          JavaScript
+        </label>
+      </li>
+      <li>
+        <Btn block type="primary" @click="show = false">Apply</Btn>
+      </li>
+    </template>
+  </Dropdown>
 </template>
 
 <script setup>

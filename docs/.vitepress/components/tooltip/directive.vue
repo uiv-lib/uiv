@@ -1,9 +1,7 @@
 <template>
-  <div class="uiv">
-    <Btn v-tooltip="'Static tooltip content goes here'" type="primary">
-      Hover me!
-    </Btn>
-  </div>
+  <Btn v-tooltip="'Static tooltip content goes here'" type="primary">
+    Hover me!
+  </Btn>
 </template>
 
 <script setup>

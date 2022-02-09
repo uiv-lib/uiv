@@ -1,9 +1,5 @@
 <template>
-  <div class="uiv">
-    <Btn type="primary" @click="notify"
-      >Notification Without Dismiss Button</Btn
-    >
-  </div>
+  <Btn type="primary" @click="notify">Notification Without Dismiss Button</Btn>
 </template>
 
 <script setup>

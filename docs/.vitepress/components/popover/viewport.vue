@@ -1,5 +1,5 @@
 <template>
-  <div id="popover-viewport" class="uiv">
+  <div id="popover-viewport">
     <Btn
       v-popover="{
         title: 'Title',

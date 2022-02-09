@@ -1,8 +1,6 @@
 <template>
-  <div class="uiv">
-    <Btn id="btn" type="primary">Hover me!</Btn>
-    <Tooltip text="Static tooltip content goes here" target="#btn" />
-  </div>
+  <Btn id="btn" type="primary">Hover me!</Btn>
+  <Tooltip text="Static tooltip content goes here" target="#btn" />
 </template>
 
 <script setup>

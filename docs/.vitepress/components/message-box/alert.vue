@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <Btn type="primary" @click="alert">Click to open an alert modal</Btn>
-  </div>
+  <Btn type="primary" @click="alert">Click to open an alert modal</Btn>
 </template>
 <script setup>
 import { Btn, MessageBox, Notification } from 'uiv';

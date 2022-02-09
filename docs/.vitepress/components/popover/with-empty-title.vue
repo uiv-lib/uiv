@@ -1,9 +1,7 @@
 <template>
-  <div class="uiv">
-    <Btn v-popover="{ content: 'Popover without a title' }" type="primary">
-      Popover
-    </Btn>
-  </div>
+  <Btn v-popover="{ content: 'Popover without a title' }" type="primary">
+    Popover
+  </Btn>
 </template>
 
 <script setup>

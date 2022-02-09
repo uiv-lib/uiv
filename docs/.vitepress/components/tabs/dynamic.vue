@@ -1,17 +1,15 @@
 <template>
-  <section class="uiv">
-    <Tabs v-model="index">
-      <Tab v-for="tab in tabs" :key="tab" :title="tab">
-        <p>Dynamic {{ tab }}</p>
-        <btn @click="close">Close this tab</btn>
-      </Tab>
-      <template #nav-right>
-        <Btn size="sm" @click="push">
-          <i class="glyphicon glyphicon-plus"></i> Add
-        </Btn>
-      </template>
-    </Tabs>
-  </section>
+  <Tabs v-model="index">
+    <Tab v-for="tab in tabs" :key="tab" :title="tab">
+      <p>Dynamic {{ tab }}</p>
+      <btn @click="close">Close this tab</btn>
+    </Tab>
+    <template #nav-right>
+      <Btn size="sm" @click="push">
+        <i class="glyphicon glyphicon-plus"></i> Add
+      </Btn>
+    </template>
+  </Tabs>
 </template>
 <script setup>
 import { Tab, Tabs, Btn } from 'uiv';

@@ -1,5 +1,5 @@
 <template>
-  <div id="affix-example" class="uiv">
+  <div id="affix-example">
     <Affix :offset="50">
       <Alert>I'm using affix.</Alert>
     </Affix>

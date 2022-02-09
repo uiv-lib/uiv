@@ -1,15 +1,13 @@
 <template>
-  <section class="uiv">
-    <Tooltip
-      v-model="show"
-      text="Static tooltip content goes here"
-      trigger="manual"
-    >
-      <btn>You Can't Trigger Tooltip Here...</btn>
-    </Tooltip>
-    <hr />
-    <Btn type="primary" @click="show = !show">Toggle Tooltip</Btn>
-  </section>
+  <Tooltip
+    v-model="show"
+    text="Static tooltip content goes here"
+    trigger="manual"
+  >
+    <btn>You Can't Trigger Tooltip Here...</btn>
+  </Tooltip>
+  <hr />
+  <Btn type="primary" @click="show = !show">Toggle Tooltip</Btn>
 </template>
 
 <script setup>

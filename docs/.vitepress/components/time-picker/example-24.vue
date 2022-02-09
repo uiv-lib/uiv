@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <TimePicker v-model="time" :show-meridian="false" />
-  </div>
+  <TimePicker v-model="time" :show-meridian="false" />
 </template>
 
 <script setup>

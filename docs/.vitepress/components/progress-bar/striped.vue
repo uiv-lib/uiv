@@ -1,10 +1,8 @@
 <template>
-  <div class="uiv">
-    <ProgressBar v-model="progress40" type="success" striped />
-    <ProgressBar v-model="progress20" type="info" striped />
-    <ProgressBar v-model="progress60" type="warning" striped />
-    <ProgressBar v-model="progress80" type="danger" striped />
-  </div>
+  <ProgressBar v-model="progress40" type="success" striped />
+  <ProgressBar v-model="progress20" type="info" striped />
+  <ProgressBar v-model="progress60" type="warning" striped />
+  <ProgressBar v-model="progress80" type="danger" striped />
 </template>
 
 <script setup>

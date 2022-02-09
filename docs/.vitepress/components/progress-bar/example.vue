@@ -1,7 +1,5 @@
 <template>
-  <div class="uiv">
-    <ProgressBar v-model="progress" />
-  </div>
+  <ProgressBar v-model="progress" />
 </template>
 
 <script setup>
