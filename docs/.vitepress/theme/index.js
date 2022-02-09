@@ -1,6 +1,7 @@
 import DefaultTheme from 'vitepress/theme';
 import './theme.less';
 import RouterLink from '../stubs/RouterLink.vue';
+import ClientOnly from '../stubs/ClientOnly.vue';
 // import { createI18n } from 'vue-i18n';
 
 // const enableI18n = false;
@@ -46,5 +47,6 @@ export default {
     });
 
     app.component('RouterLink', RouterLink);
+    app.component('ClientOnly', ClientOnly);
   },
 };
