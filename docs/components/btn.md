@@ -58,15 +58,11 @@ This needed to work with [`btn-group`](/components/btn-group.html) for correct s
 
 ### Checkbox example
 
-<br/>
-
 <DemoWrapper><btn-checkbox/></DemoWrapper>
 
 <<< @/.vitepress/components/btn/checkbox.vue
 
 ### Radio example
-
-<br/>
 
 <DemoWrapper><btn-radio/></DemoWrapper>
 

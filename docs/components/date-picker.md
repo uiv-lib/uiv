@@ -65,8 +65,6 @@ Change the starting day of the week. Support 0 (Sunday) ~ 6 (Saturday).
 
 ## With dropdown
 
-<br/>
-
 <DemoWrapper><date-picker-dropdown-example/></DemoWrapper>
 
 <<< @/.vitepress/components/date-picker/dropdown-example.vue

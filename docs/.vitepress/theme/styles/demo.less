@@ -34,6 +34,8 @@ body > .alert {
 }
 
 .uiv-demo {
+  margin-top: 1rem;
+
   @import (less) '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
   .btn, .btn-group.dropdown {
@@ -74,7 +76,7 @@ body > .alert {
     text-decoration: none !important;
   }
 
-  + .language-vue {
+  + div[class^='language-'], + div[class*=' language-'] {
     margin-top: 0;
     border-radius: 0 0 6px 6px;
   }

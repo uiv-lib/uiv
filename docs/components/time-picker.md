@@ -45,8 +45,6 @@ All input methods are all disabled in readonly mode.
 
 ## With dropdown
 
-<br/>
-
 <DemoWrapper><time-picker-with-dropdown/></DemoWrapper>
 
 <<< @/.vitepress/components/time-picker/with-dropdown.vue

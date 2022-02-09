@@ -4,8 +4,6 @@
 
 ## Example
 
-<br/>
-
 <DemoWrapper><tabs-example/></DemoWrapper>
 
 <<< @/.vitepress/components/tabs/example.vue
@@ -54,15 +52,11 @@ With `title` slot you can place any content inside nav tabs.
 
 ## With callbacks
 
-<br/>
-
 <DemoWrapper><tabs-callbacks/></DemoWrapper>
 
 <<< @/.vitepress/components/tabs/callbacks.vue
 
 ## With `nav-right` slot
-
-<br/>
 
 <DemoWrapper><tabs-nav-right-slot/></DemoWrapper>
 

@@ -42,15 +42,11 @@ Use this option to avoid influence from the parent node by appending dropdown li
 
 ## Within navbar
 
-<br/>
-
 <DemoWrapper><dropdown-within-navbar/></DemoWrapper>
 
 <<< @/.vitepress/components/dropdown/within-navbar.vue
 
 ## Within pills
-
-<br/>
 
 <DemoWrapper><dropdown-within-pills/></DemoWrapper>
 
