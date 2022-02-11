@@ -69,6 +69,11 @@ This project is supported by [JetBrains](https://www.jetbrains.com/?from=uiv).
 <a href="https://www.jetbrains.com/?from=uiv"><img width="250" src="https://static.wxsm.space/others/jetbrains-logo.png" alt="jetbrains-logo.png"></a>
 </p>
 
+## Project Stats
+
+![Alt](https://repobeats.axiom.co/api/embed/d61d9b2205de473d16574c9d78d7d067cfa3468f.svg "Repobeats analytics image")
+
+
 ## License
 
 MIT
