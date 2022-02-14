@@ -3,7 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@babel/preset-env': 7.16.11
   '@vitejs/plugin-vue': 2.2.0
-  '@vitejs/plugin-vue-jsx': 1.3.5
+  '@vitejs/plugin-vue-jsx': 1.3.7
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.31
   '@vue/test-utils': 2.0.0-rc.18
@@ -32,7 +32,7 @@ specifiers:
 devDependencies:
   '@babel/preset-env': 7.16.11
   '@vitejs/plugin-vue': 2.2.0_vite@2.8.1+vue@3.2.31
-  '@vitejs/plugin-vue-jsx': 1.3.5
+  '@vitejs/plugin-vue-jsx': 1.3.7
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.31
   '@vue/test-utils': 2.0.0-rc.18_vue@3.2.31
@@ -212,15 +212,6 @@ packages:
       - supports-color
     dev: true
 
-  /@babel/generator/7.16.8:
-    resolution: {integrity: sha512-1ojZwE9+lOXzcWdWmO6TbUzDfqLD39CmEhN8+2cX9XkDo5yW1OpgfejfliysR2AWLpMamTiOiAp/mtroaymhpw==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/types': 7.17.0
-      jsesc: 2.5.2
-      source-map: 0.5.7
-    dev: true
-
   /@babel/generator/7.17.0:
     resolution: {integrity: sha512-I3Omiv6FGOC29dtlZhkfXO6pgkmukJSlT26QjVvS1DGZe/NzSVCPG41X0tS21oZkJYlovfj9qDWgKP+Cn4bXxw==}
     engines: {node: '>=6.9.0'}
@@ -380,7 +371,7 @@ packages:
     resolution: {integrity: sha512-kkH7sWzKPq0xt3H1n+ghb4xEMP8k0U7XV3kkB+ZGy69kDk2ySFW1qPi06sjKzFY3t1j6XbJSqr4mF9L7CYVyhg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.16.8
+      '@babel/types': 7.17.0
     dev: true
 
   /@babel/helper-module-imports/7.16.7:
@@ -1433,7 +1424,7 @@ packages:
     dependencies:
       '@babel/code-frame': 7.16.7
       '@babel/parser': 7.17.0
-      '@babel/types': 7.16.8
+      '@babel/types': 7.17.0
     dev: true
 
   /@babel/template/7.16.7:
@@ -1450,12 +1441,12 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.16.7
-      '@babel/generator': 7.16.8
+      '@babel/generator': 7.17.0
       '@babel/helper-function-name': 7.16.7
       '@babel/helper-hoist-variables': 7.16.7
       '@babel/helper-split-export-declaration': 7.16.7
       '@babel/parser': 7.17.0
-      '@babel/types': 7.16.8
+      '@babel/types': 7.17.0
       debug: 4.3.2
       globals: 11.12.0
     transitivePeerDependencies:
@@ -1956,8 +1947,8 @@ packages:
       '@types/yargs-parser': 20.2.1
     dev: true
 
-  /@vitejs/plugin-vue-jsx/1.3.5:
-    resolution: {integrity: sha512-iBxRQS8SOGxI4c8/cucgumD9a1SO4ngn91YbluyWe1L2k0D7+3v64XbjZxXX2O964LubY8Tehl3ihr0W7f3+/g==}
+  /@vitejs/plugin-vue-jsx/1.3.7:
+    resolution: {integrity: sha512-UH+lI/TtBQg1YZeOTBN5yEYvSDNcL2ei8ZgE+0ESX2ULg2xV7rxzw1TB1eHZiMGXOSR8h5AWp/6F1hCcaq8VYA==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@babel/core': 7.17.2
