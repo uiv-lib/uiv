@@ -23,7 +23,7 @@ specifiers:
   lodash: 4.17.21
   prettier: 2.5.1
   sinon: 13.0.1
-  vite: 2.8.2
+  vite: 2.8.3
   vitepress: 0.22.1
   vue: 3.2.31
   vue-i18n: 9.2.0-beta.30
@@ -31,7 +31,7 @@ specifiers:
 
 devDependencies:
   '@babel/preset-env': 7.16.11
-  '@vitejs/plugin-vue': 2.2.0_vite@2.8.2+vue@3.2.31
+  '@vitejs/plugin-vue': 2.2.0_vite@2.8.3+vue@3.2.31
   '@vitejs/plugin-vue-jsx': 1.3.7
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.31
@@ -52,7 +52,7 @@ devDependencies:
   lodash: 4.17.21
   prettier: 2.5.1
   sinon: 13.0.1
-  vite: 2.8.2_less@4.1.2
+  vite: 2.8.3_less@4.1.2
   vitepress: 0.22.1_less@4.1.2
   vue: 3.2.31
   vue-i18n: 9.2.0-beta.30_vue@3.2.31
@@ -1961,14 +1961,14 @@ packages:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-vue/2.2.0_vite@2.8.2+vue@3.2.31:
+  /@vitejs/plugin-vue/2.2.0_vite@2.8.3+vue@3.2.31:
     resolution: {integrity: sha512-wXigM1EwN2G7rZcwG6kLk9ivvIMhx2363tCEvMBiXcTu5nePM/12hUPVzPb83Uugt6U+zom1gTpJopi/Ow/jwg==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       vite: ^2.5.10
       vue: ^3.2.25
     dependencies:
-      vite: 2.8.2_less@4.1.2
+      vite: 2.8.3_less@4.1.2
       vue: 3.2.31
     dev: true
 
@@ -5224,8 +5224,8 @@ packages:
       source-map: 0.7.3
     dev: true
 
-  /vite/2.8.2_less@4.1.2:
-    resolution: {integrity: sha512-zawfykcPVPYva4KusIWORNLr324Qx86/3NpfQSIOJdjnL5pYhwDoImLYMOh4lFLcP/7//tNuWM2vx2F5OSVC9w==}
+  /vite/2.8.3_less@4.1.2:
+    resolution: {integrity: sha512-967klrEiG7HEsN7fQYYVETs5495Iu6GpI7YyxoO5yVTJCRxjV8HhWgNWKgrbazjoOB9DQuztL53/nUoNqHNsWg==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:
@@ -5256,9 +5256,9 @@ packages:
     dependencies:
       '@docsearch/css': 3.0.0-alpha.42
       '@docsearch/js': 3.0.0-alpha.42
-      '@vitejs/plugin-vue': 2.2.0_vite@2.8.2+vue@3.2.31
+      '@vitejs/plugin-vue': 2.2.0_vite@2.8.3+vue@3.2.31
       prismjs: 1.25.0
-      vite: 2.8.2_less@4.1.2
+      vite: 2.8.3_less@4.1.2
       vue: 3.2.31
     transitivePeerDependencies:
       - '@algolia/client-search'
