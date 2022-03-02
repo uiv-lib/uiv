@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 12
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: change package name
         uses: deef0000dragon1/json-edit-action@v1
         env:
