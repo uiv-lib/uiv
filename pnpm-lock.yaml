@@ -8,7 +8,7 @@ specifiers:
   '@vue/compiler-sfc': 3.2.31
   '@vue/test-utils': 2.0.0-rc.18
   '@vue/vue3-jest': 27.0.0-alpha.4
-  axios: 0.26.0
+  axios: 0.26.1
   babel-core: 7.0.0-bridge.0
   babel-jest: 27.5.1
   bootstrap: 3.4.1
@@ -37,7 +37,7 @@ devDependencies:
   '@vue/compiler-sfc': 3.2.31
   '@vue/test-utils': 2.0.0-rc.18_vue@3.2.31
   '@vue/vue3-jest': 27.0.0-alpha.4_3f284d0e2744cbf7a4c47f60e5fc82e5
-  axios: 0.26.0
+  axios: 0.26.1
   babel-core: 7.0.0-bridge.0
   babel-jest: 27.5.1
   bootstrap: 3.4.1
@@ -2265,8 +2265,8 @@ packages:
     hasBin: true
     dev: true
 
-  /axios/0.26.0:
-    resolution: {integrity: sha512-lKoGLMYtHvFrPVt3r+RBMp9nh34N0M8zEfCWqdWZx6phynIEhQqAdydpyBAAG211zlhX9Rgu08cOamy6XjE5Og==}
+  /axios/0.26.1:
+    resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
     dependencies:
       follow-redirects: 1.14.8
     transitivePeerDependencies:
