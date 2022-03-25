@@ -21,7 +21,7 @@ specifiers:
   jest-serializer-vue: 2.0.2
   less: 4.1.2
   lodash: 4.17.21
-  prettier: 2.6.0
+  prettier: 2.6.1
   sinon: 13.0.1
   vite: 2.8.6
   vitepress: 0.22.3
@@ -44,13 +44,13 @@ devDependencies:
   eslint: 8.11.0
   eslint-config-prettier: 8.5.0_eslint@8.11.0
   eslint-plugin-html: 6.2.0
-  eslint-plugin-prettier: 4.0.0_68edcf5670f37721baf5d2cac6124e4d
+  eslint-plugin-prettier: 4.0.0_e2923b5169e23c4db59b86a638c599a3
   eslint-plugin-vue: 8.5.0_eslint@8.11.0
   jest: 27.5.1
   jest-serializer-vue: 2.0.2
   less: 4.1.2
   lodash: 4.17.21
-  prettier: 2.6.0
+  prettier: 2.6.1
   sinon: 13.0.1
   vite: 2.8.6_less@4.1.2
   vitepress: 0.22.3_less@4.1.2
@@ -3071,7 +3071,7 @@ packages:
       htmlparser2: 7.1.2
     dev: true
 
-  /eslint-plugin-prettier/4.0.0_68edcf5670f37721baf5d2cac6124e4d:
+  /eslint-plugin-prettier/4.0.0_e2923b5169e23c4db59b86a638c599a3:
     resolution: {integrity: sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
@@ -3084,7 +3084,7 @@ packages:
     dependencies:
       eslint: 8.11.0
       eslint-config-prettier: 8.5.0_eslint@8.11.0
-      prettier: 2.6.0
+      prettier: 2.6.1
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -4646,8 +4646,8 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier/2.6.0:
-    resolution: {integrity: sha512-m2FgJibYrBGGgQXNzfd0PuDGShJgRavjUoRCw1mZERIWVSXF0iLzLm+aOqTAbLnC3n6JzUhAA8uZnFVghHJ86A==}
+  /prettier/2.6.1:
+    resolution: {integrity: sha512-8UVbTBYGwN37Bs9LERmxCPjdvPxlEowx2urIL6urHzdb3SDq4B/Z6xLFCblrSnE4iKWcS6ziJ3aOYrc1kz/E2A==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
