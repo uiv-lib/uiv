@@ -22,7 +22,7 @@ specifiers:
   less: 4.1.2
   lodash: 4.17.21
   prettier: 2.6.2
-  sinon: 13.0.1
+  sinon: 13.0.2
   vite: 2.9.4
   vitepress: 0.22.3
   vue: 3.2.32
@@ -51,7 +51,7 @@ devDependencies:
   less: 4.1.2
   lodash: 4.17.21
   prettier: 2.6.2
-  sinon: 13.0.1
+  sinon: 13.0.2
   vite: 2.9.4_less@4.1.2
   vitepress: 0.22.3_less@4.1.2
   vue: 3.2.32
@@ -1874,8 +1874,8 @@ packages:
       '@sinonjs/commons': 1.8.3
     dev: true
 
-  /@sinonjs/fake-timers/9.0.0:
-    resolution: {integrity: sha512-+shXA2X7KNP7H7qNbQTJ3SA+NQc0pZDSBrdvFSRwF8sAo/ohw+ZQFD8Moc+gnz51+1eRXtEQBpKWPiQ4jsRC/w==}
+  /@sinonjs/fake-timers/9.1.2:
+    resolution: {integrity: sha512-BPS4ynJW/o92PUR4wgriz2Ud5gpST5vz6GQfMixEDK0Z8ZCUv2M7SkBLykH56T++Xs+8ln9zTGbOvNGIe02/jw==}
     dependencies:
       '@sinonjs/commons': 1.8.3
     dev: true
@@ -4472,7 +4472,7 @@ packages:
     resolution: {integrity: sha512-yr5kW2THW1AkxVmCnKEh4nbYkJdB3I7LUkiUgOvEkOp414mc2UMaHMA7pjq1nYowhdoJZGwEKGaQVbxfpWj10A==}
     dependencies:
       '@sinonjs/commons': 1.8.3
-      '@sinonjs/fake-timers': 9.0.0
+      '@sinonjs/fake-timers': 9.1.2
       '@sinonjs/text-encoding': 0.7.1
       just-extend: 4.2.1
       path-to-regexp: 1.8.0
@@ -4911,11 +4911,11 @@ packages:
     resolution: {integrity: sha512-KWcOiKeQj6ZyXx7zq4YxSMgHRlod4czeBQZrPb8OKcohcqAXShm7E20kEMle9WBt26hFcAf0qLOcp5zmY7kOqQ==}
     dev: true
 
-  /sinon/13.0.1:
-    resolution: {integrity: sha512-8yx2wIvkBjIq/MGY1D9h1LMraYW+z1X0mb648KZnKSdvLasvDu7maa0dFaNYdTDczFgbjNw2tOmWdTk9saVfwQ==}
+  /sinon/13.0.2:
+    resolution: {integrity: sha512-KvOrztAVqzSJWMDoxM4vM+GPys1df2VBoXm+YciyB/OLMamfS3VXh3oGh5WtrAGSzrgczNWFFY22oKb7Fi5eeA==}
     dependencies:
       '@sinonjs/commons': 1.8.3
-      '@sinonjs/fake-timers': 9.0.0
+      '@sinonjs/fake-timers': 9.1.2
       '@sinonjs/samsam': 6.1.1
       diff: 5.0.0
       nise: 5.1.1
