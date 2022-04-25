@@ -7,7 +7,7 @@ specifiers:
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.33
   '@vue/test-utils': 2.0.0-rc.21
-  '@vue/vue3-jest': 27.0.0-alpha.4
+  '@vue/vue3-jest': 27.0.0
   axios: 0.26.1
   babel-core: 7.0.0-bridge.0
   babel-jest: 27.5.1
@@ -36,7 +36,7 @@ devDependencies:
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.33
   '@vue/test-utils': 2.0.0-rc.21_vue@3.2.33
-  '@vue/vue3-jest': 27.0.0-alpha.4_98965a3f1c55fbab97c6a35b4cf8111b
+  '@vue/vue3-jest': 27.0.0_98965a3f1c55fbab97c6a35b4cf8111b
   axios: 0.26.1
   babel-core: 7.0.0-bridge.0
   babel-jest: 27.5.1
@@ -286,7 +286,7 @@ packages:
     dependencies:
       '@babel/helper-annotate-as-pure': 7.16.7
       '@babel/helper-environment-visitor': 7.16.7
-      '@babel/helper-function-name': 7.16.7
+      '@babel/helper-function-name': 7.17.9
       '@babel/helper-member-expression-to-functions': 7.16.7
       '@babel/helper-optimise-call-expression': 7.16.7
       '@babel/helper-replace-supers': 7.16.7
@@ -304,7 +304,7 @@ packages:
       '@babel/core': 7.17.9
       '@babel/helper-annotate-as-pure': 7.16.7
       '@babel/helper-environment-visitor': 7.16.7
-      '@babel/helper-function-name': 7.16.7
+      '@babel/helper-function-name': 7.17.9
       '@babel/helper-member-expression-to-functions': 7.16.7
       '@babel/helper-optimise-call-expression': 7.16.7
       '@babel/helper-replace-supers': 7.16.7
@@ -354,27 +354,11 @@ packages:
       '@babel/types': 7.17.0
     dev: true
 
-  /@babel/helper-function-name/7.16.7:
-    resolution: {integrity: sha512-QfDfEnIUyyBSR3HtrtGECuZ6DAyCkYFp7GHl75vFtTnn6pjKeK0T1DB5lLkFvBea8MdaiUABx3osbgLyInoejA==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/helper-get-function-arity': 7.16.7
-      '@babel/template': 7.16.7
-      '@babel/types': 7.17.0
-    dev: true
-
   /@babel/helper-function-name/7.17.9:
     resolution: {integrity: sha512-7cRisGlVtiVqZ0MW0/yFB4atgpGLWEHUVYnb448hZK4x+vih0YO5UoS11XIYtZYqHd0dIPMdUSv8q5K4LdMnIg==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.16.7
-      '@babel/types': 7.17.0
-    dev: true
-
-  /@babel/helper-get-function-arity/7.16.7:
-    resolution: {integrity: sha512-flc+RLSOBXzNzVhcLu6ujeHUrD6tANAOU5ojrRx/as+tbzf8+stUCj7+IfRRoAbEZqj/ahXEMsjhOhgeZsrnTw==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
       '@babel/types': 7.17.0
     dev: true
 
@@ -2130,8 +2114,8 @@ packages:
       vue: 3.2.33
     dev: true
 
-  /@vue/vue3-jest/27.0.0-alpha.4_98965a3f1c55fbab97c6a35b4cf8111b:
-    resolution: {integrity: sha512-RgEwjNvwdWmRngHqgt957fLT6riOkv/Kyl0ra8jo0Z8Dgosmu17dNqgBzLn9fTgNlTbHv4TQQdLRjczr+z2mlA==}
+  /@vue/vue3-jest/27.0.0_98965a3f1c55fbab97c6a35b4cf8111b:
+    resolution: {integrity: sha512-VL61CgZBoQqayXfzlZJHHpZuX4lsT8dmdZMJzADhdAJjKu26JBpypHr/2ppevxItljPiuALQW4MKhhCXZRXnLg==}
     peerDependencies:
       '@babel/core': 7.x
       babel-jest: 27.x
@@ -2145,11 +2129,11 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@babel/plugin-transform-modules-commonjs': 7.16.0
+      '@babel/plugin-transform-modules-commonjs': 7.16.8
       babel-jest: 27.5.1
       chalk: 2.4.2
       convert-source-map: 1.8.0
-      extract-from-css: 0.4.4
+      css-tree: 2.1.0
       jest: 27.5.1
       source-map: 0.5.6
       tsconfig: 7.0.0
@@ -2663,6 +2647,14 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+    dev: true
+
+  /css-tree/2.1.0:
+    resolution: {integrity: sha512-PcysZRzToBbrpoUrZ9qfblRIRf8zbEAkU0AIpQFtgkFK0vSbzOmBCvdSAx2Zg7Xx5wiYJKUKk0NMP7kxevie/A==}
+    engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
+    dependencies:
+      mdn-data: 2.0.27
+      source-map-js: 1.0.2
     dev: true
 
   /css/2.2.4:
@@ -4403,6 +4395,10 @@ packages:
     resolution: {integrity: sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==}
     dependencies:
       tmpl: 1.0.5
+    dev: true
+
+  /mdn-data/2.0.27:
+    resolution: {integrity: sha512-kwqO0I0jtWr25KcfLm9pia8vLZ8qoAKhWZuZMbneJq3jjBD3gl5nZs8l8Tu3ZBlBAHVQtDur9rdDGyvtfVraHQ==}
     dev: true
 
   /merge-stream/2.0.0:
