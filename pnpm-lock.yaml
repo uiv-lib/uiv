@@ -8,7 +8,7 @@ specifiers:
   '@vue/compiler-sfc': 3.2.33
   '@vue/test-utils': 2.0.0-rc.21
   '@vue/vue3-jest': 27.0.0
-  axios: 0.26.1
+  axios: 0.27.0
   babel-core: 7.0.0-bridge.0
   babel-jest: 27.5.1
   bootstrap: 3.4.1
@@ -37,7 +37,7 @@ devDependencies:
   '@vue/compiler-sfc': 3.2.33
   '@vue/test-utils': 2.0.0-rc.21_vue@3.2.33
   '@vue/vue3-jest': 27.0.0_98965a3f1c55fbab97c6a35b4cf8111b
-  axios: 0.26.1
+  axios: 0.27.0
   babel-core: 7.0.0-bridge.0
   babel-jest: 27.5.1
   bootstrap: 3.4.1
@@ -2274,10 +2274,11 @@ packages:
     hasBin: true
     dev: true
 
-  /axios/0.26.1:
-    resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
+  /axios/0.27.0:
+    resolution: {integrity: sha512-XV/WrPxXfzgZ8j4lcB5i6LyaXmi90yetmV/Fem0kmglGx+mpY06CiweL3YxU6wOTNLmqLUePW4G8h45nGZ/+pA==}
     dependencies:
-      follow-redirects: 1.14.8
+      follow-redirects: 1.14.9
+      form-data: 4.0.0
     transitivePeerDependencies:
       - debug
     dev: true
@@ -3358,8 +3359,8 @@ packages:
     resolution: {integrity: sha512-JaTY/wtrcSyvXJl4IMFHPKyFur1sE9AUqc0QnhOaJ0CxHtAoIV8pYDzeEfAaNEtGkOfq4gr3LBFmdXW5mOQFnA==}
     dev: true
 
-  /follow-redirects/1.14.8:
-    resolution: {integrity: sha512-1x0S9UVJHsQprFcEC/qnNzBLcIxsjAV905f/UkQxbclCsoTWlacCNOpQa/anodLl2uaEKFhfWOvM2Qg77+15zA==}
+  /follow-redirects/1.14.9:
+    resolution: {integrity: sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -3370,6 +3371,15 @@ packages:
 
   /form-data/3.0.1:
     resolution: {integrity: sha512-RHkBKtLWUVwd7SqRIvCZMEvAMoGUp0XU+seQiZejj0COz3RI3hWP4sCv3gZWWLjJTd7rGwcsF5eKZGii0r/hbg==}
+    engines: {node: '>= 6'}
+    dependencies:
+      asynckit: 0.4.0
+      combined-stream: 1.0.8
+      mime-types: 2.1.33
+    dev: true
+
+  /form-data/4.0.0:
+    resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
     engines: {node: '>= 6'}
     dependencies:
       asynckit: 0.4.0
