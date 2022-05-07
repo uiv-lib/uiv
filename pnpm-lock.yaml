@@ -23,7 +23,7 @@ specifiers:
   lodash: 4.17.21
   prettier: 2.6.2
   sinon: 13.0.2
-  vite: 2.9.6
+  vite: 2.9.8
   vitepress: 0.22.4
   vue: 3.2.33
   vue-i18n: 9.2.0-beta.35
@@ -31,7 +31,7 @@ specifiers:
 
 devDependencies:
   '@babel/preset-env': 7.17.10
-  '@vitejs/plugin-vue': 2.3.1_vite@2.9.6+vue@3.2.33
+  '@vitejs/plugin-vue': 2.3.1_vite@2.9.8+vue@3.2.33
   '@vitejs/plugin-vue-jsx': 1.3.10
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.33
@@ -52,7 +52,7 @@ devDependencies:
   lodash: 4.17.21
   prettier: 2.6.2
   sinon: 13.0.2
-  vite: 2.9.6_less@4.1.2
+  vite: 2.9.8_less@4.1.2
   vitepress: 0.22.4_less@4.1.2
   vue: 3.2.33
   vue-i18n: 9.2.0-beta.35_vue@3.2.33
@@ -2006,14 +2006,14 @@ packages:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-vue/2.3.1_vite@2.9.6+vue@3.2.33:
+  /@vitejs/plugin-vue/2.3.1_vite@2.9.8+vue@3.2.33:
     resolution: {integrity: sha512-YNzBt8+jt6bSwpt7LP890U1UcTOIZZxfpE5WOJ638PNxSEKOqAi0+FSKS0nVeukfdZ0Ai/H7AFd6k3hayfGZqQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       vite: ^2.5.10
       vue: ^3.2.25
     dependencies:
-      vite: 2.9.6_less@4.1.2
+      vite: 2.9.8_less@4.1.2
       vue: 3.2.33
     dev: true
 
@@ -4517,12 +4517,6 @@ packages:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
     dev: true
 
-  /nanoid/3.3.2:
-    resolution: {integrity: sha512-CuHBogktKwpm5g2sRgv83jEy2ijFzBwMoYA60orPDR7ynsLijJDqgsi4RDGj3OJpy3Ieb+LYwiRmIOGyytgITA==}
-    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-    dev: true
-
   /nanoid/3.3.4:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -4746,7 +4740,7 @@ packages:
     resolution: {integrity: sha512-lg6eITwYe9v6Hr5CncVbK70SoioNQIq81nsaG86ev5hAidQvmOeETBqs7jm43K2F5/Ley3ytDtriImV6TpNiSg==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
-      nanoid: 3.3.2
+      nanoid: 3.3.4
       picocolors: 1.0.0
       source-map-js: 1.0.2
     dev: true
@@ -5372,31 +5366,6 @@ packages:
       '@types/istanbul-lib-coverage': 2.0.3
       convert-source-map: 1.8.0
       source-map: 0.7.3
-    dev: true
-
-  /vite/2.9.6_less@4.1.2:
-    resolution: {integrity: sha512-3IffdrByHW95Yjv0a13TQOQfJs7L5dVlSPuTt432XLbRMriWbThqJN2k/IS6kXn5WY4xBLhK9XoaWay1B8VzUw==}
-    engines: {node: '>=12.2.0'}
-    hasBin: true
-    peerDependencies:
-      less: '*'
-      sass: '*'
-      stylus: '*'
-    peerDependenciesMeta:
-      less:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-    dependencies:
-      esbuild: 0.14.29
-      less: 4.1.2
-      postcss: 8.4.12
-      resolve: 1.22.0
-      rollup: 2.60.0
-    optionalDependencies:
-      fsevents: 2.3.2
     dev: true
 
   /vite/2.9.8_less@4.1.2:
