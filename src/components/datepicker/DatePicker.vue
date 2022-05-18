@@ -51,16 +51,16 @@
           type="info"
           size="sm"
           @click="selectToday"
-          v-text="t('uiv.datePicker.today')"
-        />
+          >{{ t('uiv.datePicker.today') }}</btn
+        >
         <btn
           v-if="clearBtn"
           data-action="select"
           data-type="clear"
           size="sm"
           @click="clearSelect"
-          v-text="t('uiv.datePicker.clear')"
-        />
+          >{{ t('uiv.datePicker.clear') }}</btn
+        >
       </div>
     </div>
   </div>
