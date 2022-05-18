@@ -70,10 +70,10 @@
               data-action="toggleMeridian"
               :disabled="readonly"
               @click="toggleMeridian"
-              v-text="
+              >{{
                 meridian ? t('uiv.timePicker.am') : t('uiv.timePicker.pm')
-              "
-            ></btn>
+              }}</btn
+            >
           </td>
         </tr>
         <tr v-if="controls" class="text-center">

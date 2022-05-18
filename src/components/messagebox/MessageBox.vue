@@ -33,8 +33,8 @@
         :type="okType"
         :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
         @click="hide('ok')"
-        v-text="okBtnText"
-      />
+        >{{ okBtnText }}</btn
+      >
     </template>
     <template v-else #footer>
       <template v-if="reverseButtons">
@@ -43,31 +43,31 @@
           :type="okType"
           :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
           @click="hide('ok')"
-          v-text="okBtnText"
-        />
-        <btn v-else :type="okType" @click="validate" v-text="okBtnText" />
+          >{{ okBtnText }}</btn
+        >
+        <btn v-else :type="okType" @click="validate">{{ okBtnText }}</btn>
         <btn
           :type="cancelType"
           :data-action="autoFocus === 'cancel' ? 'auto-focus' : ''"
           @click="hide('cancel')"
-          v-text="cancelBtnText"
-        />
+          >{{ cancelBtnText }}</btn
+        >
       </template>
       <template v-else>
         <btn
           :type="cancelType"
           :data-action="autoFocus === 'cancel' ? 'auto-focus' : ''"
           @click="hide('cancel')"
-          v-text="cancelBtnText"
-        />
+          >{{ cancelBtnText }}</btn
+        >
         <btn
           v-if="type === TYPES.CONFIRM"
           :type="okType"
           :data-action="autoFocus === 'ok' ? 'auto-focus' : ''"
           @click="hide('ok')"
-          v-text="okBtnText"
-        />
-        <btn v-else :type="okType" @click="validate" v-text="okBtnText" />
+          >{{ okBtnText }}</btn
+        >
+        <btn v-else :type="okType" @click="validate">{{ okBtnText }}</btn>
       </template>
     </template>
   </modal>
