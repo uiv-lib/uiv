@@ -19,7 +19,7 @@ jobs:
           KEY: name
           VALUE: "@uiv-lib/uiv"
           FILE: package.json
-      - uses: pnpm/action-setup@v2.2.1
+      - uses: pnpm/action-setup@v2.2.2
         with:
           version: latest
       - run: pnpm i --frozen-lockfile
