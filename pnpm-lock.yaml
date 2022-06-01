@@ -16,7 +16,7 @@ specifiers:
   eslint-config-prettier: 8.5.0
   eslint-plugin-html: 6.2.0
   eslint-plugin-prettier: 4.0.0
-  eslint-plugin-vue: 9.0.1
+  eslint-plugin-vue: 9.1.0
   jest: 28.1.0
   jest-environment-jsdom: 28.1.0
   jest-serializer-vue: 2.0.2
@@ -46,7 +46,7 @@ devDependencies:
   eslint-config-prettier: 8.5.0_eslint@8.16.0
   eslint-plugin-html: 6.2.0
   eslint-plugin-prettier: 4.0.0_4fe3201cd09a8826bbd8050f2348cb2f
-  eslint-plugin-vue: 9.0.1_eslint@8.16.0
+  eslint-plugin-vue: 9.1.0_eslint@8.16.0
   jest: 28.1.0
   jest-environment-jsdom: 28.1.0
   jest-serializer-vue: 2.0.2
@@ -3216,8 +3216,8 @@ packages:
       prettier-linter-helpers: 1.0.0
     dev: true
 
-  /eslint-plugin-vue/9.0.1_eslint@8.16.0:
-    resolution: {integrity: sha512-/w/9/vzz+4bSYtp5UqXgJ0CfycXTMtpp6lkz7/fMp0CcJxPWyRP6Pr88ihhrsNEcVt2ZweMupWRNYa+5Md41LQ==}
+  /eslint-plugin-vue/9.1.0_eslint@8.16.0:
+    resolution: {integrity: sha512-EPCeInPicQ/YyfOWJDr1yfEeSNoFCMzUus107lZyYi37xejdOolNzS5MXGXp8+9bkoKZMdv/1AcZzQebME6r+g==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
@@ -3625,7 +3625,7 @@ packages:
     dev: true
 
   /image-size/0.5.5:
-    resolution: {integrity: sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=}
+    resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==}
     engines: {node: '>=0.10.0'}
     hasBin: true
     requiresBuild: true
@@ -4517,7 +4517,7 @@ packages:
     dev: true
 
   /natural-compare/1.4.0:
-    resolution: {integrity: sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=}
+    resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
   /needle/2.9.1:
