@@ -52,7 +52,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-html": "6.2.0",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-vue": "9.1.0",
+    "eslint-plugin-vue": "9.1.1",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
     "jest-serializer-vue": "2.0.2",
