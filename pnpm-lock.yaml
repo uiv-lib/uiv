@@ -15,7 +15,7 @@ specifiers:
   eslint: 8.18.0
   eslint-config-prettier: 8.5.0
   eslint-plugin-html: 6.2.0
-  eslint-plugin-prettier: 4.1.0
+  eslint-plugin-prettier: 4.2.1
   eslint-plugin-vue: 9.1.1
   jest: 28.1.2
   jest-environment-jsdom: 28.1.2
@@ -45,7 +45,7 @@ devDependencies:
   eslint: 8.18.0
   eslint-config-prettier: 8.5.0_eslint@8.18.0
   eslint-plugin-html: 6.2.0
-  eslint-plugin-prettier: 4.1.0_bd3c4b21319ad16ec3ab54a1da22f60e
+  eslint-plugin-prettier: 4.2.1_bd3c4b21319ad16ec3ab54a1da22f60e
   eslint-plugin-vue: 9.1.1_eslint@8.18.0
   jest: 28.1.2
   jest-environment-jsdom: 28.1.2
@@ -3160,8 +3160,8 @@ packages:
       htmlparser2: 7.1.2
     dev: true
 
-  /eslint-plugin-prettier/4.1.0_bd3c4b21319ad16ec3ab54a1da22f60e:
-    resolution: {integrity: sha512-A3AXIEfTnq3D5qDFjWJdQ9c4BLhw/TqhSR+6+SVaoPJBAWciFEuJiNQh275OnjRrAi7yssZzuWBRw66VG2g6UA==}
+  /eslint-plugin-prettier/4.2.1_bd3c4b21319ad16ec3ab54a1da22f60e:
+    resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       eslint: '>=7.28.0'
