@@ -12,7 +12,7 @@ specifiers:
   babel-core: 7.0.0-bridge.0
   babel-jest: 28.1.3
   bootstrap: 3.4.1
-  eslint: 8.19.0
+  eslint: 8.20.0
   eslint-config-prettier: 8.5.0
   eslint-plugin-html: 6.2.0
   eslint-plugin-prettier: 4.2.1
@@ -42,11 +42,11 @@ devDependencies:
   babel-core: 7.0.0-bridge.0
   babel-jest: 28.1.3
   bootstrap: 3.4.1
-  eslint: 8.19.0
-  eslint-config-prettier: 8.5.0_eslint@8.19.0
+  eslint: 8.20.0
+  eslint-config-prettier: 8.5.0_eslint@8.20.0
   eslint-plugin-html: 6.2.0
-  eslint-plugin-prettier: 4.2.1_fd2e32b7574349919aac0818c3f895ea
-  eslint-plugin-vue: 9.2.0_eslint@8.19.0
+  eslint-plugin-prettier: 4.2.1_370b9998364e21a2d582909b8d493e2e
+  eslint-plugin-vue: 9.2.0_eslint@8.20.0
   jest: 28.1.3
   jest-environment-jsdom: 28.1.3
   jest-serializer-vue: 2.0.2
@@ -3145,13 +3145,13 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /eslint-config-prettier/8.5.0_eslint@8.19.0:
+  /eslint-config-prettier/8.5.0_eslint@8.20.0:
     resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
     dependencies:
-      eslint: 8.19.0
+      eslint: 8.20.0
     dev: true
 
   /eslint-plugin-html/6.2.0:
@@ -3160,7 +3160,7 @@ packages:
       htmlparser2: 7.1.2
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_fd2e32b7574349919aac0818c3f895ea:
+  /eslint-plugin-prettier/4.2.1_370b9998364e21a2d582909b8d493e2e:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -3171,25 +3171,25 @@ packages:
       eslint-config-prettier:
         optional: true
     dependencies:
-      eslint: 8.19.0
-      eslint-config-prettier: 8.5.0_eslint@8.19.0
+      eslint: 8.20.0
+      eslint-config-prettier: 8.5.0_eslint@8.20.0
       prettier: 2.7.1
       prettier-linter-helpers: 1.0.0
     dev: true
 
-  /eslint-plugin-vue/9.2.0_eslint@8.19.0:
+  /eslint-plugin-vue/9.2.0_eslint@8.20.0:
     resolution: {integrity: sha512-W2hc+NUXoce8sZtWgZ45miQTy6jNyuSdub5aZ1IBune4JDeAyzucYX0TzkrQ1jMO52sNUDYlCIHDoaNePe0p5g==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      eslint: 8.19.0
-      eslint-utils: 3.0.0_eslint@8.19.0
+      eslint: 8.20.0
+      eslint-utils: 3.0.0_eslint@8.20.0
       natural-compare: 1.4.0
       nth-check: 2.0.1
       postcss-selector-parser: 6.0.10
       semver: 7.3.7
-      vue-eslint-parser: 9.0.2_eslint@8.19.0
+      vue-eslint-parser: 9.0.2_eslint@8.20.0
       xml-name-validator: 4.0.0
     transitivePeerDependencies:
       - supports-color
@@ -3203,13 +3203,13 @@ packages:
       estraverse: 5.3.0
     dev: true
 
-  /eslint-utils/3.0.0_eslint@8.19.0:
+  /eslint-utils/3.0.0_eslint@8.20.0:
     resolution: {integrity: sha512-uuQC43IGctw68pJA1RgbQS8/NP7rch6Cwd4j3ZBtgo4/8Flj4eGE7ZYSZRN3iq5pVUv6GPdW5Z1RFleo84uLDA==}
     engines: {node: ^10.0.0 || ^12.0.0 || >= 14.0.0}
     peerDependencies:
       eslint: '>=5'
     dependencies:
-      eslint: 8.19.0
+      eslint: 8.20.0
       eslint-visitor-keys: 2.1.0
     dev: true
 
@@ -3223,8 +3223,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /eslint/8.19.0:
-    resolution: {integrity: sha512-SXOPj3x9VKvPe81TjjUJCYlV4oJjQw68Uek+AM0X4p+33dj2HY5bpTZOgnQHcG2eAm1mtCU9uNMnJi7exU/kYw==}
+  /eslint/8.20.0:
+    resolution: {integrity: sha512-d4ixhz5SKCa1D6SCPrivP7yYVi7nyD6A4vs6HIAul9ujBzcEmZVM3/0NN/yu5nKhmO1wjp5xQ46iRfmDGlOviA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -3237,7 +3237,7 @@ packages:
       doctrine: 3.0.0
       escape-string-regexp: 4.0.0
       eslint-scope: 7.1.1
-      eslint-utils: 3.0.0_eslint@8.19.0
+      eslint-utils: 3.0.0_eslint@8.20.0
       eslint-visitor-keys: 3.3.0
       espree: 9.3.2
       esquery: 1.4.0
@@ -5327,14 +5327,14 @@ packages:
       - stylus
     dev: true
 
-  /vue-eslint-parser/9.0.2_eslint@8.19.0:
+  /vue-eslint-parser/9.0.2_eslint@8.20.0:
     resolution: {integrity: sha512-uCPQwTGjOtAYrwnU+76pYxalhjsh7iFBsHwBqDHiOPTxtICDaraO4Szw54WFTNZTAEsgHHzqFOu1mmnBOBRzDA==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
     dependencies:
       debug: 4.3.4
-      eslint: 8.19.0
+      eslint: 8.20.0
       eslint-scope: 7.1.1
       eslint-visitor-keys: 3.3.0
       espree: 9.3.2
