@@ -14,7 +14,8 @@
   "unpkg": "./dist/uiv.umd.js",
   "jsdelivr": "./dist/uiv.umd.js",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "repository": {
     "type": "git",
