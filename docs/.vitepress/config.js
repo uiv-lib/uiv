@@ -35,8 +35,8 @@ export default defineConfig({
     editLinkText: 'Edit this page on GitHub',
     nav: navbar(),
     sidebar: {
-      '/usage': usageSidebar(),
-      '/components': componentSidebar(),
+      '/usage/': usageSidebar(),
+      '/components/': componentSidebar(),
     },
   },
   vite: {
@@ -75,10 +75,15 @@ function navbar() {
 
 function usageSidebar() {
   return [
-    { text: 'Getting Started', link: '/usage/getting-started' },
     {
-      text: 'i18n',
-      link: '/usage/i18n',
+      text: 'Guide',
+      items: [
+        { text: 'Getting Started', link: '/usage/getting-started' },
+        {
+          text: 'i18n',
+          link: '/usage/i18n',
+        },
+      ],
     },
   ];
 }
@@ -87,7 +92,7 @@ function componentSidebar() {
   return [
     {
       text: 'Basic',
-      children: [
+      items: [
         { text: 'Button', link: '/components/btn' },
         { text: 'Button Group', link: '/components/btn-group' },
         { text: 'Collapse', link: '/components/collapse' },
@@ -95,7 +100,7 @@ function componentSidebar() {
     },
     {
       text: 'Popup',
-      children: [
+      items: [
         { text: 'Dropdown', link: '/components/dropdown' },
         { text: 'Modal', link: '/components/modal' },
         { text: 'Tooltip', link: '/components/tooltip' },
@@ -104,7 +109,7 @@ function componentSidebar() {
     },
     {
       text: 'Form',
-      children: [
+      items: [
         { text: 'Multi Select', link: '/components/multi-select' },
         { text: 'Typeahead', link: '/components/typeahead' },
         { text: 'Date Picker', link: '/components/date-picker' },
@@ -113,7 +118,7 @@ function componentSidebar() {
     },
     {
       text: 'Notice',
-      children: [
+      items: [
         { text: 'Alert', link: '/components/alert' },
         { text: 'Notification', link: '/components/notification' },
         { text: 'Message Box', link: '/components/message-box' },
@@ -121,7 +126,7 @@ function componentSidebar() {
     },
     {
       text: 'Navigation',
-      children: [
+      items: [
         { text: 'Navbar', link: '/components/navbar' },
         { text: 'Tabs', link: '/components/tabs' },
         { text: 'Breadcrumbs', link: '/components/breadcrumbs' },
@@ -129,14 +134,14 @@ function componentSidebar() {
     },
     {
       text: 'Indicator',
-      children: [
+      items: [
         { text: 'Pagination', link: '/components/pagination' },
         { text: 'Progress Bar', link: '/components/progress-bar' },
       ],
     },
     {
       text: 'Others',
-      children: [
+      items: [
         { text: 'Carousel', link: '/components/carousel' },
         { text: 'Affix', link: '/components/affix' },
         { text: 'Scroll Spy', link: '/components/scroll-spy' },
