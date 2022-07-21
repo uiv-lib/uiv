@@ -43,7 +43,7 @@
     "@vitejs/plugin-vue-jsx": "2.0.0",
     "@vue/babel-plugin-jsx": "1.1.1",
     "@vue/compiler-sfc": "3.2.37",
-    "@vue/test-utils": "2.0.0-rc.21",
+    "@vue/test-utils": "2.0.2",
     "@vue/vue3-jest": "28.0.1",
     "axios": "0.27.2",
     "babel-core": "7.0.0-bridge.0",
