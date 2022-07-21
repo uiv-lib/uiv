@@ -95,7 +95,13 @@
     "snapshotSerializers": [
       "jest-serializer-vue"
     ],
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "testEnvironmentOptions": {
+      "customExportConditions": [
+        "node",
+        "node-addons"
+      ]
+    }
   },
   "engines": {
     "node": ">= 4.0.0",
