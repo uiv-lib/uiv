@@ -164,4 +164,44 @@ describe('dom.utils', () => {
       expect(utils.getElementBySelectorOrRef(123)).toBeNull();
     });
   });
+
+  describe('#setDropdownPosition', () => {
+    const dropdown = document.createElement('div');
+    const trigger = document.createElement('div');
+    const options = { menuRight: true };
+    const triggerRect = { bottom: 94, height: 34, top: 60, width: 34, y: 60 };
+
+    beforeEach(() => {
+      jest.spyOn(dropdown, 'getBoundingClientRect').mockReturnValue({
+        width: 168,
+        height: 135,
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+      });
+    });
+
+    it('should set non-negative left value when trigger next to the left edge of the screen and menu-right set', () => {
+      jest.spyOn(trigger, 'getBoundingClientRect').mockReturnValue({
+        ...triggerRect,
+        left: 0,
+        right: 34,
+        x: 0,
+      });
+      utils.setDropdownPosition(dropdown, trigger, options);
+      expect(dropdown.style.left[0]).not.toBe('-');
+    });
+
+    it('should set non-negative left value when trigger next to the right edge of the screen and menu-right set', () => {
+      jest.spyOn(trigger, 'getBoundingClientRect').mockReturnValue({
+        ...triggerRect,
+        left: 1447,
+        right: 1481,
+        x: 1447,
+      });
+      utils.setDropdownPosition(dropdown, trigger, options);
+      expect(dropdown.style.left[0]).not.toBe('-');
+    });
+  });
 });
