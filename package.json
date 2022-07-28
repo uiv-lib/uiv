@@ -1,13 +1,15 @@
 {
   "name": "uiv",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Bootstrap 3 components implemented by Vue 2.",
   "author": "wxsm",
   "main": "dist/uiv.common.js",
   "module": "dist/uiv.esm.js",
   "unpkg": "dist/uiv.min.js",
   "jsdelivr": "dist/uiv.min.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uiv-lib/uiv.git"
