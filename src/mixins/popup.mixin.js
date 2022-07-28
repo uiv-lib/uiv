@@ -121,7 +121,7 @@ export default {
       }
     });
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.clearListeners();
     removeFromDom(this.$refs.popup);
   },
