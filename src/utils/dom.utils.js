@@ -189,8 +189,9 @@ export function setDropdownPosition(dropdown, trigger, options = {}) {
   dropdown.style.right = 'auto'
   dropdown.style.bottom = 'auto'
   if (options.menuRight) {
-    const left = containerScrollLeft + rect.left + rect.width - dropdownRect.width
-    dropdown.style.left = left < 0 ? 0 : left + 'px';
+    const left =
+      containerScrollLeft + rect.left + rect.width - dropdownRect.width
+    dropdown.style.left = left < 0 ? 0 : left + 'px'
   } else {
     dropdown.style.left = containerScrollLeft + rect.left + 'px'
   }
