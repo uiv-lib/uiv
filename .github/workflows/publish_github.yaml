@@ -9,9 +9,6 @@ jobs:
   publish_github:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 12
       - uses: actions/checkout@v2
       - name: change package name
         uses: deef0000dragon1/json-edit-action@v1
@@ -22,7 +19,7 @@ jobs:
       - uses: pnpm/action-setup@v2.0.1
         with:
           version: latest
-      - run: pnpm i --frozen-lockfile
+      - run: pnpm i
       - name: Build dist
         run: pnpm run dist
       - run: echo //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }} >> .npmrc
