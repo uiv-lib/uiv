@@ -12,7 +12,7 @@ jobs:
       - uses: pnpm/action-setup@v2.2.2
         with:
           version: latest
-      - run: pnpm i --frozen-lockfile
+      - run: pnpm i
       - name: Lint
         run: pnpm run lint
   test:
@@ -22,7 +22,7 @@ jobs:
       - uses: pnpm/action-setup@v2.2.2
         with:
           version: latest
-      - run: pnpm i --frozen-lockfile
+      - run: pnpm i
       - name: Unit tests
         run: pnpm run test
       - name: Coveralls
@@ -37,7 +37,7 @@ jobs:
       - uses: pnpm/action-setup@v2.2.2
         with:
           version: latest
-      - run: pnpm i --frozen-lockfile
+      - run: pnpm i
       - name: Build dist
         run: pnpm run dist
   docs:
@@ -47,6 +47,6 @@ jobs:
       - uses: pnpm/action-setup@v2.2.2
         with:
           version: latest
-      - run: pnpm i --frozen-lockfile
+      - run: pnpm i
       - name: Build dist
         run: pnpm run docs:build
