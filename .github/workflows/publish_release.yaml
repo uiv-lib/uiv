@@ -15,8 +15,8 @@ jobs:
           ref: dev
       - uses: pnpm/action-setup@v2.2.2
         with:
-          version: latest
-      - run: pnpm i --frozen-lockfile
+          version: 7.5.2
+          run_install: true
       - name: Build dist
         run: pnpm run dist
       - name: Changelog
