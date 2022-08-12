@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/preset-env': 7.18.10
-  '@vitejs/plugin-vue': 3.0.2
+  '@vitejs/plugin-vue': 3.0.3
   '@vitejs/plugin-vue-jsx': 2.0.0
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.37
@@ -32,7 +32,7 @@ specifiers:
 
 devDependencies:
   '@babel/preset-env': 7.18.10_@babel+core@7.18.9
-  '@vitejs/plugin-vue': 3.0.2_vite@3.0.6+vue@3.2.37
+  '@vitejs/plugin-vue': 3.0.3_vite@3.0.6+vue@3.2.37
   '@vitejs/plugin-vue-jsx': 2.0.0_vite@3.0.6+vue@3.2.37
   '@vue/babel-plugin-jsx': 1.1.1_@babel+core@7.18.9
   '@vue/compiler-sfc': 3.2.37
@@ -1959,8 +1959,8 @@ packages:
       vue: 3.2.37
     dev: true
 
-  /@vitejs/plugin-vue/3.0.2_vite@3.0.6+vue@3.2.37:
-    resolution: {integrity: sha512-LAqb+tibmsKmSbxBzsMqWVJe6gDE4BDmFLjIzk4YdHgeiRCTokPbK8yRB3dRxDRwNk4IFwCFVE6+WP+YM0mbJg==}
+  /@vitejs/plugin-vue/3.0.3_vite@3.0.6+vue@3.2.37:
+    resolution: {integrity: sha512-U4zNBlz9mg+TA+i+5QPc3N5lQvdUXENZLO2h0Wdzp56gI1MWhqJOv+6R+d4kOzoaSSq6TnGPBdZAXKOe4lXy6g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^3.0.0
