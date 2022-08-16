@@ -7,7 +7,7 @@ specifiers:
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.37
   '@vue/test-utils': 2.0.2
-  '@vue/vue3-jest': 28.0.1
+  '@vue/vue3-jest': 28.1.0
   axios: 0.27.2
   babel-core: 7.0.0-bridge.0
   babel-jest: 28.1.3
@@ -37,7 +37,7 @@ devDependencies:
   '@vue/babel-plugin-jsx': 1.1.1_@babel+core@7.18.9
   '@vue/compiler-sfc': 3.2.37
   '@vue/test-utils': 2.0.2_vue@3.2.37
-  '@vue/vue3-jest': 28.0.1_nx7atto5rccxogdo7ec4p55ijy
+  '@vue/vue3-jest': 28.1.0_nx7atto5rccxogdo7ec4p55ijy
   axios: 0.27.2
   babel-core: 7.0.0-bridge.0_@babel+core@7.18.9
   babel-jest: 28.1.3_@babel+core@7.18.9
@@ -322,7 +322,7 @@ packages:
     resolution: {integrity: sha512-UlJQPkFqFULIcyW5sbzgbkxn2FKRgwWiRexcuaR8RNJRy8+LLveqPjwZV/bwrLZCN0eUHD/x8D0heK1ozuoo6Q==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.18.9
+      '@babel/types': 7.18.10
     dev: true
 
   /@babel/helper-member-expression-to-functions/7.18.9:
@@ -336,7 +336,7 @@ packages:
     resolution: {integrity: sha512-0NFvs3VkuSYbFi1x2Vd6tKrywq+z/cLeYC/RJNFrIX/30Bf5aiGYbtvGXolEktzJH8o5E5KJ3tT+nkxuuZFVlA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.18.9
+      '@babel/types': 7.18.10
     dev: true
 
   /@babel/helper-module-transforms/7.18.9:
@@ -399,7 +399,7 @@ packages:
     resolution: {integrity: sha512-iNpIgTgyAvDQpDj76POqg+YEt8fPxx3yaNBg3S30dxNKm2SWfYhD0TGrK/Eu9wHpUW63VQU894TsTg+GLbUa1g==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.18.9
+      '@babel/types': 7.18.10
     dev: true
 
   /@babel/helper-skip-transparent-expression-wrappers/7.18.9:
@@ -1342,7 +1342,7 @@ packages:
     dependencies:
       '@babel/code-frame': 7.18.6
       '@babel/parser': 7.18.9
-      '@babel/types': 7.18.9
+      '@babel/types': 7.18.10
     dev: true
 
   /@babel/traverse/7.18.9:
@@ -2086,19 +2086,16 @@ packages:
       vue: 3.2.37
     dev: true
 
-  /@vue/vue3-jest/28.0.1_nx7atto5rccxogdo7ec4p55ijy:
-    resolution: {integrity: sha512-fdzbp4HvU8dbo3Pup5sgll4R6hmBf5dHOjpLOFPiwwGnuA57g+Fe2u56nmBVYNd+XA4RInQobdBCl5GbnmhGhw==}
+  /@vue/vue3-jest/28.1.0_nx7atto5rccxogdo7ec4p55ijy:
+    resolution: {integrity: sha512-A4Ek39u0KtVlUBwzio6DZld8egggTr8JPrSUcHllX4X96LsQUJReyIgPf+sMVCfpNeZUBDqbZ4QHhudBHa9Xzw==}
     engines: {node: '>10'}
     peerDependencies:
       '@babel/core': 7.x
       babel-jest: 28.x
       jest: 28.x
-      ts-jest: 28.x
       typescript: '>= 4.3'
       vue: ^3.0.0-0
     peerDependenciesMeta:
-      ts-jest:
-        optional: true
       typescript:
         optional: true
     dependencies:
