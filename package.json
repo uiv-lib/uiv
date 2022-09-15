@@ -48,7 +48,7 @@
     "axios": "0.27.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "29.0.3",
-    "bootstrap": "3.4.1",
+    "bootstrap": "4.1.2",
     "eslint": "8.23.1",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-html": "7.1.0",
