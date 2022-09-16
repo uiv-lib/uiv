@@ -17,7 +17,7 @@ function baseVm() {
 </tabs>`);
 }
 
-function dynamicVm() {
+function dynamicVm(data = {}) {
   return createWrapper(
     `<section>
     <tabs v-model="index">
@@ -36,6 +36,7 @@ function dynamicVm() {
       tabs: ['Tab 1'],
       count: 1,
       index: 0,
+      ...data,
     },
     {
       methods: {
@@ -337,23 +338,26 @@ describe('Tabs', () => {
   });
 
   it('should be able to use with v-model', async () => {
-    const wrapper = dynamicVm();
+    const wrapper = dynamicVm({
+      tabs: ['Tab 1', 'Tab 2', 'Tab 3'],
+      count: 3,
+      index: 2,
+    });
     const vm = wrapper.vm;
     const $el = vm.$el;
     await sleep(500);
     const nav = wrapper.find('.nav-tabs');
     const content = wrapper.find('.tab-content');
-    // 1 tab + 1 btn
-    expect(nav.findAll('li').length).toEqual(1 + 1);
+    // 3 tabs + 1 btn
+    expect(nav.findAll('li').length).toEqual(3 + 1);
     // check active tab
     const activeTab = nav.findAll('.active');
     expect(activeTab.length).toEqual(1);
-    expect(activeTab[0].find('a').text()).toEqual('Tab 1');
+    expect(activeTab[0].find('a').text()).toEqual('Tab 3');
     // check active content
-    // console.log($el.innerHTML)
     const activeContent = content.findAll('.tab-pane.active');
     expect(activeContent.length).toEqual(1);
-    expect(activeContent[0].text()).toContain('Tab 1');
+    expect(activeContent[0].text()).toContain('Tab 3');
   });
 
   it('should be able to push tab', async () => {

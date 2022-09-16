@@ -169,11 +169,14 @@ export default {
     },
   },
   watch: {
-    modelValue(value) {
-      if (isNumber(value)) {
-        this.activeIndex = value;
-        this.selectCurrent();
-      }
+    modelValue: {
+      handler(value) {
+        if (isNumber(value)) {
+          this.activeIndex = value;
+          this.selectCurrent();
+        }
+      },
+      immediate: true
     },
     tabs(tabs) {
       tabs.forEach((tab, index) => {
