@@ -176,7 +176,7 @@ export default {
           this.selectCurrent();
         }
       },
-      immediate: true
+      immediate: true,
     },
     tabs(tabs) {
       tabs.forEach((tab, index) => {

@@ -35,7 +35,7 @@
     "test": "jest --coverage",
     "test:watch": "npm test -- --watch",
     "lint": "eslint --ext .js,.vue src build docs/.vitepress",
-    "lint:fix": "npm lint -- --fix"
+    "lint:fix": "npm run lint -- --fix"
   },
   "devDependencies": {
     "@babel/preset-env": "7.19.1",
