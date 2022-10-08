@@ -8,7 +8,7 @@ specifiers:
   '@vue/compiler-sfc': 3.2.40
   '@vue/test-utils': 2.1.0
   '@vue/vue3-jest': 29.1.1
-  axios: 0.27.2
+  axios: 1.1.2
   babel-core: 7.0.0-bridge.0
   babel-jest: 29.1.2
   bootstrap: 3.4.1
@@ -38,7 +38,7 @@ devDependencies:
   '@vue/compiler-sfc': 3.2.40
   '@vue/test-utils': 2.1.0_vue@3.2.40
   '@vue/vue3-jest': 29.1.1_pnf6gaw4gxnfqmok24nvc7ydla
-  axios: 0.27.2
+  axios: 1.1.2
   babel-core: 7.0.0-bridge.0_@babel+core@7.18.13
   babel-jest: 29.1.2_@babel+core@7.18.13
   bootstrap: 3.4.1
@@ -2382,11 +2382,12 @@ packages:
     hasBin: true
     dev: true
 
-  /axios/0.27.2:
-    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
+  /axios/1.1.2:
+    resolution: {integrity: sha512-bznQyETwElsXl2RK7HLLwb5GPpOLlycxHCtrpDR/4RqqBzjARaOTo3jz4IgtntWUYee7Ne4S8UHd92VCuzPaWA==}
     dependencies:
       follow-redirects: 1.15.1
       form-data: 4.0.0
+      proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
     dev: true
@@ -4939,6 +4940,10 @@ packages:
 
   /proto-list/1.2.4:
     resolution: {integrity: sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==}
+    dev: true
+
+  /proxy-from-env/1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
     dev: true
 
   /prr/1.0.1:
