@@ -3,7 +3,12 @@ import { defineConfig } from 'vitepress';
 import { resolve } from 'path';
 
 export default defineConfig({
+  lang: 'en-US',
+  title: 'uiv',
   description: 'Bootstrap 3 components implemented by Vue.',
+
+  lastUpdated: true,
+
   head: [
     [
       'meta',
@@ -21,22 +26,23 @@ export default defineConfig({
       },
     ],
   ],
-  title: 'uiv',
+
   themeConfig: {
-    logo: '/assets/image/logo.png',
-    lastUpdated: 'Last Updated',
-    smoothScroll: true,
-    repo: 'uiv-lib/uiv',
-    repoLabel: 'GitHub',
-    docsRepo: 'uiv-lib/uiv',
-    docsDir: 'docs',
-    docsBranch: 'dev',
-    editLinks: true,
-    editLinkText: 'Edit this page on GitHub',
     nav: navbar(),
     sidebar: {
       '/usage/': usageSidebar(),
       '/components/': componentSidebar(),
+    },
+
+    logo: '/assets/image/logo.png',
+    editLink: {
+      pattern: 'https://github.com/uiv-lib/uiv/edit/dev/docs/:path',
+      text: 'Edit this page on GitHub',
+    },
+    socialLinks: [{ icon: 'github', link: 'https://github.com/uiv-lib/uiv' }],
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2017-present Kairui Guo',
     },
   },
   vite: {
