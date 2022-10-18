@@ -20,7 +20,7 @@ jobs:
       - name: Build
         run: pnpm run docs:build
       - name: GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v3.0.0
+        uses: crazy-max/ghaction-github-pages@v3.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
