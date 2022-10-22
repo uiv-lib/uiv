@@ -25,7 +25,7 @@ specifiers:
   prettier: 2.7.1
   sinon: 14.0.1
   vite: 3.1.8
-  vitepress: 1.0.0-alpha.21
+  vitepress: 1.0.0-alpha.22
   vue: 3.2.41
   vue-i18n: 9.2.2
   vue-jest: 5.0.0-alpha.10
@@ -55,7 +55,7 @@ devDependencies:
   prettier: 2.7.1
   sinon: 14.0.1
   vite: 3.1.8_less@4.1.3
-  vitepress: 1.0.0-alpha.21_mjtxthf64tyxdfsry6dby347yu
+  vitepress: 1.0.0-alpha.22_mjtxthf64tyxdfsry6dby347yu
   vue: 3.2.41
   vue-i18n: 9.2.2_vue@3.2.41
   vue-jest: 5.0.0-alpha.10_bfzyny7dukkb2qs76sav7k2eaa
@@ -5486,8 +5486,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/1.0.0-alpha.21_mjtxthf64tyxdfsry6dby347yu:
-    resolution: {integrity: sha512-D/tkoDW16uUZ9pnWd28Kk1vX26zNiTml3m9oGbfx2pAfYg99PHd1GceZyEm4jZsJU0+n9S++1ctFxoQvsq376A==}
+  /vitepress/1.0.0-alpha.22_mjtxthf64tyxdfsry6dby347yu:
+    resolution: {integrity: sha512-IWqnAxMDNaiyl6Bz+/79l40Ho6xsjrqxRp/WZw0+5BXR0BTZbmHyhGtI3XrH6oSn8MisLPjCccikaj3mcmCoWg==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.2.1
