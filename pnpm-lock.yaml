@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/preset-env': 7.19.4
-  '@vitejs/plugin-vue': 3.1.2
+  '@vitejs/plugin-vue': 3.2.0
   '@vitejs/plugin-vue-jsx': 2.0.1
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.41
@@ -32,7 +32,7 @@ specifiers:
 
 devDependencies:
   '@babel/preset-env': 7.19.4_@babel+core@7.18.13
-  '@vitejs/plugin-vue': 3.1.2_vite@3.1.8+vue@3.2.41
+  '@vitejs/plugin-vue': 3.2.0_vite@3.1.8+vue@3.2.41
   '@vitejs/plugin-vue-jsx': 2.0.1_vite@3.1.8+vue@3.2.41
   '@vue/babel-plugin-jsx': 1.1.1_@babel+core@7.18.13
   '@vue/compiler-sfc': 3.2.41
@@ -2053,8 +2053,8 @@ packages:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-vue/3.1.2_vite@3.1.8+vue@3.2.41:
-    resolution: {integrity: sha512-3zxKNlvA3oNaKDYX0NBclgxTQ1xaFdL7PzwF6zj9tGFziKwmBa3Q/6XcJQxudlT81WxDjEhHmevvIC4Orc1LhQ==}
+  /@vitejs/plugin-vue/3.2.0_vite@3.1.8+vue@3.2.41:
+    resolution: {integrity: sha512-E0tnaL4fr+qkdCNxJ+Xd0yM31UwMkQje76fsDVBBUCoGOUPexu2VDUYHL8P4CwV+zMvWw6nlRw19OnRKmYAJpw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^3.0.0
@@ -5454,7 +5454,7 @@ packages:
     dependencies:
       '@docsearch/css': 3.3.0
       '@docsearch/js': 3.3.0_tbpndr44ulefs3hehwpi2mkf2y
-      '@vitejs/plugin-vue': 3.1.2_vite@3.1.8+vue@3.2.41
+      '@vitejs/plugin-vue': 3.2.0_vite@3.1.8+vue@3.2.41
       '@vue/devtools-api': 6.4.5
       '@vueuse/core': 9.4.0_vue@3.2.41
       body-scroll-lock: 4.0.0-beta.0
