@@ -7,7 +7,7 @@ specifiers:
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/compiler-sfc': 3.2.45
   '@vue/test-utils': 2.2.4
-  '@vue/vue3-jest': 29.2.0
+  '@vue/vue3-jest': 29.2.1
   axios: 1.2.0
   babel-core: 7.0.0-bridge.0
   babel-jest: 29.3.1
@@ -37,7 +37,7 @@ devDependencies:
   '@vue/babel-plugin-jsx': 1.1.1_@babel+core@7.19.6
   '@vue/compiler-sfc': 3.2.45
   '@vue/test-utils': 2.2.4_vue@3.2.45
-  '@vue/vue3-jest': 29.2.0_z6oecjz2aq662beg7r3zhcrwsy
+  '@vue/vue3-jest': 29.2.1_z6oecjz2aq662beg7r3zhcrwsy
   axios: 1.2.0
   babel-core: 7.0.0-bridge.0_@babel+core@7.19.6
   babel-jest: 29.3.1_@babel+core@7.19.6
@@ -2132,8 +2132,8 @@ packages:
       vue: 3.2.45
     dev: true
 
-  /@vue/vue3-jest/29.2.0_z6oecjz2aq662beg7r3zhcrwsy:
-    resolution: {integrity: sha512-RazERpKHYQ+b//CoYNjU2KcIyY7+3KTiieMg9rx1c5VM3QU+WgsldSB1C83ACl5bqN/x9MMJeQ5ZnpZgaV++dw==}
+  /@vue/vue3-jest/29.2.1_z6oecjz2aq662beg7r3zhcrwsy:
+    resolution: {integrity: sha512-Jo0Yros3gnuHNumBG52+0TJoDB3vUJbnOGKJL4QTXGHZswmFXcRe1Ti3xEwR+ZCRpAee054+8yeTxG7eHi7FNQ==}
     engines: {node: '>10'}
     peerDependencies:
       '@babel/core': 7.x
@@ -2146,7 +2146,7 @@ packages:
         optional: true
     dependencies:
       '@babel/core': 7.19.6
-      '@babel/plugin-transform-modules-commonjs': 7.18.6_@babel+core@7.19.6
+      '@babel/plugin-transform-modules-commonjs': 7.19.6_@babel+core@7.19.6
       babel-jest: 29.3.1_@babel+core@7.19.6
       chalk: 2.4.2
       convert-source-map: 1.8.0
