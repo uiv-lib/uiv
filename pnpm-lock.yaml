@@ -19,7 +19,7 @@ specifiers:
   eslint-plugin-vue: 9.8.0
   jest: 29.3.1
   jest-environment-jsdom: 29.3.1
-  jest-serializer-vue: 2.0.2
+  jest-serializer-vue: 3.1.0
   less: 4.1.3
   lodash: 4.17.21
   prettier: 2.8.0
@@ -49,7 +49,7 @@ devDependencies:
   eslint-plugin-vue: 9.8.0_eslint@8.29.0
   jest: 29.3.1
   jest-environment-jsdom: 29.3.1
-  jest-serializer-vue: 2.0.2
+  jest-serializer-vue: 3.1.0
   less: 4.1.3
   lodash: 4.17.21
   prettier: 2.8.0
@@ -4130,8 +4130,8 @@ packages:
       - supports-color
     dev: true
 
-  /jest-serializer-vue/2.0.2:
-    resolution: {integrity: sha512-nK/YIFo6qe3i9Ge+hr3h4PpRehuPPGZFt8LDBdTHYldMb7ZWlkanZS8Ls7D8h6qmQP2lBQVDLP0DKn5bJ9QApQ==}
+  /jest-serializer-vue/3.1.0:
+    resolution: {integrity: sha512-vXz9/3IgBbLhsaVANYLG4ROCQd+Wg3qbB6ICofzFL+fbhSFPlqb0/MMGXcueVsjaovdWlYiRaLQLpdi1PTcoRQ==}
     dependencies:
       pretty: 2.0.0
     dev: true
