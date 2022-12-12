@@ -24,7 +24,7 @@ specifiers:
   lodash: 4.17.21
   prettier: 2.8.1
   sinon: 15.0.0
-  vite: 4.0.0
+  vite: 4.0.1
   vitepress: 1.0.0-alpha.31
   vue: 3.2.45
   vue-i18n: 9.2.2
@@ -32,8 +32,8 @@ specifiers:
 
 devDependencies:
   '@babel/preset-env': 7.20.2_@babel+core@7.20.5
-  '@vitejs/plugin-vue': 4.0.0_vite@4.0.0+vue@3.2.45
-  '@vitejs/plugin-vue-jsx': 3.0.0_vite@4.0.0+vue@3.2.45
+  '@vitejs/plugin-vue': 4.0.0_vite@4.0.1+vue@3.2.45
+  '@vitejs/plugin-vue-jsx': 3.0.0_vite@4.0.1+vue@3.2.45
   '@vue/babel-plugin-jsx': 1.1.1_@babel+core@7.20.5
   '@vue/compiler-sfc': 3.2.45
   '@vue/test-utils': 2.2.6_vue@3.2.45
@@ -54,7 +54,7 @@ devDependencies:
   lodash: 4.17.21
   prettier: 2.8.1
   sinon: 15.0.0
-  vite: 4.0.0_less@4.1.3
+  vite: 4.0.1_less@4.1.3
   vitepress: 1.0.0-alpha.31_mjtxthf64tyxdfsry6dby347yu
   vue: 3.2.45
   vue-i18n: 9.2.2_vue@3.2.45
@@ -2182,7 +2182,7 @@ packages:
       '@types/yargs-parser': 21.0.0
     dev: true
 
-  /@vitejs/plugin-vue-jsx/3.0.0_vite@4.0.0+vue@3.2.45:
+  /@vitejs/plugin-vue-jsx/3.0.0_vite@4.0.1+vue@3.2.45:
     resolution: {integrity: sha512-vurkuzgac5SYuxd2HUZqAFAWGTF10diKBwJNbCvnWijNZfXd+7jMtqjPFbGt7idOJUn584fP1Ar9j/GN2jQ3Ew==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -2192,20 +2192,20 @@ packages:
       '@babel/core': 7.20.5
       '@babel/plugin-transform-typescript': 7.20.2_@babel+core@7.20.5
       '@vue/babel-plugin-jsx': 1.1.1_@babel+core@7.20.5
-      vite: 4.0.0_less@4.1.3
+      vite: 4.0.1_less@4.1.3
       vue: 3.2.45
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-vue/4.0.0_vite@4.0.0+vue@3.2.45:
+  /@vitejs/plugin-vue/4.0.0_vite@4.0.1+vue@3.2.45:
     resolution: {integrity: sha512-e0X4jErIxAB5oLtDqbHvHpJe/uWNkdpYV83AOG2xo2tEVSzCzewgJMtREZM30wXnM5ls90hxiOtAuVU6H5JgbA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.0.0_less@4.1.3
+      vite: 4.0.1_less@4.1.3
       vue: 3.2.45
     dev: true
 
@@ -4806,8 +4806,8 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /postcss/8.4.19:
-    resolution: {integrity: sha512-h+pbPsyhlYj6N2ozBmHhHrs9DzGmbaarbLvWipMRO7RLS+v4onj26MPFXA5OBYFxyqYhUJK456SwDcY9H2/zsA==}
+  /postcss/8.4.20:
+    resolution: {integrity: sha512-6Q04AXR1212bXr5fh03u8aAwbLxAQNGQ/Q1LNa0VfOI06ZAlhPHtQvE4OIdpj4kLThXilalPnmDSOD65DcHt+g==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.4
@@ -5390,8 +5390,8 @@ packages:
       convert-source-map: 1.8.0
     dev: true
 
-  /vite/4.0.0_less@4.1.3:
-    resolution: {integrity: sha512-ynad+4kYs8Jcnn8J7SacS9vAbk7eMy0xWg6E7bAhS1s79TK+D7tVFGXVZ55S7RNLRROU1rxoKlvZ/qjaB41DGA==}
+  /vite/4.0.1_less@4.1.3:
+    resolution: {integrity: sha512-kZQPzbDau35iWOhy3CpkrRC7It+HIHtulAzBhMqzGHKRf/4+vmh8rPDDdv98SWQrFWo6//3ozwsRmwQIPZsK9g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -5417,7 +5417,7 @@ packages:
     dependencies:
       esbuild: 0.16.4
       less: 4.1.3
-      postcss: 8.4.19
+      postcss: 8.4.20
       resolve: 1.22.1
       rollup: 3.7.2
     optionalDependencies:
@@ -5430,12 +5430,12 @@ packages:
     dependencies:
       '@docsearch/css': 3.3.0
       '@docsearch/js': 3.3.0_tbpndr44ulefs3hehwpi2mkf2y
-      '@vitejs/plugin-vue': 4.0.0_vite@4.0.0+vue@3.2.45
+      '@vitejs/plugin-vue': 4.0.0_vite@4.0.1+vue@3.2.45
       '@vue/devtools-api': 6.4.5
       '@vueuse/core': 9.6.0_vue@3.2.45
       body-scroll-lock: 4.0.0-beta.0
       shiki: 0.11.1
-      vite: 4.0.0_less@4.1.3
+      vite: 4.0.1_less@4.1.3
       vue: 3.2.45
     transitivePeerDependencies:
       - '@algolia/client-search'
