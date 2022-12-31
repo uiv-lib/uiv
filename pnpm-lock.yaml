@@ -11,7 +11,7 @@ specifiers:
   axios: 1.2.2
   babel-core: 7.0.0-bridge.0
   babel-jest: 29.3.1
-  bootstrap: 3.4.1
+  bootstrap: 5.2.3
   eslint: 8.31.0
   eslint-config-prettier: 8.5.0
   eslint-plugin-html: 7.1.0
@@ -41,7 +41,7 @@ devDependencies:
   axios: 1.2.2
   babel-core: 7.0.0-bridge.0_@babel+core@7.20.5
   babel-jest: 29.3.1_@babel+core@7.20.5
-  bootstrap: 3.4.1
+  bootstrap: 5.2.3_@popperjs+core@2.11.6
   eslint: 8.31.0
   eslint-config-prettier: 8.5.0_eslint@8.31.0
   eslint-plugin-html: 7.1.0
@@ -2040,6 +2040,10 @@ packages:
       fastq: 1.13.0
     dev: true
 
+  /@popperjs/core/2.11.6:
+    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+    dev: true
+
   /@sinclair/typebox/0.24.21:
     resolution: {integrity: sha512-II2SIjvxBVJmrGkkZYza/BqNjwx3PWROIA8CZ0/Hn7LV0Mv0CVpZxoyHGBVsQqfFLMv9DmArIeRHTwo76bE6oA==}
     dev: true
@@ -2667,9 +2671,12 @@ packages:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
     dev: true
 
-  /bootstrap/3.4.1:
-    resolution: {integrity: sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==}
-    engines: {node: '>=6'}
+  /bootstrap/5.2.3_@popperjs+core@2.11.6:
+    resolution: {integrity: sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==}
+    peerDependencies:
+      '@popperjs/core': ^2.11.6
+    dependencies:
+      '@popperjs/core': 2.11.6
     dev: true
 
   /brace-expansion/1.1.11:
