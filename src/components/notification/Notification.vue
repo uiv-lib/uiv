@@ -93,6 +93,9 @@ export default {
     };
   },
   computed: {
+    publicHeight() {
+      return this.height;
+    },
     styles() {
       const queue = this.queue;
       const thisIndex = queue.findIndex((vm) => vm._.uid === this._.uid);
@@ -141,7 +144,7 @@ export default {
     getTotalHeightOfQueue(queue, lastIndex = queue.length) {
       let totalHeight = this.offsetY;
       for (let i = 0; i < lastIndex; i++) {
-        totalHeight += queue[i].height + this.offset;
+        totalHeight += queue[i].publicHeight + this.offset;
       }
       return totalHeight;
     },

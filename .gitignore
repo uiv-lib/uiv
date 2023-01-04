@@ -6,3 +6,4 @@ coverage
 dist-docs/
 dist/
 .idea
+docs/.vitepress/cache
