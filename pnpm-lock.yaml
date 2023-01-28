@@ -8,7 +8,7 @@ specifiers:
   '@vue/compiler-sfc': 3.2.45
   '@vue/test-utils': 2.2.8
   '@vue/vue3-jest': 29.2.2
-  axios: 1.2.5
+  axios: 1.2.6
   babel-core: 7.0.0-bridge.0
   babel-jest: 29.4.1
   bootstrap: 3.4.1
@@ -38,7 +38,7 @@ devDependencies:
   '@vue/compiler-sfc': 3.2.45
   '@vue/test-utils': 2.2.8_o3nmwetfthgqihjljurbyiqgn4
   '@vue/vue3-jest': 29.2.2_2f6wamy34b4hsb3anile4pntru
-  axios: 1.2.5
+  axios: 1.2.6
   babel-core: 7.0.0-bridge.0_@babel+core@7.20.5
   babel-jest: 29.4.1_@babel+core@7.20.5
   bootstrap: 3.4.1
@@ -2520,8 +2520,8 @@ packages:
     hasBin: true
     dev: true
 
-  /axios/1.2.5:
-    resolution: {integrity: sha512-9pU/8mmjSSOb4CXVsvGIevN+MlO/t9OWtKadTaLuN85Gge3HGorUckgp8A/2FH4V4hJ7JuQ3LIeI7KAV9ITZrQ==}
+  /axios/1.2.6:
+    resolution: {integrity: sha512-rC/7F08XxZwjMV4iuWv+JpD3E0Ksqg9nac4IIg6RwNuF0JTeWoCo/mBNG54+tNhhI11G3/VDRbdDQTs9hGp4pQ==}
     dependencies:
       follow-redirects: 1.15.1
       form-data: 4.0.0
