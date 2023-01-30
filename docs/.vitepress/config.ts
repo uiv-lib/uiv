@@ -1,6 +1,7 @@
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import { defineConfig } from 'vitepress';
 import { resolve } from 'path';
+import { SearchPlugin } from 'vitepress-plugin-search';
 
 export default defineConfig({
   lang: 'en-US',
@@ -46,7 +47,17 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [vueJsx()],
+    plugins: [
+      vueJsx(),
+      SearchPlugin({
+        // ...flexSearchIndexOptions,
+        tokenize: 'full',
+        // plugin options
+        previewLength: 62,
+        buttonLabel: 'Search',
+        placeholder: 'Search docs',
+      }),
+    ],
     resolve: {
       alias: {
         uiv: resolve(__dirname, '../../src/index.js'),
