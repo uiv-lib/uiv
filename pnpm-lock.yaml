@@ -25,7 +25,7 @@ specifiers:
   prettier: 2.8.3
   sinon: 15.0.1
   vite: 4.0.4
-  vitepress: 1.0.0-alpha.43
+  vitepress: 1.0.0-alpha.44
   vue: 3.2.45
   vue-i18n: 9.2.2
   vue-jest: 5.0.0-alpha.10
@@ -55,7 +55,7 @@ devDependencies:
   prettier: 2.8.3
   sinon: 15.0.1
   vite: 4.0.4_less@4.1.3
-  vitepress: 1.0.0-alpha.43_mjtxthf64tyxdfsry6dby347yu
+  vitepress: 1.0.0-alpha.44_mjtxthf64tyxdfsry6dby347yu
   vue: 3.2.45
   vue-i18n: 9.2.2_vue@3.2.45
   vue-jest: 5.0.0-alpha.10_2f6wamy34b4hsb3anile4pntru
@@ -2359,24 +2359,24 @@ packages:
       - supports-color
     dev: true
 
-  /@vueuse/core/9.11.1_vue@3.2.45:
-    resolution: {integrity: sha512-E/cizD1w9ILkq4axYjZrXLkKaBfzloaby2n3NMjUfd6yI/jkfTVgc6iwy/Cw2e++Ld4LphGbO+3MhzizvwUslQ==}
+  /@vueuse/core/9.12.0_vue@3.2.45:
+    resolution: {integrity: sha512-h/Di8Bvf6xRcvS/PvUVheiMYYz3U0tH3X25YxONSaAUBa841ayMwxkuzx/DGUMCW/wHWzD8tRy2zYmOC36r4sg==}
     dependencies:
       '@types/web-bluetooth': 0.0.16
-      '@vueuse/metadata': 9.11.1
-      '@vueuse/shared': 9.11.1_vue@3.2.45
+      '@vueuse/metadata': 9.12.0
+      '@vueuse/shared': 9.12.0_vue@3.2.45
       vue-demi: 0.13.6_vue@3.2.45
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
     dev: true
 
-  /@vueuse/metadata/9.11.1:
-    resolution: {integrity: sha512-ABjkrG+VXggNhjfGyw5e/sekxTZfXTwjrYXkkWQmQ7Biyv+Gq9UD6IDNfeGvQZEINI0Qzw6nfuO2UFCd3hlrxQ==}
+  /@vueuse/metadata/9.12.0:
+    resolution: {integrity: sha512-9oJ9MM9lFLlmvxXUqsR1wLt1uF7EVbP5iYaHJYqk+G2PbMjY6EXvZeTjbdO89HgoF5cI6z49o2zT/jD9SVoNpQ==}
     dev: true
 
-  /@vueuse/shared/9.11.1_vue@3.2.45:
-    resolution: {integrity: sha512-UTZYGAjT96hWn4buf4wstZbeheBVNcKPQuej6qpoSkjF1atdaeCD6kqm9uGL2waHfisSgH9mq0qCRiBOk5C/2w==}
+  /@vueuse/shared/9.12.0_vue@3.2.45:
+    resolution: {integrity: sha512-TWuJLACQ0BVithVTRbex4Wf1a1VaRuSpVeyEd4vMUWl54PzlE0ciFUshKCXnlLuD0lxIaLK4Ypj3NXYzZh4+SQ==}
     dependencies:
       vue-demi: 0.13.6_vue@3.2.45
     transitivePeerDependencies:
@@ -2471,6 +2471,10 @@ packages:
   /ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
+    dev: true
+
+  /ansi-sequence-parser/1.1.0:
+    resolution: {integrity: sha512-lEm8mt52to2fT8GhciPCGeCXACSz2UwIN4X2e2LJSnZ5uAbn2/dsYdOmUXq0AtWS5cpAupysIneExOgH0Vd2TQ==}
     dev: true
 
   /ansi-styles/3.2.1:
@@ -5096,9 +5100,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /shiki/0.13.0:
-    resolution: {integrity: sha512-QucKtRFyoHgivnde/6tXu+7ZfUhcg02qiFlUSa4X0jQvHVKdtrimWPlbg+q06H2EeNSuj9DcMhtB18GgtDLsmw==}
+  /shiki/0.14.0:
+    resolution: {integrity: sha512-fb9Fg1Yx/ElVJcTqPQIEOSfn7mSZlrT1W3CkymY08lL2Jsi+t7jPcZzKO1lCsQwlSDuyNhHvolnyA2OI4EgJNg==}
     dependencies:
+      ansi-sequence-parser: 1.1.0
       jsonc-parser: 3.2.0
       vscode-oniguruma: 1.7.0
       vscode-textmate: 8.0.0
@@ -5452,17 +5457,17 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/1.0.0-alpha.43_mjtxthf64tyxdfsry6dby347yu:
-    resolution: {integrity: sha512-bguPWYojF371vIfTY8jGmKeFroRe6UVGmDp3+PjTnVq57wTlz9x88OKm6KKF4l/1D7GugkHex5X9wNcOdCmCiQ==}
+  /vitepress/1.0.0-alpha.44_mjtxthf64tyxdfsry6dby347yu:
+    resolution: {integrity: sha512-pHjDo1lHFwzycKnUGDtejLL6CY6+Cy782CWBbKuElhsjp8Z5+saH68TbyrvaOX8/S4B860GebhRP5wnGutrK2Q==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.3.2
       '@docsearch/js': 3.3.2_tbpndr44ulefs3hehwpi2mkf2y
       '@vitejs/plugin-vue': 4.0.0_vite@4.0.4+vue@3.2.45
       '@vue/devtools-api': 6.5.0
-      '@vueuse/core': 9.11.1_vue@3.2.45
+      '@vueuse/core': 9.12.0_vue@3.2.45
       body-scroll-lock: 4.0.0-beta.0
-      shiki: 0.13.0
+      shiki: 0.14.0
       vite: 4.0.4_less@4.1.3
       vue: 3.2.45
     transitivePeerDependencies:
