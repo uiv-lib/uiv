@@ -24,7 +24,7 @@ specifiers:
   lodash: 4.17.21
   prettier: 2.8.4
   sinon: 15.0.1
-  vite: 4.1.1
+  vite: 4.1.2
   vitepress: 1.0.0-alpha.46
   vue: 3.2.47
   vue-i18n: 9.2.2
@@ -32,8 +32,8 @@ specifiers:
 
 devDependencies:
   '@babel/preset-env': 7.20.2_@babel+core@7.20.5
-  '@vitejs/plugin-vue': 4.0.0_vite@4.1.1+vue@3.2.47
-  '@vitejs/plugin-vue-jsx': 3.0.0_vite@4.1.1+vue@3.2.47
+  '@vitejs/plugin-vue': 4.0.0_vite@4.1.2+vue@3.2.47
+  '@vitejs/plugin-vue-jsx': 3.0.0_vite@4.1.2+vue@3.2.47
   '@vue/babel-plugin-jsx': 1.1.1_@babel+core@7.20.5
   '@vue/compiler-sfc': 3.2.47
   '@vue/test-utils': 2.2.10_vue@3.2.47
@@ -54,7 +54,7 @@ devDependencies:
   lodash: 4.17.21
   prettier: 2.8.4
   sinon: 15.0.1
-  vite: 4.1.1_less@4.1.3
+  vite: 4.1.2_less@4.1.3
   vitepress: 1.0.0-alpha.46_mjtxthf64tyxdfsry6dby347yu
   vue: 3.2.47
   vue-i18n: 9.2.2_vue@3.2.47
@@ -2174,7 +2174,7 @@ packages:
       '@types/yargs-parser': 21.0.0
     dev: true
 
-  /@vitejs/plugin-vue-jsx/3.0.0_vite@4.1.1+vue@3.2.47:
+  /@vitejs/plugin-vue-jsx/3.0.0_vite@4.1.2+vue@3.2.47:
     resolution: {integrity: sha512-vurkuzgac5SYuxd2HUZqAFAWGTF10diKBwJNbCvnWijNZfXd+7jMtqjPFbGt7idOJUn584fP1Ar9j/GN2jQ3Ew==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -2184,20 +2184,20 @@ packages:
       '@babel/core': 7.20.5
       '@babel/plugin-transform-typescript': 7.20.2_@babel+core@7.20.5
       '@vue/babel-plugin-jsx': 1.1.1_@babel+core@7.20.5
-      vite: 4.1.1_less@4.1.3
+      vite: 4.1.2_less@4.1.3
       vue: 3.2.47
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-vue/4.0.0_vite@4.1.1+vue@3.2.47:
+  /@vitejs/plugin-vue/4.0.0_vite@4.1.2+vue@3.2.47:
     resolution: {integrity: sha512-e0X4jErIxAB5oLtDqbHvHpJe/uWNkdpYV83AOG2xo2tEVSzCzewgJMtREZM30wXnM5ls90hxiOtAuVU6H5JgbA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.1.1_less@4.1.3
+      vite: 4.1.2_less@4.1.3
       vue: 3.2.47
     dev: true
 
@@ -5416,8 +5416,8 @@ packages:
       convert-source-map: 1.8.0
     dev: true
 
-  /vite/4.1.1_less@4.1.3:
-    resolution: {integrity: sha512-LM9WWea8vsxhr782r9ntg+bhSFS06FJgCvvB0+8hf8UWtvaiDagKYWXndjfX6kGl74keHJUcpzrQliDXZlF5yg==}
+  /vite/4.1.2_less@4.1.3:
+    resolution: {integrity: sha512-MWDb9Rfy3DI8omDQySbMK93nQqStwbsQWejXRY2EBzEWKmLAXWb1mkI9Yw2IJrc+oCvPCI1Os5xSSIBYY6DEAw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -5456,12 +5456,12 @@ packages:
     dependencies:
       '@docsearch/css': 3.3.2
       '@docsearch/js': 3.3.2_tbpndr44ulefs3hehwpi2mkf2y
-      '@vitejs/plugin-vue': 4.0.0_vite@4.1.1+vue@3.2.47
+      '@vitejs/plugin-vue': 4.0.0_vite@4.1.2+vue@3.2.47
       '@vue/devtools-api': 6.5.0
       '@vueuse/core': 9.12.0_vue@3.2.47
       body-scroll-lock: 4.0.0-beta.0
       shiki: 0.14.0
-      vite: 4.1.1_less@4.1.3
+      vite: 4.1.2_less@4.1.3
       vue: 3.2.47
     transitivePeerDependencies:
       - '@algolia/client-search'
