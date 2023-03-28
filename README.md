@@ -10,10 +10,6 @@
 <a href="https://github.com/uiv-lib/uiv"><img src="https://badgen.net/github/license/uiv-lib/uiv" alt="License"></a>
 </p>
 
-## Maintainers wanted!
-
-See https://github.com/uiv-lib/uiv/issues/653
-
 
 ## Introduction
 
@@ -62,8 +58,6 @@ For more information, pls visit [https://uiv.wxsm.space/usage/getting-started.ht
 Detailed changes for each release are documented in the [release notes](https://github.com/uiv-lib/uiv/releases).
 
 ## Special thanks
-
-This project is supported by [JetBrains](https://www.jetbrains.com/?from=uiv).
 
 <p>
 <a href="https://www.jetbrains.com/?from=uiv"><img width="250" src="https://static.wxsm.space/others/jetbrains-logo.png" alt="jetbrains-logo.png"></a>
