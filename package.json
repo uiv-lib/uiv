@@ -62,7 +62,7 @@
     "prettier": "2.8.7",
     "sinon": "15.0.3",
     "vite": "4.2.1",
-    "vitepress": "1.0.0-alpha.65",
+    "vitepress": "1.0.0-alpha.66",
     "vue": "3.2.47",
     "vue-i18n": "9.2.2",
     "vue-jest": "5.0.0-alpha.10"
