@@ -26,7 +26,7 @@ export default {
           h('div', { class: 'tooltip-arrow' }),
           h('div', {
             class: 'tooltip-inner',
-            domProps: { innerHTML: this.text },
+            domProps: { textContent: this.text },
           }),
         ]
       ),
