@@ -1,14 +1,15 @@
 <template>
   <li :class="{ active }">
     <slot v-if="active" />
-    <RouterLink
+    <component
+      :is="'RouterLink'"
       v-else-if="to"
       :to="to"
       :replace="replace"
       :append="append"
       :exact="exact"
       ><slot
-    /></RouterLink>
+    /></component>
     <a v-else :href="href" :target="target"><slot /></a>
   </li>
 </template>

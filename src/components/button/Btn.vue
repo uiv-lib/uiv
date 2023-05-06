@@ -9,7 +9,8 @@
   >
     <slot />
   </a>
-  <RouterLink
+  <component
+    :is="'RouterLink'"
     v-else-if="to"
     :to="to"
     :class="classes"
@@ -20,7 +21,7 @@
     role="button"
     @click="onClick"
     ><slot
-  /></RouterLink>
+  /></component>
   <label v-else-if="inputType" :class="classes" @click="onClick">
     <input
       autocomplete="off"
