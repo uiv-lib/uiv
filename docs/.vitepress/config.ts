@@ -28,6 +28,10 @@ export default defineConfig({
   ],
 
   themeConfig: {
+    search: {
+      provider: 'local',
+    },
+
     nav: navbar(),
     sidebar: {
       '/usage/': usageSidebar(),
