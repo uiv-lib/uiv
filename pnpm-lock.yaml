@@ -6,10 +6,10 @@ devDependencies:
     version: 7.21.5(@babel/core@7.21.3)
   '@vitejs/plugin-vue':
     specifier: 4.2.3
-    version: 4.2.3(vite@4.3.6)(vue@3.3.2)
+    version: 4.2.3(vite@4.3.7)(vue@3.3.2)
   '@vitejs/plugin-vue-jsx':
     specifier: 3.0.1
-    version: 3.0.1(vite@4.3.6)(vue@3.3.2)
+    version: 3.0.1(vite@4.3.7)(vue@3.3.2)
   '@vue/babel-plugin-jsx':
     specifier: 1.1.1
     version: 1.1.1(@babel/core@7.21.3)
@@ -71,8 +71,8 @@ devDependencies:
     specifier: 15.0.4
     version: 15.0.4
   vite:
-    specifier: 4.3.6
-    version: 4.3.6(less@4.1.3)
+    specifier: 4.3.7
+    version: 4.3.7(less@4.1.3)
   vitepress:
     specifier: 1.0.0-alpha.75
     version: 1.0.0-alpha.75(@algolia/client-search@4.14.2)(less@4.1.3)
@@ -2342,7 +2342,7 @@ packages:
       '@types/yargs-parser': 21.0.0
     dev: true
 
-  /@vitejs/plugin-vue-jsx@3.0.1(vite@4.3.6)(vue@3.3.2):
+  /@vitejs/plugin-vue-jsx@3.0.1(vite@4.3.7)(vue@3.3.2):
     resolution: {integrity: sha512-+Jb7ggL48FSPS1uhPnJbJwWa9Sr90vQ+d0InW+AhBM22n+cfuYqJZDckBc+W3QSHe1WDvewMZfa4wZOtk5pRgw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -2352,20 +2352,20 @@ packages:
       '@babel/core': 7.21.3
       '@babel/plugin-transform-typescript': 7.21.3(@babel/core@7.21.3)
       '@vue/babel-plugin-jsx': 1.1.1(@babel/core@7.21.3)
-      vite: 4.3.6(less@4.1.3)
+      vite: 4.3.7(less@4.1.3)
       vue: 3.3.2
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-vue@4.2.3(vite@4.3.6)(vue@3.3.2):
+  /@vitejs/plugin-vue@4.2.3(vite@4.3.7)(vue@3.3.2):
     resolution: {integrity: sha512-R6JDUfiZbJA9cMiguQ7jxALsgiprjBeHL5ikpXfJCH62pPHtI+JdJ5xWj6Ev73yXSlYl86+blXn1kZHQ7uElxw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.3.6(less@4.1.3)
+      vite: 4.3.7(less@4.1.3)
       vue: 3.3.2
     dev: true
 
@@ -5529,8 +5529,8 @@ packages:
       convert-source-map: 1.8.0
     dev: true
 
-  /vite@4.3.6(less@4.1.3):
-    resolution: {integrity: sha512-cqIyLSbA6gornMS659AXTVKF7cvSHMdKmJJwQ9DXq3lwsT1uZSdktuBRlpHQ8VnOWx0QHtjDwxPpGtyo9Fh/Qg==}
+  /vite@4.3.7(less@4.1.3):
+    resolution: {integrity: sha512-MTIFpbIm9v7Hh5b0wSBgkcWzSBz7SAa6K/cBTwS4kUiQJfQLFlZZRJRQgqunCVzhTPCk674tW+0Qaqh3Q00dBg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -5568,14 +5568,14 @@ packages:
     dependencies:
       '@docsearch/css': 3.3.4
       '@docsearch/js': 3.3.4(@algolia/client-search@4.14.2)
-      '@vitejs/plugin-vue': 4.2.3(vite@4.3.6)(vue@3.3.2)
+      '@vitejs/plugin-vue': 4.2.3(vite@4.3.7)(vue@3.3.2)
       '@vue/devtools-api': 6.5.0
       '@vueuse/core': 10.1.0(vue@3.3.2)
       body-scroll-lock: 4.0.0-beta.0
       mark.js: 8.11.1
       minisearch: 6.0.1
       shiki: 0.14.2
-      vite: 4.3.6(less@4.1.3)
+      vite: 4.3.7(less@4.1.3)
       vue: 3.3.2
     transitivePeerDependencies:
       - '@algolia/client-search'
