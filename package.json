@@ -42,7 +42,7 @@
     "@vitejs/plugin-vue": "4.2.3",
     "@vitejs/plugin-vue-jsx": "3.0.1",
     "@vue/babel-plugin-jsx": "1.1.1",
-    "@vue/compiler-sfc": "3.3.2",
+    "@vue/compiler-sfc": "3.3.4",
     "@vue/test-utils": "2.3.2",
     "@vue/vue3-jest": "29.2.4",
     "axios": "1.4.0",
@@ -63,7 +63,7 @@
     "sinon": "15.0.4",
     "vite": "4.3.8",
     "vitepress": "1.0.0-alpha.75",
-    "vue": "3.3.2",
+    "vue": "3.3.4",
     "vue-i18n": "9.2.2",
     "vue-jest": "5.0.0-alpha.10"
   },
