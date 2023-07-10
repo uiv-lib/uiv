@@ -1,6 +1,6 @@
 import { enableAutoUnmount, config } from '@vue/test-utils';
 
-config.renderStubDefaultSlot = true;
+config.global.renderStubDefaultSlot = true;
 
 window.scrollTo = (x, y) => {
   document.documentElement.scrollTop = y;
