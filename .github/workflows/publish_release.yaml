@@ -15,7 +15,7 @@ jobs:
           ref: dev
       - uses: actions/setup-node@v3
         with:
-          node-version: 'lts/*'
+          node-version: 16
           registry-url: 'https://registry.npmjs.org'
       - uses: pnpm/action-setup@v2.2.4
         with:

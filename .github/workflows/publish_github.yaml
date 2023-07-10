@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 'lts/*'
+          node-version: 16
           registry-url: 'https://registry.npmjs.org'
       - name: change package name
         uses: deef0000dragon1/json-edit-action@v1
