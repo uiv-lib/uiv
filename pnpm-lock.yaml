@@ -63,8 +63,8 @@ devDependencies:
     specifier: 3.1.0
     version: 3.1.0
   less:
-    specifier: 4.1.3
-    version: 4.1.3
+    specifier: 4.2.0
+    version: 4.2.0
   lodash:
     specifier: 4.17.21
     version: 4.17.21
@@ -76,10 +76,10 @@ devDependencies:
     version: 15.2.0
   vite:
     specifier: 4.4.8
-    version: 4.4.8(less@4.1.3)
+    version: 4.4.8(less@4.2.0)
   vitepress:
     specifier: 1.0.0-beta.7
-    version: 1.0.0-beta.7(@algolia/client-search@4.14.2)(axios@1.4.0)(less@4.1.3)(search-insights@2.6.0)
+    version: 1.0.0-beta.7(@algolia/client-search@4.14.2)(axios@1.4.0)(less@4.2.0)(search-insights@2.6.0)
   vue:
     specifier: 3.3.4
     version: 3.3.4
@@ -2478,7 +2478,7 @@ packages:
       '@babel/core': 7.21.3
       '@babel/plugin-transform-typescript': 7.21.3(@babel/core@7.21.3)
       '@vue/babel-plugin-jsx': 1.1.5(@babel/core@7.21.3)
-      vite: 4.4.8(less@4.1.3)
+      vite: 4.4.8(less@4.2.0)
       vue: 3.3.4
     transitivePeerDependencies:
       - supports-color
@@ -2491,7 +2491,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.4.8(less@4.1.3)
+      vite: 4.4.8(less@4.2.0)
       vue: 3.3.4
     dev: true
 
@@ -4261,7 +4261,7 @@ packages:
       '@babel/parser': 7.22.5
       '@istanbuljs/schema': 0.1.3
       istanbul-lib-coverage: 3.2.0
-      semver: 6.3.0
+      semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -4865,14 +4865,14 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /less@4.1.3:
-    resolution: {integrity: sha512-w16Xk/Ta9Hhyei0Gpz9m7VS8F28nieJaL/VyShID7cYvP6IL5oHeL6p4TXSDJqZE/lNv0oJ2pGVjJsRkfwm5FA==}
+  /less@4.2.0:
+    resolution: {integrity: sha512-P3b3HJDBtSzsXUl0im2L7gTO5Ubg8mEN6G8qoTS77iXxXX4Hvu4Qj540PZDvQ8V6DmX6iXo98k7Md0Cm1PrLaA==}
     engines: {node: '>=6'}
     hasBin: true
     dependencies:
       copy-anything: 2.0.6
       parse-node-version: 1.0.1
-      tslib: 2.4.0
+      tslib: 2.6.1
     optionalDependencies:
       errno: 0.1.8
       graceful-fs: 4.2.10
@@ -4981,7 +4981,7 @@ packages:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
     dependencies:
-      semver: 6.3.0
+      semver: 6.3.1
     dev: true
 
   /makeerror@1.0.12:
@@ -5902,10 +5902,6 @@ packages:
       strip-json-comments: 2.0.1
     dev: true
 
-  /tslib@2.4.0:
-    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
-    dev: true
-
   /tslib@2.6.1:
     resolution: {integrity: sha512-t0hLfiEKfMUoqhG+U1oid7Pva4bbDPHYfJNiB7BiIjRkj1pyC++4N3huJfqY6aRH6VTB0rvtzQwjM4K6qpfOig==}
     dev: true
@@ -6014,7 +6010,7 @@ packages:
       convert-source-map: 1.8.0
     dev: true
 
-  /vite@4.4.8(less@4.1.3):
+  /vite@4.4.8(less@4.2.0):
     resolution: {integrity: sha512-LONawOUUjxQridNWGQlNizfKH89qPigK36XhMI7COMGztz8KNY0JHim7/xDd71CZwGT4HtSRgI7Hy+RlhG0Gvg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -6043,14 +6039,14 @@ packages:
         optional: true
     dependencies:
       esbuild: 0.18.11
-      less: 4.1.3
+      less: 4.2.0
       postcss: 8.4.27
       rollup: 3.26.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress@1.0.0-beta.7(@algolia/client-search@4.14.2)(axios@1.4.0)(less@4.1.3)(search-insights@2.6.0):
+  /vitepress@1.0.0-beta.7(@algolia/client-search@4.14.2)(axios@1.4.0)(less@4.2.0)(search-insights@2.6.0):
     resolution: {integrity: sha512-P9Rw+FXatKIU4fVdtKxqwHl6fby8E/8zE3FIfep6meNgN4BxbWqoKJ6yfuuQQR9IrpQqwnyaBh4LSabyll6tWg==}
     hasBin: true
     dependencies:
@@ -6065,7 +6061,7 @@ packages:
       mark.js: 8.11.1
       minisearch: 6.1.0
       shiki: 0.14.3
-      vite: 4.4.8(less@4.1.3)
+      vite: 4.4.8(less@4.2.0)
       vue: 3.3.4
     transitivePeerDependencies:
       - '@algolia/client-search'
