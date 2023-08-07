@@ -1,6 +1,7 @@
 <script lang="jsx">
 import { TRIGGERS } from '../../utils/dom.utils';
 import popupMixin from '../../mixins/popup.mixin';
+import { renderSlot } from '../../utils/vue.utils';
 
 export default {
   mixins: [popupMixin],
@@ -36,7 +37,7 @@ export default {
     const Tag = this.tag;
     return (
       <Tag>
-        {this.$slots.default?.()}
+        {renderSlot(this.$slots.default)}
         <div ref="popup" role="tooltip" onMouseleave={this.hideOnLeave}>
           <div class="tooltip-arrow" />
           <div class="tooltip-inner">{this.text}</div>

@@ -1,6 +1,7 @@
 <script lang="jsx">
 import { TRIGGERS } from '../../utils/dom.utils';
 import popupMixin from '../../mixins/popup.mixin';
+import { renderSlot } from '../../utils/vue.utils';
 
 export default {
   mixins: [popupMixin],
@@ -40,7 +41,7 @@ export default {
     const Tag = this.tag;
     return (
       <Tag>
-        {this.$slots.default?.()}
+        {renderSlot(this.$slots.default)}
         <div
           style={{
             display: 'block',
@@ -51,7 +52,7 @@ export default {
           <div class="arrow" />
           {this.title ? <h3 class="popover-title">{this.title}</h3> : null}
           <div className="popover-content">
-            {this.content || this.$slots.popover?.()}
+            {this.content || renderSlot(this.$slots.popover)}
           </div>
         </div>
       </Tag>
