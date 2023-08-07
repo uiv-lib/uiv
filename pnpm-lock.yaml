@@ -24,8 +24,8 @@ devDependencies:
     specifier: 2.4.1
     version: 2.4.1(vue@3.3.4)
   '@vue/vue3-jest':
-    specifier: 29.2.4
-    version: 29.2.4(@babel/core@7.21.3)(babel-jest@29.6.2)(jest@29.6.2)(vue@3.3.4)
+    specifier: 29.2.5
+    version: 29.2.5(@babel/core@7.21.3)(babel-jest@29.6.2)(jest@29.6.2)(vue@3.3.4)
   axios:
     specifier: 1.4.0
     version: 1.4.0
@@ -1200,20 +1200,6 @@ packages:
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/helper-simple-access': 7.20.2
       babel-plugin-dynamic-import-node: 2.3.3
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /@babel/plugin-transform-modules-commonjs@7.21.2(@babel/core@7.21.3):
-    resolution: {integrity: sha512-Cln+Yy04Gxua7iPdj6nOV96smLGjpElir5YwzF0LBPKoPlLDNJePNlrGGaybAJkd0zKRnOVXOgizSqPYMNYkzA==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.21.3
-      '@babel/helper-module-transforms': 7.21.2
-      '@babel/helper-plugin-utils': 7.22.5
-      '@babel/helper-simple-access': 7.20.2
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2624,8 +2610,8 @@ packages:
       vue-component-type-helpers: 1.8.4
     dev: true
 
-  /@vue/vue3-jest@29.2.4(@babel/core@7.21.3)(babel-jest@29.6.2)(jest@29.6.2)(vue@3.3.4):
-    resolution: {integrity: sha512-mS3sJR4p/qTZKsNdws9DBDJHm7NQDco0tWal89WhA41oosO2VvnrJvDJ1gZaEz5A/OXDj1ouDpEczkSQP4o8eQ==}
+  /@vue/vue3-jest@29.2.5(@babel/core@7.21.3)(babel-jest@29.6.2)(jest@29.6.2)(vue@3.3.4):
+    resolution: {integrity: sha512-CyRVpP30t1q0DS4yai5WXNfS/I8T4l3Ln6vdst1MsnlbuBGTAJM/YgnlSkip3v+2Z5NHMfFgEB50D4ZFQMxAjQ==}
     engines: {node: '>10'}
     peerDependencies:
       '@babel/core': 7.x
@@ -2638,7 +2624,7 @@ packages:
         optional: true
     dependencies:
       '@babel/core': 7.21.3
-      '@babel/plugin-transform-modules-commonjs': 7.21.2(@babel/core@7.21.3)
+      '@babel/plugin-transform-modules-commonjs': 7.22.5(@babel/core@7.21.3)
       babel-jest: 29.6.2(@babel/core@7.21.3)
       chalk: 2.4.2
       convert-source-map: 1.8.0
