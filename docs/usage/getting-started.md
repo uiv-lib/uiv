@@ -43,6 +43,10 @@ Vue.use(uiv)
 
 That's it. Happy coding!
 
+::: warning
+The uiv lib is meant to be a replacement of bootstrap js files. Therefore, include the css file of bootstrap, but not js files, such as the `bootstrap.min.js`, which should not be included. Otherwise, you might encounter some unexpected issues.
+:::
+
 ### No conflict
 
 All components & directives will be installed with no prefix by default, you can add any prefix to them to avoid conflicts with other libs if needed.
