@@ -608,4 +608,31 @@ This is a very very long text. This is a very very long text. This is a very ver
     await sleep(600)
     expect(document.querySelectorAll('.popover').length).toEqual(1)
   })
+
+  it('should be able to open popover programmatically with vue latest slot syntax and without title and content passed', async () => {
+    const wrapper = createWrapper(
+      `
+          <div>
+            <popover v-model="show">
+              <btn type="primary" id="btn">Popover</btn>
+              <template #popover>
+                <h1>Hello world!</h1>
+              </template>
+            </popover>
+          </div>
+        `,
+      {
+        show: false,
+      }
+    )
+    const vm = wrapper.vm
+    await vm.$nextTick()
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
+    vm.show = true
+    await sleep(300)
+    expect(document.querySelectorAll('.popover').length).toEqual(1)
+    vm.show = false
+    await sleep(300)
+    expect(document.querySelectorAll('.popover').length).toEqual(0)
+  })
 })

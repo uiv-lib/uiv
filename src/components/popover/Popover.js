@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     isNotEmpty() {
-      return this.title || this.content || this.$slots.popover
+      return this.title || this.content || this.$scopedSlots.popover
     },
   },
 }
