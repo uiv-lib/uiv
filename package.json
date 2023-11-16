@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "7.23.3",
-    "@vitejs/plugin-vue": "4.4.1",
+    "@vitejs/plugin-vue": "4.5.0",
     "@vitejs/plugin-vue-jsx": "3.0.2",
     "@vue/babel-plugin-jsx": "1.1.5",
     "@vue/compiler-sfc": "3.3.8",
