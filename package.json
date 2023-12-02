@@ -50,7 +50,7 @@
     "babel-jest": "29.7.0",
     "bootstrap": "3.4.1",
     "eslint": "8.54.0",
-    "eslint-config-prettier": "9.0.0",
+    "eslint-config-prettier": "9.1.0",
     "eslint-plugin-html": "7.1.0",
     "eslint-plugin-prettier": "5.0.1",
     "eslint-plugin-vue": "9.19.2",
