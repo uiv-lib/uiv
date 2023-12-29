@@ -38,7 +38,7 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "devDependencies": {
-    "@babel/preset-env": "7.23.6",
+    "@babel/preset-env": "7.23.7",
     "@vitejs/plugin-vue": "4.6.1",
     "@vitejs/plugin-vue-jsx": "3.1.0",
     "@vue/babel-plugin-jsx": "1.1.5",
