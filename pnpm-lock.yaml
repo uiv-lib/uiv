@@ -15,8 +15,8 @@ devDependencies:
     specifier: 3.1.0
     version: 3.1.0(vite@4.5.2)(vue@3.4.5)
   '@vue/babel-plugin-jsx':
-    specifier: 1.2.0
-    version: 1.2.0(@babel/core@7.23.3)
+    specifier: 1.2.1
+    version: 1.2.1(@babel/core@7.23.3)
   '@vue/compiler-sfc':
     specifier: 3.4.5
     version: 3.4.5
@@ -2490,7 +2490,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.3
       '@babel/plugin-transform-typescript': 7.23.3(@babel/core@7.23.3)
-      '@vue/babel-plugin-jsx': 1.2.0(@babel/core@7.23.3)
+      '@vue/babel-plugin-jsx': 1.2.1(@babel/core@7.23.3)
       vite: 4.5.2(less@4.2.0)
       vue: 3.4.5
     transitivePeerDependencies:
@@ -2508,12 +2508,12 @@ packages:
       vue: 3.4.5
     dev: true
 
-  /@vue/babel-helper-vue-transform-on@1.2.0:
-    resolution: {integrity: sha512-Zn6iRYAVvWl835GCcNsLUroy+jwNjH1yd83hvKNSgbiCkzeZwXvEFCC1u0lVKwoqL7z0IcrtY3dkBMuMxwB1fw==}
+  /@vue/babel-helper-vue-transform-on@1.2.1:
+    resolution: {integrity: sha512-jtEXim+pfyHWwvheYwUwSXm43KwQo8nhOBDyjrUITV6X2tB7lJm6n/+4sqR8137UVZZul5hBzWHdZ2uStYpyRQ==}
     dev: true
 
-  /@vue/babel-plugin-jsx@1.2.0(@babel/core@7.23.3):
-    resolution: {integrity: sha512-z0t7fjk03TqncyWYoChKQ4rWx1LXJaw1kNEDrUU5tbPWI2zkCPv2imQJOYlJ8GyTDoQ6/nD82asFcSxDRJ8YgQ==}
+  /@vue/babel-plugin-jsx@1.2.1(@babel/core@7.23.3):
+    resolution: {integrity: sha512-Yy9qGktktXhB39QE99So/BO2Uwm/ZG+gpL9vMg51ijRRbINvgbuhyJEi4WYmGRMx/MSTfK0xjgZ3/MyY+iLCEg==}
     peerDependencies:
       '@babel/core': ^7.0.0-0
     peerDependenciesMeta:
@@ -2527,8 +2527,8 @@ packages:
       '@babel/template': 7.22.15
       '@babel/traverse': 7.23.7
       '@babel/types': 7.23.6
-      '@vue/babel-helper-vue-transform-on': 1.2.0
-      '@vue/babel-plugin-resolve-type': 1.2.0-beta.0(@babel/core@7.23.3)
+      '@vue/babel-helper-vue-transform-on': 1.2.1
+      '@vue/babel-plugin-resolve-type': 1.2.1(@babel/core@7.23.3)
       camelcase: 6.3.0
       html-tags: 3.3.1
       svg-tags: 1.0.0
@@ -2536,8 +2536,8 @@ packages:
       - supports-color
     dev: true
 
-  /@vue/babel-plugin-resolve-type@1.2.0-beta.0(@babel/core@7.23.3):
-    resolution: {integrity: sha512-zG5nXU+89UjXHVvvf0yehU0MDF1caJssCUF+bU5HWevEoR5qoRLt7wX6rNTtG/ZKHFUvB8BibIKL62Ix167Wxg==}
+  /@vue/babel-plugin-resolve-type@1.2.1(@babel/core@7.23.3):
+    resolution: {integrity: sha512-IOtnI7pHunUzHS/y+EG/yPABIAp0VN8QhQ0UCS09jeMVxgAnI9qdOzO85RXdQGxq+aWCdv8/+k3W0aYO6j/8fQ==}
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
