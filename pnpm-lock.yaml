@@ -21,8 +21,8 @@ devDependencies:
     specifier: 3.4.5
     version: 3.4.5
   '@vue/test-utils':
-    specifier: 2.4.4
-    version: 2.4.4(vue@3.4.5)
+    specifier: 2.4.6
+    version: 2.4.6
   '@vue/vue3-jest':
     specifier: 29.2.6
     version: 29.2.6(@babel/core@7.23.3)(babel-jest@29.7.0)(jest@29.7.0)(vue@3.4.5)
@@ -2761,18 +2761,11 @@ packages:
     resolution: {integrity: sha512-6XptuzlMvN4l4cDnDw36pdGEV+9njYkQ1ZE0Q6iZLwrKefKaOJyiFmcP3/KBDHbt72cJZGtllAc1GaHe6XGAyg==}
     dev: true
 
-  /@vue/test-utils@2.4.4(vue@3.4.5):
-    resolution: {integrity: sha512-8jkRxz8pNhClAf4Co4ZrpAoFISdvT3nuSkUlY6Ys6rmTpw3DMWG/X3mw3gQ7QJzgCZO9f+zuE2kW57fi09MW7Q==}
-    peerDependencies:
-      '@vue/server-renderer': ^3.0.1
-      vue: ^3.0.1
-    peerDependenciesMeta:
-      '@vue/server-renderer':
-        optional: true
+  /@vue/test-utils@2.4.6:
+    resolution: {integrity: sha512-FMxEjOpYNYiFe0GkaHsnJPXFHxQ6m4t8vI/ElPGpMWxZKpmRvQ33OIrvRXemy6yha03RxhOlQuy+gZMC3CQSow==}
     dependencies:
       js-beautify: 1.14.9
-      vue: 3.4.5
-      vue-component-type-helpers: 1.8.22
+      vue-component-type-helpers: 2.0.16
     dev: true
 
   /@vue/vue3-jest@29.2.6(@babel/core@7.23.3)(babel-jest@29.7.0)(jest@29.7.0)(vue@3.4.5):
@@ -6265,8 +6258,8 @@ packages:
     resolution: {integrity: sha512-AFbieoL7a5LMqcnOF04ji+rpXadgOXnZsxQr//r83kLPr7biP7am3g9zbaZIaBGwBRWeSvoMD4mgPdX3e4NWBg==}
     dev: true
 
-  /vue-component-type-helpers@1.8.22:
-    resolution: {integrity: sha512-LK3wJHs3vJxHG292C8cnsRusgyC5SEZDCzDCD01mdE/AoREFMl2tzLRuzwyuEsOIz13tqgBcnvysN3Lxsa14Fw==}
+  /vue-component-type-helpers@2.0.16:
+    resolution: {integrity: sha512-qisL/iAfdO++7w+SsfYQJVPj6QKvxp4i1MMxvsNO41z/8zu3KuAw9LkhKUfP/kcOWGDxESp+pQObWppXusejCA==}
     dev: true
 
   /vue-demi@0.14.5(vue@3.4.5):
