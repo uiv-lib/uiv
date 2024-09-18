@@ -9,8 +9,8 @@ devDependencies:
     specifier: 7.24.5
     version: 7.24.5(@babel/core@7.23.3)
   '@vitejs/plugin-vue':
-    specifier: 4.6.2
-    version: 4.6.2(vite@4.5.3)(vue@3.4.5)
+    specifier: 5.1.4
+    version: 5.1.4(vite@4.5.3)(vue@3.4.5)
   '@vitejs/plugin-vue-jsx':
     specifier: 3.1.0
     version: 3.1.0(vite@4.5.3)(vue@3.4.5)
@@ -2686,6 +2686,17 @@ packages:
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0 || ^5.0.0
+      vue: ^3.2.25
+    dependencies:
+      vite: 4.5.3(less@4.2.0)
+      vue: 3.4.5
+    dev: true
+
+  /@vitejs/plugin-vue@5.1.4(vite@4.5.3)(vue@3.4.5):
+    resolution: {integrity: sha512-N2XSI2n3sQqp5w7Y/AN/L2XDjBIRGqXko+eDp42sydYSBeJuSm5a1sLf8zakmo8u7tA8NmBgoDLA1HeOESjp9A==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    peerDependencies:
+      vite: ^5.0.0
       vue: ^3.2.25
     dependencies:
       vite: 4.5.3(less@4.2.0)
