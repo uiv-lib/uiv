@@ -58,7 +58,7 @@
     "jest-environment-jsdom": "29.7.0",
     "jest-serializer-vue": "3.1.0",
     "less": "4.2.0",
-    "lodash": "4.17.21",
+    "lodash": "4.17.23",
     "prettier": "3.2.5",
     "sinon": "15.2.0",
     "vite": "4.5.3",
