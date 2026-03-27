@@ -63,8 +63,8 @@ devDependencies:
     specifier: 3.1.0
     version: 3.1.0
   less:
-    specifier: 4.2.0
-    version: 4.2.0
+    specifier: 4.6.4
+    version: 4.6.4
   lodash:
     specifier: 4.17.23
     version: 4.17.23
@@ -76,10 +76,10 @@ devDependencies:
     version: 15.2.0
   vite:
     specifier: 4.5.3
-    version: 4.5.3(less@4.2.0)
+    version: 4.5.3(less@4.6.4)
   vitepress:
     specifier: 1.0.0-beta.7
-    version: 1.0.0-beta.7(@algolia/client-search@4.14.2)(axios@1.13.6)(less@4.2.0)(search-insights@2.6.0)
+    version: 1.0.0-beta.7(@algolia/client-search@4.14.2)(axios@1.13.6)(less@4.6.4)(search-insights@2.6.0)
   vue:
     specifier: 3.4.5
     version: 3.4.5
@@ -2787,7 +2787,7 @@ packages:
       '@babel/core': 7.23.3
       '@babel/plugin-transform-typescript': 7.23.3(@babel/core@7.23.3)
       '@vue/babel-plugin-jsx': 1.5.0(@babel/core@7.23.3)
-      vite: 4.5.3(less@4.2.0)
+      vite: 4.5.3(less@4.6.4)
       vue: 3.4.5
     transitivePeerDependencies:
       - supports-color
@@ -2800,7 +2800,7 @@ packages:
       vite: ^4.0.0 || ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.5.3(less@4.2.0)
+      vite: 4.5.3(less@4.6.4)
       vue: 3.4.5
     dev: true
 
@@ -3621,10 +3621,11 @@ packages:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
     dev: true
 
-  /copy-anything@2.0.6:
-    resolution: {integrity: sha512-1j20GZTsvKNkc4BY3NpMOM8tt///wY3FpIzozTOFO2ffuZcV61nojHXVKIy3WM+7ADCy5FVhdZYHYDdgTU0yJw==}
+  /copy-anything@3.0.5:
+    resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
+    engines: {node: '>=12.13'}
     dependencies:
-      is-what: 3.14.1
+      is-what: 4.1.16
     dev: true
 
   /core-js-compat@3.49.0:
@@ -4657,8 +4658,9 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /is-what@3.14.1:
-    resolution: {integrity: sha512-sNxgpk9793nzSs7bA6JQJGeIuRBQhAaNGG77kzYQgMkrID+lS6SlK07K5LaptscDlSaIgH+GPFzf+d75FVxozA==}
+  /is-what@4.1.16:
+    resolution: {integrity: sha512-ZhMwEosbFJkA0YhFnNDgTM4ZxDRsS6HqTo7qsZM08fehyRYIYa0yHu5R6mgo1n/8MgaPBXiPimPD77baVFYg+A==}
+    engines: {node: '>=12.13'}
     dev: true
 
   /is-whitespace@0.3.0:
@@ -5299,14 +5301,13 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /less@4.2.0:
-    resolution: {integrity: sha512-P3b3HJDBtSzsXUl0im2L7gTO5Ubg8mEN6G8qoTS77iXxXX4Hvu4Qj540PZDvQ8V6DmX6iXo98k7Md0Cm1PrLaA==}
-    engines: {node: '>=6'}
+  /less@4.6.4:
+    resolution: {integrity: sha512-OJmO5+HxZLLw0RLzkqaNHzcgEAQG7C0y3aMbwtCzIUFZsLMNNq/1IdAdHEycQ58CwUO3jPTHmoN+tE5I7FQxNg==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      copy-anything: 2.0.6
+      copy-anything: 3.0.5
       parse-node-version: 1.0.1
-      tslib: 2.6.1
     optionalDependencies:
       errno: 0.1.8
       graceful-fs: 4.2.10
@@ -6315,10 +6316,6 @@ packages:
       strip-json-comments: 2.0.1
     dev: true
 
-  /tslib@2.6.1:
-    resolution: {integrity: sha512-t0hLfiEKfMUoqhG+U1oid7Pva4bbDPHYfJNiB7BiIjRkj1pyC++4N3huJfqY6aRH6VTB0rvtzQwjM4K6qpfOig==}
-    dev: true
-
   /type-check@0.3.2:
     resolution: {integrity: sha512-ZCmOJdvOWDBYJlzAoFkC+Q0+bUyEOS1ltgp1MGU03fqHG+dbi9tBFU2Rd9QKiDZFAYrhPh2JUf7rZRIuHRKtOg==}
     engines: {node: '>= 0.8.0'}
@@ -6434,7 +6431,7 @@ packages:
       convert-source-map: 1.8.0
     dev: true
 
-  /vite@4.5.3(less@4.2.0):
+  /vite@4.5.3(less@4.6.4):
     resolution: {integrity: sha512-kQL23kMeX92v3ph7IauVkXkikdDRsYMGTVl5KY2E9OY4ONLvkHf04MDTbnfo6NKxZiDLWzVpP5oTa8hQD8U3dg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -6463,14 +6460,14 @@ packages:
         optional: true
     dependencies:
       esbuild: 0.18.11
-      less: 4.2.0
+      less: 4.6.4
       postcss: 8.4.33
       rollup: 3.27.2
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress@1.0.0-beta.7(@algolia/client-search@4.14.2)(axios@1.13.6)(less@4.2.0)(search-insights@2.6.0):
+  /vitepress@1.0.0-beta.7(@algolia/client-search@4.14.2)(axios@1.13.6)(less@4.6.4)(search-insights@2.6.0):
     resolution: {integrity: sha512-P9Rw+FXatKIU4fVdtKxqwHl6fby8E/8zE3FIfep6meNgN4BxbWqoKJ6yfuuQQR9IrpQqwnyaBh4LSabyll6tWg==}
     hasBin: true
     dependencies:
@@ -6485,7 +6482,7 @@ packages:
       mark.js: 8.11.1
       minisearch: 6.1.0
       shiki: 0.14.3
-      vite: 4.5.3(less@4.2.0)
+      vite: 4.5.3(less@4.6.4)
       vue: 3.4.5
     transitivePeerDependencies:
       - '@algolia/client-search'
