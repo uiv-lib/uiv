@@ -27,8 +27,8 @@ devDependencies:
     specifier: 29.2.6
     version: 29.2.6(@babel/core@7.23.3)(babel-jest@29.7.0)(jest@29.7.0)(vue@3.4.5)
   axios:
-    specifier: 1.13.6
-    version: 1.13.6
+    specifier: 1.14.0
+    version: 1.14.0
   babel-core:
     specifier: 7.0.0-bridge.0
     version: 7.0.0-bridge.0(@babel/core@7.23.3)
@@ -79,7 +79,7 @@ devDependencies:
     version: 4.5.3(less@4.6.4)
   vitepress:
     specifier: 1.0.0-beta.7
-    version: 1.0.0-beta.7(@algolia/client-search@4.14.2)(axios@1.13.6)(less@4.6.4)(search-insights@2.6.0)
+    version: 1.0.0-beta.7(@algolia/client-search@4.14.2)(axios@1.14.0)(less@4.6.4)(search-insights@2.6.0)
   vue:
     specifier: 3.4.5
     version: 3.4.5
@@ -3008,7 +3008,7 @@ packages:
       - vue
     dev: true
 
-  /@vueuse/integrations@10.2.1(axios@1.13.6)(focus-trap@7.5.2)(vue@3.4.5):
+  /@vueuse/integrations@10.2.1(axios@1.14.0)(focus-trap@7.5.2)(vue@3.4.5):
     resolution: {integrity: sha512-FDP5lni+z9FjHE9H3xuvwSjoRV9U8jmDvJpmHPCBjUgPGYRynwb60eHWXCFJXLUtb4gSIHy0e+iaEbrKdalCkQ==}
     peerDependencies:
       async-validator: '*'
@@ -3051,7 +3051,7 @@ packages:
     dependencies:
       '@vueuse/core': 10.2.1(vue@3.4.5)
       '@vueuse/shared': 10.2.1(vue@3.4.5)
-      axios: 1.13.6
+      axios: 1.14.0
       focus-trap: 7.5.2
       vue-demi: 0.14.5(vue@3.4.5)
     transitivePeerDependencies:
@@ -3212,12 +3212,12 @@ packages:
     hasBin: true
     dev: true
 
-  /axios@1.13.6:
-    resolution: {integrity: sha512-ChTCHMouEe2kn713WHbQGcuYrr6fXTBiu460OTwWrWob16g1bXn4vtz07Ope7ewMozJAnEquLk5lWQWtBig9DQ==}
+  /axios@1.14.0:
+    resolution: {integrity: sha512-3Y8yrqLSwjuzpXuZ0oIYZ/XGgLwUIBU3uLvbcpb0pidD9ctpShJd43KSlEEkVQg6DS0G9NKyzOvBfUtDKEyHvQ==}
     dependencies:
       follow-redirects: 1.15.11
       form-data: 4.0.5
-      proxy-from-env: 1.1.0
+      proxy-from-env: 2.1.0
     transitivePeerDependencies:
       - debug
     dev: true
@@ -3485,7 +3485,7 @@ packages:
     resolution: {integrity: sha512-7O+FbCihrB5WGbFYesctwmTKae6rOiIzmz1icreWJ+0aA7LJfuqhEso2T9ncpcFtzMQtzXf2QGGueWJGTYsqrA==}
     dependencies:
       function-bind: 1.1.2
-      get-intrinsic: 1.1.2
+      get-intrinsic: 1.3.0
     dev: true
 
   /callsites@3.1.0:
@@ -4344,14 +4344,6 @@ packages:
     engines: {node: 6.* || 8.* || >= 10.*}
     dev: true
 
-  /get-intrinsic@1.1.2:
-    resolution: {integrity: sha512-Jfm3OyCxHh9DJyc28qGk+JmfkpO41A4XkneDSujN9MDXrm4oDKdHvndhZ2dN94+ERNfkYJWDclW6k2L/ZGHjXA==}
-    dependencies:
-      function-bind: 1.1.2
-      has: 1.0.3
-      has-symbols: 1.0.3
-    dev: true
-
   /get-intrinsic@1.3.0:
     resolution: {integrity: sha512-9fSjSaos/fRIVIp+xSJlE6lfwhES7LNtKaCBIamHsjr2na1BiABJPo0mOjjz8GJDURarmCPGqaiVg5mfjb98CQ==}
     engines: {node: '>= 0.4'}
@@ -4454,7 +4446,7 @@ packages:
   /has-property-descriptors@1.0.0:
     resolution: {integrity: sha512-62DVLZGoiEBDHQyqG4w9xCuZ7eJEwNmJRWw2VY84Oedb7WFcA27fiEVe8oUQx9hAUJ4ekurquucTGwsyO1XGdQ==}
     dependencies:
-      get-intrinsic: 1.1.2
+      get-intrinsic: 1.3.0
     dev: true
 
   /has-symbols@1.0.3:
@@ -4471,7 +4463,7 @@ packages:
     resolution: {integrity: sha512-NqADB8VjPFLM2V0VvHUewwwsw0ZWBaIdgo+ieHtK3hasLz4qeCRjYcqfB6AQrBggRKppKF8L52/VqdVsO47Dlw==}
     engines: {node: '>= 0.4'}
     dependencies:
-      has-symbols: 1.0.3
+      has-symbols: 1.1.0
     dev: true
 
   /has@1.0.3:
@@ -5844,8 +5836,9 @@ packages:
     resolution: {integrity: sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==}
     dev: true
 
-  /proxy-from-env@1.1.0:
-    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
+  /proxy-from-env@2.1.0:
+    resolution: {integrity: sha512-cJ+oHTW1VAEa8cJslgmUZrc+sjRKgAKl3Zyse6+PV38hZe/V6Z14TbCuXcan9F9ghlz4QrFr2c92TNF82UkYHA==}
+    engines: {node: '>=10'}
     dev: true
 
   /prr@1.0.1:
@@ -6467,7 +6460,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress@1.0.0-beta.7(@algolia/client-search@4.14.2)(axios@1.13.6)(less@4.6.4)(search-insights@2.6.0):
+  /vitepress@1.0.0-beta.7(@algolia/client-search@4.14.2)(axios@1.14.0)(less@4.6.4)(search-insights@2.6.0):
     resolution: {integrity: sha512-P9Rw+FXatKIU4fVdtKxqwHl6fby8E/8zE3FIfep6meNgN4BxbWqoKJ6yfuuQQR9IrpQqwnyaBh4LSabyll6tWg==}
     hasBin: true
     dependencies:
@@ -6476,7 +6469,7 @@ packages:
       '@vitejs/plugin-vue': 4.6.2(vite@4.5.3)(vue@3.4.5)
       '@vue/devtools-api': 6.5.0
       '@vueuse/core': 10.2.1(vue@3.4.5)
-      '@vueuse/integrations': 10.2.1(axios@1.13.6)(focus-trap@7.5.2)(vue@3.4.5)
+      '@vueuse/integrations': 10.2.1(axios@1.14.0)(focus-trap@7.5.2)(vue@3.4.5)
       body-scroll-lock: 4.0.0-beta.0
       focus-trap: 7.5.2
       mark.js: 8.11.1
