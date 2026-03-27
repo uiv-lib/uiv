@@ -15,7 +15,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - uses: pnpm/action-setup@v2.4.1
         with:
-          version: 7.5.2
+          version: 7.33.7
           run_install: true
       - name: Lint
         run: pnpm run lint
@@ -29,7 +29,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - uses: pnpm/action-setup@v2.4.1
         with:
-          version: 7.5.2
+          version: 7.33.7
           run_install: true
       - name: Unit tests
         run: pnpm run test
@@ -48,7 +48,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - uses: pnpm/action-setup@v2.4.1
         with:
-          version: 7.5.2
+          version: 7.33.7
           run_install: true
       - name: Build dist
         run: pnpm run dist
@@ -62,7 +62,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - uses: pnpm/action-setup@v2.4.1
         with:
-          version: 7.5.2
+          version: 7.33.7
           run_install: true
       - name: Build dist
         run: pnpm run docs:build

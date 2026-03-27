@@ -22,7 +22,7 @@ jobs:
           FILE: package.json
       - uses: pnpm/action-setup@v2.4.1
         with:
-          version: 7.5.2
+          version: 7.33.7
           run_install: true
       - name: Build dist
         run: pnpm run dist
