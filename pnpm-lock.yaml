@@ -66,8 +66,8 @@ devDependencies:
     specifier: 4.6.4
     version: 4.6.4
   lodash:
-    specifier: 4.17.23
-    version: 4.17.23
+    specifier: 4.18.1
+    version: 4.18.1
   prettier:
     specifier: 3.8.1
     version: 3.8.1
@@ -5363,8 +5363,8 @@ packages:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
 
-  /lodash@4.17.23:
-    resolution: {integrity: sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==}
+  /lodash@4.18.1:
+    resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
     dev: true
 
   /lru-cache@5.1.1:
@@ -6544,7 +6544,7 @@ packages:
       eslint-visitor-keys: 3.4.3
       espree: 9.6.1
       esquery: 1.4.2
-      lodash: 4.17.23
+      lodash: 4.18.1
       semver: 7.7.4
     transitivePeerDependencies:
       - supports-color
