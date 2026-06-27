@@ -7,7 +7,7 @@ import DemoWrapper from '../stubs/DemoWrapper.vue';
 
 // const enableI18n = false;
 
-const modules = import.meta.globEager('../components/**/*.vue');
+const modules = import.meta.glob('../components/**/*.vue', { eager: true });
 const components = [];
 
 for (const path in modules) {

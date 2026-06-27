@@ -11,15 +11,3 @@ exports[`Alert > renders correctly 1`] = `
   
 </div>
 `;
-
-exports[`Alert renders correctly 1`] = `
-<div
-  class="alert alert-info"
-  role="alert"
->
-  <!--v-if-->
-  
-  EMT YES
-  
-</div>
-`;

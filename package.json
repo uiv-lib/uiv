@@ -3,6 +3,7 @@
   "version": "2.0.6",
   "description": "Bootstrap 3 components implemented by Vue.",
   "author": "wxsm",
+  "type": "module",
   "main": "./dist/uiv.umd.js",
   "module": "./dist/uiv.es.js",
   "exports": {
