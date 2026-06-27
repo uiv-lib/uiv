@@ -12,8 +12,8 @@ importers:
         specifier: 7.29.7
         version: 7.29.7(@babel/core@7.29.7)
       '@vitejs/plugin-vue':
-        specifier: 4.6.2
-        version: 4.6.2(vite@6.4.3(@types/node@26.0.1)(less@4.6.4))(vue@3.5.39)
+        specifier: 6.0.7
+        version: 6.0.7(vite@6.4.3(@types/node@26.0.1)(less@4.6.4))(vue@3.5.39)
       '@vitejs/plugin-vue-jsx':
         specifier: 3.1.0
         version: 3.1.0(vite@6.4.3(@types/node@26.0.1)(less@4.6.4))(vue@3.5.39)
@@ -1233,6 +1233,9 @@ packages:
     resolution: {integrity: sha512-SEeaJLb3qBNF/OaXnaR1NmmBbFYk1zC0ZH/52fATcRPLFg/p791YrcyFFy44Bo9sLaGuSuLp5Q6axbb/O+v/RA==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
+  '@rolldown/pluginutils@1.0.1':
+    resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
+
   '@rollup/rollup-android-arm-eabi@4.62.2':
     resolution: {integrity: sha512-6o7ZLZK+BeenkZCFNDXqpbjw9bD6nuWonvS/lwQJp7NoVVxm6p3qE7qQ5jGuBjiFsgvqjD8mZAU5oWxTmbOeOg==}
     cpu: [arm]
@@ -1465,6 +1468,13 @@ packages:
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0 || ^5.0.0
+      vue: ^3.2.25
+
+  '@vitejs/plugin-vue@6.0.7':
+    resolution: {integrity: sha512-km+p+XdSz9Sxm5rqUbqcSfZYaAniKxWBj1KURl+Jr7UaPvvX7BmaWMdP69I5rrFDeQGyxAG7NXdc57vz+snhWg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    peerDependencies:
+      vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
       vue: ^3.2.25
 
   '@vue/babel-helper-vue-transform-on@1.5.0':
@@ -4785,6 +4795,8 @@ snapshots:
 
   '@pkgr/core@0.3.6': {}
 
+  '@rolldown/pluginutils@1.0.1': {}
+
   '@rollup/rollup-android-arm-eabi@4.62.2':
     optional: true
 
@@ -4963,8 +4975,9 @@ snapshots:
       vite: 4.5.3(@types/node@26.0.1)(less@4.6.4)
       vue: 3.5.39
 
-  '@vitejs/plugin-vue@4.6.2(vite@6.4.3(@types/node@26.0.1)(less@4.6.4))(vue@3.5.39)':
+  '@vitejs/plugin-vue@6.0.7(vite@6.4.3(@types/node@26.0.1)(less@4.6.4))(vue@3.5.39)':
     dependencies:
+      '@rolldown/pluginutils': 1.0.1
       vite: 6.4.3(@types/node@26.0.1)(less@4.6.4)
       vue: 3.5.39
 
