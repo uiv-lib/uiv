@@ -1,4 +1,5 @@
 <script lang="jsx">
+import { h } from 'vue';
 import { TRIGGERS } from '../../utils/dom.utils';
 import popupMixin from '../../mixins/popup.mixin';
 import { renderSlot } from '../../utils/vue.utils';
@@ -38,25 +39,26 @@ export default {
     },
   },
   render() {
-    const Tag = this.tag;
-    return (
-      <Tag>
-        {renderSlot(this.$slots.default)}
-        <div
-          style={{
+    return h(this.tag, [
+      renderSlot(this.$slots.default),
+      h(
+        'div',
+        {
+          style: {
             display: 'block',
-          }}
-          ref="popup"
-          onMouseleave={this.hideOnLeave}
-        >
-          <div class="arrow" />
-          {this.title ? <h3 class="popover-title">{this.title}</h3> : null}
-          <div className="popover-content">
-            {this.content || renderSlot(this.$slots.popover)}
-          </div>
-        </div>
-      </Tag>
-    );
+          },
+          ref: 'popup',
+          onMouseleave: this.hideOnLeave,
+        },
+        [
+          h('div', { class: 'arrow' }),
+          this.title ? h('h3', { class: 'popover-title' }, this.title) : null,
+          h('div', { class: 'popover-content' }, [
+            this.content || renderSlot(this.$slots.popover),
+          ]),
+        ]
+      ),
+    ]);
   },
 };
 </script>

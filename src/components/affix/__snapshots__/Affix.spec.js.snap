@@ -1,4 +1,30 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Affix > renders correctly 1`] = `
+<div>
+  <div
+    class="hidden-print"
+  >
+    <div
+      class=""
+    >
+      
+      <ul>
+        <li>
+          Test1
+        </li>
+        <li>
+          Test2
+        </li>
+        <li>
+          Test3
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+</div>
+`;
 
 exports[`Affix renders correctly 1`] = `
 <div>

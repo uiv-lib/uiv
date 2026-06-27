@@ -1,4 +1,5 @@
 <script lang="jsx">
+import { h } from 'vue';
 import { TRIGGERS } from '../../utils/dom.utils';
 import popupMixin from '../../mixins/popup.mixin';
 import { renderSlot } from '../../utils/vue.utils';
@@ -34,16 +35,21 @@ export default {
     },
   },
   render() {
-    const Tag = this.tag;
-    return (
-      <Tag>
-        {renderSlot(this.$slots.default)}
-        <div ref="popup" role="tooltip" onMouseleave={this.hideOnLeave}>
-          <div class="tooltip-arrow" />
-          <div class="tooltip-inner">{this.text}</div>
-        </div>
-      </Tag>
-    );
+    return h(this.tag, [
+      renderSlot(this.$slots.default),
+      h(
+        'div',
+        {
+          ref: 'popup',
+          role: 'tooltip',
+          onMouseleave: this.hideOnLeave,
+        },
+        [
+          h('div', { class: 'tooltip-arrow' }),
+          h('div', { class: 'tooltip-inner' }, this.text),
+        ]
+      ),
+    ]);
   },
 };
 </script>

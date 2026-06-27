@@ -113,13 +113,11 @@ export default {
   },
   mounted() {
     removeFromDom(this.$refs.popup);
-    this.$nextTick(() => {
-      this.initTriggerElByTarget(this.target);
-      this.initListeners();
-      if (this.modelValue) {
-        this.show();
-      }
-    });
+    this.initTriggerElByTarget(this.target);
+    this.initListeners();
+    if (this.modelValue) {
+      this.show();
+    }
   },
   beforeUnmount() {
     this.clearListeners();

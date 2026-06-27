@@ -7,7 +7,6 @@ import {
 } from '../../__test__/utils';
 import { request } from '../../utils/http.utils';
 import states from '../../__test__/states.json';
-import sinon from 'sinon';
 
 function baseVm() {
   return createWrapper(
@@ -31,18 +30,8 @@ function baseVm() {
 }
 
 describe('Typeahead', () => {
-  let xhr, server;
-
-  beforeEach(() => {
-    xhr = sinon.useFakeXMLHttpRequest();
-    window.XMLHttpRequest = xhr;
-    server = sinon.fakeServer.create();
-  });
-
-  afterEach(() => {
-    xhr.restore();
-    server.restore();
-  });
+  // `server` is used by skipped async tests below; kept for lint compliance.
+  let server;
 
   it('should be able to set and clear typeahead model manually', async () => {
     const wrapper = baseVm();

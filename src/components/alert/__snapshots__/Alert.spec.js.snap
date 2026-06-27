@@ -1,4 +1,16 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Alert > renders correctly 1`] = `
+<div
+  class="alert alert-info"
+  role="alert"
+>
+  <!--v-if-->
+  
+  EMT YES
+  
+</div>
+`;
 
 exports[`Alert renders correctly 1`] = `
 <div

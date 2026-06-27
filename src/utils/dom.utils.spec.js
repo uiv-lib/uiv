@@ -93,7 +93,7 @@ describe('dom.utils', () => {
       expect(nav.attributes('style')).toContain('padding-right');
       utils.toggleBodyOverflow(true);
       await nextTick();
-      expect(nav.attributes('style')).toContain('padding-right: 0px');
+      expect(nav.attributes('style')).not.toContain('padding-right');
     });
 
     it('should be able to toggle fixed bottom nav padding right as well', async () => {
@@ -105,7 +105,7 @@ describe('dom.utils', () => {
       expect(nav.attributes('style')).toContain('padding-right');
       utils.toggleBodyOverflow(true);
       await nextTick();
-      expect(nav.attributes('style')).toContain('padding-right: 0px');
+      expect(nav.attributes('style')).not.toContain('padding-right');
     });
   });
 

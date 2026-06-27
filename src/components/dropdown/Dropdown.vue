@@ -36,7 +36,11 @@ export default defineComponent({
     const element = ref(null);
 
     function getFocusItem() {
-      return dropdown.value?.querySelector('li > a:focus');
+      const active = document.activeElement;
+      if (active && dropdown.value?.contains(active)) {
+        return active.matches('li > a') ? active : null;
+      }
+      return null;
     }
 
     function onKeyPress(event) {
@@ -61,7 +65,7 @@ export default defineComponent({
           } else {
             for (let i = 0; i < items.length; i++) {
               if (currentFocus === items[i]) {
-                if (keyCode === 38 && i < items.length > 0) {
+                if (keyCode === 38 && i > 0) {
                   focus(items[i - 1]);
                 } else if (keyCode === 40 && i < items.length - 1) {
                   focus(items[i + 1]);
