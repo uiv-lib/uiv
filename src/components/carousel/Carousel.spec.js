@@ -1,13 +1,17 @@
-import {
-  createWrapper,
-  nextTick,
-  sleep,
-  triggerEvent,
-} from '../../__test__/utils';
+import { vi } from 'vitest';
+import { createWrapper, nextTick, triggerEvent } from '../../__test__/utils';
 import Carousel from './Carousel';
 
 describe('Carousel', () => {
   let wrapper;
+
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
 
   beforeEach(async () => {
     wrapper = createWrapper(
@@ -69,7 +73,9 @@ describe('Carousel', () => {
       'active'
     );
     wrapper.findAll('.carousel-control.right')[0].trigger('click');
-    await sleep(700);
+    await nextTick();
+    vi.advanceTimersByTime(700);
+    await nextTick();
     expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-inner .item')[0].classes()).toContain(
       'active'
@@ -94,7 +100,9 @@ describe('Carousel', () => {
 
   it('should be able to go next on right control click', async () => {
     wrapper.findAll('.carousel-control.right')[0].trigger('click');
-    await sleep(700);
+    await nextTick();
+    vi.advanceTimersByTime(700);
+    await nextTick();
     expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-inner .item')[1].classes()).toContain(
       'active'
@@ -103,13 +111,15 @@ describe('Carousel', () => {
 
   it('should be able to go prev on left control click', async () => {
     await triggerEvent(wrapper.findAll('.carousel-control.left')[0], 'click');
-    await sleep(700);
+    vi.advanceTimersByTime(700);
+    await nextTick();
     expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-inner .item')[3].classes()).toContain(
       'active'
     );
     await triggerEvent(wrapper.findAll('.carousel-control.left')[0], 'click');
-    await sleep(700);
+    vi.advanceTimersByTime(700);
+    await nextTick();
     expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-inner .item')[2].classes()).toContain(
       'active'
@@ -119,7 +129,8 @@ describe('Carousel', () => {
   it('should be able to go index on indicator click', async () => {
     const $indicators = wrapper.findAll('.carousel-indicators li');
     await triggerEvent($indicators[1], 'click');
-    await sleep(700);
+    vi.advanceTimersByTime(700);
+    await nextTick();
     expect(wrapper.findAll('.carousel-indicators .active').length).toEqual(1);
     expect($indicators[1].classes()).toContain('active');
     expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
@@ -127,7 +138,8 @@ describe('Carousel', () => {
       'active'
     );
     await triggerEvent($indicators[0], 'click');
-    await sleep(700);
+    vi.advanceTimersByTime(700);
+    await nextTick();
     expect(wrapper.findAll('.carousel-indicators .active').length).toEqual(1);
     expect($indicators[0].classes()).toContain('active');
     expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
@@ -171,7 +183,10 @@ describe('Carousel', () => {
   it('should be able to change interval', async () => {
     wrapper.vm.interval = 500;
     await nextTick();
-    await sleep(1200);
+    vi.advanceTimersByTime(500);
+    await nextTick();
+    vi.advanceTimersByTime(600);
+    await nextTick();
     expect(wrapper.findAll('.carousel-indicators .active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-indicators li')[1].classes()).toContain(
       'active'
@@ -184,7 +199,8 @@ describe('Carousel', () => {
 
   it('should be able to stop interval', async () => {
     wrapper.vm.interval = 0;
-    await sleep(1200);
+    vi.advanceTimersByTime(1200);
+    await nextTick();
     expect(wrapper.findAll('.carousel-indicators .active').length).toEqual(1);
     expect(wrapper.findAll('.carousel-indicators li')[0].classes()).toContain(
       'active'

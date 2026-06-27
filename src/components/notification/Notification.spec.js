@@ -1,9 +1,9 @@
+import { vi } from 'vitest';
 import newLocale from '../../locale/lang/zh-CN';
 import {
   createWrapper,
   keyCodes,
   nextTick,
-  sleep,
   transition,
   triggerEvent,
 } from '../../__test__/utils';
@@ -118,6 +118,7 @@ describe('Notification', () => {
   let savedLog;
 
   beforeEach(() => {
+    vi.useFakeTimers();
     savedLog = console.log;
     console.log = function () {
       return true;
@@ -128,6 +129,7 @@ describe('Notification', () => {
 
   afterEach(() => {
     console.log = savedLog;
+    vi.useRealTimers();
   });
 
   it('should be able to use notification', async () => {
@@ -136,8 +138,8 @@ describe('Notification', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelectorAll('.btn')[0];
     trigger.click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.className).toContain('alert-info');
@@ -149,8 +151,8 @@ describe('Notification', () => {
       'This is a simple notify msg.'
     );
     alert.querySelector('button.close').click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
     expect(spy).toBeCalledWith('dismissed');
   });
@@ -161,8 +163,8 @@ describe('Notification', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelectorAll('.btn')[1];
     trigger.click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.className).toContain('alert-info');
@@ -173,11 +175,12 @@ describe('Notification', () => {
     expect(alert.querySelectorAll('.media-body > div')[1].textContent).toEqual(
       'This notification will not dismiss automatically.'
     );
-    await sleep(5000 + 1000);
+    vi.advanceTimersByTime(5000 + 1000);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeDefined();
     alert.querySelector('button.close').click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
     expect(spy).toBeCalledWith('dismissed');
   });
@@ -188,8 +191,8 @@ describe('Notification', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelectorAll('.btn')[0];
     trigger.click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.className).toContain('alert-info');
@@ -197,11 +200,11 @@ describe('Notification', () => {
       1
     );
     expect(
-      alert.querySelectorAll('.media-left > .glyphicon-info-sign')
-    ).toBeDefined();
+      alert.querySelectorAll('.media-left > .glyphicon-info-sign').length
+    ).toBeGreaterThan(0);
     alert.querySelector('button.close').click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 
@@ -211,8 +214,8 @@ describe('Notification', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelectorAll('.btn')[1];
     trigger.click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.className).toContain('alert-success');
@@ -220,11 +223,11 @@ describe('Notification', () => {
       1
     );
     expect(
-      alert.querySelectorAll('.media-left > .glyphicon-ok-sign')
-    ).toBeDefined();
+      alert.querySelectorAll('.media-left > .glyphicon-ok-sign').length
+    ).toBeGreaterThan(0);
     alert.querySelector('button.close').click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 
@@ -234,8 +237,8 @@ describe('Notification', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelectorAll('.btn')[2];
     trigger.click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.className).toContain('alert-warning');
@@ -243,11 +246,11 @@ describe('Notification', () => {
       1
     );
     expect(
-      alert.querySelectorAll('.media-left > .glyphicon-info-sign')
-    ).toBeDefined();
+      alert.querySelectorAll('.media-left > .glyphicon-info-sign').length
+    ).toBeGreaterThan(0);
     alert.querySelector('button.close').click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 
@@ -257,8 +260,8 @@ describe('Notification', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelectorAll('.btn')[3];
     trigger.click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.className).toContain('alert-danger');
@@ -266,11 +269,11 @@ describe('Notification', () => {
       1
     );
     expect(
-      alert.querySelectorAll('.media-left > .glyphicon-remove-sign')
-    ).toBeDefined();
+      alert.querySelectorAll('.media-left > .glyphicon-remove-sign').length
+    ).toBeGreaterThan(0);
     alert.querySelector('button.close').click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 
@@ -280,8 +283,8 @@ describe('Notification', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelectorAll('.btn')[0];
     trigger.click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.style.top).toEqual(OFFSET);
@@ -289,8 +292,8 @@ describe('Notification', () => {
     expect(alert.style.bottom).toEqual('');
     expect(alert.style.left).toEqual('');
     alert.querySelector('button.close').click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 
@@ -300,8 +303,8 @@ describe('Notification', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelectorAll('.btn')[1];
     trigger.click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.style.top).toEqual('');
@@ -309,8 +312,8 @@ describe('Notification', () => {
     expect(alert.style.bottom).toEqual(OFFSET);
     expect(alert.style.left).toEqual('');
     alert.querySelector('button.close').click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 
@@ -320,8 +323,8 @@ describe('Notification', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelectorAll('.btn')[2];
     trigger.click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.style.top).toEqual('');
@@ -329,8 +332,8 @@ describe('Notification', () => {
     expect(alert.style.bottom).toEqual(OFFSET);
     expect(alert.style.left).toEqual(OFFSET);
     alert.querySelector('button.close').click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 
@@ -340,8 +343,8 @@ describe('Notification', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelectorAll('.btn')[3];
     trigger.click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.style.top).toEqual(OFFSET);
@@ -349,8 +352,8 @@ describe('Notification', () => {
     expect(alert.style.bottom).toEqual('');
     expect(alert.style.left).toEqual(OFFSET);
     alert.querySelector('button.close').click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 
@@ -376,14 +379,14 @@ describe('Notification', () => {
     trigger.click();
     await vm.$nextTick();
     trigger.click();
-    await sleep(transition);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelectorAll('.alert');
     expect(alert.length).toEqual(2);
     expect(alert[0].querySelector('button.close')).toBeNull();
     expect(alert[1].querySelector('button.close')).toBeNull();
-    await sleep(5000 + 1000);
-    await vm.$nextTick();
+    vi.advanceTimersByTime(5000 + 1000);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 });

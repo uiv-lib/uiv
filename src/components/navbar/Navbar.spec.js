@@ -1,4 +1,5 @@
-import { createWrapper, sleep } from '../../__test__/utils';
+import { vi } from 'vitest';
+import { createWrapper, nextTick } from '../../__test__/utils';
 
 function baseVm() {
   return createWrapper(`<div><navbar>
@@ -32,6 +33,13 @@ function baseVm() {
 }
 
 describe('Navbar', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it('should be able to render correct content', async () => {
     const wrapper = baseVm();
     const nav = wrapper.vm.$el.querySelector('nav');
@@ -90,10 +98,14 @@ describe('Navbar', () => {
     const collapse = nav.querySelector('.navbar-collapse.collapse');
     expect(collapse.className).not.toContain('in');
     trigger.click();
-    await sleep(500);
+    await nextTick();
+    vi.advanceTimersByTime(500);
+    await nextTick();
     expect(collapse.className).toContain('in');
     trigger.click();
-    await sleep(500);
+    await nextTick();
+    vi.advanceTimersByTime(500);
+    await nextTick();
     expect(collapse.className).not.toContain('in');
   });
 
@@ -105,13 +117,22 @@ describe('Navbar', () => {
     const nav = vm.$el;
     const trigger = nav.querySelector('.navbar-toggle');
     const collapse = nav.querySelector('.navbar-collapse.collapse');
-    await sleep(500);
+    await nextTick();
+    vi.advanceTimersByTime(500);
+    await nextTick();
     expect(collapse.className).toContain('in');
     vm.show = false;
-    await sleep(500);
+    await nextTick();
+    vi.advanceTimersByTime(500);
+    await nextTick();
     expect(collapse.className).not.toContain('in');
     trigger.click();
-    await sleep(500);
+    const navbar = wrapper.findComponent({ name: 'Navbar' });
+    expect(navbar.emitted('update:modelValue')).toBeTruthy();
+    expect(navbar.emitted('update:modelValue')[0]).toEqual([true]);
+    await nextTick();
+    vi.advanceTimersByTime(500);
+    await nextTick();
     expect(collapse.className).toContain('in');
   });
 

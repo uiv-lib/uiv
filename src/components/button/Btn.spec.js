@@ -341,7 +341,6 @@ describe('Btn', () => {
     const wrapper = createWrapper('<btn justified>test</btn>');
     expect(wrapper.classes()).toContain('btn-group');
     const btn = wrapper.find('.btn');
-    expect(btn).toBeDefined();
     expect(btn.text()).toEqual('test');
   });
 });

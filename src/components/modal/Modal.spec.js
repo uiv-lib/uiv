@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import newLocale from '../../locale/lang/zh-CN';
 import {
   createWrapper,
@@ -57,6 +58,12 @@ function baseVm() {
 }
 
 describe('Modal', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+  });
   const getBackdropsNum = () =>
     document.querySelectorAll('.modal-backdrop').length;
   const expectBodyOverflow = (enable) => {
@@ -92,7 +99,9 @@ describe('Modal', () => {
     wrapper.vm.$refs.modal.unsuppressBackgroundClose();
     // simulate window click
     wrapper.vm.$refs.modal.backdropClicked();
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(wrapper.vm.$refs.modal.isCloseSuppressed).toBeUndefined();
     expect(wrapper.vm.$refs.modal.$el.className).not.toContain('in');
   });
@@ -118,7 +127,9 @@ describe('Modal', () => {
     wrapper.vm.$refs.modal.unsuppressBackgroundClose();
     // simulate window click
     wrapper.vm.$refs.modal.backdropClicked();
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(wrapper.vm.$refs.modal.isCloseSuppressed).toBeFalsy();
     expect(wrapper.vm.$refs.modal.$el.className).toContain('in');
   });
@@ -158,7 +169,9 @@ describe('Modal', () => {
     expect(getBackdropsNum()).toEqual(0);
     // open modal 1
     await trigger.trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).toContain('in');
     expect(modal2.classes()).not.toContain('in');
     expect(modal3.classes()).not.toContain('in');
@@ -170,7 +183,9 @@ describe('Modal', () => {
     expectBodyOverflow(false);
     // open modal 2
     await trigger2.trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).toContain('in');
     expect(modal2.classes()).toContain('in');
     expect(modal3.classes()).not.toContain('in');
@@ -182,7 +197,9 @@ describe('Modal', () => {
     expectBodyOverflow(false);
     // open modal 3
     await trigger3.trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).toContain('in');
     expect(modal2.classes()).toContain('in');
     expect(modal3.classes()).toContain('in');
@@ -194,7 +211,9 @@ describe('Modal', () => {
     expectBodyOverflow(false);
     // dismiss modal 3
     await modal3.find('.btn-primary').trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).toContain('in');
     expect(modal2.classes()).toContain('in');
     expect(modal3.classes()).not.toContain('in');
@@ -203,7 +222,9 @@ describe('Modal', () => {
     expectBodyOverflow(false);
     // dismiss modal 2
     await modal2.find('.btn-primary').trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).toContain('in');
     expect(modal2.classes()).not.toContain('in');
     expect(modal3.classes()).not.toContain('in');
@@ -212,7 +233,9 @@ describe('Modal', () => {
     expectBodyOverflow(false);
     // dismiss modal 1
     await modal1.find('.btn-primary').trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).not.toContain('in');
     expect(modal2.classes()).not.toContain('in');
     expect(modal3.classes()).not.toContain('in');
@@ -262,7 +285,9 @@ describe('Modal', () => {
     expect(getBackdropsNum()).toEqual(0);
     // open modal 1
     await trigger.trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).toContain('in');
     expect(modal2.classes()).not.toContain('in');
     expect(modal3.classes()).not.toContain('in');
@@ -274,7 +299,9 @@ describe('Modal', () => {
     expectBodyOverflow(false);
     // open modal 2
     await trigger2.trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).toContain('in');
     expect(modal2.classes()).toContain('in');
     expect(modal3.classes()).not.toContain('in');
@@ -286,7 +313,9 @@ describe('Modal', () => {
     expectBodyOverflow(false);
     // open modal 3
     await trigger3.trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).toContain('in');
     expect(modal2.classes()).toContain('in');
     expect(modal3.classes()).toContain('in');
@@ -299,7 +328,9 @@ describe('Modal', () => {
     expectBodyOverflow(false);
     // dismiss modal 3
     await modal3.find('.btn-primary').trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).toContain('in');
     expect(modal2.classes()).toContain('in');
     expect(modal3.classes()).not.toContain('in');
@@ -308,7 +339,9 @@ describe('Modal', () => {
     expectBodyOverflow(false);
     // dismiss modal 2
     await modal2.findAll('.btn-primary')[0].trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).toContain('in');
     // expect(modal2.classes()).not.toContain('in')
     expect(modal3.classes()).not.toContain('in');
@@ -317,7 +350,9 @@ describe('Modal', () => {
     expectBodyOverflow(false);
     // dismiss modal 1
     await modal1.findAll('.btn-primary')[0].trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).not.toContain('in');
     expect(modal2.classes()).not.toContain('in');
     expect(modal3.classes()).not.toContain('in');
@@ -358,24 +393,32 @@ describe('Modal', () => {
     expect(getBackdropsNum()).toEqual(0);
     // open modal 1
     trigger.trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).toContain('in');
     expectBodyOverflow(false);
     // open modal 2
     wrapper.vm.open2 = true;
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(getBackdropsNum()).toEqual(2);
     expectBodyOverflow(false);
     // dismiss modal 2
     wrapper.vm.open2 = false;
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).toContain('in');
     expect(getBackdropsNum()).toEqual(1);
     // body overflow should be still disabled, because modal 1 is still open
     expectBodyOverflow(false);
     // dismiss modal 1
     modal1.find('.btn-primary').trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).not.toContain('in');
     expect(getBackdropsNum()).toEqual(0);
     // body overflow should be enable now
@@ -399,7 +442,9 @@ describe('Modal', () => {
     const trigger = wrapper.findAll('.btn')[0];
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     await triggerEvent(trigger, 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(wrapper.findAll('.modal')[0].classes()).toContain('in');
     expect(wrapper.findAll('.modal-title')[0].text()).toEqual('Modal 1');
@@ -416,12 +461,16 @@ describe('Modal', () => {
     const trigger = wrapper.findAll('.btn')[0];
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     await triggerEvent(trigger, 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(wrapper.findAll('.modal')[0].classes()).toContain('in');
     expect(wrapper.findAll('.modal-title')[0].text()).toEqual('Modal 1');
     await triggerEvent(wrapper.findAll('button.close')[0], 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(wrapper.findAll('.modal')[0].classes()).not.toContain('in');
     expect(document.querySelector('.alert')).toBeDefined();
@@ -435,12 +484,16 @@ describe('Modal', () => {
     const trigger = wrapper.findAll('.btn')[0];
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     await triggerEvent(trigger, 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(wrapper.findAll('.modal')[0].classes()).toContain('in');
     expect(wrapper.findAll('.modal-title')[0].text()).toEqual('Modal 1');
     await triggerEvent(wrapper.findAll('.modal-footer button')[1], 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(wrapper.findAll('.modal')[0].classes()).not.toContain('in');
     expect(document.querySelector('.alert')).toBeDefined();
@@ -465,7 +518,9 @@ describe('Modal', () => {
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0];
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     await triggerEvent(trigger, 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(modal.className).toContain('in');
     expect(
@@ -489,7 +544,9 @@ describe('Modal', () => {
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0];
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     await triggerEvent(trigger, 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(modal.className).toContain('in');
     expect(
@@ -514,7 +571,9 @@ describe('Modal', () => {
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0];
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     await triggerEvent(trigger, 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(modal.className).toContain('in');
     expect(modal.querySelector('.modal-title i')).toBeDefined();
@@ -536,7 +595,9 @@ describe('Modal', () => {
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0];
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     await triggerEvent(trigger, 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(modal.className).toContain('in');
     expect(modal.querySelector('.modal-header')).toBeNull();
@@ -563,7 +624,9 @@ describe('Modal', () => {
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0];
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     await triggerEvent(trigger, 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(modal.className).toContain('in');
     expect(modal.querySelectorAll('.modal-footer button').length).toEqual(3);
@@ -585,7 +648,9 @@ describe('Modal', () => {
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0];
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     await triggerEvent(trigger, 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(modal.className).toContain('in');
     expect(modal.querySelector('.modal-footer')).toBeNull();
@@ -612,12 +677,16 @@ describe('Modal', () => {
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0];
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     await triggerEvent(trigger, 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(modal.className).toContain('in');
     expect(modal.querySelectorAll('.modal-footer button').length).toEqual(3);
     await triggerEvent(wrapper.find('.modal-footer button'), 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(modal.className).not.toContain('in');
   });
@@ -639,7 +708,9 @@ describe('Modal', () => {
     const trigger = wrapper.findAll('.btn')[0];
     const modal = wrapper.findAll('.modal')[0];
     await triggerEvent(trigger, 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(modal.classes()).toContain('in');
     const btns = modal.findAll('.modal-footer button');
@@ -664,7 +735,9 @@ describe('Modal', () => {
     const trigger = wrapper.findAll('.btn')[0];
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     await triggerEvent(trigger, 'click');
-    await sleep(transition + 100);
+    await nextTick();
+    vi.advanceTimersByTime(transition + 100);
+    await nextTick();
     expect(
       wrapper.vm.$el
         .querySelector('[data-action="auto-focus"]')
@@ -687,7 +760,9 @@ describe('Modal', () => {
     const trigger = wrapper.findAll('.btn')[0];
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     await triggerEvent(trigger, 'click');
-    await sleep(transition + 100);
+    await nextTick();
+    vi.advanceTimersByTime(transition + 100);
+    await nextTick();
     expect(
       wrapper.vm.$el.querySelector('[data-action="auto-focus"]')
     ).toBeNull();
@@ -699,11 +774,15 @@ describe('Modal', () => {
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0];
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     await triggerEvent(trigger, 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(modal.className).toContain('in');
     await triggerEvent(wrapper.find('.modal'), 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(modal.className).not.toContain('in');
   });
@@ -724,11 +803,15 @@ describe('Modal', () => {
     const modal = wrapper.vm.$el.querySelectorAll('.modal')[0];
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     await triggerEvent(trigger, 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(modal.className).toContain('in');
     await triggerEvent(wrapper.find('.modal'), 'click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(modal.className).toContain('in');
   });
@@ -779,7 +862,9 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(wrapper.vm.msg).toEqual('ok');
     wrapper.vm.$el.querySelector('button.close').click();
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(wrapper.vm.msg).toEqual('test');
@@ -805,13 +890,17 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(wrapper.vm.msg).toEqual('ok');
     wrapper.vm.$el.querySelector('button.close').click();
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     wrapper.vm.dismissible = true;
     await nextTick();
     wrapper.vm.$el.querySelector('button.close').click();
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
   });
@@ -896,7 +985,9 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(wrapper.vm.msg).toEqual('ok');
     wrapper.vm.$el.querySelector('button.close').click();
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(wrapper.vm.msg).toEqual('test');
@@ -924,7 +1015,9 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(wrapper.vm.msg).toEqual('ok');
     wrapper.vm.$el.querySelector('button.close').click();
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     await nextTick();
     expect(wrapper.vm.msg).toEqual('test');
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
@@ -968,18 +1061,26 @@ describe('Modal', () => {
     expect(getBackdropsNum()).toEqual(0);
     // open modal 1
     trigger.trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     // open modal 2
     trigger2.trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     // open modal 3
     trigger3.trigger('click');
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     // dismiss modal 3
     wrapper.vm.$refs.modal1.onKeyPress({ keyCode: 27 }); // esc key
     wrapper.vm.$refs.modal2.onKeyPress({ keyCode: 27 }); // esc key
     wrapper.vm.$refs.modal3.onKeyPress({ keyCode: 27 }); // esc key
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).toContain('in');
     expect(modal2.classes()).toContain('in');
     expect(modal3.classes()).not.toContain('in');
@@ -990,7 +1091,9 @@ describe('Modal', () => {
     wrapper.vm.$refs.modal1.onKeyPress({ keyCode: 27 }); // esc key
     wrapper.vm.$refs.modal2.onKeyPress({ keyCode: 27 }); // esc key
     wrapper.vm.$refs.modal3.onKeyPress({ keyCode: 27 }); // esc key
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).toContain('in');
     expect(modal2.classes()).not.toContain('in');
     expect(modal3.classes()).not.toContain('in');
@@ -1001,7 +1104,9 @@ describe('Modal', () => {
     wrapper.vm.$refs.modal1.onKeyPress({ keyCode: 27 }); // esc key
     wrapper.vm.$refs.modal2.onKeyPress({ keyCode: 27 }); // esc key
     wrapper.vm.$refs.modal3.onKeyPress({ keyCode: 27 }); // esc key
-    await sleep(transition);
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(modal1.classes()).not.toContain('in');
     expect(modal2.classes()).not.toContain('in');
     expect(modal3.classes()).not.toContain('in');

@@ -32,7 +32,7 @@ const props = defineProps({
   staticTop: Boolean,
   inverse: Boolean,
 });
-const emit = defineEmits(['update:modalValue']);
+const emit = defineEmits(['update:modelValue']);
 const show = ref(false);
 const navClasses = computed(() => ({
   navbar: true,
@@ -56,6 +56,6 @@ onMounted(() => {
 
 function toggle() {
   show.value = !show.value;
-  emit('update:modalValue', show.value);
+  emit('update:modelValue', show.value);
 }
 </script>

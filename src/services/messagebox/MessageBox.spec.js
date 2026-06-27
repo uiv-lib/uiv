@@ -1,3 +1,5 @@
+import { vi } from 'vitest';
+import { flushPromises } from '@vue/test-utils';
 import {
   nextTick,
   sleep,
@@ -11,6 +13,7 @@ describe('MessageBox Service', () => {
   let savedLog;
 
   beforeEach(() => {
+    vi.useFakeTimers();
     savedLog = console.log;
     console.log = function () {
       return true;
@@ -19,6 +22,7 @@ describe('MessageBox Service', () => {
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     spy.mockRestore();
     console.log = savedLog;
   });
@@ -31,7 +35,8 @@ describe('MessageBox Service', () => {
       },
       console.log
     );
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
     expect(document.querySelector('.modal-title').textContent).toEqual('Title');
@@ -40,13 +45,13 @@ describe('MessageBox Service', () => {
     triggerEvent(input, 'input');
     await nextTick();
     document.querySelectorAll('.modal .btn')[1].click();
-    await nextTick();
+    await flushPromises();
     const formGroup = document.querySelector('.modal .form-group');
     expect(formGroup.className).not.toContain('has-error');
     expect(formGroup.querySelector('.help-block').style.display).toEqual(
       'none'
     );
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
@@ -62,7 +67,8 @@ describe('MessageBox Service', () => {
       },
       console.log
     );
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
     expect(document.querySelector('.modal-title').textContent).toEqual('Title');
@@ -70,8 +76,9 @@ describe('MessageBox Service', () => {
     expect(input.value).toEqual('testtest');
     await nextTick();
     document.querySelectorAll('.modal .btn')[0].click();
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
     await nextTick();
-    await sleep(transition);
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
     expect(spy).toBeCalledWith('cancel');
@@ -128,13 +135,16 @@ describe('MessageBox Service', () => {
     MessageBox.alert(undefined, () => {
       console.log('ok');
     });
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
     expect(document.querySelector('.modal-title')).toBeNull();
     expect(document.querySelector('.modal-body > p').textContent).toEqual('');
     document.querySelector('.modal .btn').click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
     expect(spy).toBeCalledWith('ok');
@@ -146,11 +156,14 @@ describe('MessageBox Service', () => {
     }).then(() => {
       console.log('ok');
     });
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
     triggerEvent(document.querySelector('.modal'), 'click');
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
     expect(spy).toBeCalledWith('ok');
@@ -158,11 +171,14 @@ describe('MessageBox Service', () => {
 
   it('should be able to use confirm with cancel callback', async () => {
     MessageBox.confirm({}, console.log);
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
     document.querySelectorAll('.modal .btn')[0].click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
     expect(spy).toBeCalledWith('cancel');
@@ -170,11 +186,14 @@ describe('MessageBox Service', () => {
 
   it('should be able to use confirm with ok callback', async () => {
     MessageBox.confirm({}, console.log);
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
     document.querySelectorAll('.modal .btn')[1].click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
     expect(spy).toBeCalledWith(null, 'ok');
@@ -182,11 +201,14 @@ describe('MessageBox Service', () => {
 
   it('should be able to use prompt with ok callback', async () => {
     MessageBox.prompt({}, console.log);
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
     document.querySelectorAll('.modal .btn')[0].click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
     expect(spy).toBeCalledWith('cancel');
@@ -196,12 +218,15 @@ describe('MessageBox Service', () => {
     MessageBox.alert({
       customClass: 'test-class',
     });
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('test-class');
     expect(document.querySelector('.modal').className).toContain('in');
     document.querySelector('.modal .btn').click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
   });
@@ -210,12 +235,15 @@ describe('MessageBox Service', () => {
     MessageBox.alert({
       content: '<a href="#" id="test-a">test</a>',
     });
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
     expect(document.querySelector('.modal #test-a')).toBeNull();
     document.querySelector('.modal .btn').click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
   });
@@ -225,12 +253,15 @@ describe('MessageBox Service', () => {
       html: true,
       content: '<a href="#" id="test-a">test</a>',
     });
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
     expect(document.querySelector('.modal #test-a')).toBeDefined();
     document.querySelector('.modal .btn').click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
   });

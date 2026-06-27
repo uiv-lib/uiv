@@ -1,9 +1,18 @@
+import { vi } from 'vitest';
 import Alert from './Alert';
-import { createWrapper, nextTick, sleep } from '../../__test__/utils';
+import { createWrapper, nextTick } from '../../__test__/utils';
 
 const DEFAULT_ALERT_CLASS = 'alert-info';
 
 describe('Alert', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   test('renders correctly', () => {
     const wrapper = createWrapper(`<alert>EMT YES</alert>`);
     expect(wrapper.element).toMatchSnapshot();
@@ -99,7 +108,8 @@ describe('Alert', () => {
       `.${DEFAULT_ALERT_CLASS}`
     ).length;
     expect(alertInstancesAfter).toEqual(alertInstancesBefore + 1);
-    await sleep(wrapper.vm.duration + 200);
+    vi.advanceTimersByTime(wrapper.vm.duration + 200);
+    await nextTick();
     const alertInstancesAfterDelay = wrapper.findAll(
       `.${DEFAULT_ALERT_CLASS}`
     ).length;

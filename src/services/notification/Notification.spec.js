@@ -1,4 +1,6 @@
-import { sleep, transition } from '../../__test__/utils';
+import { vi } from 'vitest';
+import { flushPromises } from '@vue/test-utils';
+import { nextTick, sleep, transition } from '../../__test__/utils';
 import Notification from './Notification';
 
 describe('Notification service', () => {
@@ -6,6 +8,7 @@ describe('Notification service', () => {
   let savedLog;
 
   beforeEach(() => {
+    vi.useFakeTimers();
     savedLog = console.log;
     console.log = function () {
       return true;
@@ -15,16 +18,20 @@ describe('Notification service', () => {
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     console.log = savedLog;
   });
 
   it('should be able to use without options and callback', async () => {
     Notification.notify(undefined);
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     alert.querySelector('button.close').click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 
@@ -46,30 +53,37 @@ describe('Notification service', () => {
 
   it('should be able to avoid invalid placement', async () => {
     Notification.notify({ placement: 'top-bottom' }); // invalid
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 
   it('should be able to use custom icon', async () => {
     Notification.notify({ title: 'test', icon: 'fa fa-check' });
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.querySelectorAll('.media-left > .fa').length).toEqual(1);
     expect(alert.querySelectorAll('.media-left > .fa-check')).toBeDefined();
     alert.querySelector('button.close').click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 
   it('should be able to disable icon with types', async () => {
     Notification.notify({ title: 'test', icon: '', type: 'danger' });
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.querySelector('.media-left')).toBeNull();
     alert.querySelector('button.close').click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 
@@ -79,13 +93,16 @@ describe('Notification service', () => {
       type: 'danger',
       customClass: 'test-class',
     });
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.className).toContain('test-class');
     expect(alert.className).toContain('alert-danger');
     alert.querySelector('button.close').click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 
@@ -94,12 +111,15 @@ describe('Notification service', () => {
       title: 'test',
       content: '<a href="#" id="test-a">test</a>',
     });
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.querySelector('#test-a')).toBeNull();
     alert.querySelector('button.close').click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 
@@ -109,12 +129,15 @@ describe('Notification service', () => {
       html: true,
       content: '<a href="#" id="test-a">test</a>',
     });
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     expect(alert.querySelector('#test-a')).toBeDefined();
     alert.querySelector('button.close').click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
 });

@@ -230,13 +230,11 @@ describe('Dropdown', () => {
     const trigger = dropdown.find('button');
     expect(dropdown.classes()).not.toContain('open');
     // console.log(wrapper.html())
-    expect(dropdown.find('.dropdown-menu')).toBeDefined();
     await triggerEvent(trigger, 'click');
     expect(dropdown.classes()).toContain('open');
     expect(document.querySelectorAll('body>.dropdown-menu').length).toEqual(1);
     await triggerEvent(trigger, 'click');
     expect(dropdown.classes()).not.toContain('open');
-    expect(dropdown.find('.dropdown-menu')).toBeDefined();
   });
 
   it('should be able to use dropup style', async () => {
@@ -253,7 +251,7 @@ describe('Dropdown', () => {
     await nextTick();
     const dropup = wrapper.find('.dropup');
     expect(dropup.classes()).not.toContain('open');
-    expect(dropup.find('.dropdown-menu')).toBeDefined();
+    expect(dropup.find('.dropdown-menu').exists()).toBe(true);
   });
 
   it('should be able to use menu-right style', async () => {
@@ -287,7 +285,6 @@ describe('Dropdown', () => {
     ).toEqual(1);
     await triggerEvent(trigger, 'click');
     expect(dropdown.classes()).not.toContain('open');
-    expect(dropdown.find('.dropdown-menu-right')).toBeDefined();
   });
 
   it('should be able to open dropdown append to body & dropup on trigger click', async () => {
@@ -301,7 +298,6 @@ describe('Dropdown', () => {
     expect(document.querySelectorAll('body>.dropdown-menu').length).toEqual(1);
     await triggerEvent(trigger, 'click');
     expect(dropdown.classes()).not.toContain('open');
-    expect(dropdown.find('.dropdown-menu')).toBeDefined();
   });
 
   it('should be able to open dropdown on init', async () => {

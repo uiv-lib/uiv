@@ -1,7 +1,16 @@
-import { createWrapper, sleep, triggerEvent } from '../../__test__/utils';
+import { vi } from 'vitest';
+import { createWrapper, nextTick, triggerEvent } from '../../__test__/utils';
 import Collapse from './Collapse.vue';
 
 describe('Collapse', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it('should be able to toggle collapse on trigger click', async () => {
     const wrapper = createWrapper(
       `<section>
@@ -21,10 +30,12 @@ describe('Collapse', () => {
     const collapse = wrapper.findAll('.collapse')[0];
     expect(collapse.classes()).toEqual(['collapse']);
     await triggerEvent(trigger, 'click');
-    await sleep(400);
+    vi.advanceTimersByTime(400);
+    await nextTick();
     expect(collapse.classes()).toEqual(['collapse', 'in']);
     await triggerEvent(trigger, 'click');
-    await sleep(400);
+    vi.advanceTimersByTime(400);
+    await nextTick();
     expect(collapse.classes()).toEqual(['collapse']);
   });
 
@@ -82,17 +93,20 @@ describe('Collapse', () => {
         },
       }
     );
-    await sleep(400);
+    vi.advanceTimersByTime(400);
+    await nextTick();
     const triggers = wrapper.findAll('.panel-heading');
     const collapse = wrapper.findAll('.collapse');
     expect(collapse[0].classes()).toEqual(['collapse', 'in']);
     expect(collapse[1].classes()).toEqual(['collapse']);
     await triggerEvent(triggers[1], 'click');
-    await sleep(400);
+    vi.advanceTimersByTime(400);
+    await nextTick();
     expect(collapse[0].classes()).toEqual(['collapse']);
     expect(collapse[1].classes()).toEqual(['collapse', 'in']);
     await triggerEvent(triggers[1], 'click');
-    await sleep(400);
+    vi.advanceTimersByTime(400);
+    await nextTick();
     expect(collapse[1].classes()).toEqual(['collapse']);
   });
 });

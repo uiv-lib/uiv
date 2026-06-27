@@ -1,7 +1,8 @@
+import { vi } from 'vitest';
+import { flushPromises } from '@vue/test-utils';
 import {
   createWrapper,
   nextTick,
-  sleep,
   transition,
   triggerEvent,
 } from '../../__test__/utils';
@@ -93,6 +94,7 @@ describe('MessageBox', () => {
   let savedLog;
 
   beforeEach(() => {
+    vi.useFakeTimers();
     savedLog = console.log;
     console.log = function () {
       return true;
@@ -101,6 +103,7 @@ describe('MessageBox', () => {
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     spy.mockRestore();
     console.log = savedLog;
   });
@@ -110,7 +113,7 @@ describe('MessageBox', () => {
     await nextTick();
     const trigger = wrapper.find('.btn');
     trigger.trigger('click');
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
@@ -119,7 +122,8 @@ describe('MessageBox', () => {
       'This is an alert message.'
     );
     document.querySelector('.modal .btn').click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
@@ -134,7 +138,7 @@ describe('MessageBox', () => {
     await nextTick();
     const trigger = wrapper.find('.btn');
     trigger.trigger('click');
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
@@ -142,7 +146,8 @@ describe('MessageBox', () => {
       'Confirm'
     );
     document.querySelectorAll('.modal .btn')[0].click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
@@ -157,7 +162,7 @@ describe('MessageBox', () => {
     await nextTick();
     const trigger = wrapper.find('.btn');
     trigger.trigger('click');
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
@@ -165,7 +170,8 @@ describe('MessageBox', () => {
       'Confirm'
     );
     document.querySelectorAll('.modal .btn')[1].click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
@@ -180,7 +186,7 @@ describe('MessageBox', () => {
     await nextTick();
     const trigger = wrapper.find('.btn');
     trigger.trigger('click');
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
@@ -188,7 +194,8 @@ describe('MessageBox', () => {
       'Welcome'
     );
     document.querySelectorAll('.modal .btn')[0].click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
@@ -203,7 +210,7 @@ describe('MessageBox', () => {
     await nextTick();
     const trigger = wrapper.find('.btn');
     trigger.trigger('click');
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
@@ -215,13 +222,14 @@ describe('MessageBox', () => {
     triggerEvent(input, 'input');
     await nextTick();
     document.querySelectorAll('.modal .btn')[1].click();
-    await nextTick();
+    await flushPromises();
     const formGroup = document.querySelector('.modal .form-group');
     expect(formGroup.className).not.toContain('has-error');
     expect(formGroup.querySelector('.help-block').style.display).toEqual(
       'none'
     );
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
     expect(document.querySelector('.alert')).toBeDefined();
@@ -235,7 +243,7 @@ describe('MessageBox', () => {
     await nextTick();
     const trigger = wrapper.find('.btn');
     trigger.trigger('click');
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
@@ -256,12 +264,14 @@ describe('MessageBox', () => {
     expect(formGroup.querySelector('.help-block').textContent).toEqual(
       'Email address is not valid!'
     );
-    await sleep(transition);
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal')).toBeDefined();
     document.querySelectorAll('.modal .btn')[0].click();
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
     await nextTick();
-    await sleep(transition);
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
     expect(document.querySelector('.alert')).toBeDefined();
