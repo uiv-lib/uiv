@@ -137,7 +137,7 @@ const monthDayRows = computed(() => {
   const startIndex = firstDay.getDay();
   // console.log(startIndex)
   const daysNum = daysInMonth(props.month, props.year);
-  let weekOffset = 0;
+  let weekOffset;
   if (props.weekStartsWith > startIndex) {
     weekOffset = 7 - props.weekStartsWith;
   } else {

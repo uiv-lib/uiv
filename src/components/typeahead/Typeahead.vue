@@ -191,7 +191,7 @@ function prepareItems(data, disableFilters = false) {
     const item = data[i];
     let key = props.itemKey ? item[props.itemKey] : item;
     key = key.toString();
-    let index = -1;
+    let index;
     if (props.ignoreCase) {
       index = key.toLowerCase().indexOf(inputEl.value.value.toLowerCase());
     } else {

@@ -30,8 +30,8 @@ function baseVm() {
 }
 
 describe('Typeahead', () => {
-  // `server` is used by skipped async tests below; kept for lint compliance.
-  let server;
+  // `server` is referenced by skipped async tests below.
+  let server = null;
 
   it('should be able to set and clear typeahead model manually', async () => {
     const wrapper = baseVm();

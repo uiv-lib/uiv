@@ -24,13 +24,11 @@ const styles = computed(() => ({
 }));
 
 function onScroll() {
-  if (
-    !(
-      el.value?.offsetWidth ||
-      el.value?.offsetHeight ||
-      el.value?.getClientRects().length
-    )
-  ) {
+  if (!(
+    el.value?.offsetWidth ||
+    el.value?.offsetHeight ||
+    el.value?.getClientRects().length
+  )) {
     return;
   }
   // get window scroll and element position to detect if have to be normal or affixed

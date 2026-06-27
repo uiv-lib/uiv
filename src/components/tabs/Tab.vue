@@ -60,7 +60,7 @@ export default {
           try {
             this.$parent.$emit('changed', this.$parent.activeIndex);
           } catch (e) {
-            throw new Error('<tab> parent must be <tabs>.');
+            throw new Error('<tab> parent must be <tabs>.', { cause: e });
           }
         }, this.transition);
       } else {
@@ -75,7 +75,7 @@ export default {
     try {
       this.$parent.tabs.push(this);
     } catch (e) {
-      throw new Error('<tab> parent must be <tabs>.');
+      throw new Error('<tab> parent must be <tabs>.', { cause: e });
     }
   },
   mounted() {

@@ -73,7 +73,7 @@ describe('DatePicker.vue', () => {
           `${now.getFullYear()} ${now.toDateString().split(' ')[1]}`
         );
         // console.log(`${now.getFullYear()} ${now.toDateString().split(' ')[1]}`)
-        await goPrev(--i, actionBtn, now, textBtn);
+        await goPrev(i - 1, actionBtn, now, textBtn);
       }
     };
     await nextTick();
@@ -101,7 +101,7 @@ describe('DatePicker.vue', () => {
           `${now.getFullYear()} ${now.toDateString().split(' ')[1]}`
         );
         // console.log(`${now.getFullYear()} ${now.toDateString().split(' ')[1]}`)
-        await goNext(--i, actionBtn, now, textBtn);
+        await goNext(i - 1, actionBtn, now, textBtn);
       }
     };
     await nextTick();
