@@ -46,7 +46,7 @@
     "@vue/compiler-sfc": "3.5.39",
     "@vue/test-utils": "2.4.11",
     "@vitest/coverage-v8": "4.1.9",
-    "axios": "1.16.0",
+    "axios": "1.18.1",
     "bootstrap": "3.4.1",
     "eslint": "10.6.0",
     "eslint-config-prettier": "10.1.8",
