@@ -39,7 +39,7 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.4",
+    "@eslint/js": "^10.0.0",
     "@vitejs/plugin-vue": "6.0.7",
     "@vitejs/plugin-vue-jsx": "5.1.6",
     "@vue/compiler-sfc": "3.5.39",
