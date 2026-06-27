@@ -15,7 +15,7 @@ export default defineConfig({
     exclude: ['test/**', 'node_modules/**', 'docs/**'],
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'html'],
+      reporter: ['text', 'html', 'lcov'],
       include: ['src/**/*'],
       exclude: ['src/__test__/**', '**/*.snap'],
     },
