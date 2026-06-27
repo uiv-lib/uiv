@@ -7,3 +7,4 @@ dist-docs/
 dist/
 .idea
 docs/.vitepress/cache
+*_claude/*

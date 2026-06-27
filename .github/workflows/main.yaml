@@ -8,28 +8,28 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7.0.0
+      - uses: actions/setup-node@v6.4.0
         with:
-          node-version: 16
+          node-version: 20
           registry-url: 'https://registry.npmjs.org'
-      - uses: pnpm/action-setup@v2.4.1
+      - uses: pnpm/action-setup@v6.0.9
         with:
-          version: 7.33.7
+          version: 11.9.0
           run_install: true
       - name: Lint
         run: pnpm run lint
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7.0.0
+      - uses: actions/setup-node@v6.4.0
         with:
-          node-version: 16
+          node-version: 20
           registry-url: 'https://registry.npmjs.org'
-      - uses: pnpm/action-setup@v2.4.1
+      - uses: pnpm/action-setup@v6.0.9
         with:
-          version: 7.33.7
+          version: 11.9.0
           run_install: true
       - name: Unit tests
         run: pnpm run test
@@ -41,28 +41,28 @@ jobs:
   dist:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7.0.0
+      - uses: actions/setup-node@v6.4.0
         with:
-          node-version: 16
+          node-version: 20
           registry-url: 'https://registry.npmjs.org'
-      - uses: pnpm/action-setup@v2.4.1
+      - uses: pnpm/action-setup@v6.0.9
         with:
-          version: 7.33.7
+          version: 11.9.0
           run_install: true
       - name: Build dist
         run: pnpm run dist
   docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7.0.0
+      - uses: actions/setup-node@v6.4.0
         with:
-          node-version: 16
+          node-version: 20
           registry-url: 'https://registry.npmjs.org'
-      - uses: pnpm/action-setup@v2.4.1
+      - uses: pnpm/action-setup@v6.0.9
         with:
-          version: 7.33.7
+          version: 11.9.0
           run_install: true
       - name: Build dist
         run: pnpm run docs:build

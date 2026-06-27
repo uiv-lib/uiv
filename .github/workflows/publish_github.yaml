@@ -9,10 +9,10 @@ jobs:
   publish_github:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7.0.0
+      - uses: actions/setup-node@v6.4.0
         with:
-          node-version: 16
+          node-version: 20
           registry-url: 'https://registry.npmjs.org'
       - name: change package name
         uses: deef0000dragon1/json-edit-action@v1
@@ -20,9 +20,9 @@ jobs:
           KEY: name
           VALUE: "@uiv-lib/uiv"
           FILE: package.json
-      - uses: pnpm/action-setup@v2.4.1
+      - uses: pnpm/action-setup@v6.0.9
         with:
-          version: 7.33.7
+          version: 11.9.0
           run_install: true
       - name: Build dist
         run: pnpm run dist
