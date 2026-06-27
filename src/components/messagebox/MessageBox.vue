@@ -105,7 +105,6 @@ const props = defineProps({
 });
 
 const show = ref(true);
-// eslint-disable-next-line vue/no-setup-props-destructure
 const input = ref(props.defaultValue ?? '');
 const dirty = ref(false);
 const modal = ref(null);

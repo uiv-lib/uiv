@@ -53,7 +53,6 @@ const init = (options, cb, resolve = null, reject = null) => {
   queue.push(vNode.component.ctx);
 };
 
-// eslint-disable-next-line default-param-last
 const _notify = (options = {}, cb) => {
   // simplify usage: pass string as option.content
   if (isString(options)) {
