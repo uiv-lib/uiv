@@ -1,4 +1,4 @@
-<script lang="jsx">
+<script>
 import { h } from 'vue';
 import { TRIGGERS } from '../../utils/dom.utils';
 import popupMixin from '../../mixins/popup.mixin';

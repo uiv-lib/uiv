@@ -1,4 +1,4 @@
-<script lang="jsx">
+<script>
 import {
   setDropdownPosition,
   on,
@@ -8,6 +8,7 @@ import {
 } from '../../utils/dom.utils';
 import {
   defineComponent,
+  h,
   onBeforeUnmount,
   onMounted,
   ref,
@@ -180,29 +181,37 @@ export default defineComponent({
 
     return () => {
       const Tag = props.tag;
-      return (
-        <Tag
-          ref={element}
-          class={{
+      return h(
+        Tag,
+        {
+          ref: element,
+          class: {
             'btn-group': props.tag === DEFAULT_TAG,
             dropdown: !props.dropup,
             dropup: props.dropup,
             open: show.value,
-          }}
-        >
-          {slots.default?.()}
-          <Teleport to="body" disabled={!props.appendToBody || !show.value}>
-            <ul
-              ref={dropdown}
-              class={{
-                'dropdown-menu': true,
-                'dropdown-menu-right': props.menuRight,
-              }}
-            >
-              {slots.dropdown?.()}
-            </ul>
-          </Teleport>
-        </Tag>
+          },
+        },
+        [
+          slots.default?.(),
+          h(
+            Teleport,
+            { to: 'body', disabled: !props.appendToBody || !show.value },
+            [
+              h(
+                'ul',
+                {
+                  ref: dropdown,
+                  class: {
+                    'dropdown-menu': true,
+                    'dropdown-menu-right': props.menuRight,
+                  },
+                },
+                slots.dropdown?.()
+              ),
+            ]
+          ),
+        ]
       );
     };
   },

@@ -1,5 +1,4 @@
 import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx';
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
@@ -9,7 +8,7 @@ console.log('env:', UIV_ENTRY, UIV_FILENAME);
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueJsx()],
+  plugins: [vue()],
   build: {
     emptyOutDir: false,
     lib: {
