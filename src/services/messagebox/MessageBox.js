@@ -35,7 +35,8 @@ const init = function (type, options, cb, resolve = null, reject = null) {
         } else {
           cb(msg);
         }
-      } else if (resolve && reject) {
+      }
+      if (resolve && reject) {
         if (type === TYPES.CONFIRM) {
           shallResolve(type, msg) ? resolve(msg) : reject(msg);
         } else if (type === TYPES.PROMPT) {

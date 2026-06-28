@@ -61,7 +61,7 @@ describe('MessageBox Service', () => {
         defaultValue: 'testtest',
       },
       console.log
-    );
+    ).catch(() => {});
     vi.advanceTimersByTime(transition);
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
@@ -187,7 +187,7 @@ describe('MessageBox Service', () => {
   });
 
   it('should be able to use confirm with cancel callback', async () => {
-    MessageBox.confirm({}, console.log);
+    MessageBox.confirm({}, console.log).catch(() => {});
     vi.advanceTimersByTime(transition);
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
@@ -216,8 +216,60 @@ describe('MessageBox Service', () => {
     expect(spy).toBeCalledWith(null, 'ok');
   });
 
+  it('should resolve the returned promise even when a callback is given', async () => {
+    let callbackArg;
+    let resolved;
+    let rejected;
+    const promise = MessageBox.confirm({}, (err, value) => {
+      callbackArg = { err, value };
+    });
+    promise.then(
+      (v) => {
+        resolved = v;
+      },
+      (r) => {
+        rejected = r;
+      }
+    );
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    document.querySelectorAll('.modal .btn')[1].click();
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    expect(callbackArg).toEqual({ err: null, value: 'ok' });
+    expect(resolved).toBe('ok');
+    expect(rejected).toBeUndefined();
+  });
+
+  it('should reject the returned promise on cancel even when a callback is given', async () => {
+    let callbackArg;
+    let resolved;
+    let rejected;
+    const promise = MessageBox.confirm({}, (err, value) => {
+      callbackArg = { err, value };
+    });
+    promise.then(
+      (v) => {
+        resolved = v;
+      },
+      (r) => {
+        rejected = r;
+      }
+    );
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    document.querySelectorAll('.modal .btn')[0].click();
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    expect(callbackArg).toEqual({ err: 'cancel', value: undefined });
+    expect(rejected).toBe('cancel');
+    expect(resolved).toBeUndefined();
+  });
+
   it('should be able to use prompt with ok callback', async () => {
-    MessageBox.prompt({}, console.log);
+    MessageBox.prompt({}, console.log).catch(() => {});
     vi.advanceTimersByTime(transition);
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();

@@ -195,8 +195,12 @@ describe('Notification service', () => {
 
   it('should fire the dismissed callback on close', async () => {
     let callbackFired = false;
-    Notification.notify({ content: 'test' }, () => {
+    let resolved;
+    const promise = Notification.notify({ content: 'test' }, () => {
       callbackFired = true;
+    });
+    promise.then((v) => {
+      resolved = v;
     });
     vi.advanceTimersByTime(transition);
     await nextTick();
@@ -207,6 +211,7 @@ describe('Notification service', () => {
     vi.advanceTimersByTime(transition);
     await nextTick();
     expect(callbackFired).toBe(true);
+    expect(resolved).toBeUndefined();
     expect(document.querySelector('.alert')).toBeNull();
   });
 

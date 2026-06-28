@@ -43,7 +43,8 @@ const init = (options, cb, resolve = null, reject = null) => {
       destroy(queue, { vNode, container });
       if (isFunction(cb)) {
         cb(msg);
-      } else if (resolve && reject) {
+      }
+      if (resolve) {
         resolve(msg);
       }
     },
