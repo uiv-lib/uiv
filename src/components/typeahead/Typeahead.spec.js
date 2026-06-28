@@ -97,8 +97,7 @@ describe('Typeahead', () => {
     expect(dropdown.className).toContain('open');
   });
 
-  // fails on github ci but works locally, need to investigate
-  it.skip('should be able to close typeahead on input blur', async () => {
+  it('should be able to close typeahead on input blur', async () => {
     const wrapper = baseVm();
     const vm = wrapper.vm;
     await vm.$nextTick();

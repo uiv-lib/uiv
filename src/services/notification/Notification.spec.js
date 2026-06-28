@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 import { flushPromises } from '@vue/test-utils';
-import { nextTick, sleep, transition } from '../../__test__/utils';
+import { nextTick, transition } from '../../__test__/utils';
 import Notification from './Notification';
 
 describe('Notification service', () => {
@@ -35,19 +35,34 @@ describe('Notification service', () => {
     expect(document.querySelector('.alert')).toBeNull();
   });
 
-  it.skip('should be able to use without Promise', async () => {
-    // mute Promise
-    const savedPromise = window.Promise;
-    window.Promise = null;
-    // alert
-    Notification.notify({ title: 'test' });
-    // restore Promise
-    window.Promise = savedPromise;
-    await sleep(transition);
+  it('should be able to use without Promise', async () => {
+    const RealPromise = window.Promise;
+    function FakePromise(executor) {
+      executor(
+        () => {},
+        () => {}
+      );
+    }
+    FakePromise.resolve = (v) => RealPromise.resolve(v);
+    FakePromise.reject = (r) => RealPromise.reject(r);
+    FakePromise.all = (i) => RealPromise.all(i);
+    FakePromise.allSettled = (i) => RealPromise.allSettled(i);
+    FakePromise.race = (i) => RealPromise.race(i);
+    vi.stubGlobal('Promise', FakePromise);
+    let callbackFired = false;
+    Notification.notify({ title: 'test' }, () => {
+      callbackFired = true;
+    });
+    vi.unstubAllGlobals();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     const alert = document.querySelector('.alert');
     expect(alert).toBeDefined();
     alert.querySelector('button.close').click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    expect(callbackFired).toBe(true);
     expect(document.querySelector('.alert')).toBeNull();
   });
 

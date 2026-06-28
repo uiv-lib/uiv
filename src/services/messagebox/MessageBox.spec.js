@@ -1,11 +1,6 @@
 import { vi } from 'vitest';
 import { flushPromises } from '@vue/test-utils';
-import {
-  nextTick,
-  sleep,
-  transition,
-  triggerEvent,
-} from '../../__test__/utils';
+import { nextTick, transition, triggerEvent } from '../../__test__/utils';
 import MessageBox from './MessageBox';
 
 describe('MessageBox Service', () => {
@@ -84,11 +79,20 @@ describe('MessageBox Service', () => {
     expect(spy).toBeCalledWith('cancel');
   });
 
-  it.skip('should be able to work without browser Promise', async () => {
-    // mute Promise
-    const savedPromise = window.Promise;
-    window.Promise = null;
-    // alert
+  it('should be able to work without browser Promise', async () => {
+    const RealPromise = window.Promise;
+    function FakePromise(executor) {
+      executor(
+        () => {},
+        () => {}
+      );
+    }
+    FakePromise.resolve = (v) => RealPromise.resolve(v);
+    FakePromise.reject = (r) => RealPromise.reject(r);
+    FakePromise.all = (i) => RealPromise.all(i);
+    FakePromise.allSettled = (i) => RealPromise.allSettled(i);
+    FakePromise.race = (i) => RealPromise.race(i);
+    vi.stubGlobal('Promise', FakePromise);
     MessageBox.alert(
       {
         title: 'Title',
@@ -98,9 +102,9 @@ describe('MessageBox Service', () => {
         console.log('ok');
       }
     );
-    // restore Promise
-    window.Promise = savedPromise;
-    await sleep(transition);
+    vi.unstubAllGlobals();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
     expect(document.querySelector('.modal-title').textContent).toEqual('Title');
@@ -108,25 +112,38 @@ describe('MessageBox Service', () => {
       'This is an alert message.'
     );
     document.querySelector('.modal .btn').click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
     expect(spy).toBeCalledWith('ok');
   });
 
-  it.skip('should be able to work without browser Promise and callback', async () => {
-    // mute Promise
-    const savedPromise = window.Promise;
-    window.Promise = null;
-    // alert
+  it('should be able to work without browser Promise and callback', async () => {
+    const RealPromise = window.Promise;
+    function FakePromise(executor) {
+      executor(
+        () => {},
+        () => {}
+      );
+    }
+    FakePromise.resolve = (v) => RealPromise.resolve(v);
+    FakePromise.reject = (r) => RealPromise.reject(r);
+    FakePromise.all = (i) => RealPromise.all(i);
+    FakePromise.allSettled = (i) => RealPromise.allSettled(i);
+    FakePromise.race = (i) => RealPromise.race(i);
+    vi.stubGlobal('Promise', FakePromise);
     MessageBox.alert();
-    // restore Promise
-    window.Promise = savedPromise;
-    await sleep(transition);
+    vi.unstubAllGlobals();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
     expect(document.querySelector('.modal').className).toContain('in');
     document.querySelector('.modal .btn').click();
-    await sleep(transition);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
     expect(document.querySelector('.modal')).toBeNull();
   });

@@ -567,7 +567,7 @@ describe('Tabs', () => {
     expect(activeTab[0].querySelector('a').textContent).toEqual('Profile');
   });
 
-  it.skip('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {
+  it('should not be able to work if not using <tabs><tab>...</tab></tabs>', () => {
     expect(
       createWrapper.bind(null, '<tabs><tab><tab>{{ msg }}</tab></tab></tabs>', {
         msg: 'hello',

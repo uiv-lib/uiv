@@ -1,13 +1,27 @@
-import {
-  createWrapper,
-  keyCodes,
-  triggerEvent,
-  triggerKey,
-} from '../../__test__/utils';
+import { createWrapper, keyCodes, triggerEvent } from '../../__test__/utils';
 import _ from 'lodash';
 import MultiSelect from './MultiSelect.vue';
 
 describe('MultiSelect', () => {
+  // Vue 3 key modifiers (.enter/.up/.down) match on event.key, which the
+  // shared triggerKey helper does not set. Map the keyCodes used here to their
+  // KeyboardEvent.key names so @keydown.enter/up/down handlers fire under jsdom.
+  const keyByName = {
+    [keyCodes.enter]: 'Enter',
+    [keyCodes.up]: 'ArrowUp',
+    [keyCodes.down]: 'ArrowDown',
+  };
+  const keyDown = (el, keyCode) => {
+    el.dispatchEvent(
+      new KeyboardEvent('keydown', {
+        key: keyByName[keyCode],
+        keyCode,
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+  };
+
   it('should be able to render with no options', async () => {
     const wrapper = createWrapper(
       '<div><multi-select v-model="selected" :options="options"/></div>',
@@ -632,7 +646,7 @@ describe('MultiSelect', () => {
     expect(dropdown.querySelectorAll('li').length).toEqual(5 + 1);
   });
 
-  it.skip('should be able to use keyboard nav & select', async () => {
+  it('should be able to use keyboard nav & select', async () => {
     const wrapper = createWrapper(
       `<div>
 <multi-select v-model="selected" :options="options"/>
@@ -653,135 +667,138 @@ describe('MultiSelect', () => {
     const trigger = dropdown.querySelector('.dropdown-toggle');
     const display = dropdown.querySelectorAll('.dropdown-toggle > div')[1];
     expect(dropdown.className).not.toContain('open');
-    // nothing happens
-    triggerKey(trigger, keyCodes.up);
+    // nothing happens while closed
+    keyDown(trigger, keyCodes.up);
     await vm.$nextTick();
-    // nothing happens
-    triggerKey(trigger, keyCodes.down);
+    keyDown(trigger, keyCodes.down);
     await vm.$nextTick();
-    // open dropdown
-    triggerKey(trigger, keyCodes.enter);
+    // open dropdown with Enter
+    keyDown(trigger, keyCodes.enter);
     await vm.$nextTick();
     expect(dropdown.className).toContain('open');
     expect(_.isEmpty(vm.selected)).toBeTruthy();
-    // nothing happens
-    triggerKey(trigger, keyCodes.enter);
+    // Enter with no active option selects nothing
+    keyDown(trigger, keyCodes.enter);
     await vm.$nextTick();
     expect(_.isEmpty(vm.selected)).toBeTruthy();
+    // From here, dispatch keydown on an option <li> so the @keydown.stop on the
+    // li isolates MultiSelect's goNextOption/goPrevOption/selectOption handlers
+    // from the Dropdown component's own focus-based keypress handler that is
+    // bound to the trigger and the dropdown <ul>.
+    const optionLi = () => dropdown.querySelector('li:not(.dropdown-header)');
     // select option 1
-    triggerKey(trigger, keyCodes.down);
+    keyDown(optionLi(), keyCodes.down);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[0].className).toContain('active');
-    triggerKey(trigger, keyCodes.enter);
+    keyDown(optionLi(), keyCodes.enter);
     await vm.$nextTick();
     expect(display.textContent).toEqual('Option1');
     expect(_.isEqual(vm.selected, [1])).toBeTruthy();
     // select option 2
-    triggerKey(trigger, keyCodes.down);
+    keyDown(optionLi(), keyCodes.down);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[1].className).toContain('active');
-    triggerKey(trigger, keyCodes.enter);
+    keyDown(optionLi(), keyCodes.enter);
     await vm.$nextTick();
     expect(display.textContent).toEqual('Option1, Option2');
     expect(_.isEqual(vm.selected, [1, 2])).toBeTruthy();
     // select option 3
-    triggerKey(trigger, keyCodes.down);
+    keyDown(optionLi(), keyCodes.down);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[2].className).toContain('active');
-    triggerKey(trigger, keyCodes.enter);
+    keyDown(optionLi(), keyCodes.enter);
     await vm.$nextTick();
     expect(display.textContent).toEqual('Option1, Option2, Option3');
     expect(_.isEqual(vm.selected, [1, 2, 3])).toBeTruthy();
     // select option 4
-    triggerKey(trigger, keyCodes.down);
+    keyDown(optionLi(), keyCodes.down);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[3].className).toContain('active');
-    triggerKey(trigger, keyCodes.enter);
+    keyDown(optionLi(), keyCodes.enter);
     await vm.$nextTick();
     expect(display.textContent).toEqual('Option1, Option2, Option3, Option4');
     expect(_.isEqual(vm.selected, [1, 2, 3, 4])).toBeTruthy();
     // select option 5
-    triggerKey(trigger, keyCodes.down);
+    keyDown(optionLi(), keyCodes.down);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[4].className).toContain('active');
-    triggerKey(trigger, keyCodes.enter);
+    keyDown(optionLi(), keyCodes.enter);
     await vm.$nextTick();
     expect(display.textContent).toEqual(
       'Option1, Option2, Option3, Option4, Option5'
     );
     expect(_.isEqual(vm.selected, [1, 2, 3, 4, 5])).toBeTruthy();
-    // unselect option 1
-    // go next (option 1)
-    triggerKey(trigger, keyCodes.down);
+    // go next wraps to option 1
+    keyDown(optionLi(), keyCodes.down);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[0].className).toContain('active');
-    // go prev (option 5)
-    triggerKey(trigger, keyCodes.up);
+    // go prev wraps to option 5
+    keyDown(optionLi(), keyCodes.up);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[4].className).toContain('active');
-    // go prev (option 4)
-    triggerKey(trigger, keyCodes.up);
+    // go prev to option 4
+    keyDown(optionLi(), keyCodes.up);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[3].className).toContain('active');
-    // go next (option 5)
-    triggerKey(trigger, keyCodes.down);
+    // go next to option 5
+    keyDown(optionLi(), keyCodes.down);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[4].className).toContain('active');
-    // go next (option 1)
-    triggerKey(trigger, keyCodes.down);
+    // go next wraps to option 1
+    keyDown(optionLi(), keyCodes.down);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[0].className).toContain('active');
-    // todo: why failed?
-    // triggerKey(trigger, keyCodes.enter)
-    // await vm.$nextTick()
-    // expect(display.textContent).toEqual('Option2, Option3, Option4, Option5')
-    // expect(_.isEqual(vm.selected, [2, 3, 4, 5])).toBeTruthy()
-    // // unselect option 2
-    // triggerKey(trigger, keyCodes.down)
-    // await vm.$nextTick()
-    // expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
-    // expect(dropdown.querySelectorAll('li')[1].className).toContain('active')
-    // triggerKey(trigger, keyCodes.enter)
-    // await vm.$nextTick()
-    // expect(display.textContent).toEqual('Option3, Option4, Option5')
-    // expect(_.isEqual(vm.selected, [3, 4, 5])).toBeTruthy()
-    // // unselect option 3
-    // triggerKey(trigger, keyCodes.down)
-    // await vm.$nextTick()
-    // expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
-    // expect(dropdown.querySelectorAll('li')[2].className).toContain('active')
-    // triggerKey(trigger, keyCodes.enter)
-    // await vm.$nextTick()
-    // expect(display.textContent).toEqual('Option4, Option5')
-    // expect(_.isEqual(vm.selected, [4, 5])).toBeTruthy()
-    // // unselect option 4
-    // triggerKey(trigger, keyCodes.down)
-    // await vm.$nextTick()
-    // expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
-    // expect(dropdown.querySelectorAll('li')[3].className).toContain('active')
-    // triggerKey(trigger, keyCodes.enter)
-    // await vm.$nextTick()
-    // expect(display.textContent).toEqual('Option5')
-    // expect(_.isEqual(vm.selected, [5])).toBeTruthy()
-    // // unselect option 5
-    // triggerKey(trigger, keyCodes.down)
-    // await vm.$nextTick()
-    // expect(dropdown.querySelectorAll('li.active').length).toEqual(1)
-    // expect(dropdown.querySelectorAll('li')[4].className).toContain('active')
-    // triggerKey(trigger, keyCodes.enter)
-    // await vm.$nextTick()
-    // expect(display.textContent).toEqual('Select...')
-    // expect(_.isEmpty(vm.selected)).toBeTruthy()
+    // unselect option 1
+    keyDown(optionLi(), keyCodes.enter);
+    await vm.$nextTick();
+    expect(display.textContent).toEqual('Option2, Option3, Option4, Option5');
+    expect(_.isEqual(vm.selected, [2, 3, 4, 5])).toBeTruthy();
+    // unselect option 2
+    keyDown(optionLi(), keyCodes.down);
+    await vm.$nextTick();
+    expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
+    expect(dropdown.querySelectorAll('li')[1].className).toContain('active');
+    keyDown(optionLi(), keyCodes.enter);
+    await vm.$nextTick();
+    expect(display.textContent).toEqual('Option3, Option4, Option5');
+    expect(_.isEqual(vm.selected, [3, 4, 5])).toBeTruthy();
+    // unselect option 3
+    keyDown(optionLi(), keyCodes.down);
+    await vm.$nextTick();
+    expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
+    expect(dropdown.querySelectorAll('li')[2].className).toContain('active');
+    keyDown(optionLi(), keyCodes.enter);
+    await vm.$nextTick();
+    expect(display.textContent).toEqual('Option4, Option5');
+    expect(_.isEqual(vm.selected, [4, 5])).toBeTruthy();
+    // unselect option 4
+    keyDown(optionLi(), keyCodes.down);
+    await vm.$nextTick();
+    expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
+    expect(dropdown.querySelectorAll('li')[3].className).toContain('active');
+    keyDown(optionLi(), keyCodes.enter);
+    await vm.$nextTick();
+    expect(display.textContent).toEqual('Option5');
+    expect(_.isEqual(vm.selected, [5])).toBeTruthy();
+    // unselect option 5
+    keyDown(optionLi(), keyCodes.down);
+    await vm.$nextTick();
+    expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
+    expect(dropdown.querySelectorAll('li')[4].className).toContain('active');
+    keyDown(optionLi(), keyCodes.enter);
+    await vm.$nextTick();
+    expect(display.textContent).toEqual('Select...');
+    expect(_.isEmpty(vm.selected)).toBeTruthy();
   });
 
   it('should behave like single toggle while limit=1', async () => {
@@ -822,7 +839,7 @@ describe('MultiSelect', () => {
     expect(_.isEqual(vm.selected, [])).toBeTruthy();
   });
 
-  it.skip('should be able to display grouped options', async () => {
+  it('should be able to display grouped options', async () => {
     const wrapper = createWrapper(
       '<div><multi-select v-model="selected" :options="options"/></div>',
       {
@@ -849,50 +866,56 @@ describe('MultiSelect', () => {
       dropdown.querySelectorAll('.dropdown-header')[1].textContent
     ).toEqual('Color');
     // open dropdown
-    triggerKey(trigger, keyCodes.enter);
+    keyDown(trigger, keyCodes.enter);
     await vm.$nextTick();
-    // select option 1
-    triggerKey(trigger, keyCodes.down);
+    expect(dropdown.className).toContain('open');
+    // Dispatch keydown on an option <li> (not the trigger) so the li's
+    // @keydown.stop isolates MultiSelect's handlers from the Dropdown's
+    // focus-based keypress handler. Headers are skipped because they have no
+    // @keydown binding.
+    const optionLi = () => dropdown.querySelector('li:not(.dropdown-header)');
+    // select option 1 (Apple)
+    keyDown(optionLi(), keyCodes.down);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[1].className).toContain('active');
-    triggerKey(trigger, keyCodes.enter);
+    keyDown(optionLi(), keyCodes.enter);
     await vm.$nextTick();
     expect(display.textContent).toEqual('Apple');
     expect(_.isEqual(vm.selected, [1])).toBeTruthy();
-    // select option 2
-    triggerKey(trigger, keyCodes.down);
+    // select option 2 (Banana)
+    keyDown(optionLi(), keyCodes.down);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[2].className).toContain('active');
-    triggerKey(trigger, keyCodes.enter);
+    keyDown(optionLi(), keyCodes.enter);
     await vm.$nextTick();
     expect(display.textContent).toEqual('Apple, Banana');
     expect(_.isEqual(vm.selected, [1, 2])).toBeTruthy();
-    // select option 3
-    triggerKey(trigger, keyCodes.down);
+    // select option 3 (Orange)
+    keyDown(optionLi(), keyCodes.down);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[3].className).toContain('active');
-    triggerKey(trigger, keyCodes.enter);
+    keyDown(optionLi(), keyCodes.enter);
     await vm.$nextTick();
     expect(display.textContent).toEqual('Apple, Banana, Orange');
     expect(_.isEqual(vm.selected, [1, 2, 3])).toBeTruthy();
-    // select option 4
-    triggerKey(trigger, keyCodes.down);
+    // select option 4 (Red, after the Color header)
+    keyDown(optionLi(), keyCodes.down);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[5].className).toContain('active');
-    triggerKey(trigger, keyCodes.enter);
+    keyDown(optionLi(), keyCodes.enter);
     await vm.$nextTick();
     expect(display.textContent).toEqual('Apple, Banana, Orange, Red');
     expect(_.isEqual(vm.selected, [1, 2, 3, 4])).toBeTruthy();
-    // select option 5
-    triggerKey(trigger, keyCodes.down);
+    // select option 5 (Green)
+    keyDown(optionLi(), keyCodes.down);
     await vm.$nextTick();
     expect(dropdown.querySelectorAll('li.active').length).toEqual(1);
     expect(dropdown.querySelectorAll('li')[6].className).toContain('active');
-    triggerKey(trigger, keyCodes.enter);
+    keyDown(optionLi(), keyCodes.enter);
     await vm.$nextTick();
     expect(display.textContent).toEqual('Apple, Banana, Orange, Red, Green');
     expect(_.isEqual(vm.selected, [1, 2, 3, 4, 5])).toBeTruthy();

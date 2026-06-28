@@ -1,10 +1,5 @@
 import { vi } from 'vitest';
-import {
-  createWrapper,
-  nextTick,
-  sleep,
-  triggerEvent,
-} from '../../__test__/utils';
+import { createWrapper, nextTick, triggerEvent } from '../../__test__/utils';
 
 describe('Tooltip', () => {
   beforeEach(() => {
@@ -194,7 +189,7 @@ describe('Tooltip', () => {
     );
   });
 
-  it.skip('should handle being updated while showing when directive', async () => {
+  it('should handle being updated while showing when directive', async () => {
     const wrapper = createWrapper(
       '<btn v-tooltip.hover="{ text: msg, showDelay: 150 }">{{test}}</btn>',
       {
@@ -206,19 +201,22 @@ describe('Tooltip', () => {
     await vm.$nextTick();
     const trigger = vm.$el;
     triggerEvent(trigger, 'mouseenter');
-    await sleep(50);
+    vi.advanceTimersByTime(50);
+    await nextTick();
     vm.msg = 'title2';
     vm.test = 'test2';
-    await vm.$nextTick();
+    await nextTick();
     triggerEvent(trigger, 'mouseenter');
-    await sleep(150);
+    vi.advanceTimersByTime(150);
+    await nextTick();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip).toBeDefined();
-    expect(tooltip.querySelector('.tooltip-inner')).toEqual('title2');
+    expect(tooltip.querySelector('.tooltip-inner').textContent).toEqual(
+      'title2'
+    );
   });
 
-  // fails on github ci but works locally, need to investigate
-  it.skip('should support show and hide delay when directive', async () => {
+  it('should support show and hide delay when directive', async () => {
     const wrapper = createWrapper(
       '<btn v-tooltip.hover="{ text: msg, showDelay: 300, hideDelay: 400 }">test</btn>',
       {
@@ -229,16 +227,20 @@ describe('Tooltip', () => {
     await vm.$nextTick();
     const trigger = vm.$el;
     triggerEvent(trigger, 'mouseenter');
+    vi.advanceTimersByTime(150);
+    await nextTick();
     // not shown yet
-    await sleep(150);
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
-    await sleep(150);
+    vi.advanceTimersByTime(150);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(1);
     triggerEvent(trigger, 'mouseleave');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     // not hidden yet
     expect(document.querySelectorAll('.tooltip').length).toEqual(1);
-    await sleep(400);
+    vi.advanceTimersByTime(400);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
   });
 

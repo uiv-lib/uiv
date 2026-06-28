@@ -1,10 +1,5 @@
 import { vi } from 'vitest';
-import {
-  createWrapper,
-  nextTick,
-  sleep,
-  triggerEvent,
-} from '../../__test__/utils';
+import { createWrapper, nextTick, triggerEvent } from '../../__test__/utils';
 
 describe('Popover', () => {
   beforeEach(() => {
@@ -373,8 +368,7 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
-  // fails on github ci but works locally, need to investigate
-  it.skip('should be able to change trigger to hover', async () => {
+  it('should be able to change trigger to hover', async () => {
     const wrapper = createWrapper(
       '<btn v-popover.hover="{title:\'Title\', content:\'Popover content\'}" type="primary">Hover</btn>'
     );
@@ -383,10 +377,12 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     const trigger = vm.$el;
     triggerEvent(trigger, 'mouseenter');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     triggerEvent(trigger, 'mouseleave');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -619,8 +615,7 @@ This is a very very long text. This is a very very long text. This is a very ver
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
-  // fails on github ci but works locally, need to investigate
-  it.skip('should be able to show/hide on specified delay', async function () {
+  it('should be able to show/hide on specified delay', async function () {
     const wrapper = createWrapper(
       '<popover :showDelay="300" :hideDelay="400" trigger="hover" title="123"><button></button></popover>'
     );
@@ -628,16 +623,20 @@ This is a very very long text. This is a very very long text. This is a very ver
     await vm.$nextTick();
     const trigger = vm.$el.querySelector('button');
     triggerEvent(trigger, 'mouseenter');
-    await sleep(150);
+    vi.advanceTimersByTime(150);
+    await nextTick();
     // not shown yet
     expect(document.querySelectorAll('.popover').length).toEqual(0);
-    await sleep(150);
+    vi.advanceTimersByTime(150);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     triggerEvent(trigger, 'mouseleave');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     // not hidden yet
     expect(document.querySelectorAll('.popover').length).toEqual(1);
-    await sleep(400);
+    vi.advanceTimersByTime(400);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
