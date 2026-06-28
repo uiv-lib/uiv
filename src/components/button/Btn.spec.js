@@ -343,4 +343,27 @@ describe('Btn', () => {
     const btn = wrapper.find('.btn');
     expect(btn.text()).toEqual('test');
   });
+
+  it('should render button with native-type=submit', () => {
+    const wrapper = createWrapper('<btn native-type="submit">Submit</btn>');
+    const btn = wrapper.find('button.btn');
+    expect(btn.attributes('type')).toEqual('submit');
+  });
+
+  it('should render button with native-type=reset', () => {
+    const wrapper = createWrapper('<btn native-type="reset">Reset</btn>');
+    const btn = wrapper.find('button.btn');
+    expect(btn.attributes('type')).toEqual('reset');
+  });
+
+  it('should pass RouterLink props (replace) when rendered as router link', () => {
+    const wrapper = createWrapper('<btn to="/foo" replace>Replace</btn>');
+    const btn = wrapper.find('.btn');
+    const link = btn.findComponent(RouterLinkStub);
+    expect(link.exists()).toBe(true);
+    expect(link.props('to')).toEqual('/foo');
+    // RouterLinkStub only declares `to`/`custom` as props, so `replace`
+    // falls through to the rendered <a> via $attrs.
+    expect(btn.attributes('replace')).toBe('true');
+  });
 });

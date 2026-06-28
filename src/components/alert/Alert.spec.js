@@ -24,6 +24,21 @@ describe('Alert', () => {
     expect(wrapper.classes()).toContain(DEFAULT_ALERT_CLASS);
   });
 
+  it('should apply alert-success class for type=success', () => {
+    const wrapper = createWrapper(`<alert type="success">EMT YES</alert>`);
+    expect(wrapper.findComponent(Alert).classes()).toContain('alert-success');
+  });
+
+  it('should apply alert-danger class for type=danger', () => {
+    const wrapper = createWrapper(`<alert type="danger">EMT YES</alert>`);
+    expect(wrapper.findComponent(Alert).classes()).toContain('alert-danger');
+  });
+
+  it('should apply alert-warning class for type=warning', () => {
+    const wrapper = createWrapper(`<alert type="warning">EMT YES</alert>`);
+    expect(wrapper.findComponent(Alert).classes()).toContain('alert-warning');
+  });
+
   it('should be able to dismiss alerts', async () => {
     const wrapper = createWrapper(
       `<section>

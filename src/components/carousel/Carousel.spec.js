@@ -211,6 +211,51 @@ describe('Carousel', () => {
     );
   });
 
+  it('should apply direction classes during slide transition then settle on active', async () => {
+    const wrapper = createWrapper(
+      '<carousel v-model="index"><slide v-for="i in 3" :key="i">slide {{ i }}</slide></carousel>',
+      {
+        index: 0,
+      }
+    );
+    await nextTick();
+    const items = () => wrapper.findAll('.carousel-inner .item');
+    expect(items()[0].classes()).toContain('active');
+
+    wrapper.findAll('.carousel-control.right')[0].trigger('click');
+    await nextTick();
+
+    expect(items()[1].classes()).toContain('next');
+    expect(items()[1].classes()).toContain('left');
+    expect(items()[0].classes()).toContain('active');
+    expect(items()[0].classes()).toContain('left');
+
+    vi.advanceTimersByTime(600);
+    await nextTick();
+    expect(wrapper.findAll('.carousel-inner .item.active').length).toEqual(1);
+    expect(items()[1].classes()).toContain('active');
+    expect(items()[0].classes()).not.toContain('active');
+    expect(items()[0].classes()).not.toContain('left');
+    expect(items()[1].classes()).not.toContain('next');
+  });
+
+  it('should emit change event with the new slide index', async () => {
+    const wrapper = createWrapper(
+      '<carousel v-model="index"><slide v-for="i in 3" :key="i">slide {{ i }}</slide></carousel>',
+      {
+        index: 0,
+      }
+    );
+    await nextTick();
+    wrapper.findAll('.carousel-control.right')[0].trigger('click');
+    await nextTick();
+    vi.advanceTimersByTime(600);
+    await nextTick();
+    const changeEvents = wrapper.findComponent(Carousel).emitted('change');
+    expect(changeEvents).toBeTruthy();
+    expect(changeEvents[0]).toEqual([1]);
+  });
+
   it('should pause on mouseenter and resume on mouseleave', async () => {
     wrapper.vm.interval = 500;
     await nextTick();

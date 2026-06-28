@@ -328,4 +328,44 @@ describe('Dropdown', () => {
     const wrapper = createWrapper('<dropdown/>');
     await nextTick();
   });
+
+  it('should close dropdown on window touchend outside trigger', async () => {
+    const wrapper = baseVm();
+    const dropdown = wrapper.find('.dropdown');
+    const trigger = dropdown.find('button');
+    await triggerEvent(trigger, 'click');
+    expect(dropdown.classes()).toContain('open');
+    const evt = new Event('touchend', { bubbles: true });
+    Object.defineProperty(evt, 'target', {
+      writable: false,
+      value: document.body,
+    });
+    window.dispatchEvent(evt);
+    await nextTick();
+    expect(dropdown.classes()).not.toContain('open');
+  });
+
+  it('should accept a custom position-element prop with append-to-body', async () => {
+    const anchor = document.createElement('div');
+    document.body.appendChild(anchor);
+    const wrapper = createWrapper(
+      `<dropdown ref="dd" append-to-body :position-element="anchor">
+  <button class="dropdown-toggle">Toggle</button>
+  <template #dropdown>
+    <li><a role="button">Action</a></li>
+  </template>
+</dropdown>`,
+      {
+        anchor,
+      }
+    );
+    await nextTick();
+    const dropdown = wrapper.find('.dropdown');
+    const trigger = dropdown.find('button');
+    await triggerEvent(trigger, 'click');
+    expect(dropdown.classes()).toContain('open');
+    const menu = document.querySelector('body > .dropdown-menu');
+    expect(menu).not.toBeNull();
+    expect(menu.style.display).toEqual('block');
+  });
 });

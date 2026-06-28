@@ -573,4 +573,95 @@ describe('TimePicker', () => {
     const minutesInput = vm.$el.querySelectorAll('input')[1];
     expect(minutesInput.style.width).toEqual(`${inputWidth}px`);
   });
+
+  it('should increase hour on hours input keydown.up', async () => {
+    const d = new Date();
+    d.setHours(9);
+    d.setMinutes(0);
+    const wrapper = baseVm(d);
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const hoursInput = vm.$el.querySelectorAll('input')[0];
+    const before = parseInt(hoursInput.value);
+    triggerEvent(hoursInput, 'keydown', { key: 'ArrowUp', keyCode: 38 });
+    await vm.$nextTick();
+    const after = parseInt(hoursInput.value);
+    expect(after).toEqual(before + 1);
+  });
+
+  it('should decrease hour on hours input keydown.down', async () => {
+    const d = new Date();
+    d.setHours(9);
+    d.setMinutes(0);
+    const wrapper = baseVm(d);
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const hoursInput = vm.$el.querySelectorAll('input')[0];
+    const before = parseInt(hoursInput.value);
+    triggerEvent(hoursInput, 'keydown', { key: 'ArrowDown', keyCode: 40 });
+    await vm.$nextTick();
+    const after = parseInt(hoursInput.value);
+    expect(after).toEqual(before - 1);
+  });
+
+  it('should increase minute on minutes input keydown.up', async () => {
+    const d = new Date();
+    d.setHours(9);
+    d.setMinutes(30);
+    const wrapper = baseVm(d);
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const minutesInput = vm.$el.querySelectorAll('input')[1];
+    const before = parseInt(minutesInput.value);
+    triggerEvent(minutesInput, 'keydown', { key: 'ArrowUp', keyCode: 38 });
+    await vm.$nextTick();
+    const after = parseInt(minutesInput.value);
+    expect(after).toEqual(before + 1);
+  });
+
+  it('should decrease minute on minutes input keydown.down', async () => {
+    const d = new Date();
+    d.setHours(9);
+    d.setMinutes(30);
+    const wrapper = baseVm(d);
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const minutesInput = vm.$el.querySelectorAll('input')[1];
+    const before = parseInt(minutesInput.value);
+    triggerEvent(minutesInput, 'keydown', { key: 'ArrowDown', keyCode: 40 });
+    await vm.$nextTick();
+    const after = parseInt(minutesInput.value);
+    expect(after).toEqual(before - 1);
+  });
+
+  it('should wrap hour from 23 to 0 on keydown.up in 24h mode', async () => {
+    const d = new Date();
+    d.setHours(23);
+    d.setMinutes(0);
+    const wrapper = h24Vm(d);
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const hoursInput = vm.$el.querySelectorAll('input')[0];
+    expect(parseInt(hoursInput.value)).toEqual(23);
+    triggerEvent(hoursInput, 'keydown', { key: 'ArrowUp', keyCode: 38 });
+    await vm.$nextTick();
+    expect(parseInt(hoursInput.value)).toEqual(0);
+  });
+
+  it('should wrap minute from 59 to 0 and increment hour on keydown.up', async () => {
+    const d = new Date();
+    d.setHours(9);
+    d.setMinutes(59);
+    const wrapper = h24Vm(d);
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const hoursInput = vm.$el.querySelectorAll('input')[0];
+    const minutesInput = vm.$el.querySelectorAll('input')[1];
+    expect(parseInt(hoursInput.value)).toEqual(9);
+    expect(parseInt(minutesInput.value)).toEqual(59);
+    triggerEvent(minutesInput, 'keydown', { key: 'ArrowUp', keyCode: 38 });
+    await vm.$nextTick();
+    expect(parseInt(hoursInput.value)).toEqual(10);
+    expect(parseInt(minutesInput.value)).toEqual(0);
+  });
 });

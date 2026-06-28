@@ -991,6 +991,24 @@ describe('Modal', () => {
     expect(document.querySelector('.modal-backdrop')).toBeDefined();
   });
 
+  it('should not apply fade class when transition is 0', async () => {
+    const wrapper = createWrapper(
+      '<modal v-model="open" title="No Fade" :transition="0"><p>No fade.</p></modal>',
+      {
+        open: true,
+      }
+    );
+    await nextTick();
+    vi.advanceTimersByTime(0);
+    await nextTick();
+    const modalEl = wrapper.vm.$el;
+    expect(modalEl.className).not.toContain('fade');
+    expect(modalEl.className).toContain('in');
+    const backdrop = document.querySelector('.modal-backdrop');
+    expect(backdrop.className).not.toContain('fade');
+    expect(backdrop.className).toContain('in');
+  });
+
   it('should close the top most modal only when ESC pressed', async () => {
     // enable body with overflow-y
     document.body.style.height = '9999px';

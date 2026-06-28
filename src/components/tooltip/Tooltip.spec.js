@@ -589,4 +589,21 @@ describe('Tooltip', () => {
     await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
   });
+
+  it('should hide immediately on mouseleave when unenterable modifier is present', async () => {
+    const wrapper = createWrapper(
+      '<btn v-tooltip.hover.unenterable="\'Tooltip content\'" type="primary">Hover</btn>'
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    const trigger = vm.$el;
+    triggerEvent(trigger, 'mouseenter');
+    vi.advanceTimersByTime(300);
+    await nextTick();
+    expect(document.querySelectorAll('.tooltip').length).toEqual(1);
+    triggerEvent(trigger, 'mouseleave');
+    vi.advanceTimersByTime(160);
+    await nextTick();
+    expect(document.querySelectorAll('.tooltip').length).toEqual(0);
+  });
 });

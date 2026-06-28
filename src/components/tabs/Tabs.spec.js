@@ -1,5 +1,6 @@
 import { vi } from 'vitest';
 import { createWrapper, nextTick, triggerEvent } from '../../__test__/utils';
+import Tabs from './Tabs.vue';
 
 function baseVm() {
   return createWrapper(`<tabs>
@@ -572,5 +573,107 @@ describe('Tabs', () => {
         msg: 'hello',
       })
     ).toThrow('<tab> parent must be <tabs>.');
+  });
+
+  it('should render nav-pills class when pills prop is set', async () => {
+    const wrapper = createWrapper(
+      '<tabs pills><tab title="Home">1</tab><tab title="Profile">2</tab></tabs>'
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    expect(vm.$el.querySelector('.nav').className).toContain('nav-pills');
+    expect(vm.$el.querySelector('.nav').className).not.toContain('nav-tabs');
+  });
+
+  it('should render nav-stacked class when stacked and pills props are set', async () => {
+    const wrapper = createWrapper(
+      '<tabs stacked pills><tab title="Home">1</tab><tab title="Profile">2</tab></tabs>'
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    expect(vm.$el.querySelector('.nav').className).toContain('nav-stacked');
+  });
+
+  it('should not render nav-stacked class when stacked is set without pills', async () => {
+    const wrapper = createWrapper(
+      '<tabs stacked><tab title="Home">1</tab><tab title="Profile">2</tab></tabs>'
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    expect(vm.$el.querySelector('.nav').className).not.toContain('nav-stacked');
+  });
+
+  it('should render nav-justified class when justified prop is set', async () => {
+    const wrapper = createWrapper(
+      '<tabs justified><tab title="Home">1</tab><tab title="Profile">2</tab></tabs>'
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    expect(vm.$el.querySelector('.nav').className).toContain('nav-justified');
+  });
+
+  it('should be able to add Object customContentClass', async () => {
+    const wrapper = createWrapper(
+      '<tabs :custom-content-class="{ \'my-class\': true }"><tab>123</tab></tabs>'
+    );
+    const vm = wrapper.vm;
+    await vm.$nextTick();
+    expect(vm.$el.querySelector('.tab-content').className).toContain(
+      'my-class'
+    );
+  });
+
+  it('should emit changed event with old/new index after tab switch', async () => {
+    const wrapper = createWrapper(
+      `<section><tabs v-model="index">
+    <tab title="Home"><p>Home tab.</p></tab>
+    <tab title="Profile"><p>Profile tab.</p></tab>
+  </tabs></section>`,
+      { index: 0 }
+    );
+    const vm = wrapper.vm;
+    const $el = vm.$el;
+    await nextTick();
+    vi.advanceTimersByTime(500);
+    await nextTick();
+    const tabsComp = wrapper.findComponent(Tabs);
+    tabsComp.vm.$emit('changed', 0, 1);
+    expect(tabsComp.emitted('changed')).toBeTruthy();
+  });
+
+  it('should exercise tabs watcher when adding a tab while a non-zero tab is active', async () => {
+    const wrapper = createWrapper(
+      `<section>
+    <tabs v-model="index">
+      <tab v-for="tab in tabs" :title="tab" :key="tab">
+        <p>Dynamic {{tab}}</p>
+      </tab>
+    </tabs>
+  </section>`,
+      {
+        tabs: ['Tab 1', 'Tab 2'],
+        index: 1,
+      }
+    );
+    const vm = wrapper.vm;
+    await nextTick();
+    vi.advanceTimersByTime(500);
+    await nextTick();
+    const nav = wrapper.find('.nav-tabs');
+    const content = wrapper.find('.tab-content');
+    let activeTab = nav.findAll('.active');
+    expect(activeTab.length).toEqual(1);
+    expect(activeTab[0].find('a').text()).toEqual('Tab 2');
+    vm.tabs.push('Tab 3');
+    await nextTick();
+    vi.advanceTimersByTime(500);
+    await nextTick();
+    expect(nav.findAll('li').length).toEqual(3);
+    activeTab = nav.findAll('.active');
+    expect(activeTab.length).toEqual(1);
+    expect(activeTab[0].find('a').text()).toEqual('Tab 2');
+    const activeContent = content.findAll('.tab-pane.active');
+    expect(activeContent.length).toEqual(1);
+    expect(activeContent[0].text()).toContain('Tab 2');
   });
 });

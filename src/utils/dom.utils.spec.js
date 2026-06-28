@@ -204,4 +204,169 @@ describe('dom.utils', () => {
       expect(dropdown.style.left[0]).not.toBe('-');
     });
   });
+
+  describe('#setTooltipPosition viewport', () => {
+    const mockRect = (el, rect) => {
+      jest.spyOn(el, 'getBoundingClientRect').mockReturnValue(rect);
+    };
+    const viewportRect = {
+      top: 0,
+      left: 0,
+      width: 30,
+      height: 30,
+      right: 30,
+      bottom: 30,
+    };
+    const triggerRect = {
+      top: 10,
+      left: 10,
+      width: 10,
+      height: 5,
+      right: 20,
+      bottom: 15,
+    };
+    const tooltipRect = {
+      top: 0,
+      left: 0,
+      width: 20,
+      height: 20,
+      right: 20,
+      bottom: 20,
+    };
+
+    const setupDom = (usePopoverClass) => {
+      document.body.innerHTML = '';
+      const viewportEl = document.createElement('div');
+      viewportEl.id = 'container';
+      document.body.appendChild(viewportEl);
+      const tooltip = document.createElement('div');
+      if (usePopoverClass) {
+        tooltip.className = 'popover';
+      }
+      const trigger = document.createElement('div');
+      mockRect(viewportEl, viewportRect);
+      mockRect(trigger, triggerRect);
+      mockRect(tooltip, tooltipRect);
+      return { viewportEl, tooltip, trigger };
+    };
+
+    it('should clamp tooltip within viewport given a string selector', () => {
+      const { tooltip, trigger } = setupDom(true);
+      utils.setTooltipPosition(
+        tooltip,
+        trigger,
+        'bottom',
+        false,
+        'body',
+        null,
+        '#container'
+      );
+      // top=15 -> clamp to viewportBottom(30)-tooltipHeight(20)=10, then popoverFix -=11 -> -1
+      expect(tooltip.style.top).toEqual('-1px');
+      // left=5, within [0,30-20=10], no clamp, no left fix for bottom
+      expect(tooltip.style.left).toEqual('5px');
+    });
+
+    it('should clamp tooltip within viewport given a function returning the element', () => {
+      const { viewportEl, tooltip, trigger } = setupDom(true);
+      const fn = jest.fn(() => viewportEl);
+      utils.setTooltipPosition(
+        tooltip,
+        trigger,
+        'bottom',
+        false,
+        'body',
+        null,
+        fn
+      );
+      expect(fn).toHaveBeenCalledWith(trigger);
+      expect(tooltip.style.top).toEqual('-1px');
+      expect(tooltip.style.left).toEqual('5px');
+    });
+
+    it('should apply popoverFix to top for default (top) placement', () => {
+      const { tooltip, trigger } = setupDom(true);
+      // top = 0 + 10 - 20 = -10; clamp to viewportTop(0) -> 0; popoverFix +=11 -> 11
+      utils.setTooltipPosition(
+        tooltip,
+        trigger,
+        'top',
+        false,
+        'body',
+        null,
+        '#container'
+      );
+      expect(tooltip.style.top).toEqual('11px');
+    });
+
+    it('should apply popoverFix to left for left placement', () => {
+      const { tooltip, trigger } = setupDom(true);
+      // left = 0 + 10 - 20 = -10; clamp to viewportLeft(0) -> 0; popoverFix +=11 -> 11
+      utils.setTooltipPosition(
+        tooltip,
+        trigger,
+        'left',
+        false,
+        'body',
+        null,
+        '#container'
+      );
+      expect(tooltip.style.left).toEqual('11px');
+    });
+
+    it('should apply popoverFix to left for right placement', () => {
+      const { tooltip, trigger } = setupDom(true);
+      // left = 0 + 10 + 10 + 1 = 21; 21+20=41 > viewportRight(30) -> clamp to 30-20=10; popoverFix -=11 -> -1
+      utils.setTooltipPosition(
+        tooltip,
+        trigger,
+        'right',
+        false,
+        'body',
+        null,
+        '#container'
+      );
+      expect(tooltip.style.left).toEqual('-1px');
+    });
+
+    it('should apply zero popoverFix when tooltip is not a popover', () => {
+      const { tooltip, trigger } = setupDom(false);
+      // bottom: top=15 -> clamp to 10, popoverFix=0 -> 10
+      utils.setTooltipPosition(
+        tooltip,
+        trigger,
+        'bottom',
+        false,
+        'body',
+        null,
+        '#container'
+      );
+      expect(tooltip.style.top).toEqual('10px');
+    });
+  });
+
+  describe('#focus', () => {
+    it('should return early for null input without throwing', () => {
+      expect(() => utils.focus(null)).not.toThrow();
+    });
+
+    it('should return early for non-element input without throwing', () => {
+      expect(() => utils.focus({})).not.toThrow();
+    });
+
+    it('should set tabindex when missing and focus the element', () => {
+      const div = document.createElement('div');
+      const focusSpy = jest.spyOn(div, 'focus');
+      utils.focus(div);
+      expect(div.getAttribute('tabindex')).toEqual('-1');
+      expect(focusSpy).toHaveBeenCalled();
+    });
+
+    it('should not overwrite existing tabindex', () => {
+      const div = document.createElement('div');
+      div.setAttribute('tabindex', '0');
+      utils.focus(div);
+      expect(div.getAttribute('tabindex')).toEqual('0');
+    });
+  });
 });
