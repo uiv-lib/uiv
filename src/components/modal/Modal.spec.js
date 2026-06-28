@@ -456,6 +456,32 @@ describe('Modal', () => {
     expect(wrapper.vm.open).toEqual(false);
   });
 
+  it('should not close on esc key when keyboard is false', async () => {
+    const wrapper = createWrapper(
+      `<modal v-model="open" title="Modal 1" :keyboard="false" ref="modal"><p>This is a simple modal.</p></modal>`,
+      {
+        open: true,
+      }
+    );
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    expect(wrapper.vm.$el.className).toContain('in');
+    expect(wrapper.vm.open).toEqual(true);
+    wrapper.vm.$refs.modal.onKeyPress({ keyCode: 27 });
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    expect(wrapper.vm.$el.className).toContain('in');
+    expect(wrapper.vm.open).toEqual(true);
+    wrapper.vm.$refs.modal.onKeyPress({ keyCode: 28 });
+    await nextTick();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    expect(wrapper.vm.$el.className).toContain('in');
+    expect(wrapper.vm.open).toEqual(true);
+  });
+
   it('should be able to close modal 1 and fire callback', async () => {
     const wrapper = baseVm();
     const trigger = wrapper.findAll('.btn')[0];
@@ -903,64 +929,6 @@ describe('Modal', () => {
     await nextTick();
     await nextTick();
     expect(document.querySelector('.modal-backdrop')).toBeNull();
-  });
-
-  it.skip('should be able to use `beforeClose` when promise not supported', async () => {
-    const wrapper = createWrapper(
-      '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
-      {
-        open: true,
-        msg: 'ok',
-      },
-      {
-        methods: {
-          beforeClose() {
-            this.msg = 'test';
-            return true;
-          },
-        },
-      }
-    );
-    await nextTick();
-    expect(document.querySelector('.modal-backdrop')).toBeDefined();
-    expect(wrapper.vm.msg).toEqual('ok');
-    const _promise = window.Promise;
-    window.Promise = undefined;
-    wrapper.vm.$el.querySelector('button.close').click();
-    window.Promise = _promise;
-    await sleep(transition);
-    await nextTick();
-    expect(document.querySelector('.modal-backdrop')).toBeNull();
-    expect(wrapper.vm.msg).toEqual('test');
-  });
-
-  it.skip('should be able to interrupt hide with `beforeClose` promise is not supported', async () => {
-    const wrapper = createWrapper(
-      '<modal v-model="open" title="Modal 1" :before-close="beforeClose"><p>{{msg}}</p></modal>',
-      {
-        open: true,
-        msg: 'ok',
-      },
-      {
-        methods: {
-          beforeClose() {
-            this.msg = 'test';
-            return false;
-          },
-        },
-      }
-    );
-    await nextTick();
-    expect(document.querySelector('.modal-backdrop')).toBeDefined();
-    expect(wrapper.vm.msg).toEqual('ok');
-    const _promise = window.Promise;
-    window.Promise = undefined;
-    wrapper.vm.$el.querySelector('button.close').click();
-    window.Promise = _promise;
-    await sleep(transition);
-    await nextTick();
-    expect(wrapper.vm.msg).toEqual('test');
-    expect(document.querySelector('.modal-backdrop')).toBeDefined();
   });
 
   it('should be able to use `beforeClose` when result is promise', async () => {

@@ -211,15 +211,29 @@ describe('Carousel', () => {
     );
   });
 
-  it.skip('should not be able to work if not using <carousel><slide>...</slide></carousel>', () => {
-    expect(
-      createWrapper.bind(
-        null,
-        '<carousel><slide><slide>{{ msg }}</slide></slide></carousel>',
-        {
-          msg: 'hello',
-        }
-      )
-    ).toThrow('Slide parent must be Carousel.');
+  it('should pause on mouseenter and resume on mouseleave', async () => {
+    wrapper.vm.interval = 500;
+    await nextTick();
+    const carousel = wrapper.find('.carousel.slide');
+    const items = () => wrapper.findAll('.carousel-inner .item');
+    expect(items()[0].classes()).toContain('active');
+
+    vi.advanceTimersByTime(500);
+    await nextTick();
+    vi.advanceTimersByTime(600);
+    await nextTick();
+    expect(items()[1].classes()).toContain('active');
+
+    await carousel.trigger('mouseenter');
+    vi.advanceTimersByTime(1200);
+    await nextTick();
+    expect(items()[1].classes()).toContain('active');
+
+    await carousel.trigger('mouseleave');
+    vi.advanceTimersByTime(500);
+    await nextTick();
+    vi.advanceTimersByTime(600);
+    await nextTick();
+    expect(items()[2].classes()).toContain('active');
   });
 });

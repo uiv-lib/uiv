@@ -89,6 +89,59 @@ function promptVm() {
   );
 }
 
+function confirmReverseVm() {
+  return createWrapper(
+    '<div><btn @click="confirm" type="primary">Click to open a confirm modal</btn></div>',
+    {},
+    {
+      methods: {
+        confirm() {
+          this.$confirm({
+            title: 'Confirm',
+            content: 'This item will be permanently deleted. Continue?',
+            reverseButtons: true,
+          });
+        },
+      },
+    }
+  );
+}
+
+function alertHtmlVm() {
+  return createWrapper(
+    '<div><btn @click="alert" type="primary">Click to open an alert modal</btn></div>',
+    {},
+    {
+      methods: {
+        alert() {
+          this.$alert({
+            title: 'Title',
+            content: '<b>bold</b><span id="x">y</span>',
+            html: true,
+          });
+        },
+      },
+    }
+  );
+}
+
+function alertPlainHtmlVm() {
+  return createWrapper(
+    '<div><btn @click="alert" type="primary">Click to open an alert modal</btn></div>',
+    {},
+    {
+      methods: {
+        alert() {
+          this.$alert({
+            title: 'Title',
+            content: '<b>bold</b><span id="x">y</span>',
+          });
+        },
+      },
+    }
+  );
+}
+
 describe('MessageBox', () => {
   let spy;
   let savedLog;
@@ -278,5 +331,72 @@ describe('MessageBox', () => {
     expect(
       document.querySelector('.alert .media-body > div').textContent
     ).toEqual('Input canceled.');
+  });
+
+  it('should render OK button before cancel button when reverseButtons is true', async () => {
+    const wrapper = confirmReverseVm();
+    await nextTick();
+    wrapper.find('.btn').trigger('click');
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    const footerBtns = document.querySelectorAll('.modal .modal-footer .btn');
+    expect(footerBtns).toHaveLength(2);
+    expect(footerBtns[0].textContent.trim()).toEqual('OK');
+    expect(footerBtns[1].textContent.trim()).toEqual('Cancel');
+    document.querySelectorAll('.modal .btn')[0].click();
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+  });
+
+  it('should render cancel button before OK button by default', async () => {
+    const wrapper = confirmVm();
+    await nextTick();
+    wrapper.find('.btn').trigger('click');
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    const footerBtns = document.querySelectorAll('.modal .modal-footer .btn');
+    expect(footerBtns).toHaveLength(2);
+    expect(footerBtns[0].textContent.trim()).toEqual('Cancel');
+    expect(footerBtns[1].textContent.trim()).toEqual('OK');
+    document.querySelectorAll('.modal .btn')[0].click();
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+  });
+
+  it('should render content as html when html is true', async () => {
+    const wrapper = alertHtmlVm();
+    await nextTick();
+    wrapper.find('.btn').trigger('click');
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    const modalBody = document.querySelector('.modal-body');
+    expect(modalBody.querySelector('b')).not.toBeNull();
+    expect(modalBody.querySelector('b').textContent).toEqual('bold');
+    expect(modalBody.querySelector('#x')).not.toBeNull();
+    expect(modalBody.querySelector('#x').textContent).toEqual('y');
+    document.querySelector('.modal .btn').click();
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+  });
+
+  it('should render content as plain text when html is false', async () => {
+    const wrapper = alertPlainHtmlVm();
+    await nextTick();
+    wrapper.find('.btn').trigger('click');
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    const modalBody = document.querySelector('.modal-body');
+    expect(modalBody.querySelector('b')).toBeNull();
+    expect(modalBody.querySelector('#x')).toBeNull();
+    expect(modalBody.querySelector('p').textContent).toEqual(
+      '<b>bold</b><span id="x">y</span>'
+    );
+    document.querySelector('.modal .btn').click();
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
   });
 });

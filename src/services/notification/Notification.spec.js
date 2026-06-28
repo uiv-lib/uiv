@@ -140,4 +140,99 @@ describe('Notification service', () => {
     await nextTick();
     expect(document.querySelector('.alert')).toBeNull();
   });
+
+  it('should render the correct type class for each type alias', async () => {
+    const cases = [
+      { method: 'success', className: 'alert-success' },
+      { method: 'info', className: 'alert-info' },
+      { method: 'warning', className: 'alert-warning' },
+      { method: 'danger', className: 'alert-danger' },
+      { method: 'error', className: 'alert-danger' },
+    ];
+    for (const { method, className } of cases) {
+      Notification.notify[method]('test');
+      vi.advanceTimersByTime(transition);
+      await nextTick();
+      const alert = document.querySelector('.alert');
+      expect(alert).toBeDefined();
+      expect(alert.className).toContain(className);
+      alert.querySelector('button.close').click();
+      await flushPromises();
+      vi.advanceTimersByTime(transition);
+      await nextTick();
+      expect(document.querySelector('.alert')).toBeNull();
+    }
+  });
+
+  it('should dismiss all notifications across placements', async () => {
+    Notification.notify({ content: 'one', placement: 'top-right' });
+    Notification.notify({ content: 'two', placement: 'top-left' });
+    Notification.notify({ content: 'three', placement: 'bottom-right' });
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    expect(document.querySelectorAll('.alert').length).toEqual(3);
+    Notification.notify.dismissAll();
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    expect(document.querySelectorAll('.alert').length).toEqual(0);
+  });
+
+  it('should fire the dismissed callback on close', async () => {
+    let callbackFired = false;
+    Notification.notify({ content: 'test' }, () => {
+      callbackFired = true;
+    });
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    const alert = document.querySelector('.alert');
+    expect(alert).toBeDefined();
+    alert.querySelector('button.close').click();
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    expect(callbackFired).toBe(true);
+    expect(document.querySelector('.alert')).toBeNull();
+  });
+
+  it('should resolve the returned promise when no callback is given', async () => {
+    const promise = Notification.notify({ content: 'test' });
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    const alert = document.querySelector('.alert');
+    expect(alert).toBeDefined();
+    alert.querySelector('button.close').click();
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    const resolved = await promise;
+    expect(resolved).toBeUndefined();
+    expect(document.querySelector('.alert')).toBeNull();
+  });
+
+  it('should treat a string option as content', async () => {
+    Notification.notify('plain string content');
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    const alert = document.querySelector('.alert');
+    expect(alert).toBeDefined();
+    expect(alert.textContent).toContain('plain string content');
+    alert.querySelector('button.close').click();
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    expect(document.querySelector('.alert')).toBeNull();
+  });
+
+  it('should auto-close after the given duration', async () => {
+    Notification.notify({ content: 'auto close', duration: 1000 });
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    expect(document.querySelector('.alert')).toBeDefined();
+    vi.advanceTimersByTime(1000);
+    await flushPromises();
+    vi.advanceTimersByTime(transition);
+    await nextTick();
+    expect(document.querySelector('.alert')).toBeNull();
+  });
 });

@@ -1,7 +1,8 @@
+import { vi } from 'vitest';
 import {
   createWrapper,
   keyCodes,
-  sleep,
+  nextTick,
   triggerEvent,
   triggerKey,
 } from '../../__test__/utils';
@@ -30,9 +31,6 @@ function baseVm() {
 }
 
 describe('Typeahead', () => {
-  // `server` is referenced by skipped async tests below.
-  let server = null;
-
   it('should be able to set and clear typeahead model manually', async () => {
     const wrapper = baseVm();
     const vm = wrapper.vm;
@@ -375,7 +373,13 @@ describe('Typeahead', () => {
     expect(dropdown.querySelectorAll('li').length).toEqual(2);
   });
 
-  it.skip('should be able to use async typeahead', async () => {
+  it('should be able to use async typeahead', async () => {
+    vi.useFakeTimers();
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({ items: [{ login: 'wxsms' }] }),
+    });
+    global.fetch = fetchMock;
     const wrapper = createWrapper(
       `<section>
     <label for="input-4">Users of Github:</label>
@@ -388,29 +392,28 @@ describe('Typeahead', () => {
         model: '',
       }
     );
-    await sleep(500);
     const vm = wrapper.vm;
     await vm.$nextTick();
     const input = vm.$el.querySelector('input');
     const dropdown = vm.$el.querySelector('.dropdown');
     expect(dropdown.className).not.toContain('open');
-    // matches don't work in here
     const savedMatches = Element.prototype.matches;
     Element.prototype.matches = () => true;
     input.value = 'wxsm';
-    triggerEvent(input, 'input');
-    await sleep(600);
-    server.requests[0].respond(
-      200,
-      { 'Content-Type': 'application/json' },
-      JSON.stringify({ items: [{ login: 'wxsms' }] })
+    await triggerEvent(input, 'input');
+    vi.advanceTimersByTime(200);
+    await nextTick();
+    expect(fetchMock).toHaveBeenCalledWith(
+      'https://api.github.com/search/users?q=' + encodeURIComponent('wxsm'),
+      { method: 'GET' }
     );
-    await vm.$nextTick();
     expect(dropdown.className).toContain('open');
     expect(dropdown.querySelectorAll('li').length).toEqual(1);
     const selected = dropdown.querySelector('li.active a span');
     expect(selected.textContent).toEqual('wxsms');
     Element.prototype.matches = savedMatches;
+    vi.useRealTimers();
+    delete global.fetch;
   });
 
   it('should be able to use component target', async () => {
@@ -447,7 +450,13 @@ describe('Typeahead', () => {
     await vm.$nextTick();
   });
 
-  it.skip('should be able to use string arr async returns', async () => {
+  it('should be able to use string arr async returns', async () => {
+    vi.useFakeTimers();
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve(['aa', 'ab', 'ac']),
+    });
+    global.fetch = fetchMock;
     const wrapper = createWrapper(
       '<div>' +
         '<input ref="input">' +
@@ -468,26 +477,25 @@ describe('Typeahead', () => {
     const input = vm.$el.querySelector('input');
     const dropdown = vm.$el.querySelector('.dropdown');
     expect(dropdown.className).not.toContain('open');
-    // matches don't work in here
     const savedMatches = Element.prototype.matches;
     Element.prototype.matches = () => true;
     input.value = 'a';
-    triggerEvent(input, 'input');
-    await sleep(600);
-    server.requests[0].respond(
-      200,
-      { 'Content-Type': 'application/json' },
-      JSON.stringify(['aa', 'ab', 'ac'])
-    );
-    await vm.$nextTick();
+    await triggerEvent(input, 'input');
+    vi.advanceTimersByTime(200);
+    await nextTick();
     expect(dropdown.className).toContain('open');
     expect(dropdown.querySelectorAll('li').length).toEqual(3);
     const selected = dropdown.querySelector('li.active a span');
     expect(selected.textContent).toEqual('aa');
     Element.prototype.matches = savedMatches;
+    vi.useRealTimers();
+    delete global.fetch;
   });
 
-  it.skip('should be able to handel async typeahead error', async () => {
+  it('should be able to handel async typeahead error', async () => {
+    vi.useFakeTimers();
+    const fetchMock = vi.fn().mockRejectedValue(new Error('server error'));
+    global.fetch = fetchMock;
     const wrapper = createWrapper(
       '<div>' +
         '<input ref="input">' +
@@ -515,21 +523,17 @@ describe('Typeahead', () => {
     const input = vm.$el.querySelector('input');
     const dropdown = vm.$el.querySelector('.dropdown');
     expect(dropdown.className).not.toContain('open');
-    // matches don't work in here
     const savedMatches = Element.prototype.matches;
     Element.prototype.matches = () => true;
     input.value = 'wxsm';
-    triggerEvent(input, 'input');
-    await sleep(600);
-    server.requests[0].respond(
-      500,
-      { 'Content-Type': 'application/json' },
-      JSON.stringify([{ id: 1, text: 'Provide examples', done: true }])
-    );
-    await vm.$nextTick();
+    await triggerEvent(input, 'input');
+    vi.advanceTimersByTime(200);
+    await nextTick();
     expect(dropdown.className).not.toContain('open');
     expect(vm.err).toBeDefined();
     Element.prototype.matches = savedMatches;
+    vi.useRealTimers();
+    delete global.fetch;
   });
 
   it('should be able to bind string data', async () => {
@@ -617,7 +621,13 @@ describe('Typeahead', () => {
     expect(dropdown.className).not.toContain('open');
   });
 
-  it.skip('should be able to use async-function and custom template', async () => {
+  it('should be able to use async-function and custom template', async () => {
+    vi.useFakeTimers();
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({ items: [{ login: 'wxsms' }] }),
+    });
+    global.fetch = fetchMock;
     const wrapper = createWrapper(
       `  <section>
     <label for="input-5">Users of Github:</label>
@@ -657,22 +667,18 @@ describe('Typeahead', () => {
     const input = vm.$el.querySelector('input');
     const dropdown = vm.$el.querySelector('.dropdown');
     expect(dropdown.className).not.toContain('open');
-    // matches don't work in here
     const savedMatches = Element.prototype.matches;
     Element.prototype.matches = () => true;
     input.value = 'wxsm';
-    triggerEvent(input, 'input');
-    await sleep(600);
-    server.requests[0].respond(
-      200,
-      { 'Content-Type': 'application/json' },
-      JSON.stringify({ items: [{ login: 'wxsms' }] })
-    );
-    await sleep(200);
+    await triggerEvent(input, 'input');
+    vi.advanceTimersByTime(200);
+    await nextTick();
     expect(dropdown.className).toContain('open');
     expect(dropdown.querySelectorAll('li').length).toEqual(1);
     const selected = dropdown.querySelector('li.active a span');
     expect(selected.textContent).toEqual('wxsms');
     Element.prototype.matches = savedMatches;
+    vi.useRealTimers();
+    delete global.fetch;
   });
 });

@@ -5,6 +5,7 @@ import {
   triggerKey,
 } from '../../__test__/utils';
 import _ from 'lodash';
+import MultiSelect from './MultiSelect.vue';
 
 describe('MultiSelect', () => {
   it('should be able to render with no options', async () => {
@@ -923,5 +924,68 @@ describe('MultiSelect', () => {
     await vm.$nextTick();
     expect(dropdown.className).toContain('open');
     expect(dropdown.querySelectorAll('li a i').length).toEqual(5);
+  });
+
+  it('should emit search with filter text on Enter keyup', async () => {
+    const wrapper = createWrapper(
+      `<div>
+<multi-select v-model="selected" :options="options" filterable/>
+</div>`,
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+        ],
+      }
+    );
+    const vm = wrapper.vm;
+    const dropdown = vm.$el.querySelector('.dropdown');
+    const trigger = dropdown.querySelector('.dropdown-toggle');
+    const searchInput = dropdown.querySelector('.form-control.input-sm');
+    trigger.click();
+    await vm.$nextTick();
+    searchInput.value = 'Option1';
+    triggerEvent(searchInput, 'input');
+    await vm.$nextTick();
+    searchInput.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter' }));
+    await vm.$nextTick();
+    const searchEvents = wrapper.findComponent(MultiSelect).emitted('search');
+    expect(searchEvents).toBeTruthy();
+    expect(searchEvents[0]).toEqual(['Option1']);
+  });
+
+  it('should emit limit-exceed and block selection beyond limit', async () => {
+    const wrapper = createWrapper(
+      `<div>
+<multi-select v-model="selected" :options="options" :limit="2"/>
+</div>`,
+      {
+        selected: [],
+        options: [
+          { value: 1, label: 'Option1' },
+          { value: 2, label: 'Option2' },
+          { value: 3, label: 'Option3' },
+        ],
+      }
+    );
+    const vm = wrapper.vm;
+    const dropdown = vm.$el.querySelector('.dropdown');
+    const trigger = dropdown.querySelector('.dropdown-toggle');
+    trigger.click();
+    await vm.$nextTick();
+    const multiSelect = wrapper.findComponent(MultiSelect);
+    dropdown.querySelectorAll('li')[0].click();
+    await vm.$nextTick();
+    expect(_.isEqual(vm.selected, [1])).toBeTruthy();
+    dropdown.querySelectorAll('li')[1].click();
+    await vm.$nextTick();
+    expect(_.isEqual(vm.selected, [1, 2])).toBeTruthy();
+    expect(multiSelect.emitted('limit-exceed')).toBeFalsy();
+    dropdown.querySelectorAll('li')[2].click();
+    await vm.$nextTick();
+    expect(_.isEqual(vm.selected, [1, 2])).toBeTruthy();
+    expect(multiSelect.emitted('limit-exceed')).toBeTruthy();
   });
 });

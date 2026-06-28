@@ -109,4 +109,42 @@ describe('Collapse', () => {
     await nextTick();
     expect(collapse[1].classes()).toEqual(['collapse']);
   });
+
+  it('should emit show/shown/hide/hidden in order', async () => {
+    const wrapper = createWrapper(
+      `<collapse v-model="open">
+    <div class="well" style="margin-bottom: 0">Hi there.</div>
+  </collapse>`,
+      {
+        open: false,
+      }
+    );
+    const collapse = wrapper.findComponent(Collapse);
+
+    wrapper.vm.open = true;
+    await nextTick();
+    expect(collapse.emitted('show')).toBeTruthy();
+    vi.advanceTimersByTime(350);
+    await nextTick();
+    expect(collapse.emitted('shown')).toBeTruthy();
+    expect(collapse.emitted('show').length).toEqual(1);
+    expect(collapse.emitted('shown').length).toEqual(1);
+
+    wrapper.vm.open = false;
+    await nextTick();
+    expect(collapse.emitted('hide')).toBeTruthy();
+    vi.advanceTimersByTime(350);
+    await nextTick();
+    expect(collapse.emitted('hidden')).toBeTruthy();
+    expect(collapse.emitted('hide').length).toEqual(1);
+    expect(collapse.emitted('hidden').length).toEqual(1);
+
+    const events = collapse.emitted();
+    const order = []
+      .concat(events.show ? ['show'] : [])
+      .concat(events.shown ? ['shown'] : [])
+      .concat(events.hide ? ['hide'] : [])
+      .concat(events.hidden ? ['hidden'] : []);
+    expect(order).toEqual(['show', 'shown', 'hide', 'hidden']);
+  });
 });
