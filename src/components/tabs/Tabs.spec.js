@@ -1,4 +1,5 @@
-import { createWrapper, sleep, triggerEvent } from '../../__test__/utils';
+import { vi } from 'vitest';
+import { createWrapper, nextTick, triggerEvent } from '../../__test__/utils';
 
 function baseVm() {
   return createWrapper(`<tabs>
@@ -59,6 +60,13 @@ function dynamicVm(data = {}) {
 }
 
 describe('Tabs', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it('should not be able hide tabs using `hidden` prop', async () => {
     const wrapper = createWrapper(
       `<tabs>
@@ -139,7 +147,9 @@ describe('Tabs', () => {
     const wrapper = baseVm();
     const vm = wrapper.vm;
     const $el = vm.$el;
-    await sleep(500);
+    await nextTick();
+    vi.advanceTimersByTime(500);
+    await nextTick();
     const nav = $el.querySelector('.nav-tabs');
     const content = $el.querySelector('.tab-content');
     const activeTab = nav.querySelectorAll('.active');
@@ -156,17 +166,20 @@ describe('Tabs', () => {
     const wrapper = baseVm();
     const vm = wrapper.vm;
     const $el = vm.$el;
-    await sleep(100);
+    vi.advanceTimersByTime(100);
+    await nextTick();
     const nav = $el.querySelector('.nav-tabs');
     const content = $el.querySelector('.tab-content');
     const tab = nav.querySelectorAll('li')[1].querySelector('a');
     triggerEvent(tab, 'click');
     await vm.$nextTick();
-    await sleep(350);
+    vi.advanceTimersByTime(350);
+    await nextTick();
     // Double click should be fine
     triggerEvent(tab, 'click');
     await vm.$nextTick();
-    await sleep(350);
+    vi.advanceTimersByTime(350);
+    await nextTick();
     const activeTab = nav.querySelectorAll('.active');
     expect(activeTab.length).toEqual(1);
     expect(activeTab[0].querySelector('a').textContent).toEqual('Profile');
@@ -202,7 +215,8 @@ describe('Tabs', () => {
     expect(tab1.className).toEqual('disabled');
     triggerEvent(tab1.querySelector('a'), 'click');
     await vm.$nextTick();
-    await sleep(350);
+    vi.advanceTimersByTime(350);
+    await nextTick();
     expect(tab1.className).toEqual('disabled');
     let activeContent = content.querySelectorAll('.tab-pane.active');
     expect(activeContent.length).toEqual(1);
@@ -214,7 +228,8 @@ describe('Tabs', () => {
     expect(tab2.className).toEqual('disabled');
     triggerEvent(tab2.querySelector('a'), 'click');
     await vm.$nextTick();
-    await sleep(350);
+    vi.advanceTimersByTime(350);
+    await nextTick();
     expect(tab2.className).toEqual('disabled');
     activeContent = content.querySelectorAll('.tab-pane.active');
     expect(activeContent.length).toEqual(1);
@@ -298,10 +313,12 @@ describe('Tabs', () => {
     const spy = jest.spyOn(window, 'alert');
     triggerEvent(nav.querySelectorAll('li > a')[1], 'click');
     await vm.$nextTick();
-    await sleep(350);
+    vi.advanceTimersByTime(350);
+    await nextTick();
     triggerEvent(nav.querySelectorAll('li > a')[2], 'click');
     await vm.$nextTick();
-    await sleep(350);
+    vi.advanceTimersByTime(350);
+    await nextTick();
     expect(spy).toBeCalled();
     window.alert = _savedAlert;
   });
@@ -316,7 +333,8 @@ describe('Tabs', () => {
     const tab5 = nav.querySelector('li.dropdown');
     triggerEvent(tab5.querySelectorAll('a')[0], 'click');
     await vm.$nextTick();
-    await sleep(350);
+    vi.advanceTimersByTime(350);
+    await nextTick();
     expect(tab5.querySelector('.dropdown-menu')).toBeDefined();
     expect(tab5.className).toContain('dropdown');
     expect(tab5.className).toContain('open');
@@ -328,7 +346,8 @@ describe('Tabs', () => {
       'click'
     );
     await vm.$nextTick();
-    await sleep(350);
+    vi.advanceTimersByTime(350);
+    await nextTick();
     expect(tab5.className).toContain('active');
     const activeContent = content.querySelectorAll('.tab-pane.active');
     expect(activeContent.length).toEqual(1);
@@ -345,7 +364,9 @@ describe('Tabs', () => {
     });
     const vm = wrapper.vm;
     const $el = vm.$el;
-    await sleep(500);
+    await nextTick();
+    vi.advanceTimersByTime(500);
+    await nextTick();
     const nav = wrapper.find('.nav-tabs');
     const content = wrapper.find('.tab-content');
     // 3 tabs + 1 btn
@@ -367,12 +388,14 @@ describe('Tabs', () => {
     const nav = $el.querySelector('.nav-tabs');
     const content = $el.querySelector('.tab-content');
     const pushBtn = nav.querySelector('.btn');
-    await vm.$nextTick();
-    await vm.$nextTick();
+    await nextTick();
+    vi.advanceTimersByTime(150);
+    await nextTick();
     // Add a tab
     triggerEvent(pushBtn, 'click');
-    await vm.$nextTick();
-    await sleep(350);
+    await nextTick();
+    vi.advanceTimersByTime(350);
+    await nextTick();
     expect(nav.querySelectorAll('li').length).toEqual(2 + 1);
     // check active tab
     const activeTab = nav.querySelectorAll('.active');
@@ -391,16 +414,19 @@ describe('Tabs', () => {
     const nav = $el.querySelector('.nav-tabs');
     const content = $el.querySelector('.tab-content');
     const pushBtn = nav.querySelector('.btn');
-    await vm.$nextTick();
-    await vm.$nextTick();
+    await nextTick();
+    vi.advanceTimersByTime(150);
+    await nextTick();
     // Add a tab
     triggerEvent(pushBtn, 'click');
-    await vm.$nextTick();
-    await sleep(350);
+    await nextTick();
+    vi.advanceTimersByTime(350);
+    await nextTick();
     // Delete a tab
     triggerEvent(content.querySelector('.tab-pane.active .btn'), 'click');
-    await vm.$nextTick();
-    await sleep(350);
+    await nextTick();
+    vi.advanceTimersByTime(350);
+    await nextTick();
     expect(nav.querySelectorAll('li').length).toEqual(1 + 1);
     // check active tab
     const activeTab = nav.querySelectorAll('.active');
@@ -414,7 +440,9 @@ describe('Tabs', () => {
 
   it('should be able to select dynamic tab', async () => {
     const wrapper = dynamicVm();
-    await sleep(500);
+    await nextTick();
+    vi.advanceTimersByTime(500);
+    await nextTick();
     const nav = wrapper.find('.nav-tabs');
     const content = wrapper.find('.tab-content');
     const pushBtn = nav.find('.btn');
@@ -422,10 +450,12 @@ describe('Tabs', () => {
     await triggerEvent(pushBtn, 'click');
     await triggerEvent(pushBtn, 'click');
     await triggerEvent(pushBtn, 'click');
-    await sleep(350);
+    vi.advanceTimersByTime(350);
+    await nextTick();
     expect(nav.findAll('li').length).toEqual(4 + 1);
     await wrapper.setData({ index: 1 });
-    await sleep(350);
+    vi.advanceTimersByTime(350);
+    await nextTick();
     // check active tab
     let activeTab = nav.findAll('.active');
     expect(activeTab.length).toEqual(1);
@@ -436,7 +466,8 @@ describe('Tabs', () => {
     expect(activeContent[0].text()).toContain('Tab 2');
 
     await triggerEvent(content.find('.tab-pane.active .btn'), 'click');
-    await sleep(500);
+    vi.advanceTimersByTime(500);
+    await nextTick();
     expect(nav.findAll('li').length).toEqual(3 + 1);
     // check active tab
     activeTab = nav.findAll('.active');
@@ -449,7 +480,8 @@ describe('Tabs', () => {
     // switch tab
     const tab2 = nav.findAll('li')[2];
     await triggerEvent(tab2.find('a'), 'click');
-    await sleep(500);
+    vi.advanceTimersByTime(500);
+    await nextTick();
     // check active tab
     activeTab = nav.findAll('.active');
     expect(activeTab.length).toEqual(1);
@@ -503,7 +535,9 @@ describe('Tabs', () => {
     const vm = wrapper.vm;
     const $el = vm.$el;
     const nav = $el.querySelector('.nav-tabs');
-    await sleep(500);
+    await nextTick();
+    vi.advanceTimersByTime(500);
+    await nextTick();
     expect(nav.querySelectorAll('li').length).toEqual(3);
     // check active tab
     let activeTab = nav.querySelectorAll('.active');
@@ -512,7 +546,8 @@ describe('Tabs', () => {
     // click on tab #2
     triggerEvent(nav.querySelectorAll('li > a')[1], 'click');
     await vm.$nextTick();
-    await sleep(350);
+    vi.advanceTimersByTime(350);
+    await nextTick();
     // check active tab
     activeTab = nav.querySelectorAll('.active');
     expect(activeTab.length).toEqual(1);
@@ -523,7 +558,8 @@ describe('Tabs', () => {
     // click on tab #2
     triggerEvent(nav.querySelectorAll('li > a')[1], 'click');
     await vm.$nextTick();
-    await sleep(350);
+    vi.advanceTimersByTime(350);
+    await nextTick();
     // check active tab
     activeTab = nav.querySelectorAll('.active');
     expect(activeTab.length).toEqual(1);

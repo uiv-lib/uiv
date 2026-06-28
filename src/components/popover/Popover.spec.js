@@ -1,7 +1,14 @@
-import { createWrapper, sleep, triggerEvent } from '../../__test__/utils';
+import { vi } from 'vitest';
+import {
+  createWrapper,
+  nextTick,
+  sleep,
+  triggerEvent,
+} from '../../__test__/utils';
 
 describe('Popover', () => {
   beforeEach(() => {
+    vi.useFakeTimers();
     document.body.style.display = 'flex';
     document.body.style.justifyContent = 'center';
     document.body.style.alignItems = 'center';
@@ -9,6 +16,7 @@ describe('Popover', () => {
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     document.body.style.display = '';
     document.body.style.justifyContent = '';
     document.body.style.alignItems = '';
@@ -50,7 +58,8 @@ describe('Popover', () => {
       }
     );
     const vm = wrapper.vm;
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
   });
 
@@ -63,10 +72,13 @@ describe('Popover', () => {
       }
     );
     const vm = wrapper.vm;
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     vm.enable = false;
-    await sleep(300);
+    await nextTick();
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -80,11 +92,14 @@ describe('Popover', () => {
       }
     );
     const vm = wrapper.vm;
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     vm.content = '';
     vm.title = '';
-    await sleep(300);
+    await nextTick();
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -100,7 +115,8 @@ describe('Popover', () => {
       }
     );
     const vm = wrapper.vm;
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('#test .popover').length).toEqual(1);
   });
 
@@ -120,7 +136,8 @@ describe('Popover', () => {
     await vm.$nextTick();
     vm.appendTo = vm.$refs.el;
     await vm.$nextTick();
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('#test .popover').length).toEqual(1);
   });
 
@@ -140,7 +157,8 @@ describe('Popover', () => {
     await vm.$nextTick();
     vm.appendTo = vm;
     await vm.$nextTick();
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('#test .popover').length).toEqual(1);
   });
 
@@ -152,7 +170,8 @@ describe('Popover', () => {
     await vm.$nextTick();
     const trigger = vm.$el;
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     let popover = document.querySelector('.popover');
     expect(popover).toBeDefined();
     expect(popover.querySelector('.popover-title').textContent).toEqual(
@@ -162,14 +181,16 @@ describe('Popover', () => {
       'content'
     );
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     // this should work
     vm.msg = { title: 'title2', content: 'content2' };
     await vm.$nextTick();
     await vm.$nextTick();
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     popover = document.querySelector('.popover');
     expect(popover).toBeDefined();
     expect(popover.querySelector('.popover-title').textContent).toEqual(
@@ -179,13 +200,15 @@ describe('Popover', () => {
       'content2'
     );
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     // this should not work
     vm.msg.title = 'title3';
     await vm.$nextTick();
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     popover = document.querySelector('.popover');
     expect(popover).toBeDefined();
     expect(popover.querySelector('.popover-title').textContent).toEqual(
@@ -205,7 +228,8 @@ describe('Popover', () => {
     await vm.$nextTick();
     const trigger = vm.$el;
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     const popover = document.querySelector('.popover');
     expect(popover).toBeDefined();
     expect(popover.querySelector('.popover-title').textContent).toEqual(
@@ -215,7 +239,8 @@ describe('Popover', () => {
       'content'
     );
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -227,7 +252,8 @@ describe('Popover', () => {
       }
     );
     const vm = wrapper.vm;
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -245,7 +271,8 @@ describe('Popover', () => {
     await vm.$nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     triggerEvent(vm.btn, 'focus');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
   });
 
@@ -264,10 +291,12 @@ describe('Popover', () => {
     await vm.$nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     triggerEvent(vm.$el.querySelector('button'), 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     triggerEvent(vm.$el.querySelector('button'), 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -290,10 +319,14 @@ describe('Popover', () => {
     const vm = wrapper.vm;
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     vm.show = true;
-    await sleep(300);
+    await nextTick();
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     vm.show = false;
-    await sleep(300);
+    await nextTick();
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -309,12 +342,14 @@ describe('Popover', () => {
     Element.prototype.matches = jest.fn(() => true);
     const trigger = vm.$el;
     triggerEvent(trigger, 'focus');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(Element.prototype.matches).toBeCalled();
     Element.prototype.matches = jest.fn((e) => false);
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     triggerEvent(trigger, 'blur');
-    await sleep(400);
+    vi.advanceTimersByTime(400);
+    await nextTick();
     expect(Element.prototype.matches).toBeCalledTimes(2);
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     Element.prototype.matches = savedMatches;
@@ -329,10 +364,12 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     const trigger = vm.$el;
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -364,12 +401,14 @@ describe('Popover', () => {
     triggerEvent(button, 'click');
     triggerEvent(button, 'click');
     triggerEvent(button, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     triggerEvent(button, 'click');
     triggerEvent(button, 'click');
     triggerEvent(button, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -382,10 +421,12 @@ describe('Popover', () => {
     await vm.$nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     triggerEvent(button, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     document.body.click();
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -402,7 +443,8 @@ describe('Popover', () => {
     await vm.$nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     triggerEvent(vm.$el.querySelector('button'), 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -415,12 +457,14 @@ describe('Popover', () => {
     const trigger = vm.$el;
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     // console.log(document.querySelector('.popover').innerHTML)
     expect(document.querySelector('.popover .popover-title')).toBeNull();
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -433,12 +477,14 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     const trigger = vm.$el;
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     const popover = document.querySelector('.popover');
     expect(popover).toBeDefined();
     expect(popover.className).toContain('top');
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -451,12 +497,14 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     const trigger = vm.$el;
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     const popover = document.querySelector('.popover');
     expect(popover).toBeDefined();
     expect(popover.className).toContain('bottom');
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -469,12 +517,14 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     const trigger = vm.$el;
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     const popover = document.querySelector('.popover');
     expect(popover).toBeDefined();
     expect(popover.className).toContain('left');
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -487,12 +537,14 @@ describe('Popover', () => {
     expect(document.querySelectorAll('.popover').length).toEqual(0);
     const trigger = vm.$el;
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     const popover = document.querySelector('.popover');
     expect(popover).toBeDefined();
     expect(popover.className).toContain('right');
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -508,15 +560,18 @@ describe('Popover', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelector('button');
     triggerEvent(trigger, 'focus');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     vm.trigger = 'click';
     await vm.$nextTick();
     triggerEvent(trigger, 'blur');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -535,7 +590,8 @@ describe('Popover', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelector('button');
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     expect(document.querySelector('.popover-content').textContent).toEqual(
       'text2'
@@ -558,7 +614,8 @@ This is a very very long text. This is a very very long text. This is a very ver
     // TODO
     // expect(topAfter).not.toEqual(topBefore)
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(0);
   });
 
@@ -592,12 +649,15 @@ This is a very very long text. This is a very very long text. This is a very ver
     await vm.$nextTick();
     const trigger = vm.$el.querySelector('button');
     triggerEvent(trigger, 'mouseenter');
-    await sleep(200);
+    vi.advanceTimersByTime(200);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
     triggerEvent(trigger, 'mouseleave');
-    await sleep(200);
+    vi.advanceTimersByTime(200);
+    await nextTick();
     triggerEvent(trigger, 'mouseenter');
-    await sleep(600);
+    vi.advanceTimersByTime(600);
+    await nextTick();
     expect(document.querySelectorAll('.popover').length).toEqual(1);
   });
 });

@@ -1,7 +1,14 @@
-import { createWrapper, sleep, triggerEvent } from '../../__test__/utils';
+import { vi } from 'vitest';
+import {
+  createWrapper,
+  nextTick,
+  sleep,
+  triggerEvent,
+} from '../../__test__/utils';
 
 describe('Tooltip', () => {
   beforeEach(() => {
+    vi.useFakeTimers();
     document.body.style.display = 'flex';
     document.body.style.justifyContent = 'center';
     document.body.style.alignItems = 'center';
@@ -13,6 +20,7 @@ describe('Tooltip', () => {
     document.body.style.justifyContent = '';
     document.body.style.alignItems = '';
     document.body.style.paddingTop = '';
+    vi.useRealTimers();
   });
 
   it('should be able to append to custom tags', async () => {
@@ -28,7 +36,8 @@ describe('Tooltip', () => {
     const vm = wrapper.vm;
     await vm.$nextTick();
     triggerEvent(vm.$el.querySelector('button'), 'focus');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(tag.querySelector('.tooltip')).toBeDefined();
   });
 
@@ -48,7 +57,8 @@ describe('Tooltip', () => {
       }
     );
     const vm = wrapper.vm;
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(1);
   });
 
@@ -60,7 +70,8 @@ describe('Tooltip', () => {
       }
     );
     const vm = wrapper.vm;
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
   });
 
@@ -78,7 +89,8 @@ describe('Tooltip', () => {
     await vm.$nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
     triggerEvent(vm.btn, 'focus');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(1);
   });
 
@@ -91,34 +103,39 @@ describe('Tooltip', () => {
     await vm.$nextTick();
     const trigger = vm.$el;
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     let tooltip = document.querySelector('.tooltip');
     expect(tooltip).toBeDefined();
     expect(tooltip.querySelector('.tooltip-inner').textContent).toEqual(
       'title'
     );
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
     // this should work
     vm.msg = 'title2';
     await vm.$nextTick();
     await vm.$nextTick();
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     tooltip = document.querySelector('.tooltip');
     expect(tooltip).toBeDefined();
     expect(tooltip.querySelector('.tooltip-inner').textContent).toEqual(
       'title2'
     );
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
     // this should not work
     vm.test = 'test2';
     await vm.$nextTick();
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     tooltip = document.querySelector('.tooltip');
     expect(tooltip).toBeDefined();
     expect(tooltip.querySelector('.tooltip-inner').textContent).toEqual(
@@ -138,14 +155,16 @@ describe('Tooltip', () => {
     await vm.$nextTick();
     const trigger = vm.$el;
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip).toBeDefined();
     expect(tooltip.querySelector('.tooltip-inner').textContent).toEqual(
       'title'
     );
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
   });
 
@@ -158,12 +177,15 @@ describe('Tooltip', () => {
     await vm.$nextTick();
     const trigger = vm.$el;
     triggerEvent(trigger, 'mouseenter');
-    await sleep(50);
+    vi.advanceTimersByTime(50);
+    await nextTick();
     await wrapper.setData({ msg: 'title2' });
     triggerEvent(trigger, 'mouseleave');
-    await sleep(100);
+    vi.advanceTimersByTime(100);
+    await nextTick();
     triggerEvent(trigger, 'mouseenter');
-    await sleep(150);
+    vi.advanceTimersByTime(150);
+    await nextTick();
     const tooltip = document.querySelector('.tooltip');
     // console.log(document.body.innerHTML)
     expect(tooltip).toBeDefined();
@@ -263,11 +285,13 @@ describe('Tooltip', () => {
     const savedMatches = Element.prototype.matches;
     Element.prototype.matches = () => true;
     triggerEvent(trigger, 'focus');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(1);
     Element.prototype.matches = () => false;
     triggerEvent(trigger, 'blur');
-    await sleep(400);
+    vi.advanceTimersByTime(400);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
     Element.prototype.matches = savedMatches;
   });
@@ -289,10 +313,14 @@ describe('Tooltip', () => {
     );
     const vm = wrapper.vm;
     vm.show = true;
-    await sleep(300);
+    await nextTick();
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(1);
     vm.show = false;
-    await sleep(300);
+    await nextTick();
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
   });
 
@@ -307,12 +335,14 @@ describe('Tooltip', () => {
     triggerEvent(button, 'click');
     triggerEvent(button, 'click');
     triggerEvent(button, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(1);
     triggerEvent(button, 'click');
     triggerEvent(button, 'click');
     triggerEvent(button, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
   });
 
@@ -324,10 +354,12 @@ describe('Tooltip', () => {
     await vm.$nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
     triggerEvent(vm.$el, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(1);
     triggerEvent(vm.$el, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
   });
 
@@ -340,10 +372,12 @@ describe('Tooltip', () => {
     await vm.$nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
     triggerEvent(button, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(1);
     document.body.click();
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
   });
 
@@ -358,7 +392,8 @@ describe('Tooltip', () => {
     const savedMatches = Element.prototype.matches;
     Element.prototype.matches = () => true;
     triggerEvent(vm.$el.querySelector('button'), 'focus');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     Element.prototype.matches = savedMatches;
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
   });
@@ -374,13 +409,15 @@ describe('Tooltip', () => {
     const savedMatches = Element.prototype.matches;
     Element.prototype.matches = () => true;
     triggerEvent(trigger, 'focus');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip).toBeDefined();
     expect(tooltip.className).toContain('top');
     Element.prototype.matches = () => false;
     triggerEvent(trigger, 'blur');
-    await sleep(400);
+    vi.advanceTimersByTime(400);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
     Element.prototype.matches = savedMatches;
   });
@@ -396,13 +433,15 @@ describe('Tooltip', () => {
     const savedMatches = Element.prototype.matches;
     Element.prototype.matches = () => true;
     triggerEvent(trigger, 'focus');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip).toBeDefined();
     expect(tooltip.className).toContain('bottom');
     Element.prototype.matches = () => false;
     triggerEvent(trigger, 'blur');
-    await sleep(400);
+    vi.advanceTimersByTime(400);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
     Element.prototype.matches = savedMatches;
   });
@@ -418,13 +457,15 @@ describe('Tooltip', () => {
     const savedMatches = Element.prototype.matches;
     Element.prototype.matches = () => true;
     triggerEvent(trigger, 'focus');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip).toBeDefined();
     expect(tooltip.className).toContain('left');
     Element.prototype.matches = () => false;
     triggerEvent(trigger, 'blur');
-    await sleep(400);
+    vi.advanceTimersByTime(400);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
     Element.prototype.matches = savedMatches;
   });
@@ -440,13 +481,15 @@ describe('Tooltip', () => {
     const savedMatches = Element.prototype.matches;
     Element.prototype.matches = () => true;
     triggerEvent(trigger, 'focus');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     const tooltip = document.querySelector('.tooltip');
     expect(tooltip).toBeDefined();
     expect(tooltip.className).toContain('right');
     Element.prototype.matches = () => false;
     triggerEvent(trigger, 'blur');
-    await sleep(400);
+    vi.advanceTimersByTime(400);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
     Element.prototype.matches = savedMatches;
   });
@@ -463,15 +506,18 @@ describe('Tooltip', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelector('button');
     triggerEvent(trigger, 'focus');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(1);
     vm.trigger = 'click';
     await vm.$nextTick();
     triggerEvent(trigger, 'blur');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(1);
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
   });
 
@@ -490,7 +536,8 @@ describe('Tooltip', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelector('button');
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(1);
     expect(document.querySelector('.tooltip-inner').textContent).toEqual(
       'text2'
@@ -509,7 +556,8 @@ describe('Tooltip', () => {
     // expect(topAfter).not.toEqual(topBefore)
     vm.msg = '';
     await vm.$nextTick();
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
   });
 
@@ -526,16 +574,19 @@ describe('Tooltip', () => {
     await vm.$nextTick();
     const trigger = vm.$el.querySelector('button');
     triggerEvent(trigger, 'click');
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(1);
     vm.enable = false;
     await vm.$nextTick();
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
     await vm.$nextTick();
     vm.enable = true;
     await vm.$nextTick();
-    await sleep(300);
+    vi.advanceTimersByTime(300);
+    await nextTick();
     expect(document.querySelectorAll('.tooltip').length).toEqual(0);
   });
 });
