@@ -42,8 +42,8 @@ importers:
         specifier: 5.5.6
         version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.7.0(supports-color@7.2.0)))(eslint@10.7.0(supports-color@7.2.0))(prettier@3.9.5)
       eslint-plugin-vue:
-        specifier: 10.9.2
-        version: 10.9.2(eslint@10.7.0(supports-color@7.2.0))(vue-eslint-parser@10.4.1(eslint@10.7.0(supports-color@7.2.0))(supports-color@7.2.0))
+        specifier: 10.10.0
+        version: 10.10.0(eslint@10.7.0(supports-color@7.2.0))(vue-eslint-parser@10.4.1(eslint@10.7.0(supports-color@7.2.0))(supports-color@7.2.0))
       globals:
         specifier: ^17.7.0
         version: 17.7.0
@@ -1287,8 +1287,8 @@ packages:
       eslint-config-prettier:
         optional: true
 
-  eslint-plugin-vue@10.9.2:
-    resolution: {integrity: sha512-4g7ZP3pYcuqd7Zp0pzUKcos0W+RkjBz4EGdhJ92FcYk6v03Ti/GK5NwjgsjxHK+98eXDbHeK7VtX1az7/8doZA==}
+  eslint-plugin-vue@10.10.0:
+    resolution: {integrity: sha512-dL9x9rBHqqNcByWiLOHK6L0SB97V82/NC0cZRn9cXPjM7pCuWlpQQP9bFH4vjBv80ej1ZpzAkuD8zWH1o9bZbA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       '@stylistic/eslint-plugin': ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
@@ -2274,10 +2274,6 @@ packages:
 
   wrap-ansi@8.1.0:
     resolution: {integrity: sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ==}
-    engines: {node: '>=12'}
-
-  xml-name-validator@4.0.0:
-    resolution: {integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==}
     engines: {node: '>=12'}
 
   xml-name-validator@5.0.0:
@@ -3383,7 +3379,7 @@ snapshots:
     optionalDependencies:
       eslint-config-prettier: 10.1.8(eslint@10.7.0(supports-color@7.2.0))
 
-  eslint-plugin-vue@10.9.2(eslint@10.7.0(supports-color@7.2.0))(vue-eslint-parser@10.4.1(eslint@10.7.0(supports-color@7.2.0))(supports-color@7.2.0)):
+  eslint-plugin-vue@10.10.0(eslint@10.7.0(supports-color@7.2.0))(vue-eslint-parser@10.4.1(eslint@10.7.0(supports-color@7.2.0))(supports-color@7.2.0)):
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@10.7.0(supports-color@7.2.0))
       eslint: 10.7.0(supports-color@7.2.0)
@@ -3392,7 +3388,7 @@ snapshots:
       postcss-selector-parser: 7.1.4
       semver: 7.8.5
       vue-eslint-parser: 10.4.1(eslint@10.7.0(supports-color@7.2.0))(supports-color@7.2.0)
-      xml-name-validator: 4.0.0
+      xml-name-validator: 5.0.0
 
   eslint-scope@9.1.2:
     dependencies:
@@ -4410,8 +4406,6 @@ snapshots:
       ansi-styles: 6.2.3
       string-width: 5.1.2
       strip-ansi: 7.2.0
-
-  xml-name-validator@4.0.0: {}
 
   xml-name-validator@5.0.0: {}
 
