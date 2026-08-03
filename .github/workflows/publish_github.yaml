@@ -20,7 +20,7 @@ jobs:
           KEY: name
           VALUE: "@uiv-lib/uiv"
           FILE: package.json
-      - uses: pnpm/action-setup@v6.0.9
+      - uses: pnpm/action-setup@v6.0.10
         with:
           version: 11.18.0
           run_install: true
