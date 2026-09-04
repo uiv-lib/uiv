@@ -43,7 +43,7 @@
     "@eslint/js": "^10.0.0",
     "@vitejs/plugin-vue": "6.0.8",
     "@vue/compiler-sfc": "3.5.42",
-    "@vue/test-utils": "2.4.11",
+    "@vue/test-utils": "2.5.0",
     "@vitest/coverage-v8": "4.1.11",
     "axios": "1.20.0",
     "bootstrap": "3.4.1",
