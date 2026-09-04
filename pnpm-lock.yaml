@@ -36,8 +36,8 @@ importers:
         specifier: 10.1.8
         version: 10.1.8(eslint@10.9.1(supports-color@7.2.0))
       eslint-plugin-html:
-        specifier: 8.1.4
-        version: 8.1.4
+        specifier: 8.2.0
+        version: 8.2.0
       eslint-plugin-prettier:
         specifier: 5.5.6
         version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.9.1(supports-color@7.2.0)))(eslint@10.9.1(supports-color@7.2.0))(prettier@3.9.6)
@@ -1203,8 +1203,8 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-plugin-html@8.1.4:
-    resolution: {integrity: sha512-Eno3oPEj3s6AhvDJ5zHhnHPDvXp6LNFXuy3w51fNebOKYuTrfjOHUGwP+mOrGFpR6eOJkO1xkB8ivtbfMjbMjg==}
+  eslint-plugin-html@8.2.0:
+    resolution: {integrity: sha512-L6F37uij4uq3cZah46BawXeZlZYW9IfFeep7BwkuxBZA++BbihvEpoJPhq0NpCruPRzVkG/tpgvQYM53Re4pVA==}
     engines: {node: '>=16.0.0'}
 
   eslint-plugin-prettier@5.5.6:
@@ -3167,7 +3167,7 @@ snapshots:
     dependencies:
       eslint: 10.9.1(supports-color@7.2.0)
 
-  eslint-plugin-html@8.1.4:
+  eslint-plugin-html@8.2.0:
     dependencies:
       htmlparser2: 10.1.0
 
